@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">radio</string>
+    <string name="group_button1">芝士派</string>
+    <string name="group_button2">芝士闹钟</string>
+    <string name="group_button3">芝士圈</string>
+    <string name="group_button4">我的芝士</string>
 </resources>

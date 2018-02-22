@@ -31,10 +31,10 @@ public interface ActivityComponent {
         String device = "/"+Constant.device+"/";
 
         String login = ike +"login";
-        String home = ike +"home";
+
         String register = ike +"register";
         String password_forget = ike+"forget";
-        String startup = ike +"startup";
+//        String startup = ike +"startup";
 
         String wifi = user+"wifi";
         String account= user+"account";
@@ -51,5 +51,10 @@ public interface ActivityComponent {
         String sight_senior = device+"sight/senior";
         String sight_config = device+"sight/config";
         String light_setting = device+"light/setting";
+
+
+        String cheese="/cheese/";
+        String startup=cheese+"startup";
+        String home = cheese +"home";
     }
 }

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.cheese.radio.ui.home.HomeModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:adapter="@{vm.adapter}"
+            app:position="@={vm.currentItem}" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom">
+
+            <com.binding.model.view.radio.CheckRadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="55.2dp"
+                android:layout_gravity="bottom"
+                android:background="@color/background_white"
+                android:orientation="horizontal"
+                app:checkedChange="@{vm::onCheckedChanged}"
+                app:position="@={vm.currentItem}">
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    style="@style/HomeRadioButton"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:checked="true"
+                    android:text="@string/group_button1" />
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    style="@style/HomeRadioButton"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/group_button2" />
+
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    style="@style/HomeRadioButton"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/group_button3" />
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    style="@style/HomeRadioButton"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/group_button4" />
+
+            </com.binding.model.view.radio.CheckRadioGroup>
+
+            <RadioButton
+                android:id="@+id/play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|bottom"
+                android:button="@null"
+                android:background="@mipmap/group9"/>
+            <!--      android:checked="@{vm.checked}"
+                android:onClick="@{vm::onPlayClick}"-->
+        </FrameLayout>
+    </FrameLayout>
+
+</layout>

@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="HomeRadioButton">
+        <item name="android:layout_weight">1</item>
+
+    </style>
 </resources>
