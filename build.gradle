@@ -1,0 +1,44 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+		maven { url "https://raw.githubusercontent.com/Pgyer/mvn_repo_pgyer/master" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext{
+    compile_sdk_version = 27
+    build_tools_version = '27.0.3'
+    min_sdk_version = 16
+    target_sdk_version = 27
+    version_code = 2
+    version_name = '2.0'
+
+    support_version = '27.0.2'
+    anko_version = '0.10.1'
+    gson = '2.8.1'
+    retrofit = '2.2.0'
+
+    binding_model="1.1.1"
+}
