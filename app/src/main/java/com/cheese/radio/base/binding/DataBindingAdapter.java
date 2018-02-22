@@ -34,7 +34,6 @@ import com.cheese.radio.R;
  * @version 2.0
  */
 
-
 public class DataBindingAdapter {
 
     @BindingAdapter({"android:background"})
