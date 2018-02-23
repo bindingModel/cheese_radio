@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -10,6 +10,12 @@
 
     <style name="HomeRadioButton">
         <item name="android:layout_weight">1</item>
+    </style>
 
+    <style name="home_mine_item">
+        <item name="android:background">@color/background_white</item>
+        <item name="android:drawableEnd">@mipmap/arrow</item>
+        <item name="android:drawableRight">@mipmap/arrow</item>
+        <item name="android:padding">15dp</item>
     </style>
 </resources>

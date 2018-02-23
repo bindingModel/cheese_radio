@@ -4,6 +4,7 @@ package com.cheese.radio.inject.component;
 import com.cheese.radio.inject.module.ActivityModule;
 import com.cheese.radio.inject.scope.ActivityScope;
 import com.cheese.radio.ui.Constant;
+import com.cheese.radio.ui.home.HomeActivity;
 
 import dagger.Component;
 
@@ -21,7 +22,7 @@ import dagger.Component;
 @ActivityScope
 @Component(dependencies = AppComponent.class,modules={ActivityModule.class})
 public interface ActivityComponent {
-
+    void inject(HomeActivity activity);
 
     interface Router {
         String ike = "/ike/";

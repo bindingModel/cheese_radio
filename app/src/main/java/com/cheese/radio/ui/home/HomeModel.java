@@ -25,11 +25,6 @@ public class HomeModel extends PagerModel<HomeActivity,ActivityHomeBinding,HomeE
   }
 
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-//        int position = group.indexOfChild(group.findViewById(checkedId));
-//        boolean a = position == 2&&!back&&User.isLogin();
-//        if(position !=2||User.isLogin){
-//            lastPosition = position;
-//            back = false;
-//        }
+
     }
 }
