@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.cheese.radio.ui.home.page.HomePageModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/home_edit"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="32dp"
+                android:layout_marginLeft="15dp"
+
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/home_search"
+                android:drawableLeft="@mipmap/back"
+                android:drawableStart="@mipmap/back"
+                android:drawablePadding="10dp"
+                android:gravity="start|center"
+                android:hint="@string/home_search_text"
+                android:onClick="@{vm::onSearchClick}"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/gray"
+                android:textSize="13sp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/shape"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
