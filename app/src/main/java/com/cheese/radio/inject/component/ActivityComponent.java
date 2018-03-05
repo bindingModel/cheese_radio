@@ -25,37 +25,9 @@ public interface ActivityComponent {
     void inject(HomeActivity activity);
 
     interface Router {
-        String ike = "/ike/";
-        String user = "/"+Constant.user+"/";
-        String gateWay = "/"+ Constant.gateWay+"/";
-        String room = "/"+Constant.room+"/";
-        String device = "/"+Constant.device+"/";
-
-        String login = ike +"login";
-
-        String register = ike +"register";
-        String password_forget = ike+"forget";
-//        String startup = ike +"startup";
-
-        String wifi = user+"wifi";
-        String account= user+"account";
-        String senior_setting = user+"senior/setting";
-        String password_modify = user+"password";
-
-        String route = gateWay+"route";
-        String room_add = gateWay +"room/add";
-
-        String sight_add = room+"sight/add";
-        String device_add = room+"light/add";
-        String device_list = room+"/list";
-
-        String sight_senior = device+"sight/senior";
-        String sight_config = device+"sight/config";
-        String light_setting = device+"light/setting";
-
-
         String cheese="/cheese/";
         String startup=cheese+"startup";
         String home = cheese +"home";
+        String login=cheese+"login";
     }
 }

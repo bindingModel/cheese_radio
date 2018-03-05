@@ -14,8 +14,8 @@
 
     <style name="home_mine_item">
         <item name="android:background">@color/background_white</item>
-        <item name="android:drawableEnd">@mipmap/arrow</item>
-        <item name="android:drawableRight">@mipmap/arrow</item>
+        <item name="android:drawableEnd">@mipmap/mine_arrow</item>
+        <item name="android:drawableRight">@mipmap/mine_arrow</item>
         <item name="android:padding">15dp</item>
     </style>
 </resources>
