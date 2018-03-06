@@ -29,5 +29,6 @@ public interface ActivityComponent {
         String startup=cheese+"startup";
         String home = cheese +"home";
         String login=cheese+"login";
+        String guide=cheese+"guide";
     }
 }

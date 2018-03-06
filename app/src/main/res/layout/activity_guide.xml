@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="vm"
+            type="com.cheese.radio.ui.guide.GuideModel"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            app:position="@={vm.currentItem}"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            app:adapter="@{vm.adapter}"
+            android:layout_height="0dp"
+            />
+
+
+        <com.binding.model.view.radio.CheckRadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="@drawable/guide_circle_select"
+                android:checked="true"
+                android:button="@null"
+                android:enabled="false"
+                />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="@drawable/guide_circle_select"
+                android:checked="false"
+                android:enabled="false"
+                android:button="@null"
+                />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="@drawable/guide_circle_select"
+                android:checked="false"
+                android:button="@null"
+                android:enabled="false"
+                />
+
+
+
+        </com.binding.model.view.radio.CheckRadioGroup>
+    </LinearLayout>
+</layout>
