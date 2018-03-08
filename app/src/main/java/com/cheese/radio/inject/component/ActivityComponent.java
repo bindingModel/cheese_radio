@@ -30,5 +30,6 @@ public interface ActivityComponent {
         String home = cheese +"home";
         String login=cheese+"login";
         String guide=cheese+"guide";
+        String anchors=cheese+"anchors";
     }
 }

@@ -10,5 +10,6 @@
     <color name="text_gray">#bdbdbd</color>
     <color name="text_yellow">#f4b118</color>
     <color name="text_white">#ffffff</color>
+    <color name="white">#ffffff</color>
 
 </resources>

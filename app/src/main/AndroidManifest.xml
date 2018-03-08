@@ -8,6 +8,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.home.HomeActivity"/>
         <activity android:name=".ui.startup.StartUpActivity"/>
-
+        <activity android:name=".ui.anchors.AnchorsActivity"/>
+        <activity android:name=".ui.login.LoginActivity"/>
+        <activity android:name=".ui.guide.GuideActivity"/>
     </application>
 </manifest>

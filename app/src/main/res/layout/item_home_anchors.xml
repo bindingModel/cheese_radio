@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.cheese.radio.ui.anchors.AnchorsItem" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <ImageView
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_gravity="center|start"
+            android:layout_marginLeft="9.6dp"
+            android:layout_marginStart="9.6dp"
+            android:src="@mipmap/avatar" />
+
+        <TextView
+            android:layout_width="65dp"
+            android:layout_height="27dp"
+            android:layout_gravity="center|end"
+            android:layout_marginEnd="11.5dp"
+            android:layout_marginRight="11.5dp"
+            android:background="@drawable/login_button_shape"
+            android:drawableLeft="@mipmap/plus"
+            android:drawableStart="@mipmap/plus"
+            android:gravity="center"
+            android:paddingLeft="13.8dp"
+            android:paddingRight="13.8dp"
+            android:text="关注"
+            android:textColor="@color/text_white" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textSize="11.5sp"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="67dp"
+                android:textColor="@color/text_gray"
+                />
+        <View
+            android:layout_width="290dp"
+            android:layout_height="2dp"
+            android:layout_gravity="end|bottom"
+            android:background="@drawable/login_other_line" />
+    </FrameLayout>
+</layout>
