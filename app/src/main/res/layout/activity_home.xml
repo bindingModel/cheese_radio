@@ -28,7 +28,7 @@
             <com.binding.model.view.radio.CheckRadioGroup
                 android:id="@+id/radio_group"
                 android:layout_width="match_parent"
-                android:layout_height="55.2dp"
+                android:layout_height="47dp"
                 android:layout_gravity="bottom"
                 android:background="@color/background_white"
                 android:orientation="horizontal"
@@ -40,36 +40,50 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:checked="true"
+                    android:button="@null"
+                    android:drawableTop="@drawable/home_1"
                     android:text="@string/group_button1" />
 
                 <android.support.v7.widget.AppCompatRadioButton
                     style="@style/HomeRadioButton"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="@string/group_button2" />
+                    android:button="@null"
+                    android:drawableTop="@drawable/home_2"
+                    android:text="@string/group_button2"
+                    android:layout_marginRight="90dp"/>
+
+
 
 
                 <android.support.v7.widget.AppCompatRadioButton
                     style="@style/HomeRadioButton"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:button="@null"
+                    android:drawableTop="@drawable/home_3"
                     android:text="@string/group_button3" />
 
                 <android.support.v7.widget.AppCompatRadioButton
                     style="@style/HomeRadioButton"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:button="@null"
+                    android:drawableTop="@drawable/home_4"
                     android:text="@string/group_button4" />
 
             </com.binding.model.view.radio.CheckRadioGroup>
-
             <RadioButton
                 android:id="@+id/play"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="57dp"
+                android:layout_height="57dp"
                 android:layout_gravity="center|bottom"
                 android:button="@null"
-                android:background="@mipmap/group9"/>
+                android:background="@drawable/circle_white_player_controller"
+                android:checked="@{vm.checked}"
+                android:onClick="@{vm::onPlayClick}"
+                android:layout_marginBottom="37.3dp"
+              />
             <!--      android:checked="@{vm.checked}"
                 android:onClick="@{vm::onPlayClick}"-->
         </FrameLayout>
