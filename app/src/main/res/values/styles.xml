@@ -20,4 +20,22 @@
         <item name="android:drawableRight">@mipmap/mine_arrow</item>
         <item name="android:padding">15dp</item>
     </style>
+
+    <style name="profile_input_linearlayout">
+        <item name="android:background">@color/background_white</item>
+    </style>
+
+    <style name="profile_input_linearlayout_head">
+        <item name="android:layout_marginLeft">14.4dp</item>
+        <item name="android:textSize">14.4sp</item>
+        <item name="android:gravity">center|start</item>
+    </style>
+
+    <style name="profile_input_linearlayout_solid">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center|end</item>
+        <item name="android:layout_marginRight">14.4dp</item>
+        <item name="android:drawablePadding">10.88dp</item>
+        <item name="android:drawableRight">@mipmap/mine_arrow</item>
+    </style>
 </resources>

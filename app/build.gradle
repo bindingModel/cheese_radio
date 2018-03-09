@@ -105,5 +105,7 @@ android {
         implementation 'com.pgyersdk:sdk:2.8.1'
         // implementation 'org.apmem.tools:layouts:1.10@aar'
 
+        implementation 'com.contrarywind:Android-PickerView:3.2.7'
+
     }
 }

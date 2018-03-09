@@ -10,4 +10,6 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.startup
  */
 @Route( path = startup )
 public class StartUpActivity extends BaseActivity <StartUpModel>{
+
+
 }

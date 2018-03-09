@@ -4,7 +4,12 @@ package com.cheese.radio.inject.component;
 import com.cheese.radio.inject.module.ActivityModule;
 import com.cheese.radio.inject.scope.ActivityScope;
 import com.cheese.radio.ui.Constant;
+import com.cheese.radio.ui.anchors.AnchorsActivity;
+import com.cheese.radio.ui.guide.GuideActivity;
 import com.cheese.radio.ui.home.HomeActivity;
+import com.cheese.radio.ui.login.LoginActivity;
+import com.cheese.radio.ui.startup.StartUpActivity;
+import com.cheese.radio.ui.user.profile.ProfileActivity;
 
 import dagger.Component;
 
@@ -23,6 +28,11 @@ import dagger.Component;
 @Component(dependencies = AppComponent.class,modules={ActivityModule.class})
 public interface ActivityComponent {
     void inject(HomeActivity activity);
+    void inject(LoginActivity activity);
+    void inject(StartUpActivity activity);
+    void inject(GuideActivity activity);
+    void inject(AnchorsActivity activity);
+    void inject(ProfileActivity activity);
 
     interface Router {
         String cheese="/cheese/";
@@ -31,5 +41,6 @@ public interface ActivityComponent {
         String login=cheese+"login";
         String guide=cheese+"guide";
         String anchors=cheese+"anchors";
+        String profile=cheese+"profile";
     }
 }
