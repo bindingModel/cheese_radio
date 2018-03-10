@@ -21,6 +21,9 @@ public class LoginModel extends ViewModel<LoginActivity,ActivityLoginBinding> {
     @Override
     public void attachView(Bundle savedInstanceState, LoginActivity loginActivity) {
         super.attachView(savedInstanceState, loginActivity);
+        long time=System.currentTimeMillis()/1000;//获取系统时间的10位的时间戳
+
+        String  str=String.valueOf(time);
     }
 }
 

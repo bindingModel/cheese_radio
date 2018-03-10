@@ -86,6 +86,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="53.28dp"
+            android:onClick="@{vm::onSelectClick}"
             style="@style/profile_input_linearlayout">
             <TextView
                 android:layout_width="wrap_content"
@@ -97,7 +98,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@{vm.date}"
+                android:text="@{vm.mDate}"
                 style="@style/profile_input_linearlayout_solid"/>
         </LinearLayout>
         <View
