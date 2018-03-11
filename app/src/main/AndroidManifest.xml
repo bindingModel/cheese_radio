@@ -21,5 +21,7 @@
         <activity android:name=".ui.user.profile.ProfileActivity" android:label="个人信息">
 
         </activity>
+        <activity android:name=".ui.user.edit.EditNameActivity" android:label="昵称"/>
+        <activity android:name=".ui.enroll.EnrollAcitivity" android:label="报名"/>
     </application>
 </manifest>

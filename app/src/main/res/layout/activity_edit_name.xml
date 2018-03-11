@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="vm"
+            type="com.cheese.radio.ui.user.edit.EditNameModel"/>
+        <import type="android.view.View"/>
+
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_gray"
+        android:orientation="vertical">
+        <include
+            layout="@layout/toolbar"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="53.28dp"
+            android:layout_marginTop="27.8dp"
+            style="@style/profile_input_linearlayout">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="小猪佩奇"
+                android:textColor="@color/text_black"
+                android:gravity="center|left"
+                android:paddingLeft="14.3dp"
+                android:paddingRight="14.3dp"
+           />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="14.3dp"
+                android:paddingRight="14.3dp"
+                android:src="@mipmap/delete"
+                android:visibility="@{vm.editSwitch?View.VISIBLE:View.GONE}"
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_name_hint"
+            android:layout_marginTop="9.6dp"
+            android:paddingLeft="14.3dp"
+            android:paddingRight="14.3dp"
+            />
+
+    </LinearLayout>
+</layout>
