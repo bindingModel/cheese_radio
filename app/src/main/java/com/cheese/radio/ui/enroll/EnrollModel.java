@@ -33,7 +33,7 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.home;
 public class EnrollModel extends ViewModel<EnrollAcitivity,ActivityEnrollBinding>{
 
     @Inject EnrollModel(){}
-
+    public  ObservableField<String> mDate=new ObservableField<String>();
     private ArrayList<CitysBean> options1Items = new ArrayList<>();
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
     private ArrayList<ArrayList<ArrayList<String>>> options3Items = new ArrayList<>();
@@ -193,5 +193,9 @@ public class EnrollModel extends ViewModel<EnrollAcitivity,ActivityEnrollBinding
             mHandler.sendEmptyMessage(MSG_LOAD_FAILED);
         }
         return detail;
+    }
+
+    public void onSelectClick(View view){
+
     }
 }
