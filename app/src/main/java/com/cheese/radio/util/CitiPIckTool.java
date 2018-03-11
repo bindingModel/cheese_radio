@@ -1,56 +1,56 @@
-package com.cheese.radio.ui.enroll;
+package com.cheese.radio.util;
 
-import android.databinding.ObservableField;
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
-import com.binding.model.model.ModelView;
-import com.binding.model.model.ViewModel;
+import com.binding.model.cycle.Container;
 import com.binding.model.util.BaseUtil;
-import com.cheese.radio.R;
-import com.cheese.radio.base.arouter.ARouterUtil;
-import com.cheese.radio.databinding.ActivityEnrollBinding;
-import com.cheese.radio.util.GetJsonDataUtil;
+import com.cheese.radio.base.cycle.BaseActivity;
+import com.cheese.radio.ui.enroll.CitysBean;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
 
 import java.util.ArrayList;
 
-import javax.inject.Inject;
-
-import static com.cheese.radio.inject.component.ActivityComponent.Router.home;
-
 /**
- * Created by 29283 on 2018/3/10.
+ * Created by 29283 on 2018/3/11.
  */
-@ModelView(R.layout.activity_enroll)
-public class EnrollModel extends ViewModel<EnrollAcitivity,ActivityEnrollBinding>{
 
-    @Inject EnrollModel(){}
-    public  ObservableField<String> mDate=new ObservableField<String>();
+public class CitiPIckTool {
+
+
+
+    private static final int MSG_LOAD_DATA = 0x0001;
+    private static final int MSG_LOAD_SUCCESS = 0x0002;
+    private static final int MSG_LOAD_FAILED = 0x0003;
     private ArrayList<CitysBean> options1Items = new ArrayList<>();
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
     private ArrayList<ArrayList<ArrayList<String>>> options3Items = new ArrayList<>();
     private Thread thread;
-    private static final int MSG_LOAD_DATA = 0x0001;
-    private static final int MSG_LOAD_SUCCESS = 0x0002;
-    private static final int MSG_LOAD_FAILED = 0x0003;
-    public ObservableField<String> mCity=new ObservableField<>("点击选择");
     private boolean isLoaded = false;
-    @Override
-    public void attachView(Bundle savedInstanceState, EnrollAcitivity enrollAcitivity) {
-        super.attachView(savedInstanceState, enrollAcitivity);
+    private Context context;
 
+
+
+    private static CitiPIckTool instance;
+    public static CitiPIckTool getInstance() {
+        if (instance == null){
+            instance = new CitiPIckTool();
+        }
+        return instance;
+    }
+    private CitiPIckTool(){
     }
 
-
-    public void onSelectCityClick(View view ){
+    public void showView(Context context){
+        this.context=context;
         if(isLoaded)ShowPickerView();
         else{
             mHandler.sendEmptyMessage(MSG_LOAD_DATA);
@@ -61,7 +61,6 @@ public class EnrollModel extends ViewModel<EnrollAcitivity,ActivityEnrollBinding
                     ShowPickerView();
                 }
             }, 500);
-
         }
     }
 
@@ -70,7 +69,7 @@ public class EnrollModel extends ViewModel<EnrollAcitivity,ActivityEnrollBinding
             switch (msg.what) {
                 case MSG_LOAD_DATA:
                     if (thread==null){//如果已创建就不再重新创建子线程了
-                        BaseUtil.toast("Begin Parse Data"+Toast.LENGTH_SHORT);
+                        BaseUtil.toast("Begin Parse Data"+ Toast.LENGTH_SHORT);
                         thread = new Thread(new Runnable() {
                             @Override
                             public void run() {
@@ -97,14 +96,13 @@ public class EnrollModel extends ViewModel<EnrollAcitivity,ActivityEnrollBinding
 
     private void ShowPickerView() {// 弹出选择器
 
-        OptionsPickerView pvOptions = new OptionsPickerView.Builder(getT(), new OptionsPickerView.OnOptionsSelectListener() {
+        OptionsPickerView pvOptions = new OptionsPickerView.Builder(context, new OptionsPickerView.OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
                 String tx = options1Items.get(options1).getPickerViewText()+
                         options2Items.get(options1).get(options2)+
                         options3Items.get(options1).get(options2).get(options3);
-                mCity.set(tx);
             }
         })
                 .setTitleText("城市选择")
@@ -126,7 +124,7 @@ public class EnrollModel extends ViewModel<EnrollAcitivity,ActivityEnrollBinding
          * 关键逻辑在于循环体
          *
          * */
-        String JsonData = new GetJsonDataUtil().getJson(getT(),"province.json");//获取assets目录下的json文件数据
+        String JsonData = new GetJsonDataUtil().getJson(context,"province.json");//获取assets目录下的json文件数据
 
         ArrayList<CitysBean> jsonBean = parseData(JsonData);//用Gson 转成实体
 
@@ -195,7 +193,4 @@ public class EnrollModel extends ViewModel<EnrollAcitivity,ActivityEnrollBinding
         return detail;
     }
 
-    public void onSelectClick(View view){
-
-    }
 }
