@@ -46,7 +46,6 @@ public class DataBindingAdapter {
                     public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) view.setBackground(resource);
                         else view.setBackgroundDrawable(resource);
-
                     }
                 });
     }
@@ -128,9 +127,7 @@ public class DataBindingAdapter {
         if (mipmapId != 0) view.setImageResource(mipmapId);
     }
 
-
     //    --------------------------TextView------------------------
-
     @BindingAdapter({"android:drawableTop"})
     public static void setDrawableTop(TextView view, String image) {
         Context mContext = view.getContext();
