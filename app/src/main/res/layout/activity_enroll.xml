@@ -54,6 +54,7 @@
             android:layout_height="53.28dp"
             android:onClick="@{vm::onSelectClick}"
             android:layout_marginTop="1dp"
+            android:id="@+id/birthday_button"
             style="@style/profile_input_linearlayout">
             <TextView
                 android:layout_width="wrap_content"
@@ -66,6 +67,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@{vm.mDate}"
+                android:onClick="@{vm::onSelectClick}"
                 style="@style/profile_input_linearlayout_solid"/>
         </LinearLayout>
 
@@ -95,6 +97,7 @@
             android:layout_height="53.28dp"
             android:layout_marginTop="1dp"
             android:onClick="@{vm::onSelectCityClick}"
+            android:id="@+id/city_button"
             style="@style/profile_input_linearlayout">
             <TextView
                 android:layout_width="wrap_content"
@@ -102,11 +105,12 @@
                 android:text="家庭住址"
                 style="@style/profile_input_linearlayout_head"
                 />
-            <EditText
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:hint="请选择省份.城市.地区"
+                android:focusable="false"
                 android:textSize="14.4sp"
                 android:background="@null"
                 android:text="@{vm.mCity}"

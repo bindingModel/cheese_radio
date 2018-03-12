@@ -1,5 +1,6 @@
 package com.cheese.radio.ui;
 
+import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 import android.support.v7.app.AppCompatDelegate;
 
@@ -26,6 +27,7 @@ public class IkeApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
         application = this;
 //        daoUtils =  new DaoUtils(this);
         App.getInstance().init(this, BuildConfig.DEBUG, BR.vm);
@@ -44,5 +46,6 @@ public class IkeApplication extends MultiDexApplication {
     public static AppComponent getAppComponent() {
         return appComponent;
     }
+
 
 }

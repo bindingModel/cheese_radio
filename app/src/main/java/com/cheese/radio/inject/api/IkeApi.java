@@ -2,11 +2,13 @@ package com.cheese.radio.inject.api;
 
 import com.cheese.radio.base.InfoEntity;
 import com.cheese.radio.ui.anchors.AnchorsItem;
+import com.cheese.radio.ui.anchors.AnchorsParams;
 
 import java.util.List;
 
 
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 /**
@@ -17,7 +19,7 @@ public interface IkeApi {
     String host = "http://111.231.237.11:8081";
 
     @POST("/1.0/author")
-    Observable<InfoEntity<List<AnchorsItem>>> getAnchors();
+    Observable<InfoEntity<List<AnchorsItem>>> getAnchors(@Body AnchorsParams params);
 //    String host = "https://www.xcore-tech.com/";
 //    String imageHost="https://www.xcore-tech.com/paladin1/Static/images/portrait/";
 //

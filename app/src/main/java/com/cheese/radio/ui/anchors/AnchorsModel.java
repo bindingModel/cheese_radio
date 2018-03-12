@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
+import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityAnchorsBinding;
@@ -23,12 +24,17 @@ public class AnchorsModel extends RecyclerModel<AnchorsActivity,ActivityAnchorsB
     }
     @Inject
     IkeApi api;
+
+    private AnchorsParams params=new AnchorsParams();
     @Override
     public void attachView(Bundle savedInstanceState, AnchorsActivity anchorsActivity) {
         super.attachView(savedInstanceState, anchorsActivity);
         getDataBinding().layoutRecycler.setVm(this);
-        setRcHttp((offset1, refresh) -> api.getAnchors().compose(new RestfulTransformer<>()).
-                map(anchorsItems -> anchorsItems));
-
+        /*setRcHttp((offset1, refresh) -> api.getAnchors(new AnchorsParams()).compose(new RestfulTransformer<>()).
+                map(anchorsItems -> anchorsItems));*/
+        BaseUtil.toast(params.toString());
+        api.getAnchors(params).compose(new RestfulTransformer<>()).subscribe(anchorsItems -> {
+         accept(anchorsItems);
+    },BaseUtil::toast);
     }
 }

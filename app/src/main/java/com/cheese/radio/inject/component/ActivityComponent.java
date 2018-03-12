@@ -5,6 +5,8 @@ import com.cheese.radio.inject.module.ActivityModule;
 import com.cheese.radio.inject.scope.ActivityScope;
 import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.anchors.AnchorsActivity;
+import com.cheese.radio.ui.enroll.EnrollActivity;
+import com.cheese.radio.ui.enroll.EnrollModel;
 import com.cheese.radio.ui.guide.GuideActivity;
 import com.cheese.radio.ui.home.HomeActivity;
 import com.cheese.radio.ui.login.LoginActivity;
@@ -33,7 +35,7 @@ public interface ActivityComponent {
     void inject(GuideActivity activity);
     void inject(AnchorsActivity activity);
     void inject(ProfileActivity activity);
-
+    void inject(EnrollActivity activity);
     interface Router {
         String cheese="/cheese/";
         String startup=cheese+"startup";
