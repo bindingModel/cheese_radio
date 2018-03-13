@@ -36,5 +36,6 @@ public class AnchorsModel extends RecyclerModel<AnchorsActivity,ActivityAnchorsB
         api.getAnchors(params).compose(new RestfulTransformer<>()).subscribe(anchorsItems -> {
          accept(anchorsItems);
     },BaseUtil::toast);
+
     }
 }

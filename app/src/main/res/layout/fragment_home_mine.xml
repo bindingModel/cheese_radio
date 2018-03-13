@@ -5,7 +5,7 @@
 
         <variable
             name="vm"
-            type="com.cheese.radio.ui.home.mine.HomeMineFragment" />
+            type="com.cheese.radio.ui.home.mine.HomeMineModel" />
     </data>
 
     <LinearLayout
@@ -13,6 +13,7 @@
         android:layout_height="match_parent"
         android:background="@color/background_gray"
         android:orientation="vertical">
+
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -40,14 +41,13 @@
                 android:scaleType="fitXY"
                 android:src="@mipmap/avatar" />
         </FrameLayout>
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="55.2dp"
             android:layout_marginTop="15dp"
             style="@style/home_mine_item"
             android:text="我的作品"
-         />
+            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="55.2dp"

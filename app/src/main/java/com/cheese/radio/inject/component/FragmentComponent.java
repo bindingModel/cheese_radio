@@ -2,6 +2,10 @@ package com.cheese.radio.inject.component;
 
 import com.cheese.radio.inject.module.FragmentModule;
 import com.cheese.radio.inject.scope.FragmentScope;
+import com.cheese.radio.ui.home.circle.CircleFragment;
+import com.cheese.radio.ui.home.clock.ClockFragment;
+import com.cheese.radio.ui.home.mine.HomeMineFragment;
+import com.cheese.radio.ui.home.page.HomePageFragment;
 
 import dagger.Component;
 
@@ -21,4 +25,8 @@ import dagger.Component;
 @FragmentScope
 @Component(dependencies = AppComponent.class,modules={FragmentModule.class})
 public interface FragmentComponent {
+    void inject(HomeMineFragment fragment);
+    void inject(HomePageFragment fragment);
+    void inject(CircleFragment fragment);
+    void inject(ClockFragment fragment);
 }

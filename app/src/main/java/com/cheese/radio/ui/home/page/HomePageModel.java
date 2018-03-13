@@ -41,16 +41,16 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
         GridLayoutManager layoutManager = new GridLayoutManager(homePageFragment.getContext(), 4);
         layoutManager.setSpanSizeLookup(new GridSpanSizeLookup<>(getAdapter()));
         setLayoutManager(layoutManager);
-        setRoHttp((offset1, refresh) -> {
-            /*if (refresh < 1)return api.getProducts(offset1,getPageCount())
-                    .compose(new RestfulTransformer<>())
-                    .map(homePageData -> {
-                        List<GridInflate> list =new ArrayList<>();
-                        list.addAll(homePageData.getProducts());
-                        return list;
-                    });
-            else*/ return getZip(offset1,getPageCount());
-        });
+//        setRoHttp((offset1, refresh) -> {
+//            /*if (refresh < 1)return api.getProducts(offset1,getPageCount())
+//                    .compose(new RestfulTransformer<>())
+//                    .map(homePageData -> {
+//                        List<GridInflate> list =new ArrayList<>();
+//                        list.addAll(homePageData.getProducts());
+//                        return list;
+//                    });
+//            else*/ return getZip(offset1,getPageCount());
+//        });
     }
          private Observable<List<GridInflate>> getZip(int start, int length) {
         return null;

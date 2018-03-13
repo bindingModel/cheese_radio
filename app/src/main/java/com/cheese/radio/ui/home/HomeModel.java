@@ -2,7 +2,9 @@ package com.cheese.radio.ui.home;
 
 import android.Manifest;
 import android.databinding.ObservableBoolean;
+import android.databinding.ObservableInt;
 import android.media.MediaPlayer;
+import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
@@ -27,21 +29,36 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import static com.binding.model.adapter.AdapterType.refresh;
+
 /**
  * Created by 29283 on 2018/2/22.
  */
 @ModelView(R.layout.activity_home)
-public class HomeModel extends PagerModel<HomeActivity,ActivityHomeBinding,HomeEntity>
-        implements MediaPlayer.OnCompletionListener, SeekBar.OnSeekBarChangeListener ,TimeEntity
-{
+public class HomeModel extends PagerModel<HomeActivity, ActivityHomeBinding, HomeEntity>
+        implements MediaPlayer.OnCompletionListener, SeekBar.OnSeekBarChangeListener, TimeEntity {
     public ObservableBoolean checked = new ObservableBoolean();
     private int position = 0;
     private List<Entity> fmsEntities = new ArrayList<>();
     private Entity entity;
+    private final List<HomeEntity> list = new ArrayList<>();
+    public ObservableInt currentItem = new ObservableInt();
+    private int lastPosition;
 
-    @Inject HomeModel(@ActivityFragmentManager FragmentManager fm) {
-      super(new FragmentStateAdapter<>(fm));
-  }
+    @Inject
+    HomeModel(@ActivityFragmentManager FragmentManager fm) {
+        super(new FragmentStateAdapter<>(fm));
+    }
+
+    @Override
+    public void attachView(Bundle savedInstanceState, HomeActivity activity) {
+        super.attachView(savedInstanceState, activity);
+        if (list.isEmpty())
+            for (int i = 0; i < 4; i++)
+                list.add(new HomeEntity());
+        getAdapter().setList(0, list, refresh);
+        currentItem.set(0);
+    }
 
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
 
@@ -65,7 +82,7 @@ public class HomeModel extends PagerModel<HomeActivity,ActivityHomeBinding,HomeE
         checked.set(false);
         if (position == fmsEntities.size() - 1) {
             mediaPlayer.seekTo(0);
-        } else{
+        } else {
             onForwardClick(null);
         }
     }

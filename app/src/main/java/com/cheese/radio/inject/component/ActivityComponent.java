@@ -46,5 +46,6 @@ public interface ActivityComponent {
         String profile=cheese+"profile";
         String enroll=cheese+"enroll";
         String name=cheese+"name";
+        String anchor=cheese+"anchor";
     }
 }

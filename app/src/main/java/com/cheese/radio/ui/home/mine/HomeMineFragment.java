@@ -7,6 +7,5 @@ import com.cheese.radio.base.cycle.BaseFragment;
 /**
  * Created by 29283 on 2018/2/22.
  */
-@ModelView(R.layout.fragment_home_mine)
 public class HomeMineFragment extends BaseFragment<HomeMineModel> {
 }

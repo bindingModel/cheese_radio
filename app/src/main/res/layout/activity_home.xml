@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="vm"
             type="com.cheese.radio.ui.home.HomeModel" />
@@ -28,8 +29,9 @@
             <com.binding.model.view.radio.CheckRadioGroup
                 android:id="@+id/radio_group"
                 android:layout_width="match_parent"
-                android:layout_height="47dp"
+                android:layout_height="47.333dp"
                 android:layout_gravity="bottom"
+                android:paddingTop="5.66dp"
                 android:background="@color/background_white"
                 android:orientation="horizontal"
                 app:checkedChange="@{vm::onCheckedChanged}"
@@ -39,8 +41,8 @@
                     style="@style/HomeRadioButton"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:checked="true"
                     android:button="@null"
+                    android:checked="true"
                     android:drawableTop="@drawable/home_1"
                     android:text="@string/group_button1" />
 
@@ -48,12 +50,10 @@
                     style="@style/HomeRadioButton"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_marginRight="90dp"
                     android:button="@null"
                     android:drawableTop="@drawable/home_2"
-                    android:text="@string/group_button2"
-                    android:layout_marginRight="90dp"/>
-
-
+                    android:text="@string/group_button2" />
 
 
                 <android.support.v7.widget.AppCompatRadioButton
@@ -73,17 +73,17 @@
                     android:text="@string/group_button4" />
 
             </com.binding.model.view.radio.CheckRadioGroup>
+
             <RadioButton
                 android:id="@+id/play"
                 android:layout_width="57dp"
                 android:layout_height="57dp"
                 android:layout_gravity="center|bottom"
-                android:button="@null"
+                android:layout_marginBottom="17.3dp"
                 android:background="@drawable/circle_white_player_controller"
+                android:button="@null"
                 android:checked="@{vm.checked}"
-                android:onClick="@{vm::onPlayClick}"
-                android:layout_marginBottom="37.3dp"
-              />
+                android:onClick="@{vm::onPlayClick}" />
             <!--      android:checked="@{vm.checked}"
                 android:onClick="@{vm::onPlayClick}"-->
         </FrameLayout>
