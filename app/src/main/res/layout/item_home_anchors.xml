@@ -18,7 +18,7 @@
             android:layout_gravity="center|start"
             android:layout_marginLeft="9.6dp"
             android:layout_marginStart="9.6dp"
-            android:src="@mipmap/avatar" />
+            android:src="@{vm.image}" />
 
         <TextView
             android:layout_width="65dp"
@@ -37,7 +37,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/app_name"
+                android:text="@{vm.msg}"
                 android:textSize="11.5sp"
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="67dp"

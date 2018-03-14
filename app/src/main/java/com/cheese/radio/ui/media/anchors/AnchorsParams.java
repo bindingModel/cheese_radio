@@ -14,29 +14,13 @@ import java.util.Iterator;
  */
 
 public class AnchorsParams extends IkeParams{
-    private String uuid;
-    private String timestamp;
+    private String method;
 
-    public String getUuid() {
-        return uuid= MyBaseUtil.getMacAddress();
+    public String getMethod() {
+        return method="list";
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setMethod(String method) {
+        this.method = method;
     }
-
-    public String getTimestamp() {
-            if (timestamp==null)
-                timestamp=MyBaseUtil.getTimestamp();
-        return timestamp;
-    }
-
-    public void setTimest(String timestamp) {
-        this.timestamp = String.valueOf(System.currentTimeMillis());
-    }
-
-
-
-
-
 }

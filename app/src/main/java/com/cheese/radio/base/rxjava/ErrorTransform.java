@@ -68,7 +68,7 @@ public class ErrorTransform<T> implements ObservableTransformer<InfoEntity<T>, I
                     return Observable.create(subscriber -> {
                         InfoEntity<T> infoEntity = new InfoEntity<T>();
                         infoEntity.setCode(code);
-                        infoEntity.setMsg(errorMessage);
+                        infoEntity.setMessage(errorMessage);
                         subscriber.onNext(infoEntity);
                     });
                 });

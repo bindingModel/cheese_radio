@@ -3,6 +3,9 @@ package com.cheese.radio.inject.api;
 import com.cheese.radio.base.InfoEntity;
 import com.cheese.radio.ui.media.anchors.AnchorsItem;
 import com.cheese.radio.ui.media.anchors.AnchorsParams;
+import com.cheese.radio.ui.user.login.params.SignParams;
+import com.cheese.radio.ui.user.login.params.SmsParams;
+import com.cheese.radio.ui.user.login.entity.SignUserEntity;
 
 import java.util.List;
 
@@ -20,6 +23,12 @@ public interface IkeApi {
 
     @POST("/1.0/author")
     Observable<InfoEntity<List<AnchorsItem>>> getAnchors(@Body AnchorsParams params);
+
+    @POST("/1.0/common")
+    Observable<InfoEntity<Object>> getSMS(@Body SmsParams params);
+
+    @POST("/1.0/user")
+    Observable<InfoEntity<SignUserEntity>> getToken (@Body SignParams params);
 //    String host = "https://www.xcore-tech.com/";
 //    String imageHost="https://www.xcore-tech.com/paladin1/Static/images/portrait/";
 //

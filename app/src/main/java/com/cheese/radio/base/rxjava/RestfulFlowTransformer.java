@@ -31,7 +31,7 @@ public class RestfulFlowTransformer<T> implements FlowableTransformer<InfoEntity
                     try {
                         switch (entity.getCode()) {
                             case 0:if (entity.getData() != null) flowableEmitter.onNext(entity.getData());break;
-                            default:throw new ApiException(entity.getMsg());
+                            default:throw new ApiException(entity.getMessage());
                         }
                     } catch (Exception e) {
                         flowableEmitter.onError(e);

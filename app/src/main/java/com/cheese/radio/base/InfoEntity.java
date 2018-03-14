@@ -5,16 +5,16 @@ package com.cheese.radio.base;
  */
 
 public class InfoEntity<T> {
-    private String msg;
+    private String message;
     private T data;
     private int code;
 
-    public String getMsg() {
-        return msg;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public T getData() {

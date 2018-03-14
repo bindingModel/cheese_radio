@@ -33,14 +33,14 @@ public class JsonResponseBodyConverter<T> implements Converter<ResponseBody, T> 
                 if (InfoEntity.class.isAssignableFrom(cc)) {
                     entity = JsonDeepUtil.getInstance().getEntityJson(json, InfoEntity.class);
                     if (entity.getCode() != 0)
-                        throw new ApiException(entity.getMsg(), entity.getCode(), json);
+                        throw new ApiException(entity.getMessage(), entity.getCode(), json);
                 }
             }
             return adapter.fromJson(json);
         }catch (Exception e){
             if(entity!=null){
                 value.close();
-                throw new ApiException(entity.getMsg(), entity.getCode(), json);
+                throw new ApiException(entity.getMessage(), entity.getCode(), json);
             }
             e.printStackTrace();
             throw new RuntimeException(e);

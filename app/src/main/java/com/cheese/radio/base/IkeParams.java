@@ -17,7 +17,26 @@ import java.util.List;
 
 public class IkeParams extends FormUnionParams{
     public String sign;
+    public String uuid;
+    public String timestamp;
 
+    public String getUuid() {
+        return uuid= MyBaseUtil.getMacAddress();
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public String getTimestamp() {
+        if (timestamp==null)
+            timestamp=MyBaseUtil.getTimestamp();
+        return timestamp;
+    }
+
+    public void setTimest(String timestamp) {
+        this.timestamp = String.valueOf(System.currentTimeMillis());
+    }
     public String getSign() {
         HashMap<String,String> hashMap = new HashMap<>();
         List<Field> fields = ReflectUtil.getAllFields(getClass());

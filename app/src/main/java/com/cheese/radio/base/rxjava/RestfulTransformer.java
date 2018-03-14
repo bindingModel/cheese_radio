@@ -40,7 +40,7 @@ public class RestfulTransformer<T> implements ObservableTransformer<InfoEntity<T
                                     case 0:if (entity.getData() != null) subscriber.onNext(entity.getData());
                                         break;
                                     default:
-                                        throw new ApiException(entity.getMsg());
+                                        throw new ApiException(entity.getMessage());
                                 }
                             } catch (Exception e) {
                                 subscriber.onError(e);

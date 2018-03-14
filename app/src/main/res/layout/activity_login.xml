@@ -7,6 +7,9 @@
         <variable
             name="vm"
             type="com.cheese.radio.ui.user.login.LoginModel" />
+        <variable
+            name="params"
+            type="com.cheese.radio.ui.user.login.params.SignParams"/>
     </data>
 
     <LinearLayout
@@ -41,6 +44,7 @@
             android:drawablePadding="9dp"
             android:drawableStart="@mipmap/input_mobile"
             android:hint="请输入手机号"
+            android:text="@={params.phone}"
             android:paddingLeft="17dp"
             android:paddingRight="17dp"
             android:textSize="14.4sp" />
@@ -60,6 +64,7 @@
                 android:drawablePadding="9dp"
                 android:drawableStart="@mipmap/input_sms"
                 android:hint="请输入短信验证码"
+                android:text="@={params.validCode}"
                 android:paddingLeft="17dp"
                 android:paddingRight="17dp"
                 android:textSize="14.4sp" />
@@ -70,6 +75,7 @@
                 android:layout_gravity="end|center"
                 android:layout_marginEnd="43dp"
                 android:layout_marginStart="43dp"
+                android:onClick="@{vm::onGetSmsClick}"
                 android:text="获取验证码"
                 android:textColor="@color/text_yellow" />
 
@@ -84,13 +90,13 @@
             android:background="@drawable/login_button_shape"
             android:text="进入芝士电台"
             android:textColor="@color/text_white"
-            android:textSize="14.4sp" />
+            android:textSize="14.4sp"
+            android:onClick="@{vm::onSignClick}"/>
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="15dp"
-            android:layout_marginTop="123dp"
-            >
+            android:layout_marginTop="123dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -120,25 +126,28 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="1"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:src="@mipmap/wx"/>
+                android:src="@mipmap/wx" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/qq"/>
+                android:src="@mipmap/qq" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:src="@mipmap/wb"/>
+                android:src="@mipmap/wb" />
         </LinearLayout>
     </LinearLayout>
 
