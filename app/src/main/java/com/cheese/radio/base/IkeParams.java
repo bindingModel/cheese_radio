@@ -23,7 +23,7 @@ public class IkeParams extends FormUnionParams{
         List<Field> fields = ReflectUtil.getAllFields(getClass());
         for (Field field : fields) {
             Object o = ReflectUtil.beanGetValue(field, this);
-            if (o == null) continue;
+            if (o == null||"sign".equals(field.getName())) continue;
             hashMap.put(BaseUtil.findQuery(field), o.toString());
         }
         return sign = MyBaseUtil.getSign(hashMap);
