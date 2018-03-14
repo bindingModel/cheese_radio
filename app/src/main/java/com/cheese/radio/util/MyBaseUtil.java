@@ -68,7 +68,7 @@ public class MyBaseUtil {
         return array;
     }
 
-    public String getSign( HashMap<String,String> argParams){
+    public static String getSign(HashMap<String,String> argParams){
         String randomString =MyBaseUtil.getRandoms(8);
         StringBuilder sb=new StringBuilder();
         int index =0;
