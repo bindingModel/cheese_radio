@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.anchors.AnchorsActivity">
+        <activity android:name=".ui.media.anchors.AnchorsActivity">
 
         </activity>
         <activity android:name=".ui.user.login.LoginActivity"/>

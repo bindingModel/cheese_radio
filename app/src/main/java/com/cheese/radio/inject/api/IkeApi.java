@@ -1,8 +1,8 @@
 package com.cheese.radio.inject.api;
 
 import com.cheese.radio.base.InfoEntity;
-import com.cheese.radio.ui.anchors.AnchorsItem;
-import com.cheese.radio.ui.anchors.AnchorsParams;
+import com.cheese.radio.ui.media.anchors.AnchorsItem;
+import com.cheese.radio.ui.media.anchors.AnchorsParams;
 
 import java.util.List;
 

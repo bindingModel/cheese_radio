@@ -3,7 +3,7 @@ package com.cheese.radio.inject.component;
 
 import com.cheese.radio.inject.module.ActivityModule;
 import com.cheese.radio.inject.scope.ActivityScope;
-import com.cheese.radio.ui.anchors.AnchorsActivity;
+import com.cheese.radio.ui.media.anchors.AnchorsActivity;
 import com.cheese.radio.ui.user.enroll.EnrollActivity;
 import com.cheese.radio.ui.user.guide.GuideActivity;
 import com.cheese.radio.ui.home.HomeActivity;
