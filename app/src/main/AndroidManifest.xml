@@ -23,13 +23,13 @@
         <activity android:name=".ui.anchors.AnchorsActivity">
 
         </activity>
-        <activity android:name=".ui.login.LoginActivity"/>
-        <activity android:name=".ui.guide.GuideActivity"/>
+        <activity android:name=".ui.user.login.LoginActivity"/>
+        <activity android:name=".ui.user.guide.GuideActivity"/>
         <activity android:name=".ui.user.profile.ProfileActivity" android:label="个人信息">
 
         </activity>
         <activity android:name=".ui.user.edit.EditNameActivity" android:label="昵称"/>
-        <activity android:name=".ui.enroll.EnrollActivity" android:label="报名">
+        <activity android:name=".ui.user.enroll.EnrollActivity" android:label="报名">
 
         </activity>
     </application>

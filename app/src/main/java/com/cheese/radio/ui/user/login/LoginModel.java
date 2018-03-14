@@ -1,4 +1,4 @@
-package com.cheese.radio.ui.login;
+package com.cheese.radio.ui.user.login;
 
 import android.os.Bundle;
 

@@ -1,4 +1,4 @@
-package com.cheese.radio.ui.guide;
+package com.cheese.radio.ui.user.guide;
 
 import com.binding.model.adapter.pager.ViewPagerAdapter;
 import com.binding.model.layout.pager.PagerModel;

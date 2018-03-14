@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="com.cheese.radio.ui.login.LoginModel" />
+            type="com.cheese.radio.ui.user.login.LoginModel" />
     </data>
 
     <LinearLayout

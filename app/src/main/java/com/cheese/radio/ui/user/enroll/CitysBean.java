@@ -1,4 +1,4 @@
-package com.cheese.radio.ui.enroll;
+package com.cheese.radio.ui.user.enroll;
 
 import com.bigkoo.pickerview.model.IPickerViewData;
 

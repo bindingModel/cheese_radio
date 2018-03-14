@@ -1,8 +1,7 @@
-package com.cheese.radio.ui.guide;
+package com.cheese.radio.ui.user.guide;
 
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflate;
-import com.binding.model.model.inter.Parse;
 import com.cheese.radio.R;
 
 /**

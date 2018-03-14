@@ -1,6 +1,5 @@
 package com.cheese.radio.util;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
@@ -9,10 +8,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
-import com.binding.model.cycle.Container;
 import com.binding.model.util.BaseUtil;
-import com.cheese.radio.base.cycle.BaseActivity;
-import com.cheese.radio.ui.enroll.CitysBean;
+import com.cheese.radio.ui.user.enroll.CitysBean;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;

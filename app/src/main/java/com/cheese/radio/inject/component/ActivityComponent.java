@@ -3,13 +3,11 @@ package com.cheese.radio.inject.component;
 
 import com.cheese.radio.inject.module.ActivityModule;
 import com.cheese.radio.inject.scope.ActivityScope;
-import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.anchors.AnchorsActivity;
-import com.cheese.radio.ui.enroll.EnrollActivity;
-import com.cheese.radio.ui.enroll.EnrollModel;
-import com.cheese.radio.ui.guide.GuideActivity;
+import com.cheese.radio.ui.user.enroll.EnrollActivity;
+import com.cheese.radio.ui.user.guide.GuideActivity;
 import com.cheese.radio.ui.home.HomeActivity;
-import com.cheese.radio.ui.login.LoginActivity;
+import com.cheese.radio.ui.user.login.LoginActivity;
 import com.cheese.radio.ui.startup.StartUpActivity;
 import com.cheese.radio.ui.user.profile.ProfileActivity;
 

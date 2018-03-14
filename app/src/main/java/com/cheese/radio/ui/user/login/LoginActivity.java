@@ -1,9 +1,7 @@
-package com.cheese.radio.ui.login;
+package com.cheese.radio.ui.user.login;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cheese.radio.base.cycle.BaseActivity;
-
-import javax.inject.Inject;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.login;
 

@@ -1,7 +1,6 @@
-package com.cheese.radio.ui.login;
+package com.cheese.radio.ui.user.login;
 
 import com.cheese.radio.util.CheeseApiParams;
-import com.cheese.radio.util.MD5;
 
 /**
  * Created by 29283 on 2018/3/10.

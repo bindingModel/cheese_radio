@@ -1,4 +1,4 @@
-package com.cheese.radio.ui.guide;
+package com.cheese.radio.ui.user.guide;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cheese.radio.base.cycle.BaseActivity;

@@ -1,4 +1,4 @@
-package com.cheese.radio.ui.enroll;
+package com.cheese.radio.ui.user.enroll;
 
 import android.databinding.ObservableField;
 import android.graphics.Color;
@@ -16,7 +16,6 @@ import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
-import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.databinding.ActivityEnrollBinding;
 import com.cheese.radio.util.GetJsonDataUtil;
 import com.google.gson.Gson;
@@ -29,8 +28,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.inject.Inject;
-
-import static com.cheese.radio.inject.component.ActivityComponent.Router.home;
 
 /**
  * Created by 29283 on 2018/3/10.

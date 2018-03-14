@@ -4,7 +4,7 @@
     <data>
         <variable
             name="vm"
-            type="com.cheese.radio.ui.guide.GuideModel"/>
+            type="com.cheese.radio.ui.user.guide.GuideModel"/>
     </data>
 
     <LinearLayout
