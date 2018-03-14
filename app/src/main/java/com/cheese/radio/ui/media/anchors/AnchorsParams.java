@@ -1,22 +1,12 @@
-package com.cheese.radio.ui.anchors;
+package com.cheese.radio.ui.media.anchors;
 
-import android.content.Context;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
-import android.support.annotation.NonNull;
-import android.telephony.TelephonyManager;
-
-import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.util.CheeseApiParams;
 import com.cheese.radio.util.MD5;
 import com.cheese.radio.util.MyBaseUtil;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by 29283 on 2018/3/11.

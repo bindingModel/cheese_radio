@@ -4,7 +4,7 @@
     <data>
         <variable
             name="vm"
-            type="com.cheese.radio.ui.guide.GuideEntity" />
+            type="com.cheese.radio.ui.user.guide.GuideEntity" />
     </data>
 <LinearLayout
     android:layout_width="match_parent"

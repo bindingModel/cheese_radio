@@ -1,4 +1,4 @@
-package com.cheese.radio.ui.anchor;
+package com.cheese.radio.ui.media.anchor;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cheese.radio.base.cycle.BaseActivity;

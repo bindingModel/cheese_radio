@@ -1,6 +1,4 @@
-package com.cheese.radio.ui.anchor;
-
-import android.view.View;
+package com.cheese.radio.ui.media.anchor;
 
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;

@@ -3,7 +3,7 @@
     <data>
         <variable
             name="vm"
-            type="com.cheese.radio.ui.anchor.AnchorModel"/>
+            type="com.cheese.radio.ui.media.anchor.AnchorModel"/>
     </data>
     <FrameLayout
         android:layout_width="match_parent"

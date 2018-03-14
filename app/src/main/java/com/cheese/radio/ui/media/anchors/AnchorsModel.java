@@ -1,4 +1,4 @@
-package com.cheese.radio.ui.anchors;
+package com.cheese.radio.ui.media.anchors;
 
 import android.os.Bundle;
 
