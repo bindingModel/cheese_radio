@@ -13,11 +13,11 @@ import java.util.Iterator;
  * Created by 29283 on 2018/3/11.
  */
 
-public class AnchorsParams extends IkeParams{
-    private String method;
+public class AnchorsParams extends IkeParams {
+    private String method = "list";
 
     public String getMethod() {
-        return method="list";
+        return method;
     }
 
     public void setMethod(String method) {

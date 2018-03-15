@@ -18,24 +18,18 @@ import javax.inject.Inject;
 @ModelView(R.layout.activity_anchors)
 public class AnchorsModel extends RecyclerModel<AnchorsActivity,ActivityAnchorsBinding,AnchorsItem> {
 
-
+    private AnchorsParams params=new AnchorsParams();
     @Inject
     AnchorsModel() {
     }
     @Inject
     IkeApi api;
 
-    private AnchorsParams params=new AnchorsParams();
+
     @Override
     public void attachView(Bundle savedInstanceState, AnchorsActivity anchorsActivity) {
         super.attachView(savedInstanceState, anchorsActivity);
         getDataBinding().layoutRecycler.setVm(this);
-        /*setRcHttp((offset1, refresh) -> api.getAnchors(new AnchorsParams()).compose(new RestfulTransformer<>()).
-                map(anchorsItems -> anchorsItems));*/
-        BaseUtil.toast(params.toString());
-        api.getAnchors(params).compose(new RestfulTransformer<>()).subscribe(anchorsItems -> {
-         accept(anchorsItems);
-    },BaseUtil::toast);
-
+        setRcHttp((offset1, refresh) -> api.getAnchors(params).compose(new RestfulTransformer<>()));
     }
 }
