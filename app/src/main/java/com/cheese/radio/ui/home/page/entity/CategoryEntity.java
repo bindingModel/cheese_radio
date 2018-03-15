@@ -64,4 +64,8 @@ public class CategoryEntity extends ViewInflateRecycler implements SpanSize, Gri
         this.tagName = tagName;
     }
 
+    @Override
+    public int getSpanSize() {
+        return 1;
+    }
 }

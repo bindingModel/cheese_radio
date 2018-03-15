@@ -88,4 +88,8 @@ public class RecommanData extends ViewInflateRecycler implements SpanSize {
                 T(subTitle, false, R.color.text_gray)
         );
     }
+    @Override
+    public int getSpanSize() {
+        return 4;
+    }
 }
