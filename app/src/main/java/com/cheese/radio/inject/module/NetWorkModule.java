@@ -1,7 +1,7 @@
 package com.cheese.radio.inject.module;
 
 import com.cheese.radio.BuildConfig;
-import com.cheese.radio.inject.api.IkeApi;
+import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.converter.JsonConverterFactory;
 import com.cheese.radio.inject.interceptor.UserInterceptor;
 import com.cheese.radio.inject.scope.ApplicationScope;
@@ -34,16 +34,16 @@ public class NetWorkModule {
 
     @Provides
     @ApplicationScope
-    IkeApi provideReadApi(OkHttpClient okHttpClient, UserInterceptor userInterceptor) {
+    RadioApi provideReadApi(OkHttpClient okHttpClient, UserInterceptor userInterceptor) {
         OkHttpClient client = okHttpClient.newBuilder()
                 .addInterceptor(userInterceptor).build();
 
         return new Retrofit.Builder()
-                .baseUrl(IkeApi.host)
+                .baseUrl(RadioApi.host)
                 .addConverterFactory(JsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                 .callFactory(client)
-                .build().create(IkeApi.class);
+                .build().create(RadioApi.class);
     }
 
     @Provides

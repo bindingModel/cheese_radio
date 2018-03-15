@@ -1,13 +1,12 @@
 package com.cheese.radio.ui;
 
-import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 import android.support.v7.app.AppCompatDelegate;
 
 import com.binding.model.App;
 import com.cheese.radio.BR;
 import com.cheese.radio.BuildConfig;
-import com.cheese.radio.inject.api.IkeApi;
+import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.component.AppComponent;
 import com.cheese.radio.inject.component.DaggerAppComponent;
 import com.cheese.radio.inject.module.AppModule;
@@ -27,7 +26,8 @@ public class IkeApplication extends MultiDexApplication {
 //    private User user;
 //    public static final PublishSubject<Subject> subject = PublishSubject.create();
 //    private DaoUtils daoUtils;
-    @Inject IkeApi api;
+    @Inject
+RadioApi api;
     @Override
     public void onCreate() {
         super.onCreate();

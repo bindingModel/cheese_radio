@@ -1,6 +1,5 @@
 package com.cheese.radio.ui.user.login;
 
-import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -9,11 +8,10 @@ import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
-import com.cheese.radio.base.IkeParams;
 import com.cheese.radio.base.rxjava.ErrorTransform;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityLoginBinding;
-import com.cheese.radio.inject.api.IkeApi;
+import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.user.login.params.SignParams;
 import com.cheese.radio.ui.user.login.params.SmsParams;
@@ -30,7 +28,8 @@ public class LoginModel extends ViewModel<LoginActivity,ActivityLoginBinding> {
     }
     SmsParams SMSparams=new SmsParams();
     SignParams signParams=new SignParams();
-    @Inject IkeApi api;
+    @Inject
+    RadioApi api;
     @Override
     public void attachView(Bundle savedInstanceState, LoginActivity loginActivity) {
         super.attachView(savedInstanceState, loginActivity);

@@ -3,19 +3,15 @@ package com.cheese.radio.ui.home.page;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
-import android.view.ViewGroup;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.binding.model.adapter.recycler.GridSpanSizeLookup;
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.inter.GridInflate;
 import com.cheese.radio.R;
-import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.FragmentHomePageBinding;
-import com.cheese.radio.inject.api.IkeApi;
+import com.cheese.radio.inject.api.RadioApi;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -32,7 +28,7 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
     }
 
     @Inject
-    IkeApi api;
+    RadioApi api;
 
     @Override
     public void attachView(Bundle savedInstanceState, HomePageFragment homePageFragment) {

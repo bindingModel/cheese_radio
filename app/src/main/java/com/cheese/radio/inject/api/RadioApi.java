@@ -3,6 +3,7 @@ package com.cheese.radio.inject.api;
 import com.cheese.radio.base.InfoEntity;
 import com.cheese.radio.ui.media.anchors.AnchorsItem;
 import com.cheese.radio.ui.media.anchors.AnchorsParams;
+import com.cheese.radio.ui.user.demo.DemoData;
 import com.cheese.radio.ui.user.login.params.SignParams;
 import com.cheese.radio.ui.user.login.params.SmsParams;
 import com.cheese.radio.ui.user.login.entity.SignUserEntity;
@@ -18,7 +19,7 @@ import retrofit2.http.POST;
  * Created by arvin on 2017/11/28.
  */
 
-public interface IkeApi {
+public interface RadioApi {
     String host = "http://111.231.237.11:8081";
 
     @POST("/1.0/author")
@@ -29,6 +30,9 @@ public interface IkeApi {
 
     @POST("/1.0/user")
     Observable<InfoEntity<SignUserEntity>> getToken (@Body SignParams params);
+
+    @POST("data")
+    Observable<InfoEntity<DemoData>> getData();
 //    String host = "https://www.xcore-tech.com/";
 //    String imageHost="https://www.xcore-tech.com/paladin1/Static/images/portrait/";
 //

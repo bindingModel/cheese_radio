@@ -3,7 +3,7 @@ package com.cheese.radio.inject.component;
 import android.content.Context;
 import android.content.res.Resources;
 
-import com.cheese.radio.inject.api.IkeApi;
+import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.module.AppModule;
 import com.cheese.radio.inject.module.DataModule;
 import com.cheese.radio.inject.module.NetWorkModule;
@@ -30,5 +30,5 @@ public interface AppComponent {
     @AppContext
     Context context();
     Resources resources();
-    IkeApi getIkeApi();
+    RadioApi getIkeApi();
 }
