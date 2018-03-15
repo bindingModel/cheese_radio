@@ -6,6 +6,6 @@ import com.cheese.radio.R;
 /**
  * Created by 29283 on 2018/3/5.
  */
-@ModelView(R.layout.item_home_page_fourth)
+@ModelView(R.layout.item_home_page_recommand)
 public class FourthEntity {
 }

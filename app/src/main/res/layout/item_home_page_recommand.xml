@@ -3,7 +3,7 @@
     <data>
         <variable
             name="vm"
-            type="com.cheese.radio.ui.home.page.entity.FourthEntity"/>
+            type="com.cheese.radio.ui.home.page.entity.RecommandEntity"/>
     </data>
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
@@ -13,13 +13,13 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@mipmap/head_image"
+        android:src="@{vm.image}"
         android:layout_marginBottom="7dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="33dp"
             android:textSize="10sp"
-            android:text="21.5万"
+            android:text="@{vm.playCount}"
             android:layout_gravity="bottom"
             android:gravity="center|start"
             android:paddingEnd="10dp"
@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:text="会飞的兔子"
+            android:text="@{vm.title}"
             android:layout_gravity="bottom"
             android:layout_marginBottom="22dp"
             android:textColor="@color/text_black"
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            android:text="会飞的兔子"
+            android:text="@{vm.subTitle}"
             android:layout_gravity="bottom"
             android:textColor="@color/text_gray"
             />

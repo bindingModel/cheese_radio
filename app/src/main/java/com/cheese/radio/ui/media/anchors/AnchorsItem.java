@@ -63,7 +63,7 @@ public class AnchorsItem extends ViewInflateRecycler {
     public CharSequence getMsg() {
 
         return BaseUtil.colorText(
-                T(nickName, true, R.color.text_black, 2),
+                T(nickName, true, R.color.text_black, 1),
                 T(description, false, R.color.text_gray)
         );
     }

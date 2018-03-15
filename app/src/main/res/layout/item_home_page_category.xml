@@ -5,7 +5,7 @@
 
         <variable
             name="vm"
-            type="com.cheese.radio.ui.home.page.entity.SecondEntity" />
+            type="com.cheese.radio.ui.home.page.entity.CategoryEntity" />
     </data>
 
     <LinearLayout
@@ -18,9 +18,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@mipmap/news"
+            android:drawableTop="@{vm.icon}"
             android:gravity="center"
-            android:text="最新" />
+            android:text="@{vm.tagName}" />
 
     </LinearLayout>
 </layout>

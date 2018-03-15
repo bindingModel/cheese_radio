@@ -3,7 +3,7 @@
     <data>
         <variable
             name="vm"
-            type="com.cheese.radio.ui.home.page.entity.ThirdEntity" />
+            type="com.cheese.radio.ui.home.page.entity.RecommandEntity" />
     </data>
 
     <LinearLayout

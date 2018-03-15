@@ -1,6 +1,9 @@
 package com.cheese.radio.inject.api;
 
 import com.cheese.radio.base.InfoEntity;
+import com.cheese.radio.ui.home.page.RecommanData;
+import com.cheese.radio.ui.home.page.HomePageParams;
+import com.cheese.radio.ui.home.page.entity.CategoryEntity;
 import com.cheese.radio.ui.media.anchors.AnchorsItem;
 import com.cheese.radio.ui.media.anchors.AnchorsParams;
 import com.cheese.radio.ui.user.demo.DemoData;
@@ -31,6 +34,11 @@ public interface RadioApi {
     @POST("/1.0/user")
     Observable<InfoEntity<SignUserEntity>> getToken (@Body SignParams params);
 
+    @POST("/1.0/content")
+    Observable<InfoEntity<List<CategoryEntity>>> getCategoriy (@Body HomePageParams params);
+
+    @POST("/1.0/content")
+    Observable<InfoEntity<List<RecommanData>>> getRecommand (@Body HomePageParams params);
     @POST("data")
     Observable<InfoEntity<DemoData>> getData();
 //    String host = "https://www.xcore-tech.com/";

@@ -16,13 +16,13 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.startup.StartUpActivity">
-
-        </activity>
-        <activity android:name=".ui.media.anchors.AnchorsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.media.anchors.AnchorsActivity">
+
         </activity>
         <activity android:name=".ui.user.login.LoginActivity" />
         <activity android:name=".ui.user.guide.GuideActivity" />
