@@ -4,8 +4,13 @@ import com.cheese.radio.base.InfoEntity;
 import com.cheese.radio.ui.home.page.RecommanData;
 import com.cheese.radio.ui.home.page.HomePageParams;
 import com.cheese.radio.ui.home.page.entity.CategoryEntity;
+import com.cheese.radio.ui.media.anchor.AnchorData;
+import com.cheese.radio.ui.media.anchor.AnchorParams;
 import com.cheese.radio.ui.media.anchors.AnchorsItem;
 import com.cheese.radio.ui.media.anchors.AnchorsParams;
+import com.cheese.radio.ui.media.classify.ClassifyData;
+import com.cheese.radio.ui.media.classify.ClassifyParams;
+import com.cheese.radio.ui.media.play.PlayParams;
 import com.cheese.radio.ui.user.demo.DemoData;
 import com.cheese.radio.ui.user.login.params.SignParams;
 import com.cheese.radio.ui.user.login.params.SmsParams;
@@ -41,28 +46,14 @@ public interface RadioApi {
     Observable<InfoEntity<List<RecommanData>>> getRecommand (@Body HomePageParams params);
     @POST("data")
     Observable<InfoEntity<DemoData>> getData();
-//    String host = "https://www.xcore-tech.com/";
-//    String imageHost="https://www.xcore-tech.com/paladin1/Static/images/portrait/";
-//
-//    @POST("paladin1/Passport/dologin")
-//    Observable<InfoEntity<UserEntity>> login(@Body UserParams userParams);
-//
-//    @POST("paladin1/Passport/doRegister")
-//    Observable<InfoEntity<UserEntity>> register(@Body RegisterParams params);
-//
-//    @POST("paladin1/Passport/waregisterbymobile")
-//    Observable<InfoEntity<UserEntity>> registerMobile(@Body RegisterParams params);
-//
-//    @FormUrlEncoded
-//    @POST("paladin1/User/wadownloadversion")
-//    Observable<DataEntity> download(@Field("is_app") int i);
-//
-//    @POST("paladin1/User/wauploadversion")
-//    Observable<InfoEntity<String>> upload(@Body DataParams dataParams);
-//
-//    @POST("paladin1/User")
-//    Observable<InfoEntity<String>> modifyPassword(@Body PasswordParams params);
-//
-//    @POST("paladin1/Passport/password_forget")
-//    Observable<InfoEntity<UserEntity>> passwordForget(RegisterParams params);
+
+    @POST("/1.0/author")
+    Observable<InfoEntity<AnchorData>> getAuthor(@Body AnchorParams params);
+
+    @POST("/1.0/content")
+    Observable<InfoEntity<List<ClassifyData>>> getQueryCategroy(@Body ClassifyParams params);
+
+    @POST("/1.0/content")
+    Observable<InfoEntity<List<CategoryEntity>>> getGroupInfo(@Body PlayParams params);
+
 }

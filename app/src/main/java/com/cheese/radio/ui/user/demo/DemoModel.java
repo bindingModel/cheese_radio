@@ -9,6 +9,7 @@ import com.cheese.radio.R;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityDemoBinding;
 import com.cheese.radio.inject.api.RadioApi;
+import com.cheese.radio.ui.media.play.PlayParams;
 
 import javax.inject.Inject;
 
@@ -26,6 +27,9 @@ public class DemoModel extends ViewHttpModel<DemoActivity,ActivityDemoBinding,De
     public void attachView(Bundle savedInstanceState, DemoActivity demoActivity) {
         super.attachView(savedInstanceState, demoActivity);
         setRoHttp((offset1, refresh) -> radioApi.getData().compose(new RestfulTransformer<>()));
+//        setRoHttp((offset1, refresh) ->  radioApi.getGroupInfo(new PlayParams("groupInfo","6")).compose(new RestfulTransformer<>()));
+
+
     }
 
 

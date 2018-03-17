@@ -1,13 +1,20 @@
 package com.cheese.radio.ui.media.anchors;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Switch;
+
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
+import com.cheese.radio.base.arouter.ARouterUtil;
+import com.cheese.radio.ui.Constant;
 
 import java.util.List;
 
 import static com.binding.model.util.BaseUtil.T;
+import static com.cheese.radio.inject.component.ActivityComponent.Router.anchor;
 
 /**
  * Created by 29283 on 2018/3/8.
@@ -66,5 +73,15 @@ public class AnchorsItem extends ViewInflateRecycler {
                 T(nickName, true, R.color.text_black, 1),
                 T(description, false, R.color.text_gray)
         );
+    }
+
+    public void onClick(View view){
+        Bundle bundle = new Bundle();
+        bundle.putInt(Constant.authorId, authorId);
+            switch (view.getId()){
+                case R.id.care_anchor :
+                case R.id.frame_layout :
+                    ARouterUtil.navigation(anchor, bundle);
+            }
     }
 }

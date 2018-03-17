@@ -3,24 +3,25 @@
     <data>
         <variable
             name="vm"
-            type="com.cheese.radio.ui.home.page.entity.SixthEntity"/>
+            type="com.cheese.radio.ui.home.page.entity.RecommandEntity"/>
     </data>
 
     <FrameLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="214dp"
-        android:layout_margin="7.5dp"
-        android:layout_marginBottom="18dp">
+        android:layout_margin="15dp"
+        android:layout_marginBottom="9dp">
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/head_image2"
+            android:layout_height="144dp"
+            android:src="@{vm.image}"
+            android:scaleType="fitXY"
             android:layout_marginBottom="7dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="33dp"
             android:textSize="10sp"
-            android:text="21.5万"
+            android:text="@{String.valueOf(vm.playCount)}"
             android:layout_gravity="bottom"
             android:gravity="center|start"
             android:paddingEnd="10dp"
@@ -37,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="33dp"
             android:textSize="10sp"
-            android:text="32个故事"
+            android:text="未知"
             android:layout_gravity="bottom"
             android:gravity="center|start"
             android:paddingEnd="10dp"
@@ -54,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:text="宝贝听故事秀 第三期"
+            android:text="@{vm.title}"
             android:layout_gravity="bottom"
             android:layout_marginBottom="41dp"
             android:textColor="@color/text_black"
@@ -63,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            android:text="会飞的兔子"
+            android:text="@{vm.subTitle}"
             android:layout_gravity="bottom"
             android:layout_marginBottom="18dp"
             android:textColor="@color/text_gray"

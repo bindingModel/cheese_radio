@@ -1,5 +1,6 @@
 package com.cheese.radio.ui;
 
+import android.app.Activity;
 import android.support.multidex.MultiDexApplication;
 import android.support.v7.app.AppCompatDelegate;
 
@@ -13,6 +14,8 @@ import com.cheese.radio.inject.module.AppModule;
 import com.cheese.radio.ui.user.User;
 import com.pgyersdk.crash.PgyCrashManager;
 
+import java.util.Stack;
+
 import javax.inject.Inject;
 
 /**
@@ -23,7 +26,9 @@ public class IkeApplication extends MultiDexApplication {
     private static IkeApplication application;
     private static AppComponent appComponent;
     private User user;
-//    private User user;
+    private Stack<Activity> stack = new Stack<>();
+
+    //    private User user;
 //    public static final PublishSubject<Subject> subject = PublishSubject.create();
 //    private DaoUtils daoUtils;
     @Inject
@@ -47,7 +52,9 @@ RadioApi api;
     public static IkeApplication getApp() {
         return application;
     }
-
+    public Activity getCurrentActivity() {
+        return stack.lastElement();
+    }
     public static AppComponent getAppComponent() {
         return appComponent;
     }

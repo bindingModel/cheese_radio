@@ -16,6 +16,8 @@ import com.cheese.radio.base.rxjava.RestfulZipTransformer;
 import com.cheese.radio.databinding.FragmentHomePageBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.ui.home.page.entity.CategoryEntity;
+import com.cheese.radio.ui.home.page.entity.RecommandEntity;
+import com.cheese.radio.ui.media.play.PlayParams;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,20 +47,14 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
         GridLayoutManager layoutManager = new GridLayoutManager(homePageFragment.getContext(), 4);
         layoutManager.setSpanSizeLookup(new GridSpanSizeLookup<>(getAdapter()));
         setLayoutManager(layoutManager);
-
+        setEnable(false);
         setRoHttp((offset1, refresh) -> {
-//            if (refresh < 1)return api.getRecommand(new HomePageParams("recommandList"))
-//                    .compose(new RestfulTransformer<>())
-//                    .map(recommanData ->  {
-//                        List<GridInflate> list =new ArrayList<>();
-//                        list.addAll(recommanData);
-//                        return list;
-//                    });
-//            else
+
             return getZip();
         });
     }
     private Observable<List<GridInflate>> getZip() {
+//        Observable<InfoEntity<List<CategoryEntity>>> categoriy = api.getGroupInfo(new PlayParams("contentInfo","123")).compose(new RestfulZipTransformer<>());
         Observable<InfoEntity<List<CategoryEntity>>> categoriy = api.getCategoriy(new HomePageParams("category")).compose(new RestfulZipTransformer<>());
         Observable<InfoEntity<List<RecommanData>>> recommandList = api.getRecommand(new HomePageParams("recommandList")).compose(new RestfulZipTransformer<>());
         return Observable.zip(categoriy, recommandList, (cate, entity) -> {
@@ -66,10 +62,18 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
             if (cate.getCode() == 0 && cate.getData() != null &&  !cate.getData().isEmpty()) {
                 list.addAll(cate.getData().subList(0,4));
             }
-            for (RecommanData data:entity.getData()){
-                list.add(data);
-                list.addAll(data.getList());
+            if(entity.getCode()==0 &&entity.getData()!=null &&!entity.getData().isEmpty()){
+                for (RecommanData data:entity.getData()) {
+                    list.add(data);
+                    if(data.getViewType().equals("list"))
+                        for (RecommandEntity recommandEntity :data.getList() ) {
+                            recommandEntity.setIndex(1);
+                        }
+                    list.addAll(data.getList());
+                }
+
             }
+
             return list;
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

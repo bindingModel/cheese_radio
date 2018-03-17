@@ -8,6 +8,7 @@ import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
+import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.ErrorTransform;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityLoginBinding;
@@ -18,6 +19,8 @@ import com.cheese.radio.ui.user.login.params.SmsParams;
 
 import javax.inject.Inject;
 
+import static com.cheese.radio.inject.component.ActivityComponent.Router.home;
+
 /**
  * Created by 29283 on 2018/3/5.
  */
@@ -26,13 +29,14 @@ public class LoginModel extends ViewModel<LoginActivity,ActivityLoginBinding> {
     @Inject LoginModel(){
 
     }
-    SmsParams SMSparams=new SmsParams();
-    SignParams signParams=new SignParams();
+    private SmsParams SMSparams=new SmsParams("sendValidCode");
+    private SignParams signParams=new SignParams("login");
     @Inject
     RadioApi api;
     @Override
     public void attachView(Bundle savedInstanceState, LoginActivity loginActivity) {
         super.attachView(savedInstanceState, loginActivity);
+        getDataBinding().setParams(signParams);
     }
 
     public void onGetSmsClick(View view){
@@ -51,6 +55,9 @@ public class LoginModel extends ViewModel<LoginActivity,ActivityLoginBinding> {
         api.getToken(signParams).compose(new RestfulTransformer<>())
                 .subscribe(signUserEntity -> IkeApplication.getUser().setToken(signUserEntity.getToken()));
 
+    }
+    public void onGoHoneClick(View view){
+        ARouterUtil.navigation(home);
     }
 }
 

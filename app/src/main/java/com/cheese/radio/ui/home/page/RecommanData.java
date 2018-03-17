@@ -2,6 +2,7 @@ package com.cheese.radio.ui.home.page;
 
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
+import com.binding.model.model.inter.GridInflate;
 import com.binding.model.model.inter.SpanSize;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
@@ -16,7 +17,7 @@ import static com.binding.model.util.BaseUtil.T;
  */
 
 @ModelView(R.layout.item_home_page_recommand_title)
-public class RecommanData extends ViewInflateRecycler implements SpanSize {
+public class RecommanData extends ViewInflateRecycler implements SpanSize, GridInflate {
     /**
      * subTitle : 今日热门推荐
      * locationId :
@@ -85,7 +86,7 @@ public class RecommanData extends ViewInflateRecycler implements SpanSize {
 
         return BaseUtil.colorText(
                 T(title, true, R.color.text_black, 1),
-                T(subTitle, false, R.color.text_gray)
+                T(subTitle, false, "#bdbdbd")
         );
     }
     @Override

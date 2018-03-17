@@ -20,6 +20,10 @@ public class SignParams extends IkeParams {
     private String openId;
     private String otherInfo;
 
+    public SignParams(String method) {
+        this.method = method;
+    }
+
     public String getPhone() {
         return phone;
     }

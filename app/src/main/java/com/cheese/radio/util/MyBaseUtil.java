@@ -4,7 +4,10 @@ import android.content.Context;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
+import android.os.Bundle;
 
+import com.binding.model.Config;
+import com.binding.model.util.BaseUtil;
 import com.cheese.radio.ui.IkeApplication;
 
 import java.util.Arrays;
@@ -17,7 +20,7 @@ import java.util.Random;
  * Created by 29283 on 2018/3/11.
  */
 
-public class MyBaseUtil {
+public class MyBaseUtil extends BaseUtil{
 
     private static final char[] CHARS = {
             '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',

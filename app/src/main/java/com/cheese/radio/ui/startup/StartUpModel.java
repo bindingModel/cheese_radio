@@ -24,7 +24,7 @@ public class StartUpModel extends ViewModel<StartUpActivity,ActivityStartupBindi
     @Override
     public void attachView(Bundle savedInstanceState, StartUpActivity startUpActivity) {
         super.attachView(savedInstanceState, startUpActivity);
-        Integer time = 1000;
+        Integer time = 100;
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

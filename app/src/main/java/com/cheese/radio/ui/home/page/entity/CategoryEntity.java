@@ -1,12 +1,27 @@
 package com.cheese.radio.ui.home.page.entity;
 
+import android.graphics.drawable.Drawable;
+import android.view.View;
+
+import com.binding.model.App;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
 import com.binding.model.model.inter.GridInflate;
 import com.binding.model.model.inter.SpanSize;
 import com.cheese.radio.R;
+import com.cheese.radio.base.arouter.ARouterUtil;
 
+import java.util.Arrays;
 import java.util.List;
+
+import static com.cheese.radio.inject.component.ActivityComponent.Router.anchors;
+import static com.cheese.radio.inject.component.ActivityComponent.Router.classify;
+import static com.cheese.radio.ui.Constant.AUTHOR_INFO;
+import static com.cheese.radio.ui.Constant.AUTHOR_LIST;
+import static com.cheese.radio.ui.Constant.CATEGORY_LIST;
+import static com.cheese.radio.ui.Constant.CONTENT_LIST;
+import static com.cheese.radio.ui.Constant.GROUP_INFO;
+import static com.cheese.radio.ui.Constant.PLAY;
 
 /**
  * Created by 29283 on 2018/3/5.
@@ -67,5 +82,45 @@ public class CategoryEntity extends ViewInflateRecycler implements SpanSize, Gri
     @Override
     public int getSpanSize() {
         return 1;
+    }
+
+    public Drawable getThumbImage() {
+        switch (getHolder_position()) {
+            case 0:
+                return App.getDrawable(R.mipmap.news);
+            case 1:
+                return App.getDrawable(R.mipmap.anchors);
+            case 2:
+                return App.getDrawable(R.mipmap.sleep);
+            default:
+                return App.getDrawable(R.mipmap.classify);
+
+        }
+
+
+        /* if(TextUtils.isEmpty(thumb_image)){
+            if(!children.isEmpty())thumb_image = children.get(0).getThumb_image();
+        }
+        return thumb_image;*/
+    }
+
+    public void onClick(View view) {
+        switch (location) {
+            case CONTENT_LIST:
+                break;
+            case CATEGORY_LIST:
+                ARouterUtil.navigation(classify);
+                break;
+            case AUTHOR_LIST:
+                ARouterUtil.navigation(anchors);
+                break;
+            case AUTHOR_INFO:
+                break;
+            case GROUP_INFO:
+                break;
+            case PLAY:
+
+                break;
+        }
     }
 }

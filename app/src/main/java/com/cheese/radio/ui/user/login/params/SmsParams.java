@@ -8,7 +8,13 @@ import com.cheese.radio.base.IkeParams;
 
 public class SmsParams extends IkeParams {
 
+    private String method;
+
     private String phone;
+
+    public SmsParams(String method) {
+        this.method = method;
+    }
 
     public String getPhone() {
         return phone;
@@ -17,5 +23,13 @@ public class SmsParams extends IkeParams {
     public SmsParams setPhone(String phone) {
         this.phone = phone;
         return this;
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
     }
 }

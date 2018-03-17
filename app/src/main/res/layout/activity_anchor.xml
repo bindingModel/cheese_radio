@@ -1,14 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="vm"
-            type="com.cheese.radio.ui.media.anchor.AnchorModel"/>
+            type="com.cheese.radio.ui.media.anchor.AnchorModel" />
+        <variable
+            name="entity"
+            type="com.cheese.radio.ui.media.anchor.AnchorData"/>
     </data>
-    <FrameLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background_gray">
+        android:background="@color/background_gray"
+        android:orientation="vertical">
 
-    </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="211dp"
+            android:background="@mipmap/anchor_bg">
+
+            <include layout="@layout/toolbar_organza" />
+
+            <ImageView
+                android:layout_width="76.6dp"
+                android:layout_height="76.6dp"
+                android:layout_gravity="center|start"
+                android:layout_marginLeft="9.6dp"
+                android:layout_marginStart="9.6dp"
+                app:head="@{entity.image}" />
+
+            <TextView
+                android:layout_width="65dp"
+                android:layout_height="27dp"
+                android:layout_gravity="center|end"
+                android:layout_marginEnd="11.5dp"
+                android:layout_marginRight="11.5dp"
+                android:background="@drawable/login_button_shape"
+                android:drawableLeft="@mipmap/plus"
+                android:drawableStart="@mipmap/plus"
+                android:gravity="center"
+                android:paddingLeft="13.8dp"
+                android:paddingRight="13.8dp"
+                android:text="关注"
+                android:textColor="@color/text_white" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="106dp"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="@{entity.nickName,default=123}"
+                android:textColor="@color/text_black"
+                android:textSize="17.5sp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/share"
+                android:layout_gravity="end"
+                android:padding="14dp"/>
+        </FrameLayout><!--
+        android:text="@{vm.msg}"-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.binding.model.view.radio.CheckRadioGroup
+                android:id="@+id/navigation"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_gravity="top"
+                android:layout_marginTop="1dp"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                app:position="@={vm.currentItem}">
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    style="@style/anchor_navigation"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:checked="true"
+                    android:drawableBottom="@drawable/anchor_line"
+                    android:text="资料" />
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    style="@style/anchor_navigation"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:checked="false"
+                    android:drawableBottom="@drawable/anchor_line"
+                    android:text="作品" />
+
+            </com.binding.model.view.radio.CheckRadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/background_gray"
+           >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/play"
+                    android:drawablePadding="6.6dp"
+                    android:padding="9.6dp"
+                    android:text="继续播放" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/sort"
+                    android:drawablePadding="6.6dp"
+                    android:padding="9.6dp"
+                    android:text="排序" />
+            </LinearLayout>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background_white"
+                app:adapter="@{vm.adapter}"
+                app:position="@={vm.currentItem}" />
+
+        </LinearLayout>
+    </LinearLayout>
 </layout>

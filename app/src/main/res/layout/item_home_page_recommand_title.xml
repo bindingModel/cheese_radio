@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
+
     <data>
+
         <variable
             name="vm"
             type="com.cheese.radio.ui.home.page.RecommanData" />
     </data>
 
     <FrameLayout
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="9dp"
-
-        android:background="#ffffff"
+        android:background="@color/background_white"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="17dp"
             android:layout_marginBottom="17dp"
-            android:lineSpacingExtra="2dp"
+            android:layout_marginTop="17dp"
             android:gravity="center"
-            android:text="@{vm.msg}"
-            />
+            android:lineSpacingExtra="2dp"
+            android:text="@{vm.msg}" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableRight="@mipmap/oringe_array"
-            android:drawableEnd="@mipmap/oringe_array"
-            android:text="更多"
+            android:layout_gravity="center|end"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
-            android:textColor="@color/text_yellow"
-            android:layout_gravity="center|end"/>
+            android:drawableEnd="@mipmap/oringe_array"
+            android:drawableRight="@mipmap/oringe_array"
+            android:text="更多"
+            android:textColor="@color/text_yellow" />
 
     </FrameLayout>
 </layout>

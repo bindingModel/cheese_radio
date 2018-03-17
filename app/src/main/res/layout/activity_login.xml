@@ -25,6 +25,7 @@
             android:paddingRight="31.45dp"
             android:paddingTop="19dp"
             android:text="先逛逛"
+            android:onClick="@{vm::onGoHoneClick}"
             android:textColor="@color/text_black" />
 
         <ImageView

@@ -3,7 +3,10 @@ package com.cheese.radio.inject.component;
 
 import com.cheese.radio.inject.module.ActivityModule;
 import com.cheese.radio.inject.scope.ActivityScope;
+import com.cheese.radio.ui.media.anchor.AnchorActivity;
 import com.cheese.radio.ui.media.anchors.AnchorsActivity;
+import com.cheese.radio.ui.media.classify.ClassifyActivity;
+import com.cheese.radio.ui.media.play.PlayActivity;
 import com.cheese.radio.ui.user.enroll.EnrollActivity;
 import com.cheese.radio.ui.user.guide.GuideActivity;
 import com.cheese.radio.ui.home.HomeActivity;
@@ -34,6 +37,9 @@ public interface ActivityComponent {
     void inject(AnchorsActivity activity);
     void inject(ProfileActivity activity);
     void inject(EnrollActivity activity);
+    void inject(AnchorActivity activity);
+    void inject(ClassifyActivity activity);
+    void inject(PlayActivity activity);
     interface Router {
         String cheese="/cheese/";
         String startup=cheese+"startup";
@@ -45,5 +51,7 @@ public interface ActivityComponent {
         String enroll=cheese+"enroll";
         String name=cheese+"name";
         String anchor=cheese+"anchor";
+        String classify=cheese+"classify";
+        String play=cheese+"play";
     }
 }

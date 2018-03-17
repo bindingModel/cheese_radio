@@ -24,7 +24,9 @@
         <activity android:name=".ui.media.anchors.AnchorsActivity">
 
         </activity>
-        <activity android:name=".ui.user.login.LoginActivity" />
+        <activity android:name=".ui.user.login.LoginActivity">
+
+        </activity>
         <activity android:name=".ui.user.guide.GuideActivity" />
         <activity
             android:name=".ui.user.profile.ProfileActivity"
@@ -39,6 +41,22 @@
             android:label="报名">
 
         </activity>
-        <activity android:name=".ui.user.demo.DemoActivity" />
+        <activity android:name=".ui.user.demo.DemoActivity">
+
+        </activity>
+        <activity
+            android:name=".ui.media.anchor.AnchorActivity"
+            android:label=" " />
+        <activity
+            android:name=".ui.media.classify.ClassifyActivity"
+            android:label="分类" />
+        <activity
+            android:name=".ui.media.play.PlayActivity"
+            android:label=" " />
+        <service android:name=".ui.service.AudioService">
+            <intent-filter>
+                <action android:name=".ui.base.media.AudioService"/>
+            </intent-filter>
+        </service>
     </application>
 </manifest>
