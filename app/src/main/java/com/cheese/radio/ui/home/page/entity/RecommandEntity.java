@@ -7,6 +7,7 @@ import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
 import com.binding.model.model.inter.GridInflate;
 import com.binding.model.model.inter.SpanSize;
+import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
@@ -102,9 +103,11 @@ public  class RecommandEntity extends ViewInflateRecycler implements SpanSize, G
 
     public void onClick(View view){
         Bundle bundle=new Bundle();
+        bundle.putString(Constant.location,location);
         bundle.putString(Constant.id,id);
         switch (location) {
             case CONTENT_LIST:
+                ARouterUtil.navigation(play,bundle);
                 break;
             case CATEGORY_LIST:
                 ARouterUtil.navigation(classify);
@@ -113,10 +116,14 @@ public  class RecommandEntity extends ViewInflateRecycler implements SpanSize, G
                 ARouterUtil.navigation(anchors);
                 break;
             case AUTHOR_INFO:
+
                 break;
             case GROUP_INFO:
+                BaseUtil.toast("专辑详情");
+//                ARouterUtil.navigation(play,bundle);
                 break;
             case PLAY:
+                BaseUtil.toast("跳转绘本");
                 ARouterUtil.navigation(play,bundle);
                 break;
         }

@@ -2,6 +2,8 @@ package com.cheese.radio.base.binding;
 
 import android.content.Context;
 import android.databinding.BindingAdapter;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.DrawableRes;
@@ -146,4 +148,42 @@ public class DataBindingAdapter {
     public static void setAlpha(View view,float alpha){
         if(alpha>=0&&alpha<=1)view.setAlpha(alpha);
     }
+
+//    @BindingAdapter("drawableLeft")
+//    public static void setDrawableLeft(TextView view,String url){
+//        Context mContext = view.getContext();
+//        Glide.with(mContext).load(url).asBitmap().into(new SimpleTarget<Bitmap>() {
+//            @Override
+//            public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
+//                Drawable drawable = new BitmapDrawable(mContext.getResources(), resource);
+//                drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+//                Drawable[] drawables = view.getCompoundDrawables();
+//                view.setCompoundDrawables(drawables[0], drawable, drawables[2], drawables[3]);
+//            }
+//        });
+//
+//           }
+
+//    @BindingAdapter("background_blur")
+//    public static void backgroundBlur(View view, String url) {
+//        Context mContext = view.getContext();
+////        Glide.with(mContext)
+////                .load(url)
+////                // 设置高斯模糊
+////                .bitmapTransform(new BlurTransformation(this, 14, 3))
+////                .into(allBg);
+//        Glide.with(mContext)
+//                .load(url)
+//                .bitmapTransform(new BlurTransformation(mContext))
+//                .into(new SimpleTarget<GlideDrawable>() {
+//                    @Override
+//                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+//                            view.setBackground(resource);
+//                        } else {
+//                            view.setBackgroundDrawable(resource);
+//                        }
+//                    }
+//                });
+//    }
 }

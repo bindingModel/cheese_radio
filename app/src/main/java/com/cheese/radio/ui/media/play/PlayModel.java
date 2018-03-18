@@ -29,16 +29,17 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding,Play
     @Inject
     PlayModel() {}
     @Inject RadioApi api;
+    public final List<PlayEntity> list = new ArrayList<>();
     @Override
     public void attachView(Bundle savedInstanceState, PlayActivity activity) {
         super.attachView(savedInstanceState, activity);
-//        String id=getT().getIntent().getStringExtra(Constant.id);
+        String id=getT().getIntent().getStringExtra(Constant.id);
+        if(getT().getIntent().getStringExtra(Constant.location).equals(Constant.PLAY))
+        api.getContentInfo(new PlayParams("contentInfo",id)).compose(new RestfulTransformer<>()).subscribe(
+                this::setSingelEntity,throwable -> BaseUtil.toast(getT(),throwable));
+        else BaseUtil.toast("传入的不是绘本");
 //        api.getGroupInfo(new PlayParams("groupInfo",id)).compose(new RestfulTransformer<>()).subscribe();
 //                .subscribe(this::playFirst,throwable -> BaseUtil.toast(fmsActivity, throwable));
-        List<PlayEntity> list = new ArrayList<>();
-        list.add(new PlayEntity());
-        if(isPlaying())setEntities(list);
-        else playFirst(list);
     }
 
     @Override
@@ -54,5 +55,12 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding,Play
     @Override
     public SeekBar getSeekBar() {
         return getDataBinding()==null?null:getDataBinding().appVideoSeekBar;
+    }
+
+    public  void setSingelEntity(PlayEntity entity){
+        list.add(entity);
+        if(isPlaying())setEntities(list);
+        else playFirst(list);
+        getDataBinding().setEntity(entity);
     }
 }
