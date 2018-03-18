@@ -63,6 +63,7 @@ public class DataBindingAdapter {
                 .priority(Priority.HIGH)//优先级
                 .diskCacheStrategy(DiskCacheStrategy.NONE)//缓存策略
                 .transform(new GlideBlurformation(view.getContext()));//转化为圆角
+
         Glide.with(mContext)
                 .load(imageUrl)
                 .apply(options)
