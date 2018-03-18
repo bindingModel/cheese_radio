@@ -33,6 +33,7 @@ public class DemoModel extends ViewHttpModel<DemoActivity,ActivityDemoBinding,De
 
     public void onClick(View view){
 //        listCompositeDisposable.add(radioApi.getData().compose(new RestfulTransformer<>()).subscribe());
+        addDisposable(radioApi.getData().subscribe());
     }
 
     @Override

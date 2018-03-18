@@ -78,6 +78,7 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
     public void onSearchClick(View view){
 
     }

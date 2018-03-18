@@ -13,6 +13,7 @@ import android.widget.RadioButton;
 import android.widget.SeekBar;
 
 import com.android.databinding.library.baseAdapters.BR;
+import com.binding.model.App;
 import com.binding.model.cycle.Container;
 import com.binding.model.layout.rotate.TimeEntity;
 import com.binding.model.layout.rotate.TimeUtil;
@@ -40,7 +41,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
     private List<Entity> fmsEntities = new ArrayList<>();
     private Entity entity;
     private AudioServiceUtil util = AudioServiceUtil.getInstance();
-    public ObservableBoolean checked = new ObservableBoolean();
+    public transient ObservableBoolean checked = new ObservableBoolean();
     private boolean mDragging = false;
 
     public boolean isPlaying(){
@@ -99,7 +100,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
 
     private void play(Entity entity) {
         this.entity = entity;
-        BaseUtil.checkPermission(IkeApplication.getApp().getCurrentActivity(), aBoolean -> {
+        BaseUtil.checkPermission(App.getCurrentActivity(), aBoolean -> {
             if (aBoolean && util.start(transformUrl(entity), this, listener)==Prepared)
                 getPlayView().setEnabled(false);
         }, Manifest.permission.RECORD_AUDIO);

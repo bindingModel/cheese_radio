@@ -16,6 +16,9 @@ import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.media.audio.AudioModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 /**
@@ -26,13 +29,16 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding,Play
     @Inject
     PlayModel() {}
     @Inject RadioApi api;
-    private String id;
     @Override
     public void attachView(Bundle savedInstanceState, PlayActivity activity) {
         super.attachView(savedInstanceState, activity);
-        id=getT().getIntent().getStringExtra(Constant.id);
-        api.getGroupInfo(new PlayParams("groupInfo",id)).compose(new RestfulTransformer<>());
+//        String id=getT().getIntent().getStringExtra(Constant.id);
+//        api.getGroupInfo(new PlayParams("groupInfo",id)).compose(new RestfulTransformer<>()).subscribe();
 //                .subscribe(this::playFirst,throwable -> BaseUtil.toast(fmsActivity, throwable));
+        List<PlayEntity> list = new ArrayList<>();
+        list.add(new PlayEntity());
+        if(isPlaying())setEntities(list);
+        else playFirst(list);
     }
 
     @Override
@@ -41,11 +47,12 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding,Play
     }
 
     public String transformUrl(PlayEntity entity){
-        return "https://bookrental.oss-cn-shanghai.aliyuncs.com/audios/hxxdzg.mp3";
+        return entity.getUrl();
     }
+
 
     @Override
     public SeekBar getSeekBar() {
-        return getDataBinding().appVideoSeekBar;
+        return getDataBinding()==null?null:getDataBinding().appVideoSeekBar;
     }
 }

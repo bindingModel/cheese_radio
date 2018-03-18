@@ -26,11 +26,6 @@ public class IkeApplication extends MultiDexApplication {
     private static IkeApplication application;
     private static AppComponent appComponent;
     private User user;
-    private Stack<Activity> stack = new Stack<>();
-
-    //    private User user;
-//    public static final PublishSubject<Subject> subject = PublishSubject.create();
-//    private DaoUtils daoUtils;
     @Inject
 RadioApi api;
     @Override
@@ -39,21 +34,16 @@ RadioApi api;
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
         application = this;
-//        daoUtils =  new DaoUtils(this);
         App.getInstance().init(this, BuildConfig.DEBUG, BR.vm);
         appComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .build();
 //        user = new User(this);
-//        MobSDK.init(this);
         PgyCrashManager.register(this);
     }
 
     public static IkeApplication getApp() {
         return application;
-    }
-    public Activity getCurrentActivity() {
-        return stack.lastElement();
     }
     public static AppComponent getAppComponent() {
         return appComponent;

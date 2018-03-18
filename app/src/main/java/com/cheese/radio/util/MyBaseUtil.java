@@ -6,6 +6,7 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.binding.model.App;
 import com.binding.model.Config;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.ui.IkeApplication;
@@ -36,7 +37,7 @@ public class MyBaseUtil extends BaseUtil{
 
         String macAddress =null;
         WifiManager wifiManager =
-                (WifiManager) IkeApplication.getApp().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                (WifiManager) App.getCurrentActivity().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo info = (null== wifiManager ?null: wifiManager.getConnectionInfo());
 
         if(!wifiManager.isWifiEnabled())

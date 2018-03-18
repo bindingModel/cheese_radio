@@ -1,6 +1,5 @@
 package com.cheese.radio.ui.startup;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -18,19 +17,19 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.home;
  * Created by 29283 on 2018/2/22.
  */
 @ModelView(R.layout.activity_startup)
-public class StartUpModel extends ViewModel<StartUpActivity,ActivityStartupBinding> {
-    @Inject StartUpModel(){}
+public class StartUpModel extends ViewModel<StartUpActivity, ActivityStartupBinding> {
+    @Inject
+    StartUpModel() {
+    }
 
     @Override
     public void attachView(Bundle savedInstanceState, StartUpActivity startUpActivity) {
         super.attachView(savedInstanceState, startUpActivity);
         Integer time = 100;
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ARouterUtil.navigation(home);
-            }
+        handler.postDelayed(() -> {
+            ARouterUtil.navigation(home);
+            finish();
         }, time);
     }
 }
