@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="8"
-                android:background="@{entity.image}"
+                app:backgroundBlur="@{entity.image}"
                 android:orientation="vertical">
 
                 <ImageView
@@ -37,6 +37,7 @@
                     android:layout_height="200dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="45dp"
+                    android:scaleType="centerCrop"
                     android:src="@{entity.image}" />
 
                 <TextView
@@ -77,9 +78,11 @@
                         android:id="@+id/care_anchor"
                         android:layout_width="65dp"
                         android:layout_height="27dp"
-                        android:layout_gravity="center|end"
+                        android:layout_gravity="bottom"
                         android:layout_marginLeft="50dp"
                         android:layout_marginRight="15dp"
+                        android:layout_marginBottom="12dp"
+
                         android:background="@drawable/login_button_shape"
                         android:drawableLeft="@mipmap/plus"
                         android:drawableStart="@mipmap/plus"

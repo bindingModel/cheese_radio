@@ -65,6 +65,7 @@ public class DataBindingAdapter {
                 .transform(new GlideBlurformation(view.getContext()));//转化为圆角
         Glide.with(mContext)
                 .load(imageUrl)
+                .apply(options)
                 .into(new SimpleTarget<Drawable>() {
                     @Override
                     public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
