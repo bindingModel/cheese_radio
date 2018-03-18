@@ -120,7 +120,7 @@ public class AudioService extends Service
     @Override
     public void onSeekComplete(MediaPlayer mp) {
         mp.start();
-        state = Pause;
+        state = Play;
     }
 
     @Override
