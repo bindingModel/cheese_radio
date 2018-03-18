@@ -25,26 +25,19 @@
         <activity android:name=".ui.media.anchors.AnchorsActivity">
 
         </activity>
-        <activity android:name=".ui.user.login.LoginActivity">
-
-        </activity>
+        <activity android:name=".ui.user.login.LoginActivity"/>
         <activity android:name=".ui.user.guide.GuideActivity" />
         <activity
             android:name=".ui.user.profile.ProfileActivity"
-            android:label="个人信息">
-
-        </activity>
+            android:label="个人信息"/>
         <activity
             android:name=".ui.user.edit.EditNameActivity"
             android:label="昵称" />
         <activity
             android:name=".ui.user.enroll.EnrollActivity"
-            android:label="报名">
+            android:label="报名"/>
 
-        </activity>
-        <activity android:name=".ui.user.demo.DemoActivity">
-
-        </activity>
+        <activity android:name=".ui.user.demo.DemoActivity"/>
         <activity
             android:name=".ui.media.anchor.AnchorActivity"
             android:label=" " />
@@ -59,5 +52,7 @@
                 <action android:name=".ui.base.media.AudioService"/>
             </intent-filter>
         </service>
+
+        <meta-data android:name="PGYER_APPID" android:value="14a0fc2fba7de48e4f1d4e0dd819b86f" />
     </application>
 </manifest>
