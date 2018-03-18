@@ -221,5 +221,11 @@
         </LinearLayout>
 
         <include layout="@layout/toolbar_organza" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="14dp"
+            android:layout_gravity="end"
+            android:src="@mipmap/share"/>
     </FrameLayout>
 </layout>
