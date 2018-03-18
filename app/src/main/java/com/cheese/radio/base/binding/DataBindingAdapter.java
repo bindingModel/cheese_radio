@@ -22,6 +22,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.cheese.radio.R;
+import com.cheese.radio.base.glide.GlideBlurformation;
 
 
 /**
@@ -41,6 +42,27 @@ public class DataBindingAdapter {
     @BindingAdapter({"android:background"})
     public static void setBackground(View view, String imageUrl) {
         Context mContext = view.getContext();
+        Glide.with(mContext)
+                .load(imageUrl)
+                .into(new SimpleTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) view.setBackground(resource);
+                        else view.setBackgroundDrawable(resource);
+                    }
+                });
+    }
+
+    @BindingAdapter({"backgroundBlur"})
+    public static void setBackgroundBlur(View view, String imageUrl) {
+        Context mContext = view.getContext();
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+//                .placeholder(R.mipmap.ic_launcher)//预加载图片
+//                .error(R.mipmap.ic_launcher)//加载失败显示图片
+                .priority(Priority.HIGH)//优先级
+                .diskCacheStrategy(DiskCacheStrategy.NONE)//缓存策略
+                .transform(new GlideBlurformation(view.getContext()));//转化为圆角
         Glide.with(mContext)
                 .load(imageUrl)
                 .into(new SimpleTarget<Drawable>() {
