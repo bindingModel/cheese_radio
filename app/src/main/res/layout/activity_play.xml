@@ -33,16 +33,20 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="155dp"
-                    android:layout_height="200dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="5"
                     android:layout_gravity="center"
-                    android:layout_marginTop="45dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginRight="100dp"
+                    android:layout_marginLeft="100dp"
                     android:scaleType="centerCrop"
                     android:src="@{entity.image}" />
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:layout_gravity="center"
                     android:layout_marginTop="17dp"
                     android:text="@{entity.title,default=123456789}"
@@ -50,25 +54,27 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="12dp">
 
                     <ImageView
                         android:layout_height="44dp"
                         android:layout_width="44dp"
                         android:layout_gravity="bottom"
-                        android:src="@{entity.anchorIcon}"
-                        android:layout_marginBottom="12dp"
+                        app:head="@{entity.anchorIcon}"
                         android:layout_marginLeft="12dp"
                         />
                     <TextView
-                        android:layout_width="164dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:layout_marginBottom="12dp"
+                        android:textSize="13.44sp"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="12dp"
+                        android:maxLines="3"
                         android:ellipsize="end"
-                        android:maxLines="2"
+                        android:textColor="@color/text_white"
                         android:text="@{entity.msg}" />
 
                   <!--  android:drawableLeft="@{entity.anchorIcon}"
@@ -78,11 +84,9 @@
                         android:id="@+id/care_anchor"
                         android:layout_width="65dp"
                         android:layout_height="27dp"
-                        android:layout_gravity="bottom"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="50dp"
                         android:layout_marginRight="15dp"
-                        android:layout_marginBottom="12dp"
-
                         android:background="@drawable/login_button_shape"
                         android:drawableLeft="@mipmap/plus"
                         android:drawableStart="@mipmap/plus"
@@ -105,10 +109,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
+                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:drawableLeft="@mipmap/play_count"
                     android:drawablePadding="6dp"
+                    android:layout_marginBottom="15dp"
                     android:text="@{entity.playViews,default=00}"
                     android:textSize="9.6sp" />
                 <FrameLayout
@@ -143,7 +149,8 @@
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:paddingLeft="110dp"
                     android:paddingRight="110dp">
 
@@ -176,8 +183,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="25dp"
-                    android:layout_marginTop="57.33dp"
+                    android:padding="15dp"
+                    android:layout_gravity="bottom"
                     android:orientation="horizontal">
 
                     <CheckBox
