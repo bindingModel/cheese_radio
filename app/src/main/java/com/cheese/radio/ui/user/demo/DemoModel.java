@@ -9,7 +9,6 @@ import com.cheese.radio.R;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityDemoBinding;
 import com.cheese.radio.inject.api.RadioApi;
-import com.cheese.radio.ui.media.play.PlayParams;
 
 import javax.inject.Inject;
 
@@ -31,8 +30,6 @@ public class DemoModel extends ViewHttpModel<DemoActivity,ActivityDemoBinding,De
 
 
     }
-
-
 
     public void onClick(View view){
 //        listCompositeDisposable.add(radioApi.getData().compose(new RestfulTransformer<>()).subscribe());

@@ -48,8 +48,8 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
         layoutManager.setSpanSizeLookup(new GridSpanSizeLookup<>(getAdapter()));
         setLayoutManager(layoutManager);
         setEnable(false);
+        setPageFlag(false);
         setRoHttp((offset1, refresh) -> {
-
             return getZip();
         });
     }
