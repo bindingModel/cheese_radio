@@ -24,6 +24,11 @@ public class SignParams extends IkeParams {
         this.method = method;
     }
 
+    public SignParams(String method, String loginType) {
+        this.method = method;
+        this.loginType = loginType;
+    }
+
     public String getPhone() {
         return phone;
     }

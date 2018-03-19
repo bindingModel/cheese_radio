@@ -12,8 +12,19 @@ public class SmsParams extends IkeParams {
 
     private String phone;
 
-    public SmsParams(String method) {
+    private String validType;
+
+    public SmsParams(String method, String validType) {
         this.method = method;
+        this.validType = validType;
+    }
+
+    public String getValidType() {
+        return validType;
+    }
+
+    public void setValidType(String validType) {
+        this.validType = validType;
     }
 
     public String getPhone() {

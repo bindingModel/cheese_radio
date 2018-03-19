@@ -15,6 +15,7 @@ import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.base.rxjava.RestfulZipTransformer;
 import com.cheese.radio.databinding.FragmentHomePageBinding;
 import com.cheese.radio.inject.api.RadioApi;
+import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.home.page.entity.CategoryEntity;
 import com.cheese.radio.ui.home.page.entity.RecommandEntity;
 import com.cheese.radio.ui.media.play.PlayParams;
@@ -43,6 +44,7 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
     @Override
     public void attachView(Bundle savedInstanceState, HomePageFragment homePageFragment) {
         super.attachView(savedInstanceState, homePageFragment);
+        IkeApplication.isLogin();
         getDataBinding().layoutRecycler.setVm(this);
         GridLayoutManager layoutManager = new GridLayoutManager(homePageFragment.getContext(), 4);
         layoutManager.setSpanSizeLookup(new GridSpanSizeLookup<>(getAdapter()));

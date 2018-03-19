@@ -37,6 +37,7 @@
             android:layout_marginRight="60dp"
             android:background="@drawable/login_button_shape"
             android:text="报 名"
+            android:onClick="@{vm::onClick}"
             android:textColor="@color/text_white"
             android:textSize="14.4sp" />
 

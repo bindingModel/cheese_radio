@@ -7,25 +7,25 @@
         <variable
             name="vm"
             type="com.cheese.radio.ui.user.login.LoginModel" />
+
         <variable
             name="params"
-            type="com.cheese.radio.ui.user.login.params.SignParams"/>
+            type="com.cheese.radio.ui.user.login.params.SignParams" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="15dp">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:gravity="end"
-            android:paddingLeft="31.45dp"
-            android:paddingRight="31.45dp"
-            android:paddingTop="19dp"
-            android:text="先逛逛"
             android:onClick="@{vm::onGoHoneClick}"
+            android:text="先逛逛"
             android:textColor="@color/text_black" />
 
         <ImageView
@@ -37,17 +37,17 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="42.24dp"
-            android:layout_marginEnd="26dp"
-            android:layout_marginStart="26dp"
+            android:layout_marginEnd="11dp"
+            android:layout_marginStart="11dp"
             android:layout_marginTop="70dp"
             android:background="@drawable/login_input_shape"
             android:drawableLeft="@mipmap/input_mobile"
             android:drawablePadding="9dp"
             android:drawableStart="@mipmap/input_mobile"
             android:hint="请输入手机号"
-            android:text="@={params.phone}"
             android:paddingLeft="17dp"
             android:paddingRight="17dp"
+            android:text="@={params.phone}"
             android:textSize="14.4sp" />
 
         <FrameLayout
@@ -58,16 +58,16 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="42.24dp"
-                android:layout_marginEnd="26dp"
-                android:layout_marginStart="26dp"
+                android:layout_marginEnd="11dp"
+                android:layout_marginStart="11dp"
                 android:background="@drawable/login_input_shape"
                 android:drawableLeft="@mipmap/input_sms"
                 android:drawablePadding="9dp"
                 android:drawableStart="@mipmap/input_sms"
                 android:hint="请输入短信验证码"
-                android:text="@={params.validCode}"
                 android:paddingLeft="17dp"
                 android:paddingRight="17dp"
+                android:text="@={params.validCode}"
                 android:textSize="14.4sp" />
 
             <TextView
@@ -85,14 +85,14 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="42dp"
-            android:layout_marginEnd="26dp"
-            android:layout_marginStart="26dp"
+            android:layout_marginEnd="11dp"
+            android:layout_marginStart="11dp"
             android:layout_marginTop="37dp"
             android:background="@drawable/login_button_shape"
+            android:onClick="@{vm::onSignClick}"
             android:text="进入芝士电台"
             android:textColor="@color/text_white"
-            android:textSize="14.4sp"
-            android:onClick="@{vm::onSignClick}"/>
+            android:textSize="14.4sp" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -132,22 +132,28 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/wei_xin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
+                android:onClick="@{vm::onPlatformClick}"
                 android:src="@mipmap/wx" />
 
             <ImageView
+                android:id="@+id/qq"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="@{vm::onPlatformClick}"
                 android:src="@mipmap/qq" />
 
             <ImageView
+                android:id="@+id/wei_bo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
+                android:onClick="@{vm::onPlatformClick}"
                 android:src="@mipmap/wb" />
         </LinearLayout>
     </LinearLayout>

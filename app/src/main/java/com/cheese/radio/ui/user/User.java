@@ -24,6 +24,10 @@ public class User {
 
     public void setToken(String token) {
         userEntity.setToken(token);
-        util.setValue("token",token);
+        util.setValue("token", token);
+    }
+
+    public String getToken() {
+        return userEntity.getToken();
     }
 }

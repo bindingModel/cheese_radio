@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
-import com.bigkoo.pickerview.listener.CustomListener;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
 import com.binding.model.util.BaseUtil;
@@ -33,11 +32,17 @@ import javax.inject.Inject;
  * Created by 29283 on 2018/3/10.
  */
 @ModelView(R.layout.activity_enroll)
-public class EnrollModel extends ViewModel<EnrollActivity,ActivityEnrollBinding>{
+public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding> {
 
-    @Inject EnrollModel(){}
-    public  ObservableField<String> mDate=new ObservableField<String>("");
-    public ObservableField<String> mCity=new ObservableField<>("");
+    @Inject
+    EnrollModel() {
+    }
+
+    public ObservableField<String> mDate = new ObservableField<String>("");
+    public ObservableField<String> mCity = new ObservableField<>("");
+    public ObservableField<String> mAge = new ObservableField<>("");
+    public ObservableField<String> mSex = new ObservableField<>("");
+    public ObservableField<String> course = new ObservableField<>("");
 
     private ArrayList<CitysBean> options1Items = new ArrayList<>();
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
@@ -48,26 +53,25 @@ public class EnrollModel extends ViewModel<EnrollActivity,ActivityEnrollBinding>
     private static final int MSG_LOAD_FAILED = 0x0003;
     private boolean isLoaded = false;
     private TimePickerView pvCustomTime;
+    private OptionsPickerView agePicker, sexPicker;
+    private ArrayList<String> babyAge = new ArrayList<>();
+    private ArrayList<String> babySex = new ArrayList<>();
 
     @Override
     public void attachView(Bundle savedInstanceState, EnrollActivity enrollActivity) {
         super.attachView(savedInstanceState, enrollActivity);
-
+        setData();
         initCustomTimePicker();
-
+        initAgePicker();
+        initSexPicker();
     }
 
-    public void onSelectCityClick(View view ){
-        if(isLoaded)ShowPickerView();
-        else{
+    public void onSelectCityClick(View view) {
+        if (isLoaded) ShowPickerView();
+        else {
             mHandler.sendEmptyMessage(MSG_LOAD_DATA);
             Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    ShowPickerView();
-                }
-            }, 500);
+            handler.postDelayed(this::ShowPickerView, 500);
 
         }
     }
@@ -76,8 +80,8 @@ public class EnrollModel extends ViewModel<EnrollActivity,ActivityEnrollBinding>
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MSG_LOAD_DATA:
-                    if (thread==null){//如果已创建就不再重新创建子线程了
-                        BaseUtil.toast("Begin Parse Data"+Toast.LENGTH_SHORT);
+                    if (thread == null) {//如果已创建就不再重新创建子线程了
+                        BaseUtil.toast("Begin Parse Data" + Toast.LENGTH_SHORT);
                         thread = new Thread(new Runnable() {
                             @Override
                             public void run() {
@@ -90,12 +94,12 @@ public class EnrollModel extends ViewModel<EnrollActivity,ActivityEnrollBinding>
                     break;
 
                 case MSG_LOAD_SUCCESS:
-                    BaseUtil.toast("Parse Succeed"+Toast.LENGTH_SHORT);
+                    BaseUtil.toast("Parse Succeed" + Toast.LENGTH_SHORT);
                     isLoaded = true;
                     break;
 
                 case MSG_LOAD_FAILED:
-                    BaseUtil.toast("Parse Failed"+Toast.LENGTH_SHORT);
+                    BaseUtil.toast("Parse Failed" + Toast.LENGTH_SHORT);
                     break;
 
             }
@@ -108,8 +112,8 @@ public class EnrollModel extends ViewModel<EnrollActivity,ActivityEnrollBinding>
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
-                String tx = options1Items.get(options1).getPickerViewText()+
-                        options2Items.get(options1).get(options2)+
+                String tx = options1Items.get(options1).getPickerViewText() +
+                        options2Items.get(options1).get(options2) +
                         options3Items.get(options1).get(options2).get(options3);
                 mCity.set(tx);
             }
@@ -122,7 +126,7 @@ public class EnrollModel extends ViewModel<EnrollActivity,ActivityEnrollBinding>
 
         /*pvOptions.setPicker(options1Items);//一级选择器
         pvOptions.setPicker(options1Items, options2Items);//二级选择器*/
-        pvOptions.setPicker(options1Items, options2Items,options3Items);//三级选择器
+        pvOptions.setPicker(options1Items, options2Items, options3Items);//三级选择器
         pvOptions.show();
     }
 
@@ -133,7 +137,7 @@ public class EnrollModel extends ViewModel<EnrollActivity,ActivityEnrollBinding>
          * 关键逻辑在于循环体
          *
          * */
-        String JsonData = new GetJsonDataUtil().getJson(getT(),"province.json");//获取assets目录下的json文件数据
+        String JsonData = new GetJsonDataUtil().getJson(getT(), "province.json");//获取assets目录下的json文件数据
 
         ArrayList<CitysBean> jsonBean = parseData(JsonData);//用Gson 转成实体
 
@@ -145,11 +149,11 @@ public class EnrollModel extends ViewModel<EnrollActivity,ActivityEnrollBinding>
          */
         options1Items = jsonBean;
 
-        for (int i=0;i<jsonBean.size();i++){//遍历省份
+        for (int i = 0; i < jsonBean.size(); i++) {//遍历省份
             ArrayList<String> CityList = new ArrayList<>();//该省的城市列表（第二级）
             ArrayList<ArrayList<String>> Province_AreaList = new ArrayList<>();//该省的所有地区列表（第三极）
 
-            for (int c=0; c<jsonBean.get(i).getCityList().size(); c++){//遍历该省份的所有城市
+            for (int c = 0; c < jsonBean.get(i).getCityList().size(); c++) {//遍历该省份的所有城市
                 String CityName = jsonBean.get(i).getCityList().get(c).getName();
                 CityList.add(CityName);//添加城市
 
@@ -157,14 +161,15 @@ public class EnrollModel extends ViewModel<EnrollActivity,ActivityEnrollBinding>
 
                 //如果无地区数据，建议添加空字符串，防止数据为null 导致三个选项长度不匹配造成崩溃
                 if (jsonBean.get(i).getCityList().get(c).getArea() == null
-                        ||jsonBean.get(i).getCityList().get(c).getArea().size()==0) {
+                        || jsonBean.get(i).getCityList().get(c).getArea().size() == 0) {
                     City_AreaList.add("");
-                }else {
+                } else {
 
-                    for (int d=0; d < jsonBean.get(i).getCityList().get(c).getArea().size(); d++) {//该城市对应地区所有数据
-                        String AreaName = jsonBean.get(i).getCityList().get(c).getArea().get(d);
-
-                        City_AreaList.add(AreaName);//添加该城市所有地区数据
+                    for (int d = 0; d < jsonBean.get(i).getCityList().get(c).getArea().size(); d++) {//该城市对应地区所有数据
+//                        String AreaName = jsonBean.get(i).getCityList().get(c).getArea().get(d);
+//
+//                        City_AreaList.add(AreaName);//添加该城市所有地区数据
+                        City_AreaList.addAll(jsonBean.get(i).getCityList().get(c).getArea());
                     }
                 }
                 Province_AreaList.add(City_AreaList);//添加该省所有地区数据
@@ -186,7 +191,7 @@ public class EnrollModel extends ViewModel<EnrollActivity,ActivityEnrollBinding>
     }
 
 
-    public ArrayList<CitysBean> parseData(String result) {//Gson 解析
+    private ArrayList<CitysBean> parseData(String result) {//Gson 解析
         ArrayList<CitysBean> detail = new ArrayList<>();
         try {
             JSONArray data = new JSONArray(result);
@@ -213,19 +218,14 @@ public class EnrollModel extends ViewModel<EnrollActivity,ActivityEnrollBinding>
          * 具体可参考demo 里面的两个自定义layout布局。
          * 2.因为系统Calendar的月份是从0-11的,所以如果是调用Calendar的set方法来设置时间,月份的范围也要是从0-11
          * setRangDate方法控制起始终止时间(如果不设置范围，则使用默认时间1900-2100年，此段代码可注释)
-         */
+         **/
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
         startDate.set(2014, 1, 23);
         Calendar endDate = Calendar.getInstance();
         endDate.set(2027, 2, 28);
         //时间选择器 ，自定义布局
-        pvCustomTime = new TimePickerView.Builder(getT(), new TimePickerView.OnTimeSelectListener() {
-            @Override
-            public void onTimeSelect(Date date, View v) {//选中事件回调
-                mDate.set(getTime(date));
-            }
-        })
+        pvCustomTime = new TimePickerView.Builder(getT(), (date, v) -> mDate.set(getTime(date)))
                 /*.setType(TimePickerView.Type.ALL)//default is all
                 .setCancelText("Cancel")
                 .setSubmitText("Sure")
@@ -243,26 +243,14 @@ public class EnrollModel extends ViewModel<EnrollActivity,ActivityEnrollBinding>
                /*.gravity(Gravity.RIGHT)// default is center*/
                 .setDate(selectedDate)
                 .setRangDate(startDate, endDate)
-                .setLayoutRes(R.layout.pickerview_custom_time, new CustomListener() {
-
-                    @Override
-                    public void customLayout(View v) {
-                        final TextView tvSubmit = (TextView) v.findViewById(R.id.tv_finish);
-                        TextView ivCancel = (TextView) v.findViewById(R.id.iv_cancel);
-                        tvSubmit.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                pvCustomTime.returnData();
-                                pvCustomTime.dismiss();
-                            }
-                        });
-                        ivCancel.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                pvCustomTime.dismiss();
-                            }
-                        });
-                    }
+                .setLayoutRes(R.layout.pickerview_custom_time, v -> {
+                    final TextView tvSubmit = (TextView) v.findViewById(R.id.tv_finish);
+                    TextView ivCancel = (TextView) v.findViewById(R.id.iv_cancel);
+                    tvSubmit.setOnClickListener(v1 -> {
+                        pvCustomTime.returnData();
+                        pvCustomTime.dismiss();
+                    });
+                    ivCancel.setOnClickListener(v1 -> pvCustomTime.dismiss());
                 })
                 .setContentSize(18)
                 .setType(new boolean[]{true, true, true, false, false, false})
@@ -276,11 +264,39 @@ public class EnrollModel extends ViewModel<EnrollActivity,ActivityEnrollBinding>
     }
 
     private String getTime(Date date) {//可根据需要自行截取数据显示
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        return format.format(date);
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//        return format.format(date);
+        return SimpleDateFormat.getDateInstance().format(date);
     }
 
-    public void onSelectClick(View view){
-     pvCustomTime.show();
+    public void onSelectBirthClick(View view) {
+        pvCustomTime.show();
+    }
+
+    public void onSelectAgeClick(View view) {//调用选择器的show方法
+        agePicker.show();
+    }
+
+    public void onSelectSexClick(View view) {
+        sexPicker.show();
+    }
+
+    private void setData() {//给条件选择器的容器填充数据
+        babyAge.add("4~5");
+        babyAge.add("6~7");
+        babySex.add("男");
+        babySex.add("女");
+    }
+
+    private void initAgePicker() {//初始化条件选择器
+        agePicker = new OptionsPickerView.Builder(getT(), (options1, options2, options3, v) -> mAge.set(babyAge.get(options2))
+        ).build();
+        agePicker.setNPicker(new ArrayList<String>(), babyAge, new ArrayList<String>());
+    }
+
+    private void initSexPicker() {
+        agePicker = new OptionsPickerView.Builder(getT(), (options1, options2, options3, v) -> mSex.set(babyAge.get(options2))
+        ).build();
+        sexPicker.setNPicker(new ArrayList<String>(), babySex, new ArrayList<String>());
     }
 }
