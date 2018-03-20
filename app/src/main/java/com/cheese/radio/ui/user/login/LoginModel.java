@@ -23,6 +23,7 @@ import com.cheese.radio.ui.user.login.params.SmsParams;
 import javax.inject.Inject;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.home;
+import static com.cheese.radio.inject.component.ActivityComponent.Router.registerOne;
 
 /**
  * Created by 29283 on 2018/3/5.
@@ -64,6 +65,9 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> {
         api.getToken(signParams).compose(new RestfulTransformer<>())
                 .subscribe(signUserEntity -> {
                     IkeApplication.getUser().setToken(signUserEntity.getToken());
+                    if(signUserEntity.getNewX()==0)ARouterUtil.navigation(home);
+                    else ARouterUtil.navigation(registerOne);
+                    finish();
                 }, BaseUtil::toast);
 
     }

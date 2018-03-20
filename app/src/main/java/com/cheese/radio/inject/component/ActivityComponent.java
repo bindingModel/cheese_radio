@@ -13,6 +13,8 @@ import com.cheese.radio.ui.home.HomeActivity;
 import com.cheese.radio.ui.user.login.LoginActivity;
 import com.cheese.radio.ui.startup.StartUpActivity;
 import com.cheese.radio.ui.user.profile.ProfileActivity;
+import com.cheese.radio.ui.user.register.one.RegisterOneActivity;
+import com.cheese.radio.ui.user.register.two.RegisterTwoActivity;
 
 import dagger.Component;
 
@@ -40,6 +42,8 @@ public interface ActivityComponent {
     void inject(AnchorActivity activity);
     void inject(ClassifyActivity activity);
     void inject(PlayActivity activity);
+    void inject(RegisterOneActivity activity);
+    void inject(RegisterTwoActivity activity);
     interface Router {
         String cheese="/cheese/";
         String startup=cheese+"startup";
@@ -53,5 +57,7 @@ public interface ActivityComponent {
         String anchor=cheese+"anchor";
         String classify=cheese+"classify";
         String play=cheese+"play";
+        String registerOne=cheese+"registerOne";
+        String registerTwo=cheese+"registerTwo";
     }
 }

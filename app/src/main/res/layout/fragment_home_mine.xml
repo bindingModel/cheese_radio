@@ -83,6 +83,7 @@
             android:background="@color/background_white"
             android:padding="15dp"
             android:text="@string/out"
+            android:onClick="@{vm::onLogoutClick}"
             android:gravity="center"
             />
     </LinearLayout>

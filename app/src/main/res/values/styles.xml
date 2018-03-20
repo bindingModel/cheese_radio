@@ -41,17 +41,24 @@
 
     <style name="anchor_navigation">
 
-            <item name="android:layout_weight">1</item>
-            <item name="android:gravity">center</item>
-            <item name="android:button">@null</item>
-            <item name="android:paddingTop">3dp</item>
-            <item name="android:textColor">@color/anchor_text_color</item>
-            <item name="android:maxLines">1</item>
-            <item name="android:background">@color/background_white</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:textColor">@color/anchor_text_color</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:background">@color/background_white</item>
 
     </style>
 
     <style name="SeekBarAppTheme">
         <item name="android:max">1000</item>
+    </style>
+
+    <style name="sex_select_radio_button_select">
+        <item name="android:button">@null</item>
+        <item name="android:drawablePadding">12dp</item>
+        <item name="android:textSize">14.4sp</item>
+        <item name="android:gravity">center</item>
     </style>
 </resources>

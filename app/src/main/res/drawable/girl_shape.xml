@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@mipmap/girl" />
+    <item android:drawable="@mipmap/sex_bg" />
+    <item
+        android:drawable="@mipmap/check_sex"
+        android:gravity="center" />
+
+
+</layer-list>

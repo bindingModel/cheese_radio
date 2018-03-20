@@ -14,6 +14,8 @@ import com.cheese.radio.ui.media.play.PlayEntity;
 import com.cheese.radio.ui.media.play.PlayParams;
 import com.cheese.radio.ui.user.demo.DemoData;
 import com.cheese.radio.ui.user.login.entity.PlatformEntity;
+import com.cheese.radio.ui.user.login.params.MyInfoParams;
+
 import com.cheese.radio.ui.user.login.params.PlatformParams;
 import com.cheese.radio.ui.user.login.params.SignParams;
 import com.cheese.radio.ui.user.login.params.SmsParams;
@@ -65,5 +67,6 @@ public interface RadioApi {
     @POST("/1.0/common")
     Observable<InfoEntity<PlatformEntity>> getOpenPlatformConfig(@Body PlatformParams params);
 
-
+    @POST("/1.0/user")
+    Observable<InfoEntity<Object>> getMyinfo(@Body MyInfoParams params);
 }

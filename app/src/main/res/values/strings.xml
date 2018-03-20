@@ -20,4 +20,9 @@
     <string name="sex">性别</string>
     <string name="name">姓名</string>
     <string name="pay_for">支付方式</string>
+    <string name="skip">跳过</string>
+    <string name="select_sex">选择性别</string>
+    <string name="better_service_for_you">更好的为您提供服务</string>
+    <string name="boy">男孩</string>
+    <string name="girl">女孩</string>
 </resources>

@@ -30,7 +30,9 @@ public class StartUpModel extends ViewModel<StartUpActivity, ActivityStartupBind
         Integer time = 100;
         Handler handler = new Handler();
         handler.postDelayed(() -> {
-            ARouterUtil.navigation(home);
+            if (IkeApplication.isLogin())
+                ARouterUtil.navigation(home);
+           else ARouterUtil.navigation(login);
             finish();
         }, time);
     }

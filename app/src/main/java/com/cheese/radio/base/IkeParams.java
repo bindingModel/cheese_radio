@@ -3,6 +3,7 @@ package com.cheese.radio.base;
 import com.binding.model.data.encrypt.FormUnionParams;
 import com.binding.model.util.BaseUtil;
 import com.binding.model.util.ReflectUtil;
+import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.util.MyBaseUtil;
 
 import java.lang.reflect.Field;
@@ -17,7 +18,7 @@ public class IkeParams extends FormUnionParams{
     public String sign;
     public String uuid;
     public String timestamp;
-
+    public String token;
     public String getUuid() {
         return uuid= MyBaseUtil.getMacAddress();
     }
@@ -46,6 +47,16 @@ public class IkeParams extends FormUnionParams{
             hashMap.put(BaseUtil.findQuery(field), o.toString());
         }
         return sign = MyBaseUtil.getSign(hashMap);
+    }
+
+    public String getToken() {
+       if( IkeApplication.isLogin()
+               )return IkeApplication.getUser().getToken();
+       return null;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @Override

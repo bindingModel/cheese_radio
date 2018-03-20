@@ -4,6 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.binding.model.data.save.SharePreferenceUtil;
+import com.binding.model.model.inter.Model;
+import com.cheese.radio.base.arouter.ARouterUtil;
+
+import static com.cheese.radio.inject.component.ActivityComponent.Router.login;
 
 /**
  * Created by 29283 on 2018/3/14.
@@ -24,10 +28,18 @@ public class User {
 
     public void setToken(String token) {
         userEntity.setToken(token);
-        util.setValue("token", token);
+        util.setAllDto(userEntity);
     }
 
     public String getToken() {
         return userEntity.getToken();
+    }
+
+    public void logout(){
+        userEntity.clone(new UserEntity());
+        util.setAllDto(userEntity);
+        isLogin = userEntity.isLogin();
+        ARouterUtil.navigation(login);
+//        Model.dispatchModel(logout);
     }
 }

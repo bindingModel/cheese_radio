@@ -281,6 +281,8 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         sexPicker.show();
     }
 
+    public void onSelectCourseClick(View view){}
+
     private void setData() {//给条件选择器的容器填充数据
         babyAge.add("4~5");
         babyAge.add("6~7");
