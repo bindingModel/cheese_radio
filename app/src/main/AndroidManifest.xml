@@ -57,5 +57,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.user.register.two.RegisterTwoActivity"/>
+        <activity android:name=".ui.media.group.GroupInfoActivity" android:label="@string/group_info"/>
     </application>
 </manifest>

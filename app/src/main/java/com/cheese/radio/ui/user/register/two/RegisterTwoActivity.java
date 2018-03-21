@@ -10,4 +10,7 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.registe
  */
 @Route(path = registerTwo)
 public class RegisterTwoActivity extends BaseActivity<RegisterTwoModel>{
+
+
+
 }

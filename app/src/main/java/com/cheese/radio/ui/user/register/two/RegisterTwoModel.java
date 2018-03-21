@@ -21,4 +21,8 @@ public class RegisterTwoModel extends ViewModel<RegisterTwoActivity,ActivityRegi
     public void attachView(Bundle savedInstanceState, RegisterTwoActivity activity) {
         super.attachView(savedInstanceState, activity);
     }
+
+    public void onNextClick(View view){
+
+    }
 }

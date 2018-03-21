@@ -19,6 +19,8 @@ import com.cheese.radio.ui.user.login.params.MyInfoParams;
 import javax.inject.Inject;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.home;
+import static com.cheese.radio.inject.component.ActivityComponent.Router.registerOne;
+import static com.cheese.radio.inject.component.ActivityComponent.Router.registerTwo;
 
 /**
  * Created by 29283 on 2018/3/20.
@@ -46,8 +48,8 @@ public class RegisterOneModel extends ViewModel<RegisterOneActivity,ActivityRegi
     }
 
 
-    public void onGoToTwoClick(View view){
-
+    public void onNextClick(View view){
+        ARouterUtil.navigation(registerTwo);
     }
     public void onSkipClick(View view){
         ARouterUtil.navigation(home);

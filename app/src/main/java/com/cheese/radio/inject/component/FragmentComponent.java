@@ -7,6 +7,8 @@ import com.cheese.radio.ui.home.clock.ClockFragment;
 import com.cheese.radio.ui.home.mine.HomeMineFragment;
 import com.cheese.radio.ui.home.page.HomePageFragment;
 import com.cheese.radio.ui.media.anchor.entity.AnchorFragment;
+import com.cheese.radio.ui.media.group.fragment.introduce.GroupIntroduceFragment;
+import com.cheese.radio.ui.media.group.fragment.story.GroupStoryFragment;
 
 import dagger.Component;
 
@@ -31,4 +33,6 @@ public interface FragmentComponent {
     void inject(CircleFragment fragment);
     void inject(ClockFragment fragment);
     void inject(AnchorFragment fragment);
+    void inject(GroupStoryFragment fragment);
+    void inject(GroupIntroduceFragment fragment);
 }

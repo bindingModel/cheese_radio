@@ -16,7 +16,7 @@ import java.util.List;
 
 public class AnchorEntity extends ViewParse implements Item<BaseFragment> {
 
-    private AnchorFragment fragment;
+    private BaseFragment fragment;
     private int authorId;
 
     public AnchorEntity(int authorId) {
@@ -28,13 +28,19 @@ public class AnchorEntity extends ViewParse implements Item<BaseFragment> {
 
     @Override
     public BaseFragment getItem(int position, ViewGroup container) {
-        if(fragment ==null){
-            fragment = new AnchorFragment();
+        if (fragment == null) {
+            switch (position) {
+                case 0:
+                    fragment = new AnchorFragment();
+                case 1:
+                    fragment = new AnchorFragment();
+            }
+
+            Bundle bundle = new Bundle();
+            bundle.putInt(Constant.authorId, authorId);
+            bundle.putInt(Constant.position, position);
+            fragment.setArguments(bundle);
         }
-        Bundle bundle = new Bundle();
-        bundle.putInt(Constant.authorId,authorId);
-        bundle.putInt(Constant.position,position);
-        fragment.setArguments(bundle);
         return fragment;
     }
 

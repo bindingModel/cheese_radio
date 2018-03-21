@@ -10,6 +10,7 @@ import com.cheese.radio.ui.media.anchors.AnchorsItem;
 import com.cheese.radio.ui.media.anchors.AnchorsParams;
 import com.cheese.radio.ui.media.classify.ClassifyData;
 import com.cheese.radio.ui.media.classify.ClassifyParams;
+import com.cheese.radio.ui.media.group.GroupInfoParams;
 import com.cheese.radio.ui.media.play.PlayEntity;
 import com.cheese.radio.ui.media.play.PlayParams;
 import com.cheese.radio.ui.user.demo.DemoData;
@@ -59,7 +60,7 @@ public interface RadioApi {
     Observable<InfoEntity<List<ClassifyData>>> getQueryCategroy(@Body ClassifyParams params);
 
     @POST("/1.0/content")
-    Observable<InfoEntity<List<CategoryEntity>>> getGroupInfo(@Body PlayParams params);
+    Observable<InfoEntity<List<CategoryEntity>>> getGroupInfo(@Body GroupInfoParams params);
 
     @POST("/1.0/content")
     Observable<InfoEntity<PlayEntity>> getContentInfo(@Body PlayParams params);
