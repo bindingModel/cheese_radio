@@ -11,6 +11,7 @@ import com.binding.model.model.inter.GridInflate;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.InfoEntity;
+import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.base.rxjava.RestfulZipTransformer;
 import com.cheese.radio.databinding.FragmentHomePageBinding;
@@ -28,6 +29,8 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+
+import static com.cheese.radio.inject.component.ActivityComponent.Router.search;
 
 /**
  * Created by 29283 on 2018/3/3.
@@ -80,8 +83,8 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
-
     public void onSearchClick(View view){
-
+        ARouterUtil.navigation(search);
     }
+
 }

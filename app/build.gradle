@@ -108,6 +108,6 @@ android {
         implementation 'com.contrarywind:Android-PickerView:3.2.7'
 
 
-        implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+//        implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     }
 }

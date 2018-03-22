@@ -9,6 +9,7 @@ import android.os.Bundle;
 import com.binding.model.App;
 import com.binding.model.Config;
 import com.binding.model.util.BaseUtil;
+import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.ui.IkeApplication;
 
 import java.util.Arrays;

@@ -102,31 +102,7 @@ public  class RecommandEntity extends ViewInflateRecycler implements SpanSize, G
     }
 
     public void onClick(View view){
-        Bundle bundle=new Bundle();
-        bundle.putString(Constant.location,location);
-        bundle.putString(Constant.id,id);
-        switch (location) {
-            case CONTENT_LIST:
-                ARouterUtil.navigation(play,bundle);
-                break;
-            case CATEGORY_LIST:
-                ARouterUtil.navigation(classify);
-                break;
-            case AUTHOR_LIST:
-                ARouterUtil.navigation(anchors);
-                break;
-            case AUTHOR_INFO:
-
-                break;
-            case GROUP_INFO:
-                BaseUtil.toast("专辑详情");
-//                ARouterUtil.navigation(play,bundle);
-                break;
-            case PLAY:
-                BaseUtil.toast("跳转绘本");
-                ARouterUtil.navigation(play,bundle);
-                break;
-        }
+       ARouterUtil.itemNavigation(location,id);
     }
     @Override
     public int getModelIndex() {

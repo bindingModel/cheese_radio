@@ -9,8 +9,10 @@
     </data>
 
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="28dp"
+         android:paddingTop="10dp">
 
         <Button
             android:layout_width="80.66dp"
@@ -18,7 +20,8 @@
             android:background="@drawable/classify_tag_select"
             android:text="@{vm.tagName,default=1234}"
             android:textColor="@color/classify_text_color"
-            android:textSize="13.44sp" />
+            android:textSize="13.44sp"
+            android:onClick="@{vm::onClick}"/>
     </FrameLayout>
 
 </layout>

@@ -17,7 +17,10 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.startup.StartUpActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".ui.media.anchors.AnchorsActivity">
 
@@ -52,12 +55,10 @@
 
         <meta-data android:name="PGYER_APPID" android:value="14a0fc2fba7de48e4f1d4e0dd819b86f" />
         <activity android:name=".ui.user.register.one.RegisterOneActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".ui.user.register.two.RegisterTwoActivity"/>
         <activity android:name=".ui.media.group.GroupInfoActivity" android:label="@string/group_info"/>
+        <activity android:name=".ui.search.SearchActivity"/>
     </application>
 </manifest>

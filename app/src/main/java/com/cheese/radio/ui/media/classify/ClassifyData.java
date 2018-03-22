@@ -70,7 +70,7 @@ public class ClassifyData extends ViewInflateRecycler implements SpanSize, GridI
 
     @Override
     public int getSpanSize() {
-        return 3;
+        return 18;
     }
     }
 

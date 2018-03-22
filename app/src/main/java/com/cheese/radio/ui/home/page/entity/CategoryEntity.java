@@ -105,22 +105,6 @@ public class CategoryEntity extends ViewInflateRecycler implements SpanSize, Gri
     }
 
     public void onClick(View view) {
-        switch (location) {
-            case CONTENT_LIST:
-                break;
-            case CATEGORY_LIST:
-                ARouterUtil.navigation(classify);
-                break;
-            case AUTHOR_LIST:
-                ARouterUtil.navigation(anchors);
-                break;
-            case AUTHOR_INFO:
-                break;
-            case GROUP_INFO:
-                break;
-            case PLAY:
-
-                break;
-        }
+        ARouterUtil.itemNavigation(location,String.valueOf(tagId));
     }
 }

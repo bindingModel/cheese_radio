@@ -13,6 +13,8 @@ import com.cheese.radio.ui.media.classify.ClassifyParams;
 import com.cheese.radio.ui.media.group.GroupInfoParams;
 import com.cheese.radio.ui.media.play.PlayEntity;
 import com.cheese.radio.ui.media.play.PlayParams;
+import com.cheese.radio.ui.search.entity.HotSearchEntity;
+import com.cheese.radio.ui.search.params.HotSearchParams;
 import com.cheese.radio.ui.user.demo.DemoData;
 import com.cheese.radio.ui.user.login.entity.PlatformEntity;
 import com.cheese.radio.ui.user.login.params.MyInfoParams;
@@ -70,4 +72,7 @@ public interface RadioApi {
 
     @POST("/1.0/user")
     Observable<InfoEntity<Object>> getMyinfo(@Body MyInfoParams params);
+
+    @POST("/1.0/content")
+    Observable<InfoEntity<List<HotSearchEntity>>> getHotSearch(@Body HotSearchParams params);
 }

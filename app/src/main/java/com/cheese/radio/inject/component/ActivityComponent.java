@@ -8,6 +8,7 @@ import com.cheese.radio.ui.media.anchors.AnchorsActivity;
 import com.cheese.radio.ui.media.classify.ClassifyActivity;
 import com.cheese.radio.ui.media.group.GroupInfoActivity;
 import com.cheese.radio.ui.media.play.PlayActivity;
+import com.cheese.radio.ui.search.SearchActivity;
 import com.cheese.radio.ui.user.enroll.EnrollActivity;
 import com.cheese.radio.ui.user.guide.GuideActivity;
 import com.cheese.radio.ui.home.HomeActivity;
@@ -34,30 +35,19 @@ import dagger.Component;
 @Component(dependencies = AppComponent.class, modules = {ActivityModule.class})
 public interface ActivityComponent {
     void inject(HomeActivity activity);
-
     void inject(LoginActivity activity);
-
     void inject(StartUpActivity activity);
-
     void inject(GuideActivity activity);
-
     void inject(AnchorsActivity activity);
-
     void inject(ProfileActivity activity);
-
     void inject(EnrollActivity activity);
-
     void inject(AnchorActivity activity);
-
     void inject(ClassifyActivity activity);
-
     void inject(PlayActivity activity);
-
     void inject(RegisterOneActivity activity);
-
     void inject(RegisterTwoActivity activity);
-
     void inject(GroupInfoActivity activity);
+    void inject(SearchActivity activity);
 
     interface Router {
         String cheese = "/cheese/";
@@ -75,6 +65,7 @@ public interface ActivityComponent {
         String registerOne = cheese + "registerOne";
         String registerTwo = cheese + "registerTwo";
         String groupInfo = cheese + "groupInfo";
+        String search = cheese + "search";
     }
     /*
      *  CONTENT_LIST	绘本列表

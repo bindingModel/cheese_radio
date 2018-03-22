@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 
 import com.binding.model.adapter.recycler.GridSpanSizeLookup;
+import com.binding.model.adapter.recycler.RecyclerAdapter;
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.inter.GridInflate;
@@ -43,7 +44,8 @@ public class ClassifyModel extends RecyclerModel<ClassifyActivity, ActivityClass
     @Override
     public void attachView(Bundle savedInstanceState, ClassifyActivity activity) {
         super.attachView(savedInstanceState, activity);
-        GridLayoutManager layoutManager = new GridLayoutManager(getT(), 3);
+        getDataBinding().layoutRecycler.setVm(this);
+        GridLayoutManager layoutManager = new GridLayoutManager(getT(), 18);
         layoutManager.setSpanSizeLookup(new GridSpanSizeLookup<>(getAdapter()));
         setLayoutManager(layoutManager);
         api.getQueryCategroy(new ClassifyParams("queryCategroy")).compose(new RestfulTransformer<>()).subscribe(classifyData -> {
@@ -53,11 +55,18 @@ public class ClassifyModel extends RecyclerModel<ClassifyActivity, ActivityClass
             }
             accept(list);
         }, BaseUtil::toast);
-
-//        setRoHttp((offset1, refresh) -> {
-//
-//            return getGridInflate();
-//        });
+//        getDataBinding().detail.setLayoutManager(new GridLayoutManager(activity, 3));
+//        getDataBinding().detail.setAdapter(detailAdapter);
+//        getDataBinding().detail.getLayoutManager().setSpanSizeLookup();
+//        setRcHttp((offset1, refresh1) ->
+//                api.getQueryCategroy(new ClassifyParams("queryCategroy")).compose(new RestfulTransformer<>())
+//                        .map(classifyData -> {
+//                                    for (ClassifyData data:classifyData) {
+//                                        list.add(data);
+//                                        list.addAll(data.getSubTagList());
+//                                    }return list;
+//                        })
+//        );
     }
 
 //    private Observable<List<GridInflate>> getGridInflate() {

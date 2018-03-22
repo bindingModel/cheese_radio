@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+        <data>
+            <variable
+                name="vm"
+                type="com.cheese.radio.ui.search.entity.HotSearchEntity"/>
+        </data>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="15dp">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:textSize="13.44dp"
+            android:textColor="#666666"
+            android:background="@drawable/hot_search_shape"
+            android:text="@{vm.title,default=1234}"/>
+    </FrameLayout>
+</layout>

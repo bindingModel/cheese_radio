@@ -1,10 +1,13 @@
 package com.cheese.radio.ui.media.classify;
 
+import android.view.View;
+
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
 import com.binding.model.model.inter.GridInflate;
 import com.binding.model.model.inter.SpanSize;
 import com.cheese.radio.R;
+import com.cheese.radio.base.arouter.ARouterUtil;
 
 /**
  * Created by 29283 on 2018/3/17.
@@ -48,6 +51,10 @@ public class ClassifyEntity extends ViewInflateRecycler implements SpanSize, Gri
 
     @Override
     public int getSpanSize() {
-        return 1;
+        return 5;
+    }
+
+    public void onClick(View view){
+        ARouterUtil.itemNavigation(location,tagId);
     }
 }
