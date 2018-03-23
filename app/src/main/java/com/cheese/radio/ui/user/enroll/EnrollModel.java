@@ -297,8 +297,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
     }
 
     private void initSexPicker() {
-        agePicker = new OptionsPickerView.Builder(getT(), (options1, options2, options3, v) -> mSex.set(babyAge.get(options2))
-        ).build();
+        agePicker = new OptionsPickerView.Builder(getT(), (options1, options2, options3, v) -> mSex.set(babyAge.get(options2))).build();
         sexPicker.setNPicker(new ArrayList<String>(), babySex, new ArrayList<String>());
     }
 }

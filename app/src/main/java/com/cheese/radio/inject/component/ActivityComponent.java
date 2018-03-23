@@ -68,11 +68,11 @@ public interface ActivityComponent {
         String search = cheese + "search";
     }
     /*
-     *  CONTENT_LIST	绘本列表
-        CATEGORY_LIST	分类列表
+     *  CONTENT_LIST	绘本列表                  contents
+        CATEGORY_LIST	分类列表                  categorys
         AUTHOR_LIST	    主播列表                  anchors
         AUTHOR_INFO 	主播详情	                 anchor
-        GROUP_INFO	    专辑详情	                 groupInfo
+        GROUP_INFO	    专辑详情	                 group
         PLAY	        播放器	                 play
      */
 }

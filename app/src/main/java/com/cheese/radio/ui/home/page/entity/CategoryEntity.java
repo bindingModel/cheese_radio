@@ -1,6 +1,7 @@
 package com.cheese.radio.ui.home.page.entity;
 
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.view.View;
 
 import com.binding.model.App;
@@ -10,6 +11,8 @@ import com.binding.model.model.inter.GridInflate;
 import com.binding.model.model.inter.SpanSize;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
+import com.cheese.radio.inject.component.ActivityComponent;
+import com.cheese.radio.ui.Constant;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,6 +25,7 @@ import static com.cheese.radio.ui.Constant.CATEGORY_LIST;
 import static com.cheese.radio.ui.Constant.CONTENT_LIST;
 import static com.cheese.radio.ui.Constant.GROUP_INFO;
 import static com.cheese.radio.ui.Constant.PLAY;
+import static com.cheese.radio.ui.Constant.id;
 
 /**
  * Created by 29283 on 2018/3/5.

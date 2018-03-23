@@ -1,5 +1,6 @@
 package com.cheese.radio.ui.media.classify;
 
+import android.os.Bundle;
 import android.view.View;
 
 import com.binding.model.model.ModelView;
@@ -8,6 +9,8 @@ import com.binding.model.model.inter.GridInflate;
 import com.binding.model.model.inter.SpanSize;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
+import com.cheese.radio.inject.component.ActivityComponent;
+import com.cheese.radio.ui.Constant;
 
 /**
  * Created by 29283 on 2018/3/17.
@@ -21,15 +24,15 @@ public class ClassifyEntity extends ViewInflateRecycler implements SpanSize, Gri
      * tagName : 奇幻冒险
      */
 
-    private String tagId;
+    private int tagId;
     private String location;
     private String tagName;
 
-    public String getTagId() {
+    public int getTagId() {
         return tagId;
     }
 
-    public void setTagId(String tagId) {
+    public void setTagId(int tagId) {
         this.tagId = tagId;
     }
 
@@ -55,6 +58,6 @@ public class ClassifyEntity extends ViewInflateRecycler implements SpanSize, Gri
     }
 
     public void onClick(View view){
-        ARouterUtil.itemNavigation(location,tagId);
+        ARouterUtil.itemNavigation(location,String.valueOf(tagId));
     }
 }
