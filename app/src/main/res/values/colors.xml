@@ -13,5 +13,6 @@
     <color name="text_white">#ffffff</color>
     <color name="white">#ffffff</color>
     <color name="gray_light">#FFEEEEEE</color>
+    <color name="text_red">#ff001d</color>
 
 </resources>

@@ -1,19 +1,9 @@
 package com.cheese.radio.ui.media.anchor.entity;
 
-import android.os.Bundle;
 
-import com.binding.model.adapter.recycler.RecyclerAdapter;
-import com.binding.model.layout.recycler.RecyclerModel;
-import com.binding.model.model.ModelView;
-import com.cheese.radio.R;
-import com.cheese.radio.databinding.FragmentAnchorBinding;
-import com.cheese.radio.ui.media.anchor.item.AnchorSingleItem;
-import com.cheese.radio.ui.media.anchors.AnchorsItem;
+import com.cheese.radio.ui.media.anchor.entity.play.item.AnchorSingleItem;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.inject.Inject;
 
 /**
  * Created by 29283 on 2018/3/16.

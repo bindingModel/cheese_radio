@@ -114,8 +114,8 @@ public class HotSearchEntity extends ViewInflateRecycler implements SpanSize, Gr
 
     @Override
     public int getSpanSize() {
-        if (this.getHolder_position() < 5)
-//          if(this.index==0)
+//        if (this.getHolder_position() < 5)
+          if(this.index==0)
             return 5;
         else return 18;
     }

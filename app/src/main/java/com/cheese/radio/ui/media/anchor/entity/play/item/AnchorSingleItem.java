@@ -1,8 +1,11 @@
-package com.cheese.radio.ui.media.anchor.item;
+package com.cheese.radio.ui.media.anchor.entity.play.item;
+
+import android.view.View;
 
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
 import com.cheese.radio.R;
+import com.cheese.radio.base.arouter.ARouterUtil;
 
 /**
  * Created by 29283 on 2018/3/16.
@@ -35,6 +38,9 @@ public class AnchorSingleItem extends ViewInflateRecycler {
         return playCount;
     }
 
+    public String getPlayCountString(){
+        return String.valueOf(playCount);
+    }
     public void setPlayCount(int playCount) {
         this.playCount = playCount;
     }
@@ -61,5 +67,9 @@ public class AnchorSingleItem extends ViewInflateRecycler {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public void onPlayClick(View view){
+        ARouterUtil.itemNavigation("play",id);
     }
 }

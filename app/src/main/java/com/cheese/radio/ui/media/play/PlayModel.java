@@ -30,14 +30,13 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding,Play
     PlayModel() {}
     @Inject RadioApi api;
     public final List<PlayEntity> list = new ArrayList<>();
+    private Integer id;
     @Override
     public void attachView(Bundle savedInstanceState, PlayActivity activity) {
         super.attachView(savedInstanceState, activity);
-        String id=getT().getIntent().getStringExtra(Constant.id);
-        if(getT().getIntent().getStringExtra(Constant.location).equals(Constant.PLAY))
+        id=getT().getIntent().getIntExtra(Constant.id,0);
         api.getContentInfo(new PlayParams("contentInfo",id)).compose(new RestfulTransformer<>()).subscribe(
                 this::setSingelEntity,throwable -> BaseUtil.toast(getT(),throwable));
-        else BaseUtil.toast("传入的不是绘本");
 //        api.getGroupInfo(new PlayParams("groupInfo",id)).compose(new RestfulTransformer<>()).subscribe();
 //                .subscribe(this::playFirst,throwable -> BaseUtil.toast(fmsActivity, throwable));
     }

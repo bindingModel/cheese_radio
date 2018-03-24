@@ -6,6 +6,9 @@
         <variable
             name="vm"
             type="com.cheese.radio.ui.user.enroll.EnrollModel" />
+        <variable
+            name="productEntity"
+            type="com.cheese.radio.ui.user.product.list.ProductsEntity"/>
     </data>
 
     <LinearLayout
@@ -175,7 +178,7 @@
                 android:background="@null"
                 android:focusable="false"
                 android:hint="@string/select_course"
-                android:text="@{vm.course}"
+                android:text="@{productEntity.name}"
                 android:textSize="14.4sp" />
         </LinearLayout>
 

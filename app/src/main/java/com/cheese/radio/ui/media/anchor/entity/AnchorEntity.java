@@ -7,8 +7,9 @@ import com.binding.model.model.ViewParse;
 import com.binding.model.model.inter.Item;
 import com.cheese.radio.base.cycle.BaseFragment;
 import com.cheese.radio.ui.Constant;
-
-import java.util.List;
+import com.cheese.radio.ui.media.anchor.AnchorData;
+import com.cheese.radio.ui.media.anchor.entity.description.DescriptionFragment;
+import com.cheese.radio.ui.media.anchor.entity.play.AnchorFragment;
 
 /**
  * Created by 29283 on 2018/3/16.
@@ -18,9 +19,11 @@ public class AnchorEntity extends ViewParse implements Item<BaseFragment> {
 
     private BaseFragment fragment;
     private int authorId;
+    private AnchorData anchorData;
 
-    public AnchorEntity(int authorId) {
-        this.authorId = authorId;
+    public AnchorEntity(AnchorData anchorData) {
+        this.anchorData = anchorData;
+        this.authorId=anchorData.getAuthorId();
     }
 
     public AnchorEntity() {
@@ -31,13 +34,14 @@ public class AnchorEntity extends ViewParse implements Item<BaseFragment> {
         if (fragment == null) {
             switch (position) {
                 case 0:
-                    fragment = new AnchorFragment();
+                    fragment = new DescriptionFragment();break;
                 case 1:
-                    fragment = new AnchorFragment();
+                    fragment = new AnchorFragment();break;
             }
 
             Bundle bundle = new Bundle();
             bundle.putInt(Constant.authorId, authorId);
+            bundle.putString(Constant.description,anchorData.getDescription());
             bundle.putInt(Constant.position, position);
             fragment.setArguments(bundle);
         }

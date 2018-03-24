@@ -58,6 +58,7 @@ public class ClassifyEntity extends ViewInflateRecycler implements SpanSize, Gri
     }
 
     public void onClick(View view){
-        ARouterUtil.itemNavigation(location,String.valueOf(tagId));
-    }
+        ARouterUtil.itemNavigation(location,tagId);
+
+        }
 }

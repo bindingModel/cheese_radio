@@ -1,15 +1,9 @@
-package com.cheese.radio.ui.user.enroll;
+package com.cheese.radio.util;
 
 import com.bigkoo.pickerview.model.IPickerViewData;
 
 import java.util.List;
 
-/**
- * TODO<json数据源>
- *
- * @author: 小嵩
- * @date: 2017/3/16 15:36
- */
 
 public class CitysBean implements IPickerViewData {
 

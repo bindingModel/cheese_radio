@@ -1,3 +1,4 @@
+/*
 package com.cheese.radio.base.rxjava;
 
 import com.cheese.radio.base.esp.IEsptouchResult;
@@ -5,12 +6,13 @@ import com.cheese.radio.base.esp.IEsptouchResult;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
+*/
 
 /**
  * Created by arvin on 2018/1/9.
  */
 
-public class ConfigEspTransform  implements ObservableTransformer<IEsptouchResult,Integer> {
+/*public class ConfigEspTransform  implements ObservableTransformer<IEsptouchResult,Integer> {
 
 
     @Override
@@ -26,7 +28,7 @@ public class ConfigEspTransform  implements ObservableTransformer<IEsptouchResul
 
             })
         );
-    }
+    }*/
 
 //    public void onNext(IEsptouchResult result) {
 //        if (!result.isSuc()) {
@@ -68,7 +70,7 @@ public class ConfigEspTransform  implements ObservableTransformer<IEsptouchResul
 //        }
 //    }
 
-}
+//}
 /**
  * .compose(new ErrorTransform<>(skipToLogin))
  .flatMap(entity -> Observable.create(

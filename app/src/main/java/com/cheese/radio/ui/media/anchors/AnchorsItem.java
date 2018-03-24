@@ -14,7 +14,7 @@ import com.cheese.radio.ui.Constant;
 import java.util.List;
 
 import static com.binding.model.util.BaseUtil.T;
-import static com.cheese.radio.inject.component.ActivityComponent.Router.anchor;
+import static com.cheese.radio.inject.component.ActivityComponent.Router.author;
 
 /**
  * Created by 29283 on 2018/3/8.
@@ -81,7 +81,7 @@ public class AnchorsItem extends ViewInflateRecycler {
             switch (view.getId()){
                 case R.id.care_anchor :
                 case R.id.frame_layout :
-                    ARouterUtil.navigation(anchor, bundle);
+                    ARouterUtil.navigation(author, bundle);
             }
     }
 }

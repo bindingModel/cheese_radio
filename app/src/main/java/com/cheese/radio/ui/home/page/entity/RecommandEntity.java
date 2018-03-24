@@ -17,8 +17,7 @@ import com.cheese.radio.ui.media.play.PlayParams;
 
 import javax.inject.Inject;
 
-import static com.cheese.radio.inject.component.ActivityComponent.Router.anchors;
-import static com.cheese.radio.inject.component.ActivityComponent.Router.classify;
+
 import static com.cheese.radio.inject.component.ActivityComponent.Router.play;
 import static com.cheese.radio.ui.Constant.AUTHOR_INFO;
 import static com.cheese.radio.ui.Constant.AUTHOR_LIST;
@@ -45,7 +44,7 @@ public  class RecommandEntity extends ViewInflateRecycler implements SpanSize, G
     private int playCount;
     private String subTitle;
     private String location;
-    private String id;
+    private int id;
     private String title;
     private int index;
     private int spansize=2;
@@ -81,11 +80,11 @@ public  class RecommandEntity extends ViewInflateRecycler implements SpanSize, G
         this.location = location;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

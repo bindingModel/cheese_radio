@@ -47,8 +47,8 @@ public class AnchorModel extends PagerModel<AnchorActivity,ActivityAnchorBinding
 
     }
     public void setFragment(AnchorData anchorData){
-            list.add(new AnchorEntity());
-             list.add(new AnchorEntity(authorId));
+            list.add(new AnchorEntity(anchorData));
+             list.add(new AnchorEntity(anchorData));
         try {
             accept(list);
             setCurrentItem(0);

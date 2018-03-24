@@ -1,4 +1,4 @@
-package com.cheese.radio.ui.media.anchor.entity;
+package com.cheese.radio.ui.media.anchor.entity.play;
 
 import com.cheese.radio.base.cycle.BaseFragment;
 

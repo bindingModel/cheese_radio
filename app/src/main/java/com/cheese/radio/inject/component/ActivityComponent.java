@@ -6,6 +6,7 @@ import com.cheese.radio.inject.scope.ActivityScope;
 import com.cheese.radio.ui.media.anchor.AnchorActivity;
 import com.cheese.radio.ui.media.anchors.AnchorsActivity;
 import com.cheese.radio.ui.media.classify.ClassifyActivity;
+import com.cheese.radio.ui.media.classify.list.ClassifyListActivity;
 import com.cheese.radio.ui.media.group.GroupInfoActivity;
 import com.cheese.radio.ui.media.play.PlayActivity;
 import com.cheese.radio.ui.search.SearchActivity;
@@ -14,6 +15,7 @@ import com.cheese.radio.ui.user.guide.GuideActivity;
 import com.cheese.radio.ui.home.HomeActivity;
 import com.cheese.radio.ui.user.login.LoginActivity;
 import com.cheese.radio.ui.startup.StartUpActivity;
+import com.cheese.radio.ui.user.product.list.ProductsActivity;
 import com.cheese.radio.ui.user.profile.ProfileActivity;
 import com.cheese.radio.ui.user.register.one.RegisterOneActivity;
 import com.cheese.radio.ui.user.register.two.RegisterTwoActivity;
@@ -48,30 +50,34 @@ public interface ActivityComponent {
     void inject(RegisterTwoActivity activity);
     void inject(GroupInfoActivity activity);
     void inject(SearchActivity activity);
-
+    void inject(ClassifyListActivity activity);
+    void inject(ProductsActivity activity);
     interface Router {
         String cheese = "/cheese/";
         String startup = cheese + "startup";
         String home = cheese + "home";
         String login = cheese + "login";
         String guide = cheese + "guide";
-        String anchors = cheese + "anchors";
+        String authors = cheese + "authors";
         String profile = cheese + "profile";
         String enroll = cheese + "enroll";
         String name = cheese + "name";
-        String anchor = cheese + "anchor";
-        String classify = cheese + "classify";
+        String author = cheese + "author";
+        String categorys = cheese + "categorys";
         String play = cheese + "play";
         String registerOne = cheese + "registerOne";
         String registerTwo = cheese + "registerTwo";
-        String groupInfo = cheese + "groupInfo";
+        String group = cheese + "group";
         String search = cheese + "search";
+        String contents=cheese+"contents";
+        String products = cheese + "products";
+        String product = cheese + "product";
     }
     /*
      *  CONTENT_LIST	绘本列表                  contents
         CATEGORY_LIST	分类列表                  categorys
-        AUTHOR_LIST	    主播列表                  anchors
-        AUTHOR_INFO 	主播详情	                 anchor
+        AUTHOR_LIST	    主播列表                  authors
+        AUTHOR_INFO 	主播详情	                 author
         GROUP_INFO	    专辑详情	                 group
         PLAY	        播放器	                 play
      */

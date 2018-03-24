@@ -43,6 +43,7 @@ public interface Constant {
     String PLAY="PLAY";
     String location="location";
     String groupInfoId="groupInfoId";
+    String description="description";
 }
 
 //    static Drawable getMipmap(String name,int defMipmap){

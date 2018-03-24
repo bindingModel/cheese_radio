@@ -17,8 +17,7 @@ import com.cheese.radio.ui.Constant;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.cheese.radio.inject.component.ActivityComponent.Router.anchors;
-import static com.cheese.radio.inject.component.ActivityComponent.Router.classify;
+
 import static com.cheese.radio.ui.Constant.AUTHOR_INFO;
 import static com.cheese.radio.ui.Constant.AUTHOR_LIST;
 import static com.cheese.radio.ui.Constant.CATEGORY_LIST;
@@ -109,6 +108,6 @@ public class CategoryEntity extends ViewInflateRecycler implements SpanSize, Gri
     }
 
     public void onClick(View view) {
-        ARouterUtil.itemNavigation(location,String.valueOf(tagId));
+        ARouterUtil.itemNavigation(location,tagId);
     }
 }

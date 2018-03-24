@@ -8,19 +8,19 @@ import com.cheese.radio.base.IkeParams;
 
 public class PlayParams extends IkeParams {
     private String method;
-    private String id;
+    private int id;
 
-    public PlayParams(String method, String id) {
+    public PlayParams(String method, int id) {
         this.method = method;
         this.id = id;
     }
 
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
