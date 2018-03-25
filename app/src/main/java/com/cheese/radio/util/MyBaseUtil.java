@@ -5,6 +5,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 
 import com.binding.model.App;
 import com.binding.model.Config;
@@ -17,6 +18,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by 29283 on 2018/3/11.
@@ -94,6 +97,14 @@ public class MyBaseUtil extends BaseUtil{
         sb.append(randomString);
         //MD5码必须转换成大写，否则报错.
         return randomString+MD5.getInstance().getMD5(sb.toString()).toUpperCase();
+    }
+
+    public static String getNameError(String name) {
+        if (TextUtils.isEmpty(name)) return "昵称不能为空";
+        Pattern p = Pattern.compile("^[A-Za-z0-9_\\-\\u4e00-\\u9fa5]{4,20}");
+        Matcher m = p.matcher(name);
+        boolean valid = m.matches();
+        return valid ? null : "不合法的昵称";
     }
 
 

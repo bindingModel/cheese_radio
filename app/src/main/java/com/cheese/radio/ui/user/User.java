@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import com.binding.model.data.save.SharePreferenceUtil;
 import com.binding.model.model.inter.Model;
 import com.cheese.radio.base.arouter.ARouterUtil;
+import com.cheese.radio.ui.user.profile.ProfileParams;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.login;
 
@@ -35,7 +36,18 @@ public class User {
         return userEntity.getToken();
     }
 
-    public void logout(){
+    public void setUserEntity(ProfileParams params) {
+        if (params.getNickName() != null) userEntity.setNickName(params.getNickName());
+        if (params.getBirthday() != null) userEntity.setBirthday(params.getBirthday());
+        if (params.getSex() != null) userEntity.setSex(params.getSex());
+        util.setAllDto(userEntity);
+    }
+
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public void logout() {
         userEntity.clone(new UserEntity());
         util.setAllDto(userEntity);
         isLogin = userEntity.isLogin();

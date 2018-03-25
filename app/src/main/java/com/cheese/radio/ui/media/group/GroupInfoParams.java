@@ -11,7 +11,7 @@ public class GroupInfoParams extends IkeParams {
 //    id	专辑ID	是	固定	123
 //    token	用户令牌	可选	用户登录或注册后获取
     private String method ;
-    private String id;
+    private int id;
 
     public GroupInfoParams(String method) {
         this.method = method;
@@ -25,11 +25,11 @@ public class GroupInfoParams extends IkeParams {
         this.method = method;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

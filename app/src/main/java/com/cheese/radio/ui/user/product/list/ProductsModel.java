@@ -1,10 +1,13 @@
 package com.cheese.radio.ui.user.product.list;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.binding.model.App;
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
+import com.binding.model.model.inter.Event;
 import com.binding.model.model.inter.Inflate;
 import com.cheese.radio.R;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
@@ -30,4 +33,6 @@ public class ProductsModel extends RecyclerModel<ProductsActivity,ActivityProduc
         setRcHttp((offset1, refresh) -> api.getProducts(params).compose(new RestfulTransformer<>()));
 
     }
+
+
 }

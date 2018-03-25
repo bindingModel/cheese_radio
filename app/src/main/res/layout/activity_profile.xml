@@ -1,110 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="vm"
-            type="com.cheese.radio.ui.user.profile.ProfileModel"/>
+            type="com.cheese.radio.ui.user.profile.ProfileModel" />
+
+        <variable
+            name="params"
+            type="com.cheese.radio.ui.user.profile.ProfileParams" />
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background_gray"
-        android:orientation="vertical">
-        <include
-            layout="@layout/toolbar"/>
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="53.28dp"
-            android:layout_marginTop="27.8dp"
-          style="@style/profile_input_linearlayout">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:text="头像"
-                android:layout_weight="1"
-                style="@style/profile_input_linearlayout_head"
-                />
-            <ImageView
-                android:layout_width="35.33dp"
-                android:layout_height="35.33dp"
-               android:layout_gravity="center"
-                android:background="@mipmap/avatar_default"/>
-            <TextView
+            android:layout_height="match_parent"
+            android:background="@color/background_gray"
+            android:orientation="vertical">
+
+            <include layout="@layout/toolbar" />
+
+            <LinearLayout
+                style="@style/profile_input_linearlayout"
+                android:layout_width="match_parent"
+                android:layout_height="53.28dp"
+                android:layout_marginTop="27.8dp">
+
+                <TextView
+                    style="@style/profile_input_linearlayout_head"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="头像" />
+
+                <ImageView
+                    android:layout_width="35.33dp"
+                    android:layout_height="35.33dp"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/avatar_default" />
+
+                <TextView
+                    style="@style/profile_input_linearlayout_solid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <View
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                style="@style/profile_input_linearlayout_solid"/>
-        </LinearLayout>
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-           />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="53.28dp"
-            style="@style/profile_input_linearlayout">
-            <TextView
+                android:layout_height="1dp" />
+
+            <LinearLayout
+                style="@style/profile_input_linearlayout"
+                android:layout_width="match_parent"
+                android:layout_height="53.28dp"
+                android:onClick="@{vm::onEditNameClick}">
+
+                <TextView
+                    style="@style/profile_input_linearlayout_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/nickName" />
+
+                <TextView
+                    style="@style/profile_input_linearlayout_solid"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@{params.nickName}" />
+            </LinearLayout>
+
+            <View
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="昵称"
-                style="@style/profile_input_linearlayout_head"
-                />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="小猪佩奇"
-                style="@style/profile_input_linearlayout_solid"/>
-        </LinearLayout>
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="53.28dp"
-            style="@style/profile_input_linearlayout">
-            <TextView
+                android:layout_height="1dp" />
+
+            <LinearLayout
+                style="@style/profile_input_linearlayout"
+                android:layout_width="match_parent"
+                android:layout_height="53.28dp">
+
+                <TextView
+                    style="@style/profile_input_linearlayout_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/sex" />
+
+                <TextView
+                    style="@style/profile_input_linearlayout_solid"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="@{vm::onSelectSex}"
+                    android:text="@{vm.mSex}" />
+            </LinearLayout>
+
+            <View
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="性别"
-                style="@style/profile_input_linearlayout_head"
-                />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="女"
-                style="@style/profile_input_linearlayout_solid"/>
-        </LinearLayout>
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="53.28dp"
-            android:onClick="@{vm::onSelectClick}"
-            style="@style/profile_input_linearlayout">
-            <TextView
+                android:layout_height="1dp" />
+
+            <LinearLayout
+                style="@style/profile_input_linearlayout"
+                android:layout_width="match_parent"
+                android:layout_height="53.28dp"
+                android:onClick="@{vm::onSelectClick}">
+
+                <TextView
+                    style="@style/profile_input_linearlayout_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/baby_birth" />
+
+                <TextView
+                    style="@style/profile_input_linearlayout_solid"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@{vm.mDate}" />
+            </LinearLayout>
+
+            <View
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="宝宝生日"
-                style="@style/profile_input_linearlayout_head"
-                />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@{vm.mDate}"
-                style="@style/profile_input_linearlayout_solid"/>
+                android:layout_height="1dp" />
         </LinearLayout>
-        <View
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:padding="15dp"
+            android:onClick="@{vm::onPropertyClick}"
+            android:text="@string/save"/>
+    </FrameLayout>
 
 </layout>

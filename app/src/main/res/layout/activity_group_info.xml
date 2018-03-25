@@ -7,6 +7,9 @@
         <variable
             name="vm"
             type="com.cheese.radio.ui.media.group.GroupInfoModel" />
+        <variable
+            name="entity"
+            type="com.cheese.radio.ui.media.group.fragment.GroupData"/>
     </data>
 
     <LinearLayout
@@ -28,6 +31,7 @@
                 android:layout_gravity="center|start"
                 android:layout_marginLeft="9.6dp"
                 android:layout_marginStart="9.6dp"
+                android:src="@{entity.image}"
                 />
 
             <LinearLayout
@@ -40,7 +44,7 @@
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-
+                    android:text="@{entity.title}"
                     android:textColor="@color/text_black"
                     android:layout_marginBottom="11dp"
                     android:textSize="14.4sp" />
@@ -49,6 +53,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:textColor="#909090"
+                    android:text="@{entity.subTitle}"
                     android:layout_marginBottom="11dp"
                     android:textSize="13.4sp" />
 
@@ -57,6 +62,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#c2c2c2"
                     android:drawableLeft="@mipmap/play_count"
+                    android:text="@{entity.playCountText}"
                     android:drawablePadding="7dp"
                     android:textSize="11.4sp" />
             </LinearLayout>
@@ -98,33 +104,7 @@
 
             </com.binding.model.view.radio.CheckRadioGroup>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/background_gray"
-                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@mipmap/play"
-                    android:drawablePadding="6.6dp"
-                    android:padding="9.6dp"
-                    android:text="继续播放" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@mipmap/sort"
-                    android:drawablePadding="6.6dp"
-                    android:padding="9.6dp"
-                    android:text="排序" />
-            </LinearLayout>
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/view_pager"

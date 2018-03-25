@@ -2,4 +2,6 @@
 <resources>
     <item name="AnchorFragmentModel" type="id"/>
     <item name="EnrollModel" type="id" />
+    <item name="HomeMineModel" type="id" />
+    <item name="ProfileModel" type="id" />
 </resources>

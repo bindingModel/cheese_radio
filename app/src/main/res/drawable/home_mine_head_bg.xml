@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--底层使用蓝色填充色-->
+    <item>
+        <shape>
+            <solid android:color="#ffb100" />
+        </shape>
+    </item>
+
+
+    <item
+        android:bottom="0dp"
+        android:drawable="@drawable/home_mine_title_shape"
+        android:top="110dp">
+
+    </item>
+</layer-list>

@@ -31,4 +31,7 @@
     <string name="brief_introduction">简介</string>
     <string name="story">故事</string>
     <string name="search">搜索</string>
+    <string name="baby_birth">宝宝生日</string>
+    <string name="nickName">昵称</string>
+    <string name="save">保存</string>
 </resources>

@@ -62,5 +62,6 @@
         <activity android:name=".ui.search.SearchActivity"/>
         <activity android:name=".ui.media.classify.list.ClassifyListActivity" android:label="分类"/>
         <activity android:name=".ui.user.product.list.ProductsActivity" android:label="课程套餐"/>
+        <activity android:name=".ui.user.favority.my.MyFavorityActivity" android:label="我的作品"/>
     </application>
 </manifest>

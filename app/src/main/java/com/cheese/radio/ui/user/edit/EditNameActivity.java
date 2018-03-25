@@ -8,6 +8,6 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.name;
 /**
  * Created by 29283 on 2018/3/11.
  */
-@Route(path = name)
+    @Route(path = name)
 public class EditNameActivity extends BaseActivity<EditNameModel> {
 }

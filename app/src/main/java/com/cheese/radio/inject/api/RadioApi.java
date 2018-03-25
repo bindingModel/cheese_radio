@@ -16,6 +16,7 @@ import com.cheese.radio.ui.media.classify.ClassifyParams;
 import com.cheese.radio.ui.media.classify.list.ClassifyListActivity;
 import com.cheese.radio.ui.media.classify.list.ClassifyListParams;
 import com.cheese.radio.ui.media.group.GroupInfoParams;
+import com.cheese.radio.ui.media.group.fragment.GroupData;
 import com.cheese.radio.ui.media.play.PlayEntity;
 import com.cheese.radio.ui.media.play.PlayParams;
 import com.cheese.radio.ui.search.entity.HotSearchEntity;
@@ -30,6 +31,7 @@ import com.cheese.radio.ui.user.login.params.SmsParams;
 import com.cheese.radio.ui.user.login.entity.SignUserEntity;
 import com.cheese.radio.ui.user.product.list.ProductsEntity;
 import com.cheese.radio.ui.user.product.list.ProductsParams;
+import com.cheese.radio.ui.user.profile.ProfileParams;
 
 import java.util.List;
 
@@ -69,7 +71,7 @@ public interface RadioApi {
     Observable<InfoEntity<List<ClassifyData>>> getQueryCategroy(@Body ClassifyParams params);
 
     @POST("/1.0/content")
-    Observable<InfoEntity<List<CategoryEntity>>> getGroupInfo(@Body GroupInfoParams params);
+    Observable<InfoEntity<GroupData>> getGroupInfo(@Body GroupInfoParams params);
 
     @POST("/1.0/content")
     Observable<InfoEntity<PlayEntity>> getContentInfo(@Body PlayParams params);
@@ -82,10 +84,14 @@ public interface RadioApi {
 
     @POST("/1.0/content")
     Observable<InfoEntity<List<HotSearchEntity>>> getHotSearch(@Body HotSearchParams params);
-
+    //绘本列表 签名验证错误？
     @POST("/1.0/content")
     Observable<InfoEntity<List<Object>>> getQueryByTag(@Body ClassifyListParams params);
 
     @POST("/1.0/order")
     Observable<InfoEntity<List<ProductsEntity>>> getProducts(@Body ProductsParams params);
+
+    @POST("/1.0/user")
+    Observable<InfoEntity<String>> setProperty(@Body ProfileParams params);
+
 }
