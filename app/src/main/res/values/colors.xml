@@ -14,5 +14,7 @@
     <color name="white">#ffffff</color>
     <color name="gray_light">#FFEEEEEE</color>
     <color name="text_red">#ff001d</color>
-
+    <color name="calendarView_textColorUnChoose">#272726</color>
+    <color name="calendarView_textColorChoose">#ffffff</color>
+    <color name="calendarView_textColorTips">#eb6877</color>
 </resources>

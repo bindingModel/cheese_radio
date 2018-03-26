@@ -10,6 +10,7 @@ import com.cheese.radio.ui.media.classify.list.ClassifyListActivity;
 import com.cheese.radio.ui.media.group.GroupInfoActivity;
 import com.cheese.radio.ui.media.play.PlayActivity;
 import com.cheese.radio.ui.search.SearchActivity;
+import com.cheese.radio.ui.user.calendar.CalendarActivity;
 import com.cheese.radio.ui.user.edit.EditNameActivity;
 import com.cheese.radio.ui.user.enroll.EnrollActivity;
 import com.cheese.radio.ui.user.favority.my.MyFavorityActivity;
@@ -56,6 +57,7 @@ public interface ActivityComponent {
     void inject(ProductsActivity activity);
     void inject(EditNameActivity activity);
     void inject(MyFavorityActivity activity);
+    void inject(CalendarActivity activity);
     interface Router {
         String cheese = "/cheese/";
         String startup = cheese + "startup";
@@ -77,6 +79,7 @@ public interface ActivityComponent {
         String products = cheese + "products";
         String product = cheese + "product";
         String myfavority =cheese+"myfavority";
+        String calendar = cheese + "calendar";
     }
     /*
      *  CONTENT_LIST	绘本列表                  contents

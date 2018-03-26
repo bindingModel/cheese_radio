@@ -68,4 +68,11 @@
         <item name="android:padding">12dp</item>
         <item name="android:textSize">17sp</item>
     </style>
+
+    <declare-styleable name="calendarView">
+        <!--开始日期(xxxx.x)-->
+        <attr name="dateStart" format="string" />
+        <!--结束日期(xxxx.x)-->
+        <attr name="dateEnd" format="string" />
+    </declare-styleable>
 </resources>

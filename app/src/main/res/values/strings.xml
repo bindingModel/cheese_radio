@@ -34,4 +34,11 @@
     <string name="baby_birth">宝宝生日</string>
     <string name="nickName">昵称</string>
     <string name="save">保存</string>
+    <string name="sun">日</string>
+    <string name="one">一</string>
+    <string name="two">二</string>
+    <string name="three">三</string>
+    <string name="four">四</string>
+    <string name="five">五</string>
+    <string name="six">六</string>
 </resources>

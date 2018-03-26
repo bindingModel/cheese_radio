@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="toolbar_height">45dp</dimen>
+
+
+    <dimen name="calendarView_margin">4dp</dimen>
+    <!--activity_account_monthpay_function_month_item_height-->
+    <dimen name="activity_account_monthpay_function_month_item_width">53dp</dimen>
+    <dimen name="activity_account_monthpay_function_month_item_height">42dp</dimen>
 </resources>

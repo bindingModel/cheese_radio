@@ -14,6 +14,7 @@ import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.ui.IkeApplication;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -107,6 +108,23 @@ public class MyBaseUtil extends BaseUtil{
         return valid ? null : "不合法的昵称";
     }
 
+    public static synchronized long getNowTime() {
+        long time = System.currentTimeMillis();
+        try {
+            Thread.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return time;
+    }
+
+    public static String getNowDay() {
+        Calendar calendar=Calendar.getInstance();
+        String year=calendar.get(Calendar.YEAR)+"";
+        String month=calendar.get(Calendar.MONTH)+1+"";
+        String day=calendar.get(Calendar.DAY_OF_MONTH)+"";
+        return year+"-"+month+"-"+day;
+    }
 
 }
 

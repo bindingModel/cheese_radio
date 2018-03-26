@@ -1,9 +1,11 @@
 package com.cheese.radio.ui;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 import android.support.v7.app.AppCompatDelegate;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 
 import com.binding.model.App;
 import com.cheese.radio.BR;
@@ -66,5 +68,20 @@ public class IkeApplication extends MultiDexApplication {
 
     public static User getUser() {
         return application.user;
+    }
+
+    public static int getScreenWidth(final Context context) {
+        DisplayMetrics displayMetrics = context.getResources().
+                getDisplayMetrics();
+        return displayMetrics.widthPixels;
+    }
+
+    /**
+     * 当前屏幕的高度
+     */
+    public static int getScreenHeight(final Context context) {
+        DisplayMetrics displayMetrics = context.getResources().
+                getDisplayMetrics();
+        return displayMetrics.heightPixels;
     }
 }
