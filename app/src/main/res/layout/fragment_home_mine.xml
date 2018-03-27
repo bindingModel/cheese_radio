@@ -6,114 +6,122 @@
         <variable
             name="vm"
             type="com.cheese.radio.ui.home.mine.HomeMineModel" />
+
         <variable
             name="entity"
-            type="com.cheese.radio.ui.user.UserEntity"/>
+            type="com.cheese.radio.ui.user.UserEntity" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/background_gray"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-
-            <FrameLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="215dp"
-                android:background="@drawable/home_mine_head_bg">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_margin="15dp"
-                    android:background="@mipmap/shape_white" />
+                android:layout_height="match_parent"
+                android:background="@color/background_gray"
+                android:orientation="vertical">
 
 
-                <ImageView
-                    android:layout_width="86.3dp"
-                    android:layout_height="86.3dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/home_mine_avatar_shape"
-                    android:padding="5dp"
-                    android:onClick="@{vm::onSetProfileClick}"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/avatar" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="215dp"
+                    android:background="@drawable/home_mine_head_bg">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_margin="15dp"
+                        android:background="@mipmap/shape_white" />
+
+
+                    <ImageView
+                        android:layout_width="86.3dp"
+                        android:layout_height="86.3dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/home_mine_avatar_shape"
+                        android:onClick="@{vm::onSetProfileClick}"
+                        android:padding="5dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/avatar" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|bottom"
+                        android:layout_marginBottom="50dp"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:onClick="@{vm::onSetProfileClick}"
+                        android:text="@{entity.nickName}"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|bottom"
+                        android:layout_marginBottom="25dp"
+                        android:onClick="@{vm::onSetProfileClick}"
+                        android:text="@{entity.babyBirth}"
+                        android:textColor="#707070"
+                        android:textSize="12.33sp" />
+
+                </FrameLayout>
 
                 <TextView
-                    android:layout_width="100dp"
+                    style="@style/home_mine_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="55.2dp"
+                    android:layout_marginTop="15dp"
+                    android:text="我的作品" />
+
+                <TextView
+                    style="@style/home_mine_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="55.2dp"
+                    android:layout_marginTop="1dp"
+                    android:text="我的课程" />
+
+                <TextView
+                    style="@style/home_mine_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="55.2dp"
+                    android:layout_marginTop="1dp"
+                    android:text="我的关注" />
+
+                <TextView
+                    style="@style/home_mine_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="55.2dp"
+                    android:layout_marginTop="1dp"
+                    android:text="服务中心" />
+
+                <TextView
+                    style="@style/home_mine_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="55.2dp"
+                    android:layout_marginTop="1dp"
+                    android:text="安全中心" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="52.8dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/background_white"
                     android:gravity="center"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|bottom"
-                    android:layout_marginBottom="50dp"
-                    android:text="@{entity.nickName}"
-                    android:onClick="@{vm::onSetProfileClick}"
-                    android:textColor="@color/text_black"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:textSize="16sp" />
+                    android:onClick="@{vm::onLogoutClick}"
+                    android:padding="15dp"
+                    android:layout_marginBottom="80dp"
+                    android:text="@string/out" />
+            </LinearLayout>
+        </ScrollView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|bottom"
-                    android:layout_marginBottom="25dp"
-                    android:text="@{entity.babyBirth}"
-                    android:onClick="@{vm::onSetProfileClick}"
-                    android:textColor="#707070"
-                    android:textSize="12.33sp" />
-
-            </FrameLayout>
-
-            <TextView
-                style="@style/home_mine_item"
-                android:layout_width="match_parent"
-                android:layout_height="55.2dp"
-                android:layout_marginTop="15dp"
-                android:text="我的作品" />
-
-            <TextView
-                style="@style/home_mine_item"
-                android:layout_width="match_parent"
-                android:layout_height="55.2dp"
-                android:layout_marginTop="1dp"
-                android:text="我的课程" />
-
-            <TextView
-                style="@style/home_mine_item"
-                android:layout_width="match_parent"
-                android:layout_height="55.2dp"
-                android:layout_marginTop="1dp"
-                android:text="我的关注" />
-
-            <TextView
-                style="@style/home_mine_item"
-                android:layout_width="match_parent"
-                android:layout_height="55.2dp"
-                android:layout_marginTop="1dp"
-                android:text="服务中心" />
-
-            <TextView
-                style="@style/home_mine_item"
-                android:layout_width="match_parent"
-                android:layout_height="55.2dp"
-                android:layout_marginTop="1dp"
-                android:text="安全中心" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="52.8dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/background_white"
-                android:gravity="center"
-                android:onClick="@{vm::onLogoutClick}"
-                android:padding="15dp"
-                android:text="@string/out" />
-        </LinearLayout>
     </FrameLayout>
 </layout>

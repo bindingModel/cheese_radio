@@ -2,7 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
         <variable
             name="vm"
             type="com.cheese.radio.ui.media.anchor.entity.play.item.AnchorSingleItem" />

@@ -24,6 +24,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.disposables.Disposable;
+
 /**
  * Created by 29283 on 2018/3/21.
  */
@@ -42,9 +44,11 @@ public class GroupInfoModel extends PagerModel<GroupInfoActivity,ActivityGroupIn
         super.attachView(savedInstanceState, activity);
         Integer groupInfoId = getT().getIntent().getIntExtra(Constant.id, -1);
         params.setId(groupInfoId);
-        api.getGroupInfo(params).compose(new RestfulTransformer<>()).subscribe(
-                groupData -> { getDataBinding().setEntity(groupData);
-                    setFragment(groupData);}
+        Disposable subscribe = api.getGroupInfo(params).compose(new RestfulTransformer<>()).subscribe(
+                groupData -> {
+                    getDataBinding().setEntity(groupData);
+                    setFragment(groupData);
+                }
         );
 
     }

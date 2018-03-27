@@ -40,5 +40,5 @@ ext{
     gson = '2.8.1'
     retrofit = '2.2.0'
 
-    binding_model="1.1.9"
+    binding_model="1.2.3"
 }

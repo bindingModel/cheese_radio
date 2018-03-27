@@ -36,8 +36,5 @@ public class AnchorFragmentModel extends RecyclerModel<AnchorFragment, FragmentA
          setRcHttp((offset1, refresh) ->  api.getAuthor(params).compose(new RestfulTransformer<>()).map(
                     anchorData -> {return anchorData.getSingle().getList();}
             ));
-
-
-
     }
 }

@@ -101,6 +101,7 @@ public class AudioServiceUtil implements TimeEntity {
 
     @Override
     public void getTurn() {
+        if(controller == null)return;
         if(controller.getStatus() == Play&&!controller.isPlaying()){
             controller.setStatus(Reset);
             try {

@@ -22,33 +22,40 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.disposables.Disposable;
+
 /**
  * Created by 29283 on 2018/3/13.
  */
 @ModelView(value = R.layout.activity_anchor, model = true)
-public class AnchorModel extends PagerModel<AnchorActivity,ActivityAnchorBinding,AnchorEntity> {
+public class AnchorModel extends PagerModel<AnchorActivity, ActivityAnchorBinding, AnchorEntity> {
 
-    @Inject AnchorModel(@ActivityFragmentManager FragmentManager manager) {super(new FragmentAdapter<>(manager));}
-    @Inject RadioApi api;
+    @Inject
+    AnchorModel(@ActivityFragmentManager FragmentManager manager) {
+        super(new FragmentAdapter<>(manager));
+    }
+
+    @Inject
+    RadioApi api;
     private Integer authorId;
     private AnchorParams params;
     private final List<AnchorEntity> list = new ArrayList<>();
-    private  AnchorData anchorData;
+    private AnchorData anchorData;
+
     @Override
     public void attachView(Bundle savedInstanceState, AnchorActivity anchorActivity) {
         super.attachView(savedInstanceState, anchorActivity);
-        authorId=getT().getIntent().getIntExtra(Constant.authorId,0);
-        params=new AnchorParams("info",authorId);
-        api.getAuthor(params).compose(new RestfulTransformer<>()).subscribe(anchorData -> {
+        authorId = getT().getIntent().getIntExtra(Constant.authorId, 0);
+        params = new AnchorParams("info", authorId);
+        addDisposable(api.getAuthor(params).compose(new RestfulTransformer<>()).subscribe(anchorData -> {
             getDataBinding().setEntity(anchorData);
             setFragment(anchorData);
-        } );
-
-
+        }));
     }
-    public void setFragment(AnchorData anchorData){
-            list.add(new AnchorEntity(anchorData));
-             list.add(new AnchorEntity(anchorData));
+
+    public void setFragment(AnchorData anchorData) {
+        list.add(new AnchorEntity(anchorData));
+        list.add(new AnchorEntity(anchorData));
         try {
             accept(list);
             setCurrentItem(0);

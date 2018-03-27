@@ -1,8 +1,5 @@
 package com.cheese.radio.ui.media.anchor.entity.play.item;
 
-import android.annotation.SuppressLint;
-import android.databinding.Observable;
-import android.databinding.PropertyChangeRegistry;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.view.View;
