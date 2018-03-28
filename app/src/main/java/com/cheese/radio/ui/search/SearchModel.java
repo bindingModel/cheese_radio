@@ -1,6 +1,5 @@
 package com.cheese.radio.ui.search;
 
-import android.database.Observable;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.os.Bundle;
@@ -10,19 +9,13 @@ import android.text.TextWatcher;
 import android.view.View;
 
 import com.binding.model.adapter.recycler.GridSpanSizeLookup;
-import com.binding.model.cycle.Container;
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
-import com.binding.model.model.ViewModel;
 import com.binding.model.model.inter.GridInflate;
-import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivitySearchBinding;
-import com.cheese.radio.databinding.FragmentHomePageBinding;
 import com.cheese.radio.inject.api.RadioApi;
-import com.cheese.radio.ui.home.page.HomePageFragment;
-import com.cheese.radio.ui.media.classify.ClassifyData;
 import com.cheese.radio.ui.search.entity.HotSearchEntity;
 import com.cheese.radio.ui.search.entity.HotSearchTitleEntity;
 import com.cheese.radio.ui.search.params.HotSearchParams;
@@ -62,8 +55,7 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
         setRcHttp(((offset1, refresh) -> {
 //            hashMap.put("start", offset1);
 //            hashMap.put("length", getPageCount());
-                if(params.getTitle()!=null)
-                {
+                if(params.getTitle()!=null) {
                     params.setStartIndex(offset1);
                     params.setMaxCount(getPageCount());
                 }

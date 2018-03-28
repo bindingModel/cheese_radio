@@ -18,22 +18,26 @@ import javax.inject.Inject;
  * Created by 29283 on 2018/3/21.
  */
 @ModelView(R.layout.fragment_group_story)
-public class GroupStoryFragmentModel extends RecyclerModel<GroupStoryFragment,FragmentGroupStoryBinding,AnchorSingleItem> {
+public class GroupStoryFragmentModel extends RecyclerModel<GroupStoryFragment, FragmentGroupStoryBinding, AnchorSingleItem> {
 
-    @Inject GroupStoryFragmentModel(){}
-    private final List<AnchorSingleItem> itemList=new ArrayList<AnchorSingleItem>();
+    @Inject
+    GroupStoryFragmentModel() {
+    }
+
+
     @Override
     public void attachView(Bundle savedInstanceState, GroupStoryFragment groupStoryFragment) {
         super.attachView(savedInstanceState, groupStoryFragment);
-        Bundle bundle=groupStoryFragment.getArguments();
-      if (bundle!=null)
-        if(bundle.getSerializable(Constant.anchorSingleItem)!=null ) {
-            itemList.addAll((List<AnchorSingleItem>) bundle.getSerializable(Constant.anchorSingleItem));
+        Bundle bundle = groupStoryFragment.getArguments();
+        if (bundle != null ) {
+            List<AnchorSingleItem> list = bundle.getParcelableArrayList(Constant.anchorSingleItem);
+            if(list!=null)
             try {
-                accept(itemList);
+                accept(list);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+
     }
 }

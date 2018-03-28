@@ -41,7 +41,7 @@ public class GroupEntity extends ViewParse implements Item<BaseFragment> {
         Bundle bundle = new Bundle();
         bundle.putString(Constant.description,groupData.getDescription());
 //        bundle.putInt(Constant.position,position);
-        bundle.putSerializable(Constant.anchorSingleItem,(Serializable)groupData.getContentList());
+        bundle.putParcelableArrayList(Constant.anchorSingleItem,groupData.getContentList());
         fragment.setArguments(bundle);
         return fragment;
     }

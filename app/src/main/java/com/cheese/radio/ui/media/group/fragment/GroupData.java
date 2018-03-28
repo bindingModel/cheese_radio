@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import com.cheese.radio.ui.media.anchor.entity.play.item.AnchorSingleItem;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,7 +30,7 @@ public class GroupData  {
         private String description;
         private int id;
         private String title;
-        private List<AnchorSingleItem> contentList;
+        private ArrayList<AnchorSingleItem> contentList;
 
 
 
@@ -82,11 +83,11 @@ public class GroupData  {
             this.title = title;
         }
 
-        public List<AnchorSingleItem> getContentList() {
+        public ArrayList<AnchorSingleItem> getContentList() {
             return contentList;
         }
 
-        public void setContentList(List<AnchorSingleItem> contentList) {
+        public void setContentList(ArrayList<AnchorSingleItem> contentList) {
             this.contentList = contentList;
         }
 
