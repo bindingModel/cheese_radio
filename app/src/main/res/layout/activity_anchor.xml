@@ -11,7 +11,9 @@
             name="entity"
             type="com.cheese.radio.ui.media.anchor.AnchorData"/>
     </data>
-
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -88,15 +90,16 @@
                     android:layout_height="match_parent"
                     android:checked="true"
                     android:drawableBottom="@drawable/anchor_line"
-                    android:text="资料" />
+                    android:text="@string/data" />
 
                 <android.support.v7.widget.AppCompatRadioButton
                     style="@style/anchor_navigation"
+                    android:id="@+id/anchor_data"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:checked="false"
                     android:drawableBottom="@drawable/anchor_line"
-                    android:text="作品" />
+                    android:text="@string/product" />
 
             </com.binding.model.view.radio.CheckRadioGroup>
 
@@ -112,4 +115,15 @@
 
         </LinearLayout>
     </LinearLayout>
+    <RadioButton
+        android:id="@+id/play"
+        android:layout_width="57dp"
+        android:layout_height="57dp"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="17.3dp"
+        android:background="@drawable/home_play_button_select"
+        android:button="@null"
+        android:checked="@{vm.checked}"
+        android:onClick="@{vm::onPlayClick}" />
+</FrameLayout>
 </layout>

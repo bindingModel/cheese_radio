@@ -41,4 +41,7 @@
     <string name="four">四</string>
     <string name="five">五</string>
     <string name="six">六</string>
+    <string name="subscribe">关注</string>
+    <string name="data">资料</string>
+    <string name="product">作品</string>
 </resources>

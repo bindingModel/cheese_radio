@@ -192,27 +192,35 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:button="@null"
-                        android:drawableLeft="@mipmap/comment"
-                        android:paddingLeft="18dp" />
+                        android:text="@{entity.favorCount}"
+                        android:drawableLeft="@drawable/love_star"
+                         />
 
-                    <ImageView
+                    <CheckBox
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:src="@mipmap/combined" />
+                        android:button="@null"
+                        android:text="@{entity.favorCount}"
+                        android:drawableLeft="@drawable/collection_star"
+                        />
 
-                    <ImageView
+                    <CheckBox
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:src="@mipmap/clock_subscribe" />
-
-                    <ImageView
+                        android:button="@null"
+                        android:text="@{entity.favorCount}"
+                        android:drawableLeft="@drawable/clock_subscribe"
+                        />
+                    <CheckBox
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:src="@mipmap/loop" />
-
+                        android:button="@null"
+                        android:text="@{entity.favorCount}"
+                        android:drawableLeft="@drawable/loop"
+                        />
 
                 </LinearLayout>
             </LinearLayout>

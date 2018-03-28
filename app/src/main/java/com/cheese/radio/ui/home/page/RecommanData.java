@@ -85,7 +85,7 @@ public class RecommanData extends ViewInflateRecycler implements SpanSize, GridI
     public CharSequence getMsg() {
 
         return BaseUtil.colorText(
-                T(title, true, R.color.text_black, 1),
+                T(title, true, "#111111", 1),
                 T(subTitle, false, "#bdbdbd")
         );
     }

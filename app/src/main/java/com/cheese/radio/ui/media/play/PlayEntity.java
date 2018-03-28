@@ -105,8 +105,8 @@ public class PlayEntity implements Entity {
             this.title = title;
         }
 
-        public int getFavorCount() {
-            return favorCount;
+        public String getFavorCount() {
+            return String.valueOf(favorCount);
         }
 
         public void setFavorCount(int favorCount) {

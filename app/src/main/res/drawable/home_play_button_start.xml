@@ -18,14 +18,10 @@
     </item>
 
     <item
-        android:bottom="10dp"
-        android:gravity="bottom|center"
-        android:left="10dp"
-        android:right="10dp"
-        android:top="10dp">
+        android:gravity="center">
         <selector>
             <item
-                android:drawable="@mipmap/play_button"
+                android:drawable="@mipmap/home_stop"
                 android:state_checked="false"
 
                 />

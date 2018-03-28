@@ -17,6 +17,10 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.startup.StartUpActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
         <activity android:name=".ui.media.anchors.AnchorsActivity">
@@ -62,10 +66,7 @@
         <activity android:name=".ui.user.favority.my.MyFavorityActivity" android:label="我的作品"/>
         <activity android:name=".ui.user.calendar.CalendarActivity" android:label="芝士闹钟">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
 
         </activity>
     </application>

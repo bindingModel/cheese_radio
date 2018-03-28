@@ -79,7 +79,7 @@
                 android:layout_height="57dp"
                 android:layout_gravity="center|bottom"
                 android:layout_marginBottom="17.3dp"
-                android:background="@drawable/circle_white_player_controller"
+                android:background="@drawable/home_play_button_select"
                 android:button="@null"
                 android:checked="@{vm.checked}"
                 android:onClick="@{vm::onPlayClick}" />
