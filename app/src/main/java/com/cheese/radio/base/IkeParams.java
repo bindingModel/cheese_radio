@@ -29,12 +29,13 @@ public class IkeParams extends FormUnionParams{
 
     public String getTimestamp() {
         if (timestamp==null)
-            timestamp=MyBaseUtil.getTimestamp();
+            timestamp=String.valueOf(MyBaseUtil.getNowTime());
+//            timestamp=MyBaseUtil.getTimestamp();
         return timestamp;
     }
 
     public void setTimest(String timestamp) {
-        this.timestamp = String.valueOf(System.currentTimeMillis());
+        this.timestamp=String.valueOf(MyBaseUtil.getNowTime());
     }
 
     public String getSign() {

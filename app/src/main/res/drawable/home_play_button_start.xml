@@ -9,8 +9,8 @@
                 android:width="7px"
                 android:color="@color/background_white" />
             <size
-                android:width="63.2dp"
-                android:height="63.2dp" />
+                android:width="57dp"
+                android:height="57dp"/>
             <solid android:color="#33000000" />
 
         </shape>

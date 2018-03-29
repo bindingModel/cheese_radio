@@ -41,6 +41,7 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
     HomePageModel() {
     }
 
+    private static Integer flag=0;
     @Inject
     RadioApi api;
 
@@ -52,9 +53,10 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
         GridLayoutManager layoutManager = new GridLayoutManager(homePageFragment.getContext(), 4);
         layoutManager.setSpanSizeLookup(new GridSpanSizeLookup<>(getAdapter()));
         setLayoutManager(layoutManager);
-        setEnable(false);
+        setEnable(true);
         setPageFlag(false);
         setRoHttp((offset1, refresh) -> {
+
             return getZip();
         });
     }
@@ -62,6 +64,7 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
 //        Observable<InfoEntity<List<CategoryEntity>>> categoriy = api.getGroupInfo(new PlayParams("contentInfo","123")).compose(new RestfulZipTransformer<>());
         Observable<InfoEntity<List<CategoryEntity>>> categoriy = api.getCategoriy(new HomePageParams("category")).compose(new RestfulZipTransformer<>());
         Observable<InfoEntity<List<RecommanData>>> recommandList = api.getRecommand(new HomePageParams("recommandList")).compose(new RestfulZipTransformer<>());
+            flag=0;
         return Observable.zip(categoriy, recommandList, (cate, entity) -> {
             List<GridInflate> list = new ArrayList<>();
             if (cate.getCode() == 0 && cate.getData() != null &&  !cate.getData().isEmpty()) {

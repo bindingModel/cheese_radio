@@ -211,14 +211,16 @@
                         android:layout_weight="1"
                         android:button="@null"
                         android:text="@{entity.favorCount}"
+                        android:onClick="@{vm::onSelectClick}"
+                        android:checked="@{vm.clockCheck}"
                         android:drawableLeft="@drawable/clock_subscribe"
                         />
                     <CheckBox
+                        android:id="@+id/loop"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:button="@null"
-                        android:text="@{entity.favorCount}"
                         android:drawableLeft="@drawable/loop"
                         />
 

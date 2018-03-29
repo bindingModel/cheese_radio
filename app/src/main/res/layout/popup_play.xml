@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="vm"
+            type="com.cheese.radio.ui.media.play.popup.PopupPlayModel"/>
+    </data>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@color/background_white"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            app:adapter="@{vm.adapter}"
+            app:layout_manager="@{vm.layoutManager}"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:layout_marginTop="1dp"
+            android:onClick="@{vm.onDismissClick}"
+            android:layout_width="match_parent"
+            android:textColor="@color/white"
+            android:text="@string/close"
+            android:background="@drawable/normal_bottom_top_line"
+            android:layout_height="45dp" />
+    </LinearLayout>
+</layout>

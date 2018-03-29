@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.cheese.radio.ui.media.play.popup.SelectPlayTimeEntity" />
+    </data>
+
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:button="@null"
+        android:checked="@={vm.checked}"
+        android:drawableRight="@drawable/play_time_select"
+        android:drawableEnd="@drawable/play_time_select"
+        android:gravity="center_vertical"
+        android:onClick="@{vm::onSelectClick}"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@{vm.name,default=123456789}" />
+</layout>

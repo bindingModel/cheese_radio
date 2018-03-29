@@ -1,4 +1,4 @@
-package com.cheese.radio.ui.media.audio;
+package com.cheese.radio.util.models;
 
 import android.Manifest;
 import android.arch.lifecycle.Lifecycle;
@@ -14,12 +14,13 @@ import android.widget.SeekBar;
 
 import com.android.databinding.library.baseAdapters.BR;
 import com.binding.model.App;
+import com.binding.model.adapter.recycler.RecyclerAdapter;
 import com.binding.model.cycle.Container;
+import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.layout.rotate.TimeEntity;
 import com.binding.model.layout.rotate.TimeUtil;
-import com.binding.model.model.ViewModel;
+import com.binding.model.model.inter.Inflate;
 import com.binding.model.util.BaseUtil;
-import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.service.AudioServiceUtil;
 
 import java.util.ArrayList;
@@ -29,17 +30,15 @@ import java.util.Locale;
 import static com.cheese.radio.ui.service.AudioService.Prepared;
 
 /**
- * Created by 29283 on 2018/3/17.
+ * Created by 29283 on 2018/3/29.
  */
 
-
-public abstract class AudioModel<T extends Container, Binding extends ViewDataBinding, Entity>
-        extends ViewModel<T, Binding>
-        implements MediaPlayer.OnCompletionListener, SeekBar.OnSeekBarChangeListener ,TimeEntity {
+public abstract class AudioRecycleModel<C extends Container, Binding extends ViewDataBinding, E extends Inflate>
+        extends RecyclerModel<C, Binding, E>implements MediaPlayer.OnCompletionListener, SeekBar.OnSeekBarChangeListener ,TimeEntity {
     public ObservableField<String> currentTime = new ObservableField<>();
     private int position = 0;
-    private List<Entity> fmsEntities = new ArrayList<>();
-    private Entity entity;
+    private List<E> fmsEntities = new ArrayList<>();
+    private E entity;
     private AudioServiceUtil util = AudioServiceUtil.getInstance();
     public transient ObservableBoolean checked = new ObservableBoolean();
     private boolean mDragging = false;
@@ -49,8 +48,8 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
     }
 
     @Override
-    public void attachView(Bundle savedInstanceState, T t) {
-        super.attachView(savedInstanceState, t);
+    public void attachView(Bundle savedInstanceState, C c) {
+        super.attachView(savedInstanceState, c);
 //        util.pause();
         TimeUtil.getInstance().add(this);
         if(getSeekBar()!=null)getSeekBar().setOnSeekBarChangeListener(this);
@@ -79,16 +78,11 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
             checked.set(false);
         }
     }
-    //无论是否在播放，都强制暂停
-    public void pause(){
-        boolean playing = util.isPlaying();
-        util.pause();
-        checked.set(false);
-    }
 
-    public void playFirst(List<Entity> entities) {
+
+    public void playFirst(List<E> entities) {
         fmsEntities.addAll(entities);
-        for (Entity entity : entities) {
+        for (E entity : entities) {
             play(entity);
             break;
         }
@@ -103,7 +97,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
         util.setUri(transformUrl(fmsEntities.get(0)));
     }
 
-    private void play(Entity entity) {
+    private void play(E entity) {
         this.entity = entity;
         BaseUtil.checkPermission(App.getCurrentActivity(), aBoolean -> {
             if (aBoolean && util.start(transformUrl(entity), this, listener)==Prepared)
@@ -124,6 +118,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void onResume() {
+        super.onResume();
         checked.set(util.isPlaying());
     }
 
@@ -132,7 +127,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
         TimeUtil.getInstance().remove(this);
     }
 
-    protected abstract String transformUrl(Entity entity);
+    protected abstract String transformUrl(E entity);
 
     public abstract RadioButton getPlayView();
 
@@ -182,13 +177,14 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
         setProgress();
     }
 
-    public void setEntities(List<Entity> entities) {
+    public void setEntities(List<E> entities) {
         this.fmsEntities.addAll(entities);
-        for (Entity entity : entities) {
+        for (E entity : entities) {
             this.entity = entity;
-            play(entity);
             getDataBinding().setVariable(BR.entity, entity);
             break;
         }
     }
 }
+
+

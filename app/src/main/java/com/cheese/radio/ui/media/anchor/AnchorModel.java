@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.SeekBar;
 
 import com.android.databinding.library.baseAdapters.BR;
 import com.binding.model.App;
@@ -24,23 +25,23 @@ import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.qualifier.manager.ActivityFragmentManager;
 import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.media.anchor.entity.AnchorEntity;
+import com.cheese.radio.ui.media.anchor.entity.play.item.AnchorSingleItem;
 import com.cheese.radio.ui.media.play.PlayEntity;
 import com.cheese.radio.ui.service.AudioServiceUtil;
+import com.cheese.radio.util.models.AudioPagerModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.disposables.Disposable;
 
-import static com.cheese.radio.ui.service.AudioService.Prepared;
 
 /**
  * Created by 29283 on 2018/3/13.
  */
 @ModelView(value = R.layout.activity_anchor, model = true)
-public class AnchorModel extends PagerModel<AnchorActivity, ActivityAnchorBinding, AnchorEntity> {
+public class AnchorModel extends AudioPagerModel<AnchorActivity, ActivityAnchorBinding, AnchorEntity,AnchorSingleItem> {
 
     @Inject
     AnchorModel(@ActivityFragmentManager FragmentManager manager) {
@@ -54,9 +55,9 @@ public class AnchorModel extends PagerModel<AnchorActivity, ActivityAnchorBindin
     private final List<AnchorEntity> list = new ArrayList<>();
     private AnchorData anchorData;
     private AudioServiceUtil util = AudioServiceUtil.getInstance();
-    private PlayEntity entity;
     public transient ObservableBoolean checked = new ObservableBoolean();
     private List<PlayEntity> fmsEntities = new ArrayList<>();
+
 
     @Override
     public void attachView(Bundle savedInstanceState, AnchorActivity anchorActivity) {
@@ -65,10 +66,11 @@ public class AnchorModel extends PagerModel<AnchorActivity, ActivityAnchorBindin
         params = new AnchorParams("info", authorId);
         addDisposable(api.getAuthor(params).compose(new RestfulTransformer<>()).subscribe(anchorData -> {
             getDataBinding().setEntity(anchorData);
-            setFragment(anchorData);
+            setFragment(this.anchorData=anchorData);
             getDataBinding().anchorData.setText("作品（" + anchorData.getSingle().getList().size() + ")");
         }));
     }
+
 
     public void setFragment(AnchorData anchorData) {
         list.add(new AnchorEntity(anchorData));
@@ -81,39 +83,21 @@ public class AnchorModel extends PagerModel<AnchorActivity, ActivityAnchorBindin
         }
     }
 
-    public void onPlayClick(View view) {
-        boolean playing = util.isPlaying();
-        if (!playing) {
-            if (!util.play()){
-                if(entity!=null)play(entity);
-            }else
-                checked.set(true);
-        } else {
-            util.pause();
-            checked.set(false);
-        }
-    }
-    private void play(PlayEntity entity) {
-        this.entity = entity;
-        BaseUtil.checkPermission(App.getCurrentActivity(), aBoolean -> {
-            if (aBoolean && util.start(transformUrl(entity), this, listener)==Prepared)
-                getPlayView().setEnabled(false);
-        }, Manifest.permission.RECORD_AUDIO);
-        getDataBinding().setVariable(BR.entity, entity);
-    }
-    protected String transformUrl(PlayEntity playEntity) {
-        return playEntity.getUrl();
-    }
-    private final MediaPlayer.OnPreparedListener listener = this::onPrepared;
-    public void onPrepared(MediaPlayer mediaPlayer){
-        mediaPlayer.start();
-        getPlayView().setEnabled(true);
-        checked.set(true);
-        util.setUri(transformUrl(fmsEntities.get(0)));
+
+    @Override
+    protected String transformUrl(AnchorSingleItem anchorSingleItem) {
+        return anchorSingleItem.getUrl();
     }
 
+
+
+    @Override
     public RadioButton getPlayView() {
         return getDataBinding().play;
     }
 
+    @Override
+    public SeekBar getSeekBar() {
+        return null;
+    }
 }

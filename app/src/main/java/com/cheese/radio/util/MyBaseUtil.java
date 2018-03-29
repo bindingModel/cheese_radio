@@ -126,5 +126,9 @@ public class MyBaseUtil extends BaseUtil{
         return year+"-"+month+"-"+day;
     }
 
+    public static String getMinute(Integer seconds){
+        return (seconds/60)+":"+(seconds%60);
+    }
+
 }
 
