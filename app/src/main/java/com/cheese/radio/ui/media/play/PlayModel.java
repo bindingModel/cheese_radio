@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.binding.model.model.ModelView;
 import com.binding.model.util.BaseUtil;
@@ -19,6 +20,7 @@ import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.media.audio.AudioModel;
 import com.cheese.radio.ui.media.play.popup.PopupPlayModel;
+import com.cheese.radio.ui.media.play.popup.SelectPlayTimeEntity;
 import com.cheese.radio.util.MyBaseUtil;
 
 import java.util.ArrayList;
@@ -43,11 +45,12 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     private Integer id;
     private Integer totalTime, playTime;
     public ObservableBoolean clockCheck = new ObservableBoolean(false);
+    private SelectPlayTimeEntity timeEntity;
 
     @Override
     public void attachView(Bundle savedInstanceState, PlayActivity activity) {
         super.attachView(savedInstanceState, activity);
-
+        intTimes();
         id = getT().getIntent().getIntExtra(Constant.id, 0);
         api.getContentInfo(new PlayParams("contentInfo", id)).compose(new RestfulTransformer<>()).subscribe(
                 this::setSingelEntity, throwable -> BaseUtil.toast(getT(), throwable));
@@ -69,6 +72,11 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         return getDataBinding() == null ? null : getDataBinding().appVideoSeekBar;
     }
 
+    @Override
+    public TextView getLength() {
+        return getDataBinding() == null ? null : getDataBinding().length;
+    }
+
     public void setSingelEntity(PlayEntity entity) {
         list.add(entity);
         if (isPlaying()) setEntities(list);
@@ -86,10 +94,12 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         popupPlayModel.getWindow().setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         //设置播放时长
         popupPlayModel.addEventAdapter((position, entity, type, view) -> {
-            totalTime = Integer.parseInt(entity.getTime());
-            if (totalTime != 0) clockCheck.set(true);
-            else clockCheck.set(false);
-            popupPlayModel.getWindow().dismiss();
+            //判断如果不是同一个，则将上一个状态取反,单选操作
+            if (timeEntity != null && !timeEntity.equals(entity)) {
+                timeEntity.checked.set(false);
+            }
+            timeEntity=entity;
+            totalTime=timeEntity.getTime();
             return false;
         });
     }
@@ -97,13 +107,19 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     @Override
     public void getTurn() {
         super.getTurn();
-        if (totalTime != 0) {
+        if (totalTime != 0 && timeEntity.checked.get()) {
             playTime++;
-            getDataBinding().loop.setText(MyBaseUtil.getMinute(totalTime - playTime));
+            getDataBinding().clock.setText(MyBaseUtil.getMinute(totalTime - playTime));
         }
         if (totalTime != 0 & playTime.equals(totalTime)) {
             pause();
             checked.set(false);
         }
     }
+
+    public void intTimes() {
+        totalTime = 0;
+        playTime = 0;
+    }
 }
+

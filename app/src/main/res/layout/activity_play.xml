@@ -140,6 +140,7 @@
                         android:text="@{vm.currentTime,default=00}" />
 
                     <TextView
+                        android:id="@+id/length"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
@@ -206,11 +207,11 @@
                         />
 
                     <CheckBox
+                        android:id="@+id/clock"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:button="@null"
-                        android:text="@{entity.favorCount}"
                         android:onClick="@{vm::onSelectClick}"
                         android:checked="@{vm.clockCheck}"
                         android:drawableLeft="@drawable/clock_subscribe"

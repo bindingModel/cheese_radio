@@ -29,11 +29,13 @@ public class PopupPlayModel extends PopupRecyclerModel<BaseActivity,PopupPlayBin
     @Override
     public void attachView(Bundle savedInstanceState, BaseActivity baseActivity) {
         super.attachView(savedInstanceState, baseActivity);
-        entities.add(new SelectPlayTimeEntity("不开启","0"));
-        entities.add(new SelectPlayTimeEntity("15分钟后停止播放","900"));
-        entities.add(new SelectPlayTimeEntity("30分钟后停止播放","1800"));
-        entities.add(new SelectPlayTimeEntity("45分钟后停止播放","2700"));
-        entities.add(new SelectPlayTimeEntity("60分钟后停止播放","3600"));
+        //单选操作（在addEventAdapter里实现单选）
+        entities.add(new SelectPlayTimeEntity("不开启",0));
+        entities.add(new SelectPlayTimeEntity("15分钟后停止播放",900));
+        entities.add(new SelectPlayTimeEntity("30分钟后停止播放",1800));
+        entities.add(new SelectPlayTimeEntity("45分钟后停止播放",2700));
+        entities.add(new SelectPlayTimeEntity("60分钟后停止播放",3600));
+
         getAdapter().setList(NO_POSITION,entities,refresh);
     }
 

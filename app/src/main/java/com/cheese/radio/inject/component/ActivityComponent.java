@@ -13,15 +13,20 @@ import com.cheese.radio.ui.search.SearchActivity;
 import com.cheese.radio.ui.user.calendar.CalendarActivity;
 import com.cheese.radio.ui.user.edit.EditNameActivity;
 import com.cheese.radio.ui.user.enroll.EnrollActivity;
-import com.cheese.radio.ui.user.favority.my.MyFavorityActivity;
+
 import com.cheese.radio.ui.user.guide.GuideActivity;
 import com.cheese.radio.ui.home.HomeActivity;
 import com.cheese.radio.ui.user.login.LoginActivity;
 import com.cheese.radio.ui.startup.StartUpActivity;
+
+import com.cheese.radio.ui.user.my.course.MyCourseActivity;
+import com.cheese.radio.ui.user.my.favority.MyFavorityActivity;
+import com.cheese.radio.ui.user.my.work.MyWorkActivity;
 import com.cheese.radio.ui.user.product.list.ProductsActivity;
 import com.cheese.radio.ui.user.profile.ProfileActivity;
 import com.cheese.radio.ui.user.register.one.RegisterOneActivity;
 import com.cheese.radio.ui.user.register.two.RegisterTwoActivity;
+import com.cheese.radio.ui.user.service.center.CenterActivity;
 
 import dagger.Component;
 
@@ -56,8 +61,12 @@ public interface ActivityComponent {
     void inject(ClassifyListActivity activity);
     void inject(ProductsActivity activity);
     void inject(EditNameActivity activity);
-    void inject(MyFavorityActivity activity);
+
     void inject(CalendarActivity activity);
+    void inject(CenterActivity activity);
+    void inject(MyCourseActivity activity);
+    void inject(MyWorkActivity activity);
+    void inject(MyFavorityActivity activity);
     interface Router {
         String cheese = "/cheese/";
         String startup = cheese + "startup";
@@ -78,8 +87,12 @@ public interface ActivityComponent {
         String contents=cheese+"contents";
         String products = cheese + "products";
         String product = cheese + "product";
-        String myfavority =cheese+"myfavority";
+
         String calendar = cheese + "calendar";
+        String center = cheese + "center";
+        String course = cheese + "course";
+        String work = cheese +"work";
+        String favority = cheese + "favority";
     }
     /*
      *  CONTENT_LIST	绘本列表                  contents

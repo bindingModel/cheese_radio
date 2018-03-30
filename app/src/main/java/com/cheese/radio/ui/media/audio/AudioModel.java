@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.android.databinding.library.baseAdapters.BR;
 import com.binding.model.App;
@@ -21,6 +22,7 @@ import com.binding.model.model.ViewModel;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.service.AudioServiceUtil;
+import com.cheese.radio.util.MyBaseUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +37,8 @@ import static com.cheese.radio.ui.service.AudioService.Prepared;
 
 public abstract class AudioModel<T extends Container, Binding extends ViewDataBinding, Entity>
         extends ViewModel<T, Binding>
-        implements MediaPlayer.OnCompletionListener, SeekBar.OnSeekBarChangeListener ,TimeEntity {
+        implements MediaPlayer.OnCompletionListener, SeekBar.OnSeekBarChangeListener, TimeEntity {
+
     public ObservableField<String> currentTime = new ObservableField<>();
     private int position = 0;
     private List<Entity> fmsEntities = new ArrayList<>();
@@ -44,7 +47,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
     public transient ObservableBoolean checked = new ObservableBoolean();
     private boolean mDragging = false;
 
-    public boolean isPlaying(){
+    public boolean isPlaying() {
         return util.isPlaying();
     }
 
@@ -53,7 +56,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
         super.attachView(savedInstanceState, t);
 //        util.pause();
         TimeUtil.getInstance().add(this);
-        if(getSeekBar()!=null)getSeekBar().setOnSeekBarChangeListener(this);
+        if (getSeekBar() != null) getSeekBar().setOnSeekBarChangeListener(this);
     }
 
     public void onForwardClick(View view) {
@@ -70,21 +73,23 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
     public void onPlayClick(View view) {
         boolean playing = util.isPlaying();
         if (!playing) {
-            if (!util.play()){
-                if(entity!=null)play(entity);
-            }else
+            if (!util.play()) {
+                if (entity != null) play(entity);
+            } else
                 checked.set(true);
         } else {
             util.pause();
             checked.set(false);
         }
     }
+
     //无论是否在播放，都强制暂停
-    public void pause(){
+    public void pause() {
         boolean playing = util.isPlaying();
         util.pause();
         checked.set(false);
     }
+
 
     public void playFirst(List<Entity> entities) {
         fmsEntities.addAll(entities);
@@ -96,7 +101,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
 
     private final MediaPlayer.OnPreparedListener listener = this::onPrepared;
 
-    public void onPrepared(MediaPlayer mediaPlayer){
+    public void onPrepared(MediaPlayer mediaPlayer) {
         mediaPlayer.start();
         getPlayView().setEnabled(true);
         checked.set(true);
@@ -106,7 +111,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
     private void play(Entity entity) {
         this.entity = entity;
         BaseUtil.checkPermission(App.getCurrentActivity(), aBoolean -> {
-            if (aBoolean && util.start(transformUrl(entity), this, listener)==Prepared)
+            if (aBoolean && util.start(transformUrl(entity), this, listener) == Prepared)
                 getPlayView().setEnabled(false);
         }, Manifest.permission.RECORD_AUDIO);
         getDataBinding().setVariable(BR.entity, entity);
@@ -117,7 +122,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
         checked.set(false);
         if (position == fmsEntities.size() - 1) {
             mediaPlayer.seekTo(0);
-        } else{
+        } else {
             onForwardClick(null);
         }
     }
@@ -144,14 +149,14 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
         if (hour > 0) {
             return String.format(Locale.getDefault(), "%d:%02d:%02d", hour, minutes, second);
         } else {
-            return String.format(Locale.getDefault(), "%02d:%02d",  minutes, second);
+            return String.format(Locale.getDefault(), "%02d:%02d", minutes, second);
         }
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-        if(!mDragging)return;
-        long position = util.getDuration()*progress/1000L;
+        if (!mDragging) return;
+        long position = util.getDuration() * progress / 1000L;
         util.seekTo(position);
         setProgress();
     }
@@ -169,11 +174,16 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
 
     public abstract SeekBar getSeekBar();
 
+    public abstract TextView getLength();
+
     private void setProgress() {
-        if(mDragging)return;
+        if (mDragging) return;
         long duration = util.getDuration();
-        if(duration==0)duration=1;
-        if(getSeekBar()!=null)getSeekBar().setProgress((int)(1000*util.getCurrentPosition()/duration));
+        if (duration == 0) duration = 1;
+        if (getSeekBar() != null)
+            getSeekBar().setProgress((int) (1000 * util.getCurrentPosition() / duration));
+        if (getLength() != null)
+            getLength().setText(stringForTime(util.getDuration()));
         currentTime.set(stringForTime(util.getCurrentPosition()));
     }
 

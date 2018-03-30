@@ -3,6 +3,7 @@ package com.cheese.radio.inject.api;
 import android.databinding.ObservableField;
 
 import com.binding.model.model.inter.Inflate;
+import com.cheese.radio.base.IkeParams;
 import com.cheese.radio.base.InfoEntity;
 import com.cheese.radio.ui.home.page.RecommanData;
 import com.cheese.radio.ui.home.page.HomePageParams;
@@ -29,6 +30,13 @@ import com.cheese.radio.ui.user.login.params.PlatformParams;
 import com.cheese.radio.ui.user.login.params.SignParams;
 import com.cheese.radio.ui.user.login.params.SmsParams;
 import com.cheese.radio.ui.user.login.entity.SignUserEntity;
+import com.cheese.radio.ui.user.my.course.MyCourseData;
+import com.cheese.radio.ui.user.my.course.MyCourseParams;
+import com.cheese.radio.ui.user.my.favority.MyFavorityParams;
+import com.cheese.radio.ui.user.my.push.NewMessageCountData;
+import com.cheese.radio.ui.user.my.push.NewMessageCountParams;
+import com.cheese.radio.ui.user.my.work.MyWorkModel;
+import com.cheese.radio.ui.user.my.work.MyWorkParams;
 import com.cheese.radio.ui.user.product.list.ProductsEntity;
 import com.cheese.radio.ui.user.product.list.ProductsParams;
 import com.cheese.radio.ui.user.profile.ProfileParams;
@@ -93,5 +101,17 @@ public interface RadioApi {
 
     @POST("/1.0/user")
     Observable<InfoEntity<String>> setProperty(@Body ProfileParams params);
+
+    @POST("/1.0/user")
+    Observable<InfoEntity<MyCourseData>> getMyCourse(@Body MyCourseParams params);
+
+    @POST("/1.0/user")
+    Observable<InfoEntity<List>> getMyWork(@Body MyWorkParams params);
+
+    @POST("/1.0/user")
+    Observable<InfoEntity<List>> getMyFavority(@Body MyFavorityParams params);
+
+    @POST("/1.0/user")
+    Observable<InfoEntity<NewMessageCountData>> getNewMessageCount(@Body NewMessageCountParams params);
 
 }

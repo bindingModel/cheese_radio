@@ -22,7 +22,7 @@
             android:layout_marginTop="1dp"
             android:onClick="@{vm.onDismissClick}"
             android:layout_width="match_parent"
-            android:textColor="@color/white"
+            android:textColor="@color/text_black"
             android:text="@string/close"
             android:background="@drawable/normal_bottom_top_line"
             android:layout_height="45dp" />

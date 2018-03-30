@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
+
     <data>
+
         <variable
             name="vm"
-            type="com.cheese.radio.ui.user.my.favority.MyFavorityModel"/>
+            type="com.cheese.radio.ui.user.my.course.MyCourseModel" />
     </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <include layout="@layout/toolbar" />
+
         <include
-            layout="@layout/toolbar"/>
-        <include
-            layout="@layout/layout_recycler_view"
-            android:id="@+id/layout_recycler"/>
+            android:id="@+id/layout_recycler"
+            layout="@layout/layout_recycler_view" />
     </LinearLayout>
 </layout>

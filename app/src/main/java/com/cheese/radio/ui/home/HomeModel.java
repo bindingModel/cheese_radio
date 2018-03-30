@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.binding.model.adapter.pager.FragmentStateAdapter;
 import com.binding.model.cycle.DataBindingFragment;
@@ -100,6 +101,11 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding,Play
 
     @Override
     public SeekBar getSeekBar() {
+        return null;
+    }
+
+    @Override
+    public TextView getLength() {
         return null;
     }
 

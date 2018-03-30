@@ -167,6 +167,18 @@ public class DataBindingAdapter {
         });
     }
 
+    @BindingAdapter({"android:drawableLeft"})
+    public static void setDrawableLeft(TextView view, String image) {
+        Context mContext = view.getContext();
+        Glide.with(mContext).load(image).into(new SimpleTarget<Drawable>() {
+            @Override
+            public void onResourceReady(Drawable drawable, Transition<? super Drawable> transition) {
+                drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+                Drawable[] drawables = view.getCompoundDrawables();
+                view.setCompoundDrawables(drawable, drawables[1], drawables[2], drawables[3]);
+            }
+        });
+    }
 
     @BindingAdapter("alpha")
     public static void setAlpha(View view,float alpha){
