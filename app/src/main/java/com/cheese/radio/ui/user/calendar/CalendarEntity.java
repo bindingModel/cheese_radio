@@ -114,6 +114,14 @@ public class CalendarEntity  {
         this.bookId = bookId;
     }
 
+    public int[] getDays() {
+        return days;
+    }
+
+    public void setDays(int[] days) {
+        this.days = days;
+    }
+
     public boolean isSelect()
     {
         //满人，未报上返回false，只要报上就返回true

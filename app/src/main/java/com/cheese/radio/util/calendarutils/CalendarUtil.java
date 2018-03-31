@@ -2,6 +2,8 @@ package com.cheese.radio.util.calendarutils;
 
 import android.content.Context;
 
+import com.cheese.radio.ui.user.calendar.CalendarEntity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +14,7 @@ public class CalendarUtil {
      * @param month 当前月份
      * @return
      */
-    public static List<Day> getDays(int year, int month,int[] selectDay,List<TipsDay> tipsDays) {
+    public static List<Day> getDays(int year, int month,int[] selectDay,List<CalendarEntity> tipsDays) {
         List<Day> days = new ArrayList<>();
         int week = SolarUtil.getFirstWeekOfMonth(year, month - 1);
 
@@ -53,7 +55,7 @@ public class CalendarUtil {
         return days;
     }
 
-    private static Day initDay(int[] selectDay,List<TipsDay> tipsDays,int year, int month, int day, int type) {
+    private static Day initDay(int[] selectDay,List<CalendarEntity> tipsDays,int year, int month, int day, int type) {
         Day theDay = new Day();
         theDay.setSolar(year, month, day);
 
@@ -75,9 +77,9 @@ public class CalendarUtil {
 
         if (tipsDays!=null){
             for (int i=0;i<tipsDays.size();i++){
-                TipsDay tipsDay=tipsDays.get(i);
+                CalendarEntity tipsDay=tipsDays.get(i);
                 if (tipsDay!=null){
-                    int[] theDay1 =tipsDay.getDay();
+                    int[] theDay1 =tipsDay.getDays();
                     if (theDay1!=null&&theDay1.length>=3&&theDay1[0]==year&&theDay1[1]==month&&theDay1[2]==day){
                         if (tipsDay.isSelect()) {
                             theDay.setTipsType(1);

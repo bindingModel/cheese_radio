@@ -53,8 +53,11 @@ public class CalendarModel extends ViewHttpModel<CalendarActivity, ActivityCalen
     public void attachView(Bundle savedInstanceState, CalendarActivity activity) {
         super.attachView(savedInstanceState, activity);
         calendarView = getDataBinding().calendarView;
-        api.getClassCalendar(params).compose(new RestfulTransformer<>()).subscribe(calendarEntities -> list.addAll(calendarEntities));
-        initCalendarView("2018-01-01", "2018-05", null);
+        api.getClassCalendar(params).compose(new RestfulTransformer<>()).subscribe(calendarEntities ->{
+            calendarView.setTipsDays(calendarEntities);
+                list.addAll(calendarEntities);
+            initCalendarView("2018-01-01", "2018-05", list);});
+
     }
 
 
@@ -91,23 +94,23 @@ public class CalendarModel extends ViewHttpModel<CalendarActivity, ActivityCalen
         calendarView.selectTheDay(day);
     }
 
-    private void initCalendarView(String dateStartString, String dateEndString, List<TipsDay> tipsDays) {
+    private void initCalendarView(String dateStartString, String dateEndString, List<CalendarEntity> tipsDays) {
         calendarView.setDateStartString(dateStartString);
         calendarView.setDateEndString(dateEndString);
         boolean isHaveSelectDay = false;
         if (selectDay == null) {
             if (tipsDays != null) {
                 for (int i = tipsDays.size() - 1; i >= 0; i--) {
-                    TipsDay tipsDay = tipsDays.get(i);
+                    CalendarEntity tipsDay = tipsDays.get(i);
                     if (tipsDay != null) {
                         if (tipsDay.isSelect()) {
-                            selectDay = tipsDay.getDayString();
+                            selectDay = tipsDay.getDay();
                             calendarView.setSelectDay(selectDay);
                             isHaveSelectDay = true;
                             break;
                         } else {
                             if (i == 0) {
-                                selectDay = tipsDay.getDayString();
+                                selectDay = tipsDay.getDay();
                                 calendarView.setSelectDay(selectDay);
                                 isHaveSelectDay = true;
                                 break;
