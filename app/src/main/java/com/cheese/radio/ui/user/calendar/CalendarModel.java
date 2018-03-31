@@ -8,9 +8,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.binding.model.model.ModelView;
+import com.binding.model.model.PopupRecyclerModel;
 import com.binding.model.model.ViewHttpModel;
 import com.cheese.radio.R;
+import com.cheese.radio.base.rxjava.RestfulFlowTransformer;
+import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityCalendarBinding;
+import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.util.MyBaseUtil;
 import com.cheese.radio.util.calendarutils.Day;
 import com.cheese.radio.util.calendarutils.Month;
@@ -30,7 +34,7 @@ public class CalendarModel extends ViewHttpModel<CalendarActivity, ActivityCalen
     @Inject
     CalendarModel() {
     }
-
+    @Inject RadioApi api;
     @Override
     public void accept(CalendarEntity calendarEntity) throws Exception {
 
@@ -42,10 +46,14 @@ public class CalendarModel extends ViewHttpModel<CalendarActivity, ActivityCalen
     private List<Month> months;
     private int selectMonth = 0;
 
+    private ClassCalendarParams params=new ClassCalendarParams("getClassCalendar","2018-03");
+
+
     @Override
     public void attachView(Bundle savedInstanceState, CalendarActivity activity) {
         super.attachView(savedInstanceState, activity);
         calendarView = getDataBinding().calendarView;
+        api.getClassCalendar(params).compose(new RestfulTransformer<>()).subscribe(calendarEntities -> list.addAll(calendarEntities));
         initCalendarView("2018-01-01", "2018-05", null);
     }
 
@@ -136,7 +144,7 @@ public class CalendarModel extends ViewHttpModel<CalendarActivity, ActivityCalen
                     selectThisMonthDay(month.getYear(), month.getMonth());
                 }
             }
-
+            //日历上点击目标时间时触发
             @Override
             public void selectDay(LinearLayout linearLayout, Day day) {
 

@@ -35,7 +35,7 @@ public class ClassifyListModel extends RecyclerModel<ClassifyListActivity,Activi
         getDataBinding().layoutRecycler.setVm(this);
         tagId=getT().getIntent().getIntExtra(Constant.id,0);
         params.setTagId(tagId);
-        params.setFilter("group｜single");
+        params.setFilter("");
         api.getQueryByTag(params).compose(new RestfulTransformer<>()).subscribe(classifyData -> {
 //            for (ClassifyData data:classifyData) {
 //                list.add(data);

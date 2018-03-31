@@ -49,4 +49,8 @@
     <string name="service_centre">服务中心</string>
     <string name="my_course">我的课程</string>
     <string name="my_work">我的作品</string>
+    <string name="my_message">我的消息</string>
+    <string name="system_message">系统通知</string>
+    <string name="message_details">消息详情</string>
+    <string name="check_details">查看详情</string>
 </resources>

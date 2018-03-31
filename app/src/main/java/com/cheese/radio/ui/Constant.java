@@ -45,6 +45,7 @@ public interface Constant {
     String groupInfoId="groupInfoId";
     String description="description";
     String anchorSingleItem="anchorSingleItem";
+    String detailsEntity="detailsEntity";
 }
 
 //    static Drawable getMipmap(String name,int defMipmap){

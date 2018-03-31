@@ -21,6 +21,8 @@ import com.cheese.radio.ui.startup.StartUpActivity;
 
 import com.cheese.radio.ui.user.my.course.MyCourseActivity;
 import com.cheese.radio.ui.user.my.favority.MyFavorityActivity;
+import com.cheese.radio.ui.user.my.message.MessageActivity;
+import com.cheese.radio.ui.user.my.message.details.DetailsActivity;
 import com.cheese.radio.ui.user.my.work.MyWorkActivity;
 import com.cheese.radio.ui.user.product.list.ProductsActivity;
 import com.cheese.radio.ui.user.profile.ProfileActivity;
@@ -67,6 +69,8 @@ public interface ActivityComponent {
     void inject(MyCourseActivity activity);
     void inject(MyWorkActivity activity);
     void inject(MyFavorityActivity activity);
+    void inject(MessageActivity activity);
+    void inject(DetailsActivity activity);
     interface Router {
         String cheese = "/cheese/";
         String startup = cheese + "startup";
@@ -93,6 +97,8 @@ public interface ActivityComponent {
         String course = cheese + "course";
         String work = cheese +"work";
         String favority = cheese + "favority";
+        String message = cheese +"message";
+        String detail = cheese +"detail";
     }
     /*
      *  CONTENT_LIST	绘本列表                  contents

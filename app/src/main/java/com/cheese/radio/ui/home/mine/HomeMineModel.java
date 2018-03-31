@@ -72,4 +72,5 @@ public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineB
     public void onFavotity(View view){
         ARouterUtil.navigation(ActivityComponent.Router.favority);
     }
+    public void onMessageClick(View view){ARouterUtil.navigation(ActivityComponent.Router.message);}
 }

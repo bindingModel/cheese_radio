@@ -1,6 +1,7 @@
 package com.cheese.radio.inject.api;
 
 import android.databinding.ObservableField;
+import android.provider.CalendarContract;
 
 import com.binding.model.model.inter.Inflate;
 import com.cheese.radio.base.IkeParams;
@@ -22,6 +23,8 @@ import com.cheese.radio.ui.media.play.PlayEntity;
 import com.cheese.radio.ui.media.play.PlayParams;
 import com.cheese.radio.ui.search.entity.HotSearchEntity;
 import com.cheese.radio.ui.search.params.HotSearchParams;
+import com.cheese.radio.ui.user.calendar.CalendarEntity;
+import com.cheese.radio.ui.user.calendar.ClassCalendarParams;
 import com.cheese.radio.ui.user.demo.DemoData;
 import com.cheese.radio.ui.user.login.entity.PlatformEntity;
 import com.cheese.radio.ui.user.login.params.MyInfoParams;
@@ -33,6 +36,8 @@ import com.cheese.radio.ui.user.login.entity.SignUserEntity;
 import com.cheese.radio.ui.user.my.course.MyCourseData;
 import com.cheese.radio.ui.user.my.course.MyCourseParams;
 import com.cheese.radio.ui.user.my.favority.MyFavorityParams;
+import com.cheese.radio.ui.user.my.message.MessagesData;
+import com.cheese.radio.ui.user.my.message.MessagesParams;
 import com.cheese.radio.ui.user.my.push.NewMessageCountData;
 import com.cheese.radio.ui.user.my.push.NewMessageCountParams;
 import com.cheese.radio.ui.user.my.work.MyWorkModel;
@@ -114,4 +119,9 @@ public interface RadioApi {
     @POST("/1.0/user")
     Observable<InfoEntity<NewMessageCountData>> getNewMessageCount(@Body NewMessageCountParams params);
 
+    @POST("/1.0/user")
+    Observable<InfoEntity<MessagesData>> getMessages(@Body MessagesParams params);
+
+    @POST("/1.0/class")
+    Observable<InfoEntity<List<CalendarEntity>>> getClassCalendar(@Body ClassCalendarParams params);
 }

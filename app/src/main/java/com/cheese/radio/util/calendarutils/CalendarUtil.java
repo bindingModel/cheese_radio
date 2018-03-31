@@ -93,6 +93,87 @@ public class CalendarUtil {
 
         return theDay;
     }
+//    public static List<Day> getDays(int year, int month,int[] selectDay,List<TipsDay> tipsDays) {
+//        List<Day> days = new ArrayList<>();
+//        int week = SolarUtil.getFirstWeekOfMonth(year, month - 1);
+//
+//        int lastYear;
+//        int lastMonth;
+//        if (month == 1) {
+//            lastMonth = 12;
+//            lastYear = year - 1;
+//        } else {
+//            lastMonth = month - 1;
+//            lastYear = year;
+//        }
+//        int lastMonthDays = SolarUtil.getMonthDays(lastYear, lastMonth);//上个月总天数
+//
+//        int currentMonthDays = SolarUtil.getMonthDays(year, month);//当前月总天数
+//
+//        int nextYear;
+//        int nextMonth;
+//        if (month == 12) {
+//            nextMonth = 1;
+//            nextYear = year + 1;
+//        } else {
+//            nextMonth = month + 1;
+//            nextYear = year;
+//        }
+//        for (int i = 0; i < week; i++) {
+//            days.add(initDay(selectDay,tipsDays,lastYear, lastMonth, lastMonthDays - week + 1 + i, 0));
+//        }
+//
+//        for (int i = 0; i < currentMonthDays; i++) {
+//            days.add(initDay(selectDay,tipsDays,year, month, i + 1, 1));
+//        }
+//
+//        for (int i = 0; i < 7 * getMonthRows(year, month) - currentMonthDays - week; i++) {
+//            days.add(initDay(selectDay,tipsDays,nextYear, nextMonth, i + 1, 2));
+//        }
+//
+//        return days;
+//    }
+//
+//    private static Day initDay(int[] selectDay,List<TipsDay> tipsDays,int year, int month, int day, int type) {
+//        Day theDay = new Day();
+//        theDay.setSolar(year, month, day);
+//
+//        String[] temp = LunarUtil.solarToLunar(year, month, day);
+//
+//        theDay.setLunar(new String[]{temp[0], temp[1]});
+//        theDay.setType(type);
+//        theDay.setTerm(LunarUtil.getTermString(year, month - 1, day));
+//        theDay.setLunarHoliday(temp[2]);
+//
+//        if (type == 0) {
+//            theDay.setSolarHoliday(SolarUtil.getSolarHoliday(year, month, day - 1));
+//        } else {
+//            theDay.setSolarHoliday(SolarUtil.getSolarHoliday(year, month, day));
+//        }
+//        if(selectDay!=null&&selectDay.length>=3&&selectDay[0]==year&&selectDay[1]==month&&selectDay[2]==day){
+//            theDay.setChoose(true);
+//        }
+//
+//        if (tipsDays!=null){
+//            for (int i=0;i<tipsDays.size();i++){
+//                TipsDay tipsDay=tipsDays.get(i);
+//                if (tipsDay!=null){
+//                    int[] theDay1 =tipsDay.getDay();
+//                    if (theDay1!=null&&theDay1.length>=3&&theDay1[0]==year&&theDay1[1]==month&&theDay1[2]==day){
+//                        if (tipsDay.isSelect()) {
+//                            theDay.setTipsType(1);
+//                        }else{
+//                            theDay.setTipsType(2);
+//                        }
+//                        break;
+//                    }
+//                }
+//
+//            }
+//        }
+//
+//        return theDay;
+//    }
 
     /**
      * 计算当前月需要显示几行

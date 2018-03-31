@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.cheese.radio.R;
 import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.user.calendar.CalendarEntity;
 import com.cheese.radio.util.calendarutils.Day;
 import com.cheese.radio.util.calendarutils.Month;
 import com.cheese.radio.util.calendarutils.TipsDay;
@@ -42,7 +43,7 @@ public class CalendarView extends LinearLayout {
     private int[] dateEnd;//日历结束年、月
     private final int[] selectDay = new int[3];
     private final List<TipsDay> tipsDays = new ArrayList<TipsDay>();
-
+    private final List<CalendarEntity> classDays=new ArrayList<CalendarEntity>();
     private int calendarView_textColorUnChoose;
     private int calendarView_textColorChoose;
     private int calendarView_textColorTips;
@@ -354,7 +355,7 @@ public class CalendarView extends LinearLayout {
             }
         }
     }
-
+    //行间距
     private int getHorizontalMargin() {
         return (int) (IkeApplication.getScreenWidth(context) * 0.045f);
     }
@@ -523,6 +524,7 @@ public class CalendarView extends LinearLayout {
                              } else {
                              //  textViewLunar.setText(day.getLunar()[1]);//农历日期
                              }**/
+                            //设置特殊日
                             if (day.getTipsType() == 1 || day.getTipsType() == 2) {
                                 textViewSolar.setText("付");
                                 textViewSolar.setTextColor(calendarView_textColorTips);

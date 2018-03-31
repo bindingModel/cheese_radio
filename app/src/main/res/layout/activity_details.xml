@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.cheese.radio.ui.user.my.message.details.DetailsModel"/>
+    </data>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_gray"
+        android:orientation="vertical">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:background="@color/background_white"
+            android:fitsSystemWindows="true"
+            android:orientation="vertical"
+            app:navigationIcon="@mipmap/back">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@{vm.title}"
+                    android:layout_marginEnd="80dp"
+                    android:layout_marginRight="80dp"
+                    android:gravity="center" />
+
+
+            </FrameLayout>
+        </android.support.v7.widget.Toolbar>
+
+        <include
+            layout="@layout/layout_recycler_view"
+            android:id="@+id/layout_recycler"/>
+    </LinearLayout>
+    </FrameLayout>
+</layout>
