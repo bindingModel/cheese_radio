@@ -1,13 +1,16 @@
 package com.cheese.radio.ui.user.calendar;
 
+import com.binding.model.model.ModelView;
+import com.binding.model.model.ViewInflateRecycler;
+import com.cheese.radio.R;
 import com.cheese.radio.util.calendarutils.TipsDay;
 
 /**
  * Created by 29283 on 2018/3/26.
  */
-
-public class CalendarEntity  {
-
+@ModelView(R.layout.item_calendar_class)
+public class CalendarEntity extends ViewInflateRecycler {
+//图还没修。
 
     /**
      * classId : 1
@@ -115,7 +118,9 @@ public class CalendarEntity  {
     }
 
     public int[] getDays() {
-        return days;
+        if(days==null)
+            return days=convertDay(day);
+        else return days;
     }
 
     public void setDays(int[] days) {
@@ -126,5 +131,24 @@ public class CalendarEntity  {
     {
         //满人，未报上返回false，只要报上就返回true
         return true;
+    }
+    private int[] convertDay(String string) {
+        int[] res = null;
+        if (string == null) {
+            return res;
+        }
+        try {
+            String[] strings = string.split("-");
+            if (strings.length >= 2) {
+                res = new int[strings.length];
+                for (int i = 0; i < strings.length; i++) {
+                    res[i] = Integer.valueOf(strings[i]);
+                }
+                return res;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

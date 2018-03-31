@@ -1,5 +1,6 @@
 package com.cheese.radio.ui.user.calendar;
 
+import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import com.cheese.radio.util.calendarutils.TipsDay;
 import com.cheese.radio.util.views.CalendarView;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -34,7 +36,10 @@ public class CalendarModel extends ViewHttpModel<CalendarActivity, ActivityCalen
     @Inject
     CalendarModel() {
     }
-    @Inject RadioApi api;
+
+    @Inject
+    RadioApi api;
+
     @Override
     public void accept(CalendarEntity calendarEntity) throws Exception {
 
@@ -45,18 +50,19 @@ public class CalendarModel extends ViewHttpModel<CalendarActivity, ActivityCalen
     private List<CalendarEntity> list = new ArrayList<>();
     private List<Month> months;
     private int selectMonth = 0;
-
-    private ClassCalendarParams params=new ClassCalendarParams("getClassCalendar","2018-03");
+    public final ObservableField<ArrayList<CalendarEntity>> theDayClass = new ObservableField<>();
+    private ClassCalendarParams params = new ClassCalendarParams("getClassCalendar", "2018-03");
 
 
     @Override
     public void attachView(Bundle savedInstanceState, CalendarActivity activity) {
         super.attachView(savedInstanceState, activity);
         calendarView = getDataBinding().calendarView;
-        api.getClassCalendar(params).compose(new RestfulTransformer<>()).subscribe(calendarEntities ->{
+        api.getClassCalendar(params).compose(new RestfulTransformer<>()).subscribe(calendarEntities -> {
             calendarView.setTipsDays(calendarEntities);
-                list.addAll(calendarEntities);
-            initCalendarView("2018-01-01", "2018-05", list);});
+            list.addAll(calendarEntities);
+            initCalendarView("2018-01-01", "2018-05", list);
+        });
 
     }
 
@@ -147,10 +153,20 @@ public class CalendarModel extends ViewHttpModel<CalendarActivity, ActivityCalen
                     selectThisMonthDay(month.getYear(), month.getMonth());
                 }
             }
+
             //日历上点击目标时间时触发
             @Override
             public void selectDay(LinearLayout linearLayout, Day day) {
-
+                Iterator<CalendarEntity> iterator = list.iterator();
+                ArrayList<CalendarEntity> list=new ArrayList<>();
+                while (iterator.hasNext()) {
+                    CalendarEntity entity=iterator.next();
+                    //找到选中日期的课程
+                    if (equalNumbers(entity.getDays(),day.getSolar())) {
+                        list.add(entity);
+                    }
+                }
+                theDayClass.set(list);
             }
 
             @Override
@@ -220,4 +236,15 @@ public class CalendarModel extends ViewHttpModel<CalendarActivity, ActivityCalen
     private void goToTheMonth(Month month) {
         calendarView.goToMonth(month, false);
     }
+
+
+    private boolean equalNumbers(int[] a, int[] b) {
+        if (a == null || b == null)return false;
+        if(a.length!=b.length)return false;
+        for (int i = 0; i <a.length ; i++) {
+            if(a[i]!=b[i])return false;
+        }
+        return true;
+    }
+
 }
