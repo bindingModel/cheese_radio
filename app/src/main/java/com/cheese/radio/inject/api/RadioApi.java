@@ -1,11 +1,8 @@
 package com.cheese.radio.inject.api;
 
-import android.databinding.ObservableField;
-import android.provider.CalendarContract;
-
-import com.binding.model.model.inter.Inflate;
-import com.cheese.radio.base.IkeParams;
 import com.cheese.radio.base.InfoEntity;
+import com.cheese.radio.ui.home.CanBookParams;
+import com.cheese.radio.ui.home.CanBookData;
 import com.cheese.radio.ui.home.page.RecommanData;
 import com.cheese.radio.ui.home.page.HomePageParams;
 import com.cheese.radio.ui.home.page.entity.CategoryEntity;
@@ -15,7 +12,6 @@ import com.cheese.radio.ui.media.anchors.AnchorsItem;
 import com.cheese.radio.ui.media.anchors.AnchorsParams;
 import com.cheese.radio.ui.media.classify.ClassifyData;
 import com.cheese.radio.ui.media.classify.ClassifyParams;
-import com.cheese.radio.ui.media.classify.list.ClassifyListActivity;
 import com.cheese.radio.ui.media.classify.list.ClassifyListParams;
 import com.cheese.radio.ui.media.group.GroupInfoParams;
 import com.cheese.radio.ui.media.group.fragment.GroupData;
@@ -40,7 +36,6 @@ import com.cheese.radio.ui.user.my.message.MessagesData;
 import com.cheese.radio.ui.user.my.message.MessagesParams;
 import com.cheese.radio.ui.user.my.push.NewMessageCountData;
 import com.cheese.radio.ui.user.my.push.NewMessageCountParams;
-import com.cheese.radio.ui.user.my.work.MyWorkModel;
 import com.cheese.radio.ui.user.my.work.MyWorkParams;
 import com.cheese.radio.ui.user.product.list.ProductsEntity;
 import com.cheese.radio.ui.user.product.list.ProductsParams;
@@ -124,4 +119,7 @@ public interface RadioApi {
 
     @POST("/1.0/class")
     Observable<InfoEntity<List<CalendarEntity>>> getClassCalendar(@Body ClassCalendarParams params);
+
+    @POST("/1.0/class")
+    Observable<InfoEntity<CanBookData>> getCanBook(@Body CanBookParams params);
 }

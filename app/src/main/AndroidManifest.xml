@@ -17,8 +17,10 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.startup.StartUpActivity">
-
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".ui.media.anchors.AnchorsActivity">
 
@@ -61,14 +63,7 @@
         <activity android:name=".ui.media.classify.list.ClassifyListActivity" android:label="分类"/>
         <activity android:name=".ui.user.product.list.ProductsActivity" android:label="课程套餐"/>
         <!--<activity android:name=".ui.user.favority.my.MyFavorityActivity" android:label="我的作品"/>-->
-        <activity android:name=".ui.user.calendar.CalendarActivity" android:label="芝士闹钟">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
         <activity android:name=".ui.user.service.center.CenterActivity" android:label="@string/service_centre"/>
         <activity android:name=".ui.user.my.course.MyCourseActivity" android:label="@string/my_course"/>
         <activity android:name=".ui.user.my.work.MyWorkActivity" android:label="@string/my_work"/>

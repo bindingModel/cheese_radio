@@ -32,7 +32,7 @@ import javax.inject.Inject;
  * Created by 29283 on 2018/3/26.
  */
 @ModelView(R.layout.activity_calendar)
-public class CalendarModel extends ViewHttpModel<CalendarActivity, ActivityCalendarBinding, CalendarEntity> {
+public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalendarBinding, CalendarEntity> {
     @Inject
     CalendarModel() {
     }
@@ -55,17 +55,15 @@ public class CalendarModel extends ViewHttpModel<CalendarActivity, ActivityCalen
 
 
     @Override
-    public void attachView(Bundle savedInstanceState, CalendarActivity activity) {
-        super.attachView(savedInstanceState, activity);
+    public void attachView(Bundle savedInstanceState, CalendarFragment calendarFragment) {
+        super.attachView(savedInstanceState, calendarFragment);
         calendarView = getDataBinding().calendarView;
         api.getClassCalendar(params).compose(new RestfulTransformer<>()).subscribe(calendarEntities -> {
             calendarView.setTipsDays(calendarEntities);
             list.addAll(calendarEntities);
             initCalendarView("2018-01-01", "2018-05", list);
         });
-
     }
-
 
     private Day getSelectDayFromMonth(int year, int month) {
         Day day = null;
@@ -179,8 +177,8 @@ public class CalendarModel extends ViewHttpModel<CalendarActivity, ActivityCalen
 
     private void moveToSelectMonth(int newSelectMonth, boolean isInit) {
 
-        int calendarview_month_item_unselect = ContextCompat.getColor(getT(), R.color.text_gray);
-        int calendarview_month_item_select = ContextCompat.getColor(getT(), R.color.text_yellow);
+        int calendarview_month_item_unselect = ContextCompat.getColor(getT().getContext(), R.color.text_gray);
+        int calendarview_month_item_select = ContextCompat.getColor(getT().getContext(), R.color.text_yellow);
 
         if (months != null) {
             months.get(selectMonth).getTextView().setTextColor(calendarview_month_item_unselect);
@@ -198,7 +196,7 @@ public class CalendarModel extends ViewHttpModel<CalendarActivity, ActivityCalen
     private void addMonthItem(LinearLayout linearLayout) {
         if (months != null) {
             linearLayout.removeAllViews();
-            LayoutInflater layoutInflater = LayoutInflater.from(getT());
+            LayoutInflater layoutInflater = LayoutInflater.from(getT().getContext());
             for (int i = 0; i < months.size(); i++) {
                 final Month month = months.get(i);
                 View activity_account_monthpay_function_month_item = layoutInflater.inflate(R.layout.activity_calendar_month_item, linearLayout, false);

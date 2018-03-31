@@ -112,4 +112,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         }
         return 1;
     }
+    public void onEnrollClick(View view){
+        //调用下订单
+    }
 }

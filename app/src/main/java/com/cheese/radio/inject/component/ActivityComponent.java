@@ -10,7 +10,6 @@ import com.cheese.radio.ui.media.classify.list.ClassifyListActivity;
 import com.cheese.radio.ui.media.group.GroupInfoActivity;
 import com.cheese.radio.ui.media.play.PlayActivity;
 import com.cheese.radio.ui.search.SearchActivity;
-import com.cheese.radio.ui.user.calendar.CalendarActivity;
 import com.cheese.radio.ui.user.edit.EditNameActivity;
 import com.cheese.radio.ui.user.enroll.EnrollActivity;
 
@@ -64,7 +63,7 @@ public interface ActivityComponent {
     void inject(ProductsActivity activity);
     void inject(EditNameActivity activity);
 
-    void inject(CalendarActivity activity);
+//    void inject(CalendarActivity activity);
     void inject(CenterActivity activity);
     void inject(MyCourseActivity activity);
     void inject(MyWorkActivity activity);
@@ -92,7 +91,7 @@ public interface ActivityComponent {
         String products = cheese + "products";
         String product = cheese + "product";
 
-        String calendar = cheese + "calendar";
+//        String calendar = cheese + "calendar";
         String center = cheese + "center";
         String course = cheese + "course";
         String work = cheese +"work";

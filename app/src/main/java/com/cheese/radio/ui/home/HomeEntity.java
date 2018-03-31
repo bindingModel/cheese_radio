@@ -9,6 +9,7 @@ import com.cheese.radio.ui.home.circle.CircleFragment;
 import com.cheese.radio.ui.home.clock.ClockFragment;
 import com.cheese.radio.ui.home.mine.HomeMineFragment;
 import com.cheese.radio.ui.home.page.HomePageFragment;
+import com.cheese.radio.ui.user.calendar.CalendarFragment;
 
 /**
  * Created by 29283 on 2018/2/22.
@@ -16,6 +17,12 @@ import com.cheese.radio.ui.home.page.HomePageFragment;
 
 public class HomeEntity extends ViewParse implements Item<BaseFragment> {
     private BaseFragment fragment;
+    private Boolean canBookCheck = false;
+
+    //判断是否显示日历
+    public HomeEntity(Boolean canBookCheck) {
+        this.canBookCheck = canBookCheck;
+    }
 
     @Override
     public BaseFragment getItem(int position, ViewGroup container) {
@@ -24,9 +31,15 @@ public class HomeEntity extends ViewParse implements Item<BaseFragment> {
                 case 0:
                     fragment = new HomePageFragment();
                     break;
-                case 1:
-                    fragment = new ClockFragment();
+                case 1: {
+                    if (canBookCheck) fragment = new CalendarFragment();
+
+                    else {
+                        fragment = new ClockFragment();
+                    }
                     break;
+
+                }
                 case 2:
                     fragment = new CircleFragment();
                     break;

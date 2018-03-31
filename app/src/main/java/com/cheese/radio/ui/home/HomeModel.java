@@ -23,7 +23,9 @@ import com.binding.model.model.ViewModel;
 import com.binding.model.model.inter.Entity;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
+import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityHomeBinding;
+import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.qualifier.manager.ActivityFragmentManager;
 import com.cheese.radio.ui.media.audio.AudioModel;
 import com.cheese.radio.ui.media.play.PlayEntity;
@@ -48,19 +50,14 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding,Play
     private int currentTab = -1;
     private FragmentManager fm;
     @Inject HomeModel() {}
-
+    private Boolean canBookCheck=false;
+    @Inject RadioApi api;
     @Override
     public void attachView(Bundle savedInstanceState, HomeActivity activity) {
         super.attachView(savedInstanceState, activity);
-        if (list.isEmpty())
-            for (int i = 0; i < 4; i++)
-                list.add(new HomeEntity());
-        fm = getT().getSupportFragmentManager();
-        RadioGroup radioGroup = getDataBinding().radioGroup;
-        radioGroup.setOnCheckedChangeListener(this);
-        radioGroup.check(radioGroup.getChildAt(0).getId());//check the first button
+        api.getCanBook(new CanBookParams("canBook")).compose(new RestfulTransformer<>()).
+                subscribe(canBookData ->{canBookCheck=canBookData.isResult();initFragment();});
 
-        currentItem.set(0);
     }
 
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
@@ -127,5 +124,15 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding,Play
             onForwardClick(null);
         }
     }
+    private void initFragment(){
+        if (list.isEmpty())
+            for (int i = 0; i < 4; i++)
+                list.add(new HomeEntity(canBookCheck));
+        fm = getT().getSupportFragmentManager();
+        RadioGroup radioGroup = getDataBinding().radioGroup;
+        radioGroup.setOnCheckedChangeListener(this);
+        radioGroup.check(radioGroup.getChildAt(0).getId());//check the first button
 
+        currentItem.set(0);
+    }
 }

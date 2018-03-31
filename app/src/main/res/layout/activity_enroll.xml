@@ -6,188 +6,302 @@
         <variable
             name="vm"
             type="com.cheese.radio.ui.user.enroll.EnrollModel" />
+
         <variable
             name="productEntity"
-            type="com.cheese.radio.ui.user.product.list.ProductsEntity"/>
+            type="com.cheese.radio.ui.user.product.list.ProductsEntity" />
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background_gray"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <include layout="@layout/toolbar" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background_gray"
+                android:orientation="vertical">
+
+                <include layout="@layout/toolbar" />
+
+                <LinearLayout
+                    style="@style/profile_input_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="53.28dp"
+                    android:layout_marginTop="19.2dp">
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/name" />
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_solid"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="小猪佩奇" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/profile_input_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="53.28dp"
+                    android:layout_marginTop="1dp">
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/sex" />
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_solid"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:onClick="@{vm::onSelectSexClick}"
+                        android:text="@{vm.mSex}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/birthday_button"
+                    style="@style/profile_input_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="53.28dp"
+                    android:layout_marginTop="1dp">
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/birthday" />
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_solid"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:onClick="@{vm::onSelectBirthClick}"
+                        android:text="@{vm.mDate}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/profile_input_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="53.28dp"
+                    android:layout_marginTop="19.2dp">
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/phone" />
+
+                    <EditText
+                        style="@style/profile_input_linearlayout_solid"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="@string/input_phone"
+                        android:text=""
+                        android:textSize="14.4sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/city_button"
+                    style="@style/profile_input_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="53.28dp"
+                    android:layout_marginTop="1dp">
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/address" />
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_solid"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:focusable="false"
+                        android:hint="@string/select_city"
+                        android:onClick="@{vm::onSelectCityClick}"
+                        android:text="@{vm.mCity}"
+                        android:textSize="14.4sp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    style="@style/profile_input_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="53.28dp"
+                    android:layout_marginTop="19.2dp">
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/ages" />
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_solid"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="@string/select_age"
+                        android:onClick="@{vm::onSelectAgeClick}"
+                        android:text="@{vm.mAge}"
+                        android:textSize="14.4sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/course_selection"
+                    style="@style/profile_input_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="53.28dp"
+                    android:layout_marginTop="1dp"
+                    android:onClick="@{vm::onSelectCourseClick}">
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/course_package" />
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_solid"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:focusable="false"
+                        android:hint="@string/select_course"
+                        android:text="@{productEntity.name}"
+                        android:textSize="14.4sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="13.5dp"
+                    android:layout_marginStart="13.5dp"
+                    android:layout_marginTop="8.6dp"
+                    android:layout_marginBottom="8.6dp"
+                    android:text="@string/pay_for" />
+
+                <LinearLayout
+                    style="@style/profile_input_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="53.28dp"
+                    android:layout_marginTop="1dp">
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_head"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:text="@string/wx_pay" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="15dp"
+                        android:drawableLeft="@mipmap/tick"
+                        android:button="@null"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/profile_input_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="53.28dp"
+                    android:layout_marginTop="1dp">
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/address" />
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_solid"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:focusable="false"
+                        android:hint="@string/select_city"
+                        android:onClick="@{vm::onSelectCityClick}"
+                        android:text="@{vm.mCity}"
+                        android:textSize="14.4sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/profile_input_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="53.28dp"
+                    android:layout_marginTop="1dp">
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/address" />
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_solid"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:focusable="false"
+                        android:hint="@string/select_city"
+                        android:onClick="@{vm::onSelectCityClick}"
+                        android:text="@{vm.mCity}"
+                        android:textSize="14.4sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+    </ScrollView>
         <LinearLayout
-            style="@style/profile_input_linearlayout"
             android:layout_width="match_parent"
-            android:layout_height="53.28dp"
-            android:layout_marginTop="19.2dp">
-
-            <TextView
-                style="@style/profile_input_linearlayout_head"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/name" />
-
-            <TextView
-                style="@style/profile_input_linearlayout_solid"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="小猪佩奇" />
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/profile_input_linearlayout"
-            android:layout_width="match_parent"
-            android:layout_height="53.28dp"
-            android:layout_marginTop="1dp">
-
-            <TextView
-                style="@style/profile_input_linearlayout_head"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/sex" />
-
-            <TextView
-                style="@style/profile_input_linearlayout_solid"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="@{vm::onSelectSexClick}"
-                android:text="@{vm.mSex}" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/birthday_button"
-            style="@style/profile_input_linearlayout"
-            android:layout_width="match_parent"
-            android:layout_height="53.28dp"
-            android:layout_marginTop="1dp">
-
-            <TextView
-                style="@style/profile_input_linearlayout_head"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/birthday" />
-
-            <TextView
-                style="@style/profile_input_linearlayout_solid"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="@{vm::onSelectBirthClick}"
-                android:text="@{vm.mDate}" />
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/profile_input_linearlayout"
-            android:layout_width="match_parent"
-            android:layout_height="53.28dp"
-            android:layout_marginTop="19.2dp">
-
-            <TextView
-                style="@style/profile_input_linearlayout_head"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/phone" />
-
-            <EditText
-                style="@style/profile_input_linearlayout_solid"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@null"
-                android:hint="@string/input_phone"
-                android:text=""
-                android:textSize="14.4sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/city_button"
-            style="@style/profile_input_linearlayout"
-            android:layout_width="match_parent"
-            android:layout_height="53.28dp"
-            android:layout_marginTop="1dp">
-
-            <TextView
-                style="@style/profile_input_linearlayout_head"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/address" />
-
-            <TextView
-                style="@style/profile_input_linearlayout_solid"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@null"
-                android:focusable="false"
-                android:hint="@string/select_city"
-                android:onClick="@{vm::onSelectCityClick}"
-                android:text="@{vm.mCity}"
-                android:textSize="14.4sp" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            style="@style/profile_input_linearlayout"
-            android:layout_width="match_parent"
-            android:layout_height="53.28dp"
-            android:layout_marginTop="19.2dp">
-
-            <TextView
-                style="@style/profile_input_linearlayout_head"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/ages" />
-
-            <TextView
-                style="@style/profile_input_linearlayout_solid"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@null"
-                android:hint="@string/select_age"
-                android:onClick="@{vm::onSelectAgeClick}"
-                android:text="@{vm.mAge}"
-                android:textSize="14.4sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/course_selection"
-            style="@style/profile_input_linearlayout"
-            android:layout_width="match_parent"
-            android:layout_height="53.28dp"
-            android:layout_marginTop="1dp"
-            android:onClick="@{vm::onSelectCourseClick}">
-
-            <TextView
-                style="@style/profile_input_linearlayout_head"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/course_package" />
-
-            <TextView
-                style="@style/profile_input_linearlayout_solid"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@null"
-                android:focusable="false"
-                android:hint="@string/select_course"
-                android:text="@{productEntity.name}"
-                android:textSize="14.4sp" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="13.5dp"
-            android:layout_marginStart="13.5dp"
-            android:layout_marginTop="8.6dp"
-            android:text="@string/pay_for" />
-    </LinearLayout>
+            android:orientation="horizontal"
+            android:background="@color/background_white"
+
+            android:layout_gravity="bottom">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:text="@string/price"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:textColor="@color/text_red"
+                android:text="6000"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:onClick="@{vm::onEnrollClick}"
+                android:background="@color/text_yellow"
+                android:textColor="@color/text_white"
+                android:text="@string/enroll"/>
+        </LinearLayout>
+</FrameLayout>
 </layout>

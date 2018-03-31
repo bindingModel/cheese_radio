@@ -9,56 +9,84 @@
             type="com.cheese.radio.ui.user.calendar.CalendarModel" />
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/background_white">
+        android:layout_height="match_parent">
 
-        <include layout="@layout/toolbar" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:id="@+id/textViewYear"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:padding="5dp"
-            android:text="2018年" />
-
-        <HorizontalScrollView
-            android:id="@+id/horizontalScrollView"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:scrollbars="none">
+            android:paddingTop="44dp"
+            android:layout_height="match_parent">
 
-            <RelativeLayout
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:background="@color/background_white"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/textViewYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:text="2018年"
+                    android:textSize="15sp" />
+
+                <HorizontalScrollView
+                    android:id="@+id/horizontalScrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:scrollbars="none">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/linearLayoutMonth"
+                            android:layout_width="match_parent"
+                            android:layout_height="42dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal" />
+                    </RelativeLayout>
+
+                </HorizontalScrollView>
+
+                <com.cheese.radio.util.views.CalendarView
+                    android:id="@+id/calendarView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:dateEnd="2017.12"
+                    app:dateStart="2016.12" />
+
 
                 <LinearLayout
-                    android:id="@+id/linearLayoutMonth"
                     android:layout_width="match_parent"
-                    android:layout_height="42dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal" />
-            </RelativeLayout>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:inflates="@{vm.theDayClass}" />
+            </LinearLayout>
+        </ScrollView>
 
-        </HorizontalScrollView>
-
-        <com.cheese.radio.util.views.CalendarView
-            android:id="@+id/calendarView"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:dateEnd="2017.12"
-            app:dateStart="2016.12" />
+            android:layout_height="44dp"
+            android:background="@color/background_white">
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:inflates="@{vm.theDayClass}" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="9.6dp"
+                android:text="知识闹钟"
+                android:textColor="@color/text_black"
+                android:textSize="15sp" />
+        </FrameLayout>
+    </FrameLayout>
 </layout>
