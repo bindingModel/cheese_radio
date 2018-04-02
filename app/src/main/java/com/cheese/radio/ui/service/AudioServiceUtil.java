@@ -5,7 +5,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.IBinder;
 import android.text.TextUtils;
@@ -36,7 +35,10 @@ import static com.cheese.radio.ui.service.AudioService.Reset;
 
 public class AudioServiceUtil implements TimeEntity {
     private static AudioServiceUtil instance = new AudioServiceUtil();
+    private int duration = -1;
+    private int current = 0;
     private String uri;
+    private OnTimingListener onTimingListener;
 
     private AudioServiceUtil() {
     }
@@ -99,19 +101,38 @@ public class AudioServiceUtil implements TimeEntity {
         return Reset;
     }
 
+    public void setDuration(int duration){
+        setDuration(duration,null);
+    }
+
+    public void setDuration(int duration,OnTimingListener onTimingListener) {
+        this.duration = duration;
+        current = 0;
+        this.onTimingListener = onTimingListener;
+    }
+
     @Override
     public void getTurn() {
-        if(controller == null)return;
-        if(controller.getStatus() == Play&&!controller.isPlaying()){
-            controller.setStatus(Reset);
-            try {
-                start(uri);
-            } catch (IOException e) {
-                e.printStackTrace();
+        if (controller == null) return;
+        if (controller.isPlaying()) {
+            if (controller.getStatus() == Pause) pause();
+            else if (duration>-1 && controller.getStatus() == Play) {
+                if(++current > duration){
+                    controller.setStatus(Pause);
+                    current = 0;
+                    duration = -1;
+                    if(onTimingListener!=null)onTimingListener.onTimingEnd();
+                }
             }
-        }else if(controller.getStatus() == Pause &&controller.isPlaying()){
-            pause();
-        }
+        } else if (controller.getStatus() == Play) {
+                controller.setStatus(Reset);
+                try {
+                    start(uri);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
     }
 
     public boolean play() {

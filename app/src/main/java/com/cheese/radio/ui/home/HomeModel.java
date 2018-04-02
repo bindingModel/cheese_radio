@@ -40,9 +40,9 @@ import static com.binding.model.adapter.AdapterType.refresh;
 /**
  * Created by 29283 on 2018/2/22.
  */
-@ModelView(R.layout.activity_home)
-public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding,PlayEntity>implements RadioGroup.OnCheckedChangeListener  {
-    public ObservableBoolean checked = new ObservableBoolean();
+@ModelView(value = R.layout.activity_home)
+public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding,PlayEntity,CanBookData> implements RadioGroup.OnCheckedChangeListener  {
+    public transient ObservableBoolean checked = new ObservableBoolean();
     private int position = 0;
     private List<Entity> fmsEntities = new ArrayList<>();
     private final List<HomeEntity> list = new ArrayList<>();
@@ -55,9 +55,14 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding,Play
     @Override
     public void attachView(Bundle savedInstanceState, HomeActivity activity) {
         super.attachView(savedInstanceState, activity);
-        api.getCanBook(new CanBookParams("canBook")).compose(new RestfulTransformer<>()).
-                subscribe(canBookData ->{canBookCheck=canBookData.isResult();initFragment();});
+        setRcHttp((offset1, refresh1) -> api.getCanBook(new CanBookParams("canBook"))
+                .compose(new RestfulTransformer<>()));
+    }
 
+    @Override
+    public void accept(CanBookData canBookData) throws Exception {
+        canBookCheck=canBookData.isResult();
+        initFragment();
     }
 
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
