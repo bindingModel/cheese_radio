@@ -27,6 +27,7 @@ import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityHomeBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.qualifier.manager.ActivityFragmentManager;
+import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.media.audio.AudioModel;
 import com.cheese.radio.ui.media.play.PlayEntity;
 
@@ -40,9 +41,9 @@ import static com.binding.model.adapter.AdapterType.refresh;
 /**
  * Created by 29283 on 2018/2/22.
  */
-@ModelView(value = R.layout.activity_home)
-public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding,PlayEntity,CanBookData> implements RadioGroup.OnCheckedChangeListener  {
-    public transient ObservableBoolean checked = new ObservableBoolean();
+@ModelView(R.layout.activity_home)
+public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding,PlayEntity>implements RadioGroup.OnCheckedChangeListener  {
+    public ObservableBoolean checked = new ObservableBoolean();
     private int position = 0;
     private List<Entity> fmsEntities = new ArrayList<>();
     private final List<HomeEntity> list = new ArrayList<>();
@@ -50,18 +51,13 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding,Play
     private int currentTab = -1;
     private FragmentManager fm;
     @Inject HomeModel() {}
-    private Boolean canBookCheck=false;
     @Inject RadioApi api;
     @Override
     public void attachView(Bundle savedInstanceState, HomeActivity activity) {
         super.attachView(savedInstanceState, activity);
-        setRcHttp((offset1, refresh1) -> api.getCanBook(new CanBookParams("canBook"))
-                .compose(new RestfulTransformer<>()));
-    }
-
-    @Override
-    public void accept(CanBookData canBookData) throws Exception {
-        canBookCheck=canBookData.isResult();
+        api.getCanBook(new CanBookParams("canBook")).compose(new RestfulTransformer<>()).
+                subscribe(canBookData -> IkeApplication.getUser().setCanBookCheck(canBookData.isResult())
+                   );
         initFragment();
     }
 
@@ -132,7 +128,7 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding,Play
     private void initFragment(){
         if (list.isEmpty())
             for (int i = 0; i < 4; i++)
-                list.add(new HomeEntity(canBookCheck));
+                list.add(new HomeEntity());
         fm = getT().getSupportFragmentManager();
         RadioGroup radioGroup = getDataBinding().radioGroup;
         radioGroup.setOnCheckedChangeListener(this);

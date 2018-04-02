@@ -28,6 +28,8 @@ public class DetailsModel extends RecyclerModel<DetailsActivity,ActivityDetailsB
     @Override
     public void attachView(Bundle savedInstanceState, DetailsActivity activity) {
         super.attachView(savedInstanceState, activity);
+        setEnable(false);
+        setPageFlag(false);
         getDataBinding().layoutRecycler.setVm(this);
         getTitle(getT().getIntent().getIntExtra(Constant.id,0));
         list.addAll(getT().getIntent().getParcelableArrayListExtra(Constant.detailsEntity));

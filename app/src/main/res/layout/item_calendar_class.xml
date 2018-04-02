@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -15,44 +16,78 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/background_white"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="96dp"
+                android:layout_height="80dp"
+                android:layout_margin="15dp"
+                android:onClick="@{vm::onCourseClick}"
                 android:src="@{vm.classImage}" />
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:background="@drawable/normal_bottom_line">
 
-                <TextView
+                <ImageView
+                    android:layout_width="21dp"
+                    android:layout_height="21dp"
+                    android:layout_gravity="center|start"
+                    app:head="@{vm.teacherIcon}" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{vm.className,default=1234567890}" />
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@{vm.teacherName}"
-                    android:text="@{vm.teacherName,default=1234567890}" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{vm.className,default=1234567890}"
+                        android:textColor="@color/text_black"
+                        android:onClick="@{vm::onCourseClick}"
+                        android:textSize="14.4sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@mipmap/clock_mini"
-                    android:text="@{vm.time,default=123456789}" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="7dp"
+                        android:paddingLeft="26dp"
+                        android:paddingRight="26dp"
+                        android:paddingTop="7dp"
+                        android:onClick="@{vm::onTeacherClick}"
+                        android:text="@{vm.teacherName,default=1234567890}"
+                        android:textColor="@color/text_gray"
+                        android:textSize="12.5sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/clock_mini"
+                        android:drawablePadding="5dp"
+                        android:text="@{vm.time,default=123456789}"
+                        android:textColor="@color/text_gray"
+                        android:textSize="12.5sp" />
 
 
-            </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
         </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:text="@string/service_centre" />
+            android:layout_margin="12dp"
+            android:background="@{vm.enrollBackground}"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="@{vm.enrolMsg}"
+            android:onClick="@{vm::onEnrollClick}"
+            android:textColor="@color/text_white" />
     </FrameLayout>
 
 </layout>

@@ -29,7 +29,9 @@ public class AnchorData  {
         private int authorId;
 
         public AnchorSingleEntity getSingle() {
+            if(single!=null)
             return single;
+            return new AnchorSingleEntity();
         }
 
         public void setSingle(AnchorSingleEntity single) {

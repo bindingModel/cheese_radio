@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.cheese.radio.ui.media.course.details.CourseDetailsModel" />
+        <variable
+            name="entity"
+            type="com.cheese.radio.ui.media.course.details.CourseDetailsData"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+           <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/normal_bottom_top_line">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="100dp"
+                            android:layout_margin="12dp"
+                            android:src="@{entity.classImage}" />
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center|start"
+                            android:layout_marginLeft="140dp"
+                          >
+
+                            <ImageView
+                                android:layout_width="21dp"
+                                android:layout_height="21dp"
+                                android:layout_gravity="center|start"
+                                app:head="@{entity.teacherIcon}" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@{entity.className,default=1234567890}"
+                                    android:textColor="@color/text_black"
+                                    android:textSize="14.4sp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingBottom="7dp"
+                                    android:paddingLeft="26dp"
+                                    android:paddingRight="26dp"
+                                    android:paddingTop="7dp"
+                                    android:text="@{entity.teacherName,default=1234567890}"
+                                    android:textColor="@color/text_gray"
+                                    android:textSize="12.5sp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:drawableLeft="@mipmap/clock_mini"
+                                    android:drawablePadding="5dp"
+                                    android:text="@{entity.timeEntity,default=123456789}"
+                                    android:textColor="@color/text_gray"
+                                    android:textSize="12.5sp" />
+
+
+                            </LinearLayout>
+                        </FrameLayout>
+
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/background_white"
+                        android:padding="12dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@{entity.countMsg}" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@{entity.keepTimeMsg}" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/text_white"
+                        android:padding="15dp"
+                        android:text="简介"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/text_white"
+                        android:padding="15dp"
+                        android:text="内容"/>
+                </LinearLayout>
+            </ScrollView>
+
+            <Button
+                android:id="@+id/enroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_margin="30dp"
+                android:background="@drawable/calendarview_rectangle_yellow"
+                android:text="@string/order"
+                android:onClick="@{vm::onEnrollClick}"
+                android:textColor="@color/text_white" />
+        </FrameLayout>
+    </LinearLayout>
+</layout>

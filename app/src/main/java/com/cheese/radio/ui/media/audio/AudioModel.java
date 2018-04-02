@@ -18,7 +18,6 @@ import com.binding.model.App;
 import com.binding.model.cycle.Container;
 import com.binding.model.layout.rotate.TimeEntity;
 import com.binding.model.layout.rotate.TimeUtil;
-import com.binding.model.model.ViewHttpModel;
 import com.binding.model.model.ViewModel;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.ui.IkeApplication;
@@ -36,8 +35,8 @@ import static com.cheese.radio.ui.service.AudioService.Prepared;
  */
 
 
-public abstract class AudioModel<T extends Container, Binding extends ViewDataBinding, Entity,D>
-        extends ViewHttpModel<T, Binding,D>
+public abstract class AudioModel<T extends Container, Binding extends ViewDataBinding, Entity>
+        extends ViewModel<T, Binding>
         implements MediaPlayer.OnCompletionListener, SeekBar.OnSeekBarChangeListener, TimeEntity {
 
     public ObservableField<String> currentTime = new ObservableField<>();
@@ -55,6 +54,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
     @Override
     public void attachView(Bundle savedInstanceState, T t) {
         super.attachView(savedInstanceState, t);
+//        util.pause();
         TimeUtil.getInstance().add(this);
         if (getSeekBar() != null) getSeekBar().setOnSeekBarChangeListener(this);
     }

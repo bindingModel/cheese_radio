@@ -203,6 +203,7 @@
                         android:layout_weight="1"
                         android:button="@null"
                         android:text="@{entity.favorCount}"
+                        android:onClick="@{vm::onAddFavorityClick}"
                         android:drawableLeft="@drawable/collection_star"
                         />
 

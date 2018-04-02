@@ -40,9 +40,10 @@ public class AnchorEntity extends ViewParse implements Item<BaseFragment> {
             }
 
             Bundle bundle = new Bundle();
-            bundle.putInt(Constant.authorId, authorId);
+//            bundle.putInt(Constant.authorId, authorId);
+            bundle.putParcelableArrayList(Constant.anchorSingleItem,anchorData.getSingle().getList());
             bundle.putString(Constant.description,anchorData.getDescription());
-            bundle.putInt(Constant.position, position);
+//            bundle.putInt(Constant.position, position);
             fragment.setArguments(bundle);
         }
         return fragment;

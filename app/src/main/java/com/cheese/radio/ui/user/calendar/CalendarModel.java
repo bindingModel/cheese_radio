@@ -41,10 +41,10 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
     RadioApi api;
 
     @Override
-    public void accept(List<CalendarEntity> calendarEntities) {
+    public void accept(List<CalendarEntity> calendarEntities) throws Exception {
         calendarView.setTipsDays(calendarEntities);
         list.addAll(calendarEntities);
-        initCalendarView("2018-01-01", "2018-05", list);
+        initCalendarView("2017-12", "2018-12", list);
     }
 
     private CalendarView calendarView;
@@ -154,11 +154,11 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
             @Override
             public void selectDay(LinearLayout linearLayout, Day day) {
                 Iterator<CalendarEntity> iterator = list.iterator();
-                ArrayList<CalendarEntity> list=new ArrayList<>();
+                ArrayList<CalendarEntity> list = new ArrayList<>();
                 while (iterator.hasNext()) {
-                    CalendarEntity entity=iterator.next();
+                    CalendarEntity entity = iterator.next();
                     //找到选中日期的课程
-                    if (equalNumbers(entity.getDays(),day.getSolar())) {
+                    if (equalNumbers(entity.getDays(), day.getSolar())) {
                         list.add(entity);
                     }
                 }
@@ -235,10 +235,10 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
 
 
     private boolean equalNumbers(int[] a, int[] b) {
-        if (a == null || b == null)return false;
-        if(a.length!=b.length)return false;
-        for (int i = 0; i <a.length ; i++) {
-            if(a[i]!=b[i])return false;
+        if (a == null || b == null) return false;
+        if (a.length != b.length) return false;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] != b[i]) return false;
         }
         return true;
     }

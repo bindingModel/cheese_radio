@@ -70,5 +70,6 @@
         <activity android:name=".ui.user.my.favority.MyFavorityActivity" android:label="@string/my_collection"/>
         <activity android:name=".ui.user.my.message.MessageActivity" android:label="@string/my_message"/>
         <activity android:name=".ui.user.my.message.details.DetailsActivity" android:label="@string/message_details"/>
+        <activity android:name=".ui.media.course.details.CourseDetailsActivity" android:label="@string/course_details"/>
     </application>
 </manifest>

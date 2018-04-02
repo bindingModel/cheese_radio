@@ -35,17 +35,13 @@ public interface Constant {
     String path = "path";
     String bundle = "bundle";
     String authorId="authorId";
-    String CONTENT_LIST="CONTENT_LIST";
-    String CATEGORY_LIST="CATEGORY_LIST";
-    String AUTHOR_LIST="AUTHOR_LIST";
-    String AUTHOR_INFO="AUTHOR_INFO";
-    String GROUP_INFO="GROUP_INFO";
-    String PLAY="PLAY";
     String location="location";
     String groupInfoId="groupInfoId";
     String description="description";
     String anchorSingleItem="anchorSingleItem";
     String detailsEntity="detailsEntity";
+    String classId="classId";
+    String classInfo="classInfo";
 }
 
 //    static Drawable getMipmap(String name,int defMipmap){

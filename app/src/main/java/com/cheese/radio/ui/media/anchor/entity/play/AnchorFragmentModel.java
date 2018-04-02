@@ -13,6 +13,8 @@ import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.media.anchor.AnchorParams;
 import com.cheese.radio.ui.media.anchor.entity.play.item.AnchorSingleItem;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 /**
@@ -25,16 +27,21 @@ public class AnchorFragmentModel extends RecyclerModel<AnchorFragment, FragmentA
         super(new RecyclerAdapter<>());
     }
     private AnchorParams params;
-    @Inject RadioApi api;
     @Override
     public void attachView(Bundle savedInstanceState, AnchorFragment anchorFragment) {
         super.attachView(savedInstanceState, anchorFragment);
         Bundle bundle = anchorFragment.getArguments();
-        Integer authorId = bundle.getInt(Constant.authorId, -1);
-        if(authorId !=-1)
-        params=new AnchorParams("info", authorId);
-         setRcHttp((offset1, refresh) ->  api.getAuthor(params).compose(new RestfulTransformer<>()).map(
-                    anchorData -> {return anchorData.getSingle().getList();}
-            ));
+        if (bundle != null ) {
+            List<AnchorSingleItem> list = bundle.getParcelableArrayList(Constant.anchorSingleItem);
+            if(list!=null)
+                try {
+                    accept(list);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+        }
+
+
+
     }
 }

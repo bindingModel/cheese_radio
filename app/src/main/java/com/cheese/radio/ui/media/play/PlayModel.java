@@ -21,6 +21,7 @@ import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.media.audio.AudioModel;
 import com.cheese.radio.ui.media.play.popup.PopupPlayModel;
 import com.cheese.radio.ui.media.play.popup.SelectPlayTimeEntity;
+import com.cheese.radio.ui.user.addfavority.AddFavorityParams;
 import com.cheese.radio.util.MyBaseUtil;
 
 import java.util.ArrayList;
@@ -28,16 +29,19 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.disposables.Disposable;
-
 /**
  * Created by 29283 on 2018/3/17.
  */
 @ModelView(R.layout.activity_play)
-public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, PlayEntity,PlayEntity> {
-    @Inject PlayModel() {}
-    @Inject RadioApi api;
-    @Inject PopupPlayModel popupPlayModel;
+public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, PlayEntity> {
+    @Inject
+    PlayModel() {
+    }
+
+    @Inject
+    RadioApi api;
+    @Inject
+    PopupPlayModel popupPlayModel;
     public final List<PlayEntity> list = new ArrayList<>();
     private Integer id;
     private Integer totalTime, playTime;
@@ -49,18 +53,9 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         super.attachView(savedInstanceState, activity);
         intTimes();
         id = getT().getIntent().getIntExtra(Constant.id, 0);
-        setRcHttp((offset1, refresh) ->
-                api.getContentInfo(new PlayParams("contentInfo", id))
-                        .compose(new RestfulTransformer<>()));
+        api.getContentInfo(new PlayParams("contentInfo", id)).compose(new RestfulTransformer<>()).subscribe(
+                this::setSingelEntity, throwable -> BaseUtil.toast(getT(), throwable));
         initPopupPlayModel(savedInstanceState);
-    }
-
-    @Override
-    public void accept(PlayEntity playEntity) throws Exception {
-        list.add(playEntity);
-        if (isPlaying()) setEntities(list);
-        else playFirst(list);
-        getDataBinding().setEntity(playEntity);
     }
 
     @Override
@@ -81,6 +76,13 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     @Override
     public TextView getLength() {
         return getDataBinding() == null ? null : getDataBinding().length;
+    }
+
+    public void setSingelEntity(PlayEntity entity) {
+        list.add(entity);
+        if (isPlaying()) setEntities(list);
+        else playFirst(list);
+        getDataBinding().setEntity(entity);
     }
 
     public void onSelectClick(View view) {
@@ -119,6 +121,12 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     public void intTimes() {
         totalTime = 0;
         playTime = 0;
+    }
+
+    public void onAddFavorityClick(View view){
+        api.addFavority(new AddFavorityParams("addFavority")).compose(new RestfulTransformer<>()).subscribe(
+
+        );
     }
 }
 

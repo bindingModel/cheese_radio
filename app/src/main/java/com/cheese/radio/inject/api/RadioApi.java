@@ -13,12 +13,15 @@ import com.cheese.radio.ui.media.anchors.AnchorsParams;
 import com.cheese.radio.ui.media.classify.ClassifyData;
 import com.cheese.radio.ui.media.classify.ClassifyParams;
 import com.cheese.radio.ui.media.classify.list.ClassifyListParams;
+import com.cheese.radio.ui.media.course.details.CourseDetailsData;
+import com.cheese.radio.ui.media.course.details.CourseDetailsParams;
 import com.cheese.radio.ui.media.group.GroupInfoParams;
 import com.cheese.radio.ui.media.group.fragment.GroupData;
 import com.cheese.radio.ui.media.play.PlayEntity;
 import com.cheese.radio.ui.media.play.PlayParams;
 import com.cheese.radio.ui.search.entity.HotSearchEntity;
 import com.cheese.radio.ui.search.params.HotSearchParams;
+import com.cheese.radio.ui.user.addfavority.AddFavorityParams;
 import com.cheese.radio.ui.user.calendar.CalendarEntity;
 import com.cheese.radio.ui.user.calendar.ClassCalendarParams;
 import com.cheese.radio.ui.user.demo.DemoData;
@@ -102,6 +105,9 @@ public interface RadioApi {
     @POST("/1.0/user")
     Observable<InfoEntity<String>> setProperty(@Body ProfileParams params);
 
+//    @POST("/1.0/user")
+//    Observable<InfoEntity<String>> getProperty(@Body ProfileParams params);
+
     @POST("/1.0/user")
     Observable<InfoEntity<MyCourseData>> getMyCourse(@Body MyCourseParams params);
 
@@ -122,4 +128,14 @@ public interface RadioApi {
 
     @POST("/1.0/class")
     Observable<InfoEntity<CanBookData>> getCanBook(@Body CanBookParams params);
+
+    @POST("/1.0/class")
+    Observable<InfoEntity<CourseDetailsData>> getClassInfo(@Body CourseDetailsParams params);
+
+    @POST("/1.0/class")
+    Observable<InfoEntity<String>> getBookClass(@Body CourseDetailsParams params);
+
+    @POST("/1.0/user")
+    Observable<InfoEntity<String>> addFavority(@Body AddFavorityParams params);
+
 }

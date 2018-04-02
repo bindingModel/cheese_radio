@@ -67,7 +67,7 @@ public class AnchorModel extends AudioPagerModel<AnchorActivity, ActivityAnchorB
         addDisposable(api.getAuthor(params).compose(new RestfulTransformer<>()).subscribe(anchorData -> {
             getDataBinding().setEntity(anchorData);
             setFragment(this.anchorData=anchorData);
-            getDataBinding().anchorData.setText("作品（" + anchorData.getSingle().getList().size() + ")");
+            getDataBinding().anchorData.setText("作品（" + anchorData.getSingle().getList().size() + "）");
         }));
     }
 

@@ -1,5 +1,6 @@
 package com.cheese.radio.ui.user.my.message;
 
+import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.view.View;
 
@@ -14,6 +15,9 @@ import com.cheese.radio.databinding.ActivityMessageBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
+import com.cheese.radio.ui.user.calendar.CalendarEntity;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -21,14 +25,20 @@ import javax.inject.Inject;
  * Created by 29283 on 2018/3/31.
  */
 @ModelView(R.layout.activity_message)
-public class MessageModel extends ViewHttpModel<MessageActivity,ActivityMessageBinding,MessagesData> {
+public class MessageModel extends ViewHttpModel<MessageActivity, ActivityMessageBinding, MessagesData> {
 
-    @Inject MessageModel(){}
+    @Inject
+    MessageModel() {
+    }
 
     @Override
     public void accept(MessagesData messagesData) throws Exception {
-
+        this.messagesData = messagesData;
+        initMsg();
     }
+
+    public final ObservableField<ArrayList<CalendarEntity>> theDayClass = new ObservableField<>();
+
     private MessagesData messagesData;
     @Inject
     RadioApi api;
@@ -36,17 +46,51 @@ public class MessageModel extends ViewHttpModel<MessageActivity,ActivityMessageB
     @Override
     public void attachView(Bundle savedInstanceState, MessageActivity activity) {
         super.attachView(savedInstanceState, activity);
-        api.getMessages(new MessagesParams("getMessages")).compose(new RestfulTransformer<>())
-                .subscribe(messagesData -> {
-                    this.messagesData=messagesData;
+        setRcHttp((offset1, refresh) -> api.getMessages(new MessagesParams("getMessages")).compose(new RestfulTransformer<>())
+        );
 
-                });
     }
-    public void onSystemClick(View view){
+
+    public void onSystemClick(View view) {
         //跳转子消息
-        Bundle bundle=new Bundle();
-        bundle.putInt(Constant.id,0);
-        bundle.putParcelableArrayList(Constant.detailsEntity,messagesData.getSystem());
-        ARouterUtil.navigation(ActivityComponent.Router.detail,bundle);
+        Bundle bundle = new Bundle();
+        switch (view.getId()) {
+            case R.id.system_message: {
+                bundle.putInt(Constant.id, 0);
+                bundle.putParcelableArrayList(Constant.detailsEntity, messagesData.getSystem());
+                break;
+            }
+            case R.id.vip_message: {
+                bundle.putInt(Constant.id, 1);
+                bundle.putParcelableArrayList(Constant.detailsEntity, messagesData.getUser());
+                break;
+            }
+            case R.id.class_message: {
+                bundle.putInt(Constant.id, 2);
+                bundle.putParcelableArrayList(Constant.detailsEntity, messagesData.getClassX());
+                break;
+            }
+            case R.id.book_message: {
+                bundle.putInt(Constant.id, 3);
+                bundle.putParcelableArrayList(Constant.detailsEntity, messagesData.getBook());
+                break;
+            }
+        }
+        ARouterUtil.navigation(ActivityComponent.Router.detail, bundle);
+    }
+
+    private void initMsg() {
+       /* if(messagesData.getSystem()!=null)                           */
+        getDataBinding().sysText.setText(messagesData.getSystem().get(0).getContent());
+       /* else getDataBinding().systemMessage.setVisibility(View.GONE);*/
+       /* if(messagesData.getUser()!=null)                             */
+        getDataBinding().vipText.setText(messagesData.getUser().get(0).getContent());
+       /* else getDataBinding().vipMessage.setVisibility(View.GONE);*/
+       /* if(messagesData.getClassX()!=null)                           */
+        getDataBinding().classText.setText(messagesData.getClassX().get(0).getContent());
+       /* else getDataBinding().classMessage.setVisibility(View.GONE);*/
+       /* if(messagesData.getBook()!=null)                             */
+        getDataBinding().bookText.setText(messagesData.getBook().get(0).getContent());
+       /* else getDataBinding().bookMessage.setVisibility(View.GONE);*/
     }
 }

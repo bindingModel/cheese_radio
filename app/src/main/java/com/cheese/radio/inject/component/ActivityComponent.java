@@ -7,6 +7,7 @@ import com.cheese.radio.ui.media.anchor.AnchorActivity;
 import com.cheese.radio.ui.media.anchors.AnchorsActivity;
 import com.cheese.radio.ui.media.classify.ClassifyActivity;
 import com.cheese.radio.ui.media.classify.list.ClassifyListActivity;
+import com.cheese.radio.ui.media.course.details.CourseDetailsActivity;
 import com.cheese.radio.ui.media.group.GroupInfoActivity;
 import com.cheese.radio.ui.media.play.PlayActivity;
 import com.cheese.radio.ui.search.SearchActivity;
@@ -46,30 +47,52 @@ import dagger.Component;
 @Component(dependencies = AppComponent.class, modules = {ActivityModule.class})
 public interface ActivityComponent {
     void inject(HomeActivity activity);
+
     void inject(LoginActivity activity);
+
     void inject(StartUpActivity activity);
+
     void inject(GuideActivity activity);
+
     void inject(AnchorsActivity activity);
+
     void inject(ProfileActivity activity);
+
     void inject(EnrollActivity activity);
+
     void inject(AnchorActivity activity);
+
     void inject(ClassifyActivity activity);
+
     void inject(PlayActivity activity);
+
     void inject(RegisterOneActivity activity);
+
     void inject(RegisterTwoActivity activity);
+
     void inject(GroupInfoActivity activity);
+
     void inject(SearchActivity activity);
+
     void inject(ClassifyListActivity activity);
+
     void inject(ProductsActivity activity);
+
     void inject(EditNameActivity activity);
 
-//    void inject(CalendarActivity activity);
+    //    void inject(CalendarActivity activity);
     void inject(CenterActivity activity);
+
     void inject(MyCourseActivity activity);
+
     void inject(MyWorkActivity activity);
+
     void inject(MyFavorityActivity activity);
+
     void inject(MessageActivity activity);
+
     void inject(DetailsActivity activity);
+    void inject(CourseDetailsActivity activity);
     interface Router {
         String cheese = "/cheese/";
         String startup = cheese + "startup";
@@ -87,17 +110,18 @@ public interface ActivityComponent {
         String registerTwo = cheese + "registerTwo";
         String group = cheese + "group";
         String search = cheese + "search";
-        String contents=cheese+"contents";
+        String contents = cheese + "contents";
         String products = cheese + "products";
         String product = cheese + "product";
 
-//        String calendar = cheese + "calendar";
+        //        String calendar = cheese + "calendar";
         String center = cheese + "center";
         String course = cheese + "course";
-        String work = cheese +"work";
+        String work = cheese + "work";
         String favority = cheese + "favority";
-        String message = cheese +"message";
-        String detail = cheese +"detail";
+        String message = cheese + "message";
+        String detail = cheese + "detail";
+        String coursedetails = cheese + "coursedetails";
     }
     /*
      *  CONTENT_LIST	绘本列表                  contents

@@ -45,6 +45,7 @@ public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineB
                         redTipBoolean.set(true);
                     else redTipBoolean.set(false);
                 });
+                //        api.getProperty(new ProfileParams("getProperty")).compose(new RestfulTransformer<>()).subscribe();
     }
 
     public void onLogoutClick(View view) {

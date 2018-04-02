@@ -1,10 +1,12 @@
 package com.cheese.radio.ui.home;
 
+import android.app.Application;
 import android.view.ViewGroup;
 
 import com.binding.model.model.ViewParse;
 import com.binding.model.model.inter.Item;
 import com.cheese.radio.base.cycle.BaseFragment;
+import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.home.circle.CircleFragment;
 import com.cheese.radio.ui.home.clock.ClockFragment;
 import com.cheese.radio.ui.home.mine.HomeMineFragment;
@@ -17,12 +19,9 @@ import com.cheese.radio.ui.user.calendar.CalendarFragment;
 
 public class HomeEntity extends ViewParse implements Item<BaseFragment> {
     private BaseFragment fragment;
-    private Boolean canBookCheck = false;
 
     //判断是否显示日历
-    public HomeEntity(Boolean canBookCheck) {
-        this.canBookCheck = canBookCheck;
-    }
+
 
     @Override
     public BaseFragment getItem(int position, ViewGroup container) {
@@ -32,8 +31,8 @@ public class HomeEntity extends ViewParse implements Item<BaseFragment> {
                     fragment = new HomePageFragment();
                     break;
                 case 1: {
-                    if (canBookCheck) fragment = new CalendarFragment();
-
+                    if (IkeApplication.getUser().getCanBookCheck())
+                        fragment = new CalendarFragment();
                     else {
                         fragment = new ClockFragment();
                     }

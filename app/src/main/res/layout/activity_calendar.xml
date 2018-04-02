@@ -16,8 +16,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:paddingTop="44dp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingTop="44dp">
 
 
             <LinearLayout
@@ -61,15 +61,21 @@
                     android:id="@+id/calendarView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:dateEnd="2017.12"
-                    app:dateStart="2016.12" />
+                    app:dateEnd="2019.12"
+                    app:dateStart="2017.12" />
 
 
-                <LinearLayout
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:inflates="@{vm.theDayClass}" />
+                    android:layout_height="1dp"
+                    android:background="@drawable/login_other_line"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:inflates="@{vm.theDayClass}" />
+
             </LinearLayout>
         </ScrollView>
 

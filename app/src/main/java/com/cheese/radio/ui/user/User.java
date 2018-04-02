@@ -8,6 +8,8 @@ import com.binding.model.model.inter.Model;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.ui.user.profile.ProfileParams;
 
+import java.util.Map;
+
 import static com.cheese.radio.inject.component.ActivityComponent.Router.login;
 
 /**
@@ -53,5 +55,22 @@ public class User {
         isLogin = userEntity.isLogin();
         ARouterUtil.navigation(login);
 //        Model.dispatchModel(logout);
+    }
+
+    public Boolean getCanBookCheck() {
+        return userEntity.getCanBookCheck();
+    }
+    public void setCanBookCheck(Boolean canBookCheck) {
+        userEntity.setCanBookCheck(canBookCheck);
+        util.setAllDto(userEntity);
+    }
+
+    public boolean isFavourite(int id ){
+        Map<Integer,Boolean> map=userEntity.getFavorite();
+        if (map.containsKey(id))return true;
+        return false;
+    }
+    public void addFavourite(){
+
     }
 }

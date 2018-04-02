@@ -5,6 +5,11 @@
             name="vm"
             type="com.cheese.radio.ui.home.page.entity.RecommandEntity"/>
     </data>
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="214dp"
+    android:background="@color/background_white"
+    >
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -70,4 +75,5 @@
             android:textColor="@color/text_gray"
             />
     </FrameLayout>
+</FrameLayout>
 </layout>

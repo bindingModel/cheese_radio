@@ -1,8 +1,16 @@
 package com.cheese.radio.ui.user.calendar;
 
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.view.View;
+
+import com.binding.model.App;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
 import com.cheese.radio.R;
+import com.cheese.radio.base.arouter.ARouterUtil;
+import com.cheese.radio.inject.component.ActivityComponent;
+import com.cheese.radio.ui.Constant;
 import com.cheese.radio.util.calendarutils.TipsDay;
 
 /**
@@ -37,6 +45,7 @@ public class CalendarEntity extends ViewInflateRecycler {
     private String bookId;////  预约编号（已经预约成功的有效）
 
     private int[] days;//数组形式的年月日
+
     public int getClassId() {
         return classId;
     }
@@ -118,8 +127,8 @@ public class CalendarEntity extends ViewInflateRecycler {
     }
 
     public int[] getDays() {
-        if(days==null)
-            return days=convertDay(day);
+        if (days == null)
+            return days = convertDay(day);
         else return days;
     }
 
@@ -127,11 +136,11 @@ public class CalendarEntity extends ViewInflateRecycler {
         this.days = days;
     }
 
-    public boolean isSelect()
-    {
-        //满人，未报上返回false，只要报上就返回true
-        return true;
+    public boolean isSelect() {
+        //满人，未报上返回true，只要报上就返回false
+        return bookId == null;
     }
+
     private int[] convertDay(String string) {
         int[] res = null;
         if (string == null) {
@@ -150,5 +159,41 @@ public class CalendarEntity extends ViewInflateRecycler {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public Drawable getEnrollBackground() {
+
+        if (bookId != null) return App.getDrawable(R.drawable.calendarview_rectangle_green);
+        if (leftCount == 0) return App.getDrawable(R.drawable.calendarview_rectangle_gray);
+        return App.getDrawable(R.drawable.calendarview_rectangle_yellow);
+
+    }
+
+    public String getEnrolMsg() {
+
+        if (bookId != null) return "已预约";
+        if (leftCount == 0) return "已约满";
+        return "预约";
+
+    }
+
+    public void onCourseClick(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(Constant.classId, classId);
+        ARouterUtil.navigation(ActivityComponent.Router.coursedetails, bundle);
+    }
+
+    public void onTeacherClick(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(Constant.authorId, teacherId);
+        ARouterUtil.navigation(ActivityComponent.Router.author, bundle);
+    }
+
+    public void onEnrollClick(View view) {
+        if (bookId != null) return;//"已预约";
+        if (leftCount == 0) return;//"已约满";
+        Bundle bundle = new Bundle();
+        bundle.putInt(Constant.classId, classId);
+        ARouterUtil.navigation(ActivityComponent.Router.coursedetails, bundle);
     }
 }

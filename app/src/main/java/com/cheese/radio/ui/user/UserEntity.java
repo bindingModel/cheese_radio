@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import com.binding.model.util.ReflectUtil;
 
 import java.lang.reflect.Field;
+import java.util.Map;
 
 /**
  * Created by 29283 on 2018/3/14.
@@ -16,6 +17,10 @@ public class UserEntity {
     private String nickName;
     private String sex;
     private String birthday;
+    private Boolean canBookCheck;
+    private Map<Integer,Boolean> favorite;
+
+
 
     public UserEntity clone(UserEntity entity) {
         token = entity.getToken();
@@ -79,5 +84,18 @@ public class UserEntity {
 
     public boolean isLogin() {
         return !TextUtils.isEmpty(token);
+    }
+    public Boolean getCanBookCheck() {
+        return canBookCheck;
+    }
+    public void setCanBookCheck(Boolean canBookCheck) {
+        this.canBookCheck = canBookCheck;
+    }
+    public Map<Integer,Boolean> getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(Map<Integer,Boolean> favorite) {
+        this.favorite = favorite;
     }
 }

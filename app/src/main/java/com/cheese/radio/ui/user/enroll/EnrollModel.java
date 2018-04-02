@@ -11,6 +11,7 @@ import com.binding.model.model.inter.Event;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.databinding.ActivityEnrollBinding;
+import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.user.product.list.ProductsEntity;
 import com.cheese.radio.util.CityPickTool;
 import com.cheese.radio.util.TimePickTool;
@@ -47,6 +48,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
     @Override
     public void attachView(Bundle savedInstanceState, EnrollActivity enrollActivity) {
         super.attachView(savedInstanceState, enrollActivity);
+
         setData();
         initAgePicker();
         initSexPicker();
@@ -58,7 +60,6 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
     public void onSelectCityClick(View view) {
         cityPickTool.onSelectCity();
     }
-
 
     public void onSelectBirthClick(View view) {
         timePickSelect.show();
@@ -115,4 +116,9 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
     public void onEnrollClick(View view){
         //调用下订单
     }
+//    public void initGetClass(){
+//        params.set
+//         className=getT().getIntent().getStringExtra(Constant.classInfo);
+//        classId=getT().getIntent().getIntExtra(Constant.classId,0);
+//    }
 }

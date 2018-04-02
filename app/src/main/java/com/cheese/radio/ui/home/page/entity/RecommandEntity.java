@@ -10,21 +10,11 @@ import com.binding.model.model.inter.SpanSize;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
-import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.inject.api.RadioApi;
-import com.cheese.radio.ui.Constant;
-import com.cheese.radio.ui.media.play.PlayParams;
 
 import javax.inject.Inject;
 
 
-import static com.cheese.radio.inject.component.ActivityComponent.Router.play;
-import static com.cheese.radio.ui.Constant.AUTHOR_INFO;
-import static com.cheese.radio.ui.Constant.AUTHOR_LIST;
-import static com.cheese.radio.ui.Constant.CATEGORY_LIST;
-import static com.cheese.radio.ui.Constant.CONTENT_LIST;
-import static com.cheese.radio.ui.Constant.GROUP_INFO;
-import static com.cheese.radio.ui.Constant.PLAY;
 
 /**
  * Created by 29283 on 2018/3/5.
