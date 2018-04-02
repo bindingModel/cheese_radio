@@ -2,9 +2,11 @@ package com.cheese.radio.ui.user.my.message.entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.view.View;
 
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
+import com.binding.model.model.inter.Event;
 import com.binding.model.model.inter.Inflate;
 import com.cheese.radio.R;
 
@@ -124,4 +126,8 @@ public class DetailsEntity extends ViewInflateRecycler implements Parcelable {
             return new DetailsEntity[size];
         }
     };
+
+    public void onClick(View view){
+        Event.event(R.id.DetailsModel,this,view);
+    }
 }

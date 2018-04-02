@@ -1,6 +1,7 @@
 package com.cheese.radio.ui.media.play;
 
 import android.databinding.ObservableBoolean;
+import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -21,11 +22,13 @@ import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.media.audio.AudioModel;
 import com.cheese.radio.ui.media.play.popup.PopupPlayModel;
 import com.cheese.radio.ui.media.play.popup.SelectPlayTimeEntity;
+import com.cheese.radio.ui.service.AudioServiceUtil;
 import com.cheese.radio.ui.user.addfavority.AddFavorityParams;
 import com.cheese.radio.util.MyBaseUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 import javax.inject.Inject;
 
@@ -44,9 +47,11 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     PopupPlayModel popupPlayModel;
     public final List<PlayEntity> list = new ArrayList<>();
     private Integer id;
-    private Integer totalTime, playTime;
+    private Integer playTime, totalTime;
+    public ObservableField<String> currentText = new ObservableField<>();
     public ObservableBoolean clockCheck = new ObservableBoolean(false);
     private SelectPlayTimeEntity timeEntity;
+    private AudioServiceUtil util;
 
     @Override
     public void attachView(Bundle savedInstanceState, PlayActivity activity) {
@@ -99,8 +104,12 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
             if (timeEntity != null && !timeEntity.equals(entity)) {
                 timeEntity.checked.set(false);
             }
-            timeEntity=entity;
-            totalTime=timeEntity.getTime();
+            timeEntity = entity;
+            util.setDuration(timeEntity.getTime(), (current, duration) -> {
+                if (current != 0)
+                    playTime = current;
+                    totalTime=duration;
+            });
             return false;
         });
     }
@@ -108,24 +117,33 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     @Override
     public void getTurn() {
         super.getTurn();
-        if (totalTime != 0 && timeEntity.checked.get()) {
-            playTime++;
-            getDataBinding().clock.setText(MyBaseUtil.getMinute(totalTime - playTime));
+        if (totalTime != -1) {
+            currentText.set(MyBaseUtil.getMinute(totalTime - playTime));
         }
-        if (totalTime != 0 & playTime.equals(totalTime)) {
-            pause();
-            checked.set(false);
-        }
+        if (totalTime == -1) {
+            clockCheck.set(false);
+        }else clockCheck.set(true);
     }
 
     public void intTimes() {
-        totalTime = 0;
-        playTime = 0;
+        playTime = -1;
+        totalTime = -1;
+        timeEntity = new SelectPlayTimeEntity(null, -1);
+        util = AudioServiceUtil.getInstance();
+        util.setOnTimingListener((current, duration) -> {
+            if (current != 0) {
+                playTime = current;
+                totalTime=duration;
+            }
+        });
     }
 
-    public void onAddFavorityClick(View view){
-        api.addFavority(new AddFavorityParams("addFavority")).compose(new RestfulTransformer<>()).subscribe(
+    private void iniView() {
 
+    }
+
+    public void onAddFavorityClick(View view) {
+        api.addFavority(new AddFavorityParams("addFavority")).compose(new RestfulTransformer<>()).subscribe(
         );
     }
 }

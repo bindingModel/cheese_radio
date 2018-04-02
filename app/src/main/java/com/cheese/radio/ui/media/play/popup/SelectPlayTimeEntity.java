@@ -20,7 +20,7 @@ import static com.binding.model.adapter.IEventAdapter.NO_POSITION;
 @ModelView(R.layout.holder_select_play_time)
 public class SelectPlayTimeEntity extends ViewInflateRecycler {
     private int position;
-    private Integer time;
+    private Integer time=-1;
     private String name;
     public final transient ObservableBoolean checked = new ObservableBoolean();
 
@@ -46,6 +46,7 @@ public class SelectPlayTimeEntity extends ViewInflateRecycler {
     }
 
     public Integer getTime() {
+        if(time==null)return -1;
         return time;
     }
 

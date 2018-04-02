@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/message_details_bg"
             android:layout_marginTop="30dp"
+            android:onClick="@{vm::onClick}"
             android:orientation="vertical">
 
             <TextView

@@ -62,7 +62,7 @@ public class DataBindingAdapter {
 //                .error(R.mipmap.ic_launcher)//加载失败显示图片
                 .priority(Priority.HIGH)//优先级
                 .diskCacheStrategy(DiskCacheStrategy.NONE)//缓存策略
-                .transform(new GlideBlurformation(view.getContext()));//转化为圆角
+                .transform(new GlideBlurformation(view.getContext()));//转化为圆角????模糊
 
         Glide.with(mContext)
                 .load(imageUrl)

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="vm"
@@ -15,13 +16,18 @@
         android:layout_width="match_parent"
         android:layout_height="214dp"
         android:layout_margin="15dp"
-        android:layout_marginBottom="9dp">
+        android:layout_marginBottom="9dp"
+        android:onClick="@{vm::onClick}">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="144dp"
             android:src="@{vm.image}"
             android:scaleType="fitXY"
+            app:radius="@{vm.radius}"
+
             android:layout_marginBottom="7dp"/>
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="33dp"

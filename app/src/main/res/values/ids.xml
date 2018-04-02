@@ -4,8 +4,9 @@
     <item name="EnrollModel" type="id" />
     <item name="HomeMineModel" type="id" />
     <item name="ProfileModel" type="id" />
-
+    <item name="MessageModel" type="id"/>
 
     <item type="id" name="linearLayoutBack" />
     <item type="id" name="textViewSolar" />
+    <item name="DetailsModel" type="id" />
 </resources>

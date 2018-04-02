@@ -37,6 +37,7 @@ import com.cheese.radio.ui.user.my.course.MyCourseParams;
 import com.cheese.radio.ui.user.my.favority.MyFavorityParams;
 import com.cheese.radio.ui.user.my.message.MessagesData;
 import com.cheese.radio.ui.user.my.message.MessagesParams;
+import com.cheese.radio.ui.user.my.message.ReadMessagesParams;
 import com.cheese.radio.ui.user.my.push.NewMessageCountData;
 import com.cheese.radio.ui.user.my.push.NewMessageCountParams;
 import com.cheese.radio.ui.user.my.work.MyWorkParams;
@@ -138,4 +139,6 @@ public interface RadioApi {
     @POST("/1.0/user")
     Observable<InfoEntity<String>> addFavority(@Body AddFavorityParams params);
 
+    @POST("/1.0/user")
+    Observable<InfoEntity<String>> readMessages(@Body ReadMessagesParams params);
 }

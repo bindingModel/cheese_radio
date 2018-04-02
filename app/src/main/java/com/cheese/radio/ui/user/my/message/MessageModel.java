@@ -4,10 +4,10 @@ import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.view.View;
 
-import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewHttpModel;
-import com.binding.model.model.inter.Inflate;
+import com.binding.model.model.inter.Event;
+import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
@@ -16,6 +16,7 @@ import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.user.calendar.CalendarEntity;
+import com.cheese.radio.ui.user.my.message.entity.DetailsEntity;
 
 import java.util.ArrayList;
 
@@ -24,7 +25,7 @@ import javax.inject.Inject;
 /**
  * Created by 29283 on 2018/3/31.
  */
-@ModelView(R.layout.activity_message)
+@ModelView(value = R.layout.activity_message,event = R.id.EnrollModel)
 public class MessageModel extends ViewHttpModel<MessageActivity, ActivityMessageBinding, MessagesData> {
 
     @Inject
@@ -93,4 +94,5 @@ public class MessageModel extends ViewHttpModel<MessageActivity, ActivityMessage
         getDataBinding().bookText.setText(messagesData.getBook().get(0).getContent());
        /* else getDataBinding().bookMessage.setVisibility(View.GONE);*/
     }
+
 }
