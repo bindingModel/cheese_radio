@@ -32,7 +32,7 @@ import javax.inject.Inject;
  * Created by 29283 on 2018/3/26.
  */
 @ModelView(R.layout.activity_calendar)
-public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalendarBinding, CalendarEntity> {
+public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalendarBinding, List<CalendarEntity>> {
     @Inject
     CalendarModel() {
     }
@@ -41,8 +41,10 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
     RadioApi api;
 
     @Override
-    public void accept(CalendarEntity calendarEntity) throws Exception {
-
+    public void accept(List<CalendarEntity> calendarEntities) {
+        calendarView.setTipsDays(calendarEntities);
+        list.addAll(calendarEntities);
+        initCalendarView("2018-01-01", "2018-05", list);
     }
 
     private CalendarView calendarView;
@@ -58,11 +60,7 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
     public void attachView(Bundle savedInstanceState, CalendarFragment calendarFragment) {
         super.attachView(savedInstanceState, calendarFragment);
         calendarView = getDataBinding().calendarView;
-        api.getClassCalendar(params).compose(new RestfulTransformer<>()).subscribe(calendarEntities -> {
-            calendarView.setTipsDays(calendarEntities);
-            list.addAll(calendarEntities);
-            initCalendarView("2018-01-01", "2018-05", list);
-        });
+        setRcHttp((offset1, refresh) -> api.getClassCalendar(params).compose(new RestfulTransformer<>()));
     }
 
     private Day getSelectDayFromMonth(int year, int month) {

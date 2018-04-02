@@ -26,23 +26,23 @@ android {
     }
 
     signingConfigs {
-        // config {
-        //     keyAlias 'home'
-        //     keyPassword '123456'
-        //     storeFile file('../app/smart.jks')
-        //     storePassword '123456'
-        // }
+         config {
+             keyAlias 'radio'
+             keyPassword 'cheese'
+             storeFile file('../app/cheese.jks')
+             storePassword 'cheese'
+         }
     }
     buildTypes {
         debug {
-            applicationIdSuffix ".debug"
+//            applicationIdSuffix ".debug"
             minifyEnabled false
-            // signingConfig signingConfigs.config
+             signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         release {
             minifyEnabled false
-            // signingConfig signingConfigs.config
+             signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -59,7 +59,7 @@ android {
     android.applicationVariants.all { variant ->
         variant.outputs.all {
             def time = new Date().format("MMddHHmm", TimeZone.getTimeZone("GMT+08:00"))
-            if (variant.name != 'debug') outputFileName = "ike_${variant.name}_${variant.versionName}.${time}.apk"
+            if (variant.name != 'debug') outputFileName = "cheese_${variant.name}_${variant.versionName}.${time}.apk"
         }
     }
 

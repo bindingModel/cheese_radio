@@ -30,13 +30,8 @@ import javax.inject.Inject;
  */
 @ModelView(R.layout.activity_search)
 public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBinding, GridInflate> implements TextWatcher {
-
-    @Inject
-    SearchModel() {
-    }
-
-    @Inject
-    RadioApi api;
+    @Inject SearchModel() {}
+    @Inject RadioApi api;
     private final List<GridInflate> list = new ArrayList<>();
     public ObservableBoolean cancelBoolean = new ObservableBoolean(false);
     public ObservableField<String> searchInput = new ObservableField<>("");
@@ -53,8 +48,6 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
         setEnable(false);
         setPageFlag(false);
         setRcHttp(((offset1, refresh) -> {
-//            hashMap.put("start", offset1);
-//            hashMap.put("length", getPageCount());
                 if(params.getTitle()!=null) {
                     params.setStartIndex(offset1);
                     params.setMaxCount(getPageCount());
@@ -98,13 +91,7 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
     public void afterTextChanged(Editable s) {
         String text = s.toString();
         params.setTitle(text);
-        if (text.length() < 1) {
-//            getDataBinding().cancelButton.setVisibility(View.INVISIBLE);
-//            getDataBinding().cancelButton.clearAnimation();
-            cancelBoolean.set(false);
-        }
-//        } else getDataBinding().cancelButton.setVisibility(View.VISIBLE);
-        cancelBoolean.set(true);
+        cancelBoolean.set(text.length() > 1);
         setPageFlag(true);
 
     }
