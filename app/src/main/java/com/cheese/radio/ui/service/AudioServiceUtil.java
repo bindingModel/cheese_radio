@@ -121,8 +121,8 @@ public class AudioServiceUtil implements TimeEntity {
                     controller.setStatus(Pause);
                     current = 0;
                     duration = -1;
-                    if(onTimingListener!=null)onTimingListener.onTimingEnd();
                 }
+                if(onTimingListener!=null)onTimingListener.onTiming(current,duration);
             }
         } else if (controller.getStatus() == Play) {
                 controller.setStatus(Reset);
