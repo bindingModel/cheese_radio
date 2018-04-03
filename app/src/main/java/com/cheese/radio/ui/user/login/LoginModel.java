@@ -19,6 +19,8 @@ import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.user.login.params.PlatformParams;
 import com.cheese.radio.ui.user.login.params.SignParams;
 import com.cheese.radio.ui.user.login.params.SmsParams;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import javax.inject.Inject;
 
@@ -72,7 +74,7 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> {
 
     }
 
-    public void onGoHoneClick(View view) {
+    public void onGoHomeClick(View view) {
         ARouterUtil.navigation(home);
     }
 
@@ -89,24 +91,6 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> {
         BaseUtil.toast("暂未施工");
 
     }
-    public void onWechatClick(){
-       /* if (UMShareAPI.get(this).isInstall(this,SHARE_MEDIA.WEIXIN)) {
-            UMShareAPI.get(this).doOauthVerify(this, SHARE_MEDIA.WEIXIN, this);
-        }else{
-            BaseUtil.toast(this,"您还未安装微信客户端");
-            readApi.loginWeChat(
-                    "obcej0c2t8b64PPXSb0Lxw3esCzA",
-                    "oIQPP1Wy2VIPd6zHmlMlL-r9MPkI",
-                    "Arvin",
-                    "http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIM0aLd8cjg324wb87TTiah78HA1PoeCG2Tf0yRRGoNLvkj0QkoOgd4F3JyyTMricNrT0X4Al907ib8A/0")
-                    .compose(new RestfulTransformer<>())
-                    .subscribe(s -> {
-                        IkeApplication.getUser().login(s);
-                        ARouterUtil.navigation(ActivityComponent.Router.home);
-                        ARouterUtil.navigation(ActivityComponent.Router.bindPhone);
-                        onBackPressed();
-                    }, Throwable::printStackTrace);
-        }*/
-    }
+
 }
 

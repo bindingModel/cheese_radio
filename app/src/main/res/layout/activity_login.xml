@@ -24,7 +24,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="end"
-            android:onClick="@{vm::onGoHoneClick}"
+            android:onClick="@{vm::onGoHomeClick}"
             android:text="先逛逛"
             android:textColor="@color/text_black" />
 

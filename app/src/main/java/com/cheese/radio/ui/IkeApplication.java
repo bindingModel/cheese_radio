@@ -1,8 +1,11 @@
 package com.cheese.radio.ui;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.support.multidex.MultiDexApplication;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatDelegate;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -47,6 +50,7 @@ public class IkeApplication extends MultiDexApplication {
                 .build();
         user = new User(this);
         PgyCrashManager.register(this);
+
     }
 
     public static IkeApplication getApp() {
