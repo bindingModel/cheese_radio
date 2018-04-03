@@ -51,8 +51,7 @@ public class IkeParams extends FormUnionParams{
     }
 
     public String getToken() {
-       if( IkeApplication.isLogin()
-               )return IkeApplication.getUser().getToken();
+       if( IkeApplication.isLogin())return IkeApplication.getUser().getToken();
        return null;
     }
 
