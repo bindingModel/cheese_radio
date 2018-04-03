@@ -60,16 +60,7 @@ public class WXEntryActivity extends WXCallbackActivity implements UMAuthListene
 
     }
 
-    /**
-     * 第三方接口回调的参数
-     * @param share_media
-     * @param i
-     * @param map
-     * uid 用户唯一标识
-     * name 用户昵称
-     * gender 用户性别
-     * iconurl 用户头像
-     */
+
     @Override
     public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
 

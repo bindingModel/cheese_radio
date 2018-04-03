@@ -19,8 +19,11 @@ import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.user.login.params.PlatformParams;
 import com.cheese.radio.ui.user.login.params.SignParams;
 import com.cheese.radio.ui.user.login.params.SmsParams;
+import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
+
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -31,7 +34,7 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.registe
  * Created by 29283 on 2018/3/5.
  */
 @ModelView(R.layout.activity_login)
-public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> {
+public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> implements UMAuthListener {
     @Inject
     LoginModel() {
 
@@ -92,5 +95,33 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> {
 
     }
 
+    @Override
+    public void onStart(SHARE_MEDIA share_media) {
+
+    }
+    /**
+     * 第三方接口回调的参数
+     * @param share_media
+     * @param i
+     * @param map
+     * uid 用户唯一标识
+     * name 用户昵称
+     * gender 用户性别
+     * iconurl 用户头像
+     */
+    @Override
+    public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
+        //
+    }
+
+    @Override
+    public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
+
+    }
+
+    @Override
+    public void onCancel(SHARE_MEDIA share_media, int i) {
+
+    }
 }
 
