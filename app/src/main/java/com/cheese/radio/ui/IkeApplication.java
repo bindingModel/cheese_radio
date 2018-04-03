@@ -1,6 +1,5 @@
 package com.cheese.radio.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 import android.support.v7.app.AppCompatDelegate;
@@ -17,8 +16,6 @@ import com.cheese.radio.inject.component.DaggerAppComponent;
 import com.cheese.radio.inject.module.AppModule;
 import com.cheese.radio.ui.user.User;
 import com.pgyersdk.crash.PgyCrashManager;
-
-import java.util.Stack;
 
 import javax.inject.Inject;
 
@@ -39,12 +36,12 @@ public class IkeApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-
         application = this;
         App.getInstance().init(this, BuildConfig.DEBUG, BR.vm);
         appComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .build();
+        appComponent.inject(this);
         user = new User(this);
         PgyCrashManager.register(this);
     }
@@ -70,18 +67,4 @@ public class IkeApplication extends MultiDexApplication {
         return application.user;
     }
 
-    public static int getScreenWidth(final Context context) {
-        DisplayMetrics displayMetrics = context.getResources().
-                getDisplayMetrics();
-        return displayMetrics.widthPixels;
-    }
-
-    /**
-     * 当前屏幕的高度
-     */
-    public static int getScreenHeight(final Context context) {
-        DisplayMetrics displayMetrics = context.getResources().
-                getDisplayMetrics();
-        return displayMetrics.heightPixels;
-    }
 }

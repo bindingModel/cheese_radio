@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.binding.model.App;
 import com.cheese.radio.R;
 import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.user.calendar.CalendarEntity;
@@ -363,20 +364,20 @@ public class CalendarView extends LinearLayout {
 
     //行间距
     private int getHorizontalMargin() {
-        return (int) (IkeApplication.getScreenWidth(context) * 0.045f);
+        return (int) (App.getScreenWidth() * 0.045f);
     }
 
     private int getTopMargin() {
-        return (int) (IkeApplication.getScreenWidth(context) * 0.001f);
+        return (int) (App.getScreenWidth() * 0.001f);
     }
 
     private int getBottomMargin() {
-        return (int) (IkeApplication.getScreenWidth(context) * 0.012f);
+        return (int) (App.getScreenWidth() * 0.012f);
     }
 
 
     private int getItemWidth() {
-        return (int) (IkeApplication.getScreenWidth(context) * 0.13f);
+        return (int) (App.getScreenWidth() * 0.13f);
     }
 
 
