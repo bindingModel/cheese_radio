@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-
 android {
     compileSdkVersion compile_sdk_version
     dataBinding.enabled = true
@@ -26,23 +25,23 @@ android {
     }
 
     signingConfigs {
-         config {
-             keyAlias 'radio'
-             keyPassword 'cheese'
-             storeFile file('../app/cheese.jks')
-             storePassword 'cheese'
-         }
+        config {
+            keyAlias 'radio'
+            keyPassword 'cheese'
+            storeFile file('../app/cheese.jks')
+            storePassword 'cheese'
+        }
     }
     buildTypes {
         debug {
 //            applicationIdSuffix ".debug"
             minifyEnabled false
-             signingConfig signingConfigs.config
+            signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         release {
             minifyEnabled false
-             signingConfig signingConfigs.config
+            signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -107,14 +106,21 @@ android {
 
         implementation 'com.contrarywind:Android-PickerView:3.2.7'
 
-
 //        implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
         //第三方登录
-        implementation 'com.umeng.sdk:share-core:latest.integration'
-//        implementation 'com.umeng.sdk:share-qq:latest.integration'
-        implementation 'com.umeng.sdk:share-wechat:latest.integration'
-        implementation 'com.umeng.sdk:share-sina:latest.integration'
-        implementation 'com.umeng.sdk:common:latest.integration'
-        implementation 'com.umeng.sdk:analytics:latest.integration'
+//        implementation 'com.umeng.sdk:share-core:latest.integration'
+////        implementation 'com.umeng.sdk:share-qq:latest.integration'
+//        implementation 'com.umeng.sdk:share-wechat:latest.integration'
+//        implementation 'com.umeng.sdk:share-sina:latest.integration'
+//        implementation 'com.umeng.sdk:common:latest.integration'
+//        implementation 'com.umeng.sdk:analytics:latest.integration'
     }
+}
+dependencies {
+    implementation files('libs/common/common_android_1.5.0/normal/umeng-common-1.5.0.jar')
+    implementation files('libs/common/common_android_1.5.0/normal/umeng-debug-1.0.0.jar')
+    implementation files('libs/share/share_android_6.9.0/main/libs/umeng-share-core-6.9.0.jar')
+    implementation files('libs/share/share_android_6.9.0/main/libs/umeng-sharetool-6.9.0.jar')
+    implementation files('libs/share/share_android_6.9.0/platforms/微信完整版/libs/umeng-share-wechat-full-6.9.0.jar')
+    implementation files('libs/share/share_android_6.9.0/platforms/微信完整版/libs/wechat-sdk-android-without-mta-5.1.4.jar')
 }

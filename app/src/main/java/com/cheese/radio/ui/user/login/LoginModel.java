@@ -27,6 +27,8 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import timber.log.Timber;
+
 import static com.cheese.radio.inject.component.ActivityComponent.Router.home;
 import static com.cheese.radio.inject.component.ActivityComponent.Router.registerOne;
 
@@ -111,7 +113,32 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
      */
     @Override
     public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
-        //
+        //打印。。。数据内容
+        for(String key:map.keySet()) Timber.i("key:%1s,value:%2s",key,map.get(key));
+        SignParams params =new SignParams("login");
+        params.setLoginType("weixin");
+        params.setOpenId(map.get("uid"));
+        StringBuilder builder=new StringBuilder();
+//        builder.append("{").append("name:").append(map.get("name")).append(,)
+        api.getToken(params).compose(new RestfulTransformer<>())
+                .subscribe(signUserEntity -> {
+                    IkeApplication.getUser().setToken(signUserEntity.getToken());
+                    if(signUserEntity.getNewX()==0)ARouterUtil.navigation(home);
+                    else ARouterUtil.navigation(registerOne);
+                    finish();
+                }, BaseUtil::toast);
+        //api.loginWeChat(
+        //      map.get("openid"),
+        //        map.get("unionid"),
+        //       map.get("name"),
+        //        map.get("profile_image_url"))
+        //        .compose(new RestfulTransformer<>())
+        //       .subscribe(s -> {
+        //           App.getUser().login(s);
+        //            BaseUtil.navigation(ActivityComponent.Router.home);
+        //            BaseUtil.navigation(ActivityComponent.Router.bindPhone);
+        //            getT().onBackPressed();
+        //        }, Throwable::printStackTrace);
     }
 
     @Override

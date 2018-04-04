@@ -51,7 +51,7 @@ public class IkeApplication extends MultiDexApplication {
         user = new User(this);
         PgyCrashManager.register(this);
         UMConfigure.setLogEnabled(true);
-        UMConfigure.init(this,""
+        UMConfigure.init(this,"5ac4c20fb27b0a077b0001e6"
                 ,"umeng",UMConfigure.DEVICE_TYPE_PHONE,"");
     }
 

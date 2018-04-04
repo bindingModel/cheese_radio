@@ -48,7 +48,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     public final List<PlayEntity> list = new ArrayList<>();
     private Integer id;
     private Integer playTime, totalTime;
-    public ObservableField<String> currentText = new ObservableField<>();
+    public ObservableField<String> currentText = new ObservableField<>();//存放定时播放的剩余时间。如果需要，去界面绑定
     public ObservableBoolean clockCheck = new ObservableBoolean(false);
     private SelectPlayTimeEntity timeEntity;
     private AudioServiceUtil util;

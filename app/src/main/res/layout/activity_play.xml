@@ -85,7 +85,7 @@
                         android:layout_width="65dp"
                         android:layout_height="27dp"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="50dp"
+                        android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
                         android:background="@drawable/login_button_shape"
                         android:drawableLeft="@mipmap/plus"
@@ -137,6 +137,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:text="@{vm.currentTime,default=00}" />
 
                     <TextView
@@ -193,7 +194,10 @@
                         android:layout_height="wrap_content"
                         android:button="@null"
                         android:text="@{entity.favorCount}"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginStart="12dp"
                         android:drawableLeft="@drawable/love_star"
+                        android:drawableStart="@drawable/love_star"
                          />
 
                     <CheckBox
@@ -202,24 +206,28 @@
                         android:button="@null"
                         android:text="@{entity.favorCount}"
                         android:layout_gravity="center"
-                        android:layout_marginRight="55dp"
+                        android:layout_marginRight="45dp"
+                        android:layout_marginEnd="45dp"
                         android:onClick="@{vm::onAddFavorityClick}"
                         android:drawableLeft="@drawable/collection_star"
+                        android:drawableStart="@drawable/collection_star"
                         />
 
                     <CheckBox
                         android:id="@+id/clock"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:button="@null"
                         android:layout_marginLeft="55dp"
+                        android:layout_marginStart="55dp"
                         android:layout_gravity="center"
                         android:onClick="@{vm::onSelectClick}"
                         android:checked="@{vm.clockCheck}"
-                        android:text="@{vm.currentText}"
+
                         android:drawableLeft="@drawable/clock_subscribe"
+                        android:drawableStart="@drawable/clock_subscribe"
                         />
+           <!--         android:text="@{vm.currentText}"-->
                     <CheckBox
                         android:id="@+id/loop"
                         android:layout_width="wrap_content"
@@ -227,6 +235,9 @@
                         android:button="@null"
                         android:layout_gravity="end"
                         android:drawableLeft="@drawable/loop"
+                        android:drawableStart="@drawable/loop"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginEnd="12dp"
                         />
 
                 </FrameLayout>
