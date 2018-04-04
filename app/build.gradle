@@ -114,5 +114,7 @@ android {
 //        implementation 'com.umeng.sdk:share-qq:latest.integration'
         implementation 'com.umeng.sdk:share-wechat:latest.integration'
         implementation 'com.umeng.sdk:share-sina:latest.integration'
+        implementation 'com.umeng.sdk:common:latest.integration'
+        implementation 'com.umeng.sdk:analytics:latest.integration'
     }
 }

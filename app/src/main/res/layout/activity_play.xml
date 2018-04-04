@@ -181,7 +181,7 @@
                         android:paddingTop="8dp" />
                 </FrameLayout>
 
-                <LinearLayout
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="15dp"
@@ -189,30 +189,32 @@
                     android:orientation="horizontal">
 
                     <CheckBox
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:button="@null"
                         android:text="@{entity.favorCount}"
                         android:drawableLeft="@drawable/love_star"
                          />
 
                     <CheckBox
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:button="@null"
                         android:text="@{entity.favorCount}"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="55dp"
                         android:onClick="@{vm::onAddFavorityClick}"
                         android:drawableLeft="@drawable/collection_star"
                         />
 
                     <CheckBox
                         android:id="@+id/clock"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:button="@null"
+                        android:layout_marginLeft="55dp"
+                        android:layout_gravity="center"
                         android:onClick="@{vm::onSelectClick}"
                         android:checked="@{vm.clockCheck}"
                         android:text="@{vm.currentText}"
@@ -220,14 +222,14 @@
                         />
                     <CheckBox
                         android:id="@+id/loop"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:button="@null"
+                        android:layout_gravity="end"
                         android:drawableLeft="@drawable/loop"
                         />
 
-                </LinearLayout>
+                </FrameLayout>
             </LinearLayout>
 
 
