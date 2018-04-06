@@ -11,6 +11,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.binding.model.model.ModelView;
+import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
@@ -88,6 +89,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         if (isPlaying()) setEntities(list);
         else playFirst(list);
         getDataBinding().setEntity(entity);
+        if(!list.isEmpty()) Model.dispatchModel(Constant.images,list.get(0));
     }
 
     public void onSelectClick(View view) {

@@ -25,7 +25,7 @@ import javax.inject.Inject;
 /**
  * Created by 29283 on 2018/2/22.
  */
-@ModelView(value = R.layout.fragment_home_mine, event = R.id.HomeMineModel)
+@ModelView(value = R.layout.fragment_home_mine, event = R.id.HomeMineModel,model = true)
 public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineBinding> {
     @Inject
     HomeMineModel() {
@@ -50,6 +50,10 @@ public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineB
 
     public void onLogoutClick(View view) {
         IkeApplication.getUser().logout();
+        this.finish();
+    }
+    public void logout(){
+        getDataBinding().setEntity(IkeApplication.getUser().getUserEntity());
     }
 
     public void onSetProfileClick(View view) {

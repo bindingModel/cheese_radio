@@ -1,6 +1,7 @@
 package com.cheese.radio.ui.user.login;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -65,5 +66,11 @@ public class LoginActivity extends BaseActivity<LoginModel> implements UMAuthLis
     @Override
     public void onCancel(SHARE_MEDIA share_media, int i) {
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode,resultCode,data);
     }
 }

@@ -16,15 +16,18 @@
         android:onClick="@{vm::onClick}"
         android:orientation="vertical"
         android:background="@color/background_white">
-
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="15dp"
+            android:src="@{vm.thumbImage}"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|bottom"
-            android:layout_marginBottom="7dp"
-            android:drawablePadding="3dp"
-            android:drawableTop="@{vm.thumbImage}"
             android:gravity="center"
+            android:layout_marginBottom="15dp"
             android:maxLines="1"
             android:text="@{vm.tagName}"
             android:textSize="12.3sp" />

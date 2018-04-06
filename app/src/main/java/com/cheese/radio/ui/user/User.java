@@ -11,6 +11,7 @@ import com.cheese.radio.ui.user.profile.ProfileParams;
 import java.util.Map;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.login;
+import static com.cheese.radio.ui.Constant.logout;
 
 /**
  * Created by 29283 on 2018/3/14.
@@ -54,7 +55,7 @@ public class User {
         util.setAllDto(userEntity);
         isLogin = userEntity.isLogin();
         ARouterUtil.navigation(login);
-//        Model.dispatchModel(logout);
+        Model.dispatchModel(logout);
     }
 
     public Boolean getCanBookCheck() {
@@ -65,12 +66,4 @@ public class User {
         util.setAllDto(userEntity);
     }
 
-    public boolean isFavourite(int id ){
-        Map<Integer,Boolean> map=userEntity.getFavorite();
-        if (map.containsKey(id))return true;
-        return false;
-    }
-    public void addFavourite(){
-
-    }
 }

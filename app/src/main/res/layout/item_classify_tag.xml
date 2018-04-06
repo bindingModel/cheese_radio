@@ -11,11 +11,11 @@
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="28dp"
+        android:layout_marginLeft="28dp"
          android:paddingTop="10dp">
 
         <Button
-            android:layout_width="80.66dp"
+            android:layout_width="match_parent"
             android:layout_height="28.6dp"
             android:background="@drawable/classify_tag_select"
             android:text="@{vm.tagName,default=1234}"

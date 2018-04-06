@@ -1,5 +1,7 @@
 package com.cheese.radio.ui.home.page;
 
+import android.databinding.ObservableBoolean;
+import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
@@ -16,10 +18,12 @@ import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.base.rxjava.RestfulZipTransformer;
 import com.cheese.radio.databinding.FragmentHomePageBinding;
 import com.cheese.radio.inject.api.RadioApi;
+import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.home.page.entity.CategoryEntity;
 import com.cheese.radio.ui.home.page.entity.RecommandEntity;
 import com.cheese.radio.ui.media.play.PlayParams;
+import com.cheese.radio.ui.user.my.push.NewMessageCountParams;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +48,8 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
     private static Integer flag=0;
     @Inject
     RadioApi api;
-
+    public ObservableField<String> redTipCount=new ObservableField<>("0");
+    public ObservableBoolean redTipBoolean=new ObservableBoolean(false);
     @Override
     public void attachView(Bundle savedInstanceState, HomePageFragment homePageFragment) {
         super.attachView(savedInstanceState, homePageFragment);
@@ -55,6 +60,13 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
         setLayoutManager(layoutManager);
         setEnable(true);
         setPageFlag(false);
+        api.getNewMessageCount(new NewMessageCountParams("newMessageCount")).compose(new RestfulTransformer<>())
+                .subscribe(newMessageCountData -> {
+                    redTipCount.set(String.valueOf(newMessageCountData.getCount()));
+                    if(newMessageCountData.getCount()!=null & newMessageCountData.getCount()!=0)
+                        redTipBoolean.set(true);
+                    else redTipBoolean.set(false);
+                });
         setRoHttp((offset1, refresh) -> {
 
             return getZip();
@@ -88,5 +100,5 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
     public void onSearchClick(View view){
         ARouterUtil.navigation(search);
     }
-
+    public void onMessageClick(View view){ARouterUtil.navigation(ActivityComponent.Router.message);}
 }
