@@ -61,7 +61,9 @@
         <activity android:name=".ui.user.register.one.RegisterOneActivity">
 
         </activity>
-        <activity android:name=".ui.user.register.two.RegisterTwoActivity"/>
+        <activity android:name=".ui.user.register.two.RegisterTwoActivity">
+
+        </activity>
         <activity android:name=".ui.media.group.GroupInfoActivity" android:label="@string/group_info"/>
         <activity android:name=".ui.search.SearchActivity"/>
         <activity android:name=".ui.media.classify.list.ClassifyListActivity" android:label="分类"/>
@@ -80,6 +82,11 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+          />
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="@string/umeng_key" >
+        </meta-data>
+
     </application>
 </manifest>

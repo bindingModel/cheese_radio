@@ -7,19 +7,19 @@ import com.cheese.radio.base.IkeParams;
  */
 
 public class PlatformParams extends IkeParams {
-    private String openPlatformConfig;
     private String method;
+    private String platform;
 
     public PlatformParams(String method) {
         this.method = method;
     }
 
-    public String getOpenPlatformConfig() {
-        return openPlatformConfig;
+    public String getPlatform() {
+        return platform;
     }
 
-    public void setOpenPlatformConfig(String openPlatformConfig) {
-        this.openPlatformConfig = openPlatformConfig;
+    public void setPlatform(String platform) {
+        this.platform = platform;
     }
 
     public String getMethod() {

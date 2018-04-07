@@ -13,15 +13,22 @@ import android.util.DisplayMetrics;
 import com.binding.model.App;
 import com.cheese.radio.BR;
 import com.cheese.radio.BuildConfig;
+import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
+import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.component.AppComponent;
 import com.cheese.radio.inject.component.DaggerAppComponent;
 import com.cheese.radio.inject.module.AppModule;
 import com.cheese.radio.ui.user.User;
+import com.cheese.radio.ui.user.login.params.PlatformParams;
 import com.pgyersdk.crash.PgyCrashManager;
 import com.umeng.commonsdk.UMConfigure;
+import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
+
+//import com.umeng.commonsdk.UMConfigure;
+//import com.umeng.socialize.UMShareAPI;
 
 import javax.inject.Inject;
 
@@ -50,9 +57,12 @@ public class IkeApplication extends MultiDexApplication {
         appComponent.inject(this);
         user = new User(this);
         PgyCrashManager.register(this);
+        String wechat_AppID = getResources().getString(R.string.wechat_AppID);
+        String wechat_AppSecret = getResources().getString(R.string.wechat_AppSecret);
+        PlatformConfig.setWeixin(wechat_AppID, wechat_AppSecret);
         UMConfigure.setLogEnabled(true);
-        UMConfigure.init(this,"5ac4c20fb27b0a077b0001e6"
-                ,"umeng",UMConfigure.DEVICE_TYPE_PHONE,"");
+        UMConfigure.init(this, ""
+                , "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
     }
 
     public static IkeApplication getApp() {
@@ -76,4 +86,9 @@ public class IkeApplication extends MultiDexApplication {
         return application.user;
     }
 
+    private void initAppKey(){
+        PlatformParams params=new PlatformParams("openPlatformConfig");
+        params.setPlatform("weixin");
+        api.getOpenPlatformConfig(params).compose(new RestfulTransformer<>()).subscribe();
+    }
 }

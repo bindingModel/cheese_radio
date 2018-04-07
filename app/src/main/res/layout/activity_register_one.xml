@@ -51,6 +51,7 @@
 
             <RadioButton
                 style="@style/sex_select_radio_button_select"
+                android:id="@+id/boy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="33dp"
@@ -62,6 +63,7 @@
 
             <RadioButton
                 style="@style/sex_select_radio_button_select"
+                android:id="@+id/girl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
@@ -71,7 +73,6 @@
         </com.binding.model.view.radio.CheckRadioGroup>
 
         <Button
-            android:id="@+id/skip"
             android:layout_width="match_parent"
             android:layout_height="43dp"
             android:layout_marginBottom="64.33dp"

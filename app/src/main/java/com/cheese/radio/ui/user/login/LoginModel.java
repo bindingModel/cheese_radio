@@ -16,9 +16,11 @@ import com.cheese.radio.databinding.ActivityLoginBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.user.User;
 import com.cheese.radio.ui.user.login.params.PlatformParams;
 import com.cheese.radio.ui.user.login.params.SignParams;
 import com.cheese.radio.ui.user.login.params.SmsParams;
+import com.cheese.radio.ui.user.profile.ProfileParams;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -72,7 +74,7 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
         api.getToken(signParams).compose(new RestfulTransformer<>())
                 .subscribe(signUserEntity -> {
                     IkeApplication.getUser().setToken(signUserEntity.getToken());
-                    if(signUserEntity.getNewX()==0)ARouterUtil.navigation(home);
+                    if (signUserEntity.getNewX() == 0) ARouterUtil.navigation(home);
                     else ARouterUtil.navigation(registerOne);
                     finish();
                 }, BaseUtil::toast);
@@ -87,11 +89,14 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
 
         switch (view.getId()) {
             case R.id.qq:
-                platformParams.setOpenPlatformConfig("qq");break;
+                platformParams.setPlatform("qq");
+                break;
             case R.id.wei_bo:
-                platformParams.setOpenPlatformConfig("weibo");break;
+                platformParams.setPlatform("weibo");
+                break;
             case R.id.wei_xin:
-                platformParams.setOpenPlatformConfig("weixin");break;
+                platformParams.setPlatform("weixin");
+                break;
         }
         BaseUtil.toast("暂未施工");
 
@@ -101,44 +106,38 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
     public void onStart(SHARE_MEDIA share_media) {
 
     }
+
     /**
      * 第三方接口回调的参数
+     *
      * @param share_media
      * @param i
-     * @param map
-     * uid 用户唯一标识
-     * name 用户昵称
-     * gender 用户性别
-     * iconurl 用户头像
+     * @param map         uid 用户唯一标识
+     *                    name 用户昵称
+     *                    gender 用户性别
+     *                    iconurl 用户头像
      */
     @Override
     public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
         //打印。。。数据内容
-        for(String key:map.keySet()) Timber.i("key:%1s,value:%2s",key,map.get(key));
-        SignParams params =new SignParams("login");
+        StringBuilder builder = new StringBuilder().append("{");
+        for (String key : map.keySet()) {
+            Timber.i("key:%1s,value:%2s", key, map.get(key));
+            builder.append(key).append(":").append(map.get(key)).append(",");
+        }
+        builder.setLength(builder.length()-1);
+        builder.append("}");
+        SignParams params = new SignParams("login");
         params.setLoginType("weixin");
         params.setOpenId(map.get("uid"));
-        StringBuilder builder=new StringBuilder();
-//        builder.append("{").append("name:").append(map.get("name")).append(,)
+//        params.setOtherInfo(builder.toString());
         api.getToken(params).compose(new RestfulTransformer<>())
                 .subscribe(signUserEntity -> {
                     IkeApplication.getUser().setToken(signUserEntity.getToken());
-                    if(signUserEntity.getNewX()==0)ARouterUtil.navigation(home);
+                    if (signUserEntity.getNewX() == 0) ARouterUtil.navigation(home);
                     else ARouterUtil.navigation(registerOne);
                     finish();
                 }, BaseUtil::toast);
-        //api.loginWeChat(
-        //      map.get("openid"),
-        //        map.get("unionid"),
-        //       map.get("name"),
-        //        map.get("profile_image_url"))
-        //        .compose(new RestfulTransformer<>())
-        //       .subscribe(s -> {
-        //           App.getUser().login(s);
-        //            BaseUtil.navigation(ActivityComponent.Router.home);
-        //            BaseUtil.navigation(ActivityComponent.Router.bindPhone);
-        //            getT().onBackPressed();
-        //        }, Throwable::printStackTrace);
     }
 
     @Override

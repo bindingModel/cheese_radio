@@ -14,7 +14,9 @@ import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityRegisterOneBinding;
 import com.cheese.radio.inject.api.RadioApi;
+import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.user.login.params.MyInfoParams;
+import com.cheese.radio.ui.user.register.UserInfoParams;
 
 import javax.inject.Inject;
 
@@ -26,10 +28,16 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.registe
  * Created by 29283 on 2018/3/20.
  */
 @ModelView(R.layout.activity_register_one)
-public class RegisterOneModel extends ViewModel<RegisterOneActivity,ActivityRegisterOneBinding> {
+public class RegisterOneModel extends ViewModel<RegisterOneActivity, ActivityRegisterOneBinding> {
 
-    @Inject RegisterOneModel(){}
-    @Inject RadioApi api;
+    @Inject
+    RegisterOneModel() {
+    }
+
+    @Inject
+    RadioApi api;
+    private UserInfoParams params = new UserInfoParams("setUserInfo");
+
     @Override
     public void attachView(Bundle savedInstanceState, RegisterOneActivity registerOneActivity) {
         super.attachView(savedInstanceState, registerOneActivity);
@@ -37,21 +45,34 @@ public class RegisterOneModel extends ViewModel<RegisterOneActivity,ActivityRegi
 //                .subscribe(o -> {}, BaseUtil::toast);
     }
 
-    public Boolean checkSex=true;
-    public ObservableBoolean checkView=new ObservableBoolean(false);
+    public Boolean checkSex = true;
+    public ObservableBoolean checkView = new ObservableBoolean(false);
 
-    public void onSelectSexClick(View view){
-        RadioButton textView=(RadioButton)view;
+    public void onSelectSexClick(View view) {
+        RadioButton textView = (RadioButton) view;
 //        textView.getText();
 //        getDataBinding().skip.setVisibility(View.VISIBLE);
+        switch (textView.getId()) {
+            case R.id.boy:
+                params.setSex("M");
+                break;
+            case R.id.girl:
+                params.setSex("F");
+                break;
+        }
         checkView.set(true);
     }
 
 
-    public void onNextClick(View view){
+    public void onNextClick(View view) {
+
+        IkeApplication.getUser().setUserEntity(params);
         ARouterUtil.navigation(registerTwo);
+        this.finish();
     }
-    public void onSkipClick(View view){
+
+    public void onSkipClick(View view) {
         ARouterUtil.navigation(home);
+        this.finish();
     }
 }

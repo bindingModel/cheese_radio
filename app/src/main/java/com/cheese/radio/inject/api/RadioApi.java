@@ -44,6 +44,7 @@ import com.cheese.radio.ui.user.my.work.MyWorkParams;
 import com.cheese.radio.ui.user.product.list.ProductsEntity;
 import com.cheese.radio.ui.user.product.list.ProductsParams;
 import com.cheese.radio.ui.user.profile.ProfileParams;
+import com.cheese.radio.ui.user.register.UserInfoParams;
 
 import java.util.List;
 
@@ -88,6 +89,7 @@ public interface RadioApi {
     @POST("/1.0/content")
     Observable<InfoEntity<PlayEntity>> getContentInfo(@Body PlayParams params);
 
+    //第三方登录APPKEY
     @POST("/1.0/common")
     Observable<InfoEntity<PlatformEntity>> getOpenPlatformConfig(@Body PlatformParams params);
 
@@ -141,4 +143,8 @@ public interface RadioApi {
 
     @POST("/1.0/user")
     Observable<InfoEntity<String>> readMessages(@Body ReadMessagesParams params);
+
+    @POST("/1.0/user")
+    Observable<InfoEntity<String>> setUserInfo(@Body UserInfoParams params);
+
 }

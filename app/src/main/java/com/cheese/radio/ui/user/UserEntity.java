@@ -16,10 +16,9 @@ public class UserEntity {
     private String token;
     private String nickName;
     private String sex;
+    private String age;
     private String birthday;
     private Boolean canBookCheck;
-    private Map<Integer,Boolean> favorite;
-
 
 
     public UserEntity clone(UserEntity entity) {
@@ -91,11 +90,13 @@ public class UserEntity {
     public void setCanBookCheck(Boolean canBookCheck) {
         this.canBookCheck = canBookCheck;
     }
-    public Map<Integer,Boolean> getFavorite() {
-        return favorite;
+
+
+    public String getAge() {
+        return age;
     }
 
-    public void setFavorite(Map<Integer,Boolean> favorite) {
-        this.favorite = favorite;
+    public void setAge(String age) {
+        this.age = age;
     }
 }

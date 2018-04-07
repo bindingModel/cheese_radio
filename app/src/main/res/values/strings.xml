@@ -61,4 +61,7 @@
     <string name="book_msg">预约通知</string>
     <string name="class_msg">上课通知</string>
     <string name="vip_msg">会员通知</string>
+    <string name="umeng_key">5ac4c20fb27b0a077b0001e6</string>
+    <string name="wechat_AppID">wxc34b4cea4106230e</string>
+    <string name="wechat_AppSecret">77f59ea225f35a7a7477e02dead86fae</string>
 </resources>

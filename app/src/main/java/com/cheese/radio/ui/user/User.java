@@ -7,6 +7,7 @@ import com.binding.model.data.save.SharePreferenceUtil;
 import com.binding.model.model.inter.Model;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.ui.user.profile.ProfileParams;
+import com.cheese.radio.ui.user.register.UserInfoParams;
 
 import java.util.Map;
 
@@ -61,9 +62,23 @@ public class User {
     public Boolean getCanBookCheck() {
         return userEntity.getCanBookCheck();
     }
+
     public void setCanBookCheck(Boolean canBookCheck) {
         userEntity.setCanBookCheck(canBookCheck);
         util.setAllDto(userEntity);
     }
 
+    //以下两个方法在用户初次登录后调用。
+    public void setUserEntity(UserInfoParams params) {
+        if (params.getAge() != null) userEntity.setAge(params.getAge());
+        if (params.getSex() != null) userEntity.setSex(params.getSex());
+        util.setAllDto(userEntity);
+    }
+
+    public UserInfoParams getUserInfoParams() {
+        UserInfoParams params = new UserInfoParams("setUserInfo");
+        params.setAge(userEntity.getAge());
+        params.setSex(userEntity.getSex());
+        return params;
+    }
 }

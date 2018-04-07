@@ -18,6 +18,7 @@ import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.inject.component.DaggerActivityComponent;
 import com.cheese.radio.inject.module.ActivityModule;
 import com.cheese.radio.ui.IkeApplication;
+import com.umeng.analytics.MobclickAgent;
 
 import java.lang.reflect.Method;
 
@@ -108,6 +109,17 @@ public abstract class BaseActivity<VM extends ViewModel> extends DataBindingActi
     public void onBackClick(View view) {
         super.onBackClick(view);
 
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
     }
 
 }
