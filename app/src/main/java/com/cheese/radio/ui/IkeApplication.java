@@ -1,14 +1,8 @@
 package com.cheese.radio.ui;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.Context;
-import android.os.Build;
 import android.support.multidex.MultiDexApplication;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatDelegate;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 
 import com.binding.model.App;
 import com.cheese.radio.BR;
@@ -25,14 +19,13 @@ import com.cheese.radio.ui.user.login.params.PlatformParams;
 import com.pgyersdk.crash.PgyCrashManager;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
-import com.umeng.socialize.UMShareAPI;
-
-//import com.umeng.commonsdk.UMConfigure;
-//import com.umeng.socialize.UMShareAPI;
 
 import javax.inject.Inject;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.login;
+
+//import com.umeng.commonsdk.UMConfigure;
+//import com.umeng.socialize.UMShareAPI;
 
 /**
  * Created by apple on 2017/6/23.
