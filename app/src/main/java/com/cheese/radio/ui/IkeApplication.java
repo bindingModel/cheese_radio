@@ -24,13 +24,9 @@ import javax.inject.Inject;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.login;
 
-//import com.umeng.commonsdk.UMConfigure;
-//import com.umeng.socialize.UMShareAPI;
-
 /**
  * Created by apple on 2017/6/23.
  */
-
 public class IkeApplication extends MultiDexApplication {
     private static IkeApplication application;
     private static AppComponent appComponent;
