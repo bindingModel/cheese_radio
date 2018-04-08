@@ -10,6 +10,9 @@
         <variable
             name="entity"
             type="com.cheese.radio.ui.media.anchor.AnchorData"/>
+        <variable
+            name="image"
+            type="String"/>
     </data>
 <FrameLayout
     android:layout_width="match_parent"
@@ -115,15 +118,15 @@
 
         </LinearLayout>
     </LinearLayout>
-    <RadioButton
-        android:id="@+id/play"
-        android:layout_width="57dp"
-        android:layout_height="57dp"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="17.3dp"
-        android:background="@drawable/home_play_button_select"
-        android:button="@null"
-        android:checked="@{vm.checked}"
-        android:onClick="@{vm::onPlayClick}" />
+    <ImageView
+        android:id="@+id/play_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:padding="2dp"
+        app:head="@{image}"
+        android:layout_marginBottom="15dp"
+        android:onClick="@{vm::onToPlayClick}"
+        android:background="@drawable/home_play_button_stop"/>
 </FrameLayout>
 </layout>

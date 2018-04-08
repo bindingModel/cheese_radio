@@ -25,13 +25,16 @@ import com.binding.model.model.ViewModel;
 import com.binding.model.model.inter.Entity;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
+import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityHomeBinding;
 import com.cheese.radio.inject.api.RadioApi;
+import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.inject.qualifier.manager.ActivityFragmentManager;
 import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.media.audio.AudioModel;
 import com.cheese.radio.ui.media.play.PlayEntity;
+import com.cheese.radio.util.DataStore;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -111,7 +114,7 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
 
     @Override
     public RadioButton getPlayView() {
-        return getDataBinding().play;
+        return null;
     }
 
     @Override
@@ -171,12 +174,16 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
                 playImage.setPivotY(playImage.getHeight() / 2);
                 playImage.setRotation(angle++);
             }
+             angle=angle<360?angle:0;
+            mHandler.hasMessages(0);
             mHandler.postDelayed(this, TIME_UPDATE);
         }
     };
 
     public void images(PlayEntity entity) {
         getDataBinding().setEntity(entity);
+        DataStore.getInstance().setImage(entity.getImage());
+        mHandler.removeCallbacksAndMessages(null);
         mHandler.post(mRotationRunnable);
     }
 
@@ -185,5 +192,8 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
         super.onPlayClick(view);
         if (isPlaying()) mHandler.post(mRotationRunnable);
         else mHandler.removeCallbacks(mRotationRunnable);
+    }
+    public void onToPlayClick(View view){
+        ARouterUtil.navigation(ActivityComponent.Router.play);
     }
 }

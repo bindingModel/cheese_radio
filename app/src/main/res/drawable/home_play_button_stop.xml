@@ -17,7 +17,7 @@
 
     </item>
 
-<!--    <item
+    <item
         android:gravity="center">
         <selector>
             <item
@@ -29,6 +29,6 @@
                 android:drawable="@mipmap/play_button"
                 android:state_checked="true" />
         </selector>
-    </item>-->
+    </item>
 
 </layer-list>

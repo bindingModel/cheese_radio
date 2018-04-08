@@ -79,11 +79,13 @@
                 android:id="@+id/play_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_gravity="bottom|center"
                 android:padding="2dp"
                 app:head="@{entity.image}"
+                android:onClick="@{vm::onToPlayClick}"
+                android:layout_marginBottom="15dp"
                 android:background="@drawable/home_play_button_stop"/>
-            <RadioButton
+         <!--   <RadioButton
                 android:id="@+id/play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -92,7 +94,7 @@
                 android:drawableTop="@drawable/home_play_button_select"
                 android:button="@null"
                 android:checked="@={vm.checked}"
-                android:onClick="@{vm::onPlayClick}" />
+                android:onClick="@{vm::onPlayClick}" />-->
 
             <!--      android:checked="@{vm.checked}"
                 android:onClick="@{vm::onPlayClick}"-->

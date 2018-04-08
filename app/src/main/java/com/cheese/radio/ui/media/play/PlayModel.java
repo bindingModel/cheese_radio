@@ -25,6 +25,7 @@ import com.cheese.radio.ui.media.play.popup.PopupPlayModel;
 import com.cheese.radio.ui.media.play.popup.SelectPlayTimeEntity;
 import com.cheese.radio.ui.service.AudioServiceUtil;
 import com.cheese.radio.ui.user.addfavority.AddFavorityParams;
+import com.cheese.radio.util.DataStore;
 import com.cheese.radio.util.MyBaseUtil;
 
 import java.util.ArrayList;
@@ -58,7 +59,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     public void attachView(Bundle savedInstanceState, PlayActivity activity) {
         super.attachView(savedInstanceState, activity);
         intTimes();
-        id = getT().getIntent().getIntExtra(Constant.id, 0);
+        iniView();
         api.getContentInfo(new PlayParams("contentInfo", id)).compose(new RestfulTransformer<>()).subscribe(
                 this::setSingelEntity, throwable -> BaseUtil.toast(getT(), throwable));
         initPopupPlayModel(savedInstanceState);
@@ -86,10 +87,11 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
     public void setSingelEntity(PlayEntity entity) {
         list.add(entity);
+        DataStore.getInstance().setImage(entity.getImage());
         if (isPlaying()) setEntities(list);
         else playFirst(list);
         getDataBinding().setEntity(entity);
-        if(!list.isEmpty()) Model.dispatchModel(Constant.images,list.get(0));
+        if (!list.isEmpty()) Model.dispatchModel(Constant.images, list.get(0));
     }
 
     public void onSelectClick(View view) {
@@ -110,7 +112,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
             util.setDuration(timeEntity.getTime(), (current, duration) -> {
                 if (current != 0)
                     playTime = current;
-                    totalTime=duration;
+                totalTime = duration;
             });
             return false;
         });
@@ -124,7 +126,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         }
         if (totalTime == -1) {
             clockCheck.set(false);
-        }else clockCheck.set(true);
+        } else clockCheck.set(true);
     }
 
     public void intTimes() {
@@ -135,18 +137,21 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         util.setOnTimingListener((current, duration) -> {
             if (current != 0) {
                 playTime = current;
-                totalTime=duration;
+                totalTime = duration;
             }
         });
     }
 
     private void iniView() {
-
+        id = getT().getIntent().getIntExtra(Constant.id, 0);
+        if (id != 0) DataStore.getInstance().setId(id);
+        else if (DataStore.getInstance().getId() != 0) id = DataStore.getInstance().getId();
     }
 
     public void onAddFavorityClick(View view) {
         api.addFavority(new AddFavorityParams("addFavority")).compose(new RestfulTransformer<>()).subscribe(
         );
     }
+
 }
 

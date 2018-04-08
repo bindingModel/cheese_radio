@@ -1,17 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="vm"
             type="com.cheese.radio.ui.media.anchors.AnchorsModel"/>
+        <variable
+            name="entity"
+            type="com.cheese.radio.ui.media.play.PlayEntity"/>
     </data>
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <include
-            layout="@layout/toolbar" />
-        <include layout="@layout/layout_recycler_view"
-            android:id="@+id/layout_recycler"/>
-    </LinearLayout>
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <include
+                layout="@layout/toolbar" />
+            <include layout="@layout/layout_recycler_view"
+                android:id="@+id/layout_recycler"/>
+
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/play_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:padding="2dp"
+            app:head="@{entity.image}"
+            android:layout_marginBottom="15dp"
+            android:onClick="@{vm::onToPlayClick}"
+            android:background="@drawable/home_play_button_stop"/>
+        <!-- <RadioButton
+             android:id="@+id/play"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center|bottom"
+             android:layout_marginBottom="15dp"
+             android:drawableTop="@drawable/home_play_button_select"
+             android:button="@null"
+             android:checked="@={vm.checked}"
+             android:onClick="@{vm::onPlayClick}" />-->
+    </FrameLayout>
 </layout>
