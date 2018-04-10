@@ -60,7 +60,7 @@ public class UserEntity {
     }
 
     public String getSex() {
-        return sex;
+        return sex = (sex != null ? sex : "F");
     }
 
     public void setSex(String sex) {
@@ -84,9 +84,11 @@ public class UserEntity {
     public boolean isLogin() {
         return !TextUtils.isEmpty(token);
     }
+
     public Boolean getCanBookCheck() {
         return canBookCheck;
     }
+
     public void setCanBookCheck(Boolean canBookCheck) {
         this.canBookCheck = canBookCheck;
     }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.cheese.radio.ui.user.my.work.MyWorkEntity" />
+    </data>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="163dp"
+            android:layout_height="212dp"
+            android:src="@{vm.image}"
+            android:scaleType="fitXY"/>
+        <TextView
+            android:layout_width="163dp"
+            android:layout_height="wrap_content"
+            android:text="@{vm.title}"
+            android:maxLines="2"/>
+    </LinearLayout>
+</layout>

@@ -16,7 +16,7 @@ import javax.inject.Inject;
  * Created by 29283 on 2018/3/30.
  */
 @ModelView(R.layout.activity_my_work)
-public class MyWorkModel extends RecyclerModel<MyWorkActivity,ActivityMyWorkBinding,Inflate>{
+public class MyWorkModel extends RecyclerModel<MyWorkActivity,ActivityMyWorkBinding,MyWorkEntity>{
     @Inject MyWorkModel(){}
 
 
@@ -27,6 +27,6 @@ public class MyWorkModel extends RecyclerModel<MyWorkActivity,ActivityMyWorkBind
         super.attachView(savedInstanceState, activity);
         getDataBinding().layoutRecycler.setVm(this);
         //我的作品 从哪个地方添加进来数据？？
-        api.getMyWork(new MyWorkParams("myContents")).compose(new RestfulTransformer<>()).subscribe(list -> {});
+        setRcHttp((offset1, refresh)->api.getMyWork(new MyWorkParams("myContents")).compose(new RestfulTransformer<>()));
     }
 }

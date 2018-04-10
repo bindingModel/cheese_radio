@@ -16,6 +16,7 @@ import com.cheese.radio.databinding.ActivityAnchorsBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.media.play.PlayEntity;
+import com.cheese.radio.ui.service.AudioServiceUtil;
 import com.cheese.radio.util.DataStore;
 import com.cheese.radio.util.models.AudioRecycleModel;
 
@@ -47,7 +48,7 @@ public class AnchorsModel extends AudioRecycleModel<AnchorsActivity,ActivityAnch
         super.attachView(savedInstanceState, anchorsActivity);
         getDataBinding().layoutRecycler.setVm(this);
         playImage=getDataBinding().playImage;
-        entity.setImage(DataStore.getInstance().getImage());
+        entity.setImage(AudioServiceUtil.getInstance().getImage());
         images(entity);
         setRcHttp((offset1, refresh) -> api.getAnchors(params).compose(new RestfulTransformer<>()));
     }

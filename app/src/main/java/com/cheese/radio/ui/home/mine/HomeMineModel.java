@@ -3,9 +3,11 @@ package com.cheese.radio.ui.home.mine;
 import android.app.Application;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 
+import com.binding.model.App;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
 import com.binding.model.model.inter.Event;
@@ -80,4 +82,9 @@ public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineB
         ARouterUtil.navigation(ActivityComponent.Router.favority);
     }
     public void onMessageClick(View view){ARouterUtil.navigation(ActivityComponent.Router.message);}
+
+    public Drawable getSex(){
+        return   IkeApplication.getUser().getUserEntity().getSex().equals("F")?
+                App.getDrawable(R.mipmap.boy):App.getDrawable(R.mipmap.girl);
+    }
 }

@@ -23,6 +23,7 @@ import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.media.audio.AudioModel;
 import com.cheese.radio.ui.media.play.popup.PopupPlayModel;
 import com.cheese.radio.ui.media.play.popup.SelectPlayTimeEntity;
+import com.cheese.radio.ui.service.AudioService;
 import com.cheese.radio.ui.service.AudioServiceUtil;
 import com.cheese.radio.ui.user.addfavority.AddFavorityParams;
 import com.cheese.radio.util.DataStore;
@@ -64,7 +65,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         iniView();
         Disposable subscribe = api.getContentInfo(new PlayParams("contentInfo", id))
                 .compose(new RestfulTransformer<>()).subscribe(
-                this::setSingelEntity, throwable -> BaseUtil.toast(getT(), throwable));
+                        this::setSingelEntity, throwable -> BaseUtil.toast(getT(), throwable));
         initPopupPlayModel(savedInstanceState);
     }
 
@@ -90,7 +91,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
     public void setSingelEntity(PlayEntity entity) {
         list.add(entity);
-        DataStore.getInstance().setImage(entity.getImage());
+        AudioServiceUtil.getInstance().setImage(entity.getImage());
         if (isPlaying()) setEntities(list);
         else playFirst(list);
         getDataBinding().setEntity(entity);
@@ -147,12 +148,15 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
     private void iniView() {
         id = getT().getIntent().getIntExtra(Constant.id, 0);
-        if (id != 0) DataStore.getInstance().setId(id);
-        else if (DataStore.getInstance().getId() != 0) id = DataStore.getInstance().getId();
+        if (id != 0) AudioServiceUtil.getInstance().setId(id);
+        else if (AudioServiceUtil.getInstance().getId() != 0)
+            id = AudioServiceUtil.getInstance().getId();
     }
 
     public void onAddFavorityClick(View view) {
-        api.addFavority(new AddFavorityParams("addFavority")).compose(new RestfulTransformer<>()).subscribe(
+        AddFavorityParams params = new AddFavorityParams("addFavority");
+        params.setId(AudioServiceUtil.getInstance().getId());
+        api.addFavority(params).compose(new RestfulTransformer<>()).subscribe(
         );
     }
 

@@ -34,12 +34,14 @@ import com.cheese.radio.ui.user.login.params.SmsParams;
 import com.cheese.radio.ui.user.login.entity.SignUserEntity;
 import com.cheese.radio.ui.user.my.course.MyCourseData;
 import com.cheese.radio.ui.user.my.course.MyCourseParams;
+import com.cheese.radio.ui.user.my.favority.MyFavorityData;
 import com.cheese.radio.ui.user.my.favority.MyFavorityParams;
 import com.cheese.radio.ui.user.my.message.MessagesData;
 import com.cheese.radio.ui.user.my.message.MessagesParams;
 import com.cheese.radio.ui.user.my.message.ReadMessagesParams;
 import com.cheese.radio.ui.user.my.push.NewMessageCountData;
 import com.cheese.radio.ui.user.my.push.NewMessageCountParams;
+import com.cheese.radio.ui.user.my.work.MyWorkEntity;
 import com.cheese.radio.ui.user.my.work.MyWorkParams;
 import com.cheese.radio.ui.user.product.list.ProductsEntity;
 import com.cheese.radio.ui.user.product.list.ProductsParams;
@@ -115,10 +117,10 @@ public interface RadioApi {
     Observable<InfoEntity<MyCourseData>> getMyCourse(@Body MyCourseParams params);
 
     @POST("/1.0/user")
-    Observable<InfoEntity<List>> getMyWork(@Body MyWorkParams params);
+    Observable<InfoEntity<List<MyWorkEntity>>> getMyWork(@Body MyWorkParams params);
 
     @POST("/1.0/user")
-    Observable<InfoEntity<List>> getMyFavority(@Body MyFavorityParams params);
+    Observable<InfoEntity<MyFavorityData>> getMyFavority(@Body MyFavorityParams params);
 
     @POST("/1.0/user")
     Observable<InfoEntity<NewMessageCountData>> getNewMessageCount(@Body NewMessageCountParams params);

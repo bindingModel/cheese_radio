@@ -76,7 +76,7 @@ public class AnchorModel extends AudioPagerModel<AnchorActivity, ActivityAnchorB
         params = new AnchorParams("info", authorId);
         playImage= getDataBinding().playImage;
         PlayEntity playEntity=new PlayEntity();
-        playEntity.setImage(DataStore.getInstance().getImage());
+        playEntity.setImage(AudioServiceUtil.getInstance().getImage());
         images(playEntity);
         addDisposable(api.getAuthor(params).compose(new RestfulTransformer<>()).subscribe(anchorData -> {
             getDataBinding().setEntity(anchorData);

@@ -29,7 +29,7 @@ public class ProductsEntity extends ViewInflateRecycler {
         private String description;
         private int classHour;
         private int id;
-
+        private String img;
         public int getPrice() {
             return price;
         }
@@ -77,4 +77,12 @@ public class ProductsEntity extends ViewInflateRecycler {
             if(Event.event(R.id.EnrollModel,this,view) == 1) App.getCurrentActivity().finish();
 //            Model.dispatchModel("getProductId",this);
         }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 }

@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
  */
 
 public class MyBaseUtil extends BaseUtil{
-
+    private static String macAddress =null;
     private static final char[] CHARS = {
             '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
@@ -39,8 +39,8 @@ public class MyBaseUtil extends BaseUtil{
     private static Random random = new Random();
 
     public static String getMacAddress() {
+        if(macAddress!=null)return macAddress;
 
-        String macAddress =null;
         WifiManager wifiManager =
                 (WifiManager) App.getCurrentActivity().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo info = (null== wifiManager ?null: wifiManager.getConnectionInfo());

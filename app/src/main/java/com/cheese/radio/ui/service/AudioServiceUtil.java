@@ -39,6 +39,24 @@ public class AudioServiceUtil implements TimeEntity {
     private int current = 0;
     private String uri;
     private OnTimingListener onTimingListener;
+    private String image;
+    private Integer id;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Integer getId() {
+        return id=id!=null?id:0;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     private AudioServiceUtil() {
     }

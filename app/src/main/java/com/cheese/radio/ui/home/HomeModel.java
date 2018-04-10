@@ -37,6 +37,7 @@ import com.cheese.radio.inject.qualifier.manager.ActivityFragmentManager;
 import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.media.audio.AudioModel;
 import com.cheese.radio.ui.media.play.PlayEntity;
+import com.cheese.radio.ui.service.AudioServiceUtil;
 import com.cheese.radio.util.DataStore;
 import com.cheese.radio.util.MyBaseUtil;
 
@@ -205,7 +206,7 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
 
     public void images(PlayEntity entity) {
         getDataBinding().setEntity(entity);
-        DataStore.getInstance().setImage(entity.getImage());
+        AudioServiceUtil.getInstance().setImage(entity.getImage());
         mHandler.removeCallbacksAndMessages(null);
         mHandler.post(mRotationRunnable);
     }

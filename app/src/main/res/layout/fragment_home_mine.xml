@@ -50,7 +50,7 @@
                         android:onClick="@{vm::onSetProfileClick}"
                         android:padding="5dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/avatar" />
+                        android:src="@{vm.sex}" />
 
                     <TextView
                         android:layout_width="100dp"
