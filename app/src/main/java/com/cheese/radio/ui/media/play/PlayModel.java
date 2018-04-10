@@ -34,6 +34,8 @@ import java.util.Observable;
 
 import javax.inject.Inject;
 
+import io.reactivex.disposables.Disposable;
+
 /**
  * Created by 29283 on 2018/3/17.
  */
@@ -60,7 +62,8 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         super.attachView(savedInstanceState, activity);
         intTimes();
         iniView();
-        api.getContentInfo(new PlayParams("contentInfo", id)).compose(new RestfulTransformer<>()).subscribe(
+        Disposable subscribe = api.getContentInfo(new PlayParams("contentInfo", id))
+                .compose(new RestfulTransformer<>()).subscribe(
                 this::setSingelEntity, throwable -> BaseUtil.toast(getT(), throwable));
         initPopupPlayModel(savedInstanceState);
     }

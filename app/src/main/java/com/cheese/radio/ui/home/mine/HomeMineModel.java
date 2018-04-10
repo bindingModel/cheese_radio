@@ -22,6 +22,8 @@ import com.cheese.radio.ui.user.profile.ProfileParams;
 
 import javax.inject.Inject;
 
+import io.reactivex.disposables.Disposable;
+
 /**
  * Created by 29283 on 2018/2/22.
  */
@@ -38,14 +40,14 @@ public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineB
     public void attachView(Bundle savedInstanceState, HomeMineFragment homeMineFragment) {
         super.attachView(savedInstanceState, homeMineFragment);
         getDataBinding().setEntity(IkeApplication.getUser().getUserEntity());
-        api.getNewMessageCount(new NewMessageCountParams("newMessageCount")).compose(new RestfulTransformer<>())
+        Disposable subscribe = api.getNewMessageCount(new NewMessageCountParams("newMessageCount")).compose(new RestfulTransformer<>())
                 .subscribe(newMessageCountData -> {
                     redTipCount.set(String.valueOf(newMessageCountData.getCount()));
-                    if(newMessageCountData.getCount()!=null & newMessageCountData.getCount()!=0)
+                    if (newMessageCountData.getCount() != null & newMessageCountData.getCount() != 0)
                         redTipBoolean.set(true);
                     else redTipBoolean.set(false);
                 });
-                //        api.getProperty(new ProfileParams("getProperty")).compose(new RestfulTransformer<>()).subscribe();
+        //        api.getProperty(new ProfileParams("getProperty")).compose(new RestfulTransformer<>()).subscribe();
     }
 
     public void onLogoutClick(View view) {

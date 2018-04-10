@@ -1,5 +1,6 @@
 package com.cheese.radio.ui.home;
 
+import android.animation.ObjectAnimator;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableInt;
 import android.media.MediaPlayer;
@@ -43,6 +44,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.disposables.Disposable;
+
 import static com.binding.model.adapter.AdapterType.refresh;
 
 /**
@@ -54,7 +57,7 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
     private static final long TIME_UPDATE = 50L;
 
     private int position = 0;
-    private List<Entity> fmsEntities = new ArrayList<>();
+    private final List<Entity> fmsEntities = new ArrayList<>();
     private final List<HomeEntity> list = new ArrayList<>();
     public ObservableInt currentItem = new ObservableInt();
     private int currentTab = -1;
@@ -74,9 +77,8 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
     public void attachView(Bundle savedInstanceState, HomeActivity activity) {
         super.attachView(savedInstanceState, activity);
         playImage = getDataBinding().playImage;
-        api.getCanBook(new CanBookParams("canBook")).compose(new RestfulTransformer<>()).
-                subscribe(canBookData -> IkeApplication.getUser().setCanBookCheck(canBookData.isResult())
-                );
+        Disposable subscribe = api.getCanBook(new CanBookParams("canBook")).compose(new RestfulTransformer<>()).
+                subscribe(canBookData -> IkeApplication.getUser().setCanBookCheck(canBookData.isResult()));
         initFragment();
     }
 
@@ -193,6 +195,7 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
         if (isPlaying()) mHandler.post(mRotationRunnable);
         else mHandler.removeCallbacks(mRotationRunnable);
     }
+
     public void onToPlayClick(View view){
         ARouterUtil.navigation(ActivityComponent.Router.play);
     }

@@ -37,7 +37,6 @@ public class HomeEntity extends ViewParse implements Item<BaseFragment> {
                         fragment = new ClockFragment();
                     }
                     break;
-
                 }
                 case 2:
                     fragment = new CircleFragment();

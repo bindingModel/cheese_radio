@@ -17,6 +17,8 @@ import com.cheese.radio.ui.user.register.UserInfoParams;
 
 import javax.inject.Inject;
 
+import io.reactivex.disposables.Disposable;
+
 import static com.cheese.radio.inject.component.ActivityComponent.Router.home;
 
 /**
@@ -40,7 +42,7 @@ public class RegisterTwoModel extends ViewModel<RegisterTwoActivity, ActivityReg
 
     public void onNextClick(View view) {
         params.setSex(IkeApplication.getUser().getUserEntity().getSex());
-        api.setUserInfo(params).compose(new RestfulTransformer<>()).subscribe(s -> {
+        Disposable subscribe = api.setUserInfo(params).compose(new RestfulTransformer<>()).subscribe(s -> {
             ARouterUtil.navigation(home);
             this.finish();
         }, BaseUtil::toast);
