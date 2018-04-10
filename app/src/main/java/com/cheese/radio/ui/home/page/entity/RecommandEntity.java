@@ -29,7 +29,7 @@ public  class   RecommandEntity extends ViewInflateRecycler implements SpanSize,
      * id : 5
      * title : 三只小猪
      */
-    @Inject RadioApi api;
+//    @Inject RadioApi api;
     private String image;
     private int playCount;
     private String subTitle;

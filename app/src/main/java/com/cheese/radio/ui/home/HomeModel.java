@@ -1,6 +1,7 @@
 package com.cheese.radio.ui.home;
 
 import android.app.AlertDialog;
+import android.animation.ObjectAnimator;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableInt;
 import android.media.MediaPlayer;
@@ -48,6 +49,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import static android.provider.Settings.Global.getString;
+import io.reactivex.disposables.Disposable;
+
 import static com.binding.model.adapter.AdapterType.refresh;
 import static com.binding.model.util.BaseUtil.T;
 
@@ -60,7 +63,7 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
     private static final long TIME_UPDATE = 50L;
 
     private int position = 0;
-    private List<Entity> fmsEntities = new ArrayList<>();
+    private final List<Entity> fmsEntities = new ArrayList<>();
     private final List<HomeEntity> list = new ArrayList<>();
     public ObservableInt currentItem = new ObservableInt();
     private int currentTab = -1;
@@ -214,7 +217,7 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
         else mHandler.removeCallbacks(mRotationRunnable);
     }
 
-    public void onToPlayClick(View view) {
+    public void onToPlayClick(View view){
         ARouterUtil.navigation(ActivityComponent.Router.play);
     }
 }

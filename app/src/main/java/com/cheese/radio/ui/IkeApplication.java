@@ -71,6 +71,10 @@ public class IkeApplication extends MultiDexApplication {
         }
     }
 
+    public static RadioApi getRadioApi(){
+        return application.api;
+    }
+
     public static User getUser() {
         return application.user;
     }
