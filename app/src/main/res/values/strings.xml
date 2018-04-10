@@ -64,4 +64,5 @@
     <string name="umeng_key">5ac4c20fb27b0a077b0001e6</string>
     <string name="wechat_AppID">wxc34b4cea4106230e</string>
     <string name="wechat_AppSecret">77f59ea225f35a7a7477e02dead86fae</string>
+    <string name="ali_pay">支付宝支付</string>
 </resources>
