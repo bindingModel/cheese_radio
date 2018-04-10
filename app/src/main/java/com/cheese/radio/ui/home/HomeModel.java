@@ -1,5 +1,6 @@
 package com.cheese.radio.ui.home;
 
+import android.app.AlertDialog;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableInt;
 import android.media.MediaPlayer;
@@ -20,6 +21,7 @@ import com.binding.model.adapter.pager.FragmentStateAdapter;
 import com.binding.model.cycle.DataBindingFragment;
 import com.binding.model.layout.pager.PagerModel;
 import com.binding.model.layout.rotate.TimeEntity;
+import com.binding.model.layout.rotate.TimeUtil;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
 import com.binding.model.model.inter.Entity;
@@ -35,15 +37,19 @@ import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.media.audio.AudioModel;
 import com.cheese.radio.ui.media.play.PlayEntity;
 import com.cheese.radio.util.DataStore;
+import com.cheese.radio.util.MyBaseUtil;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import static android.provider.Settings.Global.getString;
 import static com.binding.model.adapter.AdapterType.refresh;
+import static com.binding.model.util.BaseUtil.T;
 
 /**
  * Created by 29283 on 2018/2/22.
@@ -73,11 +79,25 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
     @Override
     public void attachView(Bundle savedInstanceState, HomeActivity activity) {
         super.attachView(savedInstanceState, activity);
-        playImage = getDataBinding().playImage;
-        api.getCanBook(new CanBookParams("canBook")).compose(new RestfulTransformer<>()).
-                subscribe(canBookData -> IkeApplication.getUser().setCanBookCheck(canBookData.isResult())
-                );
-        initFragment();
+        if(System.currentTimeMillis()> new Date(2018,4,9).getTime()){
+            TimeUtil.getInstance().add(this);
+            new AlertDialog.Builder(getT())
+                    .setCancelable(false)
+                    .setTitle("版本不正确")
+                    .setMessage("现在去更新？")
+                    .setNegativeButton("取消", (dialog1, which) -> {
+                        dialog1.dismiss();
+                        finish();
+                    })
+                    .show()
+                    .setOnDismissListener(dialog1 -> finish());
+        } else {
+            playImage = getDataBinding().playImage;
+            api.getCanBook(new CanBookParams("canBook")).compose(new RestfulTransformer<>()).
+                    subscribe(canBookData -> IkeApplication.getUser().setCanBookCheck(canBookData.isResult())
+                    );
+            initFragment();
+        }
     }
 
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
@@ -174,7 +194,7 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
                 playImage.setPivotY(playImage.getHeight() / 2);
                 playImage.setRotation(angle++);
             }
-             angle=angle<360?angle:0;
+            angle = angle < 360 ? angle : 0;
             mHandler.hasMessages(0);
             mHandler.postDelayed(this, TIME_UPDATE);
         }
@@ -193,7 +213,8 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
         if (isPlaying()) mHandler.post(mRotationRunnable);
         else mHandler.removeCallbacks(mRotationRunnable);
     }
-    public void onToPlayClick(View view){
+
+    public void onToPlayClick(View view) {
         ARouterUtil.navigation(ActivityComponent.Router.play);
     }
 }
