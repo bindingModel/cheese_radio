@@ -72,7 +72,7 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
             }
             return api.getHotSearch(params)
                     .compose(new RestfulTransformer<>()).map(hotSearchEntities  -> {
-//                                list.add(new HotSearchTitleEntity("热门搜索"));
+                                list.add(new HotSearchTitleEntity("热门搜索"));
 //                                list.addAll(hotSearchEntities);
                                 if (hotSearchEntities.size() < 5) {
                                     list.addAll(hotSearchEntities);
@@ -82,7 +82,7 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
                                     for (HotSearchEntity entity : hotSearchEntities) {
                                         entity.setIndex(1);
                                     }
-                                    list.add(new HotSearchEntity("热门搜索", 1));
+//                                    list.add(new HotSearchEntity("热门搜索", 1));
                                     list.addAll(hotSearchEntities);
                                 }
 //                           list.addAll(getAdapter().getList());

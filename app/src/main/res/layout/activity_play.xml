@@ -105,10 +105,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:ellipsize="end"
                         android:text="@{entity.anchorBrief,default=23456}"
-                        android:textColor="@color/text_gray"
+                        android:ellipsize = "end"
                         android:maxLines="1"
+                        android:textColor="@color/text_gray"
                         android:textSize="12.44sp" />
 
                 </LinearLayout>
