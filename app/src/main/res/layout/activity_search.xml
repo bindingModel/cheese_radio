@@ -30,6 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@null"
+                    android:onClick="@{vm::onFinishClick}"
                     android:padding="15dp"
                     android:src="@mipmap/back" />
 

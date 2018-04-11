@@ -5,7 +5,7 @@
     <data>
         <variable
             name="vm"
-            type="com.cheese.radio.ui.media.anchor.entity.play.item.AnchorSingleItem" />
+            type="com.cheese.radio.ui.search.entity.HotSearchEntity" />
     </data>
 
     <LinearLayout
@@ -18,8 +18,8 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:scaleType="fitXY"
-            app:radius="@{vm.radius}"
             android:layout_margin="8.6dp"
+            app:radius="@{vm.radius}"
             android:src="@{vm.image}" />
 
         <LinearLayout
@@ -55,14 +55,14 @@
                     android:drawableLeft="@mipmap/play_count"
                     android:textSize="9.6sp"
                     android:drawablePadding="6.72dp"
-                    android:text="@{vm.playCountString,default=21.00}"/>
+                    android:text="@{vm.playCount,default=21.00}"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@mipmap/play_clock"
                     android:textSize="9.6sp"
                     android:drawablePadding="6.72dp"
-                    android:text="@{vm.playCountString,default=21.00}"/>
+                    android:text="@{vm.playCount,default=21.00}"/>
 
             </LinearLayout>
             <View

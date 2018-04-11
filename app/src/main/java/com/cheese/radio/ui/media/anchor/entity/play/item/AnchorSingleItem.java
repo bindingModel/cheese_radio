@@ -179,5 +179,7 @@ public class AnchorSingleItem extends ViewInflateRecycler implements Parcelable 
         }
     };
 
-
+    public int getRadius(){
+        return 15;
+    }
 }

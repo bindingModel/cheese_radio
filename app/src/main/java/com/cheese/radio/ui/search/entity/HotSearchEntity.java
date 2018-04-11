@@ -1,17 +1,18 @@
 package com.cheese.radio.ui.search.entity;
 
+import android.view.View;
+
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
 import com.binding.model.model.inter.GridInflate;
 import com.binding.model.model.inter.SpanSize;
 import com.cheese.radio.R;
-
-import javax.inject.Inject;
+import com.cheese.radio.base.arouter.ARouterUtil;
 
 /**
  * Created by 29283 on 2018/3/22.
  */
-@ModelView(value = {R.layout.item_hot_search, R.layout.search_text})
+@ModelView(value = {R.layout.item_hot_search, R.layout.holder_search_result})
 public class HotSearchEntity extends ViewInflateRecycler implements SpanSize, GridInflate {
 
     public HotSearchEntity(String title,Integer index) {
@@ -52,8 +53,9 @@ public class HotSearchEntity extends ViewInflateRecycler implements SpanSize, Gr
         this.image = image;
     }
 
-    public int getPlayCount() {
-        return playCount;
+    public String getPlayCount() {
+
+        return String.valueOf(playCount);
     }
 
     public void setPlayCount(int playCount) {
@@ -124,5 +126,29 @@ public class HotSearchEntity extends ViewInflateRecycler implements SpanSize, Gr
       if(this.index==0)
         return 0;
       else return 1;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        HotSearchEntity entity = (HotSearchEntity) o;
+
+        if (id != entity.id) return false;
+        return title != null ? title.equals(entity.title) : entity.title == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        return result;
+    }
+    public void onPlayClick(View view) {
+        ARouterUtil.itemNavigation("play", id);
+    }
+    public int getRadius(){
+        return 15;
     }
 }

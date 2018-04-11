@@ -47,19 +47,21 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginBottom="7dp"
                     android:text="@{entity.title,default=123456789}"
-                    android:textColor="@color/text_black" />
+                    android:textColor="@color/text_white"
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|bottom"
-                    android:layout_marginBottom="7dp"
+                    android:layout_marginBottom="12dp"
                     android:layout_marginRight="15dp"
                     android:layout_marginLeft="15dp"
                     android:drawableLeft="@mipmap/play_count"
                     android:drawablePadding="6dp"
                     android:drawableStart="@mipmap/play_count"
                     android:text="@{entity.playViews,default=00}"
+                    android:textColor="@color/text_white"
                     android:textSize="9.6sp" />
 
             </FrameLayout>
@@ -75,6 +77,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
+                    android:layout_marginTop="12dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -83,18 +86,33 @@
                         android:layout_gravity="bottom"
                         android:layout_marginLeft="12dp"
                         app:head="@{entity.anchorIcon}" />
-
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="3dp"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="12dp"
-                        android:layout_weight="1"
                         android:ellipsize="end"
-                        android:maxLines="3"
-                        android:text="@{entity.msg}"
+                        android:text="@{entity.anchorName,default=1234}"
                         android:textColor="@color/text_black"
-                        android:textSize="13.44sp" />
+                        android:textSize="12.44sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ellipsize="end"
+                        android:text="@{entity.anchorBrief,default=23456}"
+                        android:textColor="@color/text_gray"
+                        android:maxLines="1"
+                        android:textSize="12.44sp" />
+
+                </LinearLayout>
+
 
                     <!--  android:drawableLeft="@{entity.anchorIcon}"
                       android:drawableStart="@{entity.anchorIcon}"
@@ -116,11 +134,15 @@
                         android:text="@string/follow"
                         android:textColor="@color/text_white" />
                 </LinearLayout>
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp">
+                    android:layout_margin="15dp"
+                    android:layout_marginTop="50dp">
 
                     <SeekBar
                         android:id="@+id/app_video_seekBar"
@@ -151,8 +173,7 @@
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:paddingLeft="110dp"
                     android:paddingRight="110dp">
 

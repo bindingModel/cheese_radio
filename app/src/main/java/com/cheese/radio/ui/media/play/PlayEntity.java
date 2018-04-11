@@ -141,7 +141,7 @@ public class PlayEntity implements Entity {
 
         return BaseUtil.colorText(
                 T(anchorName, true,"111111"),
-                T(anchorBrief, false, "111111")
+                T(anchorBrief, false, "BDBDBD")
         );
     }
     public void onClick(View view){
