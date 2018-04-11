@@ -140,8 +140,8 @@ public class PlayEntity implements Entity {
     public CharSequence getMsg() {
 
         return BaseUtil.colorText(
-                T(anchorName, true,"ffffff"),
-                T(anchorBrief, false, "FFFFFF")
+                T(anchorName, true,"111111"),
+                T(anchorBrief, false, "111111")
         );
     }
     public void onClick(View view){
