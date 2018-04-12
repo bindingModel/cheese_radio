@@ -14,7 +14,7 @@ import java.util.Map;
 public class UserEntity {
 
     private String token;
-    private String nickName;
+    private String nickname;
     private String sex;
     private String age;
     private String birthday;
@@ -44,12 +44,12 @@ public class UserEntity {
     }
 
     public String getNickName() {
-        if (nickName != null)
-            return nickName;
+        if (nickname != null)
+            return nickname;
         else {
             if (token != null) {
 
-                return nickName = token.substring(0, 20);
+                return nickname = token.substring(0, 20);
             }
         }
         return "匿名用户";
@@ -72,7 +72,7 @@ public class UserEntity {
     }
 
     public void setNickName(String nickName) {
-        this.nickName = nickName;
+        this.nickname = nickName;
     }
 
     public String getSex() {
@@ -116,5 +116,13 @@ public class UserEntity {
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 }
