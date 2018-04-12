@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 
+import com.binding.model.adapter.AdapterType;
 import com.binding.model.adapter.recycler.GridSpanSizeLookup;
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
