@@ -124,7 +124,7 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
 //            getDataBinding().cancelButton.clearAnimation();
             params.setTitle(null);
             cancelBoolean.set(false);
-            onHttp(0);
+            onHttp(0, 1);
 
         }
 //        } else getDataBinding().cancelButton.setVisibility(View.VISIBLE);

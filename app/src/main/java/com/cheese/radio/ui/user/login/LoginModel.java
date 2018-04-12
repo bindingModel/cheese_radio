@@ -21,6 +21,7 @@ import com.cheese.radio.ui.user.login.params.PlatformParams;
 import com.cheese.radio.ui.user.login.params.SignParams;
 import com.cheese.radio.ui.user.login.params.SmsParams;
 import com.cheese.radio.ui.user.profile.ProfileParams;
+import com.cheese.radio.ui.user.register.UserInfoParams;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -29,6 +30,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
 import timber.log.Timber;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.home;
@@ -71,14 +73,7 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
         if (!signParams.isValidPhone((TextView) view)) return;
         if (!signParams.isValidSMS((TextView) view)) return;
         signParams.setLoginType("phone");
-        api.getToken(signParams).compose(new RestfulTransformer<>())
-                .subscribe(signUserEntity -> {
-                    IkeApplication.getUser().setToken(signUserEntity.getToken());
-                    if (signUserEntity.getNewX() == 0) ARouterUtil.navigation(home);
-                    else ARouterUtil.navigation(registerOne);
-                    finish();
-                }, BaseUtil::toast);
-
+        login(signParams);
     }
 
     public void onGoHomeClick(View view) {
@@ -131,13 +126,7 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
         params.setLoginType("weixin");
         params.setOpenId(map.get("uid"));
 //        params.setOtherInfo(builder.toString());
-        api.getToken(params).compose(new RestfulTransformer<>())
-                .subscribe(signUserEntity -> {
-                    IkeApplication.getUser().setToken(signUserEntity.getToken());
-                    if (signUserEntity.getNewX() == 0) ARouterUtil.navigation(home);
-                    else ARouterUtil.navigation(registerOne);
-                    finish();
-                }, BaseUtil::toast);
+        login(params);
     }
 
     @Override
@@ -147,6 +136,22 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
 
     @Override
     public void onCancel(SHARE_MEDIA share_media, int i) {
+
+    }
+    private void login(SignParams params){
+        api.getToken(params).compose(new RestfulTransformer<>())
+                .subscribe(signUserEntity -> {
+                    IkeApplication.getUser().setToken(signUserEntity.getToken());
+                    if (signUserEntity.getNewX() == 0) {
+                        ARouterUtil.navigation(home);
+                        api.getUserInfo(new UserInfoParams("myInfo")).compose(new RestfulTransformer<>()).subscribe(userEntity ->
+                        IkeApplication.getUser().setUserEntity(userEntity));
+                    }
+                    else ARouterUtil.navigation(registerOne);
+
+
+                    finish();
+                }, BaseUtil::toast);
 
     }
 }

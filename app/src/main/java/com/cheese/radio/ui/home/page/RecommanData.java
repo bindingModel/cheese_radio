@@ -1,16 +1,22 @@
 package com.cheese.radio.ui.home.page;
 
+import android.os.Bundle;
+import android.view.View;
+
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
 import com.binding.model.model.inter.GridInflate;
 import com.binding.model.model.inter.SpanSize;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
+import com.cheese.radio.base.arouter.ARouterUtil;
+import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.home.page.entity.RecommandEntity;
 
 import java.util.List;
 
 import static com.binding.model.util.BaseUtil.T;
+import static com.cheese.radio.inject.component.ActivityComponent.Router.contents;
 
 /**
  * Created by 29283 on 2018/3/15.
@@ -28,7 +34,7 @@ public class RecommanData extends ViewInflateRecycler implements SpanSize, GridI
      */
 
     private String subTitle;
-    private String locationId;
+    private int locationId;
     private String viewType;
     private String location;
     private String title;
@@ -42,11 +48,11 @@ public class RecommanData extends ViewInflateRecycler implements SpanSize, GridI
         this.subTitle = subTitle;
     }
 
-    public String getLocationId() {
+    public int getLocationId() {
         return locationId;
     }
 
-    public void setLocationId(String locationId) {
+    public void setLocationId(int locationId) {
         this.locationId = locationId;
     }
 
@@ -92,5 +98,14 @@ public class RecommanData extends ViewInflateRecycler implements SpanSize, GridI
     @Override
     public int getSpanSize() {
         return 4;
+    }
+
+    public boolean getIslocation(){
+        if (location==null)return false;
+        return true;
+    }
+    public void onClick(View view){
+        ARouterUtil.itemNavigation(location,locationId);
+
     }
 }

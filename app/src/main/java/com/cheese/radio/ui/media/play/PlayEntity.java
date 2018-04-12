@@ -40,7 +40,8 @@ public class PlayEntity implements Entity {
         private String anchorName;
         private String url;
         private String anchorBrief;
-
+        private Integer favor;
+        private Integer fileId;
         public String getImage() {
             return image;
         }
@@ -148,5 +149,27 @@ public class PlayEntity implements Entity {
 
     }
 
+    public Integer getFavor() {
+        return favor;
+    }
 
+    public void setFavor(Integer favor) {
+        this.favor = favor;
+    }
+
+    public Integer getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(Integer fileId) {
+        this.fileId = fileId;
+    }
+    public boolean isFavors(){
+        if (favor==null)return false;
+        return favor != 0;
+    }
+    public boolean isFiles(){
+        if (fileId==null)return false;
+        return fileId != 0;
+    }
 }

@@ -74,12 +74,15 @@
                         android:visibility="@{vm.redTipBoolean?View.VISIBLE:View.GONE}" />
                 </FrameLayout>
             </LinearLayout>
-
+           <FrameLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:background="@color/background_white">
             <include
                 android:id="@+id/layout_recycler"
                 layout="@layout/layout_recycler_view"
-                android:background="@color/background_gray"
                 android:padding="7.5dp" />
+           </FrameLayout>
         </LinearLayout>
     </FrameLayout>
 </layout>

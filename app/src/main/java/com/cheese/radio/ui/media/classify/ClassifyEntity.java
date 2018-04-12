@@ -12,6 +12,8 @@ import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
 
+import static com.cheese.radio.inject.component.ActivityComponent.Router.contents;
+
 /**
  * Created by 29283 on 2018/3/17.
  */
@@ -58,7 +60,8 @@ public class ClassifyEntity extends ViewInflateRecycler implements SpanSize, Gri
     }
 
     public void onClick(View view){
-        ARouterUtil.itemNavigation(location,tagId);
-
+        Bundle bundle=new Bundle();
+        bundle.putInt(Constant.id,tagId);
+        ARouterUtil.navigation(contents,bundle);
         }
 }

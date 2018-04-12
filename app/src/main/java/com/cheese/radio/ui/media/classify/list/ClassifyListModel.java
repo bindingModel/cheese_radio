@@ -17,31 +17,39 @@ import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.media.classify.ClassifyData;
 import com.cheese.radio.ui.media.classify.ClassifyParams;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 /**
  * Created by 29283 on 2018/3/24.
  */
 @ModelView(R.layout.activity_classify_list)
-public class ClassifyListModel extends RecyclerModel<ClassifyListActivity,ActivityClassifyListBinding,Inflate>{
+public class ClassifyListModel extends RecyclerModel<ClassifyListActivity, ActivityClassifyListBinding, ClassifyListEntity> {
 
-    @Inject ClassifyListModel(){}
-    @Inject RadioApi api;
+    @Inject
+    ClassifyListModel() {
+    }
+
+    @Inject
+    RadioApi api;
     private Integer tagId;
-    private final ClassifyListParams params=new ClassifyListParams("queryByTag");
+    private List<ClassifyListEntity> list = new ArrayList<>();
+    private final ClassifyListParams params = new ClassifyListParams("queryByTag");
+
     @Override
     public void attachView(Bundle savedInstanceState, ClassifyListActivity classifyListActivity) {
         super.attachView(savedInstanceState, classifyListActivity);
         getDataBinding().layoutRecycler.setVm(this);
-        tagId=getT().getIntent().getIntExtra(Constant.id,0);
+        tagId = getT().getIntent().getIntExtra(Constant.id, 0);
         params.setTagId(tagId);
         params.setFilter("");
-        api.getQueryByTag(params).compose(new RestfulTransformer<>()).subscribe(classifyData -> {
-//            for (ClassifyData data:classifyData) {
-//                list.add(data);
-//                list.addAll(data.getSubTagList());
-//            }
-//            accept(list);
-        }, BaseUtil::toast);
+        setRcHttp((offset1, refresh) -> api.getQueryByTag(params).compose(new RestfulTransformer<>()).map(classifyListData -> {
+                    list.addAll(classifyListData.getSingle().getList());
+                    return list;
+                }
+        ));
+
     }
 }

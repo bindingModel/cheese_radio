@@ -61,6 +61,7 @@
             android:textColor="#ffffff"
             android:drawableStart="@mipmap/story_num_icon"
             android:drawableLeft="@mipmap/story_num_icon"
+            android:visibility="gone"
             />
         <TextView
             android:layout_width="wrap_content"

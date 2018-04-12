@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="vm"
+            type="com.cheese.radio.ui.media.classify.list.ClassifyListEntity"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:onClick="@{vm::onPlayClick}"
+>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="fitXY"
+            android:layout_margin="8.6dp"
+            app:radius="@{vm.radius}"
+            android:src="@{vm.image}" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginLeft="3.12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13.44sp"
+                android:text="@{vm.title,default=xxxxxx}"
+                android:layout_marginTop="11.33dp"
+                android:textColor="@color/text_black"
+                android:layout_marginBottom="5.43dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11.52sp"
+                android:text="@{vm.subTitle,default=xxxxx}"
+                android:layout_marginBottom="4.49dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/play_count"
+                    android:textSize="9.6sp"
+                    android:drawablePadding="6.72dp"
+                    android:text="@{vm.playCount,default=21.00}"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/play_clock"
+                    android:textSize="9.6sp"
+                    android:drawablePadding="6.72dp"
+                    android:text="@{vm.playCount,default=21.00}"/>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_other_line"/>
+        </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|end"
+                android:src="@mipmap/mine_arrow"/>
+        </FrameLayout>
+    </LinearLayout>
+</layout>

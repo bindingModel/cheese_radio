@@ -12,6 +12,7 @@ import com.cheese.radio.ui.media.anchors.AnchorsItem;
 import com.cheese.radio.ui.media.anchors.AnchorsParams;
 import com.cheese.radio.ui.media.classify.ClassifyData;
 import com.cheese.radio.ui.media.classify.ClassifyParams;
+import com.cheese.radio.ui.media.classify.list.ClassifyListData;
 import com.cheese.radio.ui.media.classify.list.ClassifyListParams;
 import com.cheese.radio.ui.media.course.details.CourseDetailsData;
 import com.cheese.radio.ui.media.course.details.CourseDetailsParams;
@@ -21,6 +22,7 @@ import com.cheese.radio.ui.media.play.PlayEntity;
 import com.cheese.radio.ui.media.play.PlayParams;
 import com.cheese.radio.ui.search.entity.HotSearchEntity;
 import com.cheese.radio.ui.search.params.HotSearchParams;
+import com.cheese.radio.ui.user.UserEntity;
 import com.cheese.radio.ui.user.addfavority.AddFavorityParams;
 import com.cheese.radio.ui.user.calendar.CalendarEntity;
 import com.cheese.radio.ui.user.calendar.ClassCalendarParams;
@@ -102,7 +104,7 @@ public interface RadioApi {
     Observable<InfoEntity<List<HotSearchEntity>>> getHotSearch(@Body HotSearchParams params);
     //绘本列表 签名验证错误？
     @POST("/1.0/content")
-    Observable<InfoEntity<List<Object>>> getQueryByTag(@Body ClassifyListParams params);
+    Observable<InfoEntity<ClassifyListData>> getQueryByTag(@Body ClassifyListParams params);
 
     @POST("/1.0/order")
     Observable<InfoEntity<List<ProductsEntity>>> getProducts(@Body ProductsParams params);
@@ -149,4 +151,6 @@ public interface RadioApi {
     @POST("/1.0/user")
     Observable<InfoEntity<String>> setUserInfo(@Body UserInfoParams params);
 
+    @POST("/1.0/user")
+    Observable<InfoEntity<UserEntity>> getUserInfo(@Body UserInfoParams params);
 }

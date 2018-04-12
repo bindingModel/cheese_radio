@@ -54,9 +54,10 @@
                 android:drawableLeft="@mipmap/plus"
                 android:drawableStart="@mipmap/plus"
                 android:gravity="center"
+                android:maxLines="1"
                 android:onClick="@{vm::onClick}"
-                android:paddingLeft="13.8dp"
-                android:paddingRight="13.8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
                 android:text="@string/subscribe"
                 android:textColor="@color/text_white" />
             </LinearLayout>

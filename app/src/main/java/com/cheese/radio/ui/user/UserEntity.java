@@ -19,8 +19,8 @@ public class UserEntity {
     private String age;
     private String birthday;
     private Boolean canBookCheck;
-
-
+    private String mobile;
+    private String userId;
     public UserEntity clone(UserEntity entity) {
         token = entity.getToken();
         UserEntity user = entity;
@@ -53,6 +53,22 @@ public class UserEntity {
             }
         }
         return "匿名用户";
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public void setNickName(String nickName) {

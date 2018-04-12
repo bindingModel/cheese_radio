@@ -59,6 +59,13 @@ public class User {
         Model.dispatchModel(logout);
     }
 
+    public void setUserEntity(UserEntity entity) {
+        String token=this.getToken();
+        this.userEntity.clone(entity);
+        this.userEntity.setToken(token);
+        util.setAllDto(userEntity);
+    }
+
     public Boolean getCanBookCheck() {
         return userEntity.getCanBookCheck();
     }
