@@ -40,12 +40,12 @@ public class MyFavorityData {
          * list : [{"image":"    _400x400(2).jpg:/c13/c0/1626b2687b35b.jpg","playCount":0,"subTitle":"三只小猪是兄弟,为抵抗大野狼而有不同的遭遇","location":"PLAY","id":5,"title":"三只小猪"}]
          */
 
-        private int total;
+        private Integer total;
         private int index;
         private List<MyFavorityEntity> list;
 
-        public int getTotal() {
-            return total;
+        public String getTotal() {
+            return total!=null?String.valueOf(total):null;
         }
 
         public void setTotal(int total) {
@@ -79,7 +79,7 @@ public class MyFavorityData {
 
         private int total;
         private int index;
-        private List<?> list;
+        private List<MyFavorityEntity> list;
 
         public int getTotal() {
             return total;
@@ -97,11 +97,11 @@ public class MyFavorityData {
             this.index = index;
         }
 
-        public List<?> getList() {
+        public List<MyFavorityEntity> getList() {
             return list;
         }
 
-        public void setList(List<?> list) {
+        public void setList(List<MyFavorityEntity> list) {
             this.list = list;
         }
     }

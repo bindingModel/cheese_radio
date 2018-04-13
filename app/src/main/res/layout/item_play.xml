@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@mipmap/play"
             android:drawablePadding="6.6dp"
+            android:onClick="@{vm::onPlayClick}"
             android:padding="9.6dp"
             android:text="继续播放" />
 

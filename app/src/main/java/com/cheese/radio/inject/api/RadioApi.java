@@ -23,7 +23,7 @@ import com.cheese.radio.ui.media.play.PlayParams;
 import com.cheese.radio.ui.search.entity.HotSearchEntity;
 import com.cheese.radio.ui.search.params.HotSearchParams;
 import com.cheese.radio.ui.user.UserEntity;
-import com.cheese.radio.ui.user.addfavority.AddFavorityParams;
+import com.cheese.radio.ui.user.params.AddFavorityParams;
 import com.cheese.radio.ui.user.calendar.CalendarEntity;
 import com.cheese.radio.ui.user.calendar.ClassCalendarParams;
 import com.cheese.radio.ui.user.demo.DemoData;
@@ -45,6 +45,7 @@ import com.cheese.radio.ui.user.my.push.NewMessageCountData;
 import com.cheese.radio.ui.user.my.push.NewMessageCountParams;
 import com.cheese.radio.ui.user.my.work.MyWorkEntity;
 import com.cheese.radio.ui.user.my.work.MyWorkParams;
+import com.cheese.radio.ui.user.params.FabulousParams;
 import com.cheese.radio.ui.user.product.list.ProductsEntity;
 import com.cheese.radio.ui.user.product.list.ProductsParams;
 import com.cheese.radio.ui.user.profile.ProfileParams;
@@ -153,4 +154,8 @@ public interface RadioApi {
 
     @POST("/1.0/user")
     Observable<InfoEntity<UserEntity>> getUserInfo(@Body UserInfoParams params);
+
+    @POST("/1.0/user")
+    Observable<InfoEntity<String>> addFabulous(@Body FabulousParams params);
+
 }

@@ -22,6 +22,8 @@ import com.cheese.radio.ui.home.page.HomePageModel;
 import com.cheese.radio.ui.user.my.push.NewMessageCountParams;
 import com.cheese.radio.ui.user.profile.ProfileParams;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 
 import io.reactivex.disposables.Disposable;
@@ -37,11 +39,12 @@ public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineB
 
     public ObservableBoolean redTipBoolean=new ObservableBoolean(false);
     public ObservableField<String> redTipCount=new ObservableField<>("0");
+    public ObservableField<Drawable> head=new ObservableField<>();
     @Inject RadioApi api;
     @Override
     public void attachView(Bundle savedInstanceState, HomeMineFragment homeMineFragment) {
         super.attachView(savedInstanceState, homeMineFragment);
-        getDataBinding().setEntity(IkeApplication.getUser().getUserEntity());
+        updataUI();
         Disposable subscribe = api.getNewMessageCount(new NewMessageCountParams("newMessageCount")).compose(new RestfulTransformer<>())
                 .subscribe(newMessageCountData -> {
                     redTipCount.set(String.valueOf(newMessageCountData.getCount()));
@@ -84,7 +87,14 @@ public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineB
     public void onMessageClick(View view){ARouterUtil.navigation(ActivityComponent.Router.message);}
 
     public Drawable getSex(){
-        return   IkeApplication.getUser().getUserEntity().getSex().equals("F")?
+        return   IkeApplication.getUser().getUserEntity().getSex().equals("M")?
                 App.getDrawable(R.mipmap.boy):App.getDrawable(R.mipmap.girl);
+    }
+    private void updataUI(){
+        getDataBinding().setEntity(IkeApplication.getUser().getUserEntity());
+        head.set(getSex());
+    }
+    public void onCenterClick(View view){
+        ARouterUtil.navigation(ActivityComponent.Router.center);
     }
 }

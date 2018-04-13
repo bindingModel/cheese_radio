@@ -19,7 +19,7 @@ import javax.inject.Inject;
  * Created by 29283 on 2018/3/30.
  */
 @ModelView(R.layout.activity_my_favority)
-public class MyFavorityModel extends RecyclerModel<MyFavorityActivity, ActivityMyFavorityBinding, MyFavorityEntity> {
+public class MyFavorityModel extends RecyclerModel<MyFavorityActivity, ActivityMyFavorityBinding, Inflate> {
     @Inject
     MyFavorityModel() {
     }
@@ -33,9 +33,13 @@ public class MyFavorityModel extends RecyclerModel<MyFavorityActivity, ActivityM
         getDataBinding().layoutRecycler.setVm(this);
         setRcHttp((offset1, refresh) -> api.getMyFavority(new MyFavorityParams("myFavority")).compose(new RestfulTransformer<>()
         ).map(myFavorityData -> {
-            List<MyFavorityEntity> list = new ArrayList<MyFavorityEntity>();
-            list.addAll(myFavorityData.getSingle().getList());
-
+            List<Inflate> list = new ArrayList<>();
+           if(myFavorityData.getSingle()!=null)
+           {  list.add(new MyFavorityTitle("故事",myFavorityData.getSingle().getTotal()));
+            list.addAll(myFavorityData.getSingle().getList());}
+            if(myFavorityData.getGroup()!=null)
+            {list.add(new MyFavorityTitle("专辑"));
+            list.addAll(myFavorityData.getGroup().getList());}
             return list;
         }));
     }

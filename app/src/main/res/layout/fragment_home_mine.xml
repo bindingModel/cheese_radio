@@ -39,8 +39,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_margin="15dp"
-                        android:onClick="@{vm::onMessageClick}"
-                        android:background="@mipmap/shape_white" />
+                        android:background="@mipmap/shape_white"
+                        android:onClick="@{vm::onMessageClick}" />
 
                     <ImageView
                         android:layout_width="86.3dp"
@@ -50,7 +50,7 @@
                         android:onClick="@{vm::onSetProfileClick}"
                         android:padding="5dp"
                         android:scaleType="fitXY"
-                        android:src="@{vm.sex}" />
+                        android:src="@{vm.head}" />
 
                     <TextView
                         android:layout_width="100dp"
@@ -80,12 +80,12 @@
                         android:layout_height="16dp"
                         android:layout_gravity="end"
                         android:layout_margin="10dp"
-                        android:textSize="10sp"
-                        android:textColor="@color/text_white"
-                        android:text="@{vm.redTipCount,default=1}"
+                        android:background="@drawable/home_page_small_red_tip"
                         android:gravity="center"
-                        android:visibility="@{vm.redTipBoolean?View.VISIBLE:View.GONE}"
-                        android:background="@drawable/home_page_small_red_tip" />
+                        android:text="@{vm.redTipCount,default=1}"
+                        android:textColor="@color/text_white"
+                        android:textSize="10sp"
+                        android:visibility="@{vm.redTipBoolean?View.VISIBLE:View.GONE}" />
 
                 </FrameLayout>
             <LinearLayout
@@ -127,6 +127,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="55.2dp"
                     android:layout_marginTop="1dp"
+                    android:onClick="@{vm::onCenterClick}"
                     android:text="@string/service_centre" />
 
                 <TextView

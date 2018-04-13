@@ -14,24 +14,20 @@ import com.binding.model.model.ModelView;
 import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
-import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityPlayBinding;
 import com.cheese.radio.inject.api.RadioApi;
-import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.media.audio.AudioModel;
 import com.cheese.radio.ui.media.play.popup.PopupPlayModel;
 import com.cheese.radio.ui.media.play.popup.SelectPlayTimeEntity;
-import com.cheese.radio.ui.service.AudioService;
 import com.cheese.radio.ui.service.AudioServiceUtil;
-import com.cheese.radio.ui.user.addfavority.AddFavorityParams;
-import com.cheese.radio.util.DataStore;
+import com.cheese.radio.ui.user.params.AddFavorityParams;
+import com.cheese.radio.ui.user.params.FabulousParams;
 import com.cheese.radio.util.MyBaseUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 
 import javax.inject.Inject;
 
@@ -92,6 +88,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     public void setSingelEntity(PlayEntity entity) {
         list.add(entity);
         AudioServiceUtil.getInstance().setImage(entity.getImage());
+        AudioServiceUtil.getInstance().setFileId(entity.getFileId());
         if (isPlaying()) setEntities(list);
         else playFirst(list);
         getDataBinding().setEntity(entity);
@@ -159,6 +156,12 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         api.addFavority(params).compose(new RestfulTransformer<>()).subscribe(
         );
     }
+    public void onFabuClick(View view){
+        FabulousParams params=new FabulousParams("addFabulous");
+        params.setId(AudioServiceUtil.getInstance().getId());
+        api.addFabulous(params).compose(new RestfulTransformer<>()).subscribe(
 
+        );
+    }
 }
 

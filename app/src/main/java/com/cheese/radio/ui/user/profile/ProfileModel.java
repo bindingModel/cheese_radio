@@ -15,6 +15,7 @@ import com.bigkoo.pickerview.listener.CustomListener;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
 import com.binding.model.model.inter.Event;
+import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
@@ -77,6 +78,7 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
             api.setProperty(params).compose(new ErrorTransform<>()).subscribe(stringInfoEntity -> {
                         BaseUtil.toast(stringInfoEntity.getMessage());
                         if (stringInfoEntity.getCode() == 0) IkeApplication.getUser().setUserEntity(params);
+                        Model.dispatchModel("updataUI");
                     }
 
             );

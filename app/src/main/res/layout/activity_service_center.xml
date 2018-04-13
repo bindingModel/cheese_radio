@@ -8,7 +8,41 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/text_white">
 <!--    地图这块到时候放张图片-->
+    <include
+        layout="@layout/toolbar"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="191dp"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/error_map" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/service_telephone"
+        android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/service_centre_number"
+        android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/the_hours_worked"
+        android:layout_gravity="center"/>
+    <ImageView
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/wx_qr_code"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/wx_public_platform"/>
 </LinearLayout>
 </layout>

@@ -64,7 +64,7 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
         setLayoutManager(layoutManager);
         setEnable(false);
         setPageFlag(false);
-        setRcHttp(((offset1, refresh) -> {
+        setRoHttp(((offset1, refresh) -> {
 //            hashMap.put("start", offset1);
 //            hashMap.put("length", getPageCount());
             if (params.getTitle() != null) {
@@ -125,13 +125,11 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
             params.setTitle(null);
             cancelBoolean.set(false);
             onHttp(0, 1);
-
         }
 //        } else getDataBinding().cancelButton.setVisibility(View.VISIBLE);
         else {
             params.setTitle(text);
             cancelBoolean.set(true);
-
             emitter.onNext(s.toString());
         }
 

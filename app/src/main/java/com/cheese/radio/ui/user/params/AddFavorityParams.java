@@ -1,4 +1,4 @@
-package com.cheese.radio.ui.user.addfavority;
+package com.cheese.radio.ui.user.params;
 
 import com.cheese.radio.base.IkeParams;
 

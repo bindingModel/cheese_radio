@@ -41,7 +41,9 @@ public class PlayEntity implements Entity {
         private String url;
         private String anchorBrief;
         private Integer favor;
+        private Integer fabu;
         private Integer fileId;
+
         public String getImage() {
             return image;
         }
@@ -138,6 +140,14 @@ public class PlayEntity implements Entity {
             this.anchorBrief = anchorBrief;
         }
 
+    public Integer getFabu() {
+        return fabu;
+    }
+
+    public void setFabu(Integer fabu) {
+        this.fabu = fabu;
+    }
+
     public CharSequence getMsg() {
 
         return BaseUtil.colorText(
@@ -169,7 +179,7 @@ public class PlayEntity implements Entity {
         return favor != 0;
     }
     public boolean isFiles(){
-        if (fileId==null)return false;
+        if (fabu==null)return false;
         return fileId != 0;
     }
 }
