@@ -16,6 +16,7 @@ import com.cheese.radio.inject.component.DaggerAppComponent;
 import com.cheese.radio.inject.module.AppModule;
 import com.cheese.radio.ui.user.User;
 import com.cheese.radio.ui.user.login.params.PlatformParams;
+import com.cheese.radio.util.MyBaseUtil;
 import com.pgyersdk.crash.PgyCrashManager;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
@@ -52,6 +53,7 @@ public class IkeApplication extends MultiDexApplication {
         UMConfigure.setLogEnabled(true);
         UMConfigure.init(this, ""
                 , "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
+
     }
 
     public static IkeApplication getApp() {

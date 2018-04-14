@@ -59,46 +59,37 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
         super.attachView(savedInstanceState, searchActivity);
         getDataBinding().homeEdit.addTextChangedListener(this);
         getDataBinding().layoutRecycler.setVm(this);
-        GridLayoutManager layoutManager = new GridLayoutManager(searchActivity, 18);
+        GridLayoutManager layoutManager = new GridLayoutManager(searchActivity, 20);
         layoutManager.setSpanSizeLookup(new GridSpanSizeLookup<>(getAdapter()));
         setLayoutManager(layoutManager);
-        setEnable(false);
-        setPageFlag(false);
+        setEnable(true);
+        setPageFlag(true);
         setRoHttp(((offset1, refresh) -> {
 //            hashMap.put("start", offset1);
 //            hashMap.put("length", getPageCount());
             if (params.getTitle() != null) {
                 params.setStartIndex(offset1);
-                params.setMaxCount(getPageCount());
+                params.setMaxCount(getPageCount()/2);
             }
             return api.getHotSearch(params)
                     .compose(new RestfulTransformer<>()).map(hotSearchEntities  -> {
-                                list.add(new HotSearchTitleEntity("热门搜索"));
+
 //                                list.addAll(hotSearchEntities);
-                                if (hotSearchEntities.size() < 5) {
-                                    list.addAll(hotSearchEntities);
+                                if (params.getTitle()==null) {
+                                    list.add(new HotSearchTitleEntity("热门搜索"));
                                 } else {
-                                    list.addAll(hotSearchEntities.subList(0, 5));
-                                    hotSearchEntities = hotSearchEntities.subList(5, hotSearchEntities.size());
                                     for (HotSearchEntity entity : hotSearchEntities) {
                                         entity.setIndex(1);
                                     }
-//                                    list.add(new HotSearchEntity("热门搜索", 1));
-                                    list.addAll(hotSearchEntities);
                                 }
-//                           list.addAll(getAdapter().getList());
-//                                Set<GridInflate> set=new HashSet<>(list);
-//                                list=new ArrayList<GridInflate>();
-//                                for (GridInflate inflate:set) {
-//                                    list.add(inflate);
-//                                }
+                                list.addAll(hotSearchEntities);
                                 return list;
                             }
                     );
         }));
         observable
                 .debounce(800, TimeUnit.MILLISECONDS)
-                .subscribe(s -> onHttp(1), BaseUtil::toast);
+                .subscribe(s -> onHttp(3), BaseUtil::toast);
     }
 
     public void onSearchClick(View view) {
@@ -123,12 +114,15 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
 //            getDataBinding().cancelButton.setVisibility(View.INVISIBLE);
 //            getDataBinding().cancelButton.clearAnimation();
             params.setTitle(null);
+            params.setMethod("hotsearch");
             cancelBoolean.set(false);
-            onHttp(0, 1);
+            onHttp(0, 3);
         }
 //        } else getDataBinding().cancelButton.setVisibility(View.VISIBLE);
         else {
+
             params.setTitle(text);
+            params.setMethod("search");
             cancelBoolean.set(true);
             emitter.onNext(s.toString());
         }

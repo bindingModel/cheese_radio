@@ -15,9 +15,9 @@ import com.cheese.radio.base.arouter.ARouterUtil;
 @ModelView(value = {R.layout.item_hot_search, R.layout.holder_search_result})
 public class HotSearchEntity extends ViewInflateRecycler implements SpanSize, GridInflate {
 
-    public HotSearchEntity(String title,Integer index) {
+    public HotSearchEntity(String title, Integer index) {
         this.title = title;
-        this.index=index;
+        this.index = index;
     }
 
     public HotSearchEntity() {
@@ -43,7 +43,7 @@ public class HotSearchEntity extends ViewInflateRecycler implements SpanSize, Gr
     private String title;
     private int favorCount;
     private String url;
-    private Integer index=0;
+    private Integer index = 0;
 
     public String getImage() {
         return image;
@@ -117,15 +117,17 @@ public class HotSearchEntity extends ViewInflateRecycler implements SpanSize, Gr
     @Override
     public int getSpanSize() {
 //        if (this.getHolder_position() < 5)
-          if(this.index==0) return 5;
-        else return 18;
+        if (this.index == 0) {
+
+            return title.length()<9?title.length()+2:18;
+        } else return 18;
     }
 
     @Override
     public int getModelIndex() {
-      if(this.index==0)
-        return 0;
-      else return 1;
+        if (this.index == 0)
+            return 0;
+        else return 1;
     }
 
     @Override
@@ -145,10 +147,12 @@ public class HotSearchEntity extends ViewInflateRecycler implements SpanSize, Gr
         result = 31 * result + (title != null ? title.hashCode() : 0);
         return result;
     }
+
     public void onPlayClick(View view) {
         ARouterUtil.itemNavigation("play", id);
     }
-    public int getRadius(){
+
+    public int getRadius() {
         return 15;
     }
 }

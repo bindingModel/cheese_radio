@@ -34,11 +34,11 @@ public class MyFavorityModel extends RecyclerModel<MyFavorityActivity, ActivityM
         setRcHttp((offset1, refresh) -> api.getMyFavority(new MyFavorityParams("myFavority")).compose(new RestfulTransformer<>()
         ).map(myFavorityData -> {
             List<Inflate> list = new ArrayList<>();
-           if(myFavorityData.getSingle()!=null)
-           {  list.add(new MyFavorityTitle("故事",myFavorityData.getSingle().getTotal()));
+           if(myFavorityData.getSingle()!=null) {
+//               list.add(new MyFavorityTitle("故事",myFavorityData.getSingle().getTotal()));
             list.addAll(myFavorityData.getSingle().getList());}
-            if(myFavorityData.getGroup()!=null)
-            {list.add(new MyFavorityTitle("专辑"));
+            if(myFavorityData.getGroup()!=null) {
+//                list.add(new MyFavorityTitle("专辑"));
             list.addAll(myFavorityData.getGroup().getList());}
             return list;
         }));
