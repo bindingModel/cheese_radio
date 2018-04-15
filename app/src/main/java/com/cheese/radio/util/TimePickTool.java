@@ -44,11 +44,12 @@ public class TimePickTool {
          * 2.因为系统Calendar的月份是从0-11的,所以如果是调用Calendar的set方法来设置时间,月份的范围也要是从0-11
          * setRangDate方法控制起始终止时间(如果不设置范围，则使用默认时间1900-2100年，此段代码可注释)
          **/
+        Integer[] nowDay=MyBaseUtil.getNowDate();
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(2014, 1, 23);
+        startDate.set(nowDay[0]-10, nowDay[1]-1, nowDay[2]);
         Calendar endDate = Calendar.getInstance();
-        endDate.set(2027, 2, 28);
+        endDate.set(nowDay[0], nowDay[1]-1, nowDay[2]);
         //时间选择器 ，自定义布局
         pvCustomTime = new TimePickerView.Builder(context, (date, v) -> data.set(getTime(date)))
                 /*.setType(TimePickerView.Type.ALL)//default is all

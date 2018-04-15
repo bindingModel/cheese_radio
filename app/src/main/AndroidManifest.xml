@@ -39,6 +39,7 @@
             android:label="昵称" />
         <activity
             android:name=".ui.user.enroll.EnrollActivity"
+            android:windowSoftInputMode="adjustPan"
             android:label="报名"/>
 
         <activity android:name=".ui.user.demo.DemoActivity"/>

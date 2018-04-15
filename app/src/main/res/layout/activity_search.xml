@@ -76,6 +76,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:padding="12dp"
+                    android:onClick="@{vm::onSearchClick}"
                     android:text="@string/search"
                     android:textSize="13.44sp" />
 

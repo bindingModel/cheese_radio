@@ -18,17 +18,7 @@
     </item>
 
     <item
-        android:gravity="center">
-        <selector>
-            <item
-                android:drawable="@mipmap/home_play"
-                android:state_checked="false"
-
-                />
-            <item
-                android:drawable="@mipmap/play_button"
-                android:state_checked="true" />
-        </selector>
-    </item>
+        android:gravity="center"
+        android:drawable="@mipmap/home_play"/>
 
 </layer-list>

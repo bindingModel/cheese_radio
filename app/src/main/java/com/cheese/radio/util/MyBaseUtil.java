@@ -13,8 +13,10 @@ import com.binding.model.util.BaseUtil;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.ui.IkeApplication;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -130,5 +132,17 @@ public class MyBaseUtil extends BaseUtil{
         return (seconds/60)+":"+(seconds%60);
     }
 
+    public static Integer[] getNowDate(){
+        Date now = new Date(System.currentTimeMillis());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String string=formatter.format(now);
+        String [] nowString=string.split("-");
+        nowString[2]=nowString[2].substring(0,2);
+        Integer[] nowInteger=new Integer[3];
+      for (int i=0;i<3;i++){
+            nowInteger[i]=Integer.valueOf(nowString[i]);
+      }
+        return nowInteger;
+    }
 }
 

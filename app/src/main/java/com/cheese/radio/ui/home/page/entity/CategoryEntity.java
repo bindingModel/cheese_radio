@@ -97,6 +97,6 @@ public class CategoryEntity extends ViewInflateRecycler implements SpanSize, Gri
     }
 
     public void onClick(View view) {
-        ARouterUtil.itemNavigation(location,tagId);
+        ARouterUtil.itemNavigation(location,tagId,tagName);
     }
 }

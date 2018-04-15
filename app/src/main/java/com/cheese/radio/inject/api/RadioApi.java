@@ -12,7 +12,6 @@ import com.cheese.radio.ui.media.anchors.AnchorsItem;
 import com.cheese.radio.ui.media.anchors.AnchorsParams;
 import com.cheese.radio.ui.media.classify.ClassifyData;
 import com.cheese.radio.ui.media.classify.ClassifyParams;
-import com.cheese.radio.ui.media.classify.list.ClassifyListData;
 import com.cheese.radio.ui.media.classify.list.ClassifyListParams;
 import com.cheese.radio.ui.media.course.details.CourseDetailsData;
 import com.cheese.radio.ui.media.course.details.CourseDetailsParams;
@@ -103,9 +102,11 @@ public interface RadioApi {
 
     @POST("/1.0/content")
     Observable<InfoEntity<List<HotSearchEntity>>> getHotSearch(@Body HotSearchParams params);
+    @POST("/1.0/content")
+    Observable<InfoEntity<MyFavorityData>> getSearch(@Body HotSearchParams params);
     //绘本列表 签名验证错误？
     @POST("/1.0/content")
-    Observable<InfoEntity<ClassifyListData>> getQueryByTag(@Body ClassifyListParams params);
+    Observable<InfoEntity<MyFavorityData>> getQueryByTag(@Body ClassifyListParams params);
 
     @POST("/1.0/order")
     Observable<InfoEntity<List<ProductsEntity>>> getProducts(@Body ProductsParams params);

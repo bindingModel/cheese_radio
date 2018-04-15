@@ -73,7 +73,16 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
     }
 
     public void onPropertyClick(View view) {
-        if (params.isValidName((TextView) view)) {
+        updataUI();
+    }
+
+    public void onEditNameClick(View view) {
+        ARouterUtil.navigation(name);
+    }
+
+    public void updataUI() {
+        getDataBinding().setParams(params);
+        if (params.isValidName((TextView) getDataBinding().saveAll)) {
             params.setBirthday(mDate.get());
             api.setProperty(params).compose(new ErrorTransform<>()).subscribe(stringInfoEntity -> {
                         BaseUtil.toast(stringInfoEntity.getMessage());
@@ -83,14 +92,6 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
 
             );
         }
-    }
-
-    public void onEditNameClick(View view) {
-        ARouterUtil.navigation(name);
-    }
-
-    public void updataUI() {
-        getDataBinding().setParams(params);
     }
 
     @Override

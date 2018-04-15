@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 
 import com.binding.model.adapter.AdapterType;
@@ -47,12 +48,13 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
 
     @Inject
     RadioApi api;
-    private  List<GridInflate> list = new ArrayList<>();
+
     public ObservableBoolean cancelBoolean = new ObservableBoolean(false);
     public ObservableField<String> searchInput = new ObservableField<>("");
     private final HotSearchParams params = new HotSearchParams("hotsearch");
     private ObservableEmitter<String> emitter;
     private Observable<String> observable = io.reactivex.Observable.create(e -> this.emitter = e);
+    private final List<GridInflate> list = new ArrayList<>();
 
     @Override
     public void attachView(Bundle savedInstanceState, SearchActivity searchActivity) {
@@ -62,29 +64,31 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
         GridLayoutManager layoutManager = new GridLayoutManager(searchActivity, 20);
         layoutManager.setSpanSizeLookup(new GridSpanSizeLookup<>(getAdapter()));
         setLayoutManager(layoutManager);
-        setEnable(true);
-        setPageFlag(true);
+        setPageFlag(false);
         setRoHttp(((offset1, refresh) -> {
 //            hashMap.put("start", offset1);
 //            hashMap.put("length", getPageCount());
             if (params.getTitle() != null) {
                 params.setStartIndex(offset1);
-                params.setMaxCount(getPageCount()/2);
-            }
-            return api.getHotSearch(params)
-                    .compose(new RestfulTransformer<>()).map(hotSearchEntities  -> {
-
-//                                list.addAll(hotSearchEntities);
-                                if (params.getTitle()==null) {
-                                    list.add(new HotSearchTitleEntity("热门搜索"));
-                                } else {
-                                    for (HotSearchEntity entity : hotSearchEntities) {
-                                        entity.setIndex(1);
-                                    }
+                params.setMaxCount(getPageCount() / 2);
+                return api.getSearch(params)
+                        .compose(new RestfulTransformer<>()).map(
+                                myFavorityData -> {
+                                    list.addAll(myFavorityData.getSingle().getList());
+                                    list.addAll(myFavorityData.getGroup().getList());
+                                    Log.e("search", list.hashCode() + "...");
+                                    return list;
                                 }
+                        );
+            } else return api.getHotSearch(params)
+                    .compose(new RestfulTransformer<>()).map(hotSearchEntities -> {
+                                list.clear();
+                                list.add(new HotSearchTitleEntity("热门搜索"));
                                 list.addAll(hotSearchEntities);
+                                Log.e("Hotsearch", list.hashCode() + "...");
                                 return list;
                             }
+
                     );
         }));
         observable
@@ -93,7 +97,7 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
     }
 
     public void onSearchClick(View view) {
-
+        onHttp(view);
     }
 
     @Override
@@ -117,10 +121,14 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
             params.setMethod("hotsearch");
             cancelBoolean.set(false);
             onHttp(0, 3);
+            setPageFlag(false);
+            list.clear();
+            getAdapter().notifyDataSetChanged();
         }
 //        } else getDataBinding().cancelButton.setVisibility(View.VISIBLE);
         else {
 
+            setPageFlag(true);
             params.setTitle(text);
             params.setMethod("search");
             cancelBoolean.set(true);
@@ -134,7 +142,10 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
         searchInput.set("");
         params.setTitle("");
     }
-    public void onFinishClick(View view){
+
+    public void onFinishClick(View view) {
         getT().finish();
     }
+
+
 }

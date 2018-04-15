@@ -1,17 +1,23 @@
 package com.cheese.radio.ui.user.my.favority;
 
+import android.view.View;
+
 import com.binding.model.model.ModelView;
 import com.binding.model.model.RecyclerInflate;
 import com.binding.model.model.ViewInflateRecycler;
+import com.binding.model.model.inter.GridInflate;
+import com.binding.model.model.inter.SpanSize;
 import com.cheese.radio.R;
+import com.cheese.radio.base.arouter.ARouterUtil;
+import com.cheese.radio.ui.Constant;
 
 import java.util.List;
 
 /**
  * Created by 29283 on 2018/4/10.
  */
-@ModelView(R.layout.holder_my_favority)
-public class MyFavorityEntity extends ViewInflateRecycler {
+@ModelView(R.layout.holder_classify_list)
+public class MyFavorityEntity extends ViewInflateRecycler implements SpanSize, GridInflate {
     /**
      * image :     _400x400(2).jpg:/c13/c0/1626b2687b35b.jpg
      * playCount : 0
@@ -78,6 +84,14 @@ public class MyFavorityEntity extends ViewInflateRecycler {
 
     public int getRadius(){
         return 15;
+    }
+
+    public void onPlayClick(View view){
+        ARouterUtil.itemNavigation(location,id);
+    }
+    @Override
+    public int getSpanSize() {
+         return 18;
     }
 }
 

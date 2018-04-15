@@ -61,4 +61,14 @@ public class ARouterUtil {
                 .replace("_list","s");
         ARouterUtil.navigation(path,bundle);
     }
+    public static void itemNavigation(String location,int id,String tagName){
+        Bundle bundle = new Bundle();
+        bundle.putInt(Constant.id,id);
+        bundle.putString(Constant.title,tagName);
+        String path = ActivityComponent.Router.cheese+location
+                .toLowerCase()
+                .replace("_info","")
+                .replace("_list","s");
+        ARouterUtil.navigation(path,bundle);
+    }
 }

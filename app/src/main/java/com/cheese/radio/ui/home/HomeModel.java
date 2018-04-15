@@ -83,11 +83,12 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
     @Override
     public void attachView(Bundle savedInstanceState, HomeActivity activity) {
         super.attachView(savedInstanceState, activity);
-        if(System.currentTimeMillis()> new Date(2018,4,9).getTime()){
+        //new Date()指定日期时，year need to minus 1900 ，month neet to minus 1,day just day，
+        if(System.currentTimeMillis()> new Date(2018-1900,3,16).getTime()){
             TimeUtil.getInstance().add(this);
             new AlertDialog.Builder(getT())
                     .setCancelable(false)
-                    .setTitle("版本不正确")
+                    .setTitle("版本已过期")
                     .setMessage("现在去更新？")
                     .setNegativeButton("取消", (dialog1, which) -> {
                         dialog1.dismiss();
