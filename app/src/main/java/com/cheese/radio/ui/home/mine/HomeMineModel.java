@@ -48,7 +48,7 @@ public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineB
         Disposable subscribe = api.getNewMessageCount(new NewMessageCountParams("newMessageCount")).compose(new RestfulTransformer<>())
                 .subscribe(newMessageCountData -> {
                     redTipCount.set(String.valueOf(newMessageCountData.getCount()));
-                    if (newMessageCountData.getCount() != null & newMessageCountData.getCount() != 0)
+                    if (newMessageCountData.getCount() != null && newMessageCountData.getCount() != 0)
                         redTipBoolean.set(true);
                     else redTipBoolean.set(false);
                 });

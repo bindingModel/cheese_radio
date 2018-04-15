@@ -66,8 +66,9 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
         setLayoutManager(layoutManager);
         setPageFlag(false);
         setRoHttp(((offset1, refresh) -> {
-//            hashMap.put("start", offset1);
-//            hashMap.put("length", getPageCount());
+            if(refresh!=0){
+                list.clear();
+            }
             if (params.getTitle() != null) {
                 params.setStartIndex(offset1);
                 params.setMaxCount(getPageCount() / 2);
@@ -113,17 +114,15 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
     @Override
     public void afterTextChanged(Editable s) {
         String text = s.toString();
-
+        list.clear();
         if (text.length() < 1) {
 //            getDataBinding().cancelButton.setVisibility(View.INVISIBLE);
 //            getDataBinding().cancelButton.clearAnimation();
             params.setTitle(null);
             params.setMethod("hotsearch");
             cancelBoolean.set(false);
-            onHttp(0, 3);
             setPageFlag(false);
             list.clear();
-            getAdapter().notifyDataSetChanged();
         }
 //        } else getDataBinding().cancelButton.setVisibility(View.VISIBLE);
         else {
@@ -132,9 +131,9 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
             params.setTitle(text);
             params.setMethod("search");
             cancelBoolean.set(true);
-            emitter.onNext(s.toString());
-        }
 
+        }
+        emitter.onNext(s.toString());
 
     }
 

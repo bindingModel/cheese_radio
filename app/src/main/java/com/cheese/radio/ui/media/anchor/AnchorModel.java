@@ -41,12 +41,11 @@ import java.util.List;
 import javax.inject.Inject;
 
 
-
 /**
  * Created by 29283 on 2018/3/13.
  */
 @ModelView(value = R.layout.activity_anchor, model = true)
-public class AnchorModel extends AudioPagerModel<AnchorActivity, ActivityAnchorBinding, AnchorEntity,AnchorSingleItem> {
+public class AnchorModel extends AudioPagerModel<AnchorActivity, ActivityAnchorBinding, AnchorEntity, AnchorSingleItem> {
 
     @Inject
     AnchorModel(@ActivityFragmentManager FragmentManager manager) {
@@ -65,7 +64,7 @@ public class AnchorModel extends AudioPagerModel<AnchorActivity, ActivityAnchorB
 
     private Integer angle = 0;
     private Handler mHandler = new Handler();
-    private final PlayEntity entity=new PlayEntity();
+    private final PlayEntity entity = new PlayEntity();
     private ImageView playImage;
     private static final long TIME_UPDATE = 50L;
 
@@ -74,14 +73,14 @@ public class AnchorModel extends AudioPagerModel<AnchorActivity, ActivityAnchorB
         super.attachView(savedInstanceState, anchorActivity);
         authorId = getT().getIntent().getIntExtra(Constant.authorId, 0);
         params = new AnchorParams("info", authorId);
-        playImage= getDataBinding().playImage;
-        PlayEntity playEntity=new PlayEntity();
+        playImage = getDataBinding().playImage;
+        PlayEntity playEntity = new PlayEntity();
         playEntity.setImage(AudioServiceUtil.getInstance().getImage());
         images(playEntity);
         addDisposable(api.getAuthor(params).compose(new RestfulTransformer<>()).subscribe(anchorData -> {
             getDataBinding().setEntity(anchorData);
-            setFragment(this.anchorData=anchorData);
-            getDataBinding().anchorData.setText("作品（" + anchorData.getSingle().getList().size() + "）");
+            setFragment(this.anchorData = anchorData);
+            getDataBinding().anchorData.setText(String.format("作品（%1s)", anchorData.getSingle().getList().size()));
         }));
 
     }
@@ -119,6 +118,7 @@ public class AnchorModel extends AudioPagerModel<AnchorActivity, ActivityAnchorB
         mHandler.removeCallbacksAndMessages(null);
         mHandler.post(mRotationRunnable);
     }
+
     private Runnable mRotationRunnable = new Runnable() {
         @Override
         public void run() {
@@ -127,11 +127,12 @@ public class AnchorModel extends AudioPagerModel<AnchorActivity, ActivityAnchorB
                 playImage.setPivotY(playImage.getHeight() / 2);
                 playImage.setRotation(angle++);
             }
-            angle=angle<360?angle:0;
+            angle = angle < 360 ? angle : 0;
             mHandler.postDelayed(this, TIME_UPDATE);
         }
     };
-    public void onToPlayClick(View view){
+
+    public void onToPlayClick(View view) {
         ARouterUtil.navigation(ActivityComponent.Router.play);
     }
 }

@@ -53,11 +53,11 @@ public class ClassifyListModel extends RecyclerModel<ClassifyListActivity, Activ
         params.setFilter("");
         setRcHttp((offset1, refresh) -> api.getQueryByTag(params).compose(new RestfulTransformer<>()).map(classifyListData -> {
 
-                    if (classifyListData.getSingle().getList() != null) {
+                    if (classifyListData.getSingle().getList().size()!=0) {
                         list.add(new MyFavorityTitle("故事", classifyListData.getSingle().getTotal()));
                         list.addAll(classifyListData.getSingle().getList());
                     }
-                    if (classifyListData.getGroup().getList() != null) {
+                    if (classifyListData.getGroup().getList() .size()!=0) {
                         list.add(new MyFavorityTitle("专辑"));
                         list.addAll(classifyListData.getGroup().getList());
                     }

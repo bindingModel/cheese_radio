@@ -30,29 +30,36 @@ import io.reactivex.disposables.Disposable;
  * Created by 29283 on 2018/3/21.
  */
 @ModelView(R.layout.activity_group_info)
-public class GroupInfoModel extends PagerModel<GroupInfoActivity,ActivityGroupInfoBinding,GroupEntity> {
+public class GroupInfoModel extends PagerModel<GroupInfoActivity, ActivityGroupInfoBinding, GroupEntity> {
 
-    @Inject GroupInfoModel(@ActivityFragmentManager FragmentManager manager) {super(new FragmentAdapter<>(manager));}
+    @Inject
+    GroupInfoModel(@ActivityFragmentManager FragmentManager manager) {
+        super(new FragmentAdapter<>(manager));
+    }
+
     @Inject
     RadioApi api;
-    private GroupInfoParams params=new GroupInfoParams("groupInfo");
+    private GroupInfoParams params = new GroupInfoParams("groupInfo");
     private static final Integer groupInfoId = new Integer(0);
     private GroupData groupData;
-    private final List<GroupEntity> list=new ArrayList<>();
+    private final List<GroupEntity> list = new ArrayList<>();
+
     @Override
     public void attachView(Bundle savedInstanceState, GroupInfoActivity activity) {
         super.attachView(savedInstanceState, activity);
         Integer groupInfoId = getT().getIntent().getIntExtra(Constant.id, -1);
         params.setId(groupInfoId);
-        Disposable subscribe = api.getGroupInfo(params).compose(new RestfulTransformer<>()).subscribe(
+        addDisposable(api.getGroupInfo(params).compose(new RestfulTransformer<>()).subscribe(
                 groupData -> {
                     getDataBinding().setEntity(groupData);
                     setFragment(groupData);
+                    getDataBinding().storyTitle.setText(String.format("作品（%1s)", groupData.getContentList().size()));
                 }
-        );
+        ));
 
     }
-    public void setFragment(GroupData groupData){
+
+    public void setFragment(GroupData groupData) {
         list.add(new GroupEntity(groupData));
         list.add(new GroupEntity(groupData));
         try {

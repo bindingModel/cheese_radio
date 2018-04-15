@@ -46,8 +46,8 @@ public class CourseDetailsModel extends ViewHttpModel<CourseDetailsActivity, Act
 
     public void onEnrollClick(View view) {
         params.setMethod("bookClass");
-        api.getBookClass(params).compose(new RestfulTransformer<>()).subscribe(
-                s -> getDataBinding().enroll.setText(s), BaseUtil::toast);
-
+        addDisposable(api.getBookClass(params).compose(new RestfulTransformer<>()).subscribe(
+                s -> getDataBinding().enroll.setText(s), BaseUtil::toast)
+        );
     }
 }

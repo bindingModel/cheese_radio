@@ -96,6 +96,7 @@
 
                 <android.support.v7.widget.AppCompatRadioButton
                     style="@style/anchor_navigation"
+                    android:id="@+id/story_title"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:checked="false"

@@ -48,43 +48,14 @@ public class ClassifyModel extends RecyclerModel<ClassifyActivity, ActivityClass
         GridLayoutManager layoutManager = new GridLayoutManager(getT(), 18);
         layoutManager.setSpanSizeLookup(new GridSpanSizeLookup<>(getAdapter()));
         setLayoutManager(layoutManager);
-        api.getQueryCategroy(new ClassifyParams("queryCategroy")).compose(new RestfulTransformer<>()).subscribe(classifyData -> {
-            for (ClassifyData data:classifyData) {
-                list.add(data);
-                list.addAll(data.getSubTagList());
-            }
-            accept(list);
-        }, BaseUtil::toast);
-//        getDataBinding().detail.setLayoutManager(new GridLayoutManager(activity, 3));
-//        getDataBinding().detail.setAdapter(detailAdapter);
-//        getDataBinding().detail.getLayoutManager().setSpanSizeLookup();
-//        setRcHttp((offset1, refresh1) ->
-//                api.getQueryCategroy(new ClassifyParams("queryCategroy")).compose(new RestfulTransformer<>())
-//                        .map(classifyData -> {
-//                                    for (ClassifyData data:classifyData) {
-//                                        list.add(data);
-//                                        list.addAll(data.getSubTagList());
-//                                    }return list;
-//                        })
-//        );
+        setRcHttp((offset1, refresh) -> api.getQueryCategroy(new ClassifyParams("queryCategroy")).compose(new RestfulTransformer<>()).map(
+             classifyData ->  {
+                 for (ClassifyData data:classifyData) {
+                     list.add(data);
+                     list.addAll(data.getSubTagList());
+                 }
+             return list;
+             }
+        ));
     }
-
-//    private Observable<List<GridInflate>> getGridInflate() {
-//
-//        return Observable.zip(categoriy, recommandList, (cate, entity) -> {
-//            List<GridInflate> list = new ArrayList<>();
-//            if (cate.getCode() == 0 && cate.getData() != null &&  !cate.getData().isEmpty()) {
-//                list.addAll(cate.getData().subList(0,4));
-//            }
-//            if(entity.getCode()==0 &&entity.getData()!=null &&!entity.getData().isEmpty()){
-//                for (RecommanData data:entity.getData()) {
-//                    list.add(data);
-//                    list.addAll(data.getList());
-//                }
-//
-//            }
-//            return list;
-//        }).subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread());
-//    }
 }

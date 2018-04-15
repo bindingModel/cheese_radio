@@ -26,7 +26,7 @@ public class MyFavorityData {
     }
 
     public GroupBean getGroup() {
-        return group;
+        return group = (group != null ? group : new GroupBean());
     }
 
     public void setGroup(GroupBean group) {
@@ -79,7 +79,7 @@ public class MyFavorityData {
 
         private int total;
         private int index;
-        private List<MyFavorityEntity> list;
+        private ArrayList<MyFavorityEntity> list;
 
         public int getTotal() {
             return total;
@@ -97,11 +97,11 @@ public class MyFavorityData {
             this.index = index;
         }
 
-        public List<MyFavorityEntity> getList() {
-            return list;
+        public ArrayList<MyFavorityEntity> getList() {
+            return list!=null?list:new ArrayList<MyFavorityEntity>();
         }
 
-        public void setList(List<MyFavorityEntity> list) {
+        public void setList(ArrayList<MyFavorityEntity> list) {
             this.list = list;
         }
     }
