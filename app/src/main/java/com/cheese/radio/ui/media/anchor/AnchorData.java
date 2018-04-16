@@ -55,11 +55,6 @@ public class AnchorData {
     }
 
     public String getDescription() {
-
-        String[] head = description.split("<p>");
-        if (head.length == 2) {
-            return head[1].split("</p>")[0];
-        }
         return description;
     }
 

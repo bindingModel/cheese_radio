@@ -10,12 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <TextView
-            android:id="@+id/description_text"
+        <WebView
+            android:id="@+id/webview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:lineSpacingExtra="3dp"
-            android:text="@{vm.descriptionText}"
             />
+        <ProgressBar
+            android:id="@+id/progressbar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="3dip"
+            android:max="100"
+            android:progress="0"
+            android:visibility="gone"/>
     </LinearLayout>
 </layout>

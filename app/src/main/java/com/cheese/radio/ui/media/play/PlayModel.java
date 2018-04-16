@@ -3,9 +3,11 @@ package com.cheese.radio.ui.media.play;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -54,14 +56,15 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     private SelectPlayTimeEntity timeEntity;
     private AudioServiceUtil util;
 
+
     @Override
     public void attachView(Bundle savedInstanceState, PlayActivity activity) {
         super.attachView(savedInstanceState, activity);
         intTimes();
         iniView();
-        Disposable subscribe = api.getContentInfo(new PlayParams("contentInfo", id))
+        addDisposable(api.getContentInfo(new PlayParams("contentInfo", id))
                 .compose(new RestfulTransformer<>()).subscribe(
-                        this::setSingelEntity, throwable -> BaseUtil.toast(getT(), throwable));
+                        this::setSingelEntity, throwable -> BaseUtil.toast(getT(), throwable)));
         initPopupPlayModel(savedInstanceState);
     }
 
@@ -92,6 +95,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         if (isPlaying()) setEntities(list);
         else playFirst(list);
         getDataBinding().setEntity(entity);
+        getDataBinding().html5Desc.setText(Html.fromHtml(entity.getAnchorBrief()));
         if (!list.isEmpty()) Model.dispatchModel(Constant.images, list.get(0));
     }
 
@@ -163,5 +167,6 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
         );
     }
+
 }
 

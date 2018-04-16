@@ -208,6 +208,7 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
     public void images(PlayEntity entity) {
         getDataBinding().setEntity(entity);
         AudioServiceUtil.getInstance().setImage(entity.getImage());
+        getDataBinding().playBg.setVisibility(View.GONE);
         mHandler.removeCallbacksAndMessages(null);
         mHandler.post(mRotationRunnable);
     }

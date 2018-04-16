@@ -102,6 +102,7 @@
                         android:textColor="@color/text_black"
                         android:textSize="12.44sp" />
                     <TextView
+                        android:id="@+id/html5_desc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
