@@ -84,13 +84,12 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
         getDataBinding().setParams(params);
         if (params.isValidName((TextView) getDataBinding().saveAll)) {
             params.setBirthday(mDate.get());
-            api.setProperty(params).compose(new ErrorTransform<>()).subscribe(stringInfoEntity -> {
+            addDisposable(api.setProperty(params).compose(new ErrorTransform<>()).subscribe(stringInfoEntity -> {
                         BaseUtil.toast(stringInfoEntity.getMessage());
-                        if (stringInfoEntity.getCode() == 0) IkeApplication.getUser().setUserEntity(params);
+                        if (stringInfoEntity.code() == 0) IkeApplication.getUser().setUserEntity(params);
                         Model.dispatchModel("updataUI");
                     }
-
-            );
+            ));
         }
     }
 

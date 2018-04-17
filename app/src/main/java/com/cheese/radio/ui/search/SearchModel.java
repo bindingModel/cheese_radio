@@ -34,6 +34,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.internal.operators.observable.ObservableElementAt;
 
 /**
@@ -92,8 +93,7 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
 
                     );
         }));
-        observable
-                .debounce(800, TimeUnit.MILLISECONDS)
+        Disposable subscribe = observable.debounce(800, TimeUnit.MILLISECONDS)
                 .subscribe(s -> onHttp(3), BaseUtil::toast);
     }
 

@@ -1,5 +1,7 @@
 package com.cheese.radio.base;
 
+import android.text.TextUtils;
+
 /**
  * Created by arvin on 2017/11/30.
  */
@@ -7,7 +9,7 @@ package com.cheese.radio.base;
 public class InfoEntity<T> {
     private String message;
     private T data;
-    private int code;
+    private String code;
 
     public String getMessage() {
         return message;
@@ -25,11 +27,16 @@ public class InfoEntity<T> {
         this.data = data;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public int code(){
+        if(TextUtils.isEmpty(code)||!TextUtils.isDigitsOnly(code))return 1;
+        return Integer.parseInt(code);
+    }
+
+    public void setCode(String code) {
         this.code = code;
     }
 }

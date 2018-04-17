@@ -29,7 +29,7 @@ public class RestfulFlowTransformer<T> implements FlowableTransformer<InfoEntity
         return upstream
                 .concatMap(entity -> Flowable.create(flowableEmitter -> {
                     try {
-                        switch (entity.getCode()) {
+                        switch (entity.code()) {
                             case 0:if (entity.getData() != null) flowableEmitter.onNext(entity.getData());break;
                             default:throw new ApiException(entity.getMessage());
                         }

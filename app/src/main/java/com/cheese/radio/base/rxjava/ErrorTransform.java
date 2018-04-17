@@ -19,7 +19,7 @@ import retrofit2.HttpException;
  * 更优雅的转换Observable去统一处理错误
  */
 public class ErrorTransform<T> implements ObservableTransformer<InfoEntity<T>, InfoEntity<T>> {
-    private int code = 1;
+    private String code = "";
     private String errorMessage = "";
     private LifecycleRegistry registry;
 
@@ -40,11 +40,11 @@ public class ErrorTransform<T> implements ObservableTransformer<InfoEntity<T>, I
 //                    }
 //                })
                 .onErrorResumeNext(throwable -> {
-                    code = 99999;
+                    code = "99999";
                     if (throwable instanceof HttpException) {
                         throwable.printStackTrace();
                         HttpException response = (HttpException) throwable;
-                        code = response.code();
+                        code = String.valueOf(response.code());
                         switch (response.code()) {
                             case 401:errorMessage = "token无效" + response.message();break;
                             case 402:errorMessage = "数据库连接错误" + response.message();break;
@@ -58,7 +58,7 @@ public class ErrorTransform<T> implements ObservableTransformer<InfoEntity<T>, I
                         errorMessage = "服务器错误";
                     }else if(throwable instanceof ApiException){
                         ApiException exception = (ApiException)throwable;
-                        code = exception.getCode();
+                        code = String.valueOf(exception.getCode());
                         errorMessage = exception.getMessage();
                         exception.printStackTrace();
                     } else  {

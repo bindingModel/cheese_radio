@@ -60,13 +60,13 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
 
     public void onGetSmsClick(View view) {
         if (!signParams.isValidPhone((TextView) view)) return;
-        api.getSMS(SMSparams.setPhone(signParams.getPhone()))
+        addDisposable(api.getSMS(SMSparams.setPhone(signParams.getPhone()))
                 .compose(new ErrorTransform<>())
                 .subscribe(objectInfoEntity -> {
-                    if (0 == (objectInfoEntity.getCode()))
+                    if (0 == (objectInfoEntity.code()))
                         BaseUtil.sendSMSSuccess((TextView) view);
                     else BaseUtil.sendSMSFailed(view, objectInfoEntity.getMessage());
-                });
+                }));
     }
 
     public void onSignClick(View view) {
@@ -139,19 +139,19 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
 
     }
     private void login(SignParams params){
-        api.getToken(params).compose(new RestfulTransformer<>())
+        addDisposable(api.getToken(params).compose(new RestfulTransformer<>())
                 .subscribe(signUserEntity -> {
                     IkeApplication.getUser().setToken(signUserEntity.getToken());
                     if (signUserEntity.getNewX() == 0) {
                         ARouterUtil.navigation(home);
                         api.getUserInfo(new UserInfoParams("myInfo")).compose(new RestfulTransformer<>()).subscribe(userEntity ->
-                        IkeApplication.getUser().setUserEntity(userEntity));
+                                IkeApplication.getUser().setUserEntity(userEntity));
                     }
                     else ARouterUtil.navigation(registerOne);
 
 
                     finish();
-                }, BaseUtil::toast);
+                }, BaseUtil::toast));
 
     }
 }

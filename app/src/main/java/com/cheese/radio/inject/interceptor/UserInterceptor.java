@@ -1,6 +1,7 @@
 package com.cheese.radio.inject.interceptor;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 
 import com.cheese.radio.inject.qualifier.context.AppContext;
 
@@ -9,8 +10,11 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import okhttp3.Interceptor;
+import okhttp3.MediaType;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
+import okio.BufferedSink;
 
 /**
  * project：cutv_ningbo
@@ -31,11 +35,18 @@ public class UserInterceptor implements Interceptor {
     public UserInterceptor(@AppContext Context context) {
         this.context = context;
     }
-
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-        return chain.proceed(request);
+        Request.Builder builder = request.newBuilder();
+//        builder.header("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+        return chain.proceed(builder.build());
+    }
+}
+
+
+
+//"Content-Type":"application/x-www-form-urlencoded ; charset=utf-8"
 //        Request request = chain.request();
 //        boolean isConnection = BaseUtil.isNetworkConnected(context);
 //        String url = request.url().toString();
@@ -69,5 +80,3 @@ public class UserInterceptor implements Interceptor {
 //            return response.newBuilder().code(401).message("").build();
 //        }
 //        return response;
-    }
-}

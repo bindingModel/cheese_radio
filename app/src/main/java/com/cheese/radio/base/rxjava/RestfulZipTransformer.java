@@ -22,8 +22,6 @@ import com.cheese.radio.base.InfoEntity;
 
 
 public class RestfulZipTransformer<T> implements ObservableTransformer<InfoEntity<T>, InfoEntity<T>> {
-    private int code;
-    private String errorMessage;
     @Override
     public ObservableSource<InfoEntity<T>> apply(Observable<InfoEntity<T>> upstream) {
         return upstream.compose(new ErrorTransform<>())

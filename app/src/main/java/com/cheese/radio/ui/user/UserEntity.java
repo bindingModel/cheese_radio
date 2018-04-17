@@ -21,14 +21,15 @@ public class UserEntity {
     private Boolean canBookCheck;
     private String mobile;
     private String userId;
+
     public UserEntity clone(UserEntity entity) {
+
+        if (entity == null) return this;
         token = entity.getToken();
-        UserEntity user = entity;
-        if (user == null) return this;
-        for (Field field : ReflectUtil.getAllFields(user.getClass())) {
+        for (Field field : ReflectUtil.getAllFields(entity.getClass())) {
             Field entityField = ReflectUtil.getField(field.getName(), getClass());
             if (entityField == null) continue;
-            Object value = ReflectUtil.beanGetValue(entityField, user);
+            Object value = ReflectUtil.beanGetValue(entityField, entity);
             if (value != null && !TextUtils.isEmpty(value.toString()))
                 ReflectUtil.beanSetValue(field, this, value);
         }
@@ -44,13 +45,11 @@ public class UserEntity {
     }
 
     public String getNickName() {
-        if (nickname != null)
+        if(!TextUtils.isEmpty(nickname)){
             return nickname;
-        else {
-            if (token != null) {
-
+        }else if(!TextUtils.isEmpty(token)){
+            if(token.length()>=20)
                 return nickname = token.substring(0, 20);
-            }
         }
         return "匿名用户";
     }
