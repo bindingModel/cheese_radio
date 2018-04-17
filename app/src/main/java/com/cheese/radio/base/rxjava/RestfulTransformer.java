@@ -35,10 +35,13 @@ public class RestfulTransformer<T> implements ObservableTransformer<InfoEntity<T
                 .concatMap(entity -> Observable.create(
                         subscriber -> {
                             try {
-                                Timber.i("code:%1d", entity.getCode());
-                                switch (entity.getCode()) {
-                                    case 0:if (entity.getData() != null) subscriber.onNext(entity.getData());
-                                        break;
+                                Timber.i("code:%1d", entity.code());
+                                switch (entity.code()) {
+                                    case 0:
+                                        if (entity.getData() != null){
+                                            subscriber.onNext(entity.getData());
+                                            break;
+                                        }
                                     default:
                                         throw new ApiException(entity.getMessage());
                                 }
@@ -50,6 +53,4 @@ public class RestfulTransformer<T> implements ObservableTransformer<InfoEntity<T
                         })
                 );
     }
-
-
 }

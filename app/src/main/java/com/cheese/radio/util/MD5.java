@@ -131,7 +131,6 @@ public class MD5{
             MainLoop(num);
         }
         return changeHex(Atemp)+changeHex(Btemp)+changeHex(Ctemp)+changeHex(Dtemp);
-
     }
     /*
     *整数变成16进制字符串

@@ -32,6 +32,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.search;
@@ -60,15 +61,14 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
         setLayoutManager(layoutManager);
         setEnable(true);
         setPageFlag(false);
-        api.getNewMessageCount(new NewMessageCountParams("newMessageCount")).compose(new RestfulTransformer<>())
+        Disposable subscribe = api.getNewMessageCount(new NewMessageCountParams("newMessageCount")).compose(new RestfulTransformer<>())
                 .subscribe(newMessageCountData -> {
                     redTipCount.set(String.valueOf(newMessageCountData.getCount()));
-                    if(newMessageCountData.getCount()!=null & newMessageCountData.getCount()!=0)
+                    if (newMessageCountData.getCount() != null && newMessageCountData.getCount() != 0)
                         redTipBoolean.set(true);
                     else redTipBoolean.set(false);
                 });
         setRoHttp((offset1, refresh) -> {
-
             return getZip();
         });
     }
@@ -79,10 +79,10 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
             flag=0;
         return Observable.zip(categoriy, recommandList, (cate, entity) -> {
             List<GridInflate> list = new ArrayList<>();
-            if (cate.getCode() == 0 && cate.getData() != null &&  !cate.getData().isEmpty()) {
+            if (cate.code() == 0 && cate.getData() != null &&  !cate.getData().isEmpty()) {
                 list.addAll(cate.getData().subList(0,4));
             }
-            if(entity.getCode()==0 &&entity.getData()!=null &&!entity.getData().isEmpty()){
+            if(entity.code()==0 &&entity.getData()!=null &&!entity.getData().isEmpty()){
                 for (RecommanData data:entity.getData()) {
                     list.add(data);
                     if(data.getViewType().equals("list"))

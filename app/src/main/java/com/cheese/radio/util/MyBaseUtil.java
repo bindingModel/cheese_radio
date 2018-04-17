@@ -90,7 +90,6 @@ public class MyBaseUtil extends BaseUtil{
             HashMap.Entry<String,String> en =iterator.next();
             paramArray[index++] =sb.append(en.getKey()).append("=").append(en.getValue()).toString();
         }
-
         Arrays.sort(paramArray);
         sb.setLength(0);
         for(int i=0;i<paramArray.length;++i){
@@ -108,16 +107,6 @@ public class MyBaseUtil extends BaseUtil{
         Matcher m = p.matcher(name);
         boolean valid = m.matches();
         return valid ? null : "不合法的昵称";
-    }
-
-    public static synchronized long getNowTime() {
-        long time = System.currentTimeMillis();
-        try {
-            Thread.sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return time;
     }
 
     public static String getNowDay() {
