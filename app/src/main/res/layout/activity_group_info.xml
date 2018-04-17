@@ -7,75 +7,82 @@
         <variable
             name="vm"
             type="com.cheese.radio.ui.media.group.GroupInfoModel" />
+
         <variable
             name="entity"
-            type="com.cheese.radio.ui.media.group.fragment.GroupData"/>
+            type="com.cheese.radio.ui.media.group.fragment.GroupData" />
     </data>
 
-    <LinearLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background_gray"
         android:orientation="vertical">
 
-        <include layout="@layout/toolbar_organza" />
-
-        <LinearLayout
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="145dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:background="@color/background_white">
 
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="101dp"
-                android:layout_gravity="center|start"
-                android:layout_marginLeft="9.6dp"
-                android:layout_marginStart="9.6dp"
-                android:src="@{entity.image}"
-                />
+            <include layout="@layout/toolbar_organza" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="18dp">
+                android:layout_width="match_parent"
+                android:layout_height="145dp"
+                android:orientation="horizontal"
+                app:layout_scrollFlags="scroll|enterAlways">
 
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:text="@{entity.title}"
-                    android:textColor="@color/text_black"
-                    android:layout_marginBottom="11dp"
-                    android:textSize="14.4sp" />
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="101dp"
+                    android:layout_gravity="center|start"
+                    android:layout_marginLeft="9.6dp"
+                    android:layout_marginStart="9.6dp"
+                    android:src="@{entity.image}"
+                    app:layout_scrollFlags="scroll|enterAlways"/>
 
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="#909090"
-                    android:text="@{entity.subTitle}"
-                    android:layout_marginBottom="11dp"
-                    android:textSize="13.4sp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    android:padding="18dp">
 
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="#c2c2c2"
-                    android:drawableLeft="@mipmap/play_count"
-                    android:text="@{entity.playCountText}"
-                    android:drawablePadding="7dp"
-                    android:textSize="11.4sp" />
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="11dp"
+                        android:text="@{entity.title}"
+                        android:textColor="@color/text_black"
+                        app:layout_scrollFlags="scroll|enterAlways"
+                        android:textSize="14.4sp" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="11dp"
+                        android:text="@{entity.subTitle}"
+                        android:textColor="#909090"
+                        app:layout_scrollFlags="scroll|enterAlways"
+                        android:textSize="13.4sp" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/play_count"
+                        android:drawablePadding="7dp"
+                        android:text="@{entity.playCountText}"
+                        android:textColor="#c2c2c2"
+                        app:layout_scrollFlags="scroll|enterAlways"
+                        android:textSize="11.4sp" />
+                </LinearLayout>
 
 
-        </LinearLayout><!--
+            </LinearLayout><!--
         android:text="@{vm.msg}"-->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
             <com.binding.model.view.radio.CheckRadioGroup
                 android:id="@+id/navigation"
                 android:layout_width="match_parent"
@@ -95,8 +102,8 @@
                     android:text="@string/brief_introduction" />
 
                 <android.support.v7.widget.AppCompatRadioButton
-                    style="@style/anchor_navigation"
                     android:id="@+id/story_title"
+                    style="@style/anchor_navigation"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:checked="false"
@@ -104,17 +111,28 @@
                     android:text="@string/story" />
 
             </com.binding.model.view.radio.CheckRadioGroup>
-
-
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/view_pager"
+        </android.support.design.widget.AppBarLayout>
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_scrollFlags="scroll">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/background_white"
-                app:adapter="@{vm.adapter}"
-                app:position="@={vm.currentItem}" />
+                android:orientation="vertical"
+              >
 
-        </LinearLayout>
-    </LinearLayout>
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/background_white"
+                    app:adapter="@{vm.adapter}"
+                    app:position="@={vm.currentItem}" />
+
+            </LinearLayout>
+        </FrameLayout>
+    </android.support.design.widget.CoordinatorLayout>
 </layout>

@@ -12,7 +12,8 @@
         android:layout_height="@dimen/toolbar_height"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
-        app:navigationIcon="@mipmap/back">
+        app:navigationIcon="@mipmap/back"
+        app:layout_scrollFlags="scroll|enterAlways">
 
         <FrameLayout
             android:layout_width="match_parent"
