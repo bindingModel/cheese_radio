@@ -23,6 +23,11 @@ public class ExampleUnitTest {
     @Test
     public void test(){
         HashMap<String,String> map = new HashMap<>();
-        MyBaseUtil.getSign(map);
+        map.put("startIndex","0");
+        map.put("title","一");
+        map.put("uuid","123");
+        map.put("maxCount","8");
+        map.put("timestamp","111111111111");
+        assertEquals("Qyw6tX4f73D8881DFEA62DF3A8C921ADFE3B441A",MyBaseUtil.getSign(map));
     }
 }
