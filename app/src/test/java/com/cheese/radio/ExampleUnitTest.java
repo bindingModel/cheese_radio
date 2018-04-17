@@ -24,10 +24,15 @@ public class ExampleUnitTest {
     public void test(){
         HashMap<String,String> map = new HashMap<>();
         map.put("startIndex","0");
+        map.put("method","search");
         map.put("title","一");
         map.put("uuid","123");
         map.put("maxCount","8");
         map.put("timestamp","111111111111");
-        assertEquals("Qyw6tX4f73D8881DFEA62DF3A8C921ADFE3B441A",MyBaseUtil.getSign(map));
+
+
+
+        System.out.println(MyBaseUtil.getSign(map));
+        System.out.println("Qyw6tX4f73D8881DFEA62DF3A8C921ADFE3B441A");
     }
 }

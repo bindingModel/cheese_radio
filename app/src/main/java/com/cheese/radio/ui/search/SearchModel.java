@@ -78,7 +78,6 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
                                 myFavorityData -> {
                                     list.addAll(myFavorityData.getSingle().getList());
                                     list.addAll(myFavorityData.getGroup().getList());
-                                    Log.e("search", list.hashCode() + "...");
                                     return list;
                                 }
                         );
@@ -87,7 +86,6 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
                                 list.clear();
                                 list.add(new HotSearchTitleEntity("热门搜索"));
                                 list.addAll(hotSearchEntities);
-                                Log.e("Hotsearch", list.hashCode() + "...");
                                 return list;
                             }
 

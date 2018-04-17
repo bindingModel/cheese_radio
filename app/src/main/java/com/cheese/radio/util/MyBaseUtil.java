@@ -4,14 +4,10 @@ import android.content.Context;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
-import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.binding.model.App;
-import com.binding.model.Config;
 import com.binding.model.util.BaseUtil;
-import com.cheese.radio.base.arouter.ARouterUtil;
-import com.cheese.radio.ui.IkeApplication;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -19,7 +15,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -80,6 +75,7 @@ public class MyBaseUtil extends BaseUtil{
     }
 
     public static String getSign(HashMap<String,String> argParams){
+//        String randomString="Qyw6tX4f";
         String randomString =MyBaseUtil.getRandoms(8);
         StringBuilder sb=new StringBuilder();
         int index =0;
@@ -98,7 +94,7 @@ public class MyBaseUtil extends BaseUtil{
         sb.setLength(sb.length()-1);
         sb.append(randomString);
         //MD5码必须转换成大写，否则报错.
-        return randomString+MD5.getInstance().getMD5(sb.toString()).toUpperCase();
+        return randomString+ MD5.getMD5(sb.toString(),"UTF-8").toUpperCase();
     }
 
     public static String getNameError(String name) {

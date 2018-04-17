@@ -39,7 +39,7 @@ public class UserInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
         Request.Builder builder = request.newBuilder();
-//        builder.header("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+        builder.header("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
         return chain.proceed(builder.build());
     }
 }
