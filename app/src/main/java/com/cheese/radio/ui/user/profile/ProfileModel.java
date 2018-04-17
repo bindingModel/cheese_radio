@@ -24,6 +24,7 @@ import com.cheese.radio.base.rxjava.RestfulFlowTransformer;
 import com.cheese.radio.databinding.ActivityProfileBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.user.UserEntity;
 import com.cheese.radio.ui.user.edit.EditNameModel;
 import com.cheese.radio.util.TimePickTool;
 
@@ -57,13 +58,16 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
     private OptionsPickerView sexPicker;
     private List<String> babySex = new ArrayList<>();
     private List<String> select = new ArrayList<String>();
-
+    private UserEntity userEntity;
     @Override
     public void attachView(Bundle savedInstanceState, ProfileActivity activity) {
         super.attachView(savedInstanceState, activity);
         pickTool = new TimePickTool(mDate, activity);
         initSexPicker();
         params = new ProfileParams("setProperty");
+        userEntity= IkeApplication.getUser().getUserEntity();
+        mSex.set(userEntity.getSex().equals("M")?"男孩":"女孩");
+        mDate.set(userEntity.getBirthday());
         getDataBinding().setParams(params.setMsg(IkeApplication.getUser().getUserEntity()));
     }
 

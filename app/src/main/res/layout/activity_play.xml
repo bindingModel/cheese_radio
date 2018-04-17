@@ -220,7 +220,7 @@
                         android:checked="@{entity.files}"
                         android:drawableLeft="@drawable/love_star"
                         android:drawableStart="@drawable/love_star"
-
+                        android:onClick="@{vm::onFabuClick}"
                         /> <!--                       android:text="@{entity.favorCount}"-->
 
                     <CheckBox

@@ -38,10 +38,9 @@ public class RestfulTransformer<T> implements ObservableTransformer<InfoEntity<T
                                 Timber.i("code:%1d", entity.code());
                                 switch (entity.code()) {
                                     case 0:
-                                        if (entity.getData() != null){
-                                            subscriber.onNext(entity.getData());
+                                        if (entity.getData() != null) subscriber.onNext(entity.getData());
                                             break;
-                                        }
+
                                     default:
                                         throw new ApiException(entity.getMessage());
                                 }

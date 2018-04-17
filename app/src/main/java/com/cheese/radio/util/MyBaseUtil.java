@@ -75,8 +75,8 @@ public class MyBaseUtil extends BaseUtil{
     }
 
     public static String getSign(HashMap<String,String> argParams){
-//        String randomString="Qyw6tX4f";
-        String randomString =MyBaseUtil.getRandoms(8);
+        String randomString="kGZRx0fM";
+//        String randomString =MyBaseUtil.getRandoms(8);
         StringBuilder sb=new StringBuilder();
         int index =0;
         String[] paramArray=new String[argParams.size()];

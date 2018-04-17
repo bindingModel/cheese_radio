@@ -25,14 +25,14 @@ public class ExampleUnitTest {
         HashMap<String,String> map = new HashMap<>();
         map.put("startIndex","0");
         map.put("method","search");
-        map.put("title","一");
-        map.put("uuid","123");
+        map.put("title","1");
+        map.put("uuid","02%3A00%3A00%3A00%3A00%3A00");
         map.put("maxCount","8");
-        map.put("timestamp","111111111111");
+        map.put("timestamp","1523966881780");
 
 
 
         System.out.println(MyBaseUtil.getSign(map));
-        System.out.println("Qyw6tX4f73D8881DFEA62DF3A8C921ADFE3B441A");
+        System.out.println("kGZRx0fM65E5EA3D679D89E7B927440FB248B2AF");
     }
 }

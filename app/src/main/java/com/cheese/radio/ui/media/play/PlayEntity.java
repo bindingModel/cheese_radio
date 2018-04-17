@@ -180,6 +180,6 @@ public class PlayEntity implements Entity {
     }
     public boolean isFiles(){
         if (fabu==null)return false;
-        return fileId != 0;
+        return fabu != 0;
     }
 }
