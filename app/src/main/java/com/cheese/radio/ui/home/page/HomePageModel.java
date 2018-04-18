@@ -61,17 +61,17 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
         setLayoutManager(layoutManager);
         setEnable(true);
         setPageFlag(false);
-        Disposable subscribe = api.getNewMessageCount(new NewMessageCountParams("newMessageCount")).compose(new RestfulTransformer<>())
+        addDisposable(api.getNewMessageCount(new NewMessageCountParams("newMessageCount"))
+                .compose(new RestfulTransformer<>())
                 .subscribe(newMessageCountData -> {
                     redTipCount.set(String.valueOf(newMessageCountData.getCount()));
                     if (newMessageCountData.getCount() != null && newMessageCountData.getCount() != 0)
                         redTipBoolean.set(true);
                     else redTipBoolean.set(false);
-                });
-        setRoHttp((offset1, refresh) -> {
-            return getZip();
-        });
+                },BaseUtil::toast));
+        setRoHttp((offset1, refresh) -> getZip());
     }
+
     private Observable<List<GridInflate>> getZip() {
 //        Observable<InfoEntity<List<CategoryEntity>>> categoriy = api.getGroupInfo(new PlayParams("contentInfo","123")).compose(new RestfulZipTransformer<>());
         Observable<InfoEntity<List<CategoryEntity>>> categoriy = api.getCategoriy(new HomePageParams("category")).compose(new RestfulZipTransformer<>());
