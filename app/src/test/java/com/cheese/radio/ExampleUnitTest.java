@@ -25,10 +25,10 @@ public class ExampleUnitTest {
         HashMap<String,String> map = new HashMap<>();
         map.put("startIndex","0");
         map.put("method","search");
-        map.put("title","1");
-        map.put("uuid","02%3A00%3A00%3A00%3A00%3A00");
+        map.put("title","一");
+        map.put("uuid","123");
         map.put("maxCount","8");
-        map.put("timestamp","1523966881780");
+        map.put("timestamp","111111111111");
 
 
 

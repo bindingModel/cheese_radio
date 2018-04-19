@@ -1,13 +1,18 @@
 package com.cheese.radio.ui.user.enroll;
 
 import android.databinding.ObservableField;
+import android.databinding.ObservableInt;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
 import com.binding.model.model.inter.Event;
+import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.databinding.ActivityEnrollBinding;
@@ -26,7 +31,7 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.product
  * Created by 29283 on 2018/3/10.
  */
 @ModelView(value = R.layout.activity_enroll,event = R.id.EnrollModel, model = true)
-public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding> {
+public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding> implements OnCheckedChangeListener{
 
     @Inject
     EnrollModel() {
@@ -37,8 +42,10 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
     public ObservableField<String> mAge = new ObservableField<>("");
     public ObservableField<String> mSex = new ObservableField<>("");
     public ObservableField<String> course = new ObservableField<>("");
+    public ObservableInt currentItem=new ObservableInt();
     private EnroolParams params = new EnroolParams("createOrder");
 
+    private int checkId=-1;
     private OptionsPickerView agePicker, sexPicker;
     private ArrayList<String> babyAge = new ArrayList<>();
     private ArrayList<String> babySex = new ArrayList<>();
@@ -116,9 +123,27 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
     public void onEnrollClick(View view){
         //调用下订单
     }
-//    public void initGetClass(){
-//        params.set
-//         className=getT().getIntent().getStringExtra(Constant.classInfo);
-//        classId=getT().getIntent().getIntExtra(Constant.classId,0);
-//    }
+
+
+
+
+    /**
+     * Called when the checked state of a compound button has changed.
+     *
+     * @param buttonView The compound button view whose state has changed.
+     * @param isChecked  The new checked state of buttonView.
+     */
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if(checkId!=-1){
+            BaseUtil.toast(String.valueOf(checkId));
+            ((CheckBox)getT().findViewById(checkId)).setChecked(false);
+        }
+        checkId=buttonView.getId();
+
+        buttonView.setChecked(true);
+//        getDataBinding().zfb.setChecked(false);
+//        getDataBinding().weiXin.setChecked(fals   e);
+//        buttonView.setChecked(true);
+    }
 }

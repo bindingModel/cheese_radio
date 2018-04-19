@@ -46,7 +46,7 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
     HomePageModel() {
     }
 
-    private static Integer flag=0;
+
     @Inject
     RadioApi api;
     public ObservableField<String> redTipCount=new ObservableField<>("0");
@@ -76,7 +76,7 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
 //        Observable<InfoEntity<List<CategoryEntity>>> categoriy = api.getGroupInfo(new PlayParams("contentInfo","123")).compose(new RestfulZipTransformer<>());
         Observable<InfoEntity<List<CategoryEntity>>> categoriy = api.getCategoriy(new HomePageParams("category")).compose(new RestfulZipTransformer<>());
         Observable<InfoEntity<List<RecommanData>>> recommandList = api.getRecommand(new HomePageParams("recommandList")).compose(new RestfulZipTransformer<>());
-            flag=0;
+
         return Observable.zip(categoriy, recommandList, (cate, entity) -> {
             List<GridInflate> list = new ArrayList<>();
             if (cate.code() == 0 && cate.getData() != null &&  !cate.getData().isEmpty()) {

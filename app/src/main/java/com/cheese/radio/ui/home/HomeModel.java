@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -98,9 +99,11 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
                     .setOnDismissListener(dialog1 -> finish());
         } else {
             playImage = getDataBinding().playImage;
+
             api.getCanBook(new CanBookParams("canBook")).compose(new RestfulTransformer<>()).
                     subscribe(canBookData -> IkeApplication.getUser().setCanBookCheck(canBookData.isResult())
                     );
+
             initFragment();
         }
     }

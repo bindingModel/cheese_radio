@@ -13,7 +13,7 @@
     <string name="select_age">请选择年龄段</string>
     <string name="select_course">请选择课程套餐</string>
     <string name="course_package">课程套餐</string>
-    <string name="ages">年龄段</string>
+    <string name="ages">课程年龄段</string>
     <string name="address">家庭住址</string>
     <string name="phone">联系电话</string>
     <string name="birthday">生日</string>
@@ -69,4 +69,6 @@
     <string name="service_centre_number">0574-87746963</string>
     <string name="the_hours_worked">工作时间：09:00-22:00</string>
     <string name="wx_public_platform">微信公众号：芝士Radio</string>
+    <string name="class_ad">上课地址</string>
+    <string name="select_class_ad">请选择上课地址</string>
 </resources>
