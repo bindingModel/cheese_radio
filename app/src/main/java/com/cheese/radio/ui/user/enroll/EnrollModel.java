@@ -31,7 +31,7 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.product
  * Created by 29283 on 2018/3/10.
  */
 @ModelView(value = R.layout.activity_enroll,event = R.id.EnrollModel, model = true)
-public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding> implements OnCheckedChangeListener{
+public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding>  {
 
     @Inject
     EnrollModel() {
@@ -127,23 +127,5 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
 
 
 
-    /**
-     * Called when the checked state of a compound button has changed.
-     *
-     * @param buttonView The compound button view whose state has changed.
-     * @param isChecked  The new checked state of buttonView.
-     */
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if(checkId!=-1){
-            BaseUtil.toast(String.valueOf(checkId));
-            ((CheckBox)getT().findViewById(checkId)).setChecked(false);
-        }
-        checkId=buttonView.getId();
 
-        buttonView.setChecked(true);
-//        getDataBinding().zfb.setChecked(false);
-//        getDataBinding().weiXin.setChecked(fals   e);
-//        buttonView.setChecked(true);
-    }
 }

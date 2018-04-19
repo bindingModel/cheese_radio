@@ -231,10 +231,11 @@
 
                 <com.binding.model.view.radio.CheckRadioGroup
                     style="@style/profile_input_linearlayout"
+                    android:id="@+id/radio_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
-                    app:position="@{vm::currentItem}"
+                    app:position="@{vm.currentItem}"
                     android:orientation="vertical">
 
 
