@@ -3,6 +3,8 @@ package com.cheese.radio.util;
 /**
  * Created by 29283 on 2018/4/17.
  */
+import android.text.TextUtils;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 
@@ -12,18 +14,14 @@ public class MD5 {
 
     public static String getMD5(String str, String charset) {
         String ret = null;
-        if(str != null) {
-            byte[] data = null;
-
+        if(!TextUtils.isEmpty(str)) {
             try {
-                data = str.getBytes(charset);
+                byte[] data = str.getBytes(charset);
+                ret = getMD5(data);
             } catch (UnsupportedEncodingException var5) {
                 var5.printStackTrace();
             }
-
-            ret = getMD5(data);
         }
-
         return ret;
     }
 

@@ -23,11 +23,6 @@ import timber.log.Timber;
 
 
 public class RestfulTransformer<T> implements ObservableTransformer<InfoEntity<T>, T> {
-    private boolean skipToLogin = true;
-
-    public RestfulTransformer() {
-    }
-
     @Override
     public ObservableSource<T> apply(Observable<InfoEntity<T>> upstream) {
         return upstream
