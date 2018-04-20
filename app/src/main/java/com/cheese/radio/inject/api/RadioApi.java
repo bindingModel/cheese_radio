@@ -48,6 +48,7 @@ import com.cheese.radio.ui.user.my.work.MyWorkParams;
 import com.cheese.radio.ui.user.params.FabulousParams;
 import com.cheese.radio.ui.user.product.list.ProductsEntity;
 import com.cheese.radio.ui.user.product.list.ProductsParams;
+import com.cheese.radio.ui.user.product.place.ClassPlaceEntity;
 import com.cheese.radio.ui.user.profile.ProfileParams;
 import com.cheese.radio.ui.user.register.UserInfoParams;
 
@@ -162,5 +163,5 @@ public interface RadioApi {
 
     //上课地址接口
     @POST("/1.0/class")
-    Observable<InfoEntity<Object>> classPlace(@Body ClassPlaceParams params);
+    Observable<InfoEntity<List<ClassPlaceEntity>>> classPlace(@Body ClassPlaceParams params);
 }

@@ -55,6 +55,7 @@
                 android:drawableStart="@mipmap/plus"
                 android:gravity="center"
                 android:maxLines="1"
+                android:visibility="gone"
                 android:onClick="@{vm::onClick}"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"

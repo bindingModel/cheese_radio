@@ -21,6 +21,9 @@ import com.binding.model.layout.rotate.TimeEntity;
 import com.binding.model.layout.rotate.TimeUtil;
 import com.binding.model.model.inter.Inflate;
 import com.binding.model.util.BaseUtil;
+import com.cheese.radio.base.arouter.ARouterUtil;
+import com.cheese.radio.inject.component.ActivityComponent;
+import com.cheese.radio.ui.media.play.PlayEntity;
 import com.cheese.radio.ui.service.AudioServiceUtil;
 
 import java.util.ArrayList;
@@ -185,6 +188,7 @@ public abstract class AudioRecycleModel<C extends Container, Binding extends Vie
             break;
         }
     }
+
 }
 
 

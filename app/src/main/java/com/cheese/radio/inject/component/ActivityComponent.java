@@ -3,6 +3,7 @@ package com.cheese.radio.inject.component;
 
 import com.cheese.radio.inject.module.ActivityModule;
 import com.cheese.radio.inject.scope.ActivityScope;
+import com.cheese.radio.ui.demo.coordinatorLayout.CoordinatorLayoutActivity;
 import com.cheese.radio.ui.media.anchor.AnchorActivity;
 import com.cheese.radio.ui.media.anchors.AnchorsActivity;
 import com.cheese.radio.ui.media.classify.ClassifyActivity;
@@ -25,6 +26,7 @@ import com.cheese.radio.ui.user.my.message.MessageActivity;
 import com.cheese.radio.ui.user.my.message.details.DetailsActivity;
 import com.cheese.radio.ui.user.my.work.MyWorkActivity;
 import com.cheese.radio.ui.user.product.list.ProductsActivity;
+import com.cheese.radio.ui.user.product.place.PlaceActivity;
 import com.cheese.radio.ui.user.profile.ProfileActivity;
 import com.cheese.radio.ui.user.register.one.RegisterOneActivity;
 import com.cheese.radio.ui.user.register.two.RegisterTwoActivity;
@@ -92,7 +94,11 @@ public interface ActivityComponent {
     void inject(MessageActivity activity);
 
     void inject(DetailsActivity activity);
+
     void inject(CourseDetailsActivity activity);
+
+    void inject(CoordinatorLayoutActivity activity);
+    void inject(PlaceActivity activity);
     interface Router {
         String cheese = "/cheese/";
         String startup = cheese + "startup";
@@ -122,6 +128,8 @@ public interface ActivityComponent {
         String message = cheese + "message";
         String detail = cheese + "detail";
         String coursedetails = cheese + "coursedetails";
+        String demo = "demo";
+        String place = cheese + "place";
     }
     /*
      *  CONTENT_LIST	绘本列表                  contents

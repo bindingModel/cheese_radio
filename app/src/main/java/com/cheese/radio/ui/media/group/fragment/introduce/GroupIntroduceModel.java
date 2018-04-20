@@ -25,7 +25,7 @@ public class GroupIntroduceModel extends ViewModel<GroupIntroduceFragment,Fragme
     private WebView webView;
     private ProgressBar progressBar;
     public ObservableField<String> description=new ObservableField<>();
- /*   @Override
+    @Override
 
     public void attachView(Bundle savedInstanceState, GroupIntroduceFragment groupIntroduceFragment) {
         super.attachView(savedInstanceState, groupIntroduceFragment);
@@ -49,13 +49,12 @@ public class GroupIntroduceModel extends ViewModel<GroupIntroduceFragment,Fragme
         WebSettings webSettings=webView.getSettings();
         webSettings.setJavaScriptEnabled(true);//允许使用js
 
-        */
 /**
          * LOAD_CACHE_ONLY: 不使用网络，只读取本地缓存数据
          * LOAD_DEFAULT: （默认）根据cache-control决定是否从网络上取数据。
          * LOAD_NO_CACHE: 不使用缓存，只从网络获取数据.
          * LOAD_CACHE_ELSE_NETWORK，只要本地有，无论是否过期，或者no-cache，都使用缓存中的数据。
-         *//*
+         */
 
         webSettings.setCacheMode(WebSettings.LOAD_CACHE_ONLY);//不使用缓存，只从网络获取数据.
 
@@ -66,5 +65,4 @@ public class GroupIntroduceModel extends ViewModel<GroupIntroduceFragment,Fragme
         //不显示webview缩放按钮
         webSettings.setDisplayZoomControls(false);
     }
-*/
 }

@@ -2,6 +2,7 @@ package com.cheese.radio.inject.component;
 
 import com.cheese.radio.inject.module.FragmentModule;
 import com.cheese.radio.inject.scope.FragmentScope;
+import com.cheese.radio.ui.demo.coordinatorLayout.fragment.DemoFragment;
 import com.cheese.radio.ui.home.circle.CircleFragment;
 import com.cheese.radio.ui.home.clock.ClockFragment;
 import com.cheese.radio.ui.home.mine.HomeMineFragment;
@@ -39,4 +40,5 @@ public interface FragmentComponent {
     void inject(GroupStoryFragment fragment);
     void inject(GroupIntroduceFragment fragment);
     void inject(CalendarFragment fragment);
+    void inject(DemoFragment fragment);
 }

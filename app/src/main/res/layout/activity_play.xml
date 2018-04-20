@@ -129,6 +129,7 @@
                         android:drawableLeft="@mipmap/plus"
                         android:drawableStart="@mipmap/plus"
                         android:gravity="center"
+                        android:visibility="gone"
                         android:onClick="@{entity::onClick}"
                         android:paddingLeft="10.8dp"
                         android:paddingRight="10.8dp"

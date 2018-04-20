@@ -8,7 +8,7 @@ import com.cheese.radio.base.RadioParams;
 
 public class ClassPlaceParams extends RadioParams {
     private String method;
-
+//method:classPlace
     public ClassPlaceParams(String method) {
         this.method = method;
     }

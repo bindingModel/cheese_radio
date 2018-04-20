@@ -1,9 +1,11 @@
 package com.cheese.radio.ui.user.enroll;
 
+import android.content.Context;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -16,8 +18,10 @@ import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.databinding.ActivityEnrollBinding;
+import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.user.product.list.ProductsEntity;
+import com.cheese.radio.ui.user.product.place.ClassPlaceEntity;
 import com.cheese.radio.util.CityPickTool;
 import com.cheese.radio.util.TimePickTool;
 
@@ -65,28 +69,33 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
 
 
     public void onSelectCityClick(View view) {
+        HideKeyboard(view);
         cityPickTool.onSelectCity();
     }
 
     public void onSelectBirthClick(View view) {
+        HideKeyboard(view);
         timePickSelect.show();
     }
 
     public void onSelectAgeClick(View view) {
+        HideKeyboard(view);
         agePicker.show();
     }
 
     public void onSelectSexClick(View view) {
+        HideKeyboard(view);
         sexPicker.show();
     }
 
     public void onSelectCourseClick(View view) {
+        HideKeyboard(view);
         ARouterUtil.navigation(products);
     }
 
     private void setData() {//给条件选择器的容器填充数据
         babyAge.add("4~5");
-        babyAge.add("6~7");
+        babyAge.add("6~8");
         babySex.add("男");
         babySex.add("女");
     }
@@ -113,19 +122,34 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
 //    }
     @Override
     public int onEvent(View view, Event event, Object... args) {
-        ProductsEntity entity = event instanceof ProductsEntity ? ((ProductsEntity) event) : null;
-        if (entity != null) {
-            getDataBinding().setProductEntity(entity);
-            params.setProductId(entity.getId());
+        ProductsEntity productsEntity = event instanceof ProductsEntity ? ((ProductsEntity) event) : null;
+        if (productsEntity != null) {
+            getDataBinding().setProductEntity(productsEntity);
+            params.setProductId(productsEntity.getId());
+        }
+        ClassPlaceEntity placeEntity = event instanceof ClassPlaceEntity ? ((ClassPlaceEntity) event) : null;
+        if (placeEntity != null) {
+            getDataBinding().setPlaceEntity(placeEntity);
+            params.setProductId(placeEntity.getId());
         }
         return 1;
     }
     public void onEnrollClick(View view){
         //调用下订单
     }
+    public void onClassADClick(View view){
+        ARouterUtil.navigation(ActivityComponent.Router.place);
+    }
 
+    //隐藏虚拟键盘
+    public static void HideKeyboard(View v)
+    {
+        InputMethodManager imm = ( InputMethodManager ) v.getContext( ).getSystemService( Context.INPUT_METHOD_SERVICE );
+        if ( imm.isActive( ) ) {
+            imm.hideSoftInputFromWindow( v.getApplicationWindowToken( ) , 0 );
 
-
+        }
+    }
 
 
 }

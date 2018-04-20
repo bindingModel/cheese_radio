@@ -9,6 +9,7 @@ import com.binding.model.model.ViewModel;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
+import com.cheese.radio.base.rxjava.ErrorTransform;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityRegisterTwoBinding;
 import com.cheese.radio.inject.api.RadioApi;
@@ -42,10 +43,11 @@ public class RegisterTwoModel extends ViewModel<RegisterTwoActivity, ActivityReg
 
     public void onNextClick(View view) {
         params.setSex(IkeApplication.getUser().getUserEntity().getSex());
-        Disposable subscribe = api.setUserInfo(params).compose(new RestfulTransformer<>()).subscribe(s -> {
+        addDisposable(api.setUserInfo(params).compose(new ErrorTransform<>()).subscribe(s -> {
+            if (s.getCode().equals("0")){
             ARouterUtil.navigation(home);
-            this.finish();
-        }, BaseUtil::toast);
+            this.finish();}
+        }, BaseUtil::toast));
     }
 
     public void onSeleckAgeClick(View view) {
@@ -53,13 +55,13 @@ public class RegisterTwoModel extends ViewModel<RegisterTwoActivity, ActivityReg
         switch (view.getId()) {
             case R.id.select_for:
                 params.setAge("4~5");
-                getDataBinding().selectFor.setTextSize(21);
-                getDataBinding().selectSix.setTextSize(17);
+                getDataBinding().selectFor.setTextSize(23);
+                getDataBinding().selectSix.setTextSize(16);
                 break;
             case R.id.select_six:
-                params.setAge("6~7");
-                getDataBinding().selectFor.setTextSize(17);
-                getDataBinding().selectSix.setTextSize(21);
+                params.setAge("6~8");
+                getDataBinding().selectFor.setTextSize(16);
+                getDataBinding().selectSix.setTextSize(23);
                 break;
             default:
                 IkeApplication.getUser().setUserEntity(params);

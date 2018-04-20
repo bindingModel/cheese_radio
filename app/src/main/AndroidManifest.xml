@@ -8,8 +8,8 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".ui.IkeApplication"
@@ -26,23 +26,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.media.anchors.AnchorsActivity">
-
-        </activity>
-        <activity android:name=".ui.user.login.LoginActivity"/>
+        <activity android:name=".ui.media.anchors.AnchorsActivity" />
+        <activity android:name=".ui.user.login.LoginActivity" />
         <activity android:name=".ui.user.guide.GuideActivity" />
         <activity
             android:name=".ui.user.profile.ProfileActivity"
-            android:label="个人信息"/>
+            android:label="个人信息" />
         <activity
             android:name=".ui.user.edit.EditNameActivity"
             android:label="昵称" />
         <activity
             android:name=".ui.user.enroll.EnrollActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:label="报名"/>
+            android:label="报名"
+            android:windowSoftInputMode="adjustPan" />
 
-        <activity android:name=".ui.user.demo.DemoActivity"/>
+        <activity android:name=".ui.user.demo.DemoActivity" />
         <activity
             android:name=".ui.media.anchor.AnchorActivity"
             android:label=" " />
@@ -52,42 +50,69 @@
         <activity
             android:name=".ui.media.play.PlayActivity"
             android:label=" " />
+
         <service android:name=".ui.service.AudioService">
             <intent-filter>
-                <action android:name=".ui.base.media.AudioService"/>
+                <action android:name=".ui.base.media.AudioService" />
             </intent-filter>
         </service>
 
-        <meta-data android:name="PGYER_APPID" android:value="14a0fc2fba7de48e4f1d4e0dd819b86f" />
-        <activity android:name=".ui.user.register.one.RegisterOneActivity">
+        <meta-data
+            android:name="PGYER_APPID"
+            android:value="14a0fc2fba7de48e4f1d4e0dd819b86f" />
 
-        </activity>
+        <activity android:name=".ui.user.register.one.RegisterOneActivity"/>
+
         <activity android:name=".ui.user.register.two.RegisterTwoActivity">
 
         </activity>
-        <activity android:name=".ui.media.group.GroupInfoActivity" android:label="@string/group_info"/>
-        <activity android:name=".ui.search.SearchActivity"/>
-        <activity android:name=".ui.media.classify.list.ClassifyListActivity" android:label="分类"/>
-        <activity android:name=".ui.user.product.list.ProductsActivity" android:label="课程套餐"/>
+        <activity
+            android:name=".ui.media.group.GroupInfoActivity"
+            android:label="@string/group_info" />
+        <activity android:name=".ui.search.SearchActivity" />
+        <activity
+            android:name=".ui.media.classify.list.ClassifyListActivity"
+            android:label="分类" />
+        <activity
+            android:name=".ui.user.product.list.ProductsActivity"
+            android:label="课程套餐" />
         <!--<activity android:name=".ui.user.favority.my.MyFavorityActivity" android:label="我的作品"/>-->
 
-        <activity android:name=".ui.user.service.center.CenterActivity" android:label="@string/service_centre"/>
-        <activity android:name=".ui.user.my.course.MyCourseActivity" android:label="@string/my_course"/>
-        <activity android:name=".ui.user.my.work.MyWorkActivity" android:label="@string/my_work"/>
-        <activity android:name=".ui.user.my.favority.MyFavorityActivity" android:label="@string/my_collection"/>
-        <activity android:name=".ui.user.my.message.MessageActivity" android:label="@string/my_message"/>
-        <activity android:name=".ui.user.my.message.details.DetailsActivity" android:label="@string/message_details"/>
-        <activity android:name=".ui.media.course.details.CourseDetailsActivity" android:label="@string/course_details"/>
+        <activity
+            android:name=".ui.user.service.center.CenterActivity"
+            android:label="@string/service_centre" />
+        <activity
+            android:name=".ui.user.my.course.MyCourseActivity"
+            android:label="@string/my_course" />
+        <activity
+            android:name=".ui.user.my.work.MyWorkActivity"
+            android:label="@string/my_work" />
+        <activity
+            android:name=".ui.user.my.favority.MyFavorityActivity"
+            android:label="@string/my_collection" />
+        <activity
+            android:name=".ui.user.my.message.MessageActivity"
+            android:label="@string/my_message" />
+        <activity
+            android:name=".ui.user.my.message.details.DetailsActivity"
+            android:label="@string/message_details" />
+        <activity
+            android:name=".ui.media.course.details.CourseDetailsActivity"
+            android:label="@string/course_details" />
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
-            android:screenOrientation="portrait"
-          />
+            android:screenOrientation="portrait" />
+
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="@string/umeng_key" >
-        </meta-data>
+            android:value="@string/umeng_key"></meta-data>
 
+        <activity android:name=".ui.demo.coordinatorLayout.CoordinatorLayoutActivity">
+
+        </activity>
+        <activity android:name=".ui.user.product.place.PlaceActivity"
+            android:label="@string/class_ad"/>
     </application>
 </manifest>

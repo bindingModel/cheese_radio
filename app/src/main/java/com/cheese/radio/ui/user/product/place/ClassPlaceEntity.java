@@ -1,13 +1,18 @@
-package com.cheese.radio.ui.user.enroll.entity;
+package com.cheese.radio.ui.user.product.place;
 
+import android.view.View;
+
+import com.binding.model.App;
 import com.binding.model.model.ModelView;
+import com.binding.model.model.ViewInflateRecycler;
+import com.binding.model.model.inter.Event;
 import com.cheese.radio.R;
 
 /**
  * Created by 29283 on 2018/4/19.
  */
 @ModelView(R.layout.holder_class_place)
-public class ClassPlaceEntity {
+public class ClassPlaceEntity extends ViewInflateRecycler {
 
     /**
      * image : http://cheese-radio-1256030909.cos.ap-guangzhou.myqcloud.com/images/c0/c20/162d14e024d2b.jpg?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDzLbkmgG9mDR0VpMufGguwldS4VknuIl8%26q-sign-time%3D1523929975%3B3101853175%26q-key-time%3D1523929975%3B3101853175%26q-header-list%3Dhost%26q-url-param-list%3D%26q-signature%3D7dbed276b4f213a26cc07938840635fa2e2c2ffc
@@ -71,6 +76,10 @@ public class ClassPlaceEntity {
 
     public void setTraffic(String traffic) {
         this.traffic = traffic;
+    }
+    public void onClick(View view){
+        if(Event.event(R.id.EnrollModel,this,view) == 1) App.getCurrentActivity().finish();
+//            Model.dispatchModel("getProductId",this);
     }
 }
 

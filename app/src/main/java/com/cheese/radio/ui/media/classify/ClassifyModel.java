@@ -40,7 +40,8 @@ public class ClassifyModel extends RecyclerModel<ClassifyActivity, ActivityClass
 
     @Inject
     RadioApi api;
-    private final List<GridInflate> list=new ArrayList<>();
+    private final List<GridInflate> list = new ArrayList<>();
+
     @Override
     public void attachView(Bundle savedInstanceState, ClassifyActivity activity) {
         super.attachView(savedInstanceState, activity);
@@ -48,14 +49,22 @@ public class ClassifyModel extends RecyclerModel<ClassifyActivity, ActivityClass
         GridLayoutManager layoutManager = new GridLayoutManager(getT(), 18);
         layoutManager.setSpanSizeLookup(new GridSpanSizeLookup<>(getAdapter()));
         setLayoutManager(layoutManager);
-        setRcHttp((offset1, refresh) -> api.getQueryCategroy(new ClassifyParams("queryCategroy")).compose(new RestfulTransformer<>()).map(
-             classifyData ->  {
-                 for (ClassifyData data:classifyData) {
-                     list.add(data);
-                     list.addAll(data.getSubTagList());
-                 }
-             return list;
-             }
-        ));
+        setPageFlag(false);
+        setRcHttp((offset1, refresh) -> {
+            if (refresh) {
+                list.clear();
+            }
+            return api.getQueryCategroy(new ClassifyParams("queryCategroy"))
+                    .compose(new RestfulTransformer<>())
+                    .map(
+                            classifyData -> {
+                                for (ClassifyData data : classifyData) {
+                                    list.add(data);
+                                    list.addAll(data.getSubTagList());
+                                }
+                                return list;
+                            }
+                    );
+        });
     }
 }

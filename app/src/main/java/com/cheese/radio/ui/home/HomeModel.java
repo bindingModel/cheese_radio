@@ -208,13 +208,7 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
         }
     };
 
-    public void images(PlayEntity entity) {
-        getDataBinding().setEntity(entity);
-        AudioServiceUtil.getInstance().setImage(entity.getImage());
-        getDataBinding().playBg.setVisibility(View.GONE);
-        mHandler.removeCallbacksAndMessages(null);
-        mHandler.post(mRotationRunnable);
-    }
+
 
     @Override
     public void onPlayClick(View view) {
@@ -223,7 +217,16 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
         else mHandler.removeCallbacks(mRotationRunnable);
     }
 
+
+    //跳转到播放界面
     public void onToPlayClick(View view){
         ARouterUtil.navigation(ActivityComponent.Router.play);
+    }
+    public void images(PlayEntity entity) {
+        getDataBinding().setEntity(entity);
+        AudioServiceUtil.getInstance().setImage(entity.getImage());
+        getDataBinding().playBg.setVisibility(View.GONE);
+        mHandler.removeCallbacksAndMessages(null);
+        mHandler.post(mRotationRunnable);
     }
 }

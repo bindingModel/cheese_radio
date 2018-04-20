@@ -81,11 +81,12 @@
                 android:id="@+id/play_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center"
                 android:layout_marginBottom="15dp"
-                app:head="@{entity.image}"
                 android:background="@drawable/home_play_button_stop"
-                android:padding="2dp" />
+                android:onClick="@{vm::onToPlayClick}"
+                android:padding="2dp"
+                android:layout_gravity="bottom|center"
+                app:head="@{entity.image}" />
 
             <ImageView
                 android:id="@+id/play_bg"
@@ -93,23 +94,10 @@
                 android:layout_height="20dp"
                 android:layout_gravity="bottom|center"
                 android:layout_marginBottom="35dp"
+                android:onClick="@{vm::onToPlayClick}"
                 android:padding="2dp"
                 android:src="@mipmap/home_play" />
 
-
-            <!--   <RadioButton
-                   android:id="@+id/play"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_gravity="center|bottom"
-                   android:layout_marginBottom="15dp"
-                   android:drawableTop="@drawable/home_play_button_select"
-                   android:button="@null"
-                   android:checked="@={vm.checked}"
-                   android:onClick="@{vm::onPlayClick}" />-->
-
-            <!--      android:checked="@{vm.checked}"
-                android:onClick="@{vm::onPlayClick}"-->
         </FrameLayout>
     </FrameLayout>
 

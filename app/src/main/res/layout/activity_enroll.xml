@@ -11,6 +11,9 @@
         <variable
             name="productEntity"
             type="com.cheese.radio.ui.user.product.list.ProductsEntity" />
+        <variable
+            name="placeEntity"
+            type="com.cheese.radio.ui.user.product.place.ClassPlaceEntity"/>
     </data>
 
     <FrameLayout
@@ -114,6 +117,7 @@
                         android:background="@null"
                         android:hint="@string/input_phone"
                         android:text=""
+                        android:inputType="phone"
                         android:textSize="14.4sp" />
                 </LinearLayout>
 
@@ -200,7 +204,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="53.28dp"
                     android:layout_marginTop="1dp"
-                    android:onClick="@{vm::onSelectCourseClick}">
+                    android:onClick="@{vm::onClassADClick}">
 
                     <TextView
                         style="@style/profile_input_linearlayout_head"
@@ -216,7 +220,7 @@
                         android:background="@null"
                         android:focusable="false"
                         android:hint="@string/select_class_ad"
-                        android:text="@{productEntity.name}"
+                        android:text="@{placeEntity.name}"
                         android:textSize="14.4sp" />
                 </LinearLayout>
 

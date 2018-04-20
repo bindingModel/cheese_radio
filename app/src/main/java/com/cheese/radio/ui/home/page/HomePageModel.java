@@ -41,7 +41,7 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.search;
  * Created by 29283 on 2018/3/3.
  */
 @ModelView(R.layout.fragment_home_page)
-public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePageBinding,GridInflate>{
+public class HomePageModel extends RecyclerModel<HomePageFragment, FragmentHomePageBinding, GridInflate> {
     @Inject
     HomePageModel() {
     }
@@ -49,26 +49,28 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
 
     @Inject
     RadioApi api;
-    public ObservableField<String> redTipCount=new ObservableField<>("0");
-    public ObservableBoolean redTipBoolean=new ObservableBoolean(false);
+    public ObservableField<String> redTipCount = new ObservableField<>("0");
+    public ObservableBoolean redTipBoolean = new ObservableBoolean(false);
+
     @Override
     public void attachView(Bundle savedInstanceState, HomePageFragment homePageFragment) {
         super.attachView(savedInstanceState, homePageFragment);
-        IkeApplication.isLogin();
+
         getDataBinding().layoutRecycler.setVm(this);
         GridLayoutManager layoutManager = new GridLayoutManager(homePageFragment.getContext(), 4);
         layoutManager.setSpanSizeLookup(new GridSpanSizeLookup<>(getAdapter()));
         setLayoutManager(layoutManager);
         setEnable(true);
         setPageFlag(false);
-        addDisposable(api.getNewMessageCount(new NewMessageCountParams("newMessageCount"))
-                .compose(new RestfulTransformer<>())
-                .subscribe(newMessageCountData -> {
-                    redTipCount.set(String.valueOf(newMessageCountData.getCount()));
-                    if (newMessageCountData.getCount() != null && newMessageCountData.getCount() != 0)
-                        redTipBoolean.set(true);
-                    else redTipBoolean.set(false);
-                },BaseUtil::toast));
+        if (IkeApplication.isLogin(false))
+            addDisposable(api.getNewMessageCount(new NewMessageCountParams("newMessageCount"))
+                    .compose(new RestfulTransformer<>())
+                    .subscribe(newMessageCountData -> {
+                        redTipCount.set(String.valueOf(newMessageCountData.getCount()));
+                        if (newMessageCountData.getCount() != null && newMessageCountData.getCount() != 0)
+                            redTipBoolean.set(true);
+                        else redTipBoolean.set(false);
+                    }, BaseUtil::toast));
         setRoHttp((offset1, refresh) -> getZip());
     }
 
@@ -79,14 +81,14 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
 
         return Observable.zip(categoriy, recommandList, (cate, entity) -> {
             List<GridInflate> list = new ArrayList<>();
-            if (cate.code() == 0 && cate.getData() != null &&  !cate.getData().isEmpty()) {
-                list.addAll(cate.getData().subList(0,4));
+            if (cate.code() == 0 && cate.getData() != null && !cate.getData().isEmpty()) {
+                list.addAll(cate.getData().subList(0, 4));
             }
-            if(entity.code()==0 &&entity.getData()!=null &&!entity.getData().isEmpty()){
-                for (RecommanData data:entity.getData()) {
+            if (entity.code() == 0 && entity.getData() != null && !entity.getData().isEmpty()) {
+                for (RecommanData data : entity.getData()) {
                     list.add(data);
-                    if(data.getViewType().equals("list"))
-                        for (RecommandEntity recommandEntity :data.getList() ) {
+                    if (data.getViewType().equals("list"))
+                        for (RecommandEntity recommandEntity : data.getList()) {
                             recommandEntity.setIndex(1);
                         }
                     list.addAll(data.getList());
@@ -97,8 +99,17 @@ public class HomePageModel extends RecyclerModel<HomePageFragment,FragmentHomePa
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
-    public void onSearchClick(View view){
+
+    public void onSearchClick(View view) {
         ARouterUtil.navigation(search);
     }
-    public void onMessageClick(View view){ARouterUtil.navigation(ActivityComponent.Router.message);}
+
+    public void onMessageClick(View view) {
+        if (IkeApplication.isLogin(true)) ARouterUtil.navigation(ActivityComponent.Router.message);
+        else {
+            finish();
+            BaseUtil.toast("请登陆后再试");
+        }
+
+    }
 }

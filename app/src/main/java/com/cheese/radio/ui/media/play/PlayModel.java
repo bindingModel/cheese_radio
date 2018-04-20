@@ -62,7 +62,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         super.attachView(savedInstanceState, activity);
         intTimes();
         iniView();
-        addDisposable(api.getContentInfo(new PlayParams("contentInfo", id))
+       if(id!=0) addDisposable(api.getContentInfo(new PlayParams("contentInfo", id))
                 .compose(new RestfulTransformer<>()).subscribe(
                         this::setSingelEntity, throwable -> BaseUtil.toast(getT(), throwable)));
         initPopupPlayModel(savedInstanceState);
@@ -155,12 +155,14 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     }
 
     public void onAddFavorityClick(View view) {
+        if(id==0)return;
         AddFavorityParams params = new AddFavorityParams("addFavority");
         params.setId(AudioServiceUtil.getInstance().getId());
         api.addFavority(params).compose(new RestfulTransformer<>()).subscribe(
         );
     }
     public void onFabuClick(View view){
+        if(id==0)return;
         FabulousParams params=new FabulousParams("addFabulous");
         params.setId(AudioServiceUtil.getInstance().getId());
         api.addFabulous(params).compose(new RestfulTransformer<>()).subscribe(

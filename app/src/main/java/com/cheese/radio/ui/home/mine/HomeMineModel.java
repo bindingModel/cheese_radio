@@ -11,6 +11,7 @@ import com.binding.model.App;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
 import com.binding.model.model.inter.Event;
+import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
@@ -31,40 +32,44 @@ import io.reactivex.disposables.Disposable;
 /**
  * Created by 29283 on 2018/2/22.
  */
-@ModelView(value = R.layout.fragment_home_mine, event = R.id.HomeMineModel,model = true)
+@ModelView(value = R.layout.fragment_home_mine, event = R.id.HomeMineModel, model = true)
 public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineBinding> {
     @Inject
     HomeMineModel() {
     }
 
-    public ObservableBoolean redTipBoolean=new ObservableBoolean(false);
-    public ObservableField<String> redTipCount=new ObservableField<>("0");
-    public ObservableField<Drawable> head=new ObservableField<>();
-    @Inject RadioApi api;
+    public ObservableBoolean redTipBoolean = new ObservableBoolean(false);
+    public ObservableField<String> redTipCount = new ObservableField<>("0");
+    public ObservableField<Drawable> head = new ObservableField<>();
+    @Inject
+    RadioApi api;
+
     @Override
     public void attachView(Bundle savedInstanceState, HomeMineFragment homeMineFragment) {
         super.attachView(savedInstanceState, homeMineFragment);
         updataUI();
-        Disposable subscribe = api.getNewMessageCount(new NewMessageCountParams("newMessageCount")).compose(new RestfulTransformer<>())
-                .subscribe(newMessageCountData -> {
-                    redTipCount.set(String.valueOf(newMessageCountData.getCount()));
-                    if (newMessageCountData.getCount() != null && newMessageCountData.getCount() != 0)
-                        redTipBoolean.set(true);
-                    else redTipBoolean.set(false);
-                });
-        //        api.getProperty(new ProfileParams("getProperty")).compose(new RestfulTransformer<>()).subscribe();
+        if (IkeApplication.isLogin(false))
+            addDisposable(api.getNewMessageCount(new NewMessageCountParams("newMessageCount")).compose(new RestfulTransformer<>())
+                    .subscribe(newMessageCountData -> {
+                        redTipCount.set(String.valueOf(newMessageCountData.getCount()));
+                        if (newMessageCountData.getCount() != null && newMessageCountData.getCount() != 0)
+                            redTipBoolean.set(true);
+                        else redTipBoolean.set(false);
+                    }, BaseUtil::toast));
     }
 
     public void onLogoutClick(View view) {
         IkeApplication.getUser().logout();
         this.finish();
     }
-    public void logout(){
+
+    public void logout() {
         getDataBinding().setEntity(IkeApplication.getUser().getUserEntity());
     }
 
     public void onSetProfileClick(View view) {
-        ARouterUtil.navigation(ActivityComponent.Router.profile);
+        if (IkeApplication.isLogin(true)) ARouterUtil.navigation(ActivityComponent.Router.profile);
+        else finish();
     }
 
     @Override
@@ -75,26 +80,38 @@ public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineB
         return 1;
     }
 
-    public void onCourseClick(View view){
-        ARouterUtil.navigation(ActivityComponent.Router.course);
+    public void onCourseClick(View view) {
+        if (IkeApplication.isLogin(true)) ARouterUtil.navigation(ActivityComponent.Router.course);
+        else finish();
     }
-    public void onWorkClick(View view){
-        ARouterUtil.navigation(ActivityComponent.Router.work);
-    }
-    public void onFavotity(View view){
-        ARouterUtil.navigation(ActivityComponent.Router.favority);
-    }
-    public void onMessageClick(View view){ARouterUtil.navigation(ActivityComponent.Router.message);}
 
-    public Drawable getSex(){
-        return   IkeApplication.getUser().getUserEntity().getSex().equals("M")?
-                App.getDrawable(R.mipmap.boy):App.getDrawable(R.mipmap.girl);
+    public void onWorkClick(View view) {
+        if (IkeApplication.isLogin(true)) ARouterUtil.navigation(ActivityComponent.Router.work);
+        else finish();
     }
-    private void updataUI(){
+
+    public void onFavotity(View view) {
+        if (IkeApplication.isLogin(true)) ARouterUtil.navigation(ActivityComponent.Router.favority);
+        else finish();
+    }
+
+    public void onMessageClick(View view) {
+        if (IkeApplication.isLogin(true)) ARouterUtil.navigation(ActivityComponent.Router.message);
+        else finish();
+
+    }
+
+    public Drawable getSex() {
+        return IkeApplication.getUser().getUserEntity().getSex().equals("M") ?
+                App.getDrawable(R.mipmap.boy) : App.getDrawable(R.mipmap.girl);
+    }
+
+    private void updataUI() {
         getDataBinding().setEntity(IkeApplication.getUser().getUserEntity());
         head.set(getSex());
     }
-    public void onCenterClick(View view){
+
+    public void onCenterClick(View view) {
         ARouterUtil.navigation(ActivityComponent.Router.center);
     }
 }

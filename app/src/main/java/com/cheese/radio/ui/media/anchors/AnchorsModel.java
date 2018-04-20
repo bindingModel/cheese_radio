@@ -68,11 +68,7 @@ public class AnchorsModel extends AudioRecycleModel<AnchorsActivity,ActivityAnch
         return null;
     }
 
-    public void images(PlayEntity entity) {
-        getDataBinding().setEntity(entity);
-        mHandler.removeCallbacksAndMessages(null);
-        mHandler.post(mRotationRunnable);
-    }
+
     private Runnable mRotationRunnable = new Runnable() {
         @Override
         public void run() {
@@ -85,7 +81,15 @@ public class AnchorsModel extends AudioRecycleModel<AnchorsActivity,ActivityAnch
             mHandler.postDelayed(this, TIME_UPDATE);
         }
     };
+    //跳转到播放界面
     public void onToPlayClick(View view){
         ARouterUtil.navigation(ActivityComponent.Router.play);
+    }
+    public void images(PlayEntity entity) {
+        getDataBinding().setEntity(entity);
+        AudioServiceUtil.getInstance().setImage(entity.getImage());
+        getDataBinding().playBg.setVisibility(View.GONE);
+        mHandler.removeCallbacksAndMessages(null);
+        mHandler.post(mRotationRunnable);
     }
 }

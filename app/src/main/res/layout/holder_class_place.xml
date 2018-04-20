@@ -5,7 +5,7 @@
 
         <variable
             name="vm"
-            type="com.cheese.radio.ui.user.enroll.entity.ClassPlaceEntity" />
+            type="com.cheese.radio.ui.user.product.place.ClassPlaceEntity" />
     </data>
 
     <FrameLayout
@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:onClick="@{vm::onClick}"
             android:padding="13.44dp">
 
             <TextView

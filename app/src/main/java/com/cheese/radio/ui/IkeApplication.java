@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatDelegate;
 import android.text.TextUtils;
 
 import com.binding.model.App;
+import com.binding.model.util.BaseUtil;
 import com.cheese.radio.BR;
 import com.cheese.radio.BuildConfig;
 import com.cheese.radio.R;
@@ -64,11 +65,14 @@ public class IkeApplication extends MultiDexApplication {
         return appComponent;
     }
 
-    public static boolean isLogin() {
+    public static boolean isLogin(boolean checkToLogin) {
         if (!TextUtils.isEmpty(getUser().getToken()))
             return true;
         else {
-            ARouterUtil.navigation(login);
+            if(checkToLogin){
+                ARouterUtil.navigation(login);
+                BaseUtil.toast("请登陆后再试");
+            }
             return false;
         }
     }

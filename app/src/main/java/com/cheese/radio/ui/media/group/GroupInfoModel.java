@@ -53,7 +53,7 @@ public class GroupInfoModel extends PagerModel<GroupInfoActivity, ActivityGroupI
                 groupData -> {
                     getDataBinding().setEntity(groupData);
                     setFragment(groupData);
-                    getDataBinding().storyTitle.setText(String.format("作品（%1s)", groupData.getContentList().size()));
+                    getDataBinding().storyTitle.setText(String.format("作品（%1s）", groupData.getContentList().size()));
                 }
         ));
 

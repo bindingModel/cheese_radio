@@ -7,126 +7,145 @@
         <variable
             name="vm"
             type="com.cheese.radio.ui.media.anchor.AnchorModel" />
+
         <variable
             name="entity"
-            type="com.cheese.radio.ui.media.anchor.AnchorData"/>
+            type="com.cheese.radio.ui.media.anchor.AnchorData" />
+
         <variable
             name="image"
-            type="String"/>
+            type="String" />
     </data>
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background_gray"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="211dp"
-            android:background="@mipmap/anchor_bg">
-
-            <include layout="@layout/toolbar_organza" />
-
-            <ImageView
-                android:layout_width="76.6dp"
-                android:layout_height="76.6dp"
-                android:layout_gravity="center|start"
-                android:layout_marginLeft="9.6dp"
-                android:layout_marginStart="9.6dp"
-                app:head="@{entity.image}" />
-
-            <TextView
-                android:layout_width="65dp"
-                android:layout_height="27dp"
-                android:layout_gravity="center|end"
-                android:layout_marginEnd="11.5dp"
-                android:layout_marginRight="11.5dp"
-                android:background="@drawable/login_button_shape"
-                android:drawableLeft="@mipmap/plus"
-                android:drawableStart="@mipmap/plus"
-                android:gravity="center"
-                android:paddingLeft="13.8dp"
-                android:paddingRight="13.8dp"
-                android:text="关注"
-                android:textColor="@color/text_white" />
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|left"
-                android:layout_marginLeft="106dp"
-                android:ellipsize="end"
-                android:maxLines="3"
-                android:text="@{entity.nickName,default=123}"
-                android:textColor="@color/text_black"
-                android:textSize="17.5sp" />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/share"
-                android:layout_gravity="end"
-                android:padding="14dp"/>
-        </FrameLayout><!--
-        android:text="@{vm.msg}"-->
-
-        <LinearLayout
+        <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/background_gray"
             android:orientation="vertical">
 
-            <com.binding.model.view.radio.CheckRadioGroup
-                android:id="@+id/navigation"
+            <android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_gravity="top"
-                android:layout_marginTop="1dp"
-                android:background="@color/white"
-                android:orientation="horizontal"
-                app:position="@={vm.currentItem}">
+                android:layout_height="211dp"
+                android:background="@color/background_white">
 
-                <android.support.v7.widget.AppCompatRadioButton
-                    style="@style/anchor_navigation"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:checked="true"
-                    android:drawableBottom="@drawable/anchor_line"
-                    android:text="@string/data" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="211dp"
+                    android:background="@mipmap/anchor_bg"
+                    app:layout_scrollFlags="scroll|enterAlways">
 
-                <android.support.v7.widget.AppCompatRadioButton
-                    style="@style/anchor_navigation"
-                    android:id="@+id/anchor_data"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:checked="false"
-                    android:drawableBottom="@drawable/anchor_line"
-                    android:text="@string/product" />
+                    <include layout="@layout/toolbar_organza" />
 
-            </com.binding.model.view.radio.CheckRadioGroup>
+                    <ImageView
+                        android:layout_width="76.6dp"
+                        android:layout_height="76.6dp"
+                        android:layout_gravity="center|start"
+                        android:layout_marginLeft="9.6dp"
+                        android:layout_marginStart="9.6dp"
+                        app:head="@{entity.image}"
+                        app:layout_scrollFlags="scroll|enterAlways" />
 
+                    <TextView
+                        android:layout_width="65dp"
+                        android:layout_height="27dp"
+                        android:layout_gravity="center|end"
+                        android:layout_marginEnd="11.5dp"
+                        android:layout_marginRight="11.5dp"
+                        android:background="@drawable/login_button_shape"
+                        android:drawableLeft="@mipmap/plus"
+                        android:drawableStart="@mipmap/plus"
+                        android:gravity="center"
+                        android:paddingLeft="13.8dp"
+                        android:paddingRight="13.8dp"
+                        android:text="关注"
+                        android:textColor="@color/text_white"
+                        android:visibility="gone"
+                        app:layout_scrollFlags="scroll|enterAlways" />
 
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|left"
+                        android:layout_marginLeft="106dp"
+                        android:ellipsize="end"
+                        android:maxLines="3"
+                        android:text="@{entity.nickName,default=123}"
+                        android:textColor="@color/text_black"
+                        android:textSize="17.5sp"
+                        app:layout_scrollFlags="scroll|enterAlways" />
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/view_pager"
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:padding="14dp"
+                        android:src="@mipmap/share"
+                        app:layout_scrollFlags="scroll|enterAlways" />
+                </FrameLayout><!--
+        android:text="@{vm.msg}"-->
+            </android.support.design.widget.AppBarLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/background_white"
-                app:adapter="@{vm.adapter}"
-                app:position="@={vm.currentItem}" />
+                android:orientation="vertical"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        </LinearLayout>
-    </LinearLayout>
-    <ImageView
-        android:id="@+id/play_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:padding="2dp"
-        app:head="@{image}"
-        android:layout_marginBottom="15dp"
-        android:onClick="@{vm::onToPlayClick}"
-        android:background="@drawable/home_play_button_stop"/>
-</FrameLayout>
+                <com.binding.model.view.radio.CheckRadioGroup
+                    android:id="@+id/navigation"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:position="@={vm.currentItem}">
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        style="@style/anchor_navigation"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:checked="true"
+                        android:drawableBottom="@drawable/anchor_line"
+                        android:text="@string/data" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/anchor_data"
+                        style="@style/anchor_navigation"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:checked="false"
+                        android:drawableBottom="@drawable/anchor_line"
+                        android:text="@string/product" />
+
+                </com.binding.model.view.radio.CheckRadioGroup>
+
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/background_white"
+                    app:adapter="@{vm.adapter}"
+                    app:position="@={vm.currentItem}" />
+
+            </LinearLayout>
+
+        </android.support.design.widget.CoordinatorLayout>
+
+        <ImageView
+            android:id="@+id/play_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/home_play_button_stop"
+            android:onClick="@{vm::onToPlayClick}"
+            android:padding="2dp"
+            app:head="@{image}" />
+    </FrameLayout>
 </layout>

@@ -32,7 +32,7 @@ public class StartUpModel extends ViewModel<StartUpActivity, ActivityStartupBind
         MyBaseUtil.getMacAddress();
         Handler handler = new Handler();
         handler.postDelayed(() -> {
-            if (IkeApplication.isLogin())
+            if (IkeApplication.isLogin(true))
                 ARouterUtil.navigation(home);
            else ARouterUtil.navigation(login);
             finish();

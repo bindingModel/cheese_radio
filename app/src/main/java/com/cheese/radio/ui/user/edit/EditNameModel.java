@@ -65,7 +65,7 @@ public class EditNameModel extends ViewModel<EditNameActivity, ActivityEditNameB
 
     public void setNameClick(View view) {
 
-        if ((isValidToast(view, getNameError(name.get())) & Event.event(R.id.ProfileModel, this, view) == 1))
+        if ((isValidToast(view, getNameError(name.get())) && Event.event(R.id.ProfileModel, this, view) == 1))
             App.getCurrentActivity().finish();
     }
 
