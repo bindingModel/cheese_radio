@@ -35,7 +35,7 @@ ext{
     version_code = 2
     version_name = '2.0'
 
-    support_version = '27.1.0'
+    support_version = '27.1.1'
     anko_version = '0.10.1'
     gson = '2.8.1'
     retrofit = '2.2.0'
