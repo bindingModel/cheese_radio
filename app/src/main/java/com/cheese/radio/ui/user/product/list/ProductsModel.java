@@ -14,6 +14,9 @@ import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityProductListBinding;
 import com.cheese.radio.inject.api.RadioApi;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 /**
@@ -25,13 +28,20 @@ public class ProductsModel extends RecyclerModel<ProductsActivity,ActivityProduc
     @Inject ProductsModel(){}
     @Inject RadioApi api;
     private ProductsParams params=new ProductsParams("getProducts");
+    private final List<ProductsEntity> list=new ArrayList<>();
     @Override
     public void attachView(Bundle savedInstanceState, ProductsActivity productsActivity) {
         super.attachView(savedInstanceState, productsActivity);
         getDataBinding().layoutRecycler.setVm(this);
 
         setRcHttp((offset1, refresh) -> api.getProducts(params).compose(new RestfulTransformer<>()));
-
+        addEventAdapter((position, o, type, view)-> {
+            for (ProductsEntity entity: getAdapter().getList()) {
+                entity.checked.set(false);
+            }
+            o.checked.set(true);
+            return false;
+        });
     }
 
 

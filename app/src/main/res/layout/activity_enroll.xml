@@ -116,8 +116,9 @@
                         android:layout_weight="1"
                         android:background="@null"
                         android:hint="@string/input_phone"
-                        android:text=""
+                        android:maxLength="11"
                         android:inputType="phone"
+                        android:text=""
                         android:textSize="14.4sp" />
                 </LinearLayout>
 
@@ -234,13 +235,13 @@
                     android:text="@string/pay_for" />
 
                 <com.binding.model.view.radio.CheckRadioGroup
-                    style="@style/profile_input_linearlayout"
                     android:id="@+id/radio_group"
+                    style="@style/profile_input_linearlayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
-                    app:position="@{vm.currentItem}"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    app:position="@{vm.currentItem}">
 
 
                     <RadioButton
@@ -248,11 +249,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:button="@null"
-                        android:drawablePadding="15dp"
-                        android:drawableLeft="@mipmap/wx_pay"
-                        android:drawableStart="@mipmap/wx_pay"
-                        android:drawableRight="@drawable/tick_select"
                         android:drawableEnd="@drawable/tick_select"
+                        android:drawableLeft="@mipmap/wx_pay"
+                        android:drawablePadding="15dp"
+                        android:drawableRight="@drawable/tick_select"
+                        android:drawableStart="@mipmap/wx_pay"
                         android:padding="15dp"
                         android:text="@string/wx_pay" />
 
@@ -261,11 +262,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:button="@null"
-                        android:drawablePadding="15dp"
-                        android:drawableLeft="@mipmap/ali_pay_1"
-                        android:drawableStart="@mipmap/ali_pay_1"
-                        android:drawableRight="@drawable/tick_select"
                         android:drawableEnd="@drawable/tick_select"
+                        android:drawableLeft="@mipmap/ali_pay_1"
+                        android:drawablePadding="15dp"
+                        android:drawableRight="@drawable/tick_select"
+                        android:drawableStart="@mipmap/ali_pay_1"
                         android:padding="15dp"
                         android:text="@string/ali_pay" />
                 </com.binding.model.view.radio.CheckRadioGroup>
@@ -330,7 +331,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@color/background_white"
-
             android:orientation="horizontal">
 
             <TextView
@@ -343,8 +343,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:padding="15dp"
-                android:text="6000"
+                android:padding="5dp"
+                android:layout_gravity="center"
+                android:text="@{vm.mPrice,default=6000}"
+                android:textSize="20sp"
                 android:textColor="@color/text_red" />
 
             <TextView

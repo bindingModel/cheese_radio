@@ -23,6 +23,7 @@ import com.cheese.radio.ui.search.entity.HotSearchEntity;
 import com.cheese.radio.ui.search.params.HotSearchParams;
 import com.cheese.radio.ui.user.UserEntity;
 import com.cheese.radio.ui.user.enroll.params.ClassPlaceParams;
+import com.cheese.radio.ui.user.enroll.params.CreateOrderParams;
 import com.cheese.radio.ui.user.params.AddFavorityParams;
 import com.cheese.radio.ui.user.calendar.CalendarEntity;
 import com.cheese.radio.ui.user.calendar.ClassCalendarParams;
@@ -164,4 +165,8 @@ public interface RadioApi {
     //上课地址接口
     @POST("/1.0/class")
     Observable<InfoEntity<List<ClassPlaceEntity>>> classPlace(@Body ClassPlaceParams params);
+
+    //创建订单
+    @POST("/1.0/order")
+    Observable<InfoEntity<String>> createOrder(@Body CreateOrderParams params);
 }

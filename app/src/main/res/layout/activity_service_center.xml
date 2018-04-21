@@ -1,58 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
+
     <data>
+
         <variable
             name="vm"
-            type="com.cheese.radio.ui.user.service.center.CenterModel"/>
+            type="com.cheese.radio.ui.user.service.center.CenterModel" />
     </data>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent"
-    android:background="@color/text_white">
-<!--    地图这块到时候放张图片-->
-    <include
-        layout="@layout/toolbar"/>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="center"
-        android:src="@mipmap/ad_map" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/service_telephone"
-        android:layout_marginTop="15dp"
-        android:textSize="13.44sp"
-        android:textColor="@color/text_black"
-        android:layout_gravity="center"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/service_centre_number"
-        android:textSize="30sp"
-        android:textColor="@color/text_black"
-        android:layout_marginBottom="15dp"
-        android:layout_gravity="center"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/the_hours_worked"
-        android:textSize="12.48sp"
-        android:layout_gravity="center"/>
-    <ImageView
-        android:layout_width="124.8dp"
-        android:layout_height="124.8dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="8.33dp"
-        android:src="@mipmap/wx_qr_code"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textSize="13.44sp"
-        android:layout_marginBottom="39dp"
-        android:text="@string/wx_public_platform"/>
-</LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/text_white"
+            android:orientation="vertical">
+            <!--    地图这块到时候放张图片-->
+            <include layout="@layout/toolbar" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="center"
+                android:src="@mipmap/ad_map" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:text="@string/service_telephone"
+                android:textColor="@color/text_black"
+                android:textSize="13.44sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp"
+                android:text="@string/service_centre_number"
+                android:textColor="@color/text_black"
+                android:textSize="30sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/the_hours_worked"
+                android:textSize="12.48sp" />
+
+            <ImageView
+                android:layout_width="124.8dp"
+                android:layout_height="124.8dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8.33dp"
+                android:src="@mipmap/wx_qr_code" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="39dp"
+                android:text="@string/wx_public_platform"
+                android:textSize="13.44sp" />
+        </LinearLayout>
+    </ScrollView>
 </layout>

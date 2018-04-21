@@ -54,7 +54,7 @@
     <string name="message_details">消息详情</string>
     <string name="check_details">查看详情>></string>
     <string name="wx_pay">微信支付</string>
-    <string name="price">价格</string>
+    <string name="price">价格:</string>
     <string name="enroll">报名</string>
     <string name="course_details">课程详情</string>
     <string name="order">预 约</string>

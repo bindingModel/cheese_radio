@@ -1,13 +1,9 @@
-package com.cheese.radio.ui.user.enroll;
+package com.cheese.radio.ui.user.enroll.params;
 
 import com.cheese.radio.base.IkeParams;
 
-/**
- * Created by 29283 on 2018/3/24.
- */
-
-public class EnroolParams extends IkeParams {
-//    method	方法名	是	固定	createOrder
+public class CreateOrderParams extends IkeParams {
+    //    method	方法名	是	固定	createOrder
 //    token	用户令牌	是	用户登录或注册后获取
 //    name	宝宝姓名	是	学员的姓名
 //    sex	宝宝性别	是
@@ -26,7 +22,7 @@ public class EnroolParams extends IkeParams {
     private String ageRange;
     private int productId;
     private String payType;
-    public EnroolParams(String method) {
+    public CreateOrderParams(String method) {
         this.method = method;
     }
 

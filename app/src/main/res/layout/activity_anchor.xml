@@ -29,7 +29,7 @@
 
             <android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="211dp"
+                android:layout_height="wrap_content"
                 android:background="@color/background_white">
 
                 <FrameLayout
@@ -85,16 +85,7 @@
                         android:padding="14dp"
                         android:src="@mipmap/share"
                         app:layout_scrollFlags="scroll|enterAlways" />
-                </FrameLayout><!--
-        android:text="@{vm.msg}"-->
-            </android.support.design.widget.AppBarLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
+                </FrameLayout>
                 <com.binding.model.view.radio.CheckRadioGroup
                     android:id="@+id/navigation"
                     android:layout_width="match_parent"
@@ -103,7 +94,8 @@
                     android:layout_marginTop="1dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
-                    app:position="@={vm.currentItem}">
+                    app:position="@={vm.currentItem}"
+                    >
 
                     <android.support.v7.widget.AppCompatRadioButton
                         style="@style/anchor_navigation"
@@ -123,6 +115,15 @@
                         android:text="@string/product" />
 
                 </com.binding.model.view.radio.CheckRadioGroup>
+            </android.support.design.widget.AppBarLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
 
 
                 <android.support.v4.view.ViewPager

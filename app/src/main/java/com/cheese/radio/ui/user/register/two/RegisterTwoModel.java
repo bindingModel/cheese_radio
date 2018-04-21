@@ -1,6 +1,8 @@
 package com.cheese.radio.ui.user.register.two;
 
+import android.content.res.ColorStateList;
 import android.databinding.ObservableBoolean;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
@@ -44,9 +46,11 @@ public class RegisterTwoModel extends ViewModel<RegisterTwoActivity, ActivityReg
     public void onNextClick(View view) {
         params.setSex(IkeApplication.getUser().getUserEntity().getSex());
         addDisposable(api.setUserInfo(params).compose(new ErrorTransform<>()).subscribe(s -> {
-            if (s.getCode().equals("0")){
-            ARouterUtil.navigation(home);
-            this.finish();}
+            if (s.getCode().equals("0")) {
+                ARouterUtil.navigation(home);
+                IkeApplication.getUser().setUserEntity(params);
+                this.finish();
+            }
         }, BaseUtil::toast));
     }
 
@@ -56,15 +60,19 @@ public class RegisterTwoModel extends ViewModel<RegisterTwoActivity, ActivityReg
             case R.id.select_for:
                 params.setAge("4~5");
                 getDataBinding().selectFor.setTextSize(23);
+                getDataBinding().selectFor.setTextColor(Color.BLACK);
                 getDataBinding().selectSix.setTextSize(16);
+                getDataBinding().selectSix.setTextColor(Color.GRAY);
                 break;
             case R.id.select_six:
                 params.setAge("6~8");
                 getDataBinding().selectFor.setTextSize(16);
+                getDataBinding().selectFor.setTextColor(Color.GRAY);
                 getDataBinding().selectSix.setTextSize(23);
+                getDataBinding().selectSix.setTextColor(Color.BLACK);
                 break;
             default:
-                IkeApplication.getUser().setUserEntity(params);
+
         }
 
     }

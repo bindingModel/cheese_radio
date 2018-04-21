@@ -17,9 +17,13 @@ import com.binding.model.model.inter.Event;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
+import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityEnrollBinding;
+import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
+import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.user.enroll.params.CreateOrderParams;
 import com.cheese.radio.ui.user.product.list.ProductsEntity;
 import com.cheese.radio.ui.user.product.place.ClassPlaceEntity;
 import com.cheese.radio.util.CityPickTool;
@@ -40,14 +44,15 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
     @Inject
     EnrollModel() {
     }
-
+    @Inject RadioApi api;
     public ObservableField<String> mDate = new ObservableField<String>("");
     public ObservableField<String> mCity = new ObservableField<>("");
     public ObservableField<String> mAge = new ObservableField<>("");
     public ObservableField<String> mSex = new ObservableField<>("");
     public ObservableField<String> course = new ObservableField<>("");
+    public ObservableField<String> mPrice=new ObservableField<>("");
     public ObservableInt currentItem=new ObservableInt();
-    private EnroolParams params = new EnroolParams("createOrder");
+    private CreateOrderParams params = new CreateOrderParams("createOrder");
 
     private int checkId=-1;
     private OptionsPickerView agePicker, sexPicker;
@@ -59,7 +64,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
     @Override
     public void attachView(Bundle savedInstanceState, EnrollActivity enrollActivity) {
         super.attachView(savedInstanceState, enrollActivity);
-
+        if(!IkeApplication.isLogin(true))finish();
         setData();
         initAgePicker();
         initSexPicker();
@@ -126,6 +131,8 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         if (productsEntity != null) {
             getDataBinding().setProductEntity(productsEntity);
             params.setProductId(productsEntity.getId());
+            mPrice.set(String.valueOf(productsEntity.getPrice()));
+
         }
         ClassPlaceEntity placeEntity = event instanceof ClassPlaceEntity ? ((ClassPlaceEntity) event) : null;
         if (placeEntity != null) {
@@ -135,7 +142,14 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         return 1;
     }
     public void onEnrollClick(View view){
-        //调用下订单
+        CreateOrderParams params =new CreateOrderParams("createOrder");
+        params.setName("baobao");params.setSex("F");params.setBirthday("2018-1-1");
+        params.setPhone("12345678901");params.setAddress("addddddd");params.setAgeRange("4-5");
+        params.setProductId(1);params.setPayType("zfb");
+        //创建订单
+         addDisposable( api.createOrder(params).compose(new RestfulTransformer<>()).subscribe());
+        //支付订单
+
     }
     public void onClassADClick(View view){
         ARouterUtil.navigation(ActivityComponent.Router.place);
