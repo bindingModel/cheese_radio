@@ -18,9 +18,10 @@ import com.cheese.radio.ui.IkeApplication;
 
 import javax.inject.Inject;
 
-import static com.binding.model.util.BaseUtil.getPhoneError;
+
 import static com.binding.model.util.BaseUtil.isValidToast;
-import static com.cheese.radio.util.MyBaseUtil.getNameError;
+
+import static com.cheese.radio.util.MyBaseUtil.getNickError;
 
 /**
  * Created by 29283 on 2018/3/11.
@@ -65,7 +66,7 @@ public class EditNameModel extends ViewModel<EditNameActivity, ActivityEditNameB
 
     public void setNameClick(View view) {
 
-        if ((isValidToast(view, getNameError(name.get())) && Event.event(R.id.ProfileModel, this, view) == 1))
+        if ((isValidToast(view, getNickError(name.get())) && Event.event(R.id.ProfileModel, this, view) == 1))
             App.getCurrentActivity().finish();
     }
 

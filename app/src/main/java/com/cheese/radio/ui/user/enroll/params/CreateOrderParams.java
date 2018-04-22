@@ -1,6 +1,15 @@
 package com.cheese.radio.ui.user.enroll.params;
 
+import android.text.TextUtils;
+import android.view.View;
+
+import com.binding.model.util.BaseUtil;
 import com.cheese.radio.base.IkeParams;
+import com.cheese.radio.util.MyBaseUtil;
+
+
+import static com.binding.model.util.BaseUtil.getPhoneError;
+import static com.binding.model.util.BaseUtil.isValidToast;
 
 public class CreateOrderParams extends IkeParams {
     //    method	方法名	是	固定	createOrder
@@ -22,6 +31,7 @@ public class CreateOrderParams extends IkeParams {
     private String ageRange;
     private int productId;
     private String payType;
+
     public CreateOrderParams(String method) {
         this.method = method;
     }
@@ -96,5 +106,38 @@ public class CreateOrderParams extends IkeParams {
 
     public void setPayType(String payType) {
         this.payType = payType;
+    }
+
+    public void setPayType(Integer payType) {
+        if (payType == 0) this.payType = "weixin";
+        if (payType == 1) this.payType = "zfb";
+    }
+
+    public boolean isLegal(View view) {
+
+        if (!isValidToast(view, MyBaseUtil.getNameError(name))) return false;
+        if (TextUtils.isEmpty(sex)) {
+            BaseUtil.toast("性别还未选取");
+            return false;
+        }
+        if (TextUtils.isEmpty(birthday)) {
+            BaseUtil.toast("生日还未选取");
+            return false;
+        }
+        if (!isValidToast(view, getPhoneError(phone))) return false;
+        if (TextUtils.isEmpty(address)) {
+            BaseUtil.toast("家庭住址还未选取");
+            return false;
+        }
+        if (TextUtils.isEmpty(ageRange)) {
+            BaseUtil.toast("没有选择年龄段");
+            return false;
+        }
+        if (productId == 0) {
+            BaseUtil.toast("选择一下套餐");
+            return false;
+        }
+//        if()
+        return true;
     }
 }

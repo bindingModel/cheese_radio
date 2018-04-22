@@ -143,6 +143,7 @@ public class DataBindingAdapter {
                 .transform(new RoundedCorners(radius));//转化为圆角
         Glide.with(context)
                 .load(url)
+
                 .apply(options2)
                 .into(imageView);
     }

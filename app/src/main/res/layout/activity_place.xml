@@ -18,9 +18,14 @@
        android:background="@color/background_gray">
        <include
            layout="@layout/toolbar"/>
-       <include
-           android:id="@+id/layout_recycler"
-           layout="@layout/layout_recycler_view" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+            <include
+                android:id="@+id/layout_recycler"
+                layout="@layout/layout_recycler_view" />
+        </FrameLayout>
    </LinearLayout>
     </FrameLayout>
 </layout>

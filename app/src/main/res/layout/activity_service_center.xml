@@ -7,10 +7,14 @@
             name="vm"
             type="com.cheese.radio.ui.user.service.center.CenterModel" />
     </data>
-
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/toolbar" />
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/toolbar_height">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,7 +22,7 @@
             android:background="@color/text_white"
             android:orientation="vertical">
             <!--    地图这块到时候放张图片-->
-            <include layout="@layout/toolbar" />
+
 
             <ImageView
                 android:layout_width="match_parent"
@@ -66,5 +70,5 @@
                 android:text="@string/wx_public_platform"
                 android:textSize="13.44sp" />
         </LinearLayout>
-    </ScrollView>
+    </ScrollView></FrameLayout>
 </layout>

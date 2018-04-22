@@ -14,7 +14,7 @@ public class MD5 {
 
     public static String getMD5(String str, String charset) {
         String ret = null;
-        if(!TextUtils.isEmpty(str)) {
+        if(true||!TextUtils.isEmpty(str)) {
             try {
                 byte[] data = str.getBytes(charset);
                 ret = getMD5(data);

@@ -11,13 +11,14 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp">
+        android:layout_marginBottom="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:onClick="@{vm::onClick}"
+            android:background="@color/background_white"
             android:padding="13.44dp">
 
             <TextView
@@ -35,11 +36,15 @@
                 android:text="@{vm.address,default=123}"
                 android:textSize="11.52sp" />
         </LinearLayout>
-        <ImageView
+        <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/tick"
-            android:padding="7dp"
+            android:button="@null"
+            android:drawableRight="@drawable/tick_select"
+            android:checked="@{vm.check}"
+            android:onClick="@{vm::onClick}"
+            android:padding="15dp"
             android:layout_gravity="end"
             />
     </FrameLayout>

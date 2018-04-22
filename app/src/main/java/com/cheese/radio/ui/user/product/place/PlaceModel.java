@@ -36,22 +36,24 @@ public class PlaceModel extends RecyclerModel<PlaceActivity, ActivityPlaceBindin
         super.attachView(savedInstanceState, placeActivity);
         getDataBinding().layoutRecycler.setVm(this);
         setPageFlag(false);
-//        api.classPlace(new ClassPlaceParams("classPlace"))
-//                .compose(new RestfulTransformer<>())
-//                .subscribe(list::addAll, BaseUtil::toast);
-//        try {
-//            accept(list);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+
         setRcHttp((offset1, refresh) -> {
             if (refresh) list.clear();
-            return api.classPlace(new ClassPlaceParams("classPlace"))
+            return api.classPlace(
+                    new ClassPlaceParams("classPlace"))
                     .compose(new RestfulTransformer<>())
                     .map(classPlaceEntities -> {
                         list.addAll(classPlaceEntities);
                         return list;
                     });
+        });
+        addEventAdapter((position, classPlaceEntity, type, view) -> {
+            for (ClassPlaceEntity entity :
+                    getAdapter().getList()) {
+                entity.check.set(false);
+            }
+            classPlaceEntity.check.set(true);
+            return false;
         });
     }
 }

@@ -1,12 +1,16 @@
 package com.cheese.radio.ui.user.product.place;
 
+import android.databinding.ObservableBoolean;
 import android.view.View;
 
 import com.binding.model.App;
+import com.binding.model.adapter.IEventAdapter;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
 import com.binding.model.model.inter.Event;
 import com.cheese.radio.R;
+
+import static com.binding.model.adapter.AdapterType.select;
 
 /**
  * Created by 29283 on 2018/4/19.
@@ -22,7 +26,7 @@ public class ClassPlaceEntity extends ViewInflateRecycler {
      * id : 1
      * traffic : 坐753可直达
      */
-
+    public ObservableBoolean check=new ObservableBoolean();
     private String image;
     private String address;
     private String phone;
@@ -78,7 +82,9 @@ public class ClassPlaceEntity extends ViewInflateRecycler {
         this.traffic = traffic;
     }
     public void onClick(View view){
-        if(Event.event(R.id.EnrollModel,this,view) == 1) App.getCurrentActivity().finish();
+        if(Event.event(R.id.EnrollModel,this,view) == 1) {
+            getIEventAdapter().setEntity(IEventAdapter.NO_POSITION,this,select,view);
+        }
 //            Model.dispatchModel("getProductId",this);
     }
 }

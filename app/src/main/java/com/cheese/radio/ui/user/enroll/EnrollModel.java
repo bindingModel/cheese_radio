@@ -10,10 +10,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
+
+import com.alipay.sdk.app.PayTask;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
 import com.binding.model.model.inter.Event;
+import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
@@ -33,28 +36,39 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Predicate;
+import io.reactivex.schedulers.Schedulers;
+
 import static com.cheese.radio.inject.component.ActivityComponent.Router.products;
 
 /**
  * Created by 29283 on 2018/3/10.
  */
-@ModelView(value = R.layout.activity_enroll,event = R.id.EnrollModel, model = true)
-public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding>  {
+@ModelView(value = R.layout.activity_enroll, event = R.id.EnrollModel, model = true)
+public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding> {
 
     @Inject
     EnrollModel() {
     }
-    @Inject RadioApi api;
+
+    @Inject
+    RadioApi api;
     public ObservableField<String> mDate = new ObservableField<String>("");
     public ObservableField<String> mCity = new ObservableField<>("");
     public ObservableField<String> mAge = new ObservableField<>("");
     public ObservableField<String> mSex = new ObservableField<>("");
     public ObservableField<String> course = new ObservableField<>("");
-    public ObservableField<String> mPrice=new ObservableField<>("");
-    public ObservableInt currentItem=new ObservableInt();
+    public ObservableField<String> mPrice = new ObservableField<>("");
+    public ObservableInt currentItem = new ObservableInt();
     private CreateOrderParams params = new CreateOrderParams("createOrder");
 
-    private int checkId=-1;
+    private int checkId = -1;
     private OptionsPickerView agePicker, sexPicker;
     private ArrayList<String> babyAge = new ArrayList<>();
     private ArrayList<String> babySex = new ArrayList<>();
@@ -64,12 +78,13 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
     @Override
     public void attachView(Bundle savedInstanceState, EnrollActivity enrollActivity) {
         super.attachView(savedInstanceState, enrollActivity);
-        if(!IkeApplication.isLogin(true))finish();
+        if (!IkeApplication.isLogin(true)) finish();
         setData();
         initAgePicker();
         initSexPicker();
         cityPickTool = new CityPickTool(mCity, getT());
         timePickSelect = new TimePickTool(mDate, getT());
+        getDataBinding().setParams(params);
     }
 
 
@@ -117,14 +132,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         sexPicker.setNPicker(new ArrayList<String>(), babySex, new ArrayList<String>());
     }
 
-//    public void getProductId(Object obj) {
-//        ProductsEntity entity = obj instanceof ProductsEntity ? ((ProductsEntity) obj) : null;
-//        if (entity != null) {
-//            getDataBinding().setProductEntity(entity);
-//            params.setProductId(entity.getId());
-//        }
-//
-//    }
+
     @Override
     public int onEvent(View view, Event event, Object... args) {
         ProductsEntity productsEntity = event instanceof ProductsEntity ? ((ProductsEntity) event) : null;
@@ -141,26 +149,50 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         }
         return 1;
     }
-    public void onEnrollClick(View view){
-        CreateOrderParams params =new CreateOrderParams("createOrder");
-        params.setName("baobao");params.setSex("F");params.setBirthday("2018-1-1");
-        params.setPhone("12345678901");params.setAddress("addddddd");params.setAgeRange("4-5");
-        params.setProductId(1);params.setPayType("zfb");
-        //创建订单
-         addDisposable( api.createOrder(params).compose(new RestfulTransformer<>()).subscribe());
-        //支付订单
+
+    public void onEnrollClick(View view) {
+        params.setAddress(mCity.get());
+        params.setPayType(currentItem.get());
+        //productId在Event里处理了
+        params.setAgeRange(mAge.get());
+        //phone在XML里处理了
+        //name在XML里处理了
+        params.setSex(mSex.get());
+        params.setBirthday(mDate.get());
+        //        //创建订单
+        if (params.isLegal(view))
+            addDisposable(api.createOrder(params).compose(new RestfulTransformer<>()).subscribe(s -> {
+                orderPay("");
+            }, BaseUtil::toast));
 
     }
-    public void onClassADClick(View view){
+
+    public void orderPay(String orderNo) {
+
+        //zfb
+        addDisposable(Observable.create(
+                (ObservableOnSubscribe<PayResult>) e -> e.onNext(new PayResult(new PayTask(getT()).payV2("", true)))
+        ).observeOn(AndroidSchedulers.mainThread())
+                .filter(payResult -> {
+                    boolean success = "9000".equals(payResult.getResultStatus());
+                    if (!success) BaseUtil.toast(getT(), "支付失败");
+                    return success;
+                }).subscribeOn(Schedulers.newThread()).subscribe(payResult12 -> {
+                    BaseUtil.toast("支付成功");
+                    Model.dispatchModel("paySuccess");
+                }));
+
+    }
+
+    public void onClassADClick(View view) {
         ARouterUtil.navigation(ActivityComponent.Router.place);
     }
 
     //隐藏虚拟键盘
-    public static void HideKeyboard(View v)
-    {
-        InputMethodManager imm = ( InputMethodManager ) v.getContext( ).getSystemService( Context.INPUT_METHOD_SERVICE );
-        if ( imm.isActive( ) ) {
-            imm.hideSoftInputFromWindow( v.getApplicationWindowToken( ) , 0 );
+    public static void HideKeyboard(View v) {
+        InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm.isActive()) {
+            imm.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
 
         }
     }

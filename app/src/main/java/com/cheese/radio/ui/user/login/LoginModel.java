@@ -56,6 +56,7 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
     public void attachView(Bundle savedInstanceState, LoginActivity loginActivity) {
         super.attachView(savedInstanceState, loginActivity);
         getDataBinding().setParams(signParams);
+
     }
 
     public void onGetSmsClick(View view) {

@@ -23,16 +23,12 @@ public class ExampleUnitTest {
     @Test
     public void test(){
         HashMap<String,String> map = new HashMap<>();
-        map.put("startIndex","0");
-        map.put("method","search");
-        map.put("title","一");
-        map.put("uuid","123");
-        map.put("maxCount","8");
-        map.put("timestamp","111111111111");
 
-
+        map.put("method","classPlace");
+        map.put("uuid","02:00:00:00:00:00");
+        map.put("timestamp","1524372023341");
+        map.put("token","eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxMSJ9.8x7Q4ItmsfcRwZ21iHvAKVnGPi594bqL0KCqF7C10FOTaPsKwQkhHPdbtXY-OQtCOpb7XmRmAZpWfK7AiW0YMw&uuid=02%3A00%3A00%3A00%3A00%3A00");
 
         System.out.println(MyBaseUtil.getSign(map));
-        System.out.println("kGZRx0fM65E5EA3D679D89E7B927440FB248B2AF");
     }
 }
