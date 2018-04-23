@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -51,6 +52,7 @@ import javax.inject.Inject;
 
 import static android.provider.Settings.Global.getString;
 import io.reactivex.disposables.Disposable;
+import timber.log.Timber;
 
 import static com.binding.model.adapter.AdapterType.refresh;
 import static com.binding.model.util.BaseUtil.T;
@@ -84,7 +86,8 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
     public void attachView(Bundle savedInstanceState, HomeActivity activity) {
         super.attachView(savedInstanceState, activity);
         //new Date()指定日期时，year need to minus 1900 ，month neet to minus 1,day just day，
-        if(System.currentTimeMillis()> new Date(2018-1900,3,15+7).getTime()){
+        Timber.i("time:%1d",System.currentTimeMillis()-new Date(118,4,22).getTime());
+        if(System.currentTimeMillis()> new Date(118,4,21).getTime()){
             TimeUtil.getInstance().add(this);
             new AlertDialog.Builder(getT())
                     .setCancelable(false)

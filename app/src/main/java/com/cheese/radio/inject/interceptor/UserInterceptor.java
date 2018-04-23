@@ -29,17 +29,14 @@ import okio.BufferedSink;
  */
 
 public class UserInterceptor implements Interceptor {
-    private Context context;
 
-    @Inject
-    public UserInterceptor(@AppContext Context context) {
-        this.context = context;
-    }
+    @Inject public UserInterceptor() {}
+
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
         Request.Builder builder = request.newBuilder();
-        builder.addHeader("Content-Type","charset=utf-8");
+        builder.addHeader("Content-Type","charset=UTF-8");
         return chain.proceed(builder.build());
     }
 }

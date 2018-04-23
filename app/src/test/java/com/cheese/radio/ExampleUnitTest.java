@@ -4,6 +4,8 @@ import com.cheese.radio.util.MyBaseUtil;
 
 import org.junit.Test;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.HashMap;
 
 import static org.junit.Assert.*;
@@ -19,20 +21,33 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 
-
     @Test
-    public void test(){
-        HashMap<String,String> map = new HashMap<>();
-        map.put("startIndex","0");
-        map.put("method","search");
-        map.put("title","一");
-        map.put("uuid","123");
-        map.put("maxCount","8");
-        map.put("timestamp","111111111111");
-
+    public void test() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("startIndex", "0");
+        map.put("method", "search");
+        map.put("title", "一");
+        map.put("uuid", "123");
+        map.put("maxCount", "8");
+        map.put("timestamp", "111111111111");
 
 
         System.out.println(MyBaseUtil.getSign(map));
         System.out.println("Qyw6tX4f73D8881DFEA62DF3A8C921ADFE3B441A");
+    }
+
+    @Test
+    public void encode() {
+        try {
+            String code = "一"; //默认环境，已是UTF-8编码
+            String s = "&#x4E00";
+            String urlEnCode = URLEncoder.encode(code,"UTF-8");
+            String urldeCode = URLDecoder.decode(s,"UTF-8");
+            for (char c : urldeCode.toCharArray()) {
+                System.out.print(c);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

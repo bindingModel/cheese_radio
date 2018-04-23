@@ -55,6 +55,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 /**
@@ -101,7 +102,8 @@ public interface RadioApi {
     Observable<InfoEntity<Object>> getMyinfo(@Body MyInfoParams params);
 
     @POST("/1.0/content")
-    Observable<InfoEntity<List<HotSearchEntity>>> getHotSearch(@Body HotSearchParams params);
+    Observable<InfoEntity<List<HotSearchEntity>>> getHotSearch(
+            @Body HotSearchParams params);
     @POST("/1.0/content")
     Observable<InfoEntity<MyFavorityData>> getSearch(@Body HotSearchParams params);
     //绘本列表 签名验证错误？
