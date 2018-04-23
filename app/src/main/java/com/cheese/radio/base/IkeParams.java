@@ -1,26 +1,33 @@
 package com.cheese.radio.base;
 
+import android.text.TextUtils;
+
 import com.binding.model.data.encrypt.FormUnionParams;
 import com.binding.model.util.BaseUtil;
 import com.binding.model.util.ReflectUtil;
 import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.util.MyBaseUtil;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.http.Url;
 
 /**
  * Created by arvin on 2017/12/4.
  */
 
-public class IkeParams extends FormUnionParams{
+public class IkeParams extends FormUnionParams {
     public String sign;
     public String uuid;
     public String timestamp;
     public String token;
+
     public String getUuid() {
-        return uuid= MyBaseUtil.getMacAddress();
+        return uuid = MyBaseUtil.getMacAddress();
     }
 
     public void setUuid(String uuid) {
@@ -28,20 +35,20 @@ public class IkeParams extends FormUnionParams{
     }
 
     public String getTimestamp() {
-        if (timestamp==null)
-            timestamp=String.valueOf(System.currentTimeMillis());
+        if (timestamp == null)
+            timestamp = String.valueOf(System.currentTimeMillis());
         return timestamp;
     }
 
     public void setTimest(String timestamp) {
-        this.timestamp=timestamp;
+        this.timestamp = timestamp;
     }
 
     public String getSign() {
-        HashMap<String,String> hashMap = new HashMap<>();
+        HashMap<String, String> hashMap = new HashMap<>();
         List<Field> fields = ReflectUtil.getAllFields(getClass());
         for (Field field : fields) {
-            if("sign".equals(field.getName()))continue;
+            if ("sign".equals(field.getName())) continue;
             Object o = ReflectUtil.beanGetValue(field, this);
             if (o == null) continue;
             hashMap.put(BaseUtil.findQuery(field), o.toString());
@@ -50,8 +57,8 @@ public class IkeParams extends FormUnionParams{
     }
 
     public String getToken() {
-       if(IkeApplication.isLogin())return IkeApplication.getUser().getToken();
-       return null;
+        if (IkeApplication.isLogin()) return IkeApplication.getUser().getToken();
+        return null;
     }
 
     public void setToken(String token) {
@@ -65,6 +72,12 @@ public class IkeParams extends FormUnionParams{
 
     @Override
     public String encrypt(Object json) {
-        return json.toString();
+        String value = json.toString();
+        try {
+            value =  URLEncoder.encode(value,"utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return value;
     }
 }
