@@ -7,6 +7,7 @@ import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.user.User;
 import com.cheese.radio.util.MyBaseUtil;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +32,6 @@ public class IkeFileParams extends MultipartSingleParams {
     }
 
     public String getTimestamp() {
-
         return timestamp;
     }
 
@@ -45,7 +45,7 @@ public class IkeFileParams extends MultipartSingleParams {
         for (Field field : fields) {
             if ("sign".equals(field.getName())) continue;
             Object o = ReflectUtil.beanGetValue(field, this);
-            if (o == null) continue;
+            if (o == null||o instanceof File) continue;
             hashMap.put(BaseUtil.findQuery(field), o.toString());
         }
         return sign = MyBaseUtil.getSign(hashMap);
