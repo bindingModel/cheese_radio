@@ -66,15 +66,11 @@ public class IkeApplication extends MultiDexApplication {
     }
 
     public static boolean isLogin(boolean checkToLogin) {
-        if (!TextUtils.isEmpty(getUser().getToken()))
-            return true;
-        else {
-            if(checkToLogin){
-                ARouterUtil.navigation(login);
-                BaseUtil.toast("请登陆后再试");
-            }
-            return false;
+        if(!User.isLogin&&checkToLogin){
+            ARouterUtil.navigation(login);
+            BaseUtil.toast("请登陆后再试");
         }
+        return User.isLogin;
     }
 
     public static RadioApi getRadioApi(){
