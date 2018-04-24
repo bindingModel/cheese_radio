@@ -127,7 +127,9 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
     }
 
     private void initSexPicker() {
-        sexPicker = new OptionsPickerView.Builder(getT(), (options1, options2, options3, v) -> mSex.set(babySex.get(options2))
+        sexPicker = new OptionsPickerView.Builder(getT(), (options1, options2, options3, v) -> {
+            mSex.set(babySex.get(options2));
+            params.setSex(mSex.get().equals("男")?"F":"M");}
         ).build();
         sexPicker.setNPicker(new ArrayList<String>(), babySex, new ArrayList<String>());
     }
@@ -145,7 +147,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         ClassPlaceEntity placeEntity = event instanceof ClassPlaceEntity ? ((ClassPlaceEntity) event) : null;
         if (placeEntity != null) {
             getDataBinding().setPlaceEntity(placeEntity);
-            params.setProductId(placeEntity.getId());
+            params.setFieldId(placeEntity.getId());
         }
         return 1;
     }
@@ -157,14 +159,14 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         params.setAgeRange(mAge.get());
         //phone在XML里处理了
         //name在XML里处理了
-        params.setSex(mSex.get());
+
         params.setBirthday(mDate.get());
         //        //创建订单
         if (params.isLegal(view))
             addDisposable(api.createOrder(params).compose(new RestfulTransformer<>()).subscribe(s -> {
                 orderPay("");
             }, BaseUtil::toast));
-
+//{"code":"0","data":{"prepareId":"pp20180424-373469","payOrderCode":"20180424-373469"}}支付成功后的状态
     }
 
     public void orderPay(String orderNo) {

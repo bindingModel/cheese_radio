@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import com.binding.model.util.ReflectUtil;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.Map;
 
 /**
@@ -26,13 +27,25 @@ public class UserEntity {
 
         if (entity == null) return this;
         token = entity.getToken();
-        for (Field field : ReflectUtil.getAllFields(entity.getClass())) {
-            Field entityField = ReflectUtil.getField(field.getName(), getClass());
-            if (entityField == null) continue;
-            Object value = ReflectUtil.beanGetValue(entityField, entity);
-            if (value != null && !TextUtils.isEmpty(value.toString()))
-                ReflectUtil.beanSetValue(field, this, value);
+
+        for(Field field:entity.getClass().getDeclaredFields()){
+            String name=field.getName();
+            String getValue=name.substring(0,1).toUpperCase()+name.substring(1);
+            try {
+                Method get=entity.getClass().getMethod("get"+getValue);
+                Method set=entity.getClass().getMethod("set"+getValue, field.getType());
+               set.invoke(this,get.invoke(entity));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+//        for (Field field : ReflectUtil.getAllFields(entity.getClass())) {
+//            Field entityField = ReflectUtil.getField(field.getName(), getClass());
+//            if (entityField == null) continue;
+//            Object value = ReflectUtil.beanGetValue(entityField, entity);
+//            if (value != null && !TextUtils.isEmpty(value.toString()))
+//                ReflectUtil.beanSetValue(field, this, value);
+//        }
         return this;
     }
 

@@ -22,6 +22,7 @@ public class CreateOrderParams extends IkeParams {
 //    ageRange	年龄段	是	固定	4-5 ｜6-7
 //    productId	套餐Id	是	套餐列表接口获取
 //    payType	支付方式	是	用户选择	zfb｜weixin｜bank
+    //fiekdId 场地
     private String method;
     private String name;
     private String sex;
@@ -31,7 +32,7 @@ public class CreateOrderParams extends IkeParams {
     private String ageRange;
     private int productId;
     private String payType;
-
+    private int fieldId;
     public CreateOrderParams(String method) {
         this.method = method;
     }
@@ -106,6 +107,14 @@ public class CreateOrderParams extends IkeParams {
 
     public void setPayType(String payType) {
         this.payType = payType;
+    }
+
+    public int getFieldId() {
+        return fieldId;
+    }
+
+    public void setFieldId(int fieldId) {
+        this.fieldId = fieldId;
     }
 
     public void setPayType(Integer payType) {

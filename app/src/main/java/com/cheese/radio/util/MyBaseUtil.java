@@ -98,7 +98,7 @@ public class MyBaseUtil extends BaseUtil {
     //昵称限制4~20
     public static String getNickError(String nickname) {
         if (TextUtils.isEmpty(nickname)) return "昵称不能为空";
-        Pattern p = Pattern.compile("^[A-Za-z0-9_\\-\\u4e00-\\u9fa5]{4,20}");
+        Pattern p = Pattern.compile("^[A-Za-z0-9_\\-\\u4e00-\\u9fa5]+");
         Matcher m = p.matcher(nickname);
         boolean valid = m.matches();
         return valid ? null : "不合法的昵称";
