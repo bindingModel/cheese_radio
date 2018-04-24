@@ -30,12 +30,12 @@ public class HomeEntity extends ViewParse implements Item<BaseFragment> {
                 case 0:
                     fragment = new HomePageFragment();
                     break;
-                case 1: {
-                    if (IkeApplication.getUser().getCanBookCheck())
-                        fragment = new CalendarFragment();
-                    else {
-                        fragment = new ClockFragment();
-                    }
+                case 1: {fragment = new CalendarFragment();
+//                    if (IkeApplication.getUser().getCanBookCheck())
+//                        fragment = new CalendarFragment();
+//                    else {
+//                        fragment = new ClockFragment();
+//                    }
                     break;
                 }
                 case 2:

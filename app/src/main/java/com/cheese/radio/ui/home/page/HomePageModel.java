@@ -23,6 +23,7 @@ import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.home.page.entity.CategoryEntity;
 import com.cheese.radio.ui.home.page.entity.RecommandEntity;
 import com.cheese.radio.ui.media.play.PlayParams;
+import com.cheese.radio.ui.service.AudioServiceUtil;
 import com.cheese.radio.ui.user.my.push.NewMessageCountParams;
 
 import java.util.ArrayList;
@@ -91,9 +92,10 @@ public class HomePageModel extends RecyclerModel<HomePageFragment, FragmentHomeP
                         for (RecommandEntity recommandEntity : data.getList()) {
                             recommandEntity.setIndex(1);
                         }
+
                     list.addAll(data.getList());
                 }
-
+                AudioServiceUtil.getInstance().setId(entity.getData().get(0).getList().get(0).getId());
             }
             return list;
         }).subscribeOn(Schedulers.io())

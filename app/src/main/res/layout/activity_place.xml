@@ -27,5 +27,16 @@
                 layout="@layout/layout_recycler_view" />
         </FrameLayout>
    </LinearLayout>
+        <TextView
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15.6sp"
+            android:textColor="@color/text_black"
+            android:layout_gravity="end"
+            android:padding="12dp"
+            android:onClick="@{vm::onFinishClick}"
+            android:visibility="invisible"
+            android:text="@string/save"/>
     </FrameLayout>
 </layout>

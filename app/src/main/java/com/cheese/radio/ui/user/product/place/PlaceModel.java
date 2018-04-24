@@ -1,6 +1,7 @@
 package com.cheese.radio.ui.user.product.place;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.binding.model.cycle.Container;
 import com.binding.model.layout.recycler.RecyclerModel;
@@ -11,6 +12,7 @@ import com.cheese.radio.R;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityPlaceBinding;
 import com.cheese.radio.inject.api.RadioApi;
+import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.user.enroll.params.ClassPlaceParams;
 
 import java.util.ArrayList;
@@ -23,6 +25,8 @@ import javax.inject.Inject;
  */
 @ModelView(R.layout.activity_place)
 public class PlaceModel extends RecyclerModel<PlaceActivity, ActivityPlaceBinding, ClassPlaceEntity> {
+    private static int placeId;
+
     @Inject
     PlaceModel() {
     }
@@ -36,13 +40,16 @@ public class PlaceModel extends RecyclerModel<PlaceActivity, ActivityPlaceBindin
         super.attachView(savedInstanceState, placeActivity);
         getDataBinding().layoutRecycler.setVm(this);
         setPageFlag(false);
-
+        placeId=getT().getIntent().getIntExtra(Constant.placeId,0);
         setRcHttp((offset1, refresh) -> {
             if (refresh) list.clear();
             return api.classPlace(
                     new ClassPlaceParams("classPlace"))
                     .compose(new RestfulTransformer<>())
                     .map(classPlaceEntities -> {
+                        for (ClassPlaceEntity entity : classPlaceEntities) {
+                            if (entity.getId() == placeId) entity.check.set(true);
+                        }
                         list.addAll(classPlaceEntities);
                         return list;
                     });
@@ -53,7 +60,12 @@ public class PlaceModel extends RecyclerModel<PlaceActivity, ActivityPlaceBindin
                 entity.check.set(false);
             }
             classPlaceEntity.check.set(true);
+            getDataBinding().save.setVisibility(View.VISIBLE);
             return false;
         });
+    }
+
+    public void onFinishClick(View view) {
+        finish();
     }
 }

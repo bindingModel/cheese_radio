@@ -12,6 +12,8 @@ import com.binding.model.model.inter.Event;
 import com.binding.model.model.inter.Model;
 import com.cheese.radio.R;
 
+import java.util.Objects;
+
 import static com.binding.model.adapter.AdapterType.select;
 
 /**
@@ -104,5 +106,14 @@ public class ProductsEntity extends ViewInflateRecycler {
         if (Event.event(R.id.EnrollModel, this, view) == 1)
         getIEventAdapter().setEntity(IEventAdapter.NO_POSITION, this, select, view);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductsEntity entity = (ProductsEntity) o;
+        return id == entity.id;
+    }
+
 
 }

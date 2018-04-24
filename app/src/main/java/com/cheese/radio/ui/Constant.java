@@ -44,6 +44,10 @@ public interface Constant {
     String classInfo="classInfo";
     String images ="images";
     String title="title";
+    int GALLERY_REQUSET_CODE=0;
+    int GALLERY_REQUSET_CODE_KITKAT=1;
+    String productId="productId";
+    String placeId="placeId";
 }
 
 //    static Drawable getMipmap(String name,int defMipmap){

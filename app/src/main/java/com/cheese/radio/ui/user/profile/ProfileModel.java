@@ -1,8 +1,11 @@
 package com.cheese.radio.ui.user.profile;
 
+import android.Manifest;
 import android.app.Application;
+import android.content.Intent;
 import android.database.Observable;
 import android.databinding.ObservableField;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +24,7 @@ import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.ErrorTransform;
 import com.cheese.radio.base.rxjava.RestfulFlowTransformer;
+import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityProfileBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.ui.IkeApplication;
@@ -28,6 +32,7 @@ import com.cheese.radio.ui.user.UserEntity;
 import com.cheese.radio.ui.user.edit.EditNameModel;
 import com.cheese.radio.util.TimePickTool;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -37,6 +42,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.name;
+import static com.cheese.radio.ui.Constant.GALLERY_REQUSET_CODE;
+import static com.cheese.radio.ui.Constant.GALLERY_REQUSET_CODE_KITKAT;
 
 /**
  * Created by 29283 on 2018/3/9.
@@ -55,18 +62,21 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
     @Inject
     RadioApi api;
     private ProfileParams params;
+    private MyHeadParams headParams;
     private OptionsPickerView sexPicker;
     private List<String> babySex = new ArrayList<>();
     private List<String> select = new ArrayList<String>();
     private UserEntity userEntity;
+
     @Override
     public void attachView(Bundle savedInstanceState, ProfileActivity activity) {
         super.attachView(savedInstanceState, activity);
         pickTool = new TimePickTool(mDate, activity);
         initSexPicker();
         params = new ProfileParams("setProperty");
-        userEntity= IkeApplication.getUser().getUserEntity();
-        mSex.set(userEntity.getSex().equals("M")?"男孩":"女孩");
+        headParams = new MyHeadParams("myHead");
+        userEntity = IkeApplication.getUser().getUserEntity();
+        mSex.set(userEntity.getSex().equals("M") ? "男孩" : "女孩");
         mDate.set(userEntity.getBirthday());
         getDataBinding().setParams(params.setMsg(IkeApplication.getUser().getUserEntity()));
     }
@@ -123,5 +133,32 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
         }
         ).build();
         sexPicker.setNPicker(new ArrayList<String>(), select, new ArrayList<String>());
+    }
+
+    public void onUploadClick(View view) {
+        BaseUtil.checkPermission(this, aBoolean -> {
+            if (aBoolean) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                intent.setType("image/*");
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    getT().startActivityForResult(intent, GALLERY_REQUSET_CODE_KITKAT);
+                } else {
+                    getT().startActivityForResult(intent, GALLERY_REQUSET_CODE);
+                }
+            }
+        }, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+    }
+
+    public void processePictures(String path) {
+
+        File file = new File(path);
+
+     if(file.isFile()){
+         headParams.setInfo(file);
+         addDisposable(api.myHead(headParams).compose(new RestfulTransformer<>()).subscribe((myHeadData) -> {
+             getDataBinding().setEntity(myHeadData);
+         },BaseUtil::toast));
+     }
     }
 }

@@ -11,11 +11,15 @@ import android.widget.TextView;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.PopupRecyclerModel;
 import com.binding.model.model.ViewHttpModel;
+import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
+import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulFlowTransformer;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityCalendarBinding;
 import com.cheese.radio.inject.api.RadioApi;
+import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.home.CanBookParams;
 import com.cheese.radio.util.MyBaseUtil;
 import com.cheese.radio.util.calendarutils.Day;
 import com.cheese.radio.util.calendarutils.Month;
@@ -28,11 +32,15 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import static com.cheese.radio.inject.component.ActivityComponent.Router.enroll;
+
 /**
  * Created by 29283 on 2018/3/26.
  */
-@ModelView(R.layout.activity_calendar)
+@ModelView(value = R.layout.activity_calendar, event = R.id.calendarModer, model = true)
 public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalendarBinding, List<CalendarEntity>> {
+    private static boolean status = IkeApplication.getUser().getCanBookCheck();
+
     @Inject
     CalendarModel() {
     }
@@ -59,8 +67,12 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
     @Override
     public void attachView(Bundle savedInstanceState, CalendarFragment calendarFragment) {
         super.attachView(savedInstanceState, calendarFragment);
-        calendarView = getDataBinding().calendarView;
-        setRcHttp((offset1, refresh) -> api.getClassCalendar(params).compose(new RestfulTransformer<>()));
+        if (status) {
+            getDataBinding().clock.setVisibility(View.GONE);
+            calendarView = getDataBinding().calendarView;
+            setRcHttp((offset1, refresh) -> api.getClassCalendar(params).compose(new RestfulTransformer<>()));
+        }
+
     }
 
     private Day getSelectDayFromMonth(int year, int month) {
@@ -243,4 +255,14 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
         return true;
     }
 
+    //-----------------------------------------------------------------------
+    public void onClick(View view) {
+        ARouterUtil.navigation(enroll);
+    }
+
+    public void refreshUI() {
+        addDisposable(api.getCanBook(new CanBookParams("canBook")).compose(new RestfulTransformer<>()).
+                subscribe(canBookData -> IkeApplication.getUser().setCanBookCheck(status=canBookData.isResult())
+                ));
+    }
 }

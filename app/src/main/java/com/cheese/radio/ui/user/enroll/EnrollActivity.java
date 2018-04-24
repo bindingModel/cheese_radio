@@ -11,4 +11,6 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.enroll;
  */
 @Route(path=enroll)
 public class EnrollActivity extends BaseActivity<EnrollModel> {
+
+
 }

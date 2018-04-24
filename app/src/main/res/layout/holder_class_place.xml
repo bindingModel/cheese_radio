@@ -45,7 +45,7 @@
             android:checked="@{vm.check}"
             android:onClick="@{vm::onClick}"
             android:padding="15dp"
-            android:layout_gravity="end"
+            android:layout_gravity="end|bottom"
             />
     </FrameLayout>
 </layout>

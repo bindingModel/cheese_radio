@@ -50,6 +50,8 @@ import com.cheese.radio.ui.user.params.FabulousParams;
 import com.cheese.radio.ui.user.product.list.ProductsEntity;
 import com.cheese.radio.ui.user.product.list.ProductsParams;
 import com.cheese.radio.ui.user.product.place.ClassPlaceEntity;
+import com.cheese.radio.ui.user.profile.MyHeadData;
+import com.cheese.radio.ui.user.profile.MyHeadParams;
 import com.cheese.radio.ui.user.profile.ProfileParams;
 import com.cheese.radio.ui.user.register.UserInfoParams;
 
@@ -171,4 +173,8 @@ public interface RadioApi {
     //创建订单
     @POST("/1.0/order")
     Observable<InfoEntity<String>> createOrder(@Body CreateOrderParams params);
+
+//    修改头像
+    @POST("/1.0/user")
+    Observable<InfoEntity<MyHeadData>>  myHead(@Body MyHeadParams params);
 }

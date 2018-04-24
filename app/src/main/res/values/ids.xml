@@ -9,4 +9,5 @@
     <item type="id" name="linearLayoutBack" />
     <item type="id" name="textViewSolar" />
     <item name="DetailsModel" type="id" />
+    <item name="calendarModer" type="id" />
 </resources>

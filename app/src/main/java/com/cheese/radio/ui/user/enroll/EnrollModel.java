@@ -85,6 +85,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         cityPickTool = new CityPickTool(mCity, getT());
         timePickSelect = new TimePickTool(mDate, getT());
         getDataBinding().setParams(params);
+        Model.dispatchModel("refreshUI");
     }
 
 
@@ -110,7 +111,9 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
 
     public void onSelectCourseClick(View view) {
         HideKeyboard(view);
-        ARouterUtil.navigation(products);
+        Bundle bundle =new Bundle();
+        bundle.putInt(Constant.productId,params.getProductId());
+        ARouterUtil.navigation(products,bundle);
     }
 
     private void setData() {//给条件选择器的容器填充数据
@@ -166,6 +169,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
             addDisposable(api.createOrder(params).compose(new RestfulTransformer<>()).subscribe(s -> {
                 orderPay("");
             }, BaseUtil::toast));
+
 //{"code":"0","data":{"prepareId":"pp20180424-373469","payOrderCode":"20180424-373469"}}支付成功后的状态
     }
 
@@ -183,11 +187,13 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
                     BaseUtil.toast("支付成功");
                     Model.dispatchModel("paySuccess");
                 }));
-
     }
 
     public void onClassADClick(View view) {
-        ARouterUtil.navigation(ActivityComponent.Router.place);
+        HideKeyboard(view);
+        Bundle bundle =new Bundle();
+        bundle.putInt(Constant.placeId,params.getFieldId());
+        ARouterUtil.navigation(ActivityComponent.Router.place,bundle);
     }
 
     //隐藏虚拟键盘

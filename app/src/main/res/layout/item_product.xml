@@ -82,6 +82,7 @@
             android:button="@null"
             android:checked="@{vm.checked}"
             android:onClick="@{vm::onSelectAddClick}"
-            android:drawableTop="@drawable/tick_select"/>
+            android:drawableRight="@drawable/tick_select"
+            android:drawableEnd="@drawable/tick_select"/>
     </FrameLayout>
 </layout>

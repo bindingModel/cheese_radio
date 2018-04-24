@@ -102,9 +102,7 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
         } else {
             playImage = getDataBinding().playImage;
 
-            api.getCanBook(new CanBookParams("canBook")).compose(new RestfulTransformer<>()).
-                    subscribe(canBookData -> IkeApplication.getUser().setCanBookCheck(canBookData.isResult())
-                    );
+
 
             initFragment();
         }
