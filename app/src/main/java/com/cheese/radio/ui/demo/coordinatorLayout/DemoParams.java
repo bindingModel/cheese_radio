@@ -6,7 +6,7 @@ import java.io.File;
 
 public class DemoParams extends IkeFileParams {
     private File info;
-    private String myHead;
+    private String method;
 
     public File getInfo() {
         return info;
@@ -16,11 +16,11 @@ public class DemoParams extends IkeFileParams {
         this.info = info;
     }
 
-    public String getMyHead() {
-        return myHead;
+    public String getMethod() {
+        return method;
     }
 
-    public void setMyHead(String myHead) {
-        this.myHead = myHead;
+    public void setMethod(String method) {
+        this.method = method;
     }
 }
