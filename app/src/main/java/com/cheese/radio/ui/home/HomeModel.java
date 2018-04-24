@@ -11,6 +11,7 @@ import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -52,6 +53,7 @@ import javax.inject.Inject;
 
 import static android.provider.Settings.Global.getString;
 import io.reactivex.disposables.Disposable;
+import timber.log.Timber;
 
 import static com.binding.model.adapter.AdapterType.refresh;
 import static com.binding.model.util.BaseUtil.T;

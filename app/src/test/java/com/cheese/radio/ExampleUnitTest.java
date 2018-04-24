@@ -23,22 +23,16 @@ public class ExampleUnitTest {
     @Test
     public void test(){
         HashMap<String,String> map = new HashMap<>();
+        map.put("startIndex","0");
+        map.put("method","search");
+        map.put("title","一");
+        map.put("uuid","123");
+        map.put("maxCount","8");
+        map.put("timestamp","111111111111");
 
-        map.put("method","classPlace");
-        map.put("uuid","02:00:00:00:00:00");
-        map.put("timestamp","1524372023341");
-        map.put("token","eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIxMSJ9.8x7Q4ItmsfcRwZ21iHvAKVnGPi594bqL0KCqF7C10FOTaPsKwQkhHPdbtXY-OQtCOpb7XmRmAZpWfK7AiW0YMw&uuid=02%3A00%3A00%3A00%3A00%3A00");
+
 
         System.out.println(MyBaseUtil.getSign(map));
+        System.out.println("Qyw6tX4f73D8881DFEA62DF3A8C921ADFE3B441A");
     }
-
-//    id 		int 		primary key auto_increment ,
-//    name		varchar(100)	not null,
-//    hot 		int		,
-//    area 		varchar(100)	,
-//    place		varchar(100)	,
-//    address 	varchar(100)	,
-//    price 		varchar(100)	,
-//    url		varchar(500)	not null
-
 }
