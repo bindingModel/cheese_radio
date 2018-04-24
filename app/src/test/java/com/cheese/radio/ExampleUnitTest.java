@@ -31,4 +31,14 @@ public class ExampleUnitTest {
 
         System.out.println(MyBaseUtil.getSign(map));
     }
+
+//    id 		int 		primary key auto_increment ,
+//    name		varchar(100)	not null,
+//    hot 		int		,
+//    area 		varchar(100)	,
+//    place		varchar(100)	,
+//    address 	varchar(100)	,
+//    price 		varchar(100)	,
+//    url		varchar(500)	not null
+
 }
