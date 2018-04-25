@@ -2,6 +2,7 @@ package com.cheese.radio.ui.user;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
 import com.binding.model.data.save.SharePreferenceUtil;
 import com.binding.model.model.inter.Model;
@@ -33,6 +34,7 @@ public class User {
 
     public void setToken(String token) {
         userEntity.setToken(token);
+        if(!TextUtils.isEmpty(token))isLogin=true;
         util.setAllDto(userEntity);
     }
 

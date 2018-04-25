@@ -165,7 +165,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
 
         params.setBirthday(mDate.get());
         //        //创建订单
-        if (params.isLegal(view))
+        if (params.isLeagal(view))
             addDisposable(api.createOrder(params).compose(new RestfulTransformer<>()).subscribe(s -> {
                 orderPay("");
             }, BaseUtil::toast));
@@ -174,7 +174,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
     }
 
     public void orderPay(String orderNo) {
-
+        Model.dispatchModel("refreshUI");
         //zfb
         addDisposable(Observable.create(
                 (ObservableOnSubscribe<PayResult>) e -> e.onNext(new PayResult(new PayTask(getT()).payV2("", true)))
@@ -185,7 +185,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
                     return success;
                 }).subscribeOn(Schedulers.newThread()).subscribe(payResult12 -> {
                     BaseUtil.toast("支付成功");
-                    Model.dispatchModel("paySuccess");
+//                    Model.dispatchModel("paySuccess");
                 }));
     }
 

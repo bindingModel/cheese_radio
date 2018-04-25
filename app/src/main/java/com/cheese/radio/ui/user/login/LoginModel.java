@@ -121,7 +121,7 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
             Timber.i("key:%1s,value:%2s", key, map.get(key));
             builder.append(key).append(":").append(map.get(key)).append(",");
         }
-        builder.setLength(builder.length()-1);
+        builder.setLength(builder.length() - 1);
         builder.append("}");
         SignParams params = new SignParams("login");
         params.setLoginType("weixin");
@@ -139,16 +139,17 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
     public void onCancel(SHARE_MEDIA share_media, int i) {
 
     }
-    private void login(SignParams params){
+
+    private void login(SignParams params) {
         addDisposable(api.getToken(params).compose(new RestfulTransformer<>())
                 .subscribe(signUserEntity -> {
                     IkeApplication.getUser().setToken(signUserEntity.getToken());
                     if (signUserEntity.getNewX() == 0) {
                         ARouterUtil.navigation(home);
-                        api.getUserInfo(new UserInfoParams("myInfo")).compose(new RestfulTransformer<>()).subscribe(userEntity ->
-                                IkeApplication.getUser().setUserEntity(userEntity));
-                    }
-                    else ARouterUtil.navigation(registerOne);
+                        addDisposable(api.getUserInfo(new UserInfoParams("myInfo")).compose(new RestfulTransformer<>()).subscribe(userEntity -> {
+                            IkeApplication.getUser().setUserEntity(userEntity);
+                        }, BaseUtil::toast));
+                    } else ARouterUtil.navigation(registerOne);
 
 
                     finish();

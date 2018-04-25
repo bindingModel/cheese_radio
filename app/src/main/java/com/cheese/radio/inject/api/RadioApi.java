@@ -172,7 +172,7 @@ public interface RadioApi {
 
     //创建订单
     @POST("/1.0/order")
-    Observable<InfoEntity<String>> createOrder(@Body CreateOrderParams params);
+    Observable<InfoEntity<Object>> createOrder(@Body CreateOrderParams params);
 
 //    修改头像
     @POST("/1.0/file")

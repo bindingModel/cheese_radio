@@ -81,7 +81,7 @@ public class AnchorModel extends AudioPagerModel<AnchorActivity, ActivityAnchorB
             getDataBinding().setEntity(anchorData);
             setFragment(this.anchorData = anchorData);
             getDataBinding().anchorData.setText(String.format("作品（%1s）", anchorData.getSingle().getList().size()));
-        }));
+        },BaseUtil::toast));
 
     }
 

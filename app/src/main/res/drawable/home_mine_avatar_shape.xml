@@ -5,8 +5,7 @@
         android:color="@color/background_white"
         android:shape="oval" />
 
-    <corners
-      android:radius="90dp" />
+    <corners android:radius="90dp" />
     <size
         android:width="100dp"
         android:height="100dp" />

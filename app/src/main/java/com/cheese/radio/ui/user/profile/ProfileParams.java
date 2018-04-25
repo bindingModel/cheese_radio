@@ -1,5 +1,6 @@
 package com.cheese.radio.ui.user.profile;
 
+import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.cheese.radio.base.IkeParams;
@@ -62,8 +63,8 @@ public class ProfileParams extends IkeParams {
 
     public ProfileParams setMsg(UserEntity entity) {
         nickName = entity.getNickName();
-        if (entity.getSex() != null) sex = entity.getSex();
-        if (entity.getBirthday() != null) birthday = entity.getBirthday();
+        if (!TextUtils.isEmpty(entity.getSex() )) sex = entity.getSex();
+        if (!TextUtils.isEmpty(entity.getBirthday())) birthday = entity.getBirthday();
         return this;
     }
 

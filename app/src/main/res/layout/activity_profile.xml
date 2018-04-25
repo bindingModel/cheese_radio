@@ -12,8 +12,8 @@
             name="params"
             type="com.cheese.radio.ui.user.profile.ProfileParams" />
         <variable
-            name="entity"
-            type="com.cheese.radio.ui.user.profile.MyHeadData"/>
+            name="headUrl"
+            type="String"/>
     </data>
 
     <FrameLayout
@@ -46,7 +46,7 @@
                     android:layout_width="35.33dp"
                     android:layout_height="35.33dp"
                     android:layout_gravity="center"
-                    app:head="@{entity.image}"
+                    app:head="@{headUrl}"
                     android:background="@mipmap/avatar_default" />
 
                 <TextView

@@ -5,6 +5,7 @@ import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.binding.model.App;
@@ -22,6 +23,7 @@ import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.home.page.HomePageModel;
 import com.cheese.radio.ui.user.my.push.NewMessageCountParams;
 import com.cheese.radio.ui.user.profile.ProfileParams;
+import com.cheese.radio.ui.user.register.UserInfoParams;
 
 import java.util.ArrayList;
 
@@ -48,7 +50,7 @@ public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineB
     public void attachView(Bundle savedInstanceState, HomeMineFragment homeMineFragment) {
         super.attachView(savedInstanceState, homeMineFragment);
         updataUI();
-        if (IkeApplication.isLogin(false))
+        if (IkeApplication.isLogin(true)) {
             addDisposable(api.getNewMessageCount(new NewMessageCountParams("newMessageCount")).compose(new RestfulTransformer<>())
                     .subscribe(newMessageCountData -> {
                         redTipCount.set(String.valueOf(newMessageCountData.getCount()));
@@ -56,6 +58,8 @@ public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineB
                             redTipBoolean.set(true);
                         else redTipBoolean.set(false);
                     }, BaseUtil::toast));
+        }
+
     }
 
     public void onLogoutClick(View view) {
@@ -102,13 +106,16 @@ public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineB
     }
 
     public Drawable getSex() {
-        return IkeApplication.getUser().getUserEntity().getSex().equals("M") ?
+        return IkeApplication.getUser().getUserEntity().getSex().equals("F") ?
                 App.getDrawable(R.mipmap.boy) : App.getDrawable(R.mipmap.girl);
     }
 
     private void updataUI() {
         getDataBinding().setEntity(IkeApplication.getUser().getUserEntity());
         head.set(getSex());
+      if((IkeApplication.isLogin(false))|| (!TextUtils.isEmpty(IkeApplication.getUser().getUserEntity().getPortrait()))) {
+            getDataBinding().defHead.setVisibility(View.GONE);
+      }
     }
 
     public void onCenterClick(View view) {

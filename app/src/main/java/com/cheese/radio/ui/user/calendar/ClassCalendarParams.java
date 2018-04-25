@@ -1,6 +1,10 @@
 package com.cheese.radio.ui.user.calendar;
 
+import android.text.TextUtils;
+
 import com.cheese.radio.base.IkeParams;
+
+import java.util.Calendar;
 
 /**
  * Created by 29283 on 2018/3/31.
@@ -15,12 +19,14 @@ public class ClassCalendarParams extends IkeParams {
         private String method ;
         private String yearMonth;
         private String age;
-
+        private Calendar now = Calendar.getInstance();
     public ClassCalendarParams(String method, String yearMonth) {
         this.method = method;
         this.yearMonth = yearMonth;
     }
-
+    public ClassCalendarParams(String method) {
+        this.method = method;
+    }
 
 
     public String getMethod() {
@@ -32,11 +38,18 @@ public class ClassCalendarParams extends IkeParams {
     }
 
     public String getYearMonth() {
+        if(TextUtils.isEmpty(yearMonth)){
+        StringBuilder sb=new StringBuilder();
+        sb.append(now.get(Calendar.YEAR)).append("-").append(now.get(Calendar.MONTH)+1);
+            return sb.toString();
+        }
         return yearMonth;
     }
 
-    public void setYearMonth(String yearMonth) {
-        this.yearMonth = yearMonth;
+    public void setYearMonth(int year,int month) {
+        StringBuilder sb=new StringBuilder();
+        sb.append(now.get(Calendar.YEAR)).append("-").append(month);
+        yearMonth=sb.toString();
     }
 
     public String getAge() {

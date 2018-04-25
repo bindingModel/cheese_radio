@@ -78,7 +78,8 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
         userEntity = IkeApplication.getUser().getUserEntity();
         mSex.set(userEntity.getSex().equals("M") ? "男孩" : "女孩");
         mDate.set(userEntity.getBirthday());
-        getDataBinding().setParams(params.setMsg(IkeApplication.getUser().getUserEntity()));
+        getDataBinding().setParams(params.setMsg(userEntity));
+        getDataBinding().setHeadUrl(userEntity.getPortrait());
     }
 
 
@@ -155,7 +156,10 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
         if (file.isFile()) {
             headParams.setInfo(file);
             addDisposable(api.myHead(headParams).compose(new RestfulTransformer<>()).subscribe((myHeadData) -> {
-                getDataBinding().setEntity(myHeadData);
+                getDataBinding().setHeadUrl(myHeadData.getImage());
+                userEntity.setPortrait(myHeadData.getImage());
+                IkeApplication.getUser().setUserEntity(userEntity);
+                Model.dispatchModel("updataUI");
             }, BaseUtil::toast));
         }
     }

@@ -136,9 +136,12 @@ public class CalendarEntity extends ViewInflateRecycler {
         this.days = days;
     }
 
-    public boolean isSelect() {
-        //满人，未报上返回true，只要报上就返回false
-        return bookId == null;
+    public boolean isBook() {
+        //满人，未报上返回flase，只要报上就返回true
+        return bookId != null;
+    }
+    public boolean isCanBook(){
+        return leftCount!=0;
     }
 
     private int[] convertDay(String string) {

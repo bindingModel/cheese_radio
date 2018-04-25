@@ -27,6 +27,7 @@ import com.cheese.radio.util.calendarutils.TipsDay;
 import com.cheese.radio.util.views.CalendarView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -39,7 +40,8 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.enroll;
  */
 @ModelView(value = R.layout.activity_calendar, event = R.id.calendarModer, model = true)
 public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalendarBinding, List<CalendarEntity>> {
-    private static boolean status = IkeApplication.getUser().getCanBookCheck();
+    private static boolean status = true;
+    private boolean isFirst = true;
 
     @Inject
     CalendarModel() {
@@ -51,8 +53,13 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
     @Override
     public void accept(List<CalendarEntity> calendarEntities) throws Exception {
         calendarView.setTipsDays(calendarEntities);
+        list.clear();
         list.addAll(calendarEntities);
-        initCalendarView("2017-12", "2018-12", list);
+        if (isFirst) {
+            initCalendarView("2018-4", "2018-4", list);
+            isFirst = false;
+        }
+        calendarView.setTipsDays(calendarEntities);
     }
 
     private CalendarView calendarView;
@@ -61,17 +68,13 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
     private List<Month> months;
     private int selectMonth = 0;
     public final ObservableField<ArrayList<CalendarEntity>> theDayClass = new ObservableField<>();
-    private ClassCalendarParams params = new ClassCalendarParams("getClassCalendar", "2018-03");
-
+    private ClassCalendarParams params = new ClassCalendarParams("getClassCalendar");
+    private Calendar now = Calendar.getInstance();
 
     @Override
     public void attachView(Bundle savedInstanceState, CalendarFragment calendarFragment) {
         super.attachView(savedInstanceState, calendarFragment);
-        if (status) {
-            getDataBinding().clock.setVisibility(View.GONE);
-            calendarView = getDataBinding().calendarView;
-            setRcHttp((offset1, refresh) -> api.getClassCalendar(params).compose(new RestfulTransformer<>()));
-        }
+        refreshUI();
 
     }
 
@@ -117,7 +120,7 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
                 for (int i = tipsDays.size() - 1; i >= 0; i--) {
                     CalendarEntity tipsDay = tipsDays.get(i);
                     if (tipsDay != null) {
-                        if (tipsDay.isSelect()) {
+                        if (tipsDay.isBook()||tipsDay.isCanBook()) {
                             selectDay = tipsDay.getDay();
                             calendarView.setSelectDay(selectDay);
                             isHaveSelectDay = true;
@@ -159,6 +162,8 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
                     getDataBinding().textViewYear.setText(month.getYear() + "年");
                     updateMonth(month.getYear(), month.getMonth(), isInit);
                     selectThisMonthDay(month.getYear(), month.getMonth());
+                    params.setYearMonth(month.getYear(), position);
+                    onHttp(1);
                 }
             }
 
@@ -262,7 +267,15 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
 
     public void refreshUI() {
         addDisposable(api.getCanBook(new CanBookParams("canBook")).compose(new RestfulTransformer<>()).
-                subscribe(canBookData -> IkeApplication.getUser().setCanBookCheck(status=canBookData.isResult())
+                subscribe(canBookData -> {
+                            IkeApplication.getUser().setCanBookCheck(status = canBookData.isResult());
+                            if (status) {
+                                getDataBinding().clock.setVisibility(View.GONE);
+                                calendarView = getDataBinding().calendarView;
+                                setRcHttp((offset1, refresh) -> api.getClassCalendar(params).compose(new RestfulTransformer<>()));
+                            }
+                        }
                 ));
+
     }
 }

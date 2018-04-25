@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -11,7 +12,8 @@
         <variable
             name="entity"
             type="com.cheese.radio.ui.user.UserEntity" />
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
     </data>
 
     <FrameLayout
@@ -43,6 +45,7 @@
                         android:onClick="@{vm::onMessageClick}" />
 
                     <ImageView
+                        android:id="@+id/head"
                         android:layout_width="86.3dp"
                         android:layout_height="86.3dp"
                         android:layout_gravity="center"
@@ -50,6 +53,15 @@
                         android:onClick="@{vm::onSetProfileClick}"
                         android:padding="5dp"
                         android:scaleType="fitXY"
+                        app:head="@{entity.portrait}" />
+
+                    <ImageView
+                        android:id="@+id/def_head"
+                        android:layout_width="86.3dp"
+                        android:layout_height="86.3dp"
+                        android:onClick="@{vm::onSetProfileClick}"
+                        android:padding="5dp"
+                        android:layout_gravity="center"
                         android:src="@{vm.head}" />
 
                     <TextView
@@ -88,58 +100,60 @@
                         android:visibility="@{vm.redTipBoolean?View.VISIBLE:View.GONE}" />
 
                 </FrameLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
-                android:paddingStart="15dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/background_white"
-                android:orientation="vertical"
-                tools:ignore="RtlSymmetry">
 
-
-                <TextView
-                    style="@style/home_mine_item"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="55.2dp"
-                    android:onClick="@{vm::onWorkClick}"
-                    android:text="@string/my_work" />
-
-                <TextView
-                    style="@style/home_mine_item"
-                    android:layout_width="match_parent"
-                    android:layout_height="55.2dp"
-                    android:layout_marginTop="1dp"
-                    android:onClick="@{vm::onCourseClick}"
-                    android:text="@string/my_course" />
-
-                <TextView
-                    style="@style/home_mine_item"
-                    android:layout_width="match_parent"
-                    android:layout_height="55.2dp"
-                    android:layout_marginTop="1dp"
-                    android:onClick="@{vm::onFavotity}"
-                    android:text="@string/my_collection" />
-
-                <TextView
-                    style="@style/home_mine_item"
-                    android:layout_width="match_parent"
-                    android:layout_height="55.2dp"
-                    android:layout_marginTop="1dp"
-                    android:onClick="@{vm::onCenterClick}"
-                    android:text="@string/service_centre" />
-
-                <TextView
-                    style="@style/home_mine_item"
-                    android:layout_width="match_parent"
-                    android:layout_height="55.2dp"
-                    android:layout_marginTop="1dp"
-                    android:text=""
-                    android:visibility="gone" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/background_white"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingStart="15dp"
+                    tools:ignore="RtlSymmetry">
 
 
-            </LinearLayout>
+                    <TextView
+                        style="@style/home_mine_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="55.2dp"
+                        android:onClick="@{vm::onWorkClick}"
+                        android:text="@string/my_work" />
+
+                    <TextView
+                        style="@style/home_mine_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="55.2dp"
+                        android:layout_marginTop="1dp"
+                        android:onClick="@{vm::onCourseClick}"
+                        android:text="@string/my_course" />
+
+                    <TextView
+                        style="@style/home_mine_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="55.2dp"
+                        android:layout_marginTop="1dp"
+                        android:onClick="@{vm::onFavotity}"
+                        android:text="@string/my_collection" />
+
+                    <TextView
+                        style="@style/home_mine_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="55.2dp"
+                        android:layout_marginTop="1dp"
+                        android:onClick="@{vm::onCenterClick}"
+                        android:text="@string/service_centre" />
+
+                    <TextView
+                        style="@style/home_mine_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="55.2dp"
+                        android:layout_marginTop="1dp"
+                        android:text=""
+                        android:visibility="gone" />
+
+
+                </LinearLayout>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="52.8dp"

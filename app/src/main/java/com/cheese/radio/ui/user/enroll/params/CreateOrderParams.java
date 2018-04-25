@@ -122,7 +122,7 @@ public class CreateOrderParams extends IkeParams {
         if (payType == 1) this.payType = "zfb";
     }
 
-    public boolean isLegal(View view) {
+    public boolean isLeagal(View view) {
 
         if (!isValidToast(view, MyBaseUtil.getNameError(name))) return false;
         if (TextUtils.isEmpty(sex)) {

@@ -535,14 +535,20 @@ public class CalendarView extends LinearLayout {
                             if (day.getTipsType() == 1) {
                                 //报名成功
 //                                textViewSolar.setText("付");
-                                grayCircleDrawable.setBounds(0, 0, grayCircleDrawable.getIntrinsicWidth(), (int) (grayCircleDrawable.getMinimumHeight()));
-                                textViewSolar.setCompoundDrawables(null, null, null, grayCircleDrawable);
+                                greenCircleDrawable.setBounds(0, 0, greenCircleDrawable.getIntrinsicWidth(), (int) (greenCircleDrawable.getMinimumHeight()));
+                                textViewSolar.setCompoundDrawables(null, null, null, greenCircleDrawable);
                             }
                             if (day.getTipsType() == 2) {
                                 //满员
 //                                textViewSolar.setText("付");
-                                greenCircleDrawable.setBounds(0, 0, greenCircleDrawable.getIntrinsicWidth(), (int) (greenCircleDrawable.getMinimumHeight()));
-                                textViewSolar.setCompoundDrawables(null, null, null, greenCircleDrawable);
+                                yellowCircleDrawable.setBounds(0, 0, yellowCircleDrawable.getIntrinsicWidth(), (int) (yellowCircleDrawable.getMinimumHeight()));
+                                textViewSolar.setCompoundDrawables(null, null, null, yellowCircleDrawable);
+                            }
+                            if (day.getTipsType() == 3) {
+                                //满员
+//                                textViewSolar.setText("付");
+                                grayCircleDrawable.setBounds(0, 0, grayCircleDrawable.getIntrinsicWidth(), (int) (grayCircleDrawable.getMinimumHeight()));
+                                textViewSolar.setCompoundDrawables(null, null, null, grayCircleDrawable);
                             }
                             linearLayoutBack.setBackgroundResource(0);
                             if (day.getType() == 0) {
@@ -604,12 +610,16 @@ public class CalendarView extends LinearLayout {
                 if (day.isChoose()) {
                     if (canCancel) {
                         if (day.getTipsType() == 1) {
-                            grayCircleDrawable.setBounds(0, 0, grayCircleDrawable.getIntrinsicWidth(), (int) (grayCircleDrawable.getMinimumHeight()));
-                            textViewSolar.setCompoundDrawables(null, null, null, grayCircleDrawable);
-                            textViewSolar.setTextColor(calendarView_textColorTips);
-                        } else if (day.getTipsType() == 2) {
                             greenCircleDrawable.setBounds(0, 0, greenCircleDrawable.getIntrinsicWidth(), (int) (greenCircleDrawable.getMinimumHeight()));
                             textViewSolar.setCompoundDrawables(null, null, null, greenCircleDrawable);
+                            textViewSolar.setTextColor(calendarView_textColorTips);
+                        } else if (day.getTipsType() == 2) {
+                            yellowCircleDrawable.setBounds(0, 0, yellowCircleDrawable.getIntrinsicWidth(), (int) (yellowCircleDrawable.getMinimumHeight()));
+                            textViewSolar.setCompoundDrawables(null, null, null, yellowCircleDrawable);
+                            textViewSolar.setTextColor(calendarView_textColorTips);
+                        } else if (day.getTipsType() == 3) {
+                            grayCircleDrawable.setBounds(0, 0, grayCircleDrawable.getIntrinsicWidth(), (int) (grayCircleDrawable.getMinimumHeight()));
+                            textViewSolar.setCompoundDrawables(null, null, null, grayCircleDrawable);
                             textViewSolar.setTextColor(calendarView_textColorTips);
                         } else {
                             textViewSolar.setCompoundDrawables(null, null, null, null);
@@ -648,12 +658,16 @@ public class CalendarView extends LinearLayout {
                             TextView theTextViewSolar = (TextView) view.findViewById(R.id.textViewSolar);
                             //之前选中的view
                             if (oldDay.getTipsType() == 1) {
-                                grayCircleDrawable.setBounds(0, 0, grayCircleDrawable.getIntrinsicWidth(), (int) (grayCircleDrawable.getMinimumHeight()));
-                                theTextViewSolar.setCompoundDrawables(null, null, null, grayCircleDrawable);
-                                theTextViewSolar.setTextColor(calendarView_textColorTips);
-                            } else if (oldDay.getTipsType() == 2) {
                                 greenCircleDrawable.setBounds(0, 0, greenCircleDrawable.getIntrinsicWidth(), (int) (greenCircleDrawable.getMinimumHeight()));
                                 theTextViewSolar.setCompoundDrawables(null, null, null, greenCircleDrawable);
+                                theTextViewSolar.setTextColor(calendarView_textColorTips);
+                            } else if (oldDay.getTipsType() == 2) {
+                                yellowCircleDrawable.setBounds(0, 0, yellowCircleDrawable.getIntrinsicWidth(), (int) (yellowCircleDrawable.getMinimumHeight()));
+                                theTextViewSolar.setCompoundDrawables(null, null, null, yellowCircleDrawable);
+                                theTextViewSolar.setTextColor(calendarView_textColorTips);
+                            } else if (oldDay.getTipsType() == 3) {
+                                grayCircleDrawable.setBounds(0, 0, grayCircleDrawable.getIntrinsicWidth(), (int) (grayCircleDrawable.getMinimumHeight()));
+                                theTextViewSolar.setCompoundDrawables(null, null, null, grayCircleDrawable);
                                 theTextViewSolar.setTextColor(calendarView_textColorTips);
                             } else {
                                 theTextViewSolar.setCompoundDrawables(null, null, null, null);

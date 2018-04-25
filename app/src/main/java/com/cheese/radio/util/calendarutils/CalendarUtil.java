@@ -10,11 +10,12 @@ import java.util.List;
 public class CalendarUtil {
     /**
      * 获得当月显示的日期（上月 + 当月 + 下月）
+     *
      * @param year  当前年份
      * @param month 当前月份
      * @return
      */
-    public static List<Day> getDays(int year, int month,int[] selectDay,List<CalendarEntity> tipsDays) {
+    public static List<Day> getDays(int year, int month, int[] selectDay, List<CalendarEntity> tipsDays) {
         List<Day> days = new ArrayList<>();
         int week = SolarUtil.getFirstWeekOfMonth(year, month - 1);
 
@@ -41,21 +42,21 @@ public class CalendarUtil {
             nextYear = year;
         }
         for (int i = 0; i < week; i++) {
-            days.add(initDay(selectDay,tipsDays,lastYear, lastMonth, lastMonthDays - week + 1 + i, 0));
+            days.add(initDay(selectDay, tipsDays, lastYear, lastMonth, lastMonthDays - week + 1 + i, 0));
         }
 
         for (int i = 0; i < currentMonthDays; i++) {
-            days.add(initDay(selectDay,tipsDays,year, month, i + 1, 1));
+            days.add(initDay(selectDay, tipsDays, year, month, i + 1, 1));
         }
 
         for (int i = 0; i < 7 * getMonthRows(year, month) - currentMonthDays - week; i++) {
-            days.add(initDay(selectDay,tipsDays,nextYear, nextMonth, i + 1, 2));
+            days.add(initDay(selectDay, tipsDays, nextYear, nextMonth, i + 1, 2));
         }
 
         return days;
     }
 
-    private static Day initDay(int[] selectDay,List<CalendarEntity> tipsDays,int year, int month, int day, int type) {
+    private static Day initDay(int[] selectDay, List<CalendarEntity> tipsDays, int year, int month, int day, int type) {
         Day theDay = new Day();
         theDay.setSolar(year, month, day);
 
@@ -71,21 +72,21 @@ public class CalendarUtil {
         } else {
             theDay.setSolarHoliday(SolarUtil.getSolarHoliday(year, month, day));
         }
-        if(selectDay!=null&&selectDay.length>=3&&selectDay[0]==year&&selectDay[1]==month&&selectDay[2]==day){
+        if (selectDay != null && selectDay.length >= 3 && selectDay[0] == year && selectDay[1] == month && selectDay[2] == day) {
             theDay.setChoose(true);
         }
 
-        if (tipsDays!=null){
-            for (int i=0;i<tipsDays.size();i++){
-                CalendarEntity tipsDay=tipsDays.get(i);
-                if (tipsDay!=null){
-                    int[] theDay1 =tipsDay.getDays();
-                    if (theDay1!=null&&theDay1.length>=3&&theDay1[0]==year&&theDay1[1]==month&&theDay1[2]==day){
-                        if (tipsDay.isSelect()) {
-                            theDay.setTipsType(1);
-                        }else{
-                            theDay.setTipsType(2);
-                        }
+        if (tipsDays != null) {
+            for (int i = 0; i < tipsDays.size(); i++) {
+                CalendarEntity tipsDay = tipsDays.get(i);
+                if (tipsDay != null) {
+                    int[] theDay1 = tipsDay.getDays();
+                    if (theDay1 != null && theDay1.length >= 3 && theDay1[0] == year && theDay1[1] == month && theDay1[2] == day) {
+                        if (tipsDay.isBook()) {
+                            theDay.setTipsType(1);//绿
+                        } else if (tipsDay.isCanBook()) {
+                            theDay.setTipsType(2);//黄
+                        } else theDay.setTipsType(3);//灰
                         break;
                     }
                 }

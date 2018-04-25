@@ -27,7 +27,7 @@ public class UserEntity {
     private Boolean canBookCheck;
     private String mobile;
     private String userId;
-
+    private String portrait;
     public void clone(UserEntity entity) {
         for (Field field : getAllFields(getClass())) {
            beanSetValue(field,this,beanGetValue(field,entity));
@@ -125,5 +125,13 @@ public class UserEntity {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public String getPortrait() {
+        return portrait;
+    }
+
+    public void setPortrait(String portrait) {
+        this.portrait = portrait;
     }
 }

@@ -81,18 +81,15 @@ public class MessageModel extends ViewHttpModel<MessageActivity, ActivityMessage
     }
 
     private void initMsg() {
-       /* if(messagesData.getSystem()!=null)                           */
+
         getDataBinding().sysText.setText(messagesData.getSystem().get(0).getContent());
-       /* else getDataBinding().systemMessage.setVisibility(View.GONE);*/
-       /* if(messagesData.getUser()!=null)                             */
+
         getDataBinding().vipText.setText(messagesData.getUser().get(0).getContent());
-       /* else getDataBinding().vipMessage.setVisibility(View.GONE);*/
-       /* if(messagesData.getClassX()!=null)                           */
+
         getDataBinding().classText.setText(messagesData.getClassX().get(0).getContent());
-       /* else getDataBinding().classMessage.setVisibility(View.GONE);*/
-       /* if(messagesData.getBook()!=null)                             */
+
         getDataBinding().bookText.setText(messagesData.getBook().get(0).getContent());
-       /* else getDataBinding().bookMessage.setVisibility(View.GONE);*/
+
     }
 
 }
