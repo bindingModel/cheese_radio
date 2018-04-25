@@ -175,6 +175,6 @@ public interface RadioApi {
     Observable<InfoEntity<String>> createOrder(@Body CreateOrderParams params);
 
 //    修改头像
-    @POST("/1.0/user")
+    @POST("/1.0/file")
     Observable<InfoEntity<MyHeadData>>  myHead(@Body MyHeadParams params);
 }

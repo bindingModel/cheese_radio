@@ -62,7 +62,7 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
     @Inject
     RadioApi api;
     private ProfileParams params;
-    private MyHeadParams headParams;
+    private MyHeadParams headParams = new MyHeadParams("myHead");
     private OptionsPickerView sexPicker;
     private List<String> babySex = new ArrayList<>();
     private List<String> select = new ArrayList<String>();
@@ -74,7 +74,7 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
         pickTool = new TimePickTool(mDate, activity);
         initSexPicker();
         params = new ProfileParams("setProperty");
-        headParams = new MyHeadParams("myHead");
+
         userEntity = IkeApplication.getUser().getUserEntity();
         mSex.set(userEntity.getSex().equals("M") ? "男孩" : "女孩");
         mDate.set(userEntity.getBirthday());
@@ -151,14 +151,12 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
     }
 
     public void processePictures(String path) {
-
         File file = new File(path);
-
-     if(file.isFile()){
-         headParams.setInfo(file);
-         addDisposable(api.myHead(headParams).compose(new RestfulTransformer<>()).subscribe((myHeadData) -> {
-             getDataBinding().setEntity(myHeadData);
-         },BaseUtil::toast));
-     }
+        if (file.isFile()) {
+            headParams.setInfo(file);
+            addDisposable(api.myHead(headParams).compose(new RestfulTransformer<>()).subscribe((myHeadData) -> {
+                getDataBinding().setEntity(myHeadData);
+            }, BaseUtil::toast));
+        }
     }
 }

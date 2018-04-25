@@ -22,8 +22,7 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.login;
 @ModelView(R.layout.activity_startup)
 public class StartUpModel extends ViewModel<StartUpActivity, ActivityStartupBinding> {
     @Inject
-    StartUpModel() {
-    }
+    StartUpModel() {}
 
     @Override
     public void attachView(Bundle savedInstanceState, StartUpActivity startUpActivity) {
@@ -32,9 +31,7 @@ public class StartUpModel extends ViewModel<StartUpActivity, ActivityStartupBind
         MyBaseUtil.getMacAddress();
         Handler handler = new Handler();
         handler.postDelayed(() -> {
-            if (IkeApplication.isLogin(true))
-                ARouterUtil.navigation(home);
-           else ARouterUtil.navigation(login);
+            if (IkeApplication.isLogin(true)) ARouterUtil.navigation(home);
             finish();
         }, time);
     }

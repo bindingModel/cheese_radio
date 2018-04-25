@@ -6,8 +6,8 @@ android {
         applicationId "com.cheese.radio"
         minSdkVersion min_sdk_version
         targetSdkVersion target_sdk_version
-        versionCode version_code
-        versionName version_name
+        versionCode 2
+        versionName '1.1'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             generatedDensities 'xxhdpi'
@@ -23,7 +23,6 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
-
     signingConfigs {
         config {
             keyAlias 'radio'
@@ -45,30 +44,25 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
     packagingOptions {
         exclude 'META-INF/rxjava.properties'
     }
-
     android.applicationVariants.all { variant ->
         variant.outputs.all {
             def time = new Date().format("MMddHHmm", TimeZone.getTimeZone("GMT+08:00"))
             if (variant.name != 'debug') outputFileName = "cheese_${variant.name}_${variant.versionName}.${time}.apk"
         }
     }
-
-    sourceSets{
-        main{
+    sourceSets {
+        main {
             java.srcDirs = ['src/main/java']
-            res.srcDirs = ['src/main/res','src/main/ures']
+            res.srcDirs = ['src/main/res', 'src/main/ures']
         }
     }
-
     dependencies {
         implementation fileTree(dir: 'libs', include: ['*.jar'])
         implementation "com.binding:model:$binding_model"
@@ -126,4 +120,10 @@ android {
 //        implementation project(':umlib')
 //        implementation project(':push')
     }
+    buildToolsVersion '27.0.3'
+    productFlavors {
+    }
+}
+
+dependencies {
 }

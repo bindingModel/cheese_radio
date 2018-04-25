@@ -1,6 +1,6 @@
 package com.cheese.radio.base;
 
-import com.binding.model.data.encrypt.MultipartSingleParams;
+import com.binding.model.data.encrypt.SingleTransParams;
 import com.binding.model.util.BaseUtil;
 import com.binding.model.util.ReflectUtil;
 import com.cheese.radio.ui.IkeApplication;
@@ -12,8 +12,14 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 
-public class IkeFileParams extends MultipartSingleParams {
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
+import static okhttp3.MultipartBody.FORM;
+
+public class IkeFileParams implements SingleTransParams<MultipartBody> {
+    public static final MediaType FORM_URL = MediaType.parse("application/x-www-form-urlencoded");
     public String sign;
     public String uuid;
     public String timestamp;
@@ -45,18 +51,36 @@ public class IkeFileParams extends MultipartSingleParams {
         for (Field field : fields) {
             if ("sign".equals(field.getName())) continue;
             Object o = ReflectUtil.beanGetValue(field, this);
-            if (o == null||o instanceof File) continue;
+            if (o == null || o instanceof File) continue;
             hashMap.put(BaseUtil.findQuery(field), o.toString());
         }
         return sign = MyBaseUtil.getSign(hashMap);
     }
 
     public String getToken() {
-        return User.isLogin?IkeApplication.getUser().getToken():"";
+        return User.isLogin ? IkeApplication.getUser().getToken() : "";
     }
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    @Override
+    public MultipartBody transParams() {
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+        builder.setType(FORM);
+        for (Field field : ReflectUtil.getAllFields(getClass())) {
+            Object o = ReflectUtil.beanGetValue(field, this);
+            if (o == null) continue;
+            if (o instanceof File) {
+                File file = (File) o;
+                RequestBody requestBody = RequestBody.create(FORM, file);
+                builder.addFormDataPart(BaseUtil.findQuery(field), BaseUtil.findQuery(field), requestBody);
+            } else {
+                builder.addFormDataPart(BaseUtil.findQuery(field), encrypt(o));
+            }
+        }
+        return builder.build();
     }
 
     @Override

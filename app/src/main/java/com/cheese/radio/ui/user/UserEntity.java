@@ -28,11 +28,14 @@ public class UserEntity {
     private String mobile;
     private String userId;
 
-    public UserEntity clone(UserEntity entity) {
+    public void clone(UserEntity entity) {
         for (Field field : getAllFields(getClass())) {
            beanSetValue(field,this,beanGetValue(field,entity));
         }
-        return this;
+//        apt
+//        aop
+//        ioc
+
     }
 
     public String getToken() {
