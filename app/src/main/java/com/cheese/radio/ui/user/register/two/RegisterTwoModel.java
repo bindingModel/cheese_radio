@@ -53,23 +53,28 @@ public class RegisterTwoModel extends ViewModel<RegisterTwoActivity, ActivityReg
             }
         }, BaseUtil::toast));
     }
-
+// text 167, 116, 8
+//   bg 255, 174, 73
     public void onSeleckAgeClick(View view) {
         checkView.set(true);
         switch (view.getId()) {
             case R.id.select_for:
                 params.setAge("4~5");
                 getDataBinding().selectFor.setTextSize(23);
-                getDataBinding().selectFor.setTextColor(Color.BLACK);
+                getDataBinding().selectFor.setTextColor(0xFFA77408);
+                getDataBinding().selectFor.setBackgroundColor(0xFFFFAE49);
                 getDataBinding().selectSix.setTextSize(16);
                 getDataBinding().selectSix.setTextColor(Color.GRAY);
+                getDataBinding().selectSix.setBackgroundColor(Color.WHITE);
                 break;
             case R.id.select_six:
                 params.setAge("6~8");
+                getDataBinding().selectSix.setTextSize(23);
+                getDataBinding().selectSix.setTextColor(0xFFA77408);
+                getDataBinding().selectSix.setBackgroundColor(0xFFFFAE49);
                 getDataBinding().selectFor.setTextSize(16);
                 getDataBinding().selectFor.setTextColor(Color.GRAY);
-                getDataBinding().selectSix.setTextSize(23);
-                getDataBinding().selectSix.setTextColor(Color.BLACK);
+                getDataBinding().selectFor.setBackgroundColor(Color.WHITE);
                 break;
             default:
 
