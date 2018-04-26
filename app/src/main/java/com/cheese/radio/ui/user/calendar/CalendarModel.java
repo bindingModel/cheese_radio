@@ -56,10 +56,7 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
         list.clear();
         list.addAll(calendarEntities);
         if (isFirst) {
-            String datesStartString= MyBaseUtil.formatDate(MyBaseUtil.getYear(),MyBaseUtil.getMonth()-6);
-            String dateEndString= MyBaseUtil.formatDate(MyBaseUtil.getYear(),MyBaseUtil.getMonth()+6);
-
-            initCalendarView(datesStartString, dateEndString, list);
+            initCalendarView("2017-12", "2018-12", list);
             isFirst = false;
         }
         updataUI(list);
@@ -79,7 +76,7 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
     public void attachView(Bundle savedInstanceState, CalendarFragment calendarFragment) {
         super.attachView(savedInstanceState, calendarFragment);
         refreshUI();
-
+        MyBaseUtil.getNowDate();
     }
 
     private Day getSelectDayFromMonth(int year, int month) {
