@@ -56,10 +56,14 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
         list.clear();
         list.addAll(calendarEntities);
         if (isFirst) {
-            initCalendarView("2018-4", "2018-4", list);
+            String datesStartString= MyBaseUtil.formatDate(MyBaseUtil.getYear(),MyBaseUtil.getMonth()-6);
+            String dateEndString= MyBaseUtil.formatDate(MyBaseUtil.getYear(),MyBaseUtil.getMonth()+6);
+
+            initCalendarView(datesStartString, dateEndString, list);
             isFirst = false;
         }
-        calendarView.setTipsDays(calendarEntities);
+        updataUI(list);
+//        calendarView.setTipsDays(calendarEntities);
     }
 
     private CalendarView calendarView;
@@ -111,11 +115,9 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
         calendarView.selectTheDay(day);
     }
 
-    private void initCalendarView(String dateStartString, String dateEndString, List<CalendarEntity> tipsDays) {
-        calendarView.setDateStartString(dateStartString);
-        calendarView.setDateEndString(dateEndString);
+    private void updataUI(List<CalendarEntity> tipsDays){
         boolean isHaveSelectDay = false;
-        if (selectDay == null) {
+        if (selectDay == null || true) {
             if (tipsDays != null) {
                 for (int i = tipsDays.size() - 1; i >= 0; i--) {
                     CalendarEntity tipsDay = tipsDays.get(i);
@@ -143,15 +145,22 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
         } else {
             calendarView.setSelectDay(selectDay);
         }
+    }
+    private void initCalendarView(String dateStartString, String dateEndString, List<CalendarEntity> tipsDays) {
+        calendarView.setDateStartString(dateStartString);
+        calendarView.setDateEndString(dateEndString);
+        updataUI(tipsDays);
 
 
-        calendarView.setTipsDays(tipsDays);
+
+//        calendarView.setTipsDays(tipsDays);
 
         calendarView.setOnCalendarViewListener(new CalendarView.OnCalendarViewListener() {
 
             @Override
             public void onPagerChanged(List<Month> months, int position) {
                 boolean isInit = false;//因为第一次触发  viewPager.setCurrentItem(i)的时候是在onCreate方法内的
+
                 if (CalendarModel.this.months == null) {
                     CalendarModel.this.months = months;
                     addMonthItem(getDataBinding().linearLayoutMonth);

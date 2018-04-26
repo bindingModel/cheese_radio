@@ -93,7 +93,7 @@ public class UserEntity {
     }
 
     public String getBabyBirth() {
-        if (TextUtils.isEmpty(birthday))
+        if (!TextUtils.isEmpty(birthday))
             return "宝宝生日:" + birthday;
         else return "宝宝生日：暂未填写";
     }

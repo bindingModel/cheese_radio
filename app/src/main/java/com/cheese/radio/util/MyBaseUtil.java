@@ -106,7 +106,7 @@ public class MyBaseUtil extends BaseUtil {
 
     public static String getNameError(String name) {
         if (TextUtils.isEmpty(name)) return "没有填写名字哦";
-        if(name.length()>4)return "名字过长";
+        if (name.length() > 4) return "名字过长";
         Pattern p = Pattern.compile("^[\\u4e00-\\u9fa5]{1,4}");
         Matcher m = p.matcher(name);
         boolean valid = m.matches();
@@ -121,6 +121,27 @@ public class MyBaseUtil extends BaseUtil {
         return year + "-" + month + "-" + day;
     }
 
+    public static Integer getYear() {
+        Calendar calendar = Calendar.getInstance();
+        return calendar.get(Calendar.YEAR);
+    }
+
+    public static Integer getMonth() {
+        Calendar calendar = Calendar.getInstance();
+        return calendar.get(Calendar.MONTH) + 1;
+    }
+
+    public static String formatDate(int year,int month){
+        if(month>12){
+            month-=12;
+            year+=1;
+        }
+        else if(month<1){
+            month+=12;
+            year-=1;
+        }
+        return year + "-" + month;
+    }
     public static String getMinute(Integer seconds) {
         return (seconds / 60) + ":" + (seconds % 60);
     }

@@ -9,6 +9,7 @@ import com.cheese.radio.ui.user.UserEntity;
 import static com.binding.model.util.BaseUtil.getPhoneError;
 import static com.binding.model.util.BaseUtil.isValidToast;
 import static com.cheese.radio.util.MyBaseUtil.getNameError;
+import static com.cheese.radio.util.MyBaseUtil.getNickError;
 
 /**
  * Created by 29283 on 2018/3/25.
@@ -69,6 +70,6 @@ public class ProfileParams extends IkeParams {
     }
 
     public boolean isValidName(TextView view) {
-        return isValidToast(view, getNameError(nickName));
+        return isValidToast(view, getNickError(nickName));
     }
 }

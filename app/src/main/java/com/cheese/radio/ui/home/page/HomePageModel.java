@@ -41,7 +41,7 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.search;
 /**
  * Created by 29283 on 2018/3/3.
  */
-@ModelView(R.layout.fragment_home_page)
+@ModelView(value = R.layout.fragment_home_page,model = true)
 public class HomePageModel extends RecyclerModel<HomePageFragment, FragmentHomePageBinding, GridInflate> {
     @Inject
     HomePageModel() {
@@ -63,6 +63,11 @@ public class HomePageModel extends RecyclerModel<HomePageFragment, FragmentHomeP
         setLayoutManager(layoutManager);
         setEnable(true);
         setPageFlag(false);
+        upDataMsg();
+        setRoHttp((offset1, refresh) -> getZip());
+    }
+
+    public void upDataMsg(){
         if (IkeApplication.isLogin(false))
             addDisposable(api.getNewMessageCount(new NewMessageCountParams("newMessageCount"))
                     .compose(new RestfulTransformer<>())
@@ -72,8 +77,7 @@ public class HomePageModel extends RecyclerModel<HomePageFragment, FragmentHomeP
                             redTipBoolean.set(true);
                         else redTipBoolean.set(false);
                     }, BaseUtil::toast));
-        setRoHttp((offset1, refresh) -> getZip());
-    }
+        }
 
     private Observable<List<GridInflate>> getZip() {
 //        Observable<InfoEntity<List<CategoryEntity>>> categoriy = api.getGroupInfo(new PlayParams("contentInfo","123")).compose(new RestfulZipTransformer<>());

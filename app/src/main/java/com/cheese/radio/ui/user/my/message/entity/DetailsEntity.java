@@ -8,6 +8,7 @@ import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
 import com.binding.model.model.inter.Event;
 import com.binding.model.model.inter.Inflate;
+import com.binding.model.model.inter.Model;
 import com.cheese.radio.R;
 
 import java.util.zip.Inflater;
@@ -76,12 +77,15 @@ public class DetailsEntity extends ViewInflateRecycler implements Parcelable {
     }
 
     public String getTitle() {
+        if(!isRead)
+            title="未读："+title;
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
+
 
     public String getContent() {
         return content;
@@ -98,23 +102,25 @@ public class DetailsEntity extends ViewInflateRecycler implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-       dest.writeString(createTime);
+        dest.writeString(createTime);
         dest.writeString(locationId);
-        dest.writeByte((byte)(isRead ?1:0));//if isRead == true, byte == 1
+        dest.writeByte((byte) (isRead ? 1 : 0));//if isRead == true, byte == 1
         dest.writeString(location);
         dest.writeInt(id);
         dest.writeString(title);
         dest.writeString(content);
     }
-    protected DetailsEntity(Parcel in){
-        this.createTime=in.readString();
-        this.locationId=in.readString();
-        this.isRead =in.readByte()!=0;   //myBoolean == true if byte != 0
-        this.locationId=in.readString();
-        this.id=in.readInt();
-        this.title=in.readString();
-        this.content=in.readString();
+
+    protected DetailsEntity(Parcel in) {
+        this.createTime = in.readString();
+        this.locationId = in.readString();
+        this.isRead = in.readByte() != 0;   //myBoolean == true if byte != 0
+        this.locationId = in.readString();
+        this.id = in.readInt();
+        this.title = in.readString();
+        this.content = in.readString();
     }
+
     public static final Creator<DetailsEntity> CREATOR = new Creator<DetailsEntity>() {
         @Override
         public DetailsEntity createFromParcel(Parcel source) {
@@ -127,7 +133,14 @@ public class DetailsEntity extends ViewInflateRecycler implements Parcelable {
         }
     };
 
-    public void onClick(View view){
-        Event.event(R.id.DetailsModel,this,view);
+    public void onClick(View view) {
+        Event.event(R.id.DetailsModel, this, view);
+
+        try {
+            Thread.sleep(1000);
+            Model.dispatchModel("upDataMsg");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

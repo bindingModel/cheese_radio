@@ -35,4 +35,9 @@ public class ExampleUnitTest {
         System.out.println(MyBaseUtil.getSign(map));
         System.out.println("Qyw6tX4f73D8881DFEA62DF3A8C921ADFE3B441A");
     }
+    @Test
+    public void test2(){
+      String day= MyBaseUtil.formatDate(MyBaseUtil.getYear(),MyBaseUtil.getMonth()-6);
+        System.out.println(day);
+    }
 }

@@ -50,6 +50,11 @@ public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineB
     public void attachView(Bundle savedInstanceState, HomeMineFragment homeMineFragment) {
         super.attachView(savedInstanceState, homeMineFragment);
         updataUI();
+        upDataMsg();
+
+    }
+
+    public void upDataMsg(){
         if (IkeApplication.isLogin(true)) {
             addDisposable(api.getNewMessageCount(new NewMessageCountParams("newMessageCount")).compose(new RestfulTransformer<>())
                     .subscribe(newMessageCountData -> {
@@ -59,9 +64,7 @@ public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineB
                         else redTipBoolean.set(false);
                     }, BaseUtil::toast));
         }
-
     }
-
     public void onLogoutClick(View view) {
         IkeApplication.getUser().logout();
         this.finish();

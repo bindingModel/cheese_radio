@@ -67,9 +67,11 @@ public class DetailsModel extends RecyclerModel<DetailsActivity,ActivityDetailsB
         if(entity!=null){
             ReadMessagesParams params =new ReadMessagesParams("readMessages");
             params.setId(entity.getId());
-            addDisposable(api.readMessages(params).compose(new RestfulTransformer<>()).subscribe(s -> {}, BaseUtil::toast));
+            addDisposable(api.readMessages(params).compose(new RestfulTransformer<>()).subscribe(s -> {
+                BaseUtil.toast("确认消息");
+            }, BaseUtil::toast));
         }
-        BaseUtil.toast("收到消息");
+
         return super.onEvent(view, event, args);
     }
 }

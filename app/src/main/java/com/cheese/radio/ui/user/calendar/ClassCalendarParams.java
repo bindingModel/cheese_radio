@@ -39,17 +39,22 @@ public class ClassCalendarParams extends IkeParams {
 
     public String getYearMonth() {
         if(TextUtils.isEmpty(yearMonth)){
-        StringBuilder sb=new StringBuilder();
-        sb.append(now.get(Calendar.YEAR)).append("-").append(now.get(Calendar.MONTH)+1);
-            return sb.toString();
+            return String.valueOf(now.get(Calendar.YEAR)) + "-" + (now.get(Calendar.MONTH) + 1);
         }
         return yearMonth;
     }
 
-    public void setYearMonth(int year,int month) {
-        StringBuilder sb=new StringBuilder();
-        sb.append(now.get(Calendar.YEAR)).append("-").append(month);
-        yearMonth=sb.toString();
+    public ClassCalendarParams setYearMonth(int year,int month) {
+        if(month>12){
+            month-=12;
+            year+=1;
+        }
+        else if(month<1){
+            month+=12;
+            year-=1;
+        }
+        yearMonth= String.valueOf(now.get(Calendar.YEAR)) + "-" + month;
+        return this;
     }
 
     public String getAge() {

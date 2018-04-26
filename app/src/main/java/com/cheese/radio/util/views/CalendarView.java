@@ -267,7 +267,8 @@ public class CalendarView extends LinearLayout {
 
         viewPager.setLayoutParams(layoutParams);
         this.addView(viewPager);
-        viewPager.setOffscreenPageLimit(3);
+        //预加载页面数量
+        viewPager.setOffscreenPageLimit(1);
         myPagerAdapter = new MyPagerAdapter();
         viewPager.setAdapter(myPagerAdapter);
         viewPager.addOnPageChangeListener(new MyOnPageChangeListener());
@@ -412,6 +413,8 @@ public class CalendarView extends LinearLayout {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
+
+
             LinearLayout linearLayout = getMonthView(context, position);
             views.put(position, linearLayout);
             container.addView(linearLayout);
