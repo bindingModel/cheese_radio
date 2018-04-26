@@ -421,6 +421,10 @@ public class CalendarView extends LinearLayout {
             return linearLayout;
         }
 
+        @Override
+        public int getItemPosition(Object object) {
+            return POSITION_NONE;
+        }
         public LinearLayout getLinearLayoutRoot(int position) {
             return views.get(position);
         }

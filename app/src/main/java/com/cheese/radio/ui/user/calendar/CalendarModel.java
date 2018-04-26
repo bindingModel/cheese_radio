@@ -56,10 +56,11 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
         list.clear();
         list.addAll(calendarEntities);
         if (isFirst) {
+
             initCalendarView("2017-12", "2018-12", list);
             isFirst = false;
         }
-        updataUI(list);
+
 //        calendarView.setTipsDays(calendarEntities);
     }
 
@@ -76,7 +77,7 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
     public void attachView(Bundle savedInstanceState, CalendarFragment calendarFragment) {
         super.attachView(savedInstanceState, calendarFragment);
         refreshUI();
-        MyBaseUtil.getNowDate();
+//        MyBaseUtil.getNowDate();
     }
 
     private Day getSelectDayFromMonth(int year, int month) {
@@ -114,7 +115,7 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
 
     private void updataUI(List<CalendarEntity> tipsDays){
         boolean isHaveSelectDay = false;
-        if (selectDay == null || true) {
+        if (selectDay == null) {
             if (tipsDays != null) {
                 for (int i = tipsDays.size() - 1; i >= 0; i--) {
                     CalendarEntity tipsDay = tipsDays.get(i);
