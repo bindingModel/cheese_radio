@@ -35,6 +35,7 @@
             android:src="@mipmap/logo" />
 
         <EditText
+            android:id="@+id/input_phone"
             android:layout_width="match_parent"
             android:layout_height="42.24dp"
             android:layout_marginEnd="11dp"
@@ -43,8 +44,9 @@
             android:background="@drawable/login_input_shape"
             android:drawableLeft="@mipmap/ic_iphone"
             android:drawablePadding="9dp"
+            android:imeOptions="actionNext"
             android:drawableStart="@mipmap/ic_iphone"
-            android:hint="请输入手机号"
+            android:hint="@string/input_phone"
             android:paddingLeft="17dp"
             android:paddingRight="17dp"
             android:inputType="phone"
@@ -57,6 +59,7 @@
             android:layout_marginTop="20dp">
 
             <EditText
+                android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="42.24dp"
                 android:layout_marginEnd="11dp"
@@ -65,14 +68,16 @@
                 android:drawableLeft="@mipmap/ic_code"
                 android:drawablePadding="9dp"
                 android:drawableStart="@mipmap/ic_code"
-                android:hint="请输入短信验证码"
-                android:inputType="number"
+                android:hint="@string/input_msg"
+                android:inputType="phone"
+                android:imeOptions="actionDone"
                 android:paddingLeft="17dp"
                 android:paddingRight="17dp"
                 android:text="@={params.validCode}"
                 android:textSize="14.4sp" />
 
             <TextView
+                android:id="@+id/msg_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center"
@@ -85,6 +90,7 @@
         </FrameLayout>
 
         <Button
+
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:layout_marginEnd="11dp"

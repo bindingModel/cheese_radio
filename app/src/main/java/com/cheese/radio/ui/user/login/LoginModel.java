@@ -1,7 +1,9 @@
 package com.cheese.radio.ui.user.login;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
 import com.binding.model.App;
@@ -22,6 +24,7 @@ import com.cheese.radio.ui.user.login.params.SignParams;
 import com.cheese.radio.ui.user.login.params.SmsParams;
 import com.cheese.radio.ui.user.profile.ProfileParams;
 import com.cheese.radio.ui.user.register.UserInfoParams;
+import com.cheese.radio.util.MyBaseUtil;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -40,7 +43,7 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.registe
  * Created by 29283 on 2018/3/5.
  */
 @ModelView(R.layout.activity_login)
-public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> implements UMAuthListener {
+public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> implements UMAuthListener,TextView.OnEditorActionListener  {
     @Inject
     LoginModel() {
 
@@ -51,12 +54,14 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
     private SignParams signParams = new SignParams("login");
     @Inject
     RadioApi api;
-
+    TextView textView;
     @Override
     public void attachView(Bundle savedInstanceState, LoginActivity loginActivity) {
         super.attachView(savedInstanceState, loginActivity);
         getDataBinding().setParams(signParams);
-
+        getDataBinding().inputPhone.setOnEditorActionListener(this);
+        getDataBinding().inputPassword.setOnEditorActionListener(this);
+        textView=getDataBinding().msgCode;
     }
 
     public void onGetSmsClick(View view) {
@@ -155,6 +160,35 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
                     finish();
                 }, BaseUtil::toast));
 
+    }
+
+    /**
+     * Called when an action is being performed.
+     *
+     * @param v        The view that was clicked.
+     * @param actionId Identifier of the action.  This will be either the
+     *                 identifier you supplied, or {@link EditorInfo#IME_NULL
+     *                 EditorInfo.IME_NULL} if being called due to the enter key
+     *                 being pressed.
+     * @param event    If triggered by an enter key, this is the event;
+     *                 otherwise, this is null.
+     * @return Return true if you have consumed the action, else false.
+     */
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        if (actionId == EditorInfo.IME_ACTION_DONE) {
+            if (!signParams.isValidPhone((TextView) v)) return true;
+            if (!signParams.isValidSMS((TextView) v)) return true;
+            signParams.setLoginType("phone");
+            login(signParams);
+            MyBaseUtil.HideKeyboard(v);
+            return false;
+        }
+        if(actionId == EditorInfo.IME_ACTION_NEXT )
+        {
+            onGetSmsClick(textView);
+        }
+        return false;
     }
 }
 

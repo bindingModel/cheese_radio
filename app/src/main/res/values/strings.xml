@@ -34,6 +34,7 @@
     <string name="baby_birth">宝宝生日</string>
     <string name="nickName">昵称</string>
     <string name="save">保存</string>
+    <string name="input_msg">请输入短信验证码</string>
     <string name="sun">日</string>
     <string name="one">一</string>
     <string name="two">二</string>

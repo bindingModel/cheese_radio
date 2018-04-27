@@ -67,6 +67,7 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
     public void attachView(Bundle savedInstanceState, SearchActivity searchActivity) {
         super.attachView(savedInstanceState, searchActivity);
         getDataBinding().homeEdit.addTextChangedListener(this);
+        getDataBinding().homeEdit.setOnEditorActionListener(this);
         getDataBinding().layoutRecycler.setVm(this);
         GridLayoutManager layoutManager = new GridLayoutManager(searchActivity, 20);
         layoutManager.setSpanSizeLookup(new GridSpanSizeLookup<>(getAdapter()));
