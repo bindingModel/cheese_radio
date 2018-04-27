@@ -82,14 +82,22 @@ public class MessageModel extends ViewHttpModel<MessageActivity, ActivityMessage
 
     private void initMsg() {
 
-        getDataBinding().sysText.setText(messagesData.getSystem().get(0).getContent());
+        getDataBinding().sysText.setText(findNewMSG(messagesData.getSystem()));
 
-        getDataBinding().vipText.setText(messagesData.getUser().get(0).getContent());
+        getDataBinding().vipText.setText(findNewMSG(messagesData.getUser()));
 
-        getDataBinding().classText.setText(messagesData.getClassX().get(0).getContent());
+        getDataBinding().classText.setText(findNewMSG(messagesData.getClassX()));
 
-        getDataBinding().bookText.setText(messagesData.getBook().get(0).getContent());
+        getDataBinding().bookText.setText(findNewMSG(messagesData.getBook()));
 
+    }
+    private String findNewMSG(ArrayList<DetailsEntity> list){
+        String msg="暂无新消息";
+        for (DetailsEntity entity: list ) {
+           if(entity.isIsRead())continue;
+           msg=entity.getContent();
+        }
+        return msg;
     }
 
 }

@@ -1,10 +1,12 @@
 package com.cheese.radio;
 
 import com.cheese.radio.util.MyBaseUtil;
+import com.google.gson.Gson;
 
 import org.junit.Test;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -37,7 +39,14 @@ public class ExampleUnitTest {
     }
     @Test
     public void test2(){
-      String day= MyBaseUtil.formatDate(MyBaseUtil.getYear(),MyBaseUtil.getMonth()-6);
-        System.out.println(day);
+        Gson gson=new Gson();
+        Map<String,String> infoMap=new HashMap<>();
+        infoMap.put("openid","openid");
+        infoMap.put("unionid","openid");
+        infoMap.put("scope","openid");
+        infoMap.put(" expires_in","openid");
+        infoMap.put("refresh_token","openid");
+        infoMap.put("access_token","openid");
+        System.out.println(gson.toJson(infoMap));
     }
 }

@@ -48,6 +48,9 @@ public class RegisterTwoModel extends ViewModel<RegisterTwoActivity, ActivityReg
         addDisposable(api.setUserInfo(params).compose(new ErrorTransform<>()).subscribe(s -> {
             if (s.getCode().equals("0")) {
                 ARouterUtil.navigation(home);
+                addDisposable(api.getUserInfo(new UserInfoParams("myInfo")).compose(new RestfulTransformer<>()).subscribe(userEntity -> {
+                    IkeApplication.getUser().setUserEntity(userEntity);
+                }, BaseUtil::toast));
                 IkeApplication.getUser().setUserEntity(params);
                 this.finish();
             }

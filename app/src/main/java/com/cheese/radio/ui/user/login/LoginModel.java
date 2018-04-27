@@ -25,10 +25,12 @@ import com.cheese.radio.ui.user.login.params.SmsParams;
 import com.cheese.radio.ui.user.profile.ProfileParams;
 import com.cheese.radio.ui.user.register.UserInfoParams;
 import com.cheese.radio.util.MyBaseUtil;
+import com.google.gson.Gson;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -84,6 +86,7 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
 
     public void onGoHomeClick(View view) {
         ARouterUtil.navigation(home);
+        finish();
     }
 
     public void onPlatformClick(View view) {
@@ -121,17 +124,19 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
     @Override
     public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
         //打印。。。数据内容
-        StringBuilder builder = new StringBuilder().append("{");
-        for (String key : map.keySet()) {
-            Timber.i("key:%1s,value:%2s", key, map.get(key));
-            builder.append(key).append(":").append(map.get(key)).append(",");
-        }
-        builder.setLength(builder.length() - 1);
-        builder.append("}");
+        //第三方登录中uid 才是真正的openid
+        Gson gson=new Gson();
         SignParams params = new SignParams("login");
         params.setLoginType("weixin");
         params.setOpenId(map.get("uid"));
-//        params.setOtherInfo(builder.toString());
+        Map<String,String> infoMap=new HashMap<>();
+        infoMap.put("openid",map.get("uid"));
+        infoMap.put("unionid",map.get("unionid"));
+        infoMap.put("scope",map.get("scope"));
+        infoMap.put("expires_in",map.get(" expires_in"));
+        infoMap.put("refreshToken",map.get("refresh_token"));
+        infoMap.put("access_token",map.get("access_token"));
+        params.setOtherinfo(gson.toJson(infoMap));
         login(params);
     }
 
@@ -155,8 +160,6 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
                             IkeApplication.getUser().setUserEntity(userEntity);
                         }, BaseUtil::toast));
                     } else ARouterUtil.navigation(registerOne);
-
-
                     finish();
                 }, BaseUtil::toast));
 

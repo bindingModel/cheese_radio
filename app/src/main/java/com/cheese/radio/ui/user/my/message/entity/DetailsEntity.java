@@ -1,5 +1,7 @@
 package com.cheese.radio.ui.user.my.message.entity;
 
+import android.databinding.ObservableBoolean;
+import android.databinding.ObservableField;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.view.View;
@@ -35,6 +37,7 @@ public class DetailsEntity extends ViewInflateRecycler implements Parcelable {
     private int id;
     private String title;
     private String content;
+    public ObservableBoolean aBoolean = new ObservableBoolean();
 
     public String getCreateTime() {
         return createTime;
@@ -57,6 +60,7 @@ public class DetailsEntity extends ViewInflateRecycler implements Parcelable {
     }
 
     public void setIsRead(boolean isRead) {
+        aBoolean.set(isRead);
         this.isRead = isRead;
     }
 
@@ -77,8 +81,6 @@ public class DetailsEntity extends ViewInflateRecycler implements Parcelable {
     }
 
     public String getTitle() {
-        if(!isRead)
-            title="未读："+title;
         return title;
     }
 

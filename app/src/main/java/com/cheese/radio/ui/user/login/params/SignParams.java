@@ -4,6 +4,8 @@ import android.widget.TextView;
 
 import com.cheese.radio.base.IkeParams;
 
+import java.util.Map;
+
 import static com.binding.model.util.BaseUtil.getCodeError;
 import static com.binding.model.util.BaseUtil.getPhoneError;
 import static com.binding.model.util.BaseUtil.isValidToast;
@@ -18,7 +20,16 @@ public class SignParams extends IkeParams {
     private String method;
     private String loginType;
     private String openId;
-    private String otherInfo;
+    private String otherinfo;
+    private String access_token;
+
+    public String getAccess_token() {
+        return access_token;
+    }
+
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
+    }
 
     public SignParams(String method) {
         this.method = method;
@@ -69,14 +80,13 @@ public class SignParams extends IkeParams {
         this.openId = openId;
     }
 
-    public String getOtherInfo() {
-        return otherInfo;
+    public String getOtherinfo() {
+        return otherinfo;
     }
 
-    public void setOtherInfo(String otherInfo) {
-        this.otherInfo = otherInfo;
+    public void setOtherinfo(String otherinfo) {
+        this.otherinfo = otherinfo;
     }
-
 
     public boolean isValidPhone(TextView view) {
         return isValidToast(view, getPhoneError(phone));

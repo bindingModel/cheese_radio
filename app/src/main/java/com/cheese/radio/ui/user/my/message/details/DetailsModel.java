@@ -70,7 +70,10 @@ public class DetailsModel extends RecyclerModel<DetailsActivity,ActivityDetailsB
             addDisposable(api.readMessages(params).compose(new RestfulTransformer<>()).subscribe(s -> {
                 BaseUtil.toast("确认消息");
             }, BaseUtil::toast));
+//            entity.aBoolean.set(false);
+//            entity.msg.set(entity.getTitle());
         }
+
 
         return super.onEvent(view, event, args);
     }

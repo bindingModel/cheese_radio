@@ -6,6 +6,7 @@
         <variable
             name="vm"
             type="com.cheese.radio.ui.user.my.message.entity.DetailsEntity" />
+        <import type="android.view.View"/>
     </data>
 
     <FrameLayout

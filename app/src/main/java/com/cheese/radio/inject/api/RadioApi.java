@@ -155,7 +155,7 @@ public interface RadioApi {
     Observable<InfoEntity<String>> addFavority(@Body AddFavorityParams params);
 
     @POST("/1.0/user")
-    Observable<InfoEntity<String>> readMessages(@Body ReadMessagesParams params);
+    Observable<InfoEntity<Object>> readMessages(@Body ReadMessagesParams params);
 
     @POST("/1.0/user")
     Observable<InfoEntity<String>> setUserInfo(@Body UserInfoParams params);

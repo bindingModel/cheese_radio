@@ -54,7 +54,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/sys_text"
-                    android:text="暂无消息"
+                    android:text="暂无新消息"
                     android:textSize="12.5sp"
                     android:textColor="#777777"
                     android:singleLine="true"
@@ -95,7 +95,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="暂无消息"
+                    android:text="暂无新消息"
                     android:id="@+id/vip_text"
                     android:textSize="12.5sp"
                     android:textColor="#777777"
@@ -137,7 +137,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="暂无消息"
+                    android:text="暂无新消息"
                     android:textSize="12.5sp"
                     android:textColor="#777777"
                     android:id="@+id/class_text"
@@ -179,7 +179,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="暂无消息"
+                    android:text="暂无新消息"
                     android:textSize="12.5sp"
                     android:id="@+id/book_text"
                     android:textColor="#777777"
