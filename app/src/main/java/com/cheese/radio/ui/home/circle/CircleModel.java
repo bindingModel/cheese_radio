@@ -50,6 +50,7 @@ public class CircleModel extends ViewModel<CircleFragment, FragmentHomeCircleBin
         });
         WebSettings webSettings=webView.getSettings();
         webSettings.setJavaScriptEnabled(true);//允许使用js
+        webSettings.setTextSize(WebSettings.TextSize.NORMAL);
 
         /**
          * LOAD_CACHE_ONLY: 不使用网络，只读取本地缓存数据

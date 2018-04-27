@@ -7,6 +7,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.SparseArray;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -414,7 +415,7 @@ public class CalendarView extends LinearLayout {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
 
-
+            Log.e("ThreadUI",Thread.currentThread().getName());
             LinearLayout linearLayout = getMonthView(context, position);
             views.put(position, linearLayout);
             container.addView(linearLayout);
@@ -463,7 +464,7 @@ public class CalendarView extends LinearLayout {
         Month month = months.get(positionMonth);
         if (month != null) {
             List<Day> days = month.getDays();
-            if (days == null) {
+            if (days == null ||true) {
                 days = getDays(month.getYear(), month.getMonth(), selectDay, tipsDays);
             }
             int lines = 5;

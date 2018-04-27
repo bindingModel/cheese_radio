@@ -5,6 +5,8 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.text.TextUtils;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.binding.model.App;
 import com.binding.model.util.BaseUtil;
@@ -157,6 +159,13 @@ public class MyBaseUtil extends BaseUtil {
             nowInteger[i] = Integer.valueOf(nowString[i]);
         }
         return nowInteger;
+    }
+    public static void HideKeyboard(View v) {
+        InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm.isActive()) {
+            imm.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
+
+        }
     }
 }
 

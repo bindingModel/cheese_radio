@@ -44,7 +44,7 @@ public class DescriptionFragmentModel extends ViewModel<DescriptionFragment,Frag
 
         WebSettings webSettings=webView.getSettings();
         webSettings.setJavaScriptEnabled(true);//允许使用js
-
+        webSettings.setTextSize(WebSettings.TextSize.NORMAL);
         /**
          * LOAD_CACHE_ONLY: 不使用网络，只读取本地缓存数据
          * LOAD_DEFAULT: （默认）根据cache-control决定是否从网络上取数据。

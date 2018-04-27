@@ -2,7 +2,9 @@ package com.cheese.radio.ui.user.calendar;
 
 import android.databinding.ObservableField;
 import android.os.Bundle;
+import android.support.annotation.MainThread;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -20,6 +22,7 @@ import com.cheese.radio.databinding.ActivityCalendarBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.home.CanBookParams;
+import com.cheese.radio.ui.user.enroll.PayResult;
 import com.cheese.radio.util.MyBaseUtil;
 import com.cheese.radio.util.calendarutils.Day;
 import com.cheese.radio.util.calendarutils.Month;
@@ -31,8 +34,15 @@ import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
+
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
+import static com.alibaba.android.arouter.core.LogisticsCenter.suspend;
 import static com.cheese.radio.inject.component.ActivityComponent.Router.enroll;
 
 /**
@@ -60,8 +70,9 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
             initCalendarView("2017-12", "2018-12", list);
             isFirst = false;
         }
+        Log.e("Thread",Thread.currentThread().getName());
+        calendarView.setTipsDays(calendarEntities);
 
-//        calendarView.setTipsDays(calendarEntities);
     }
 
     private CalendarView calendarView;
@@ -113,14 +124,14 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
         calendarView.selectTheDay(day);
     }
 
-    private void updataUI(List<CalendarEntity> tipsDays){
+    private void updataUI(List<CalendarEntity> tipsDays) {
         boolean isHaveSelectDay = false;
         if (selectDay == null) {
             if (tipsDays != null) {
                 for (int i = tipsDays.size() - 1; i >= 0; i--) {
                     CalendarEntity tipsDay = tipsDays.get(i);
                     if (tipsDay != null) {
-                        if (tipsDay.isBook()||tipsDay.isCanBook()) {
+                        if (tipsDay.isBook() || tipsDay.isCanBook()) {
                             selectDay = tipsDay.getDay();
                             calendarView.setSelectDay(selectDay);
                             isHaveSelectDay = true;
@@ -144,11 +155,11 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
             calendarView.setSelectDay(selectDay);
         }
     }
+
     private void initCalendarView(String dateStartString, String dateEndString, List<CalendarEntity> tipsDays) {
         calendarView.setDateStartString(dateStartString);
         calendarView.setDateEndString(dateEndString);
         updataUI(tipsDays);
-
 
 
 //        calendarView.setTipsDays(tipsDays);
@@ -165,13 +176,15 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
                     isInit = true;
                 }
                 Month month = months.get(position);
-                if (month != null) {
-                    getDataBinding().textViewYear.setText(month.getYear() + "年");
-                    updateMonth(month.getYear(), month.getMonth(), isInit);
-                    selectThisMonthDay(month.getYear(), month.getMonth());
-                    params.setYearMonth(month.getYear(), position);
-                    onHttp(1);
-                }
+                params.setYearMonth(month.getYear(), position);
+                onHttp(1);
+                Log.e("MainThread",Thread.currentThread().getName());
+
+                getDataBinding().textViewYear.setText(month.getYear() + "年");
+                updateMonth(month.getYear(), month.getMonth(), isInit);
+                selectThisMonthDay(month.getYear(), month.getMonth());
+
+
             }
 
             //日历上点击目标时间时触发
@@ -272,7 +285,7 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
         ARouterUtil.navigation(enroll);
     }
 
-    public void refreshUI() {
+    private void refreshUI() {
         addDisposable(api.getCanBook(new CanBookParams("canBook")).compose(new RestfulTransformer<>()).
                 subscribe(canBookData -> {
                             IkeApplication.getUser().setCanBookCheck(status = canBookData.isResult());
@@ -280,6 +293,7 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
                                 getDataBinding().clock.setVisibility(View.GONE);
                                 calendarView = getDataBinding().calendarView;
                                 setRcHttp((offset1, refresh) -> api.getClassCalendar(params).compose(new RestfulTransformer<>()));
+
                             }
                         }
                 ));

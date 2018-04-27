@@ -1,5 +1,6 @@
 package com.cheese.radio.ui.search;
 
+import android.content.Context;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.os.Bundle;
@@ -7,7 +8,11 @@ import android.support.v7.widget.GridLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 
 import com.binding.model.adapter.AdapterType;
 import com.binding.model.adapter.recycler.GridSpanSizeLookup;
@@ -22,6 +27,7 @@ import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.ui.search.entity.HotSearchEntity;
 import com.cheese.radio.ui.search.entity.HotSearchTitleEntity;
 import com.cheese.radio.ui.search.params.HotSearchParams;
+import com.cheese.radio.util.MyBaseUtil;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -41,7 +47,7 @@ import io.reactivex.internal.operators.observable.ObservableElementAt;
  * Created by 29283 on 2018/3/3.
  */
 @ModelView(R.layout.activity_search)
-public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBinding, GridInflate> implements TextWatcher {
+public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBinding, GridInflate> implements TextWatcher, TextView.OnEditorActionListener {
 
     @Inject
     SearchModel() {
@@ -67,7 +73,7 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
         setLayoutManager(layoutManager);
         setPageFlag(false);
         setRoHttp(((offset1, refresh) -> {
-            if(refresh!=0){
+            if (refresh != 0) {
                 list.clear();
             }
             if (params.getTitle() != null) {
@@ -144,5 +150,25 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
         getT().finish();
     }
 
+
+    /**
+     * Called when an action is being performed.
+     *
+     * @param v        The view that was clicked.
+     * @param actionId Identifier of the action.  This will be either the
+     *                 identifier you supplied, or {@link EditorInfo#IME_NULL
+     *                 EditorInfo.IME_NULL} if being called due to the enter key
+     *                 being pressed.
+     * @param event    If triggered by an enter key, this is the event;
+     *                 otherwise, this is null.
+     * @return Return true if you have consumed the action, else false.
+     */
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+            MyBaseUtil.HideKeyboard(v);
+        }
+        return true;
+    }
 
 }

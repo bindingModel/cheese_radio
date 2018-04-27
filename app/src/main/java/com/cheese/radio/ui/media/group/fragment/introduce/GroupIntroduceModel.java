@@ -48,6 +48,7 @@ public class GroupIntroduceModel extends ViewModel<GroupIntroduceFragment,Fragme
 
         WebSettings webSettings=webView.getSettings();
         webSettings.setJavaScriptEnabled(true);//允许使用js
+        webSettings.setTextZoom(100);
 
 /**
          * LOAD_CACHE_ONLY: 不使用网络，只读取本地缓存数据
