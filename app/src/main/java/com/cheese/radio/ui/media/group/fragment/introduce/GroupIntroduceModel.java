@@ -1,6 +1,7 @@
 package com.cheese.radio.ui.media.group.fragment.introduce;
 
 import android.databinding.ObservableField;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -48,7 +49,9 @@ public class GroupIntroduceModel extends ViewModel<GroupIntroduceFragment,Fragme
 
         WebSettings webSettings=webView.getSettings();
         webSettings.setJavaScriptEnabled(true);//允许使用js
-        webSettings.setTextZoom(100);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        webSettings.setTextZoom(16);
 
 /**
          * LOAD_CACHE_ONLY: 不使用网络，只读取本地缓存数据
@@ -57,7 +60,7 @@ public class GroupIntroduceModel extends ViewModel<GroupIntroduceFragment,Fragme
          * LOAD_CACHE_ELSE_NETWORK，只要本地有，无论是否过期，或者no-cache，都使用缓存中的数据。
          */
 
-        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ONLY);//不使用缓存，只从网络获取数据.
+        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);//不使用缓存，只从网络获取数据.
 
         //支持屏幕缩放
         webSettings.setSupportZoom(true);

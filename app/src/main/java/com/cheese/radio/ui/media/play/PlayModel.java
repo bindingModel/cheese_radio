@@ -2,6 +2,7 @@ package com.cheese.radio.ui.media.play;
 
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.Gravity;
@@ -27,6 +28,11 @@ import com.cheese.radio.ui.service.AudioServiceUtil;
 import com.cheese.radio.ui.user.params.AddFavorityParams;
 import com.cheese.radio.ui.user.params.FabulousParams;
 import com.cheese.radio.util.MyBaseUtil;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.media.UMusic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,11 +41,13 @@ import javax.inject.Inject;
 
 import io.reactivex.disposables.Disposable;
 
+import static com.cheese.radio.util.MyBaseUtil.GetLocalOrNewBitmap;
+
 /**
  * Created by 29283 on 2018/3/17.
  */
 @ModelView(R.layout.activity_play)
-public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, PlayEntity> {
+public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, PlayEntity> implements UMShareListener {
     @Inject
     PlayModel() {
     }
@@ -170,5 +178,39 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         );
     }
 
+    public void onShareClick(View view){
+        String musicUR=null;
+        if(list.size()==0)return;
+          PlayEntity entity=list.get(0);
+        Bitmap bipmap= MyBaseUtil.GetLocalOrNewBitmap(entity.getUrl());
+        UMImage image=new UMImage(getT(),bipmap);
+        UMusic music =new UMusic(entity.getUrl());
+                music.setTitle(entity.getTitle());
+                music.setThumb(image);
+                music.setDescription(entity.getSubTitle());
+        new ShareAction(getT()).withText("测试")
+                .setDisplayList(SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WEIXIN_CIRCLE)
+                .setCallback(this).open();
+    }
+
+    @Override
+    public void onStart(SHARE_MEDIA share_media) {
+
+    }
+
+    @Override
+    public void onResult(SHARE_MEDIA share_media) {
+
+    }
+
+    @Override
+    public void onError(SHARE_MEDIA share_media, Throwable throwable) {
+
+    }
+
+    @Override
+    public void onCancel(SHARE_MEDIA share_media) {
+
+    }
 }
 

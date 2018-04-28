@@ -18,6 +18,7 @@ import com.cheese.radio.ui.user.my.message.ReadMessagesParams;
 import com.cheese.radio.ui.user.my.message.entity.DetailsEntity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -42,6 +43,7 @@ public class DetailsModel extends RecyclerModel<DetailsActivity,ActivityDetailsB
         getTitle(getT().getIntent().getIntExtra(Constant.id,0));
         list.addAll(getT().getIntent().getParcelableArrayListExtra(Constant.detailsEntity));
         try {
+            Collections.reverse(list);//倒序排序
             accept(list);
         } catch (Exception e) {
             e.printStackTrace();

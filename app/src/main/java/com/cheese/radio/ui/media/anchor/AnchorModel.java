@@ -34,6 +34,10 @@ import com.cheese.radio.ui.media.play.PlayEntity;
 import com.cheese.radio.ui.service.AudioServiceUtil;
 import com.cheese.radio.util.DataStore;
 import com.cheese.radio.util.models.AudioPagerModel;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMusic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -135,4 +139,8 @@ public class AnchorModel extends AudioPagerModel<AnchorActivity, ActivityAnchorB
     public void onToPlayClick(View view) {
         ARouterUtil.navigation(ActivityComponent.Router.play);
     }
+
+
+
+
 }

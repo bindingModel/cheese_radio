@@ -140,6 +140,8 @@ public class DetailsEntity extends ViewInflateRecycler implements Parcelable {
 
         try {
             Thread.sleep(1000);
+//            getDataBinding()
+
             Model.dispatchModel("upDataMsg");
         } catch (InterruptedException e) {
             e.printStackTrace();

@@ -84,6 +84,9 @@
                         android:layout_gravity="end"
                         android:padding="14dp"
                         android:src="@mipmap/share"
+                        android:layout_marginEnd="9dp"
+                        android:visibility="gone"
+                        android:layout_marginRight="9dp"
                         app:layout_scrollFlags="scroll|enterAlways" />
                 </FrameLayout>
                 <com.binding.model.view.radio.CheckRadioGroup

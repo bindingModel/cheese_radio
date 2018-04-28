@@ -98,13 +98,14 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
 
                     );
         }));
-        Disposable subscribe = observable.debounce(800, TimeUnit.MILLISECONDS)
+        Disposable subscribe = observable.debounce(2000, TimeUnit.MILLISECONDS)
                 .subscribe(s -> onHttp(3), BaseUtil::toast);
     }
 
     public void onSearchClick(View view) {
         onHttp(view);
     }
+
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {

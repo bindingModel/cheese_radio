@@ -20,7 +20,14 @@
             android:textSize="11.5sp"
             android:layout_gravity="center|top"
             android:text="@{vm.createTime,default=201706075.50}" />
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/un_read"
+            android:layout_marginTop="15dp"
+            android:textSize="10sp"
+            android:visibility="@{vm.isRead?View.GONE:View.VISIBLE}"
+            android:layout_gravity="top|center"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

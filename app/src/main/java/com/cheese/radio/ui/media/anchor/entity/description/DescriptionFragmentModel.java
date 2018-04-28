@@ -1,6 +1,7 @@
 package com.cheese.radio.ui.media.anchor.entity.description;
 
 import android.databinding.ObservableField;
+import android.os.Build;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -44,14 +45,17 @@ public class DescriptionFragmentModel extends ViewModel<DescriptionFragment,Frag
 
         WebSettings webSettings=webView.getSettings();
         webSettings.setJavaScriptEnabled(true);//允许使用js
-        webSettings.setTextSize(WebSettings.TextSize.NORMAL);
+        webSettings.setTextZoom(16);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        webSettings.setTextSize(WebSettings.TextSize.SMALLER);
         /**
          * LOAD_CACHE_ONLY: 不使用网络，只读取本地缓存数据
          * LOAD_DEFAULT: （默认）根据cache-control决定是否从网络上取数据。
          * LOAD_NO_CACHE: 不使用缓存，只从网络获取数据.
          * LOAD_CACHE_ELSE_NETWORK，只要本地有，无论是否过期，或者no-cache，都使用缓存中的数据。
          */
-        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ONLY);//不使用缓存，只从网络获取数据.
+        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);//不使用缓存，只从网络获取数据.
 
         //支持屏幕缩放
         webSettings.setSupportZoom(true);
