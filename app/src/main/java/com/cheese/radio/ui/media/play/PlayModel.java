@@ -12,7 +12,9 @@ import android.webkit.WebSettings;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.alipay.sdk.app.PayTask;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
@@ -25,6 +27,7 @@ import com.cheese.radio.ui.media.audio.AudioModel;
 import com.cheese.radio.ui.media.play.popup.PopupPlayModel;
 import com.cheese.radio.ui.media.play.popup.SelectPlayTimeEntity;
 import com.cheese.radio.ui.service.AudioServiceUtil;
+import com.cheese.radio.ui.user.enroll.PayResult;
 import com.cheese.radio.ui.user.params.AddFavorityParams;
 import com.cheese.radio.ui.user.params.FabulousParams;
 import com.cheese.radio.util.MyBaseUtil;
@@ -39,7 +42,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 import static com.cheese.radio.util.MyBaseUtil.GetLocalOrNewBitmap;
 
@@ -70,7 +77,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         super.attachView(savedInstanceState, activity);
         intTimes();
         iniView();
-       if(id!=0) addDisposable(api.getContentInfo(new PlayParams("contentInfo", id))
+        if (id != 0) addDisposable(api.getContentInfo(new PlayParams("contentInfo", id))
                 .compose(new RestfulTransformer<>()).subscribe(
                         this::setSingelEntity, throwable -> BaseUtil.toast(getT(), throwable)));
         initPopupPlayModel(savedInstanceState);
@@ -163,34 +170,43 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     }
 
     public void onAddFavorityClick(View view) {
-        if(id==0)return;
+        if (id == 0) return;
         AddFavorityParams params = new AddFavorityParams("addFavority");
         params.setId(AudioServiceUtil.getInstance().getId());
         api.addFavority(params).compose(new RestfulTransformer<>()).subscribe(
         );
     }
-    public void onFabuClick(View view){
-        if(id==0)return;
-        FabulousParams params=new FabulousParams("addFabulous");
+
+    public void onFabuClick(View view) {
+        if (id == 0) return;
+        FabulousParams params = new FabulousParams("addFabulous");
         params.setId(AudioServiceUtil.getInstance().getId());
         api.addFabulous(params).compose(new RestfulTransformer<>()).subscribe(
 
         );
     }
 
-    public void onShareClick(View view){
-        String musicUR=null;
-        if(list.size()==0)return;
-          PlayEntity entity=list.get(0);
-        Bitmap bipmap= MyBaseUtil.GetLocalOrNewBitmap(entity.getUrl());
-        UMImage image=new UMImage(getT(),bipmap);
-        UMusic music =new UMusic(entity.getUrl());
-                music.setTitle(entity.getTitle());
-                music.setThumb(image);
-                music.setDescription(entity.getSubTitle());
-        new ShareAction(getT()).withText("测试")
-                .setDisplayList(SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WEIXIN_CIRCLE)
-                .setCallback(this).open();
+    public void onShareClick(View view) {
+        String musicUR = null;
+        if (list.size() == 0) return;
+        PlayEntity entity = list.get(0);
+//        Bitmap bipmap= MyBaseUtil.GetLocalOrNewBitmap(entity.getUrl());
+        addDisposable(Observable.create((ObservableOnSubscribe<UMusic>) e -> {
+                    UMusic music = new UMusic(entity.getUrl());
+//                    UMImage image = new UMImage(getT(), entity.getUrl());
+                    music.setTitle(entity.getTitle());
+//                    music.setThumb(image);
+                    music.setDescription(entity.getSubTitle());
+                    e.onNext(music);
+                }
+        ).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe((uMusic -> {
+            new ShareAction(getT())
+                    .withMedia(uMusic)
+                    .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE)
+                    .setCallback(this).open();
+        }), BaseUtil::toast));
+
+
     }
 
     @Override
@@ -205,7 +221,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
     @Override
     public void onError(SHARE_MEDIA share_media, Throwable throwable) {
-
+        Toast.makeText(getT(), "失                                            败" + throwable.getMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override

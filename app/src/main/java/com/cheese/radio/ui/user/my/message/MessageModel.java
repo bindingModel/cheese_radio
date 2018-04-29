@@ -25,7 +25,7 @@ import javax.inject.Inject;
 /**
  * Created by 29283 on 2018/3/31.
  */
-@ModelView(value = R.layout.activity_message,event = R.id.EnrollModel)
+@ModelView(value = R.layout.activity_message,event = R.id.EnrollModel,model = true)
 public class MessageModel extends ViewHttpModel<MessageActivity, ActivityMessageBinding, MessagesData> {
 
     @Inject
@@ -99,5 +99,7 @@ public class MessageModel extends ViewHttpModel<MessageActivity, ActivityMessage
         }
         return msg;
     }
-
+    public void upDataMsg(){
+        onHttp(1);
+    }
 }

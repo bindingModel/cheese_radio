@@ -19,7 +19,9 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.home.HomeActivity" />
+        <activity
+            android:name=".ui.home.HomeActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ui.startup.StartUpActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,7 +63,7 @@
             android:name="PGYER_APPID"
             android:value="14a0fc2fba7de48e4f1d4e0dd819b86f" />
 
-        <activity android:name=".ui.user.register.one.RegisterOneActivity"/>
+        <activity android:name=".ui.user.register.one.RegisterOneActivity" />
 
         <activity android:name=".ui.user.register.two.RegisterTwoActivity">
 
@@ -112,7 +114,8 @@
         <activity android:name=".ui.demo.coordinatorLayout.CoordinatorLayoutActivity">
 
         </activity>
-        <activity android:name=".ui.user.product.place.PlaceActivity"
-            android:label="@string/class_ad"/>
+        <activity
+            android:name=".ui.user.product.place.PlaceActivity"
+            android:label="@string/class_ad" />
     </application>
 </manifest>

@@ -37,7 +37,7 @@ public class DetailsEntity extends ViewInflateRecycler implements Parcelable {
     private int id;
     private String title;
     private String content;
-    public ObservableBoolean aBoolean = new ObservableBoolean();
+    public ObservableField<String> unReadText = new ObservableField<>("未读");
 
     public String getCreateTime() {
         return createTime;
@@ -59,9 +59,12 @@ public class DetailsEntity extends ViewInflateRecycler implements Parcelable {
         return isRead;
     }
 
-    public void setIsRead(boolean isRead) {
-        aBoolean.set(isRead);
-        this.isRead = isRead;
+    public boolean isRead() {
+        return isRead;
+    }
+
+    public void setRead(boolean read) {
+        isRead = read;
     }
 
     public String getLocation() {
@@ -139,10 +142,9 @@ public class DetailsEntity extends ViewInflateRecycler implements Parcelable {
         Event.event(R.id.DetailsModel, this, view);
 
         try {
-            Thread.sleep(1000);
-//            getDataBinding()
 
-            Model.dispatchModel("upDataMsg");
+            Thread.sleep(1000);
+            unReadText.set("");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
