@@ -3,6 +3,7 @@ package com.cheese.radio.ui.user.my.message;
 import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewHttpModel;
@@ -25,7 +26,7 @@ import javax.inject.Inject;
 /**
  * Created by 29283 on 2018/3/31.
  */
-@ModelView(value = R.layout.activity_message,event = R.id.EnrollModel,model = true)
+@ModelView(value = R.layout.activity_message, event = R.id.EnrollModel, model = true)
 public class MessageModel extends ViewHttpModel<MessageActivity, ActivityMessageBinding, MessagesData> {
 
     @Inject
@@ -83,23 +84,40 @@ public class MessageModel extends ViewHttpModel<MessageActivity, ActivityMessage
     private void initMsg() {
 
         getDataBinding().sysText.setText(findNewMSG(messagesData.getSystem()));
-
+        findNewTip(messagesData.getSystem(), getDataBinding().systemMessageTip);
         getDataBinding().vipText.setText(findNewMSG(messagesData.getUser()));
+        findNewTip(messagesData.getUser(), getDataBinding().vipMessageTip);
 
         getDataBinding().classText.setText(findNewMSG(messagesData.getClassX()));
+        findNewTip(messagesData.getClassX(), getDataBinding().classMessageTip);
 
         getDataBinding().bookText.setText(findNewMSG(messagesData.getBook()));
+        findNewTip(messagesData.getBook(),getDataBinding().bookMessageTip);
 
     }
-    private String findNewMSG(ArrayList<DetailsEntity> list){
-        String msg="暂无新消息";
-        for (DetailsEntity entity: list ) {
-           if(entity.isIsRead())continue;
-           msg=entity.getContent();
+
+    private String findNewMSG(ArrayList<DetailsEntity> list) {
+        String msg = "暂无新消息";
+        for (DetailsEntity entity : list) {
+            if (entity.isIsRead()) continue;
+            msg = entity.getContent();
         }
         return msg;
     }
-    public void upDataMsg(){
+
+    private void findNewTip(ArrayList<DetailsEntity> list, TextView view) {
+        Integer count = 0;
+        for (DetailsEntity entity : list) {
+            if (entity.isIsRead()) continue;
+            count++;
+        }
+        if (count == 0) view.setVisibility(View.GONE);
+        else {
+            view.setText(String.valueOf(count));
+        }
+    }
+
+    public void upDataMsg() {
         onHttp(1);
     }
 }
