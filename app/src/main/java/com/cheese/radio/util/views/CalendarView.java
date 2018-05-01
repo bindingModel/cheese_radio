@@ -25,7 +25,9 @@ import com.cheese.radio.util.calendarutils.Day;
 import com.cheese.radio.util.calendarutils.Month;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static com.cheese.radio.util.calendarutils.CalendarUtil.getDays;
 
@@ -45,7 +47,7 @@ public class CalendarView extends LinearLayout {
     private int[] dateEnd;//日历结束年、月
     private final int[] selectDay = new int[3];
     private final List<CalendarEntity> tipsDays = new ArrayList<CalendarEntity>();
-
+    private final Set<CalendarEntity> tipsDaysSet = new HashSet<>();
     private int calendarView_textColorUnChoose;
     private int calendarView_textColorChoose;
     private int calendarView_textColorTips;
@@ -217,18 +219,23 @@ public class CalendarView extends LinearLayout {
     }
 
     public void setTipsDays(List<CalendarEntity> tipsDays) {
-        this.tipsDays.clear();
+//        this.tipsDays.clear();
+    Integer initialSize=this.tipsDays.size();
         if (tipsDays != null) {
             for (int i = 0; i < tipsDays.size(); i++) {
                 CalendarEntity tipsDay = tipsDays.get(i);
                 if (tipsDay != null) {
                     int[] theDay = convertDay(tipsDay.getDay());
                     tipsDay.setDays(theDay);
+                    if(tipsDaysSet.add(tipsDay))
                     this.tipsDays.add(tipsDay);
+
                 }
             }
         }
 
+        if(myPagerAdapter!=null && tipsDays!=null &&tipsDays.size()!=initialSize)
+        myPagerAdapter.notifyDataSetChanged();
         int i = 0;
     }
 
@@ -415,7 +422,6 @@ public class CalendarView extends LinearLayout {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
 
-            Log.e("ThreadUI",Thread.currentThread().getName());
             LinearLayout linearLayout = getMonthView(context, position);
             views.put(position, linearLayout);
             container.addView(linearLayout);

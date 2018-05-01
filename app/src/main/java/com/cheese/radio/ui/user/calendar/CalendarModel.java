@@ -72,7 +72,6 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
         }
         Log.e("Thread",Thread.currentThread().getName());
         calendarView.setTipsDays(calendarEntities);
-
     }
 
     private CalendarView calendarView;

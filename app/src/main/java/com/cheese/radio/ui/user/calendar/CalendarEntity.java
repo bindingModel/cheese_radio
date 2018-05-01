@@ -13,6 +13,9 @@ import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
 import com.cheese.radio.util.calendarutils.TipsDay;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 /**
  * Created by 29283 on 2018/3/26.
  */
@@ -172,6 +175,42 @@ public class CalendarEntity extends ViewInflateRecycler {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CalendarEntity entity = (CalendarEntity) o;
+
+        if (classId != entity.classId) return false;
+        if (teacherId != entity.teacherId) return false;
+        if (teacherName != null ? !teacherName.equals(entity.teacherName) : entity.teacherName != null)
+            return false;
+        if (className != null ? !className.equals(entity.className) : entity.className != null)
+            return false;
+        if (classImage != null ? !classImage.equals(entity.classImage) : entity.classImage != null)
+            return false;
+        if (time != null ? !time.equals(entity.time) : entity.time != null) return false;
+        if (teacherIcon != null ? !teacherIcon.equals(entity.teacherIcon) : entity.teacherIcon != null)
+            return false;
+        if (day != null ? !day.equals(entity.day) : entity.day != null) return false;
+        return Arrays.equals(days, entity.days);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = classId;
+        result = 31 * result + teacherId;
+        result = 31 * result + (teacherName != null ? teacherName.hashCode() : 0);
+        result = 31 * result + (className != null ? className.hashCode() : 0);
+        result = 31 * result + (classImage != null ? classImage.hashCode() : 0);
+        result = 31 * result + (time != null ? time.hashCode() : 0);
+        result = 31 * result + (teacherIcon != null ? teacherIcon.hashCode() : 0);
+        result = 31 * result + (day != null ? day.hashCode() : 0);
+        result = 31 * result + Arrays.hashCode(days);
+        return result;
+    }
+
     public String getEnrolMsg() {
 
         if (bookId != null) return "已预约";
@@ -199,4 +238,5 @@ public class CalendarEntity extends ViewInflateRecycler {
         bundle.putInt(Constant.classId, classId);
         ARouterUtil.navigation(ActivityComponent.Router.coursedetails, bundle);
     }
+
 }
