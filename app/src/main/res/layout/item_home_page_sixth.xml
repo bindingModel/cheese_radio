@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="144dp"
             android:src="@{vm.image}"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             app:radius="@{vm.radius}"
 
             android:layout_marginBottom="7dp"/>

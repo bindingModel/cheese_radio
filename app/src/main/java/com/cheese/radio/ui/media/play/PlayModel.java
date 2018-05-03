@@ -3,6 +3,7 @@ package com.cheese.radio.ui.media.play;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.Gravity;
@@ -36,6 +37,9 @@ import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMusic;
+import com.umeng.socialize.shareboard.ShareBoardConfig;
+import com.umeng.socialize.shareboard.SnsPlatform;
+import com.umeng.socialize.utils.ShareBoardlistener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -193,17 +197,34 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 //        Bitmap bipmap= MyBaseUtil.GetLocalOrNewBitmap(entity.getUrl());
         addDisposable(Observable.create((ObservableOnSubscribe<UMusic>) e -> {
                     UMusic music = new UMusic(entity.getUrl());
-//                    UMImage image = new UMImage(getT(), entity.getUrl());
+                    UMImage image = new UMImage(getT(), entity.getImage());
                     music.setTitle(entity.getTitle());
-//                    music.setThumb(image);
+                    music.setThumb(image);
                     music.setDescription(entity.getSubTitle());
+            {
+//                new ShareAction(getT())
+//                        .setDisplayList(SHARE_MEDIA.SINA,SHARE_MEDIA.QQ,SHARE_MEDIA.QZONE,SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WEIXIN_CIRCLE)//分享平台
+//                        .addButton("umeng_sharebutton_custom","umeng_sharebutton_custom","info_icon_1","info_icon_1")// 自定义按钮
+//                        .setShareboardclickCallback(new ShareBoardlistener() {
+//                            @Override
+//                            public void onclick(SnsPlatform snsPlatform, SHARE_MEDIA share_media) {
+//
+//                            }
+//                        })//面板点击监听器
+//                        .open();
+            }
                     e.onNext(music);
                 }
         ).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe((uMusic -> {
+            ShareBoardConfig config = new ShareBoardConfig();//新建ShareBoardConfig               config.setShareboardPostion(ShareBoardConfig.SHAREBOARD_POSITION_CENTER);//设置位置
+            config.setMenuItemBackgroundShape(ShareBoardConfig.BG_SHAPE_CIRCULAR);
+            config.setCancelButtonVisibility(true);
+            config.setTitleVisibility(false);
+            config.setShareboardBackgroundColor(Color.WHITE);
             new ShareAction(getT())
                     .withMedia(uMusic)
-                    .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE)
-                    .setCallback(this).open();
+                    .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE,SHARE_MEDIA.QQ,SHARE_MEDIA.SINA)
+                    .setCallback(this).open(config);
         }), BaseUtil::toast));
 
 

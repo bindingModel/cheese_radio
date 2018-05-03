@@ -73,4 +73,5 @@
     <string name="class_ad">上课地址</string>
     <string name="select_class_ad">请选择上课地址</string>
     <string name="un_read">未读</string>
+    <string name="touch_go">点击开启</string>
 </resources>

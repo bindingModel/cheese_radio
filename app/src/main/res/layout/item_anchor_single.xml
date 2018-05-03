@@ -17,7 +17,7 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             app:radius="@{vm.radius}"
             android:layout_margin="8.6dp"
             android:src="@{vm.image}" />

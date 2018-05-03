@@ -12,6 +12,7 @@ import com.cheese.radio.ui.media.course.details.CourseDetailsActivity;
 import com.cheese.radio.ui.media.group.GroupInfoActivity;
 import com.cheese.radio.ui.media.play.PlayActivity;
 import com.cheese.radio.ui.search.SearchActivity;
+import com.cheese.radio.ui.startup.welcome.WelcomeActivity;
 import com.cheese.radio.ui.user.edit.EditNameActivity;
 import com.cheese.radio.ui.user.enroll.EnrollActivity;
 
@@ -99,6 +100,7 @@ public interface ActivityComponent {
 
     void inject(CoordinatorLayoutActivity activity);
     void inject(PlaceActivity activity);
+    void inject(WelcomeActivity activity);
     interface Router {
         String cheese = "/cheese/";
         String startup = cheese + "startup";
@@ -130,6 +132,7 @@ public interface ActivityComponent {
         String coursedetails = cheese + "coursedetails";
         String demo = "demo";
         String place = cheese + "place";
+        String welcome=cheese+"welcome_circle";
     }
     /*
      *  CONTENT_LIST	绘本列表                  contents

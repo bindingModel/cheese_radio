@@ -18,7 +18,7 @@ import static com.binding.model.util.ReflectUtil.getAllFields;
  */
 
 public class UserEntity {
-
+    private Integer count=0;
     private String token;
     private String nickname;
     private String sex;
@@ -133,5 +133,13 @@ public class UserEntity {
 
     public void setPortrait(String portrait) {
         this.portrait = portrait;
+    }
+
+    public Integer getCount() {
+        return count++;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 }

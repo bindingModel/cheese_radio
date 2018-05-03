@@ -21,7 +21,7 @@ import java.util.Objects;
  */
 @ModelView(R.layout.item_calendar_class)
 public class CalendarEntity extends ViewInflateRecycler {
-//图还没修。
+
 
     /**
      * classId : 1

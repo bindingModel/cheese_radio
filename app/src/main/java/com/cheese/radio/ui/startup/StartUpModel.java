@@ -15,6 +15,7 @@ import javax.inject.Inject;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.home;
 import static com.cheese.radio.inject.component.ActivityComponent.Router.login;
+import static com.cheese.radio.inject.component.ActivityComponent.Router.welcome;
 
 /**
  * Created by 29283 on 2018/2/22.
@@ -22,7 +23,8 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.login;
 @ModelView(R.layout.activity_startup)
 public class StartUpModel extends ViewModel<StartUpActivity, ActivityStartupBinding> {
     @Inject
-    StartUpModel() {}
+    StartUpModel() {
+    }
 
     @Override
     public void attachView(Bundle savedInstanceState, StartUpActivity startUpActivity) {
@@ -31,7 +33,9 @@ public class StartUpModel extends ViewModel<StartUpActivity, ActivityStartupBind
         MyBaseUtil.getMacAddress();
         Handler handler = new Handler();
         handler.postDelayed(() -> {
-            if (IkeApplication.isLogin(true)) ARouterUtil.navigation(home);
+            if (IkeApplication.getUser().checkIsFirstUse() == 0) ARouterUtil.navigation(welcome);
+            else if (IkeApplication.isLogin(true)) ARouterUtil.navigation(home);
+
             finish();
         }, time);
     }

@@ -117,5 +117,6 @@
         <activity
             android:name=".ui.user.product.place.PlaceActivity"
             android:label="@string/class_ad" />
+        <activity android:name=".ui.startup.welcome.WelcomeActivity" />
     </application>
 </manifest>

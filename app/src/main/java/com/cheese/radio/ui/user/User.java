@@ -22,7 +22,7 @@ import static com.cheese.radio.ui.Constant.logout;
 public class User {
 
     public static boolean isLogin = false;
-
+    private boolean isFirst = true;
     private SharePreferenceUtil util;
     private final UserEntity userEntity;
 
@@ -34,7 +34,7 @@ public class User {
 
     public void setToken(String token) {
         userEntity.setToken(token);
-        if(!TextUtils.isEmpty(token))isLogin=true;
+        if (!TextUtils.isEmpty(token)) isLogin = true;
         util.setAllDto(userEntity);
     }
 
@@ -62,7 +62,7 @@ public class User {
     }
 
     public void setUserEntity(UserEntity entity) {
-        String token=this.getToken();
+        String token = this.getToken();
         this.userEntity.clone(entity);
         this.userEntity.setToken(token);
         util.setAllDto(userEntity);
@@ -89,5 +89,11 @@ public class User {
         params.setAge(userEntity.getAge());
         params.setSex(userEntity.getSex());
         return params;
+    }
+
+    public int checkIsFirstUse() {
+        int count = userEntity.getCount();
+        util.setAllDto(userEntity);
+        return count;
     }
 }
