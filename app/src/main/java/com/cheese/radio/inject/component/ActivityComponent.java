@@ -99,8 +99,11 @@ public interface ActivityComponent {
     void inject(CourseDetailsActivity activity);
 
     void inject(CoordinatorLayoutActivity activity);
+
     void inject(PlaceActivity activity);
+
     void inject(WelcomeActivity activity);
+
     interface Router {
         String cheese = "/cheese/";
         String startup = cheese + "startup";
@@ -132,7 +135,8 @@ public interface ActivityComponent {
         String coursedetails = cheese + "coursedetails";
         String demo = "demo";
         String place = cheese + "place";
-        String welcome=cheese+"welcome_circle";
+        String welcome = cheese + "welcome";
+        String picture = cheese + "picture";
     }
     /*
      *  CONTENT_LIST	绘本列表                  contents

@@ -45,7 +45,7 @@ public class DescriptionFragmentModel extends ViewModel<DescriptionFragment,Frag
 
         WebSettings webSettings=webView.getSettings();
         webSettings.setJavaScriptEnabled(true);//允许使用js
-        webSettings.setTextZoom(16);
+        webSettings.setTextZoom(100);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         webSettings.setTextSize(WebSettings.TextSize.SMALLER);
@@ -58,9 +58,12 @@ public class DescriptionFragmentModel extends ViewModel<DescriptionFragment,Frag
         webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);//不使用缓存，只从网络获取数据.
 
         //支持屏幕缩放
-        webSettings.setSupportZoom(true);
-        webSettings.setBuiltInZoomControls(true);
-
+//        webSettings.setSupportZoom(true);
+//        webSettings.setBuiltInZoomControls(true);
+//        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        webSettings.setUseWideViewPort(true);
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+        webSettings.setLoadWithOverviewMode(true);
         //不显示webview缩放按钮
         webSettings.setDisplayZoomControls(false);
     }
