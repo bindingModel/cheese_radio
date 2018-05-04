@@ -48,7 +48,7 @@ public class DescriptionFragmentModel extends ViewModel<DescriptionFragment,Frag
         webSettings.setTextZoom(100);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-        webSettings.setTextSize(WebSettings.TextSize.SMALLER);
+//        webSettings.setTextSize(WebSettings.TextSize.SMALLER);
         /**
          * LOAD_CACHE_ONLY: 不使用网络，只读取本地缓存数据
          * LOAD_DEFAULT: （默认）根据cache-control决定是否从网络上取数据。
@@ -62,7 +62,7 @@ public class DescriptionFragmentModel extends ViewModel<DescriptionFragment,Frag
 //        webSettings.setBuiltInZoomControls(true);
 //        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         webSettings.setUseWideViewPort(true);
-        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+//        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         webSettings.setLoadWithOverviewMode(true);
         //不显示webview缩放按钮
         webSettings.setDisplayZoomControls(false);

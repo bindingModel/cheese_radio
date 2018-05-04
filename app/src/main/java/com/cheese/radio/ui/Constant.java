@@ -48,6 +48,7 @@ public interface Constant {
     int GALLERY_REQUSET_CODE_KITKAT=1;
     String productId="productId";
     String placeId="placeId";
+    String urlList="urlList";
 }
 
 //    static Drawable getMipmap(String name,int defMipmap){

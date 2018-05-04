@@ -140,7 +140,13 @@ public class AnchorModel extends AudioPagerModel<AnchorActivity, ActivityAnchorB
         ARouterUtil.navigation(ActivityComponent.Router.play);
     }
 
-
+    public void onShowPictureClick(View view){
+        Bundle bundle=new Bundle();
+        ArrayList<String> list=new ArrayList<>();
+        list.add( anchorData.getImage());
+        bundle.putStringArrayList(Constant.urlList,list);
+        ARouterUtil.navigation(ActivityComponent.Router.picture,bundle);
+    }
 
 
 }

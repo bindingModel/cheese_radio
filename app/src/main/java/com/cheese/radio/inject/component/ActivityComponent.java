@@ -10,6 +10,7 @@ import com.cheese.radio.ui.media.classify.ClassifyActivity;
 import com.cheese.radio.ui.media.classify.list.ClassifyListActivity;
 import com.cheese.radio.ui.media.course.details.CourseDetailsActivity;
 import com.cheese.radio.ui.media.group.GroupInfoActivity;
+import com.cheese.radio.ui.media.picture.PictureActivity;
 import com.cheese.radio.ui.media.play.PlayActivity;
 import com.cheese.radio.ui.search.SearchActivity;
 import com.cheese.radio.ui.startup.welcome.WelcomeActivity;
@@ -103,6 +104,8 @@ public interface ActivityComponent {
     void inject(PlaceActivity activity);
 
     void inject(WelcomeActivity activity);
+
+    void inject(PictureActivity activity);
 
     interface Router {
         String cheese = "/cheese/";

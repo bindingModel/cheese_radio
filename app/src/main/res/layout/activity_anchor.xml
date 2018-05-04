@@ -47,6 +47,7 @@
                         android:layout_marginLeft="9.6dp"
                         android:layout_marginStart="9.6dp"
                         app:head="@{entity.image}"
+                        android:onClick="@{vm::onShowPictureClick}"
                         app:layout_scrollFlags="scroll|enterAlways" />
 
                     <TextView
