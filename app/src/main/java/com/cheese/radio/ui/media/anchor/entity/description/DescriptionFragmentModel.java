@@ -62,7 +62,7 @@ public class DescriptionFragmentModel extends ViewModel<DescriptionFragment,Frag
 //        webSettings.setBuiltInZoomControls(true);
 //        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         webSettings.setUseWideViewPort(true);
-//        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         webSettings.setLoadWithOverviewMode(true);
         //不显示webview缩放按钮
         webSettings.setDisplayZoomControls(false);

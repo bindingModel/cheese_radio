@@ -103,6 +103,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
 
     public void onPrepared(MediaPlayer mediaPlayer) {
         mediaPlayer.start();
+        if(getPlayView()!=null)
         getPlayView().setEnabled(true);
         checked.set(true);
         util.setUri(transformUrl(fmsEntities.get(0)));

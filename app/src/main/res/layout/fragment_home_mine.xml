@@ -141,6 +141,7 @@
                         android:layout_height="55.2dp"
                         android:layout_marginTop="1dp"
                         android:onClick="@{vm::onCenterClick}"
+                        android:background="@color/white"
                         android:text="@string/service_centre" />
 
                     <TextView

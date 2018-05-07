@@ -21,39 +21,43 @@ import javax.inject.Inject;
  * Created by 29283 on 2018/3/21.
  */
 @ModelView(R.layout.fragment_group_brief_introduction)
-public class GroupIntroduceModel extends ViewModel<GroupIntroduceFragment,FragmentGroupBriefIntroductionBinding>{
-    @Inject GroupIntroduceModel(){}
+public class GroupIntroduceModel extends ViewModel<GroupIntroduceFragment, FragmentGroupBriefIntroductionBinding> {
+    @Inject
+    GroupIntroduceModel() {
+    }
+
     private WebView webView;
     private ProgressBar progressBar;
-    public ObservableField<String> description=new ObservableField<>();
+    public ObservableField<String> description = new ObservableField<>();
+
     @Override
 
     public void attachView(Bundle savedInstanceState, GroupIntroduceFragment groupIntroduceFragment) {
         super.attachView(savedInstanceState, groupIntroduceFragment);
-        Bundle bundle=groupIntroduceFragment.getArguments();
-        if (bundle!=null){
+        Bundle bundle = groupIntroduceFragment.getArguments();
+        if (bundle != null) {
             description.set(bundle.getString(Constant.description));
         }
-        progressBar= getDataBinding().progressbar;//进度条
+        progressBar = getDataBinding().progressbar;//进度条
 
         webView = getDataBinding().webview;
 //        webView.loadUrl("file:///android_asset/test.html");//加载asset文件夹下html
-     //   webView.loadUrl("http://139.196.35.30:8080/OkHttpTest/apppackage/test.html");//加载url
+        //   webView.loadUrl("http://139.196.35.30:8080/OkHttpTest/apppackage/test.html");//加载url
 
- //       使用webview显示html代码
-        webView.loadDataWithBaseURL(null,description.get(), "text/html" , "utf-8", null);
+        //       使用webview显示html代码
+        webView.loadDataWithBaseURL(null, description.get(), "text/html", "utf-8", null);
 
-      //  webView.addJavascriptInterface(this,"android");//添加js监听 这样html就能调用客户端
+        //  webView.addJavascriptInterface(this,"android");//添加js监听 这样html就能调用客户端
 //        webView.setWebChromeClient(webChromeClient);
 //        webView.setWebViewClient(webViewClient);
 
-        WebSettings webSettings=webView.getSettings();
+        WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);//允许使用js
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         webSettings.setTextZoom(16);
 
-/**
+        /**
          * LOAD_CACHE_ONLY: 不使用网络，只读取本地缓存数据
          * LOAD_DEFAULT: （默认）根据cache-control决定是否从网络上取数据。
          * LOAD_NO_CACHE: 不使用缓存，只从网络获取数据.
@@ -63,9 +67,12 @@ public class GroupIntroduceModel extends ViewModel<GroupIntroduceFragment,Fragme
         webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);//不使用缓存，只从网络获取数据.
 
         //支持屏幕缩放
-        webSettings.setSupportZoom(true);
-        webSettings.setBuiltInZoomControls(true);
-
+//        webSettings.setSupportZoom(true);
+//        webSettings.setBuiltInZoomControls(true);
+        //内容自适应屏幕
+        webSettings.setUseWideViewPort(true);
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        webSettings.setLoadWithOverviewMode(true);
         //不显示webview缩放按钮
         webSettings.setDisplayZoomControls(false);
     }

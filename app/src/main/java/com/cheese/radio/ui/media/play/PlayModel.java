@@ -89,7 +89,9 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
     @Override
     public RadioButton getPlayView() {
+        if (getDataBinding()!=null)
         return getDataBinding().play;
+        return null;
     }
 
     public String transformUrl(PlayEntity entity) {
@@ -202,16 +204,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
                     music.setThumb(image);
                     music.setDescription(entity.getSubTitle());
             {
-//                new ShareAction(getT())
-//                        .setDisplayList(SHARE_MEDIA.SINA,SHARE_MEDIA.QQ,SHARE_MEDIA.QZONE,SHARE_MEDIA.WEIXIN,SHARE_MEDIA.WEIXIN_CIRCLE)//分享平台
-//                        .addButton("umeng_sharebutton_custom","umeng_sharebutton_custom","info_icon_1","info_icon_1")// 自定义按钮
-//                        .setShareboardclickCallback(new ShareBoardlistener() {
-//                            @Override
-//                            public void onclick(SnsPlatform snsPlatform, SHARE_MEDIA share_media) {
-//
-//                            }
-//                        })//面板点击监听器
-//                        .open();
+
             }
                     e.onNext(music);
                 }

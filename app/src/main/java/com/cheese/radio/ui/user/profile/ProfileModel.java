@@ -101,10 +101,13 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
             params.setBirthday(mDate.get());
             addDisposable(api.setProperty(params).compose(new ErrorTransform<>()).subscribe(stringInfoEntity -> {
                         BaseUtil.toast(stringInfoEntity.getMessage());
-                        if (stringInfoEntity.code() == 0) IkeApplication.getUser().setUserEntity(params);
-                        Model.dispatchModel("updataUI");
+                        if (stringInfoEntity.code() == 0) {
+                            IkeApplication.getUser().setUserEntity(params);
+                            Model.dispatchModel("updataUI");
+                            BaseUtil.toast("更新成功");
+                        }
                     }
-            ));
+                    , BaseUtil::toast));
         }
     }
 

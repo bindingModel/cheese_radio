@@ -63,7 +63,7 @@ public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineB
                             redTipBoolean.set(true);
                         else redTipBoolean.set(false);
                     }, BaseUtil::toast));
-        }
+        }else finish();
     }
     public void onLogoutClick(View view) {
         IkeApplication.getUser().logout();

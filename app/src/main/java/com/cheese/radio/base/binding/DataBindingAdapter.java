@@ -137,7 +137,7 @@ public class DataBindingAdapter {
         Glide.with(context).clear(imageView);
         radius = (int) (radius * BaseUtil.getDisplayMetrics(context).density + 0.5f);
         RequestOptions options2 = new RequestOptions()
-                .centerCrop()
+                .fitCenter()
                 .priority(Priority.HIGH)//优先级
                 .diskCacheStrategy(DiskCacheStrategy.NONE)//缓存策略
                 .transform(new RoundedCorners(radius));//转化为圆角

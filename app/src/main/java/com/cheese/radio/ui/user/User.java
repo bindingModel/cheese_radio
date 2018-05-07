@@ -55,6 +55,7 @@ public class User {
 
     public void logout() {
         userEntity.clone(new UserEntity());
+        userEntity.getCount();
         util.setAllDto(userEntity);
         isLogin = userEntity.isLogin();
         ARouterUtil.navigation(login);

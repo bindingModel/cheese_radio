@@ -91,6 +91,7 @@ public class WelcomeModel extends ViewModel<WelcomeActivity, ActivityWelcomeBind
     public void onPageSelected(int position) {
         clearIndicatorFocusedState();
         mllLayout.getChildAt(position).setEnabled(false);
+        mllLayout.setVisibility(View.VISIBLE);
         if(position==2)mllLayout.setVisibility(View.GONE);
     }
 
