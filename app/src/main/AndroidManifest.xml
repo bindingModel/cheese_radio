@@ -119,5 +119,10 @@
             android:label="@string/class_ad" />
         <activity android:name=".ui.startup.welcome.WelcomeActivity" />
         <activity android:name=".ui.media.picture.PictureActivity" />
+        <receiver android:name=".ui.broadcast.MusicBroadcast">
+            <intent-filter>
+                <action android:name="ACTION_BUTTON"/>
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>

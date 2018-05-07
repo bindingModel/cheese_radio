@@ -136,7 +136,7 @@ public interface ActivityComponent {
         String message = cheese + "message";
         String detail = cheese + "detail";
         String coursedetails = cheese + "coursedetails";
-        String demo = "demo";
+        String demo = cheese +"demo";
         String place = cheese + "place";
         String welcome = cheese + "welcome";
         String picture = cheese + "picture";

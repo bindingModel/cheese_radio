@@ -38,6 +38,7 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import timber.log.Timber;
 
+import static com.cheese.radio.inject.component.ActivityComponent.Router.demo;
 import static com.cheese.radio.inject.component.ActivityComponent.Router.home;
 import static com.cheese.radio.inject.component.ActivityComponent.Router.registerOne;
 
@@ -102,6 +103,7 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
                 platformParams.setPlatform("weixin");
                 break;
         }
+        ARouterUtil.navigation(demo);
         BaseUtil.toast("暂未施工");
 
     }

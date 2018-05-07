@@ -30,7 +30,10 @@
                 android:layout_height="50dp"
                 app:layout_scrollFlags="scroll"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{vm::onClick}"/>
         </android.support.design.widget.AppBarLayout>
         <android.support.v4.view.ViewPager
             android:id="@+id/view_pager"
@@ -40,7 +43,6 @@
             app:adapter="@{vm.adapter}"
             app:position="@={vm.currentItem}"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
      </android.support.design.widget.CoordinatorLayout>
 
 </layout>

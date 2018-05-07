@@ -1,6 +1,8 @@
 package com.cheese.radio.ui.demo.coordinatorLayout.fragment;
 
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.widget.RemoteViews;
 
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
@@ -15,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+
+import static com.umeng.socialize.utils.ContextUtil.getPackageName;
 
 /**
  * Created by 29283 on 2018/4/20.
