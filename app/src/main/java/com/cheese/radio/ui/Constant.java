@@ -51,9 +51,8 @@ public interface Constant {
     String urlList="urlList";
     String ACTION_BUTTON="ACTION_BUTTON";
     String INTENT_BUTTONID_TAG="INTENT_BUTTONID_TAG";
-    int BUTTON_PREV_ID=0;
-    int BUTTON_PALY_ID=1;
-    int BUTTON_PAUSE_ID=2;
+    int BUTTON_PALY_ID=0;
+    int BUTTON_NEXT_ID=1;
     String NOTIFICATION_CHANNEL_NAME="NOTIFICATION_CHANNEL_NAME";
 }
 

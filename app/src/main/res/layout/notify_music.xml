@@ -36,18 +36,17 @@
 
     </LinearLayout>
 
-    <Button
+    <ImageView
         android:id="@+id/music_play"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_margin="15dp"
-        android:background="@mipmap/home_play"
         android:layout_gravity="center"/>
 
-    <Button
-        android:id="@+id/music_pause"
+    <ImageView
+        android:id="@+id/music_next"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:background="@mipmap/home_stop"
+        android:background="@mipmap/next"
         android:layout_gravity="center"/>
 </LinearLayout>

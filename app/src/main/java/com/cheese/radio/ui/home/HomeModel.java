@@ -194,6 +194,11 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
         }
     }
 
+    @Override
+    public void showButtonNotify() {
+
+    }
+
     private Runnable mRotationRunnable = new Runnable() {
         @Override
         public void run() {

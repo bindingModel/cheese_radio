@@ -33,9 +33,9 @@ import javax.inject.Inject;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.message;
 import static com.cheese.radio.ui.Constant.ACTION_BUTTON;
+import static com.cheese.radio.ui.Constant.BUTTON_NEXT_ID;
 import static com.cheese.radio.ui.Constant.BUTTON_PALY_ID;
-import static com.cheese.radio.ui.Constant.BUTTON_PAUSE_ID;
-import static com.cheese.radio.ui.Constant.BUTTON_PREV_ID;
+
 import static com.cheese.radio.ui.Constant.INTENT_BUTTONID_TAG;
 import static com.cheese.radio.ui.Constant.NOTIFICATION_CHANNEL_NAME;
 
@@ -98,7 +98,7 @@ public class CoordinatorLayoutModel extends PagerModel<CoordinatorLayoutActivity
 //        //点击的事件处理
         Intent buttonIntent = new Intent(ACTION_BUTTON);
         /* 上一首按钮 */
-        buttonIntent.putExtra(INTENT_BUTTONID_TAG, BUTTON_PREV_ID);
+
         //这里加了广播，所及INTENT的必须用getBroadcast方法
 
         /* 播放/暂停  按钮 */
@@ -106,9 +106,9 @@ public class CoordinatorLayoutModel extends PagerModel<CoordinatorLayoutActivity
         PendingIntent intent_paly = PendingIntent.getBroadcast(getT(), 1, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         mRemoteViews.setOnClickPendingIntent(R.id.music_play, intent_paly);
         /* 下一首 按钮  */
-        buttonIntent.putExtra(INTENT_BUTTONID_TAG, BUTTON_PAUSE_ID);
+        buttonIntent.putExtra(INTENT_BUTTONID_TAG, BUTTON_NEXT_ID);
         PendingIntent intent_next = PendingIntent.getBroadcast(getT(), 2, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        mRemoteViews.setOnClickPendingIntent(R.id.music_pause, intent_next);
+        mRemoteViews.setOnClickPendingIntent(R.id.music_next, intent_next);
 
         mBuilder.setContent(mRemoteViews)
                 .setContentIntent(getDefalutIntent(Notification.FLAG_ONGOING_EVENT))

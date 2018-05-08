@@ -80,7 +80,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
         } else {
             util.pause();
             checked.set(false);
-        }
+        }showButtonNotify();
     }
 
     //无论是否在播放，都强制暂停
@@ -103,8 +103,9 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
 
     public void onPrepared(MediaPlayer mediaPlayer) {
         mediaPlayer.start();
-        if(getPlayView()!=null)
-        getPlayView().setEnabled(true);
+        showButtonNotify();
+        if (getPlayView() != null)
+            getPlayView().setEnabled(true);
         checked.set(true);
         util.setUri(transformUrl(fmsEntities.get(0)));
     }
@@ -202,4 +203,6 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
             break;
         }
     }
+
+   public  abstract void showButtonNotify();
 }

@@ -1,10 +1,13 @@
 package com.cheese.radio.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.binding.model.App;
+import com.binding.model.util.BaseUtil;
 import com.cheese.radio.base.cycle.BaseActivity;
 import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.service.AudioServiceUtil;
@@ -31,7 +34,11 @@ public class HomeActivity extends BaseActivity <HomeModel> {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        System.exit(0);
+//        super.onBackPressed();
+        Intent home = new Intent(Intent.ACTION_MAIN);
+        home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        home.addCategory(Intent.CATEGORY_HOME);
+        startActivity(home);
+//        System.exit(0);
     }
 }
