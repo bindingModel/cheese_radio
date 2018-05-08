@@ -27,11 +27,13 @@ import com.cheese.radio.ui.user.my.favority.MyFavorityActivity;
 import com.cheese.radio.ui.user.my.message.MessageActivity;
 import com.cheese.radio.ui.user.my.message.details.DetailsActivity;
 import com.cheese.radio.ui.user.my.work.MyWorkActivity;
+import com.cheese.radio.ui.user.phone.PhoneActivity;
 import com.cheese.radio.ui.user.product.list.ProductsActivity;
 import com.cheese.radio.ui.user.product.place.PlaceActivity;
 import com.cheese.radio.ui.user.profile.ProfileActivity;
 import com.cheese.radio.ui.user.register.one.RegisterOneActivity;
 import com.cheese.radio.ui.user.register.two.RegisterTwoActivity;
+import com.cheese.radio.ui.user.safe.SafeActivity;
 import com.cheese.radio.ui.user.service.center.CenterActivity;
 
 import dagger.Component;
@@ -106,7 +108,8 @@ public interface ActivityComponent {
     void inject(WelcomeActivity activity);
 
     void inject(PictureActivity activity);
-
+    void inject(SafeActivity activity);
+    void inject(PhoneActivity activity);
     interface Router {
         String cheese = "/cheese/";
         String startup = cheese + "startup";
@@ -136,10 +139,12 @@ public interface ActivityComponent {
         String message = cheese + "message";
         String detail = cheese + "detail";
         String coursedetails = cheese + "coursedetails";
-        String demo = cheese +"demo";
+        String demo = cheese + "demo";
         String place = cheese + "place";
         String welcome = cheese + "welcome";
         String picture = cheese + "picture";
+        String safe = cheese + "safe";
+        String phone = cheese +"phone";
     }
     /*
      *  CONTENT_LIST	绘本列表                  contents

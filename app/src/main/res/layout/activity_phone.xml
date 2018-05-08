@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.cheese.radio.ui.user.phone.PhoneModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_gray"
+            android:orientation="vertical">
+
+            <include layout="@layout/toolbar" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="53.2dp"
+                android:layout_marginTop="18.6dp"
+                android:background="@color/background_white">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginStart="14dp"
+                    android:background="@drawable/normal_bottom_line"
+                    android:gravity="center|start"
+                    android:text="@string/input_new_phone" />
+
+                <EditText
+                    android:layout_width="150dp"
+                    android:layout_height="25.2dp"
+                    android:layout_gravity="center|end"
+                    android:background="@null"
+                    android:inputType="phone"
+                    android:singleLine="true" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="53.2dp"
+                android:background="@color/background_white">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginStart="14dp"
+                    android:gravity="center|start"
+                    android:text="@string/input_msg" />
+
+                <EditText
+                    android:layout_width="150dp"
+                    android:layout_height="25.2dp"
+                    android:layout_gravity="center|end"
+                    android:background="@null"
+                    android:inputType="phone"
+                    android:singleLine="true" />
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="@color/white"
+            android:onClick="@{vm::onSubmitClick}"
+            android:text="@string/submit"
+            android:visibility="@{vm.submitBoolean?View.VISIBLE: View.GONE}" />
+    </FrameLayout>
+
+</layout>

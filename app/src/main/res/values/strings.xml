@@ -10,12 +10,15 @@
     <string name="follow">关注</string>
     <string name="select_city">请选择省份.城市.地区</string>
     <string name="input_phone">请输入手机号码</string>
+    <string name="input_new_phone">请输入新手机号码</string>
+
     <string name="select_age">请选择年龄段</string>
     <string name="select_course">请选择课程套餐</string>
     <string name="course_package">课程套餐</string>
     <string name="ages">课程年龄段</string>
     <string name="address">家庭住址</string>
     <string name="phone">联系电话</string>
+    <string name="mobile_number">手机号码</string>
     <string name="birthday">生日</string>
     <string name="sex">性别</string>
     <string name="name">姓名</string>
@@ -74,4 +77,11 @@
     <string name="select_class_ad">请选择上课地址</string>
     <string name="un_read">未读</string>
     <string name="touch_go">点击开启</string>
+    <string name="safe_center">安全中心</string>
+    <string name="wechat_string">微信</string>
+    <string name="qq_string">QQ</string>
+    <string name="weibo_string">微博</string>
+    <string name="change">更换</string>
+    <string name="binding">绑定</string>
+    <string name="submit">提交</string>
 </resources>

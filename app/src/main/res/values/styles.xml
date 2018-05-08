@@ -88,4 +88,19 @@
         <!--结束日期(xxxx.x)-->
         <attr name="dateEnd" format="string" />
     </declare-styleable>
+
+    <style name="safe_item_text">
+        <item name="android:background">@drawable/normal_bottom_line</item>
+        <item name="android:drawableEnd">@mipmap/mine_arrow</item>
+        <item name="android:drawableRight">@mipmap/mine_arrow</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:layout_marginLeft">14dp</item>
+        <item name="android:paddingBottom">15dp</item>
+    </style>
+    <style name="safe_item_button">
+        <item name="android:background">@drawable/classify_tag_select</item>
+        <item name="android:layout_marginRight">28dp</item>
+        <item name="android:layout_gravity">end|center</item>
+    </style>
 </resources>

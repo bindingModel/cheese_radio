@@ -119,6 +119,9 @@
             android:label="@string/class_ad" />
         <activity android:name=".ui.startup.welcome.WelcomeActivity" />
         <activity android:name=".ui.media.picture.PictureActivity" />
+        <activity android:name=".ui.user.safe.SafeActivity" android:label="@string/safe_center" />
+        <activity android:name=".ui.user.phone.PhoneActivity" />
+
         <receiver android:name=".ui.broadcast.MusicBroadcast">
             <intent-filter>
                 <action android:name="ACTION_BUTTON"/>
