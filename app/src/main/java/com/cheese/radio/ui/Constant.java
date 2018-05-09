@@ -46,6 +46,7 @@ public interface Constant {
     String title="title";
     int GALLERY_REQUSET_CODE=0;
     int GALLERY_REQUSET_CODE_KITKAT=1;
+    int REQUEST_CAMERA=3;
     String productId="productId";
     String placeId="placeId";
     String urlList="urlList";

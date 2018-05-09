@@ -266,13 +266,13 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
     }
 
+    //通知栏
     public void showButtonNotify() {
         PlayEntity entity = list.get(0);
         int NOTIFICATION_ID = 234;
         String CHANNEL_ID = "cheese_channel_01";
         if (mNotificationManager == null)
             mNotificationManager = (NotificationManager) getT().getSystemService(Context.NOTIFICATION_SERVICE);
-
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             CharSequence name = "cheese_channel";
             String Description = "This is cheese channel";
@@ -284,7 +284,6 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
             mChannel.enableVibration(true);
             mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
             mChannel.setShowBadge(false);
-
             mNotificationManager.createNotificationChannel(mChannel);
         }
 
@@ -302,6 +301,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         } else {
             mRemoteViews.setImageViewResource(R.id.music_play, R.mipmap.home_stop);
             checked.set(true);
+            playRecord();//播放数的反馈
         }
         mRemoteViews.setTextViewText(R.id.music_title, entity.getTitle());
         mRemoteViews.setTextViewText(R.id.music_subtitle, entity.getSubTitle());
@@ -330,6 +330,15 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         Notification notify = mBuilder.build();
         notify.flags = Notification.FLAG_ONGOING_EVENT;
         mNotificationManager.notify(NOTIFICATION_ID, notify);
+
+    }
+
+    private void playRecord() {
+        PlayRecordParams recordParams = new PlayRecordParams("playRecord");
+        recordParams.setId(list.get(0).getId());
+        addDisposable(api.playRecord(recordParams).compose(new RestfulTransformer<>()).subscribe(o -> {
+            }, BaseUtil::toast)
+        );
     }
 
     private PendingIntent getDefalutIntent(int flags) {

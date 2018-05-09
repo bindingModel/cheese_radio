@@ -24,7 +24,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="七里香" />
+            android:text="芝士电台" />
 
         <TextView
             android:id="@+id/music_subtitle"
@@ -32,7 +32,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="周杰伦" />
+            android:text="芝士" />
 
     </LinearLayout>
 
@@ -47,5 +47,6 @@
         android:id="@+id/music_next"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:src="@mipmap/next"
         android:layout_gravity="center"/>
 </LinearLayout>

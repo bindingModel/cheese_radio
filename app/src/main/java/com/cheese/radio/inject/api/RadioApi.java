@@ -19,6 +19,7 @@ import com.cheese.radio.ui.media.group.GroupInfoParams;
 import com.cheese.radio.ui.media.group.fragment.GroupData;
 import com.cheese.radio.ui.media.play.PlayEntity;
 import com.cheese.radio.ui.media.play.PlayParams;
+import com.cheese.radio.ui.media.play.PlayRecordParams;
 import com.cheese.radio.ui.search.entity.HotSearchEntity;
 import com.cheese.radio.ui.search.params.HotSearchParams;
 import com.cheese.radio.ui.user.UserEntity;
@@ -177,4 +178,7 @@ public interface RadioApi {
 //    修改头像
     @POST("/1.0/file")
     Observable<InfoEntity<MyHeadData>>  myHead(@Body MyHeadParams params);
+
+    @POST("/1.0/user")
+    Observable<InfoEntity<Object>> playRecord(@Body PlayRecordParams params);
 }

@@ -5,8 +5,13 @@ import android.app.Application;
 import android.content.Intent;
 import android.database.Observable;
 import android.databinding.ObservableField;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,6 +25,7 @@ import com.binding.model.model.ViewModel;
 import com.binding.model.model.inter.Event;
 import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
+import com.binding.model.util.FileUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.ErrorTransform;
@@ -44,6 +50,7 @@ import javax.inject.Inject;
 import static com.cheese.radio.inject.component.ActivityComponent.Router.name;
 import static com.cheese.radio.ui.Constant.GALLERY_REQUSET_CODE;
 import static com.cheese.radio.ui.Constant.GALLERY_REQUSET_CODE_KITKAT;
+import static com.cheese.radio.ui.Constant.REQUEST_CAMERA;
 
 /**
  * Created by 29283 on 2018/3/9.
@@ -140,6 +147,31 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
     }
 
     public void onUploadClick(View view) {
+        selectCamere();
+    }
+
+    //从相机选择相片
+    private void selectCamere() {
+        BaseUtil.checkPermission(this, aBoolean -> {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            String urll;
+            urll=Environment.getExternalStorageDirectory().getAbsolutePath();
+            file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
+                    + "/test/" + System.currentTimeMillis() + ".jpg");
+            if (file.getParentFile().mkdirs()) {
+                //改变Uri  com.xykj.customview.fileprovider注意和xml中的一致
+                Uri uri = FileProvider.getUriForFile(getT(), getT().getApplicationContext().getPackageName() + ".provider", file);
+                //添加权限
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+                getT().startActivityForResult(intent, REQUEST_CAMERA);
+            }
+        }, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+    }
+
+    //从相册选择相片
+    private void selectPicture() {
         BaseUtil.checkPermission(this, aBoolean -> {
             if (aBoolean) {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -154,8 +186,15 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
         }, Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
 
+    File file;
+
     public void processePictures(String path) {
-        File file = new File(path);
+        Uri uri;
+        if (!TextUtils.isEmpty(path)) file = new File(path);
+//        else {
+//            uri = FileProvider.getUriForFile(getT(), getT().getApplicationContext().getPackageName() + ".provider", file);
+//            path = FileUtil.getRealPathFromURI(getT(), uri);
+//        }
         if (file.isFile()) {
             headParams.setInfo(file);
             addDisposable(api.myHead(headParams).compose(new RestfulTransformer<>()).subscribe((myHeadData) -> {

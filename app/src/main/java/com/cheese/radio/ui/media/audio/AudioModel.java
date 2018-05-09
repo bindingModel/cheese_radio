@@ -59,6 +59,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
         if (getSeekBar() != null) getSeekBar().setOnSeekBarChangeListener(this);
     }
 
+    //播放下一首
     public void onForwardClick(View view) {
         if (position >= fmsEntities.size() - 1) {
             BaseUtil.toast(view, "已经到最后了");
@@ -80,7 +81,8 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
         } else {
             util.pause();
             checked.set(false);
-        }showButtonNotify();
+        }
+        showButtonNotify();
     }
 
     //无论是否在播放，都强制暂停
@@ -127,6 +129,10 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
         } else {
             onForwardClick(null);
         }
+        //校准播放按钮
+        onResume();
+        showButtonNotify();
+        //加一个通知后台更新播放数的接口
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
@@ -204,5 +210,5 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
         }
     }
 
-   public  abstract void showButtonNotify();
+    public abstract void showButtonNotify();
 }
