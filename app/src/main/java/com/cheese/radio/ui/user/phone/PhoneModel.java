@@ -68,7 +68,7 @@ public class PhoneModel extends ViewHttpModel<PhoneActivity, ActivityPhoneBindin
         String phone = bindPhoneParams.getPhone();
         if (phone.length() == 11 && isValidToast(null, getPhoneError(phone))) {
             SMSparams.setPhone(bindPhoneParams.getPhone());
-            addDisposable(api.getSMS(SMSparams).compose(new ErrorTransform<>())
+            addDisposable(api.getSMS(SMSparams).compose(new RestfulTransformer<>())
                     .subscribe(objectInfoEntity -> {
                         BaseUtil.toast("发送短信，请注意查收");
                         submitBoolean.set(true);

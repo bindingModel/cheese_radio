@@ -6,6 +6,7 @@
         <variable
             name="vm"
             type="com.cheese.radio.ui.user.safe.SafeModel" />
+        <import type="android.view.View"/>
     </data>
 
     <FrameLayout
@@ -31,8 +32,16 @@
                     android:layout_width="51.33dp"
                     android:layout_height="25.2dp"
                     android:onClick="@{vm::onPhoneClick}"
+                    android:visibility="@{vm.havaPhoneNumber?View.GONE:View.VISIBLE}"
                     android:text="@string/change" />
+                <TextView
+                    style="@style/safe_item_button"
 
+                    android:layout_width="51.33dp"
+                    android:layout_height="25.2dp"
+                    android:visibility="@{vm.havaPhoneNumber?View.VISIBLE:View.GONE}"
+                    android:text="@{vm.phoneNumber}"
+                    />
                 <TextView
                     style="@style/safe_item_text"
                     android:layout_width="match_parent"

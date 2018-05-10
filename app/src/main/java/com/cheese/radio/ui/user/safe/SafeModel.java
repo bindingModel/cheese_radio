@@ -1,6 +1,11 @@
 package com.cheese.radio.ui.user.safe;
 
+import android.databinding.ObservableBoolean;
+import android.databinding.ObservableField;
+import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewHttpModel;
@@ -8,6 +13,7 @@ import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.databinding.ActivitySafeBinding;
 import com.cheese.radio.inject.component.ActivityComponent;
+import com.cheese.radio.ui.IkeApplication;
 
 import javax.inject.Inject;
 
@@ -22,4 +28,15 @@ public class SafeModel extends ViewHttpModel<SafeActivity,ActivitySafeBinding,Ob
     public void onPhoneClick(View view){
         ARouterUtil.navigation(ActivityComponent.Router.phone);
     }
+    public ObservableBoolean havaPhoneNumber=new ObservableBoolean(false);
+    public ObservableField<String> phoneNumber=new ObservableField<>();
+    @Override
+    public void attachView(Bundle savedInstanceState, SafeActivity activity) {
+        super.attachView(savedInstanceState, activity);
+    }
+
+    private void updataUI(){
+        havaPhoneNumber.set(TextUtils.isEmpty(IkeApplication.getUser().getUserEntity().getMobile()));
+        phoneNumber.set(IkeApplication.getUser().getUserEntity().getMobile());
+   }
 }

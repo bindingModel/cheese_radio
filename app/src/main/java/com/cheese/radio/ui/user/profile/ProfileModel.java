@@ -12,7 +12,9 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +28,7 @@ import com.binding.model.model.inter.Event;
 import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
 import com.binding.model.util.FileUtil;
+import com.cheese.radio.BuildConfig;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.ErrorTransform;
@@ -36,6 +39,7 @@ import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.user.UserEntity;
 import com.cheese.radio.ui.user.edit.EditNameModel;
+import com.cheese.radio.ui.user.profile.popup.PopupPlayModel;
 import com.cheese.radio.util.TimePickTool;
 
 import java.io.File;
@@ -74,14 +78,16 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
     private List<String> babySex = new ArrayList<>();
     private List<String> select = new ArrayList<String>();
     private UserEntity userEntity;
+    @Inject
+    PopupPlayModel popup;
 
     @Override
     public void attachView(Bundle savedInstanceState, ProfileActivity activity) {
         super.attachView(savedInstanceState, activity);
+        initPopupPlayModel(savedInstanceState);
         pickTool = new TimePickTool(mDate, activity);
         initSexPicker();
         params = new ProfileParams("setProperty");
-
         userEntity = IkeApplication.getUser().getUserEntity();
         mSex.set(userEntity.getSex().equals("M") ? "男孩" : "女孩");
         mDate.set(userEntity.getBirthday());
@@ -108,7 +114,7 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
             params.setBirthday(mDate.get());
             addDisposable(api.setProperty(params).compose(new ErrorTransform<>()).subscribe(stringInfoEntity -> {
                         BaseUtil.toast(stringInfoEntity.getMessage());
-                        if (stringInfoEntity.getCode() .equals("0") ) {
+                        if (stringInfoEntity.getCode().equals("0")) {
                             IkeApplication.getUser().setUserEntity(params);
                             Model.dispatchModel("updataUI");
                             BaseUtil.toast("更新成功");
@@ -147,27 +153,29 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
     }
 
     public void onUploadClick(View view) {
+        popup.show(window -> window.showAtLocation(getDataBinding().getRoot(), Gravity.BOTTOM, 0, 0));
+
 //        selectCamere();
-        selectPicture();
+//        selectPicture();
     }
 
     //从相机选择相片
     private void selectCamere() {
         BaseUtil.checkPermission(this, aBoolean -> {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            String urll;
-            urll=Environment.getExternalStorageDirectory().getAbsolutePath();
-            file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
-                    + "/test/" + System.currentTimeMillis() + ".jpg");
-            if (file.getParentFile().mkdirs()) {
-                //改变Uri  com.xykj.customview.fileprovider注意和xml中的一致
-                Uri uri = FileProvider.getUriForFile(getT(), getT().getApplicationContext().getPackageName() + ".provider", file);
-                //添加权限
-                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-                getT().startActivityForResult(intent, REQUEST_CAMERA);
+            String filePath = Environment.getExternalStorageDirectory() + "/test/" + System.currentTimeMillis() + ".jpg";
+            file = new File(filePath);
+            if (!file.getParentFile().exists()) {
+                file.getParentFile().mkdirs();
             }
+
+            //改变Uri  com.xxx.xxx.fileprovider注意和xml中的一致
+            Uri uri = FileProvider.getUriForFile(getT(), BuildConfig.APPLICATION_ID + ".filterProvider", file);
+            //添加权限
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+            getT().startActivityForResult(intent, REQUEST_CAMERA);
+
         }, Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
 
@@ -205,5 +213,23 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
                 Model.dispatchModel("updataUI");
             }, BaseUtil::toast));
         }
+    }
+
+    private void initPopupPlayModel(Bundle savedInstanceState) {
+        popup.attachContainer(getT(), (ViewGroup) getDataBinding().getRoot(), false, savedInstanceState);
+        popup.getWindow().setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        popup.getWindow().setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        popup.addEventAdapter((position, entity, type, view) -> {
+            switch (position) {
+                case 0:
+                    selectCamere();
+                    break;
+                case 1:
+                    selectPicture();
+                    break;
+            }
+            popup.dismiss();
+            return false;
+        });
     }
 }

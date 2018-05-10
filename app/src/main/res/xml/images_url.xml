@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <external-path
-        name="images"
-        path="images/" />
+    <root-path
+        name="root_path"
+        path="." />
+    <external-path path="Android/data/images" name="files_root"/>
+    <external-path path=".cheese" name="external_storage_root"/>
 </paths>
