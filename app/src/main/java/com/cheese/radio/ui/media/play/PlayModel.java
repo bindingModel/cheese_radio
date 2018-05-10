@@ -34,6 +34,7 @@ import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityPlayBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.ui.Constant;
+import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.media.audio.AudioModel;
 import com.cheese.radio.ui.media.play.popup.PopupPlayModel;
 import com.cheese.radio.ui.media.play.popup.SelectPlayTimeEntity;
@@ -211,11 +212,15 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
     public void onFabuClick(View view) {
         if (id == 0) return;
+        if (!IkeApplication.isLogin(true)) {
+            finish();
+        }
+
         FabulousParams params = new FabulousParams("addFabulous");
         params.setId(util.getId());
-        api.addFabulous(params).compose(new RestfulTransformer<>()).subscribe(
-
-        );
+        addDisposable(api.addFabulous(params).compose(new RestfulTransformer<>()).subscribe(
+                s -> {
+                }, BaseUtil::toast));
     }
 
     public void onShareClick(View view) {
@@ -337,7 +342,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         PlayRecordParams recordParams = new PlayRecordParams("playRecord");
         recordParams.setId(list.get(0).getId());
         addDisposable(api.playRecord(recordParams).compose(new RestfulTransformer<>()).subscribe(o -> {
-            }, BaseUtil::toast)
+                }, BaseUtil::toast)
         );
     }
 

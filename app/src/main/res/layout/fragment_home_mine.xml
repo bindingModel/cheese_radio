@@ -140,17 +140,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="55.2dp"
                         android:layout_marginTop="1dp"
-                        android:onClick="@{vm::onCenterClick}"
-                        android:background="@color/white"
-                        android:text="@string/service_centre" />
-
+                        android:onClick="@{vm::onSafeClick}"
+                        android:text="安全中心"
+                        android:visibility="visible" />
                     <TextView
                         style="@style/home_mine_item"
                         android:layout_width="match_parent"
                         android:layout_height="55.2dp"
                         android:layout_marginTop="1dp"
-                        android:text=""
-                        android:visibility="gone" />
+                        android:onClick="@{vm::onCenterClick}"
+                        android:background="@color/white"
+                        android:text="@string/service_centre" />
+
+
 
 
                 </LinearLayout>

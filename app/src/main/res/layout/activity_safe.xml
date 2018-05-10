@@ -30,6 +30,7 @@
                     style="@style/safe_item_button"
                     android:layout_width="51.33dp"
                     android:layout_height="25.2dp"
+                    android:onClick="@{vm::onPhoneClick}"
                     android:text="@string/change" />
 
                 <TextView

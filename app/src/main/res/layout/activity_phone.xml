@@ -6,7 +6,9 @@
         <variable
             name="vm"
             type="com.cheese.radio.ui.user.phone.PhoneModel" />
-
+        <variable
+            name="params"
+            type="com.cheese.radio.ui.user.phone.BindPhoneParams"/>
         <import type="android.view.View" />
     </data>
 
@@ -38,11 +40,14 @@
                     android:text="@string/input_new_phone" />
 
                 <EditText
+                    android:id="@+id/text_phone"
                     android:layout_width="150dp"
                     android:layout_height="25.2dp"
                     android:layout_gravity="center|end"
                     android:background="@null"
                     android:inputType="phone"
+                    android:textSize="13.44sp"
+                    android:text="@={params.phone}"
                     android:singleLine="true" />
             </FrameLayout>
 
@@ -66,6 +71,9 @@
                     android:layout_gravity="center|end"
                     android:background="@null"
                     android:inputType="phone"
+                    android:textSize="13.44sp"
+                    android:hint="@string/sms_tip"
+                    android:text="@{params.validCode}"
                     android:singleLine="true" />
 
             </FrameLayout>

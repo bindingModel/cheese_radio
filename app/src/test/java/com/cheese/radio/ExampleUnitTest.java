@@ -1,5 +1,6 @@
 package com.cheese.radio;
 
+import com.binding.model.util.BaseUtil;
 import com.cheese.radio.util.MyBaseUtil;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -105,15 +106,15 @@ public class ExampleUnitTest {
                 int jaLength = ja.size();
                 System.out.println(fieldClazz.getComponentType().getName());
                 int[] obj = new int[jaLength];
-                for (int i = 0; i <jaLength;i++){
-                    obj[i]=ja.get(i).getAsInt();
+                for (int i = 0; i < jaLength; i++) {
+                    obj[i] = ja.get(i).getAsInt();
                     System.out.println(obj[i]);
                 }
 
-                if (fieldClazz.isArray()){
-                    Method setFieldEntity = entity.getClass().getMethod("set" + nameMethodTail,  fieldClazz);//赋值
-                    setFieldEntity.invoke(entity,new Object[]{obj});
-                    System.out.println(((JsonEntity) entity).getArray());
+                if (fieldClazz.isArray()) {
+                    Method setFieldEntity = entity.getClass().getMethod("set" + nameMethodTail, fieldClazz);//赋值
+                    setFieldEntity.invoke(entity, new Object[]{obj});
+
                 }
 
             }
@@ -125,10 +126,12 @@ public class ExampleUnitTest {
 
         }
     }
-    private Class<?> changeType(Class clazz){
-        if(clazz.getName().equals("int")) return Integer.class;
+
+    private Class<?> changeType(Class clazz) {
+        if (clazz.getName().equals("int")) return Integer.class;
         return null;
     }
+
     private Object getObjcet(Field field, Object o) throws Exception {
         String name = field.getName();
         String nameMethodTail = name.substring(0, 1).toUpperCase() + name.substring(1);
@@ -154,17 +157,9 @@ public class ExampleUnitTest {
 
     @Test
     public void test4() throws Exception {
+        System.out.println(BaseUtil.getPhoneError("12345678901"));
+        System.out.println(BaseUtil.getPhoneError("17857025659"));
 
+    }
 
-        int[] names =new int[]{1,2,3};
-        Method sayHello = A.class.getDeclaredMethod("sayHello", names.getClass());
-//        sayHello.setAcess(true);
-        sayHello.invoke(new A(),new Object[]{ names});
-    }
-    class A{
-        public void sayHello(int[] names){
-            //...
-            System.out.println("sayHello invoked");
-        }
-    }
 }

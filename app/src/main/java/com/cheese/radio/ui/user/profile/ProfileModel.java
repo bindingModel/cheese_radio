@@ -108,7 +108,7 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
             params.setBirthday(mDate.get());
             addDisposable(api.setProperty(params).compose(new ErrorTransform<>()).subscribe(stringInfoEntity -> {
                         BaseUtil.toast(stringInfoEntity.getMessage());
-                        if (stringInfoEntity.code() == 0) {
+                        if (stringInfoEntity.getCode() .equals("0") ) {
                             IkeApplication.getUser().setUserEntity(params);
                             Model.dispatchModel("updataUI");
                             BaseUtil.toast("更新成功");
@@ -147,7 +147,8 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
     }
 
     public void onUploadClick(View view) {
-        selectCamere();
+//        selectCamere();
+        selectPicture();
     }
 
     //从相机选择相片
@@ -189,7 +190,7 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
     File file;
 
     public void processePictures(String path) {
-        Uri uri;
+
         if (!TextUtils.isEmpty(path)) file = new File(path);
 //        else {
 //            uri = FileProvider.getUriForFile(getT(), getT().getApplicationContext().getPackageName() + ".provider", file);

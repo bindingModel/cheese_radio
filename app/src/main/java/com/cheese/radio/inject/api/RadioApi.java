@@ -48,6 +48,7 @@ import com.cheese.radio.ui.user.my.push.NewMessageCountParams;
 import com.cheese.radio.ui.user.my.work.MyWorkEntity;
 import com.cheese.radio.ui.user.my.work.MyWorkParams;
 import com.cheese.radio.ui.user.params.FabulousParams;
+import com.cheese.radio.ui.user.phone.BindPhoneParams;
 import com.cheese.radio.ui.user.product.list.ProductsEntity;
 import com.cheese.radio.ui.user.product.list.ProductsParams;
 import com.cheese.radio.ui.user.product.place.ClassPlaceEntity;
@@ -181,4 +182,7 @@ public interface RadioApi {
 
     @POST("/1.0/user")
     Observable<InfoEntity<Object>> playRecord(@Body PlayRecordParams params);
+
+    @POST("/1.0/user")
+    Observable<InfoEntity<Object>> bindPhone(@Body BindPhoneParams params);
 }

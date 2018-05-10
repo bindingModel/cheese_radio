@@ -1,9 +1,13 @@
 package com.cheese.radio.ui.user.safe;
 
+import android.view.View;
+
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewHttpModel;
 import com.cheese.radio.R;
+import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.databinding.ActivitySafeBinding;
+import com.cheese.radio.inject.component.ActivityComponent;
 
 import javax.inject.Inject;
 
@@ -15,4 +19,7 @@ public class SafeModel extends ViewHttpModel<SafeActivity,ActivitySafeBinding,Ob
     }
     @Inject SafeModel(){}
 
+    public void onPhoneClick(View view){
+        ARouterUtil.navigation(ActivityComponent.Router.phone);
+    }
 }

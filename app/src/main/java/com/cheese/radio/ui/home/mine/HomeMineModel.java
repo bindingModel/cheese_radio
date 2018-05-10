@@ -124,4 +124,9 @@ public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineB
     public void onCenterClick(View view) {
         ARouterUtil.navigation(ActivityComponent.Router.center);
     }
+    public void onSafeClick(View view){
+        if(IkeApplication.isLogin(true))
+        ARouterUtil.navigation(ActivityComponent.Router.safe);
+        else finish();
+    }
 }

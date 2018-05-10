@@ -43,20 +43,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
+                    android:background="@drawable/home_smooth"
+                    android:gravity="center|start"
                     android:padding="5dp"
                     android:text="@{entity.title,default=123456789}"
-                    android:gravity="center|start"
-                    android:background="@drawable/home_smooth"
                     android:textColor="@color/text_white"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|bottom"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginRight="15dp"
                     android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:drawableLeft="@mipmap/play_count"
                     android:drawablePadding="6dp"
                     android:drawableStart="@mipmap/play_count"
@@ -86,33 +86,36 @@
                         android:layout_gravity="bottom"
                         android:layout_marginLeft="12dp"
                         app:head="@{entity.anchorIcon}" />
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="3dp"
-                    android:layout_gravity="center"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:ellipsize="end"
-                        android:text="@{entity.anchorName,default=1234}"
-                        android:textColor="@color/text_black"
-                        android:textSize="12.44sp" />
-                    <TextView
-                        android:id="@+id/html5_desc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@{entity.anchorBrief,default=23456}"
-                        android:ellipsize = "end"
-                        android:maxLines="1"
-                        android:textColor="@color/text_gray"
-                        android:textSize="12.44sp" />
 
-                </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="3dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:ellipsize="end"
+                            android:text="@{entity.anchorName,default=1234}"
+                            android:textColor="@color/text_black"
+                            android:textSize="12.44sp" />
+
+                        <TextView
+                            android:id="@+id/html5_desc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="@{entity.anchorBrief,default=23456}"
+                            android:textColor="@color/text_gray"
+                            android:textSize="12.44sp" />
+
+                    </LinearLayout>
 
 
                     <!--  android:drawableLeft="@{entity.anchorIcon}"
@@ -129,17 +132,19 @@
                         android:drawableLeft="@mipmap/plus"
                         android:drawableStart="@mipmap/plus"
                         android:gravity="center"
-                        android:visibility="gone"
                         android:onClick="@{entity::onClick}"
                         android:paddingLeft="10.8dp"
                         android:paddingRight="10.8dp"
                         android:text="@string/follow"
-                        android:textColor="@color/text_white" />
+                        android:textColor="@color/text_white"
+                        android:visibility="gone" />
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
+
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -205,64 +210,61 @@
                         android:paddingTop="8dp" />
                 </FrameLayout>
 
-                <FrameLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:orientation="horizontal"
-                    android:padding="15dp">
+                    android:layout_marginTop="15dp">
 
                     <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginStart="12dp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:button="@null"
                         android:checked="@{entity.files}"
-                        android:drawableLeft="@drawable/love_star"
-                        android:drawableStart="@drawable/love_star"
+                        android:layout_margin="3dp"
+                        android:drawableTop="@drawable/love_star"
+                        android:gravity="center"
                         android:onClick="@{vm::onFabuClick}"
-                        /> <!--                       android:text="@{entity.favorCount}"-->
+                        android:text="@{entity.favorCount,default= 0}"
+                        android:textSize="13.44sp" /> <!--                       android:text="@{entity.favorCount}"-->
 
                     <CheckBox
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginEnd="45dp"
-                        android:layout_marginRight="45dp"
+                        android:layout_weight="1"
                         android:button="@null"
                         android:checked="@{entity.favors}"
-                        android:drawableLeft="@drawable/collection_star"
-                        android:drawableStart="@drawable/collection_star"
+                        android:drawableTop="@drawable/collection_star"
+
                         android:onClick="@{vm::onAddFavorityClick}" />
                     <!--          android:text="@{entity.favorCount}"-->
 
                     <CheckBox
                         android:id="@+id/clock"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="55dp"
-                        android:layout_marginStart="55dp"
+                        android:layout_weight="1"
+
                         android:button="@null"
                         android:checked="@{vm.clockCheck}"
-                        android:drawableLeft="@drawable/clock_subscribe"
 
-                        android:drawableStart="@drawable/clock_subscribe"
+                        android:drawableTop="@drawable/clock_subscribe"
                         android:onClick="@{vm::onSelectClick}" />
                     <!--         android:text="@{vm.currentText}"-->
                     <CheckBox
                         android:id="@+id/loop"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
-                        android:layout_marginEnd="12dp"
-                        android:layout_marginRight="12dp"
+                        android:layout_weight="1"
                         android:button="@null"
-                        android:drawableLeft="@drawable/loop"
-                        android:drawableStart="@drawable/loop" />
+                        android:drawableTop="@drawable/loop" />
 
-                </FrameLayout>
+                </LinearLayout>
             </LinearLayout>
 
 
@@ -276,8 +278,8 @@
             android:layout_gravity="end"
             android:layout_marginEnd="9dp"
             android:layout_marginRight="9dp"
-            android:padding="14dp"
             android:onClick="@{vm::onShareClick}"
+            android:padding="14dp"
             android:src="@mipmap/share" />
     </FrameLayout>
 </layout>
