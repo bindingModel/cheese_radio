@@ -121,16 +121,22 @@
                     android:textColor="@color/text_black"
                     android:textSize="15sp" />
             </FrameLayout>
-
+            <ImageView
+                android:layout_marginTop="44dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/clock_bg"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="42.66dp"
-                android:layout_gravity="center"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="18dp"
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="60dp"
                 android:background="@drawable/login_button_shape"
                 android:onClick="@{vm::onClick}"
-                android:text="报 名"
+                android:text="@string/now_enroll"
                 android:textColor="@color/text_white"
                 android:textSize="14.4sp" />
 

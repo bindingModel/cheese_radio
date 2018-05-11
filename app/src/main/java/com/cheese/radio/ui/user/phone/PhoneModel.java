@@ -84,6 +84,6 @@ public class PhoneModel extends ViewHttpModel<PhoneActivity, ActivityPhoneBindin
 
     public void onSubmitClick(View view) {
         addDisposable(api.bindPhone(bindPhoneParams).compose(new RestfulTransformer<>()).subscribe(o -> {
-        }));
+        },BaseUtil::toast));
     }
 }

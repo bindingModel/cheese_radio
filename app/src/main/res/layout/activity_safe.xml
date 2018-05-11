@@ -27,26 +27,22 @@
                 android:layout_marginTop="18.6dp"
                 android:background="@color/background_white">
 
-                <Button
-                    style="@style/safe_item_button"
-                    android:layout_width="51.33dp"
-                    android:layout_height="25.2dp"
-                    android:onClick="@{vm::onPhoneClick}"
-                    android:visibility="@{vm.havaPhoneNumber?View.GONE:View.VISIBLE}"
-                    android:text="@string/change" />
-                <TextView
-                    style="@style/safe_item_button"
 
-                    android:layout_width="51.33dp"
-                    android:layout_height="25.2dp"
-                    android:visibility="@{vm.havaPhoneNumber?View.VISIBLE:View.GONE}"
-                    android:text="@{vm.phoneNumber}"
-                    />
+
                 <TextView
                     style="@style/safe_item_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/mobile_number" />
+
+                <TextView
+                    android:layout_gravity="center|end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25.2dp"
+                    android:gravity="center"
+                    android:layout_marginRight="28dp"
+                    android:text="@{vm.phoneNumber,default=12345678901}"
+                    android:visibility="@{vm.havaPhoneNumber?View.VISIBLE:View.GONE}" />
             </FrameLayout>
 
             <FrameLayout

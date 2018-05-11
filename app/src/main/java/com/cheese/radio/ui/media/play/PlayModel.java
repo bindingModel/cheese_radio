@@ -17,6 +17,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RemoteViews;
 import android.widget.SeekBar;
@@ -203,7 +204,13 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     }
 
     public void onAddFavorityClick(View view) {
-        if (id == 0) return;
+        if (id == 0 || !IkeApplication.isLogin(false)){
+            view.setEnabled(false);
+            ((CheckBox)view).setChecked(false);
+            BaseUtil.toast("登陆后才能收藏");
+            return;
+        }
+
         AddFavorityParams params = new AddFavorityParams("addFavority");
         params.setId(util.getId());
         api.addFavority(params).compose(new RestfulTransformer<>()).subscribe(
@@ -211,9 +218,11 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     }
 
     public void onFabuClick(View view) {
-        if (id == 0) return;
-        if (!IkeApplication.isLogin(true)) {
-            finish();
+        if (id == 0 || !IkeApplication.isLogin(false)){
+            view.setEnabled(false);
+            ((CheckBox)view).setChecked(false);
+            BaseUtil.toast("登陆后才能点赞");
+            return;
         }
 
         FabulousParams params = new FabulousParams("addFabulous");

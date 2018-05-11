@@ -35,9 +35,8 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="211dp"
-                    android:background="@mipmap/anchor_bg"
                     app:layout_scrollFlags="scroll|enterAlways"
-                    app:backgroundBlur="@{entity.image}"
+                    android:background="@mipmap/anchor_bg"
                     >
 
                     <include layout="@layout/toolbar_organza" />

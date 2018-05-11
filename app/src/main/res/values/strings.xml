@@ -86,4 +86,5 @@
     <string name="submit">提交</string>
     <string name="sms_tip">注意接收，验证码</string>
     <string name="bind_phone">换绑手机</string>
+    <string name="now_enroll">立即报名</string>
 </resources>

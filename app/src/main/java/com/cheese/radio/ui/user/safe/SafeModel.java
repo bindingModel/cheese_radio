@@ -33,10 +33,14 @@ public class SafeModel extends ViewHttpModel<SafeActivity,ActivitySafeBinding,Ob
     @Override
     public void attachView(Bundle savedInstanceState, SafeActivity activity) {
         super.attachView(savedInstanceState, activity);
+        updataUI();
     }
 
     private void updataUI(){
-        havaPhoneNumber.set(TextUtils.isEmpty(IkeApplication.getUser().getUserEntity().getMobile()));
-        phoneNumber.set(IkeApplication.getUser().getUserEntity().getMobile());
+        String phone=IkeApplication.getUser().getUserEntity().getMobile();
+        phone=phone.substring(0,3)+"****"+phone.substring(7,11);
+        phoneNumber.set(phone);
+        havaPhoneNumber.set(!TextUtils.isEmpty(IkeApplication.getUser().getUserEntity().getMobile()));
+
    }
 }
