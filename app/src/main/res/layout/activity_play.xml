@@ -196,7 +196,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="end"
                         android:onClick="@{vm::onForwardClick}"
-                        android:src="@mipmap/icon_next" />
+                        android:src="@mipmap/next" />
 
                     <RadioButton
                         android:id="@+id/play"
