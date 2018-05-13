@@ -23,8 +23,8 @@ import static com.binding.model.adapter.IEventAdapter.NO_POSITION;
  * Created by 29283 on 2018/3/29.
  */
 @ModelView(R.layout.popup_picture)
-public class PopupPlayModel extends PopupRecyclerModel<ProfileActivity,PopupPictureBinding,SelectPictureWayEntity>{
-    @Inject PopupPlayModel(){super(new RecyclerSelectAdapter<>(1));}
+public class PopupPictureModel extends PopupRecyclerModel<ProfileActivity,PopupPictureBinding,SelectPictureWayEntity>{
+    @Inject PopupPictureModel(){super(new RecyclerSelectAdapter<>(1));}
     private List<SelectPictureWayEntity> entities = new ArrayList<>();
 
     @Override

@@ -104,4 +104,9 @@
         <item name="android:layout_gravity">end|center</item>
 
     </style>
+
+    <style name="contextMenuAnim" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/popup_menu_enter</item>
+        <item name="android:windowExitAnimation">@anim/popup_menu_exit</item>
+    </style>
 </resources>

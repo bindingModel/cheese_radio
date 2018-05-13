@@ -39,7 +39,9 @@ import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.user.UserEntity;
 import com.cheese.radio.ui.user.edit.EditNameModel;
-import com.cheese.radio.ui.user.profile.popup.PopupPlayModel;
+import com.cheese.radio.ui.user.profile.popup.PopupPictureModel;
+
+import com.cheese.radio.util.MyBaseUtil;
 import com.cheese.radio.util.TimePickTool;
 
 import java.io.File;
@@ -78,8 +80,9 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
     private List<String> babySex = new ArrayList<>();
     private List<String> select = new ArrayList<String>();
     private UserEntity userEntity;
+    private File imageFile;
     @Inject
-    PopupPlayModel popup;
+    PopupPictureModel popup;
 
     @Override
     public void attachView(Bundle savedInstanceState, ProfileActivity activity) {
@@ -164,13 +167,13 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
         BaseUtil.checkPermission(this, aBoolean -> {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             String filePath = Environment.getExternalStorageDirectory() + "/test/" + System.currentTimeMillis() + ".jpg";
-            file = new File(filePath);
-            if (!file.getParentFile().exists()) {
-                file.getParentFile().mkdirs();
+            imageFile = new File(filePath);
+            if (!imageFile.getParentFile().exists()) {
+                imageFile.getParentFile().mkdirs();
             }
 
             //改变Uri  com.xxx.xxx.fileprovider注意和xml中的一致
-            Uri uri = FileProvider.getUriForFile(getT(), BuildConfig.APPLICATION_ID + ".filterProvider", file);
+            Uri uri = FileProvider.getUriForFile(getT(), BuildConfig.APPLICATION_ID + ".filterProvider", imageFile);
             //添加权限
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
@@ -195,17 +198,18 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
         }, Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
 
-    File file;
+
 
     public void processePictures(String path) {
 
-        if (!TextUtils.isEmpty(path)) file = new File(path);
+        if (!TextUtils.isEmpty(path)) imageFile = new File(path);
 //        else {
 //            uri = FileProvider.getUriForFile(getT(), getT().getApplicationContext().getPackageName() + ".provider", file);
 //            path = FileUtil.getRealPathFromURI(getT(), uri);
 //        }
-        if (file.isFile()) {
-            headParams.setInfo(file);
+        if (imageFile.isFile()) {
+            imageFile = MyBaseUtil.compressImage(imageFile);
+            headParams.setInfo(imageFile);
             addDisposable(api.myHead(headParams).compose(new RestfulTransformer<>()).subscribe((myHeadData) -> {
                 getDataBinding().setHeadUrl(myHeadData.getImage());
                 userEntity.setPortrait(myHeadData.getImage());
@@ -219,6 +223,7 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
         popup.attachContainer(getT(), (ViewGroup) getDataBinding().getRoot(), false, savedInstanceState);
         popup.getWindow().setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         popup.getWindow().setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        popup.getWindow().setAnimationStyle(R.style.contextMenuAnim);
         popup.addEventAdapter((position, entity, type, view) -> {
             switch (position) {
                 case 0:

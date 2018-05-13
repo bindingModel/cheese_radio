@@ -66,8 +66,9 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
         list.clear();
         list.addAll(calendarEntities);
         if (isFirst) {
-
-            initCalendarView("2017-12", "2018-12", list);
+            String start=MyBaseUtil.formatDate(MyBaseUtil.getYear(),MyBaseUtil.getMonth()-3);
+            String end=MyBaseUtil.formatDate(MyBaseUtil.getYear(),MyBaseUtil.getMonth()+9);
+            initCalendarView(start, end, list);
             isFirst = false;
         }
         Log.e("Thread",Thread.currentThread().getName());

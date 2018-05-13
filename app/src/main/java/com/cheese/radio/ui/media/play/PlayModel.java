@@ -159,6 +159,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         popupPlayModel.attachContainer(getT(), (ViewGroup) getDataBinding().getRoot(), false, savedInstanceState);
         popupPlayModel.getWindow().setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         popupPlayModel.getWindow().setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupPlayModel.getWindow().setAnimationStyle(R.style.contextMenuAnim);
         //设置播放时长
         popupPlayModel.addEventAdapter((position, entity, type, view) -> {
             //判断如果不是同一个，则将上一个状态取反,单选操作

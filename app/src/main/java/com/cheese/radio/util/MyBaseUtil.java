@@ -3,9 +3,13 @@ package com.cheese.radio.util;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
+import android.media.Image;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
+import android.os.Environment;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -15,10 +19,14 @@ import android.webkit.WebView;
 import com.binding.model.App;
 import com.binding.model.util.BaseUtil;
 import com.binding.model.view.web.callback.JsBridgeCallback;
+import com.bumptech.glide.load.ImageHeaderParserUtils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -145,17 +153,17 @@ public class MyBaseUtil extends BaseUtil {
         return calendar.get(Calendar.MONTH) + 1;
     }
 
-    public static String formatDate(int year,int month){
-        if(month>12){
-            month-=12;
-            year+=1;
-        }
-        else if(month<1){
-            month+=12;
-            year-=1;
+    public static String formatDate(int year, int month) {
+        if (month > 12) {
+            month -= 12;
+            year += 1;
+        } else if (month < 1) {
+            month += 12;
+            year -= 1;
         }
         return year + "-" + month;
     }
+
     public static String getMinute(Integer seconds) {
         return (seconds / 60) + ":" + (seconds % 60);
     }
@@ -172,6 +180,7 @@ public class MyBaseUtil extends BaseUtil {
         }
         return nowInteger;
     }
+    //强制收起虚拟键盘
     public static void HideKeyboard(View v) {
         InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm.isActive()) {
@@ -179,56 +188,87 @@ public class MyBaseUtil extends BaseUtil {
 
         }
     }
-    public static Bitmap GetLocalOrNewBitmap(String url){
-        Bitmap bitmap=null;
-        InputStream in=null;
-        BufferedOutputStream out=null;
+
+    public static File compressImage(File file) {
+        int degree = getExifOrientation(file.getPath());
+        return compressImage(BitmapFactory.decodeFile(file.getPath()), degree);
+    }
+
+    public static File compressImage(Bitmap bitmap, int degree) {
+        bitmap = rotaingImageView(degree, bitmap);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        int options = 100;
+        while (baos.toByteArray().length / 1024 > 100) {  //100kb
+            baos.reset();//重置baos即清空baos
+            options -= 10;//每次都减少10
+            bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos);
+            long length = baos.toByteArray().length;
+        }
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+        Date date = new Date(System.currentTimeMillis());
+        String filename = format.format(date);
+        File file = new File(Environment.getExternalStorageDirectory(), filename + ".png");
         try {
-            in =new BufferedInputStream(new URL(url).openStream(),1024);
-            final ByteArrayOutputStream dataStream=new ByteArrayOutputStream();
-            out=new BufferedOutputStream(dataStream,1024);
-            copy(in,out);
-            out.flush();
-            byte[] data=dataStream.toByteArray();
-            bitmap= BitmapFactory.decodeByteArray(data,0,data.length);
-            data=null;
-            return bitmap;
+            FileOutputStream fos = new FileOutputStream(file);
+            try {
+                fos.write(baos.toByteArray());
+                fos.flush();
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        recycleBitmap(bitmap);
+        return file;
+    }
+    //释放资源
+    private static void recycleBitmap(Bitmap... bitmaps) {
+        if (bitmaps == null) {
+            return;
+        }
+        for (Bitmap bm : bitmaps) {
+            if (null != bm && !bm.isRecycled()) {
+                bm.recycle();
+            }
+        }
+    }
+    //获取图片的旋转角度
+    public static int getExifOrientation(String filepath) {
+        int degree = 0;
+        ExifInterface exif = null;
+        try {
+            exif = new ExifInterface(filepath);
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
         }
-    }
-    private static void copy(InputStream in, OutputStream out) throws IOException {
-        byte[] bytes=new byte[104];
-        int read;
-        while ((read=in.read(bytes))!=-1){
-            out.write(bytes,0,read);
+        if (exif != null) {
+            int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, -1);
+            if (orientation != -1) {
+                switch (orientation) {
+                    case ExifInterface.ORIENTATION_ROTATE_90:
+                        degree = 90;
+                        break;
+                    case ExifInterface.ORIENTATION_ROTATE_180:
+                        degree = 180;
+                        break;
+                    case ExifInterface.ORIENTATION_ROTATE_270:
+                        degree = 270;
+                        break;
+                }
+            }
         }
+        return degree;
     }
-    public static void loadView(WebView webView, String url) {
+    //旋转图片
+    public static Bitmap rotaingImageView(int angle, Bitmap bitmap) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(bitmap, 0, 0,
+                bitmap.getWidth(), bitmap.getHeight(), matrix, true);
 
-        WebSettings webSettings=webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);//允许使用js
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-        webSettings.setTextZoom(16);
-
-/**
- * LOAD_CACHE_ONLY: 不使用网络，只读取本地缓存数据
- * LOAD_DEFAULT: （默认）根据cache-control决定是否从网络上取数据。
- * LOAD_NO_CACHE: 不使用缓存，只从网络获取数据.
- * LOAD_CACHE_ELSE_NETWORK，只要本地有，无论是否过期，或者no-cache，都使用缓存中的数据。
- */
-
-        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);//不使用缓存，只从网络获取数据.
-
-        //支持屏幕缩放
-        webSettings.setSupportZoom(true);
-        webSettings.setBuiltInZoomControls(true);
-
-        //不显示webview缩放按钮
-        webSettings.setDisplayZoomControls(false);
     }
-
 }
 

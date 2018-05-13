@@ -4,7 +4,7 @@
     <data>
         <variable
             name="vm"
-            type="com.cheese.radio.ui.user.profile.popup.PopupPlayModel"/>
+            type="com.cheese.radio.ui.user.profile.popup.PopupPictureModel"/>
     </data>
     <LinearLayout
         android:orientation="vertical"
@@ -13,7 +13,6 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.RecyclerView
-
             android:layout_width="match_parent"
             app:adapter="@{vm.adapter}"
             app:layout_manager="@{vm.layoutManager}"
