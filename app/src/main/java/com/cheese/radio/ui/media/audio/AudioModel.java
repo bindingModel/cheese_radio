@@ -78,11 +78,10 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
                 if (entity != null) play(entity);
             } else
                 checked.set(true);
-            showButtonNotify();
         } else {
             util.pause();
             checked.set(false);
-            showButtonNotify();
+
 
         }
 
@@ -93,7 +92,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
         boolean playing = util.isPlaying();
         util.pause();
         checked.set(false);
-        showButtonNotify();
+
     }
 
 
@@ -113,7 +112,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
             getPlayView().setEnabled(true);
         checked.set(true);
         util.setUri(transformUrl(fmsEntities.get(0)));
-        showButtonNotify();
+
     }
 
     private void play(Entity entity) {
@@ -135,13 +134,11 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
         }
         //校准播放按钮
         onResume();
-        showButtonNotify();
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void onResume() {
         checked.set(util.isPlaying());
-        showButtonNotify();
     }
 
     public void onDestroy() {
