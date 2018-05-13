@@ -59,9 +59,9 @@
                         android:id="@+id/def_head"
                         android:layout_width="86.3dp"
                         android:layout_height="86.3dp"
+                        android:layout_gravity="center"
                         android:onClick="@{vm::onSetProfileClick}"
                         android:padding="5dp"
-                        android:layout_gravity="center"
                         android:src="@{vm.head}" />
 
                     <TextView
@@ -135,27 +135,27 @@
                         android:onClick="@{vm::onFavotity}"
                         android:text="@string/my_collection" />
 
+
                     <TextView
                         style="@style/home_mine_item"
                         android:layout_width="match_parent"
                         android:layout_height="55.2dp"
                         android:layout_marginTop="1dp"
-                        android:onClick="@{vm::onSafeClick}"
-                        android:text="安全中心"
-                        android:visibility="visible" />
-                    <TextView
-                        style="@style/home_mine_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="55.2dp"
-                        android:layout_marginTop="1dp"
-                        android:onClick="@{vm::onCenterClick}"
                         android:background="@color/white"
+                        android:onClick="@{vm::onCenterClick}"
                         android:text="@string/service_centre" />
 
 
-
-
                 </LinearLayout>
+
+                <TextView
+                    style="@style/home_mine_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="55.2dp"
+                    android:layout_marginTop="15dp"
+                    android:onClick="@{vm::onSafeClick}"
+                    android:text="安全中心"
+                    android:visibility="visible" />
 
                 <TextView
                     android:layout_width="match_parent"
