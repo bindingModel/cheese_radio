@@ -191,7 +191,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         req.packageValue="Sign=WXPay";
         req.sign = bean.getPaySign();
         Boolean ans=      iwxapi.sendReq(req);
-        BaseUtil.toast(ans.toString());
+//        BaseUtil.toast(ans.toString());
         //zfb
      /*   addDisposable(Observable.create(
                 (ObservableOnSubscribe<PayResult>) e -> e.onNext(new PayResult(new PayTask(getT()).payV2("", true)))
