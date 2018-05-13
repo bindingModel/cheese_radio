@@ -2,20 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="64dp"
-    android:padding="15dp"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="15dp">
 
     <ImageView
         android:id="@+id/music_icon"
         android:layout_width="40dp"
-        android:layout_gravity="center"
-        android:layout_height="40dp" />
+        android:layout_height="40dp"
+        android:layout_gravity="center" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:layout_gravity="center"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
@@ -38,15 +38,33 @@
 
     <ImageView
         android:id="@+id/music_play"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_margin="15dp"
-        android:layout_gravity="center"/>
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:src="@mipmap/icon_play"
+        />
+
+    <ImageView
+        android:id="@+id/music_stop"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/icon_stop"
+       />
 
     <ImageView
         android:id="@+id/music_next"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@mipmap/next"
-        android:layout_gravity="center"/>
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:src="@mipmap/icon_next" />
+    <ImageView
+        android:id="@+id/music_cancel"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:src="@mipmap/icon_close" />
 </LinearLayout>

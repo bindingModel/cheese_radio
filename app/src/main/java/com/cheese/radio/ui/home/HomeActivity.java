@@ -39,6 +39,10 @@ public class HomeActivity extends BaseActivity <HomeModel> {
         home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         home.addCategory(Intent.CATEGORY_HOME);
         startActivity(home);
+        onPause();
+        onStop();
 //        System.exit(0);
     }
+
+
 }

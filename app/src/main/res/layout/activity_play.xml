@@ -196,7 +196,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="end"
                         android:onClick="@{vm::onForwardClick}"
-                        android:src="@mipmap/next" />
+                        android:src="@mipmap/icon_next" />
 
                     <RadioButton
                         android:id="@+id/play"
@@ -248,13 +248,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-
                         android:button="@null"
                         android:checked="@{vm.clockCheck}"
-
                         android:drawableTop="@drawable/clock_subscribe"
                         android:onClick="@{vm::onSelectClick}" />
-                    <!--         android:text="@{vm.currentText}"-->
                     <CheckBox
                         android:id="@+id/loop"
                         android:layout_width="0dp"

@@ -15,24 +15,23 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.bigkoo.pickerview.OptionsPickerView;
-import com.bigkoo.pickerview.TimePickerView;
-import com.bigkoo.pickerview.listener.CustomListener;
+
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
 import com.binding.model.model.inter.Event;
 import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
-import com.binding.model.util.FileUtil;
+
 import com.cheese.radio.BuildConfig;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.ErrorTransform;
-import com.cheese.radio.base.rxjava.RestfulFlowTransformer;
+
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityProfileBinding;
 import com.cheese.radio.inject.api.RadioApi;
@@ -45,10 +44,8 @@ import com.cheese.radio.util.MyBaseUtil;
 import com.cheese.radio.util.TimePickTool;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -157,9 +154,6 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
 
     public void onUploadClick(View view) {
         popup.show(window -> window.showAtLocation(getDataBinding().getRoot(), Gravity.BOTTOM, 0, 0));
-
-//        selectCamere();
-//        selectPicture();
     }
 
     //从相机选择相片
@@ -228,12 +222,13 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
             switch (position) {
                 case 0:
                     selectCamere();
+                    popup.dismiss();
                     break;
                 case 1:
                     selectPicture();
+                    popup.dismiss();
                     break;
             }
-            popup.dismiss();
             return false;
         });
     }

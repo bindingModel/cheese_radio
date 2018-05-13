@@ -57,11 +57,15 @@ public class AudioServiceUtil implements TimeEntity {
     private String image;
     private Integer id;
     private Integer fileId;
-
+    private NotificationManager notManager;
     public Integer getFileId() {
         return fileId;
     }
 
+    public NotificationManager getNotManager(){
+        if (notManager==null)notManager=(NotificationManager) App.getCurrentActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+        return notManager;
+    }
     public void setFileId(Integer fileId) {
         this.fileId = fileId;
     }

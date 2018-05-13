@@ -23,12 +23,12 @@ import static com.binding.model.adapter.IEventAdapter.NO_POSITION;
  * Created by 29283 on 2018/3/29.
  */
 @ModelView(R.layout.popup_picture)
-public class PopupPictureModel extends PopupRecyclerModel<ProfileActivity,PopupPictureBinding,SelectPictureWayEntity>{
+public class PopupPictureModel extends PopupRecyclerModel<BaseActivity,PopupPictureBinding,SelectPictureWayEntity>{
     @Inject PopupPictureModel(){super(new RecyclerSelectAdapter<>(1));}
     private List<SelectPictureWayEntity> entities = new ArrayList<>();
 
     @Override
-    public void attachView(Bundle savedInstanceState, ProfileActivity baseActivity) {
+    public void attachView(Bundle savedInstanceState, BaseActivity baseActivity) {
         super.attachView(savedInstanceState, baseActivity);
         entities.add(new SelectPictureWayEntity("拍照"));
         entities.add(new SelectPictureWayEntity("相册"));

@@ -69,6 +69,7 @@ import io.reactivex.schedulers.Schedulers;
 
 
 import static com.cheese.radio.ui.Constant.ACTION_BUTTON;
+import static com.cheese.radio.ui.Constant.BUTTON_CANCEL_ID;
 import static com.cheese.radio.ui.Constant.BUTTON_NEXT_ID;
 import static com.cheese.radio.ui.Constant.BUTTON_PALY_ID;
 
@@ -288,11 +289,12 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     //通知栏
     public void showButtonNotify() {
         if(list.isEmpty())return;
+        playRecord();//播放数的反馈
         PlayEntity entity = list.get(0);
         int NOTIFICATION_ID = 234;
         String CHANNEL_ID = "cheese_channel_01";
         if (mNotificationManager == null)
-            mNotificationManager = (NotificationManager) getT().getSystemService(Context.NOTIFICATION_SERVICE);
+            mNotificationManager = util.getNotManager();
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             CharSequence name = "cheese_channel";
             String Description = "This is cheese channel";
@@ -315,28 +317,26 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (!isPlaying()) {
-            mRemoteViews.setImageViewResource(R.id.music_play, R.mipmap.home_play);
-
-        } else {
-            mRemoteViews.setImageViewResource(R.id.music_play, R.mipmap.home_stop);
-            playRecord();//播放数的反馈
-        }
         mRemoteViews.setTextViewText(R.id.music_title, entity.getTitle());
         mRemoteViews.setTextViewText(R.id.music_subtitle, entity.getSubTitle());
 
 //        //点击的事件处理
         Intent buttonIntent = new Intent(ACTION_BUTTON);
-
+        checked.set(util.isPlaying());
         //这里加了广播，所及INTENT的必须用getBroadcast方法
         /* 播放/暂停  按钮 */
         buttonIntent.putExtra(INTENT_BUTTONID_TAG, BUTTON_PALY_ID);
-        PendingIntent intent_paly = PendingIntent.getBroadcast(App.getCurrentActivity(), 1, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        mRemoteViews.setOnClickPendingIntent(R.id.music_play, intent_paly);
+        PendingIntent intent_play = PendingIntent.getBroadcast(App.getCurrentActivity(), 1, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        mRemoteViews.setOnClickPendingIntent(R.id.music_play, intent_play);
+        mRemoteViews.setOnClickPendingIntent(R.id.music_stop,intent_play);
         /* 下一首 按钮  */
         buttonIntent.putExtra(INTENT_BUTTONID_TAG, BUTTON_NEXT_ID);
         PendingIntent intent_next = PendingIntent.getBroadcast(App.getCurrentActivity(), 2, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         mRemoteViews.setOnClickPendingIntent(R.id.music_next, intent_next);
+        /* 取消 按钮  */
+        buttonIntent.putExtra(INTENT_BUTTONID_TAG, BUTTON_CANCEL_ID);
+        PendingIntent intent_cancel = PendingIntent.getBroadcast(App.getCurrentActivity(), 3, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        mRemoteViews.setOnClickPendingIntent(R.id.music_cancel, intent_cancel);
 
         mBuilder.setContent(mRemoteViews)
                 .setContentIntent(getDefalutIntent(Notification.FLAG_ONGOING_EVENT))
