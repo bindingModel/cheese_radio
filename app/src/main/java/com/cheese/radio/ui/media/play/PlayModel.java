@@ -25,11 +25,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
+import com.binding.model.App;
 import com.binding.model.model.ModelView;
+import com.binding.model.model.inter.Entity;
 import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.FutureTarget;
+import com.cheese.radio.BuildConfig;
 import com.cheese.radio.R;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityPlayBinding;
@@ -181,6 +184,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         if (totalTime == -1) {
             clockCheck.set(false);
         } else clockCheck.set(true);
+
     }
 
     public void intTimes() {
@@ -282,6 +286,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
     //通知栏
     public void showButtonNotify() {
+        if(list.isEmpty())return;
         PlayEntity entity = list.get(0);
         int NOTIFICATION_ID = 234;
         String CHANNEL_ID = "cheese_channel_01";
@@ -290,7 +295,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             CharSequence name = "cheese_channel";
             String Description = "This is cheese channel";
-            int importance = NotificationManager.IMPORTANCE_LOW;
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
             mChannel.setDescription(Description);
             mChannel.enableLights(true);
@@ -301,20 +306,19 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
             mNotificationManager.createNotificationChannel(mChannel);
         }
 
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getT(), CHANNEL_ID);
-        RemoteViews mRemoteViews = new RemoteViews(getT().getPackageName(), R.layout.notify_music);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(App.getCurrentActivity(), CHANNEL_ID);
+        RemoteViews mRemoteViews = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.notify_music);
 
         try {
             mRemoteViews.setImageViewBitmap(R.id.music_icon, notifyImage.get());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (!util.isPlaying()) {
+        if (!isPlaying()) {
             mRemoteViews.setImageViewResource(R.id.music_play, R.mipmap.home_play);
-            checked.set(false);
+
         } else {
             mRemoteViews.setImageViewResource(R.id.music_play, R.mipmap.home_stop);
-            checked.set(true);
             playRecord();//播放数的反馈
         }
         mRemoteViews.setTextViewText(R.id.music_title, entity.getTitle());
@@ -326,18 +330,18 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         //这里加了广播，所及INTENT的必须用getBroadcast方法
         /* 播放/暂停  按钮 */
         buttonIntent.putExtra(INTENT_BUTTONID_TAG, BUTTON_PALY_ID);
-        PendingIntent intent_paly = PendingIntent.getBroadcast(getT(), 1, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent intent_paly = PendingIntent.getBroadcast(App.getCurrentActivity(), 1, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         mRemoteViews.setOnClickPendingIntent(R.id.music_play, intent_paly);
         /* 下一首 按钮  */
         buttonIntent.putExtra(INTENT_BUTTONID_TAG, BUTTON_NEXT_ID);
-        PendingIntent intent_next = PendingIntent.getBroadcast(getT(), 2, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent intent_next = PendingIntent.getBroadcast(App.getCurrentActivity(), 2, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         mRemoteViews.setOnClickPendingIntent(R.id.music_next, intent_next);
 
         mBuilder.setContent(mRemoteViews)
                 .setContentIntent(getDefalutIntent(Notification.FLAG_ONGOING_EVENT))
                 .setWhen(System.currentTimeMillis())// 通知产生的时间，会在通知信息里显示
                 .setTicker("正在播放")
-                .setPriority(NotificationCompat.PRIORITY_LOW)// 设置该通知优先级
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)// 设置该通知优先级
                 .setOngoing(true)
                 .setSmallIcon(R.mipmap.ic_launcher);
 
@@ -356,7 +360,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     }
 
     private PendingIntent getDefalutIntent(int flags) {
-        PendingIntent pendingIntent = PendingIntent.getActivity(getT(), 1, new Intent(), flags);
+        PendingIntent pendingIntent = PendingIntent.getActivity(App.getCurrentActivity(), 1, new Intent(), flags);
         return pendingIntent;
     }
 }

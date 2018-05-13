@@ -44,7 +44,8 @@ public class ProductsEntity extends ViewInflateRecycler {
     }
 
     public String getPriceText() {
-        return "¥ " + String.valueOf(price);
+        double doublePrice=price/100.0;
+        return "¥ " + String.valueOf(doublePrice);
     }
 
     public void setPrice(int price) {

@@ -23,6 +23,7 @@ import com.cheese.radio.ui.media.play.PlayRecordParams;
 import com.cheese.radio.ui.search.entity.HotSearchEntity;
 import com.cheese.radio.ui.search.params.HotSearchParams;
 import com.cheese.radio.ui.user.UserEntity;
+import com.cheese.radio.ui.user.enroll.CreateOrderWXEntity;
 import com.cheese.radio.ui.user.enroll.params.ClassPlaceParams;
 import com.cheese.radio.ui.user.enroll.params.CreateOrderParams;
 import com.cheese.radio.ui.user.params.AddFavorityParams;
@@ -172,9 +173,9 @@ public interface RadioApi {
     @POST("/1.0/class")
     Observable<InfoEntity<List<ClassPlaceEntity>>> classPlace(@Body ClassPlaceParams params);
 
-    //创建订单
+    //创建订单 wx
     @POST("/1.0/order")
-    Observable<InfoEntity<Object>> createOrder(@Body CreateOrderParams params);
+    Observable<InfoEntity<CreateOrderWXEntity>> createOrder(@Body CreateOrderParams params);
 
 //    修改头像
     @POST("/1.0/file")

@@ -12,10 +12,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@drawable/normal_bottom_top_line"
+        android:background="@drawable/normal_bottom_line"
         android:gravity="center"
+        android:textColor="@color/text_black"
         android:onClick="@{vm::onSelectClick}"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
         android:text="@{vm.name,default=123456789}" />
 </layout>

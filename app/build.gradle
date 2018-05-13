@@ -20,8 +20,13 @@ android {
             }
         }
         ndk {
-            abiFilters "armeabi-v7a", "x86"
+            abiFilters "armeabi-v7a", "x86",'armeabi','arm64-v8a'
         }
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : "com.cheese.radio",
+                JPUSH_APPKEY : "5514c98362f5478c4327497f", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
     }
     signingConfigs {
         config {
@@ -59,7 +64,7 @@ android {
     }
     sourceSets {
         main {
-            java.srcDirs = ['src/main/java']
+            java.srcDirs =  ['src/main/java']
             res.srcDirs = ['src/main/res', 'src/main/ures']
         }
     }
@@ -119,6 +124,8 @@ android {
 //          implementation project(':ushare')
 //        implementation project(':umlib')
 //        implementation project(':push')
+        implementation 'cn.jiguang.sdk:jpush:3.1.1'
+        implementation 'cn.jiguang.sdk:jcore:1.1.9'
     }
     buildToolsVersion '27.0.3'
     productFlavors {

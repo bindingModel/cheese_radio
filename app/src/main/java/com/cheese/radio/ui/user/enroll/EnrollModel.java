@@ -18,6 +18,7 @@ import com.binding.model.model.ViewModel;
 import com.binding.model.model.inter.Event;
 import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
+import com.cheese.radio.BuildConfig;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
@@ -31,6 +32,9 @@ import com.cheese.radio.ui.user.product.list.ProductsEntity;
 import com.cheese.radio.ui.user.product.place.ClassPlaceEntity;
 import com.cheese.radio.util.CityPickTool;
 import com.cheese.radio.util.TimePickTool;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import java.util.ArrayList;
 
@@ -86,6 +90,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         timePickSelect = new TimePickTool(mDate, getT());
         getDataBinding().setParams(params);
         Model.dispatchModel("refreshUI");
+        iwxapi = WXAPIFactory.createWXAPI(enrollActivity, enrollActivity.getString(R.string.wechat_AppID), false);
     }
 
 
@@ -111,9 +116,9 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
 
     public void onSelectCourseClick(View view) {
         HideKeyboard(view);
-        Bundle bundle =new Bundle();
-        bundle.putInt(Constant.productId,params.getProductId());
-        ARouterUtil.navigation(products,bundle);
+        Bundle bundle = new Bundle();
+        bundle.putInt(Constant.productId, params.getProductId());
+        ARouterUtil.navigation(products, bundle);
     }
 
     private void setData() {//给条件选择器的容器填充数据
@@ -132,7 +137,8 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
     private void initSexPicker() {
         sexPicker = new OptionsPickerView.Builder(getT(), (options1, options2, options3, v) -> {
             mSex.set(babySex.get(options2));
-            params.setSex(mSex.get().equals("男")?"F":"M");}
+            params.setSex(mSex.get().equals("男") ? "F" : "M");
+        }
         ).build();
         sexPicker.setNPicker(new ArrayList<String>(), babySex, new ArrayList<String>());
     }
@@ -144,7 +150,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         if (productsEntity != null) {
             getDataBinding().setProductEntity(productsEntity);
             params.setProductId(productsEntity.getId());
-            mPrice.set(String.valueOf(productsEntity.getPrice()));
+            mPrice.set(String.valueOf(productsEntity.getPriceText()));
 
         }
         ClassPlaceEntity placeEntity = event instanceof ClassPlaceEntity ? ((ClassPlaceEntity) event) : null;
@@ -166,17 +172,28 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         params.setBirthday(mDate.get());
         //        //创建订单
         if (params.isLeagal(view))
-            addDisposable(api.createOrder(params).compose(new RestfulTransformer<>()).subscribe(s -> {
-                orderPay("");
-            }, BaseUtil::toast));
+            addDisposable(api.createOrder(params).compose(new RestfulTransformer<>()).subscribe(this::orderWXPay, BaseUtil::toast));
 
 //{"code":"0","data":{"prepareId":"pp20180424-373469","payOrderCode":"20180424-373469"}}支付成功后的状态
     }
 
-    public void orderPay(String orderNo) {
-        Model.dispatchModel("refreshUI");
+    private IWXAPI iwxapi;
+
+    public void orderWXPay(CreateOrderWXEntity bean) {
+        //wx
+        PayReq req = new PayReq();
+        req.appId = getT().getResources().getString(R.string.wechat_AppID);
+        req.partnerId = bean.getPartnerId();
+        req.prepayId = bean.getPrepareId();
+        req.nonceStr = bean.getNonceStr();
+        req.timeStamp = bean.getTimestamp();
+//        req.packageValue = bean.getPa();
+        req.packageValue="Sign=WXPay";
+        req.sign = bean.getPaySign();
+        Boolean ans=      iwxapi.sendReq(req);
+        BaseUtil.toast(ans.toString());
         //zfb
-        addDisposable(Observable.create(
+     /*   addDisposable(Observable.create(
                 (ObservableOnSubscribe<PayResult>) e -> e.onNext(new PayResult(new PayTask(getT()).payV2("", true)))
         ).observeOn(AndroidSchedulers.mainThread())
                 .filter(payResult -> {
@@ -186,14 +203,19 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
                 }).subscribeOn(Schedulers.newThread()).subscribe(payResult12 -> {
                     BaseUtil.toast("支付成功");
 //                    Model.dispatchModel("paySuccess");
-                }));
-    }
+                }));*/
 
+//        Model.dispatchModel("refreshUI");
+    }
+    private void paySuccess(){
+        Model.dispatchModel("refreshUI");
+        getT().finish();
+    }
     public void onClassADClick(View view) {
         HideKeyboard(view);
-        Bundle bundle =new Bundle();
-        bundle.putInt(Constant.placeId,params.getFieldId());
-        ARouterUtil.navigation(ActivityComponent.Router.place,bundle);
+        Bundle bundle = new Bundle();
+        bundle.putInt(Constant.placeId, params.getFieldId());
+        ARouterUtil.navigation(ActivityComponent.Router.place, bundle);
     }
 
     //隐藏虚拟键盘

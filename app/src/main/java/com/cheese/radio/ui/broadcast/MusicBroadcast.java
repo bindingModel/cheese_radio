@@ -28,6 +28,6 @@ public class MusicBroadcast extends BroadcastReceiver {
 
       }
         Model.dispatchModel("showButtonNotify");
-       BaseUtil.toast("收到广播："+tag);
+//       BaseUtil.toast("收到广播："+tag);
     }
 }

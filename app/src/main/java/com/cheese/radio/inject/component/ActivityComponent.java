@@ -35,6 +35,7 @@ import com.cheese.radio.ui.user.register.one.RegisterOneActivity;
 import com.cheese.radio.ui.user.register.two.RegisterTwoActivity;
 import com.cheese.radio.ui.user.safe.SafeActivity;
 import com.cheese.radio.ui.user.service.center.CenterActivity;
+import com.cheese.radio.wxapi.WXPayEntryActivity;
 
 import dagger.Component;
 
@@ -110,6 +111,7 @@ public interface ActivityComponent {
     void inject(PictureActivity activity);
     void inject(SafeActivity activity);
     void inject(PhoneActivity activity);
+    void inject(WXPayEntryActivity activity);
     interface Router {
         String cheese = "/cheese/";
         String startup = cheese + "startup";

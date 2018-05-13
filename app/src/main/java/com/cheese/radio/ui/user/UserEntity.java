@@ -18,7 +18,7 @@ import static com.binding.model.util.ReflectUtil.getAllFields;
  */
 
 public class UserEntity {
-    private Integer count=0;
+    private Integer count = 0;
     private String token;
     private String nickname;
     private String sex;
@@ -28,9 +28,10 @@ public class UserEntity {
     private String mobile;
     private String userId;
     private String portrait;
+
     public void clone(UserEntity entity) {
         for (Field field : getAllFields(getClass())) {
-           beanSetValue(field,this,beanGetValue(field,entity));
+            beanSetValue(field, this, beanGetValue(field, entity));
         }
 //        apt
 //        aop
@@ -47,10 +48,10 @@ public class UserEntity {
     }
 
     public String getNickName() {
-        if(!TextUtils.isEmpty(nickname)){
+        if (!TextUtils.isEmpty(nickname)) {
             return nickname;
-        }else if(!TextUtils.isEmpty(token)){
-            if(token.length()>=20)
+        } else if (!TextUtils.isEmpty(token)) {
+            if (token.length() >= 20)
                 return nickname = token.substring(0, 20);
         }
         return "匿名用户";
@@ -136,7 +137,11 @@ public class UserEntity {
     }
 
     public Integer getCount() {
-        return count++;
+        if (count == 0) {
+            count = 1;
+            return 0;
+        }
+        return 1;
     }
 
     public void setCount(Integer count) {

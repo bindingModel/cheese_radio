@@ -38,7 +38,7 @@ public class SafeModel extends ViewHttpModel<SafeActivity,ActivitySafeBinding,Ob
 
     private void updataUI(){
         String phone=IkeApplication.getUser().getUserEntity().getMobile();
-        phone=phone.substring(0,3)+"****"+phone.substring(7,11);
+       if(!TextUtils.isEmpty(phone)) phone=phone.substring(0,3)+"****"+phone.substring(7,11);
         phoneNumber.set(phone);
         havaPhoneNumber.set(!TextUtils.isEmpty(IkeApplication.getUser().getUserEntity().getMobile()));
 

@@ -10,17 +10,17 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:background="@color/background_white"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.RecyclerView
-            android:padding="10dp"
+
             android:layout_width="match_parent"
             app:adapter="@{vm.adapter}"
             app:layout_manager="@{vm.layoutManager}"
             android:layout_height="wrap_content"/>
         <Button
             android:layout_marginTop="1dp"
-            android:onClick="@{vm.onDismissClick}"
+            android:onClick="@{vm.onCancelClick}"
             android:layout_width="match_parent"
             android:textColor="@color/text_black"
             android:text="@string/close"
