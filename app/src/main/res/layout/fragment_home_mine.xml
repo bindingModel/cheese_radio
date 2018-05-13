@@ -155,6 +155,8 @@
                     android:layout_marginTop="15dp"
                     android:onClick="@{vm::onSafeClick}"
                     android:text="安全中心"
+                    android:paddingLeft="15dp"
+                    android:paddingStart="15dp"
                     android:visibility="visible" />
 
                 <TextView
