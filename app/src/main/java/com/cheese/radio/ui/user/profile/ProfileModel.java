@@ -229,7 +229,7 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
                     popup.dismiss();
                     break;
             }
-            return false;
+            return true;
         });
     }
 }

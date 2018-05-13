@@ -41,15 +41,17 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_gravity="center"
-        android:layout_margin="10dp"
+        android:padding="5dp"
         android:src="@mipmap/icon_play"
         />
 
     <ImageView
         android:id="@+id/music_stop"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_gravity="center"
+        android:padding="5dp"
+        android:visibility="gone"
         android:src="@mipmap/icon_stop"
        />
 
