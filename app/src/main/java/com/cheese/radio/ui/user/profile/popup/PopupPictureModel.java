@@ -32,6 +32,7 @@ public class PopupPictureModel extends PopupRecyclerModel<BaseActivity,PopupPict
         super.attachView(savedInstanceState, baseActivity);
         entities.add(new SelectPictureWayEntity("拍照"));
         entities.add(new SelectPictureWayEntity("相册"));
+
         getAdapter().setList(NO_POSITION,entities,refresh);
     }
 

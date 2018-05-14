@@ -1,86 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="vm"
-            type="com.cheese.radio.ui.home.page.entity.RecommandEntity"/>
+            type="com.cheese.radio.ui.home.page.entity.RecommandEntity" />
     </data>
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="214dp"
-    android:background="@color/background_white"
-    >
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="214dp"
-        android:layout_margin="15dp"
-        android:layout_marginBottom="9dp"
-        android:onClick="@{vm::onClick}">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="144dp"
-            android:src="@{vm.image}"
-            android:scaleType="centerCrop"
-            app:radius="@{vm.radius}"
+        android:background="@color/background_white">
 
-            android:layout_marginBottom="7dp"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="214dp"
+            android:layout_marginBottom="9dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:onClick="@{vm::onClick}">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="144dp"
+                android:layout_marginBottom="7dp"
+                android:scaleType="centerCrop"
+                android:src="@{vm.image}"
+
+                app:radius="@{vm.radius}" />
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="33dp"
-            android:textSize="10sp"
-            android:text="@{String.valueOf(vm.playCount)}"
-            android:layout_gravity="bottom"
-            android:gravity="center|start"
-            android:paddingEnd="10dp"
-            android:paddingStart="10dp"
-            android:paddingBottom="6dp"
-            android:layout_marginBottom="70dp"
-            android:drawablePadding="3dp"
-            android:textColor="#ffffff"
-            android:background="@drawable/home_smooth"
-            android:drawableStart="@mipmap/play_num_icon"
-            android:drawableLeft="@mipmap/play_num_icon"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="33dp"
-            android:textSize="10sp"
-            android:text="未知"
-            android:layout_gravity="bottom"
-            android:gravity="center|start"
-            android:paddingEnd="10dp"
-            android:layout_marginLeft="90dp"
-            android:paddingStart="10dp"
-            android:paddingBottom="6dp"
-            android:layout_marginBottom="70dp"
-            android:drawablePadding="3dp"
-            android:textColor="#ffffff"
-            android:drawableStart="@mipmap/story_num_icon"
-            android:drawableLeft="@mipmap/story_num_icon"
-            android:visibility="gone"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="@{vm.title}"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="41dp"
-            android:textColor="@color/text_black"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:text="@{vm.subTitle}"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="18dp"
-            android:textColor="@color/text_gray"
-            />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="33dp"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="70dp"
+                android:background="@drawable/home_smooth"
+                android:drawableLeft="@mipmap/play_num_icon"
+                android:drawablePadding="3dp"
+                android:drawableStart="@mipmap/play_num_icon"
+                android:gravity="center|start"
+                android:paddingBottom="6dp"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:text="@{String.valueOf(vm.playCount)}"
+                android:textColor="#ffffff"
+                android:textSize="10sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="33dp"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="70dp"
+                android:layout_marginLeft="90dp"
+                android:drawableLeft="@mipmap/story_num_icon"
+                android:drawablePadding="3dp"
+                android:drawableStart="@mipmap/story_num_icon"
+                android:gravity="center|start"
+                android:paddingBottom="6dp"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:text="未知"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="41dp"
+                android:text="@{vm.title}"
+                android:textColor="@color/text_black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="18dp"
+                android:text="@{vm.subTitle}"
+                android:textColor="@color/text_gray"
+                android:textSize="12sp" />
+        </FrameLayout>
     </FrameLayout>
-</FrameLayout>
 </layout>

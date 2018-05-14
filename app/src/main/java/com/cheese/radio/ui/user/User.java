@@ -97,4 +97,8 @@ public class User {
         util.setAllDto(userEntity);
         return count;
     }
+    public void setMobile(String mobile){
+        userEntity.setMobile(mobile);
+        util.setAllDto(userEntity);
+    }
 }

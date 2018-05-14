@@ -34,9 +34,11 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.FutureTarget;
 import com.cheese.radio.BuildConfig;
 import com.cheese.radio.R;
+import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityPlayBinding;
 import com.cheese.radio.inject.api.RadioApi;
+import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.media.audio.AudioModel;
@@ -243,7 +245,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         if (list.size() == 0) return;
         PlayEntity entity = list.get(0);
         addDisposable(Observable.create((ObservableOnSubscribe<UMusic>) e -> {
-                    UMusic music = new UMusic(entity.getUrl());
+                    UMusic music = new UMusic(entity.getShareUrl());
                     UMImage image = new UMImage(getT(), entity.getImage());
                     music.setTitle(entity.getTitle());
                     music.setThumb(image);
@@ -322,13 +324,13 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
 //        //点击的事件处理
         Intent buttonIntent = new Intent(ACTION_BUTTON);
-        checked.set(util.isPlaying());
+        upDataButton();
         //这里加了广播，所及INTENT的必须用getBroadcast方法
         /* 播放/暂停  按钮 */
         buttonIntent.putExtra(INTENT_BUTTONID_TAG, BUTTON_PALY_ID);
         PendingIntent intent_play = PendingIntent.getBroadcast(App.getCurrentActivity(), 1, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        mRemoteViews.setOnClickPendingIntent(R.id.music_play, intent_play);
-        mRemoteViews.setOnClickPendingIntent(R.id.music_stop,intent_play);
+        mRemoteViews.setOnClickPendingIntent(R.id.music_pause, intent_play);
+//        mRemoteViews.setOnClickPendingIntent(R.id.music_stop,intent_play);
         /* 下一首 按钮  */
         buttonIntent.putExtra(INTENT_BUTTONID_TAG, BUTTON_NEXT_ID);
         PendingIntent intent_next = PendingIntent.getBroadcast(App.getCurrentActivity(), 2, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -352,6 +354,11 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
     }
 
+    @Override
+    public void cancelButtonNotiy() {
+        util.getNotManager().cancel(234);
+    }
+
     private void playRecord() {
         PlayRecordParams recordParams = new PlayRecordParams("playRecord");
         recordParams.setId(list.get(0).getId());
@@ -363,6 +370,14 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     private PendingIntent getDefalutIntent(int flags) {
         PendingIntent pendingIntent = PendingIntent.getActivity(App.getCurrentActivity(), 1, new Intent(), flags);
         return pendingIntent;
+    }
+    public void onAnchorCLick(View view){
+        Bundle bundle = new Bundle();
+//        bundle.putInt(Constant.authorId, list.get(0).getAnchorIcon());
+        ARouterUtil.navigation(ActivityComponent.Router.author, bundle);
+    }
+    public void upDataButton(){
+        checked.set(util.isPlaying());
     }
 }
 

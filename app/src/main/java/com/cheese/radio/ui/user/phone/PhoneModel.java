@@ -12,12 +12,14 @@ import android.widget.TextView;
 
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewHttpModel;
+import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.rxjava.ErrorTransform;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityPhoneBinding;
 import com.cheese.radio.inject.api.RadioApi;
+import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.user.login.params.SmsParams;
 
 import javax.inject.Inject;
@@ -83,7 +85,11 @@ public class PhoneModel extends ViewHttpModel<PhoneActivity, ActivityPhoneBindin
     }
 
     public void onSubmitClick(View view) {
+       if(bindPhoneParams.getPhone().length() == 11 && isValidToast(view, getPhoneError(bindPhoneParams.getPhone())))
         addDisposable(api.bindPhone(bindPhoneParams).compose(new RestfulTransformer<>()).subscribe(o -> {
+            IkeApplication.getUser().setMobile(bindPhoneParams.getPhone());
+            Model.dispatchModel("upDataUI");
+            getT().finish();
         },BaseUtil::toast));
     }
 }

@@ -104,7 +104,7 @@ public class CoordinatorLayoutModel extends PagerModel<CoordinatorLayoutActivity
         /* 播放/暂停  按钮 */
         buttonIntent.putExtra(INTENT_BUTTONID_TAG, BUTTON_PALY_ID);
         PendingIntent intent_paly = PendingIntent.getBroadcast(getT(), 1, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        mRemoteViews.setOnClickPendingIntent(R.id.music_play, intent_paly);
+        mRemoteViews.setOnClickPendingIntent(R.id.music_pause, intent_paly);
         /* 下一首 按钮  */
         buttonIntent.putExtra(INTENT_BUTTONID_TAG, BUTTON_NEXT_ID);
         PendingIntent intent_next = PendingIntent.getBroadcast(getT(), 2, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);

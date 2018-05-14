@@ -78,6 +78,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
                 if (entity != null) play(entity);
             } else
                 checked.set(true);
+                showButtonNotify();
         } else {
             util.pause();
             checked.set(false);
@@ -212,4 +213,5 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
     }
 
     public abstract void showButtonNotify();
+    public abstract void cancelButtonNotiy();
 }

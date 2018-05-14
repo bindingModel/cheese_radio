@@ -25,6 +25,7 @@ public class MusicBroadcast extends BroadcastReceiver {
       if(tag==BUTTON_PALY_ID ){
           if(util.isPlaying())util.pause();
           else util.play();
+          util.getNotManager().cancel(234);
       }
       else if(tag ==BUTTON_NEXT_ID ){
 
@@ -32,7 +33,7 @@ public class MusicBroadcast extends BroadcastReceiver {
       else if(tag==BUTTON_CANCEL_ID){
          util.getNotManager().cancel(234);
       }
-        Model.dispatchModel("showButtonNotify");
+        Model.dispatchModel("upDataButton");
 //       BaseUtil.toast("收到广播："+tag);
     }
 
