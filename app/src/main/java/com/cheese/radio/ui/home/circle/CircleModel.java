@@ -24,7 +24,7 @@ public class CircleModel extends ViewModel<CircleFragment, FragmentHomeCircleBin
     @Inject
     CircleModel() {
     }
-
+    private  String circleURL="http://111.231.237.11:8085/zhishidiantai/activity.html";
     private WebView webView;
     private ProgressBar progressBar;
 
@@ -33,7 +33,7 @@ public class CircleModel extends ViewModel<CircleFragment, FragmentHomeCircleBin
         super.attachView(savedInstanceState, circleFragment);
         webView = getDataBinding().webView;
 //        webView.loadUrl("file:///android_asset/test.html");//加载asset文件夹下html
-        webView.loadUrl("http://111.231.237.11:8085/zhishidiantai/activity.html");//加载url
+        webView.loadUrl(circleURL);//加载url
 
         //       使用webview显示html代码
 //        webView.loadDataWithBaseURL(null,descriptionText.get(), "text/html" , "utf-8", null);
