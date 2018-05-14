@@ -17,7 +17,7 @@ import com.cheese.radio.ui.IkeApplication;
 
 import javax.inject.Inject;
 
-@ModelView(R.layout.activity_safe)
+@ModelView(value = R.layout.activity_safe,model = true)
 public class SafeModel extends ViewHttpModel<SafeActivity,ActivitySafeBinding,Object>{
     @Override
     public void accept(Object o) throws Exception {

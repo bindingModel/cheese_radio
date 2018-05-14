@@ -24,7 +24,7 @@ public class CircleModel extends ViewModel<CircleFragment, FragmentHomeCircleBin
     @Inject
     CircleModel() {
     }
-    private  String circleURL="http://111.231.237.11:8085/zhishidiantai/activity.html";
+    private  String circleURL="http://h5.zhishidiantai.com/zhishidiantai/activity.html";
     private WebView webView;
     private ProgressBar progressBar;
 

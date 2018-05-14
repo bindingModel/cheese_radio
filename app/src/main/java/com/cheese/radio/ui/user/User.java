@@ -66,6 +66,7 @@ public class User {
         String token = this.getToken();
         this.userEntity.clone(entity);
         this.userEntity.setToken(token);
+        checkIsFirstUse();
         util.setAllDto(userEntity);
     }
 
@@ -75,6 +76,7 @@ public class User {
 
     public void setCanBookCheck(Boolean canBookCheck) {
         userEntity.setCanBookCheck(canBookCheck);
+        checkIsFirstUse();
         util.setAllDto(userEntity);
     }
 
@@ -82,6 +84,7 @@ public class User {
     public void setUserEntity(UserInfoParams params) {
         if (params.getAge() != null) userEntity.setAge(params.getAge());
         if (params.getSex() != null) userEntity.setSex(params.getSex());
+        checkIsFirstUse();
         util.setAllDto(userEntity);
     }
 
@@ -89,6 +92,7 @@ public class User {
         UserInfoParams params = new UserInfoParams("setUserInfo");
         params.setAge(userEntity.getAge());
         params.setSex(userEntity.getSex());
+        checkIsFirstUse();
         return params;
     }
 
@@ -99,6 +103,7 @@ public class User {
     }
     public void setMobile(String mobile){
         userEntity.setMobile(mobile);
+        checkIsFirstUse();
         util.setAllDto(userEntity);
     }
 }
