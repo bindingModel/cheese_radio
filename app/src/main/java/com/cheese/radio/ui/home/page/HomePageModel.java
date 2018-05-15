@@ -5,6 +5,7 @@ import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.binding.model.adapter.recycler.GridSpanSizeLookup;
 import com.binding.model.layout.recycler.RecyclerModel;
@@ -56,7 +57,6 @@ public class HomePageModel extends RecyclerModel<HomePageFragment, FragmentHomeP
     @Override
     public void attachView(Bundle savedInstanceState, HomePageFragment homePageFragment) {
         super.attachView(savedInstanceState, homePageFragment);
-
         getDataBinding().layoutRecycler.setVm(this);
         GridLayoutManager layoutManager = new GridLayoutManager(homePageFragment.getContext(), 4);
         layoutManager.setSpanSizeLookup(new GridSpanSizeLookup<>(getAdapter()));
@@ -65,6 +65,7 @@ public class HomePageModel extends RecyclerModel<HomePageFragment, FragmentHomeP
         setPageFlag(false);
         upDataMsg();
         setRoHttp((offset1, refresh) -> getZip());
+//        getAdapter().getList().get(0).get
     }
 
     public void upDataMsg(){

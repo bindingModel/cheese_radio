@@ -10,6 +10,7 @@ import com.binding.model.model.inter.SpanSize;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.ui.Constant;
+import com.cheese.radio.util.MyBaseUtil;
 
 import java.util.List;
 
@@ -33,6 +34,34 @@ public class MyFavorityEntity extends ViewInflateRecycler implements SpanSize, G
     private String location;
     private int id;
     private String title;
+    private int audioSize;
+    private int seconds;
+
+    public int getAudioSize() {
+        return audioSize;
+    }
+
+    public String getAudioSizeString() {
+        if(seconds==0)return "0个故事";
+        return audioSize+"个故事";
+    }
+
+    public void setAudioSize(int audioSize) {
+        this.audioSize = audioSize;
+    }
+
+    public int getSeconds() {
+       return seconds;
+    }
+
+    public String getSecondsString() {
+        if(seconds==0)return "00:00";
+        return MyBaseUtil.getMinute(seconds);
+    }
+
+    public void setSeconds(int seconds) {
+        this.seconds = seconds;
+    }
 
     public String getImage() {
         return image;

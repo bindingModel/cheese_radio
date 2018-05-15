@@ -37,6 +37,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -163,9 +164,27 @@ public class MyBaseUtil extends BaseUtil {
         }
         return year + "-" + month;
     }
-
+    //00:00
     public static String getMinute(Integer seconds) {
-        return (seconds / 60) + ":" + (seconds % 60);
+        long second = seconds % 60;
+        long minutes = (seconds / 60) % 60;
+        long hour = seconds / 3600;
+        if (hour > 0) {
+            return String.format(Locale.getDefault(), "%d:%02d:%02d", hour, minutes, second);
+        } else {
+            return String.format(Locale.getDefault(), "%02d:%02d", minutes, second);
+        }
+    }
+    public static String stringForTime(long timeMs) {
+        long totalSecond = timeMs / 1000;
+        long second = totalSecond % 60;
+        long minutes = (totalSecond / 60) % 60;
+        long hour = totalSecond / 3600;
+        if (hour > 0) {
+            return String.format(Locale.getDefault(), "%d:%02d:%02d", hour, minutes, second);
+        } else {
+            return String.format(Locale.getDefault(), "%02d:%02d", minutes, second);
+        }
     }
 
     public static Integer[] getNowDate() {

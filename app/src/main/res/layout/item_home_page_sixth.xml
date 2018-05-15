@@ -28,7 +28,6 @@
                 android:layout_marginBottom="7dp"
                 android:scaleType="centerCrop"
                 android:src="@{vm.image}"
-
                 app:radius="@{vm.radius}" />
 
 

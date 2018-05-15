@@ -43,6 +43,7 @@ public class ProductsModel extends RecyclerModel<ProductsActivity,ActivityProduc
                            entity.checked.set(true);
                        }
                     }
+                    list.clear();
                     list.addAll(productsEntities);
                     return list;
                 }

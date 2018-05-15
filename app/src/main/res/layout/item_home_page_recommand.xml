@@ -7,34 +7,37 @@
         <variable
             name="vm"
             type="com.cheese.radio.ui.home.page.entity.RecommandEntity" />
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_white">
+        android:background="@color/background_white"
+        android:orientation="vertical">
 
         <FrameLayout
-            android:onClick="@{vm::onClick}"
-            android:layout_width="163dp"
-            android:layout_height="217dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="18dp">
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:onClick="@{vm::onClick}">
 
             <ImageView
-                android:layout_width="163dp"
-                android:layout_height="163dp"
-                android:layout_marginBottom="7dp"
-                android:scaleType="fitXY"
-                app:radius="@{vm.radius}"
-                android:src="@{vm.image}" />
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@{vm.image}"
+                app:radius="@{vm.radius}" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="33dp"
                 android:layout_gravity="bottom"
-                android:layout_marginBottom="54dp"
                 android:background="@drawable/home_smooth"
                 android:drawableLeft="@mipmap/play_num_icon"
                 android:drawablePadding="3dp"
@@ -46,26 +49,33 @@
                 android:text="@{String.valueOf(vm.playCount)}"
                 android:textColor="#ffffff"
                 android:textSize="10sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginBottom="22dp"
-                android:text="@{vm.title}"
-                android:singleLine="true"
-                android:textColor="@color/text_black"
-                android:textSize="15sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@{vm.subTitle}"
-                android:textColor="@color/text_gray"
-                android:textSize="12sp" />
         </FrameLayout>
-    </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:singleLine="true"
+            android:text="@{vm.title,default=1234}"
+            android:textColor="@color/text_black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="7dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@{vm.subTitle,default=12345}"
+            android:textColor="@color/text_gray"
+            android:textSize="12sp" />
+
+    </LinearLayout>
 </layout>
