@@ -50,6 +50,7 @@ public class AnchorsModel extends AudioRecycleModel<AnchorsActivity,ActivityAnch
         playImage=getDataBinding().playImage;
         entity.setImage(AudioServiceUtil.getInstance().getImage());
         images(entity);
+        setPageFlag(false);
         setRcHttp((offset1, refresh) -> api.getAnchors(params).compose(new RestfulTransformer<>()));
     }
 
