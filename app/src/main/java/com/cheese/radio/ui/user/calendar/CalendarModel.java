@@ -74,7 +74,7 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
         Log.e("Thread",Thread.currentThread().getName());
         calendarView.setTipsDays(calendarEntities);
     }
-
+    private CalendarEntity empty=new CalendarEntity();
     private CalendarView calendarView;
     private String selectDay;
     private List<CalendarEntity> list = new ArrayList<>();
@@ -88,6 +88,7 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
     public void attachView(Bundle savedInstanceState, CalendarFragment calendarFragment) {
         super.attachView(savedInstanceState, calendarFragment);
         refreshUI();
+        empty.setIndex(1);
 //        MyBaseUtil.getNowDate();
     }
 
@@ -199,6 +200,8 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
                         list.add(entity);
                     }
                 }
+                if(list.size()!=0)
+                list.add(empty);
                 theDayClass.set(list);
             }
 

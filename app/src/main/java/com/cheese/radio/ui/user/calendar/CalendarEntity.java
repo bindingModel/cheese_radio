@@ -19,7 +19,7 @@ import java.util.Objects;
 /**
  * Created by 29283 on 2018/3/26.
  */
-@ModelView(R.layout.item_calendar_class)
+@ModelView(value = {R.layout.item_calendar_class,R.layout.empty_view})
 public class CalendarEntity extends ViewInflateRecycler {
 
 
@@ -43,7 +43,7 @@ public class CalendarEntity extends ViewInflateRecycler {
     private String time;
     private String teacherIcon;
     private String day;
-
+    private int index;
     private int leftCount; //  剩余数量
     private String bookId;////  预约编号（已经预约成功的有效）
 
@@ -240,4 +240,16 @@ public class CalendarEntity extends ViewInflateRecycler {
         ARouterUtil.navigation(ActivityComponent.Router.coursedetails, bundle);
     }
 
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    @Override
+    public int getModelIndex() {
+        return index;
+    }
 }
