@@ -56,11 +56,12 @@ public class RecommandEntity extends ViewInflateRecycler<ItemHomePageRecommandBi
         //屏幕宽度算法:屏幕宽度（像素）/屏幕密度
         int screenWidth = (int) (width / density);//屏幕宽度(dp)
         int screenHeight = (int) (height / density);//屏幕高度(dp)
-        int imageHeght = screenWidth * 158 / 120;
+        int imageHeght = screenWidth * 170 / 125;
         int imageWidth = imageHeght;
         if (index == 1) {
-            imageHeght = screenWidth * 149 / 120;
-            imageWidth = screenWidth * 327 / 120;
+            imageWidth = (screenWidth - 15) * 3;
+            imageHeght = imageWidth * 149 / 327;
+
         }
         ImageView imageView = getDataBinding().imageView;
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(imageWidth, imageHeght);
