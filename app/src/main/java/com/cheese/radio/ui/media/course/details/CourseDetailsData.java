@@ -143,7 +143,7 @@ public class CourseDetailsData {
     public CharSequence getCountMsg() {
 
         return BaseUtil.colorText(
-                T(String.valueOf(leftCount), false, "FFB100", 1),
+                T(String.valueOf(totalCount-leftCount), false, "FFB100", 1),
                 T("/"+String.valueOf(totalCount), true, "BDBDBD"),
                 T("已经预约人数", false, "BDBDBD")
         );

@@ -226,6 +226,7 @@ public class CalendarEntity extends ViewInflateRecycler {
     }
 
     public void onTeacherClick(View view) {
+        if (teacherId==0)return;
         Bundle bundle = new Bundle();
         bundle.putInt(Constant.authorId, teacherId);
         ARouterUtil.navigation(ActivityComponent.Router.author, bundle);

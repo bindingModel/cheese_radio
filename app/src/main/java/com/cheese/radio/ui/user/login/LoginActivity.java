@@ -45,6 +45,7 @@ public class LoginActivity extends BaseActivity<LoginModel> implements UMAuthLis
     }
 
     public void onWechatClick(View view){
+
 //        UMShareAPI.get(this).deleteOauth(this,SHARE_MEDIA.WEIXIN,this);
         if (UMShareAPI.get(this).isInstall(this, SHARE_MEDIA.WEIXIN)) {
             UMShareAPI.get(this).doOauthVerify(this, SHARE_MEDIA.WEIXIN, this);

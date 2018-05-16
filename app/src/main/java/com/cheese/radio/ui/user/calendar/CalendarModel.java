@@ -176,7 +176,7 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
                     isInit = true;
                 }
                 Month month = months.get(position);
-                params.setYearMonth(month.getYear(), position);
+                params.setYearMonth(month.getYear(), month.getMonth());
                 onHttp(1);
                 Log.e("MainThread",Thread.currentThread().getName());
 
