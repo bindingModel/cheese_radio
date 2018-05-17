@@ -71,8 +71,9 @@
     <string name="ali_pay">支付宝支付</string>
     <string name="service_telephone">客服电话</string>
     <string name="service_centre_number">0574-87746963</string>
-    <string name="the_hours_worked">工作时间：09:00-22:00</string>
-    <string name="wx_public_platform">微信公众号：芝士Radio</string>
+    <string name="service_centre_phone">18868986986</string>
+    <string name="the_hours_worked">工作时间：10:00-21:00</string>
+    <string name="wx_public_platform">微信公众号：zhishidiantai</string>
     <string name="class_ad">上课地址</string>
     <string name="select_class_ad">请选择上课地址</string>
     <string name="un_read">未读</string>

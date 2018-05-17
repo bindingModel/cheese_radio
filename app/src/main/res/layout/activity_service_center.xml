@@ -25,10 +25,11 @@
 
 
             <ImageView
-                android:layout_width="match_parent"
+                android:id="@+id/ad_image"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scaleType="center"
-                android:src="@mipmap/ad_map" />
+                android:scaleType="fitXY"
+                android:src="@mipmap/ad_map_new" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -48,6 +49,14 @@
                 android:textColor="@color/text_black"
                 android:textSize="30sp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp"
+                android:text="@string/service_centre_phone"
+                android:textColor="@color/text_black"
+                android:textSize="30sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
