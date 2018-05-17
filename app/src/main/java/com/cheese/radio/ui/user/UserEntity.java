@@ -50,9 +50,8 @@ public class UserEntity {
     public String getNickName() {
         if (!TextUtils.isEmpty(nickname)) {
             return nickname;
-        } else if (!TextUtils.isEmpty(token)) {
-            if (token.length() >= 20)
-                return nickname = token.substring(0, 20);
+        } else if (!TextUtils.isEmpty(mobile)) {
+                return nickname = mobile;
         }
         return "匿名用户";
     }
@@ -78,7 +77,7 @@ public class UserEntity {
     }
 
     public String getSex() {
-        return sex = (sex != null ? sex : "F");
+        return sex = (sex != null ? sex : "M");
     }
 
     public void setSex(String sex) {

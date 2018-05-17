@@ -109,14 +109,14 @@ public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineB
     }
 
     public Drawable getSex() {
-        return IkeApplication.getUser().getUserEntity().getSex().equals("F") ?
+        return IkeApplication.getUser().getUserEntity().getSex().equals("M") ?
                 App.getDrawable(R.mipmap.boy) : App.getDrawable(R.mipmap.girl);
     }
 
     private void updataUI() {
         getDataBinding().setEntity(IkeApplication.getUser().getUserEntity());
         head.set(getSex());
-      if((IkeApplication.isLogin(false))|| (!TextUtils.isEmpty(IkeApplication.getUser().getUserEntity().getPortrait()))) {
+      if( !TextUtils.isEmpty(IkeApplication.getUser().getUserEntity().getPortrait())) {
             getDataBinding().defHead.setVisibility(View.GONE);
       }
     }

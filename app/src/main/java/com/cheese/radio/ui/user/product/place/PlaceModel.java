@@ -61,6 +61,7 @@ public class PlaceModel extends RecyclerModel<PlaceActivity, ActivityPlaceBindin
             }
             classPlaceEntity.check.set(true);
             getDataBinding().save.setVisibility(View.VISIBLE);
+            getT().finish();
             return false;
         });
     }

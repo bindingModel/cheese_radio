@@ -50,6 +50,7 @@
             android:paddingLeft="17dp"
             android:paddingRight="17dp"
             android:inputType="phone"
+            android:maxLength="11"
             android:text="@={params.phone}"
             android:textSize="14.4sp" />
 
@@ -90,7 +91,7 @@
         </FrameLayout>
 
         <Button
-
+            android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:layout_marginEnd="11dp"

@@ -42,7 +42,7 @@ public class MyFavorityEntity extends ViewInflateRecycler implements SpanSize, G
     }
 
     public String getAudioSizeString() {
-        if(seconds==0)return "0个故事";
+        if(audioSize==0)return "0个故事";
         return audioSize+"个故事";
     }
 

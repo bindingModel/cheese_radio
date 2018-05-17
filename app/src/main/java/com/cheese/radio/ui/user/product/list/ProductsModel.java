@@ -54,6 +54,7 @@ public class ProductsModel extends RecyclerModel<ProductsActivity,ActivityProduc
             }
             o.checked.set(true);
             getDataBinding().save.setVisibility(View.VISIBLE);
+            getT().finish();
             return false;
         });
     }

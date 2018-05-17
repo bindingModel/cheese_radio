@@ -87,5 +87,5 @@
     <string name="sms_tip">注意接收，验证码</string>
     <string name="bind_phone">换绑手机</string>
     <string name="now_enroll">立即报名</string>
-    <string name="empty">------没有更多内容------</string>
+    <string name="empty">没有更多内容</string>
 </resources>
