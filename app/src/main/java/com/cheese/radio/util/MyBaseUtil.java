@@ -218,7 +218,7 @@ public class MyBaseUtil extends BaseUtil {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         int options = 100;
-        while (baos.toByteArray().length / 1024 > 100) {  //100kb
+        while (options>0 &&baos.toByteArray().length / 1024 > 100) {  //100kb
             baos.reset();//重置baos即清空baos
             options -= 10;//每次都减少10
             bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos);

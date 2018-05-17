@@ -137,8 +137,10 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         list.add(entity);
         AudioServiceUtil.getInstance().setImage(entity.getImage());
         AudioServiceUtil.getInstance().setFileId(entity.getFileId());
-        if (isPlaying()) setEntities(list);
-        else playFirst(list);
+//        if (isPlaying()) setEntities(list);
+//        else playFirst(list);
+        setEntities(list);
+//        playFirst(list);
         getDataBinding().setEntity(entity);
         getDataBinding().html5Desc.setText(Html.fromHtml(entity.getAnchorBrief()));
         if (!list.isEmpty()) {

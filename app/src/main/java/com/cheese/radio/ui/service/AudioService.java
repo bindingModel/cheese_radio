@@ -153,6 +153,10 @@ public class AudioService extends Service
                     if (player.getCurrentPosition() == player.getDuration())
                         player.seekTo(0);
                 case Pause:
+                    if (!uri.equals(this.uri)) {
+                        state = Reset;
+                        return start(uri);
+                    }
                 case Prepared:
                     player.start();
                     state = Play;
