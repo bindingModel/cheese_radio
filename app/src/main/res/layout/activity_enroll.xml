@@ -7,15 +7,18 @@
         <variable
             name="vm"
             type="com.cheese.radio.ui.user.enroll.EnrollModel" />
+
         <variable
             name="params"
-            type="com.cheese.radio.ui.user.enroll.params.CreateOrderParams"/>
+            type="com.cheese.radio.ui.user.enroll.params.CreateOrderParams" />
+
         <variable
             name="productEntity"
             type="com.cheese.radio.ui.user.product.list.ProductsEntity" />
+
         <variable
             name="placeEntity"
-            type="com.cheese.radio.ui.user.product.place.ClassPlaceEntity"/>
+            type="com.cheese.radio.ui.user.product.place.ClassPlaceEntity" />
     </data>
 
     <FrameLayout
@@ -51,8 +54,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:inputType="textPersonName"
                         android:background="@null"
+                        android:inputType="textPersonName"
                         android:text="@={params.name}"
                         android:textSize="14.4dp" />
                 </LinearLayout>
@@ -119,8 +122,8 @@
                         android:layout_weight="1"
                         android:background="@null"
                         android:hint="@string/input_phone"
-                        android:maxLength="11"
                         android:inputType="phone"
+                        android:maxLength="11"
                         android:text="@={params.phone}"
                         android:textSize="14.4sp" />
                 </LinearLayout>
@@ -270,10 +273,10 @@
                         android:drawablePadding="15dp"
                         android:drawableRight="@drawable/tick_select"
                         android:drawableStart="@mipmap/ali_pay_1"
+                        android:enabled="false"
                         android:padding="15dp"
                         android:text="@string/ali_pay" />
                 </com.binding.model.view.radio.CheckRadioGroup>
-
 
 
                 <LinearLayout
@@ -306,7 +309,8 @@
                     style="@style/profile_input_linearlayout"
                     android:layout_width="match_parent"
                     android:layout_height="53.28dp"
-                    android:layout_marginTop="1dp">
+                    android:layout_marginTop="1dp"
+                    android:visibility="gone">
 
                     <TextView
                         style="@style/profile_input_linearlayout_head"
@@ -349,8 +353,8 @@
                 android:layout_weight="3"
                 android:gravity="center|start"
                 android:text="@{vm.mPrice,default=6000}"
-                android:textSize="20sp"
-                android:textColor="@color/text_red" />
+                android:textColor="@color/text_red"
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="0dp"

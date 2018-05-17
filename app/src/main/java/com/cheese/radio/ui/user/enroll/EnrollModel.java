@@ -31,6 +31,7 @@ import com.cheese.radio.ui.user.enroll.params.CreateOrderParams;
 import com.cheese.radio.ui.user.product.list.ProductsEntity;
 import com.cheese.radio.ui.user.product.place.ClassPlaceEntity;
 import com.cheese.radio.util.CityPickTool;
+import com.cheese.radio.util.MyBaseUtil;
 import com.cheese.radio.util.TimePickTool;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
@@ -87,7 +88,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         initAgePicker();
         initSexPicker();
         cityPickTool = new CityPickTool(mCity, getT());
-        timePickSelect = new TimePickTool(mDate, getT());
+        timePickSelect = new TimePickTool(getT(),((date, v) -> mDate.set(MyBaseUtil.getTime(date))));
         getDataBinding().setParams(params);
         Model.dispatchModel("refreshUI");
         iwxapi = WXAPIFactory.createWXAPI(enrollActivity, enrollActivity.getString(R.string.wechat_AppID), false);

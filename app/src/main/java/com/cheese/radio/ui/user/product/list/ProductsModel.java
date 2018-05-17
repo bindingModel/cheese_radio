@@ -53,7 +53,7 @@ public class ProductsModel extends RecyclerModel<ProductsActivity,ActivityProduc
                 entity.checked.set(false);
             }
             o.checked.set(true);
-            getDataBinding().save.setVisibility(View.VISIBLE);
+//            getDataBinding().save.setVisibility(View.VISIBLE);
             getT().finish();
             return false;
         });

@@ -85,7 +85,10 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
     public void attachView(Bundle savedInstanceState, ProfileActivity activity) {
         super.attachView(savedInstanceState, activity);
         initPopupPlayModel(savedInstanceState);
-        pickTool = new TimePickTool(mDate, activity);
+        pickTool = new TimePickTool(activity, ((date, v) -> {
+            mDate.set(MyBaseUtil.getTime(date));
+            updataUI();
+        }));
         initSexPicker();
         params = new ProfileParams("setProperty");
         userEntity = IkeApplication.getUser().getUserEntity();
@@ -117,6 +120,7 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
                         if (stringInfoEntity.getCode().equals("0")) {
                             IkeApplication.getUser().setUserEntity(params);
                             Model.dispatchModel("updataUI");
+//                            getT().finish();
                             BaseUtil.toast("更新成功");
                         }
                     }
@@ -147,6 +151,7 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
         sexPicker = new OptionsPickerView.Builder(getT(), (options1, options2, options3, v) -> {
             params.setSex(babySex.get(options2));
             mSex.set(select.get(options2));
+            updataUI();
         }
         ).build();
         sexPicker.setNPicker(new ArrayList<String>(), select, new ArrayList<String>());
@@ -191,7 +196,6 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
             }
         }, Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
-
 
 
     public void processePictures(String path) {

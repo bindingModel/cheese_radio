@@ -19,14 +19,14 @@ import java.util.Date;
 
 public class TimePickTool {
     private TimePickerView pvCustomTime;
-    private ObservableField<String> data;
 
+    private TimePickerView.OnTimeSelectListener listener;
 
     private Context context;
 
-    public TimePickTool(ObservableField<String> data, Context context) {
-        this.data = data;
+    public TimePickTool( Context context,TimePickerView.OnTimeSelectListener listener) {
         this.context = context;
+        this.listener=listener;
         initCustomTimePicker();
     }
 
@@ -51,7 +51,7 @@ public class TimePickTool {
         Calendar endDate = Calendar.getInstance();
         endDate.set(nowDay[0], nowDay[1]-1, nowDay[2]);
         //时间选择器 ，自定义布局
-        pvCustomTime = new TimePickerView.Builder(context, (date, v) -> data.set(getTime(date)))
+        pvCustomTime = new TimePickerView.Builder(context, listener)
                 /*.setType(TimePickerView.Type.ALL)//default is all
                 .setCancelText("Cancel")
                 .setSubmitText("Sure")

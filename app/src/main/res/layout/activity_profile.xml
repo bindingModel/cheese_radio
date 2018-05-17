@@ -137,6 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:padding="15dp"
+            android:visibility="gone"
             android:onClick="@{vm::onPropertyClick}"
             android:text="@string/save"/>
     </FrameLayout>

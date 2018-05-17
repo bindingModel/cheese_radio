@@ -60,7 +60,7 @@ public class PlaceModel extends RecyclerModel<PlaceActivity, ActivityPlaceBindin
                 entity.check.set(false);
             }
             classPlaceEntity.check.set(true);
-            getDataBinding().save.setVisibility(View.VISIBLE);
+//            getDataBinding().save.setVisibility(View.VISIBLE);
             getT().finish();
             return false;
         });

@@ -27,7 +27,7 @@
             android:layout_gravity="end"
             android:padding="12dp"
             android:onClick="@{vm::onFinishClick}"
-            android:visibility="invisible"
+            android:visibility="gone"
             android:text="@string/save"/>
     </FrameLayout>
 
