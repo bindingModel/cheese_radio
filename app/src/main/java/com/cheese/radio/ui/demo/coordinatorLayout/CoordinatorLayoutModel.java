@@ -13,7 +13,9 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RemoteViews;
 
 
@@ -25,6 +27,8 @@ import com.cheese.radio.R;
 import com.cheese.radio.databinding.ActivityDemoBinding;
 import com.cheese.radio.inject.qualifier.manager.ActivityFragmentManager;
 import com.cheese.radio.ui.service.AudioServiceUtil;
+import com.cheese.radio.ui.startup.check.CheckUpdateModel;
+import com.cheese.radio.ui.user.profile.popup.PopupPictureModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +57,8 @@ public class CoordinatorLayoutModel extends PagerModel<CoordinatorLayoutActivity
     private AudioServiceUtil util;
     private NotificationManager mNotificationManager;
     private final List<CoordinatorLayoutEntity> fragmentList = new ArrayList<>();
+    @Inject
+    CheckUpdateModel popupUpdate;
 
     @Override
     public void attachView(Bundle savedInstanceState, CoordinatorLayoutActivity coordinatorLayoutActivity) {
@@ -60,6 +66,7 @@ public class CoordinatorLayoutModel extends PagerModel<CoordinatorLayoutActivity
         util = AudioServiceUtil.getInstance();
         mNotificationManager = (NotificationManager) getT().getSystemService(Context.NOTIFICATION_SERVICE);
 //        sendNotification();
+        initPopup(savedInstanceState);
     }
 
     public void getFragment() {
@@ -89,7 +96,7 @@ public class CoordinatorLayoutModel extends PagerModel<CoordinatorLayoutActivity
             notificationManager.createNotificationChannel(mChannel);
         }
 
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getT(),CHANNEL_ID);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getT(), CHANNEL_ID);
         RemoteViews mRemoteViews = new RemoteViews(getT().getPackageName(), R.layout.notify_music);
         mRemoteViews.setImageViewResource(R.id.music_icon, R.mipmap.app_logo);
         mRemoteViews.setTextViewText(R.id.music_title, "七里香");
@@ -125,7 +132,8 @@ public class CoordinatorLayoutModel extends PagerModel<CoordinatorLayoutActivity
     public static final String NOTIFICATION_CHANNEL_ID = "4655";
 
     public void onClick(View view) {
-        showButtonNotify();
+//        showButtonNotify();
+        popupUpdate.show(window -> window.showAtLocation(getDataBinding().getRoot(), Gravity.CENTER, 0, 0));
 
 //        int NOTIFICATION_ID = 234;
 //        String CHANNEL_ID = "my_channel_01";
@@ -167,5 +175,14 @@ public class CoordinatorLayoutModel extends PagerModel<CoordinatorLayoutActivity
         PendingIntent pendingIntent = PendingIntent.getActivity(getT(), 1, new Intent(), flags);
         return pendingIntent;
     }
+
+    private void initPopup(Bundle savedInstanceState) {
+        popupUpdate.attachContainer(getT(), (ViewGroup) getDataBinding().getRoot(), false, savedInstanceState);
+        popupUpdate.getWindow().setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        popupUpdate.getWindow().setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupUpdate.getWindow().setAnimationStyle(R.style.contextMenuAnim);
+        popupUpdate.show(window -> window.showAtLocation(getDataBinding().getRoot(), Gravity.CENTER, 0, 0));
+    }
+
 }
 

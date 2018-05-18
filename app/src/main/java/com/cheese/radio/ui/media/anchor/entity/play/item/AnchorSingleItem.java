@@ -130,7 +130,7 @@ public class AnchorSingleItem extends ViewInflateRecycler implements Parcelable 
     }
 
     public void onPlayClick(View view) {
-        ARouterUtil.itemNavigation("play", id);
+        ARouterUtil.itemNavigation(location, id);
     }
 
     @Override

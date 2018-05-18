@@ -47,7 +47,7 @@
                         style="@style/profile_input_linearlayout_head"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="@string/name" />
+                        android:text="@string/baby_name" />
 
                     <EditText
                         style="@style/profile_input_linearlayout_solid"

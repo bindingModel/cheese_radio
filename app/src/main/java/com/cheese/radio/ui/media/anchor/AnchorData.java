@@ -23,15 +23,28 @@ public class AnchorData {
      */
 
     private AnchorSingleEntity single;
+    private AnchorSingleEntity group;
     private String image;
     private String nickName;
     private String description;
     private int authorId;
-
+    public int getCount(){
+     return  getSingle().getList().size()+getGroup().getList().size();
+    }
     public AnchorSingleEntity getSingle() {
         if (single != null)
             return single;
         return new AnchorSingleEntity();
+    }
+
+    public AnchorSingleEntity getGroup() {
+        if (group != null)
+            return group;
+        return new AnchorSingleEntity();
+    }
+
+    public void setGroup(AnchorSingleEntity group) {
+        this.group = group;
     }
 
     public void setSingle(AnchorSingleEntity single) {

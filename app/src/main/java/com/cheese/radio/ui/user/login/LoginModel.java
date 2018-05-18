@@ -104,7 +104,7 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
                 platformParams.setPlatform("weixin");
                 break;
         }
-//        ARouterUtil.navigation(demo);
+        ARouterUtil.navigation(demo);
         BaseUtil.toast("还在努力建设中");
 
     }

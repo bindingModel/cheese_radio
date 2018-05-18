@@ -19,6 +19,7 @@ import com.cheese.radio.ui.user.User;
 import com.cheese.radio.ui.user.login.params.PlatformParams;
 import com.cheese.radio.util.MyBaseUtil;
 import com.pgyersdk.crash.PgyCrashManager;
+import com.tendcloud.tenddata.TCAgent;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 
@@ -54,7 +55,12 @@ public class IkeApplication extends MultiDexApplication {
         UMConfigure.setLogEnabled(true);
         UMConfigure.init(this, ""
                 , "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
-
+        //td
+        String td_AppId=getResources().getString(R.string.td_app_id);
+        String td_AppChannel=getResources().getString(R.string.td_app_channel);
+        TCAgent.LOG_ON=true;
+        TCAgent.init(this, td_AppId, td_AppChannel);
+        TCAgent.setReportUncaughtExceptions(true);
     }
 
     public static IkeApplication getApp() {
@@ -66,14 +72,14 @@ public class IkeApplication extends MultiDexApplication {
     }
 
     public static boolean isLogin(boolean checkToLogin) {
-        if(!User.isLogin&&checkToLogin){
+        if (!User.isLogin && checkToLogin) {
             ARouterUtil.navigation(login);
             BaseUtil.toast("请登陆后再试");
         }
         return User.isLogin;
     }
 
-    public static RadioApi getRadioApi(){
+    public static RadioApi getRadioApi() {
         return application.api;
     }
 
@@ -81,8 +87,8 @@ public class IkeApplication extends MultiDexApplication {
         return application.user;
     }
 
-    private void initAppKey(){
-        PlatformParams params=new PlatformParams("openPlatformConfig");
+    private void initAppKey() {
+        PlatformParams params = new PlatformParams("openPlatformConfig");
         params.setPlatform("weixin");
         api.getOpenPlatformConfig(params).compose(new RestfulTransformer<>()).subscribe();
     }

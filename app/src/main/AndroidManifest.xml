@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"  />
+    <uses-permission android:name="android.permission.GET_TASKS"  />
     <supports-screens
         android:smallScreens="true"
         android:normalScreens="true"
@@ -144,5 +146,13 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/images_url"/>
         </provider>
+        <service android:name="com.talkingdata.sdk.TDAntiCheatingService"
+            android:process="com.talkingdata.sdk.TDAntiCheatingService">  <!--用户质量评估Service可以配置在主进程或者单独进程-->
+            <intent-filter>
+                <action android:name="com.talkingdata.sdk.TDAntiCheatingService" />
+            </intent-filter>
+        </service>
+        <meta-data android:name="TD_APP_ID" android:value="@string/td_app_id" />
+        <meta-data android:name="TD_CHANNEL_ID" android:value="@string/td_app_channel" />
     </application>
 </manifest>

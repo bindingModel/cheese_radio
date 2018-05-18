@@ -12,8 +12,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -29,6 +31,7 @@ import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
 import com.binding.model.model.inter.Entity;
 import com.binding.model.util.BaseUtil;
+import com.cheese.radio.BuildConfig;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
@@ -40,6 +43,9 @@ import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.media.audio.AudioModel;
 import com.cheese.radio.ui.media.play.PlayEntity;
 import com.cheese.radio.ui.service.AudioServiceUtil;
+import com.cheese.radio.ui.startup.check.CheckUpdateModel;
+import com.cheese.radio.ui.startup.check.VersionEntity;
+import com.cheese.radio.ui.startup.check.VersionParams;
 import com.cheese.radio.util.DataStore;
 import com.cheese.radio.util.MyBaseUtil;
 
@@ -75,19 +81,20 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
     private ImageView playImage;
     private Integer angle = 0;
     private Handler mHandler = new Handler();
-
+     @Inject CheckUpdateModel popupUpdate;
     @Inject
     HomeModel() {
     }
 
     @Inject
     RadioApi api;
-
+    VersionParams params;
+    private VersionEntity versionEntity;
     @Override
     public void attachView(Bundle savedInstanceState, HomeActivity activity) {
         super.attachView(savedInstanceState, activity);
         //new Date()指定日期时，year need to minus 1900 ，month neet to minus 1,day just day，
-        if(System.currentTimeMillis()> new Date(2018-1900,4,30).getTime()){
+        if(System.currentTimeMillis()> new Date(2019-1900,5,30).getTime()){
             TimeUtil.getInstance().add(this);
             new AlertDialog.Builder(getT())
                     .setCancelable(false)
@@ -101,10 +108,14 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
                     .setOnDismissListener(dialog1 -> finish());
         } else {
             playImage = getDataBinding().playImage;
-
-
-
             initFragment();
+            initPopup(savedInstanceState);
+            addDisposable(api.version(params).compose(new RestfulTransformer<>()).subscribe((versionEntity -> {
+                if(versionEntity.getUpdate()==1){
+                    popupUpdate.message.set(versionEntity.getMessage());
+                    popupUpdate.show(window -> window.showAtLocation(getDataBinding().getRoot(), Gravity.CENTER, 0, 0));
+                }
+            })));
         }
     }
 
@@ -237,5 +248,14 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
         getDataBinding().playBg.setVisibility(View.GONE);
         mHandler.removeCallbacksAndMessages(null);
         mHandler.post(mRotationRunnable);
+    }
+    private void initPopup(Bundle savedInstanceState){
+        params=new VersionParams("version");
+        params.setOs("android");
+        params.setVersion(BuildConfig.VERSION_NAME);
+        popupUpdate.attachContainer(getT(), (ViewGroup) getDataBinding().getRoot(), false, savedInstanceState);
+        popupUpdate.getWindow().setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        popupUpdate.getWindow().setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupUpdate.getWindow().setAnimationStyle(R.style.contextMenuAnim);
     }
 }
