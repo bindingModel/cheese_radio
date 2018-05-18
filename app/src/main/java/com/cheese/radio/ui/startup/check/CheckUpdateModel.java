@@ -23,7 +23,7 @@ public class CheckUpdateModel extends PopupModel<BaseActivity, PopupCheckUpdataB
     CheckUpdateModel() {
     }
     public  ObservableField<String> message=new ObservableField<>();
-    public  ObservableField<String> url=new ObservableField<>("https://www.pgyer.com/0mCz");
+    public  ObservableField<String> url=new ObservableField<>("http://www.cheeseradio.com/");
     @Override
     public void attachView(Bundle savedInstanceState, BaseActivity baseActivity) {
         super.attachView(savedInstanceState, baseActivity);
