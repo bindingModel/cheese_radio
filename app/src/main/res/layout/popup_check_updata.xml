@@ -42,24 +42,28 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
+            android:padding="1dp"
             android:orientation="horizontal">
 
             <Button
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="30dp"
                 android:layout_gravity="bottom"
-                android:background="@drawable/check_update_bg"
+                android:layout_weight="1"
+                android:background="@drawable/login_button_shape"
                 android:onClick="@{vm::onCancelClick}"
-                android:text="@string/dont_update" />
+                android:text="@string/dont_update"
+                android:textColor="@color/text_white" />
+
             <Button
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="30dp"
                 android:layout_gravity="bottom"
-                android:background="@drawable/check_update_bg"
+                android:layout_weight="1"
+                android:background="@drawable/login_button_shape"
                 android:onClick="@{vm::onUrlClick}"
-                android:text="@string/update" />
+                android:text="@string/update"
+                android:textColor="@color/text_white" />
         </LinearLayout>
     </LinearLayout>
 </layout>
