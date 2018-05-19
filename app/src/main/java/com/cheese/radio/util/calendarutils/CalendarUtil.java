@@ -82,12 +82,14 @@ public class CalendarUtil {
                 if (tipsDay != null) {
                     int[] theDay1 = tipsDay.getDays();
                     if (theDay1 != null && theDay1.length >= 3 && theDay1[0] == year && theDay1[1] == month && theDay1[2] == day) {
+
                         if (tipsDay.isBook()) {
                             theDay.setTipsType(1);//绿
+                            break;
                         } else if (tipsDay.isCanBook()) {
                             theDay.setTipsType(2);//黄
-                        } else theDay.setTipsType(3);//灰
-                        break;
+                        } else if(theDay.getTipsType() == 0)theDay.setTipsType(3);//灰
+
                     }
                 }
 

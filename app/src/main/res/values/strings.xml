@@ -95,4 +95,6 @@
     <string name="dont_update">下次再说</string>
     <string name="update">前去更新</string>
     <string name="baby_name">宝贝昵称</string>
+    <string name="parent_name">家长姓名</string>
+    <string name="teacher_name">指导老师</string>
 </resources>

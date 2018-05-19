@@ -63,6 +63,28 @@
                 <LinearLayout
                     style="@style/profile_input_linearlayout"
                     android:layout_width="match_parent"
+                    android:layout_height="53.28dp">
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/parent_name" />
+
+                    <EditText
+                        style="@style/profile_input_linearlayout_solid"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:inputType="textPersonName"
+                        android:text="@={params.name}"
+                        android:textSize="14.4dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/profile_input_linearlayout"
+                    android:layout_width="match_parent"
                     android:layout_height="53.28dp"
                     android:layout_marginTop="1dp">
 
@@ -231,6 +253,29 @@
                         android:textSize="14.4sp" />
                 </LinearLayout>
 
+                <LinearLayout
+                    style="@style/profile_input_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="53.28dp">
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/teacher_name" />
+
+                    <EditText
+                        style="@style/profile_input_linearlayout_solid"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:inputType="textPersonName"
+                        android:text="@={params.name}"
+                        android:textSize="14.4dp" />
+                </LinearLayout>
+
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -279,57 +324,6 @@
                 </com.binding.model.view.radio.CheckRadioGroup>
 
 
-                <LinearLayout
-                    style="@style/profile_input_linearlayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="53.28dp"
-                    android:layout_marginTop="1dp"
-                    android:visibility="gone">
-
-                    <TextView
-                        style="@style/profile_input_linearlayout_head"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="@string/address" />
-
-                    <TextView
-                        style="@style/profile_input_linearlayout_solid"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@null"
-                        android:focusable="false"
-                        android:hint="@string/select_city"
-                        android:onClick="@{vm::onSelectCityClick}"
-                        android:text="@{vm.mCity}"
-                        android:textSize="14.4sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/profile_input_linearlayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="53.28dp"
-                    android:layout_marginTop="1dp"
-                    android:visibility="gone">
-
-                    <TextView
-                        style="@style/profile_input_linearlayout_head"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="@string/address" />
-
-                    <TextView
-                        style="@style/profile_input_linearlayout_solid"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@null"
-                        android:focusable="false"
-                        android:hint="@string/select_city"
-                        android:onClick="@{vm::onSelectCityClick}"
-                        android:text="@{vm.mCity}"
-                        android:textSize="14.4sp" />
-                </LinearLayout>
             </LinearLayout>
 
         </ScrollView>

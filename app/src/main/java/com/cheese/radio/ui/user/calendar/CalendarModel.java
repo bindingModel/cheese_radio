@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.PopupRecyclerModel;
 import com.binding.model.model.ViewHttpModel;
+import com.binding.model.model.inter.Event;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
@@ -22,6 +23,7 @@ import com.cheese.radio.databinding.ActivityCalendarBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.home.CanBookParams;
+import com.cheese.radio.ui.media.course.details.CourseDetailsModel;
 import com.cheese.radio.ui.user.enroll.PayResult;
 import com.cheese.radio.util.MyBaseUtil;
 import com.cheese.radio.util.calendarutils.Day;
@@ -71,7 +73,6 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
             initCalendarView(start, end, list);
             isFirst = false;
         }
-        Log.e("Thread",Thread.currentThread().getName());
         calendarView.setTipsDays(calendarEntities);
     }
     private CalendarEntity empty=new CalendarEntity();
@@ -90,6 +91,12 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
         refreshUI();
         empty.setIndex(1);
 //        MyBaseUtil.getNowDate();
+    }
+
+    @Override
+    public int onEvent(View view, Event event, Object... args) {
+       onHttp(1);
+       return 1;
     }
 
     private Day getSelectDayFromMonth(int year, int month) {

@@ -155,7 +155,7 @@ public interface RadioApi {
     Observable<InfoEntity<CourseDetailsData>> getClassInfo(@Body CourseDetailsParams params);
 
     @POST("/1.0/class")
-    Observable<InfoEntity<String>> getBookClass(@Body CourseDetailsParams params);
+    Observable<InfoEntity<Object>> getBookClass(@Body CourseDetailsParams params);
 
     @POST("/1.0/user")
     Observable<InfoEntity<String>> addFavority(@Body AddFavorityParams params);

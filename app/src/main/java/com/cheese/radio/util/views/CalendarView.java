@@ -470,9 +470,10 @@ public class CalendarView extends LinearLayout {
         Month month = months.get(positionMonth);
         if (month != null) {
             List<Day> days = month.getDays();
-            if (days == null ||true) {
-                days = getDays(month.getYear(), month.getMonth(), selectDay, tipsDays);
-            }
+//            if (days == null ||true) {
+//                days = getDays(month.getYear(), month.getMonth(), selectDay, tipsDays);
+//            }
+            days = getDays(month.getYear(), month.getMonth(), selectDay, tipsDays);
             int lines = 5;
             if (days != null && days.size() != 0) {
                 lines = days.size() / 7;
@@ -548,19 +549,19 @@ public class CalendarView extends LinearLayout {
                             //设置特殊日
                             if (day.getTipsType() == 1) {
                                 //报名成功
-//                                textViewSolar.setText("付");
+//
                                 greenCircleDrawable.setBounds(0, 0, greenCircleDrawable.getIntrinsicWidth(), (int) (greenCircleDrawable.getMinimumHeight()));
                                 textViewSolar.setCompoundDrawables(null, null, null, greenCircleDrawable);
                             }
                             if (day.getTipsType() == 2) {
-                                //满员
-//                                textViewSolar.setText("付");
+                                //有空位
+//
                                 yellowCircleDrawable.setBounds(0, 0, yellowCircleDrawable.getIntrinsicWidth(), (int) (yellowCircleDrawable.getMinimumHeight()));
                                 textViewSolar.setCompoundDrawables(null, null, null, yellowCircleDrawable);
                             }
                             if (day.getTipsType() == 3) {
                                 //满员
-//                                textViewSolar.setText("付");
+//
                                 grayCircleDrawable.setBounds(0, 0, grayCircleDrawable.getIntrinsicWidth(), (int) (grayCircleDrawable.getMinimumHeight()));
                                 textViewSolar.setCompoundDrawables(null, null, null, grayCircleDrawable);
                             }
