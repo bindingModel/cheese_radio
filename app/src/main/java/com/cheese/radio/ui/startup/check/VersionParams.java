@@ -6,7 +6,9 @@ public class VersionParams extends IkeParams {
     private String method;
     private String os;
     private String version;
-
+/*TODO*
+   version : int
+ */
     public VersionParams(String method) {
         this.method = method;
     }
