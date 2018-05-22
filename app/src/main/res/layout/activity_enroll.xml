@@ -63,6 +63,7 @@
                 <LinearLayout
                     style="@style/profile_input_linearlayout"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="1dp"
                     android:layout_height="53.28dp">
 
                     <TextView
@@ -78,7 +79,7 @@
                         android:layout_weight="1"
                         android:background="@null"
                         android:inputType="textPersonName"
-                        android:text="@={params.name}"
+                        android:text="@={params.parentName}"
                         android:textSize="14.4dp" />
                 </LinearLayout>
 
@@ -256,6 +257,7 @@
                 <LinearLayout
                     style="@style/profile_input_linearlayout"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="1dp"
                     android:layout_height="53.28dp">
 
                     <TextView
@@ -271,7 +273,7 @@
                         android:layout_weight="1"
                         android:background="@null"
                         android:inputType="textPersonName"
-                        android:text="@={params.name}"
+                        android:text="@={params.instructor}"
                         android:textSize="14.4dp" />
                 </LinearLayout>
 

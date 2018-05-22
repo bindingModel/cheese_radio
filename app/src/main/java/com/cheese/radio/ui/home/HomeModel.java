@@ -252,7 +252,7 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
     private void initPopup(Bundle savedInstanceState){
         params=new VersionParams("version");
         params.setOs("android");
-        params.setVersion(BuildConfig.VERSION_NAME);
+        params.setVersion(String.valueOf(BuildConfig.VERSION_CODE));
         popupUpdate.attachContainer(getT(), (ViewGroup) getDataBinding().getRoot(), false, savedInstanceState);
         popupUpdate.getWindow().setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         popupUpdate.getWindow().setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);

@@ -33,6 +33,25 @@ public class CreateOrderParams extends IkeParams {
     private int productId;
     private String payType;
     private int fieldId;
+    private String instructor;
+    private String parentName;
+
+    public String getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(String instructor) {
+        this.instructor = instructor;
+    }
+
+    public String getParentName() {
+        return parentName;
+    }
+
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
+    }
+
     public CreateOrderParams(String method) {
         this.method = method;
     }
@@ -146,7 +165,14 @@ public class CreateOrderParams extends IkeParams {
             BaseUtil.toast("选择一下套餐");
             return false;
         }
-//        if()
+        if (TextUtils.isEmpty(parentName)) {
+            BaseUtil.toast("家长名字还没填写");
+            return false;
+        }
+        if (TextUtils.isEmpty(instructor)) {
+            BaseUtil.toast("指导老师还没填写");
+            return false;
+        }
         return true;
     }
 }
