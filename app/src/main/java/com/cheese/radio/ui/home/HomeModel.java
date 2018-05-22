@@ -94,7 +94,7 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
     public void attachView(Bundle savedInstanceState, HomeActivity activity) {
         super.attachView(savedInstanceState, activity);
         //new Date()指定日期时，year need to minus 1900 ，month neet to minus 1,day just day，
-        if(System.currentTimeMillis()> new Date(2019-1900,5,30).getTime()){
+        if(System.currentTimeMillis()> new Date(2020-1900,5,30).getTime()){
             TimeUtil.getInstance().add(this);
             new AlertDialog.Builder(getT())
                     .setCancelable(false)
