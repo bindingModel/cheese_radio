@@ -119,6 +119,7 @@ public class PlayEntity implements Entity {
     }
 
     public String getFavorCount() {
+        if (favorCount > 1000) return String.valueOf(favorCount / 1000) + "+";
         return String.valueOf(favorCount);
     }
 

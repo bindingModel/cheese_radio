@@ -8,6 +8,7 @@ import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
+import com.cheese.radio.util.MyBaseUtil;
 
 /**
  * Created by 29283 on 2018/3/16.
@@ -36,7 +37,7 @@ public class AnchorSingleItem extends ViewInflateRecycler implements Parcelable 
     private String anchorName;
     private String url;
     private String anchorBrief;
-
+    private int audioSize;
     public int getSeconds() {
         return seconds;
     }
@@ -93,11 +94,7 @@ public class AnchorSingleItem extends ViewInflateRecycler implements Parcelable 
         this.image = image;
     }
 
-    public int getPlayCount() {
-        return playCount;
-    }
-
-    public String getPlayCountString() {
+    public String getPlayCount() {
         return String.valueOf(playCount);
     }
 
@@ -151,6 +148,7 @@ public class AnchorSingleItem extends ViewInflateRecycler implements Parcelable 
         dest.writeString(anchorName);
         dest.writeString(url);
         dest.writeString(anchorBrief);
+        dest.writeInt(audioSize);
     }
 
     protected AnchorSingleItem(Parcel in) {
@@ -165,6 +163,7 @@ public class AnchorSingleItem extends ViewInflateRecycler implements Parcelable 
         this.anchorName = in.readString();
         this.url = in.readString();
         this.anchorBrief = in.readString();
+        this.audioSize=in.readInt();
     }
 
     public static final Creator<AnchorSingleItem> CREATOR = new Creator<AnchorSingleItem>() {
@@ -181,5 +180,22 @@ public class AnchorSingleItem extends ViewInflateRecycler implements Parcelable 
 
     public int getRadius(){
         return 15;
+    }
+
+    public int getAudioSize() {
+        return audioSize;
+    }
+
+    public void setAudioSize(int audioSize) {
+        this.audioSize = audioSize;
+    }
+
+    public String getAudioSizeString() {
+        if(audioSize==0)return "0个故事";
+        return audioSize+"个故事";
+    }
+    public String getSecondsString() {
+        if(seconds==0)return "00:00";
+        return MyBaseUtil.getMinute(seconds);
     }
 }

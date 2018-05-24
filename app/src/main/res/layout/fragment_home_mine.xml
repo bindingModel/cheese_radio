@@ -68,12 +68,12 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|bottom"
-                        android:layout_marginBottom="50dp"
+                        android:layout_marginBottom="40dp"
                         android:ellipsize="end"
                         android:gravity="center"
                         android:maxLines="1"
                         android:onClick="@{vm::onSetProfileClick}"
-                        android:text="@{entity.nickName}"
+                        android:text="@{entity.nickName,default=123}"
                         android:textColor="@color/text_black"
                         android:textSize="16sp" />
 
@@ -81,7 +81,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|bottom"
-                        android:layout_marginBottom="25dp"
+                        android:layout_marginBottom="15dp"
                         android:onClick="@{vm::onSetProfileClick}"
                         android:text="@{entity.babyBirth}"
                         android:textColor="#707070"
@@ -128,7 +128,7 @@
                         android:text="@string/my_course" />
 
                     <TextView
-                        style="@style/home_mine_item"
+                        style="@style/home_mine_item_no_bottom_line"
                         android:layout_width="match_parent"
                         android:layout_height="55.2dp"
                         android:layout_marginTop="1dp"
@@ -136,28 +136,35 @@
                         android:text="@string/my_collection" />
 
 
-                    <TextView
-                        style="@style/home_mine_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="55.2dp"
-                        android:layout_marginTop="1dp"
-                        android:background="@color/white"
-                        android:onClick="@{vm::onCenterClick}"
-                        android:text="@string/service_centre" />
+
 
 
                 </LinearLayout>
 
-                <TextView
-                    style="@style/home_mine_item"
-                    android:layout_width="match_parent"
-                    android:layout_height="55.2dp"
-                    android:layout_marginTop="15dp"
-                    android:onClick="@{vm::onSafeClick}"
-                    android:text="安全中心"
-                    android:paddingLeft="15dp"
-                    android:paddingStart="15dp"
-                    android:visibility="visible" />
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:paddingLeft="15dp"
+                   android:paddingStart="15dp"
+                   android:background="@color/background_white"
+                   android:layout_marginTop="15dp"
+
+                   android:orientation="vertical">
+                   <TextView
+                       style="@style/home_mine_item"
+                       android:layout_width="match_parent"
+                       android:layout_height="55.2dp"
+                       android:onClick="@{vm::onCenterClick}"
+                       android:text="@string/service_centre" />
+                   <TextView
+                       style="@style/home_mine_item_no_bottom_line"
+                       android:layout_width="match_parent"
+                       android:layout_height="55.2dp"
+                       android:layout_marginTop="1dp"
+                       android:onClick="@{vm::onSafeClick}"
+                       android:text="安全中心"
+                       android:visibility="visible" />
+               </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"

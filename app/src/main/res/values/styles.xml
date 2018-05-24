@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/text_yellow</item>
         <item name="colorAccent">@color/colorAccent</item>
+
     </style>
 
     <style name="HomeRadioButton">
@@ -17,6 +18,14 @@
 
     <style name="home_mine_item">
         <item name="android:background">@drawable/normal_bottom_line</item>
+        <item name="android:drawableEnd">@mipmap/mine_arrow</item>
+        <item name="android:drawableRight">@mipmap/mine_arrow</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
+    </style>
+    <style name="home_mine_item_no_bottom_line">
+        <item name="android:background">@color/background_white</item>
         <item name="android:drawableEnd">@mipmap/mine_arrow</item>
         <item name="android:drawableRight">@mipmap/mine_arrow</item>
         <item name="android:paddingRight">15dp</item>
@@ -102,7 +111,7 @@
         <item name="android:background">@drawable/classify_tag_select</item>
         <item name="android:layout_marginRight">28dp</item>
         <item name="android:layout_gravity">end|center</item>
-
+        <item name="android:textColor">@color/text_yellow</item>
     </style>
 
     <style name="contextMenuAnim" parent="@android:style/Animation.Activity">

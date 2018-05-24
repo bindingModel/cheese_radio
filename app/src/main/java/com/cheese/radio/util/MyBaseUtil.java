@@ -1,8 +1,10 @@
 package com.cheese.radio.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.media.Image;
@@ -12,6 +14,8 @@ import android.os.Build;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -20,6 +24,7 @@ import com.binding.model.App;
 import com.binding.model.util.BaseUtil;
 import com.binding.model.view.web.callback.JsBridgeCallback;
 import com.bumptech.glide.load.ImageHeaderParserUtils;
+import com.cheese.radio.ui.media.play.PlayActivity;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -164,6 +169,7 @@ public class MyBaseUtil extends BaseUtil {
         }
         return year + "-" + month;
     }
+
     //00:00
     public static String getMinute(Integer seconds) {
         long second = seconds % 60;
@@ -175,6 +181,7 @@ public class MyBaseUtil extends BaseUtil {
             return String.format(Locale.getDefault(), "%02d:%02d", minutes, second);
         }
     }
+
     public static String stringForTime(long timeMs) {
         long totalSecond = timeMs / 1000;
         long second = totalSecond % 60;
@@ -199,6 +206,7 @@ public class MyBaseUtil extends BaseUtil {
         }
         return nowInteger;
     }
+
     //强制收起虚拟键盘
     public static void HideKeyboard(View v) {
         InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -218,7 +226,7 @@ public class MyBaseUtil extends BaseUtil {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         int options = 100;
-        while (options>0 &&baos.toByteArray().length / 1024 > 100) {  //100kb
+        while (options > 0 && baos.toByteArray().length / 1024 > 100) {  //100kb
             baos.reset();//重置baos即清空baos
             options -= 10;//每次都减少10
             bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos);
@@ -243,6 +251,7 @@ public class MyBaseUtil extends BaseUtil {
         recycleBitmap(bitmap);
         return file;
     }
+
     //释放资源
     private static void recycleBitmap(Bitmap... bitmaps) {
         if (bitmaps == null) {
@@ -254,6 +263,7 @@ public class MyBaseUtil extends BaseUtil {
             }
         }
     }
+
     //获取图片的旋转角度
     public static int getExifOrientation(String filepath) {
         int degree = 0;
@@ -281,6 +291,7 @@ public class MyBaseUtil extends BaseUtil {
         }
         return degree;
     }
+
     //旋转图片
     public static Bitmap rotaingImageView(int angle, Bitmap bitmap) {
         Matrix matrix = new Matrix();
@@ -289,18 +300,19 @@ public class MyBaseUtil extends BaseUtil {
                 bitmap.getWidth(), bitmap.getHeight(), matrix, true);
 
     }
-    public static  WebView setWebView(WebView webView,String text){
+
+    public static WebView setWebView(WebView webView, String text) {
 //        webView.loadUrl("file:///android_asset/test.html");//加载asset文件夹下html
         //   webView.loadUrl("http://139.196.35.30:8080/OkHttpTest/apppackage/test.html");//加载url
 
         //       使用webview显示html代码
-        webView.loadDataWithBaseURL(null,text, "text/html" , "utf-8", null);
+        webView.loadDataWithBaseURL(null, text, "text/html", "utf-8", null);
 
         //  webView.addJavascriptInterface(this,"android");//添加js监听 这样html就能调用客户端
 //        webView.setWebChromeClient(webChromeClient);
 //        webView.setWebViewClient(webViewClient);
 
-        WebSettings webSettings=webView.getSettings();
+        WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);//允许使用js
         webSettings.setTextZoom(100);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
@@ -325,10 +337,55 @@ public class MyBaseUtil extends BaseUtil {
         webSettings.setDisplayZoomControls(false);
         return webView;
     }
+
     public static String getTime(Date date) {//可根据需要自行截取数据显示
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return format.format(date);
 //        return SimpleDateFormat.getDateInstance().format(date);
     }
+
+    public static void setFullScreenView(Window window) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // 5.0 以上全透明状态栏
+            //取消设置透明状态栏,使 ContentView 内容不再覆盖状态栏 加下面几句可以去除透明状态栏的灰色阴影,实现纯透明
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            //需要设置这个 flag 才能调用 setStatusBarColor 来设置状态栏颜色
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            //6.0 以上可以设置状态栏的字体为黑色.使用下面注释的这行打开亮色状态栏模式,实现黑色字体,白底的需求用这句
+            window.setStatusBarColor(Color.WHITE);
+            window.getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            window.setStatusBarColor(Color.TRANSPARENT);
+
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {//4.4 全透明状态栏
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+    }
+
+    public static void setWhiteStatus(Window window) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // 5.0 以上全透明状态栏
+            //取消设置透明状态栏,使 ContentView 内容不再覆盖状态栏 加下面几句可以去除透明状态栏的灰色阴影,实现纯透明
+//            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//            //需要设置这个 flag 才能调用 setStatusBarColor 来设置状态栏颜色
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//            window.getDecorView().setSystemUiVisibility(
+//                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            //6.0 以上可以设置状态栏的字体为黑色.使用下面注释的这行打开亮色状态栏模式,实现黑色字体,白底的需求用这句
+            window.setStatusBarColor(Color.WHITE);
+            window.getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            window.setStatusBarColor(Color.TRANSPARENT);
+
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {//4.4 全透明状态栏
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+    }
+
+    public static void checkActivity(Activity activity) {
+        if (activity instanceof PlayActivity) setFullScreenView(activity.getWindow());
+        else setWhiteStatus(activity.getWindow());
+    }
+
 }
 

@@ -70,6 +70,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 
+import static com.binding.model.adapter.AdapterType.select;
 import static com.cheese.radio.ui.Constant.ACTION_BUTTON;
 import static com.cheese.radio.ui.Constant.BUTTON_CANCEL_ID;
 import static com.cheese.radio.ui.Constant.BUTTON_NEXT_ID;
@@ -168,16 +169,19 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         //设置播放时长
         popupPlayModel.addEventAdapter((position, entity, type, view) -> {
             //判断如果不是同一个，则将上一个状态取反,单选操作
-            if (timeEntity != null && !timeEntity.equals(entity)) {
-                timeEntity.checked.set(false);
-            }
-            timeEntity = entity;
-            util.setDuration(timeEntity.getTime(), (current, duration) -> {
-                if (current != 0)
-                    playTime = current;
-                totalTime = duration;
-            });
-            return false;
+           if(type==select){
+               if (timeEntity != null && !timeEntity.equals(entity)) {
+                   timeEntity.checked.set(false);
+               }
+               timeEntity = entity;
+               util.setDuration(timeEntity.getTime(), (current, duration) -> {
+                   if (current != 0)
+                       playTime = current;
+                   totalTime = duration;
+               });
+               popupPlayModel.getWindow().dismiss();
+           }
+            return true;
         });
     }
 
@@ -241,7 +245,9 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
                 s -> {
                 }, BaseUtil::toast));
     }
-
+    public void onBackClick(View view){
+        getT().onBackClick(view);
+    }
     public void onShareClick(View view) {
         String musicUR = null;
         if (list.size() == 0) return;
@@ -374,9 +380,9 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         return pendingIntent;
     }
     public void onAnchorCLick(View view){
-        Bundle bundle = new Bundle();
+/*        Bundle bundle = new Bundle();
 //        bundle.putInt(Constant.authorId, list.get(0).getAnchorIcon());
-        ARouterUtil.navigation(ActivityComponent.Router.author, bundle);
+        ARouterUtil.navigation(ActivityComponent.Router.author, bundle);*/
     }
     public void upDataButton(){
         checked.set(util.isPlaying());

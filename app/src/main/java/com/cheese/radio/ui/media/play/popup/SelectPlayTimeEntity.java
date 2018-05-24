@@ -10,6 +10,7 @@ import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
 import com.cheese.radio.R;
 
+import static com.binding.model.adapter.AdapterType.no;
 import static com.binding.model.adapter.AdapterType.select;
 import static com.binding.model.adapter.IEventAdapter.CHECK;
 import static com.binding.model.adapter.IEventAdapter.NO_POSITION;
@@ -33,7 +34,7 @@ public class SelectPlayTimeEntity extends ViewInflateRecycler {
     public ViewDataBinding attachView(Context context, ViewGroup co, boolean attachToParent, ViewDataBinding binding) {
         ViewDataBinding dataBinding = super.attachView(context, co, attachToParent, binding);
         if (getHolder_position() == 0 && getIEventAdapter() != null)
-            getIEventAdapter().setEntity(NO_POSITION, this, select, null);
+            getIEventAdapter().setEntity(NO_POSITION, this, no, null);
         return dataBinding;
     }
 

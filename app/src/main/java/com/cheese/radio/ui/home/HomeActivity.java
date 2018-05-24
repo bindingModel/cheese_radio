@@ -44,5 +44,8 @@ public class HomeActivity extends BaseActivity <HomeModel> {
 //        System.exit(0);
     }
 
-
+    @Override
+    protected int isSwipe() {
+        return 0;
+    }
 }

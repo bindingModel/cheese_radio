@@ -6,6 +6,7 @@
         <variable
             name="vm"
             type="com.cheese.radio.ui.media.anchor.entity.play.item.AnchorSingleItem" />
+        <import type="android.view.View"/>
     </data>
 
     <LinearLayout
@@ -55,15 +56,26 @@
                     android:drawableLeft="@mipmap/play_count"
                     android:textSize="9.6sp"
                     android:drawablePadding="6.72dp"
-                    android:text="@{vm.playCountString,default=21.00}"/>
+                    android:text="@{vm.playCount,default=21.00}"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@mipmap/play_clock"
                     android:textSize="9.6sp"
                     android:drawablePadding="6.72dp"
-                    android:text="@{vm.playCountString,default=21.00}"/>
+                    android:layout_marginLeft="30dp"
+                    android:visibility="@{vm.seconds==0?View.GONE:View.VISIBLE}"
+                    android:text="@{vm.secondsString,default=21.00}"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/story"
+                    android:textSize="9.6sp"
+                    android:drawablePadding="6.72dp"
+                    android:layout_marginLeft="30dp"
+                    android:visibility="@{vm.audioSize==0?View.GONE:View.VISIBLE}"
+                    android:text="@{vm.audioSizeString,default=21.00}"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"

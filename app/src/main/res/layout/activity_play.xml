@@ -43,7 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:background="@drawable/home_smooth"
+                    android:background="@drawable/play_smooth"
                     android:gravity="center|start"
                     android:padding="5dp"
                     android:text="@{entity.title,default=123456789}"
@@ -57,9 +57,9 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:drawableLeft="@mipmap/play_count"
+                    android:drawableLeft="@mipmap/play_num_icon"
                     android:drawablePadding="6dp"
-                    android:drawableStart="@mipmap/play_count"
+                    android:drawableStart="@mipmap/play_num_icon"
                     android:text="@{entity.playViews,default=00}"
                     android:textColor="@color/text_white"
                     android:textSize="9.6sp" />
@@ -143,14 +143,19 @@
 
                 <View
                     android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:background="@color/background_gray" />
+
+                <View
+                    android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                  />
 
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:layout_marginTop="50dp">
+                    android:layout_margin="15dp">
 
                     <SeekBar
                         android:id="@+id/app_video_seekBar"
@@ -210,26 +215,29 @@
                         android:onClick="@{vm::onPlayClick}"
                         android:paddingTop="8dp" />
                 </FrameLayout>
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="15dp">
+                    android:layout_margin="15dp"
+                    android:orientation="horizontal">
 
                     <CheckBox
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:button="@null"
                         android:checked="@{entity.files}"
-                        android:layout_margin="3dp"
-                        android:drawableTop="@drawable/love_star"
+                        android:drawableLeft="@drawable/love_star"
+                        android:drawablePadding="5dp"
                         android:gravity="center"
                         android:onClick="@{vm::onFabuClick}"
                         android:text="@{entity.favorCount,default= 0}"
-                        android:textSize="13.44sp" /> <!--                       android:text="@{entity.favorCount}"-->
+                        android:textColor="@color/text_gray"
+                        android:textSize="16.44sp" />
 
                     <CheckBox
                         android:layout_width="0dp"
@@ -238,8 +246,7 @@
                         android:layout_weight="1"
                         android:button="@null"
                         android:checked="@{entity.favors}"
-                        android:drawableTop="@drawable/collection_star"
-
+                        android:drawableRight="@drawable/collection_star"
                         android:onClick="@{vm::onAddFavorityClick}" />
                     <!--          android:text="@{entity.favorCount}"-->
 
@@ -251,8 +258,9 @@
                         android:layout_weight="1"
                         android:button="@null"
                         android:checked="@{vm.clockCheck}"
-                        android:drawableTop="@drawable/clock_subscribe"
+                        android:drawableRight="@drawable/clock_subscribe"
                         android:onClick="@{vm::onSelectClick}" />
+
                     <CheckBox
                         android:id="@+id/loop"
                         android:layout_width="0dp"
@@ -260,7 +268,7 @@
                         android:layout_gravity="end"
                         android:layout_weight="1"
                         android:button="@null"
-                        android:drawableTop="@drawable/loop" />
+                        android:drawableRight="@drawable/loop" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -268,16 +276,30 @@
 
         </LinearLayout>
 
-        <include layout="@layout/toolbar_organza" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:layout_marginTop="20dp">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginEnd="9dp"
-            android:layout_marginRight="9dp"
-            android:onClick="@{vm::onShareClick}"
-            android:padding="14dp"
-            android:src="@mipmap/share" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginLeft="9dp"
+                android:layout_marginStart="9dp"
+                android:onClick="@{vm::onBackClick}"
+                android:padding="14dp"
+                android:src="@mipmap/back" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="9dp"
+                android:layout_marginRight="9dp"
+                android:onClick="@{vm::onShareClick}"
+                android:padding="14dp"
+                android:src="@mipmap/share" />
+        </FrameLayout>
     </FrameLayout>
 </layout>

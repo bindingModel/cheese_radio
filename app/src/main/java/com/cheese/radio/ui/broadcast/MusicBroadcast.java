@@ -24,7 +24,7 @@ public class MusicBroadcast extends BroadcastReceiver {
       int tag=  intent.getIntExtra(INTENT_BUTTONID_TAG,0);
       if(tag==BUTTON_PALY_ID ){
           if(util.isPlaying())util.pause();
-          else util.play();
+//          else util.play();
           util.getNotManager().cancel(234);
       }
       else if(tag ==BUTTON_NEXT_ID ){

@@ -8,6 +8,7 @@ import com.binding.model.model.ViewModel;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.databinding.ActivityStartupBinding;
+import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.util.MyBaseUtil;
 
@@ -31,6 +32,7 @@ public class StartUpModel extends ViewModel<StartUpActivity, ActivityStartupBind
         super.attachView(savedInstanceState, startUpActivity);
         Integer time = 100;
         MyBaseUtil.getMacAddress();
+//        ARouterUtil.navigation(ActivityComponent.Router.registerOne);
         Handler handler = new Handler();
         handler.postDelayed(() -> {
             if (IkeApplication.getUser().checkIsFirstUse() == 0) ARouterUtil.navigation(welcome);

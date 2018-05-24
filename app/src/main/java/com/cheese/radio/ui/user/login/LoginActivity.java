@@ -15,6 +15,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.base.cycle.BaseActivity;
 import com.cheese.radio.inject.api.RadioApi;
+import com.cheese.radio.util.MyBaseUtil;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
@@ -32,25 +33,34 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.login;
  */
 @Route(path = login)
 public class LoginActivity extends BaseActivity<LoginModel> implements UMAuthListener {
-    @Inject RadioApi readApi;
+    @Inject
+    RadioApi readApi;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        MyBaseUtil.setWhiteStatus(getWindow());
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
+
 //        请查看你的build.gradle文件，如果 targetSdkVersion小于或等于22，可以忽略这一步，如果大于或等于23，需要做权限的动态申请：
-        if(Build.VERSION.SDK_INT>=23){
-            String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.CALL_PHONE,Manifest.permission.READ_LOGS,Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.SET_DEBUG_APP,Manifest.permission.SYSTEM_ALERT_WINDOW,Manifest.permission.GET_ACCOUNTS,Manifest.permission.WRITE_APN_SETTINGS};
-            ActivityCompat.requestPermissions(this,mPermissionList,123);
+        if (Build.VERSION.SDK_INT >= 23) {
+            String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CALL_PHONE, Manifest.permission.READ_LOGS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.SET_DEBUG_APP, Manifest.permission.SYSTEM_ALERT_WINDOW, Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS};
+            ActivityCompat.requestPermissions(this, mPermissionList, 123);
         }
     }
 
-    public void onWechatClick(View view){
+    public void onWechatClick(View view) {
 
 //        UMShareAPI.get(this).deleteOauth(this,SHARE_MEDIA.WEIXIN,this);
         if (UMShareAPI.get(this).isInstall(this, SHARE_MEDIA.WEIXIN)) {
             UMShareAPI.get(this).doOauthVerify(this, SHARE_MEDIA.WEIXIN, this);
-        }else{
-            BaseUtil.toast(this,"您还未安装微信客户端");}
+        } else {
+            BaseUtil.toast(this, "您还未安装微信客户端");
+        }
     }
 
     @Override
@@ -76,7 +86,7 @@ public class LoginActivity extends BaseActivity<LoginModel> implements UMAuthLis
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        UMShareAPI.get(this).onActivityResult(requestCode,resultCode,data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
 
 
