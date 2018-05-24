@@ -25,6 +25,7 @@ import com.binding.model.util.BaseUtil;
 import com.binding.model.view.web.callback.JsBridgeCallback;
 import com.bumptech.glide.load.ImageHeaderParserUtils;
 import com.cheese.radio.ui.media.play.PlayActivity;
+import com.cheese.radio.ui.startup.welcome.WelcomeActivity;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -383,7 +384,8 @@ public class MyBaseUtil extends BaseUtil {
     }
 
     public static void checkActivity(Activity activity) {
-        if (activity instanceof PlayActivity) setFullScreenView(activity.getWindow());
+        if (activity instanceof PlayActivity ||
+                activity instanceof WelcomeActivity) setFullScreenView(activity.getWindow());
         else setWhiteStatus(activity.getWindow());
     }
 

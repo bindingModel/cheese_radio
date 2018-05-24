@@ -265,6 +265,8 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
             //          config.setShareboardPostion(ShareBoardConfig.SHAREBOARD_POSITION_CENTER);//设置位置
             config.setMenuItemBackgroundShape(ShareBoardConfig.BG_SHAPE_CIRCULAR);
             config.setCancelButtonVisibility(true);
+            config.setCancelButtonText("取消");
+            config.setIndicatorColor(Color.WHITE,Color.WHITE);
             config.setTitleVisibility(false);
             config.setShareboardBackgroundColor(Color.WHITE);
             new ShareAction(getT())
