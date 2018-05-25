@@ -58,6 +58,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import static android.provider.Settings.Global.getString;
+
 import io.reactivex.disposables.Disposable;
 import timber.log.Timber;
 
@@ -81,7 +82,9 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
     private ImageView playImage;
     private Integer angle = 0;
     private Handler mHandler = new Handler();
-     @Inject CheckUpdateModel popupUpdate;
+    @Inject
+    CheckUpdateModel popupUpdate;
+
     @Inject
     HomeModel() {
     }
@@ -90,11 +93,12 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
     RadioApi api;
     VersionParams params;
     private VersionEntity versionEntity;
+
     @Override
     public void attachView(Bundle savedInstanceState, HomeActivity activity) {
         super.attachView(savedInstanceState, activity);
         //new Date()指定日期时，year need to minus 1900 ，month neet to minus 1,day just day，
-        if(System.currentTimeMillis()> new Date(2020-1900,5,30).getTime()){
+        if (System.currentTimeMillis() > new Date(2020 - 1900, 5, 30).getTime()) {
             TimeUtil.getInstance().add(this);
             new AlertDialog.Builder(getT())
                     .setCancelable(false)
@@ -111,7 +115,7 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
             initFragment();
             initPopup(savedInstanceState);
             addDisposable(api.version(params).compose(new RestfulTransformer<>()).subscribe((versionEntity -> {
-                if(versionEntity.getUpdate()==1){
+                if (versionEntity.getUpdate() == 1) {
                     popupUpdate.message.set(versionEntity.getMessage());
                     popupUpdate.show(window -> window.showAtLocation(getDataBinding().getRoot(), Gravity.CENTER, 0, 0));
                 }
@@ -127,9 +131,10 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
     private void checkFragment(int position) {
         if (position < 0 || position >= list.size()) return;
         FragmentTransaction ft = fm.beginTransaction();
-        if (position < currentTab)
-            ft.setCustomAnimations(R.anim.push_left_in, R.anim.push_right_out);
-        else ft.setCustomAnimations(R.anim.push_right_in, R.anim.push_left_out);
+        //UI建议不要设置这个转场动画
+//        if (position < currentTab)
+//            ft.setCustomAnimations(R.anim.push_left_in, R.anim.push_right_out);
+//        else ft.setCustomAnimations(R.anim.push_right_in, R.anim.push_left_out);
         if (currentTab >= 0) {
             DataBindingFragment beforeFragment = list.get(currentTab).getItem(position, getDataBinding().homeFrame);
             beforeFragment.onPause();
@@ -229,7 +234,6 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
     };
 
 
-
     @Override
     public void onPlayClick(View view) {
         super.onPlayClick(view);
@@ -239,9 +243,10 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
 
 
     //跳转到播放界面
-    public void onToPlayClick(View view){
+    public void onToPlayClick(View view) {
         ARouterUtil.navigation(ActivityComponent.Router.play);
     }
+
     public void images(PlayEntity entity) {
         getDataBinding().setEntity(entity);
         AudioServiceUtil.getInstance().setImage(entity.getImage());
@@ -249,8 +254,9 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
         mHandler.removeCallbacksAndMessages(null);
         mHandler.post(mRotationRunnable);
     }
-    private void initPopup(Bundle savedInstanceState){
-        params=new VersionParams("version");
+
+    private void initPopup(Bundle savedInstanceState) {
+        params = new VersionParams("version");
         params.setOs("android");
         params.setVersion(String.valueOf(BuildConfig.VERSION_CODE));
         popupUpdate.attachContainer(getT(), (ViewGroup) getDataBinding().getRoot(), false, savedInstanceState);

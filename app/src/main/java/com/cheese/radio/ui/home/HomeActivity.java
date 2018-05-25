@@ -24,6 +24,7 @@ public class HomeActivity extends BaseActivity <HomeModel> {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AudioServiceUtil.getInstance().bindService(this);
+
     }
 
     @Override
@@ -48,4 +49,8 @@ public class HomeActivity extends BaseActivity <HomeModel> {
     protected int isSwipe() {
         return 0;
     }
+
+//    protected void setFragmentCustomAnimations(){
+//        getFragmentManager().beginTransaction().
+//    }
 }
