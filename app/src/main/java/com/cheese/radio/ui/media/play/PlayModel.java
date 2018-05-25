@@ -169,18 +169,18 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         //设置播放时长
         popupPlayModel.addEventAdapter((position, entity, type, view) -> {
             //判断如果不是同一个，则将上一个状态取反,单选操作
-           if(type==select){
-               if (timeEntity != null && !timeEntity.equals(entity)) {
-                   timeEntity.checked.set(false);
-               }
-               timeEntity = entity;
-               util.setDuration(timeEntity.getTime(), (current, duration) -> {
-                   if (current != 0)
-                       playTime = current;
-                   totalTime = duration;
-               });
-               popupPlayModel.getWindow().dismiss();
-           }
+            if (type == select) {
+                if (timeEntity != null && !timeEntity.equals(entity)) {
+                    timeEntity.checked.set(false);
+                }
+                timeEntity = entity;
+                util.setDuration(timeEntity.getTime(), (current, duration) -> {
+                    if (current != 0)
+                        playTime = current;
+                    totalTime = duration;
+                });
+                popupPlayModel.getWindow().dismiss();
+            }
             return true;
         });
     }
@@ -218,9 +218,9 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     }
 
     public void onAddFavorityClick(View view) {
-        if (id == 0 || !IkeApplication.isLogin(false)){
+        if (id == 0 || !IkeApplication.isLogin(false)) {
             view.setEnabled(false);
-            ((CheckBox)view).setChecked(false);
+            ((CheckBox) view).setChecked(false);
             BaseUtil.toast("登陆后才能收藏");
             return;
         }
@@ -232,9 +232,9 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     }
 
     public void onFabuClick(View view) {
-        if (id == 0 || !IkeApplication.isLogin(false)){
+        if (id == 0 || !IkeApplication.isLogin(false)) {
             view.setEnabled(false);
-            ((CheckBox)view).setChecked(false);
+            ((CheckBox) view).setChecked(false);
             BaseUtil.toast("登陆后才能点赞");
             return;
         }
@@ -245,9 +245,11 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
                 s -> {
                 }, BaseUtil::toast));
     }
-    public void onBackClick(View view){
+
+    public void onBackClick(View view) {
         getT().onBackClick(view);
     }
+        //UM分享
     public void onShareClick(View view) {
         String musicUR = null;
         if (list.size() == 0) return;
@@ -266,8 +268,8 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
             config.setMenuItemBackgroundShape(ShareBoardConfig.BG_SHAPE_CIRCULAR);
             config.setCancelButtonVisibility(true);
             config.setCancelButtonText("取消");
-            config.setCancelButtonBackground(Color.GRAY);
-            config.setIndicatorColor(Color.WHITE,Color.WHITE);
+            config.setCancelButtonBackground(Color.rgb(240,240,240));
+            config.setIndicatorColor(Color.WHITE, Color.WHITE);
             config.setTitleVisibility(false);
             config.setShareboardBackgroundColor(Color.WHITE);
             new ShareAction(getT())
@@ -301,7 +303,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
     //通知栏
     public void showButtonNotify() {
-        if(list.isEmpty())return;
+        if (list.isEmpty()) return;
         playRecord();//播放数的反馈
         PlayEntity entity = list.get(0);
         int NOTIFICATION_ID = 234;
@@ -382,12 +384,14 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         PendingIntent pendingIntent = PendingIntent.getActivity(App.getCurrentActivity(), 1, new Intent(), flags);
         return pendingIntent;
     }
-    public void onAnchorCLick(View view){
+
+    public void onAnchorCLick(View view) {
 /*        Bundle bundle = new Bundle();
 //        bundle.putInt(Constant.authorId, list.get(0).getAnchorIcon());
         ARouterUtil.navigation(ActivityComponent.Router.author, bundle);*/
     }
-    public void upDataButton(){
+
+    public void upDataButton() {
         checked.set(util.isPlaying());
     }
 }
