@@ -57,6 +57,7 @@ public interface Constant {
     int BUTTON_NEXT_ID=1;
     int BUTTON_CANCEL_ID=2;
     String NOTIFICATION_CHANNEL_NAME="NOTIFICATION_CHANNEL_NAME";
+    String macAddress="macAddress";
 }
 
 //    static Drawable getMipmap(String name,int defMipmap){

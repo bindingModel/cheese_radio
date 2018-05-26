@@ -24,7 +24,7 @@ public class MessagesData {
     private Integer index;
 
     public ArrayList<DetailsEntity> getSystem() {
-        return system;
+        return system!=null?system:new ArrayList<>();
     }
 
     public void setSystem(ArrayList<DetailsEntity> system) {
@@ -32,7 +32,7 @@ public class MessagesData {
     }
 
     public ArrayList<DetailsEntity> getBook() {
-        return book;
+        return book!=null?book:new ArrayList<>();
     }
 
     public void setBook(ArrayList<DetailsEntity> book) {
@@ -40,7 +40,7 @@ public class MessagesData {
     }
 
     public ArrayList<DetailsEntity> getUser() {
-        return user;
+      return user!=null?user:new ArrayList<>();
     }
 
     public void setUser(ArrayList<DetailsEntity> user) {
@@ -48,7 +48,7 @@ public class MessagesData {
     }
 
     public ArrayList<DetailsEntity> getClassX() {
-        return classX;
+        return classX!=null?classX:new ArrayList<>();
     }
 
     public void setClassX(ArrayList<DetailsEntity> classX) {

@@ -23,6 +23,7 @@ import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.home.page.entity.CategoryEntity;
 import com.cheese.radio.ui.home.page.entity.RecommandEntity;
+import com.cheese.radio.ui.home.page.entity.RecommandTail;
 import com.cheese.radio.ui.media.play.PlayParams;
 import com.cheese.radio.ui.service.AudioServiceUtil;
 import com.cheese.radio.ui.user.my.push.NewMessageCountParams;
@@ -99,6 +100,7 @@ public class HomePageModel extends RecyclerModel<HomePageFragment, FragmentHomeP
                         }
 
                     list.addAll(data.getList());
+                    if(data.getIslocation())list.add(new RecommandTail(data.getLocation(),data.getLocationId(),data.getTitle()));
                 }
                 AudioServiceUtil.getInstance().setId(entity.getData().get(0).getList().get(0).getId());
             }

@@ -37,7 +37,7 @@
             android:drawableEnd="@mipmap/oringe_array"
             android:drawableRight="@mipmap/oringe_array"
             android:text="更多"
-            android:visibility="@{vm.islocation?View.VISIBLE:View.GONE}"
+            android:visibility="gone"
             android:onClick="@{vm::onClick}"
             android:textColor="@color/text_yellow" />
 

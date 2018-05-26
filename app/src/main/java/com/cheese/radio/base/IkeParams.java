@@ -8,6 +8,7 @@ import com.binding.model.util.BaseUtil;
 import com.binding.model.util.ReflectUtil;
 import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.util.MyBaseUtil;
+import com.cheese.radio.util.NetUtil;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
@@ -48,7 +49,7 @@ public class IkeParams implements UnionTransParams<FormUtfBody> {
     }
 
     public String getUuid() {
-        return uuid = MyBaseUtil.getMacAddress();
+        return uuid = NetUtil.getMacAddress();
     }
 
     public void setUuid(String uuid) {

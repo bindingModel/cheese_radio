@@ -48,6 +48,7 @@ import com.cheese.radio.ui.startup.check.VersionEntity;
 import com.cheese.radio.ui.startup.check.VersionParams;
 import com.cheese.radio.util.DataStore;
 import com.cheese.radio.util.MyBaseUtil;
+import com.cheese.radio.util.NetUtil;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -111,6 +112,7 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
                     .show()
                     .setOnDismissListener(dialog1 -> finish());
         } else {
+            NetUtil.checkNetType(getT());
             playImage = getDataBinding().playImage;
             initFragment();
             initPopup(savedInstanceState);
@@ -119,7 +121,7 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
                     popupUpdate.message.set(versionEntity.getMessage());
                     popupUpdate.show(window -> window.showAtLocation(getDataBinding().getRoot(), Gravity.CENTER, 0, 0));
                 }
-            })));
+            }),BaseUtil::toast));
         }
     }
 

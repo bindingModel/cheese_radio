@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import com.binding.model.data.save.SharePreferenceUtil;
 import com.binding.model.model.inter.Model;
 import com.cheese.radio.base.arouter.ARouterUtil;
+import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.user.profile.ProfileParams;
 import com.cheese.radio.ui.user.register.UserInfoParams;
 
@@ -101,9 +102,19 @@ public class User {
         util.setAllDto(userEntity);
         return count;
     }
-    public void setMobile(String mobile){
+
+    public void setMobile(String mobile) {
         userEntity.setMobile(mobile);
         checkIsFirstUse();
         util.setAllDto(userEntity);
     }
+
+    public String getMac() {
+        return util.getValue(Constant.macAddress, String.class);
+    }
+
+    public void setMac(String macAddress) {
+        util.setValue(Constant.macAddress, macAddress);
+    }
+
 }

@@ -22,7 +22,7 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.content
  * Created by 29283 on 2018/3/15.
  */
 
-@ModelView(R.layout.item_home_page_recommand_title)
+@ModelView(value={R.layout.item_home_page_recommand_title})
 public class RecommanData extends ViewInflateRecycler implements SpanSize, GridInflate {
     /**
      * subTitle : 今日热门推荐
@@ -39,7 +39,6 @@ public class RecommanData extends ViewInflateRecycler implements SpanSize, GridI
     private String location;
     private String title;
     private List<RecommandEntity> list;
-
     public String getSubTitle() {
         return subTitle;
     }
@@ -105,7 +104,8 @@ public class RecommanData extends ViewInflateRecycler implements SpanSize, GridI
         return true;
     }
     public void onClick(View view){
-        ARouterUtil.itemNavigation(location,locationId);
-
+        ARouterUtil.itemNavigation(location,locationId,title);
     }
+
+
 }

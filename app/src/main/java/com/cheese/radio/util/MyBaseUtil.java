@@ -1,7 +1,11 @@
 package com.cheese.radio.util;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Application;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -24,6 +28,7 @@ import com.binding.model.App;
 import com.binding.model.util.BaseUtil;
 import com.binding.model.view.web.callback.JsBridgeCallback;
 import com.bumptech.glide.load.ImageHeaderParserUtils;
+import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.media.play.PlayActivity;
 import com.cheese.radio.ui.startup.welcome.WelcomeActivity;
 
@@ -53,7 +58,6 @@ import java.util.regex.Pattern;
  */
 
 public class MyBaseUtil extends BaseUtil {
-    private static String macAddress = null;
     private static final char[] CHARS = {
             '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
@@ -63,24 +67,6 @@ public class MyBaseUtil extends BaseUtil {
     };
 
     private static Random random = new Random();
-
-    public static String getMacAddress() {
-        if (macAddress != null) return macAddress;
-
-        WifiManager wifiManager =
-                (WifiManager) App.getCurrentActivity().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        WifiInfo info = (null == wifiManager ? null : wifiManager.getConnectionInfo());
-
-        if (!wifiManager.isWifiEnabled()) {
-            //必须先打开，才能获取到MAC地址
-            wifiManager.setWifiEnabled(true);
-            wifiManager.setWifiEnabled(false);
-        }
-        if (null != info) {
-            macAddress = info.getMacAddress();
-        }
-        return macAddress;
-    }
 
     public static String getTimestamp() {
         return String.valueOf(System.currentTimeMillis());

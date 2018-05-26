@@ -51,7 +51,7 @@ public class UserEntity {
         if (!TextUtils.isEmpty(nickname)) {
             return nickname;
         } else if (!TextUtils.isEmpty(mobile)) {
-                return nickname = mobile;
+            return nickname = mobile;
         }
         return "匿名用户";
     }
@@ -146,4 +146,6 @@ public class UserEntity {
     public void setCount(Integer count) {
         this.count = count;
     }
+
+
 }

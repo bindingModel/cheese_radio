@@ -11,6 +11,7 @@ import com.cheese.radio.databinding.ActivityStartupBinding;
 import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.util.MyBaseUtil;
+import com.cheese.radio.util.NetUtil;
 
 import javax.inject.Inject;
 
@@ -31,7 +32,7 @@ public class StartUpModel extends ViewModel<StartUpActivity, ActivityStartupBind
     public void attachView(Bundle savedInstanceState, StartUpActivity startUpActivity) {
         super.attachView(savedInstanceState, startUpActivity);
         Integer time = 100;
-        MyBaseUtil.getMacAddress();
+        NetUtil.getMacAddress();
 //        ARouterUtil.navigation(ActivityComponent.Router.registerOne);
         Handler handler = new Handler();
         handler.postDelayed(() -> {

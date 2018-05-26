@@ -61,6 +61,7 @@ public class ClassifyEntity extends ViewInflateRecycler implements SpanSize, Gri
 
     public void onClick(View view){
         Bundle bundle=new Bundle();
+        bundle.putString(Constant.title,tagName);
         bundle.putInt(Constant.id,tagId);
         ARouterUtil.navigation(contents,bundle);
         }

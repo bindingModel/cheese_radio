@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.cheese.radio.ui.home.page.entity.RecommandTail" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:drawableEnd="@mipmap/oringe_array"
+            android:drawableRight="@mipmap/oringe_array"
+            android:gravity="center"
+            android:onClick="@{vm::onClick}"
+            android:padding="15dp"
+            android:text="更多"
+            android:textColor="@color/text_yellow"
+         />
+    </FrameLayout>
+
+</layout>

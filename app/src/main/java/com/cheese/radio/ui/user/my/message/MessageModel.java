@@ -50,7 +50,10 @@ public class MessageModel extends ViewHttpModel<MessageActivity, ActivityMessage
         super.attachView(savedInstanceState, activity);
         setRcHttp((offset1, refresh) -> api.getMessages(new MessagesParams("getMessages")).compose(new RestfulTransformer<>())
         );
-
+        if (messagesData == null) {
+            messagesData = new MessagesData();
+            initMsg();
+        }
     }
 
     public void onSystemClick(View view) {
@@ -87,12 +90,10 @@ public class MessageModel extends ViewHttpModel<MessageActivity, ActivityMessage
         findNewTip(messagesData.getSystem(), getDataBinding().systemMessageTip);
         getDataBinding().vipText.setText(findNewMSG(messagesData.getUser()));
         findNewTip(messagesData.getUser(), getDataBinding().vipMessageTip);
-
         getDataBinding().classText.setText(findNewMSG(messagesData.getClassX()));
         findNewTip(messagesData.getClassX(), getDataBinding().classMessageTip);
-
         getDataBinding().bookText.setText(findNewMSG(messagesData.getBook()));
-        findNewTip(messagesData.getBook(),getDataBinding().bookMessageTip);
+        findNewTip(messagesData.getBook(), getDataBinding().bookMessageTip);
 
     }
 

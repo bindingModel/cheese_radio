@@ -6,6 +6,7 @@ import com.binding.model.util.ReflectUtil;
 import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.user.User;
 import com.cheese.radio.util.MyBaseUtil;
+import com.cheese.radio.util.NetUtil;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -30,7 +31,7 @@ public class IkeFileParams implements SingleTransParams<MultipartBody> {
     }
 
     public String getUuid() {
-        return uuid = MyBaseUtil.getMacAddress();
+        return uuid = NetUtil.getMacAddress();
     }
 
     public void setUuid(String uuid) {
