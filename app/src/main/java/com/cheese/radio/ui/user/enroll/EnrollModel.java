@@ -88,7 +88,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         initAgePicker();
         initSexPicker();
         cityPickTool = new CityPickTool(mCity, getT());
-        timePickSelect = new TimePickTool(getT(),((date, v) -> mDate.set(MyBaseUtil.getTime(date))));
+        timePickSelect = new TimePickTool(getT(), ((date, v) -> mDate.set(MyBaseUtil.getTime(date))));
         getDataBinding().setParams(params);
         Model.dispatchModel("refreshUI");
         iwxapi = WXAPIFactory.createWXAPI(enrollActivity, enrollActivity.getString(R.string.wechat_AppID), false);
@@ -169,12 +169,12 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         params.setAgeRange(mAge.get());
         //phone在XML里处理了
         //name在XML里处理了
-
         params.setBirthday(mDate.get());
         //        //创建订单
-        if (params.isLeagal(view))
-            addDisposable(api.createOrder(params).compose(new RestfulTransformer<>()).subscribe(this::orderWXPay, BaseUtil::toast));
-
+        if (!params.isLeagal(view)) return;
+        if (currentItem.get() == 0)
+            addDisposable(api.createWXOrder(params).compose(new RestfulTransformer<>()).subscribe(this::orderWXPay, BaseUtil::toast));
+        else orderAliPay();
 //{"code":"0","data":{"prepareId":"pp20180424-373469","payOrderCode":"20180424-373469"}}支付成功后的状态
     }
 
@@ -189,29 +189,36 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         req.nonceStr = bean.getNonceStr();
         req.timeStamp = bean.getTimestamp();
 //        req.packageValue = bean.getPa();
-        req.packageValue="Sign=WXPay";
+        req.packageValue = "Sign=WXPay";
         req.sign = bean.getPaySign();
-        Boolean ans=      iwxapi.sendReq(req);
+        Boolean ans = iwxapi.sendReq(req);
 //        BaseUtil.toast(ans.toString());
         //zfb
-     /*   addDisposable(Observable.create(
-                (ObservableOnSubscribe<PayResult>) e -> e.onNext(new PayResult(new PayTask(getT()).payV2("", true)))
-        ).observeOn(AndroidSchedulers.mainThread())
+
+
+//        Model.dispatchModel("refreshUI");
+    }
+
+    private void orderAliPay() {
+        addDisposable(api.createAliOrder(params)
+                .map(s -> new PayResult(new PayTask(getT()).payV2(s.getData(), true)))
                 .filter(payResult -> {
                     boolean success = "9000".equals(payResult.getResultStatus());
                     if (!success) BaseUtil.toast(getT(), "支付失败");
                     return success;
-                }).subscribeOn(Schedulers.newThread()).subscribe(payResult12 -> {
+                }).subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(payResult -> {
                     BaseUtil.toast("支付成功");
-//                    Model.dispatchModel("paySuccess");
-                }));*/
-
-//        Model.dispatchModel("refreshUI");
+                    Model.dispatchModel("paySuccess");
+                }, BaseUtil::toast));
     }
-    private void paySuccess(){
+
+    private void paySuccess() {
         Model.dispatchModel("refreshUI");
         getT().finish();
     }
+
     public void onClassADClick(View view) {
         HideKeyboard(view);
         Bundle bundle = new Bundle();

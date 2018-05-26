@@ -25,6 +25,7 @@ import com.cheese.radio.ui.search.params.HotSearchParams;
 import com.cheese.radio.ui.startup.check.VersionEntity;
 import com.cheese.radio.ui.startup.check.VersionParams;
 import com.cheese.radio.ui.user.UserEntity;
+import com.cheese.radio.ui.user.enroll.AliEntity;
 import com.cheese.radio.ui.user.enroll.CreateOrderWXEntity;
 import com.cheese.radio.ui.user.enroll.params.ClassPlaceParams;
 import com.cheese.radio.ui.user.enroll.params.CreateOrderParams;
@@ -73,8 +74,8 @@ import retrofit2.http.POST;
  */
 
 public interface RadioApi {
-//    String host = "http://111.231.237.11:8081";
-    String host = "http://interface.zhishidiantai.com";
+    String host = "http://111.231.237.11:8081";
+//    String host = "http://interface.zhishidiantai.com";
 
     @POST("/1.0/author")
     Observable<InfoEntity<List<AnchorsItem>>> getAnchors(@Body AnchorsParams params);
@@ -178,8 +179,10 @@ public interface RadioApi {
 
     //创建订单 wx
     @POST("/1.0/order")
-    Observable<InfoEntity<CreateOrderWXEntity>> createOrder(@Body CreateOrderParams params);
+    Observable<InfoEntity<CreateOrderWXEntity>> createWXOrder(@Body CreateOrderParams params);
 
+    @POST("/1.0/order")
+    Observable<AliEntity> createAliOrder(@Body CreateOrderParams params);
 //    修改头像
     @POST("/1.0/file")
     Observable<InfoEntity<MyHeadData>>  myHead(@Body MyHeadParams params);

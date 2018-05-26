@@ -23,11 +23,13 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -294,8 +296,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
                     android:orientation="vertical"
-                    app:position="@{vm.currentItem}">
-
+                    app:position="@={vm.currentItem}">
 
                     <RadioButton
                         android:id="@+id/wei_xin"
@@ -320,7 +321,6 @@
                         android:drawablePadding="15dp"
                         android:drawableRight="@drawable/tick_select"
                         android:drawableStart="@mipmap/ali_pay_1"
-                        android:enabled="false"
                         android:padding="15dp"
                         android:text="@string/ali_pay" />
                 </com.binding.model.view.radio.CheckRadioGroup>
@@ -332,7 +332,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_gravity="bottom"
             android:background="@color/background_white"
             android:orientation="horizontal">
