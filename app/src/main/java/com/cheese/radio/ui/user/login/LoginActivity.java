@@ -36,11 +36,6 @@ public class LoginActivity extends BaseActivity<LoginModel> implements UMAuthLis
     @Inject
     RadioApi readApi;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        MyBaseUtil.setWhiteStatus(getWindow());
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {

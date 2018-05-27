@@ -55,6 +55,7 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="53.2dp"
+                android:visibility="gone"
                 android:background="@color/background_white">
 
                 <Button
@@ -74,6 +75,7 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="53.2dp"
+                android:visibility="gone"
                 android:background="@color/background_white">
 
                 <Button
@@ -92,6 +94,7 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="53.2dp"
+                android:visibility="gone"
                 android:background="@color/background_white">
 
                 <Button

@@ -169,6 +169,7 @@
 
                     <ImageView
                         android:id="@+id/qq"
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="@{vm::onPlatformClick}"
@@ -176,6 +177,7 @@
 
                     <ImageView
                         android:id="@+id/wei_bo"
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="22.5dp"
