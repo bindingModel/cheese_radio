@@ -149,8 +149,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                  />
+                    android:layout_weight="1" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -215,10 +214,12 @@
                         android:onClick="@{vm::onPlayClick}"
                         android:paddingTop="8dp" />
                 </FrameLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -226,49 +227,65 @@
                     android:layout_margin="15dp"
                     android:orientation="horizontal">
 
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:button="@null"
-                        android:checked="@{entity.files}"
-                        android:drawableLeft="@drawable/love_star"
-                        android:drawablePadding="5dp"
-                        android:gravity="center"
-                        android:onClick="@{vm::onFabuClick}"
-                        android:text="@{entity.favorCount,default= 0}"
-                        android:textColor="@color/text_gray"
-                        android:textSize="16.44sp" />
-
-                    <CheckBox
+                    <FrameLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:button="@null"
-                        android:checked="@{entity.favors}"
-                        android:drawableRight="@drawable/collection_star"
-                        android:onClick="@{vm::onAddFavorityClick}" />
-                    <!--          android:text="@{entity.favorCount}"-->
+                        android:layout_weight="1">
 
-                    <CheckBox
-                        android:id="@+id/clock"
+                        <CheckBox
+                            style="@style/play_bottom_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:checked="@{entity.files}"
+                            android:drawableLeft="@drawable/love_star"
+                            android:drawableStart="@drawable/love_star"
+                            android:onClick="@{vm::onFabuClick}"
+                            android:text="@{entity.favorCount,default= 0}" />
+                    </FrameLayout>
+
+                    <FrameLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:button="@null"
-                        android:checked="@{vm.clockCheck}"
-                        android:drawableRight="@drawable/clock_subscribe"
-                        android:onClick="@{vm::onSelectClick}" />
+                        android:layout_weight="1">
 
-                    <CheckBox
-                        android:id="@+id/loop"
+                        <CheckBox
+                            style="@style/play_bottom_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="@{entity.favors}"
+                            android:drawableLeft="@drawable/collection_star"
+                            android:drawableStart="@drawable/collection_star"
+                            android:onClick="@{vm::onAddFavorityClick}"
+                            android:text="@{entity.fabuCount,default= 0}" />
+                    </FrameLayout>
+
+                    <FrameLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:layout_weight="1"
-                        android:button="@null"
-                        android:drawableRight="@drawable/loop" />
+                        android:layout_weight="1">
+
+                        <CheckBox
+                            android:id="@+id/clock"
+                            style="@style/play_bottom_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="@{vm.clockCheck}"
+                            android:drawableRight="@drawable/clock_subscribe"
+                            android:onClick="@{vm::onSelectClick}" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <CheckBox
+                            android:id="@+id/loop"
+                            style="@style/play_bottom_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/loop" />
+                    </FrameLayout>
 
                 </LinearLayout>
             </LinearLayout>

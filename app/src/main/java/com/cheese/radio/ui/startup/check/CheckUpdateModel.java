@@ -22,7 +22,7 @@ public class CheckUpdateModel extends PopupModel<BaseActivity, PopupCheckUpdataB
     @Inject
     CheckUpdateModel() {
     }
-    public  ObservableField<String> message=new ObservableField<>();
+    public  ObservableField<String> message=new ObservableField<>("就是想让你更新芝士电台，你有什么办法？");
     public  ObservableField<String> url=new ObservableField<>("http://www.cheeseradio.com/");
     @Override
     public void attachView(Bundle savedInstanceState, BaseActivity baseActivity) {
@@ -38,4 +38,5 @@ public class CheckUpdateModel extends PopupModel<BaseActivity, PopupCheckUpdataB
         intent.setData(uri);
         getT().startActivity(intent);
     }
+
 }

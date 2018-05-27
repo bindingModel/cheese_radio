@@ -37,6 +37,7 @@ public class PlayEntity implements Entity {
     private int id;
     private String title;
     private int favorCount;
+    private int fabuCount;
     private String anchorName;
     private String url;
     private String anchorBrief;
@@ -44,6 +45,14 @@ public class PlayEntity implements Entity {
     private Integer fabu;
     private Integer fileId;
     private String shareUrl;
+
+    public String getFabuCount() {
+        return String.valueOf(fabuCount);
+    }
+
+    public void setFabuCount(int fabuCount) {
+        this.fabuCount = fabuCount;
+    }
 
     public String getShareUrl() {
         return shareUrl;

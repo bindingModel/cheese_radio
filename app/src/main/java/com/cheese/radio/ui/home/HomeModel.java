@@ -116,12 +116,7 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
             playImage = getDataBinding().playImage;
             initFragment();
             initPopup(savedInstanceState);
-            addDisposable(api.version(params).compose(new RestfulTransformer<>()).subscribe((versionEntity -> {
-                if (versionEntity.getUpdate() == 1) {
-                    popupUpdate.message.set(versionEntity.getMessage());
-                    popupUpdate.show(window -> window.showAtLocation(getDataBinding().getRoot(), Gravity.CENTER, 0, 0));
-                }
-            }),BaseUtil::toast));
+
         }
     }
 
@@ -265,5 +260,11 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
         popupUpdate.getWindow().setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         popupUpdate.getWindow().setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         popupUpdate.getWindow().setAnimationStyle(R.style.contextMenuAnim);
+        addDisposable(api.version(params).compose(new RestfulTransformer<>()).subscribe((versionEntity -> {
+            if (versionEntity.getUpdate() == 1) {
+                if(!TextUtils.isEmpty(versionEntity.getMessage()))popupUpdate.message.set(versionEntity.getMessage());
+                popupUpdate.show(window -> window.showAtLocation(getDataBinding().getRoot(), Gravity.CENTER, 0, 0));
+            }
+        }),BaseUtil::toast));
     }
 }
