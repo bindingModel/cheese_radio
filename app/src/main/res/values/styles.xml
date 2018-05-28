@@ -96,10 +96,10 @@
         <attr name="dateStart" format="string" />
         <!--结束日期(xxxx.x)-->
         <attr name="dateEnd" format="string" />
-    </declare-styleable>
-
+    </declare-styleable><!--
+    <item name="android:background">@drawable/normal_bottom_line</item>-->
     <style name="safe_item_text">
-        <item name="android:background">@drawable/normal_bottom_line</item>
+
         <item name="android:drawableEnd">@mipmap/mine_arrow</item>
         <item name="android:drawableRight">@mipmap/mine_arrow</item>
         <item name="android:paddingRight">15dp</item>

@@ -16,6 +16,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -262,9 +263,11 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
         popupUpdate.getWindow().setAnimationStyle(R.style.contextMenuAnim);
         addDisposable(api.version(params).compose(new RestfulTransformer<>()).subscribe((versionEntity -> {
             if (versionEntity.getUpdate() == 1) {
-                if(!TextUtils.isEmpty(versionEntity.getMessage()))popupUpdate.message.set(versionEntity.getMessage());
+                if (!TextUtils.isEmpty(versionEntity.getMessage()))
+                    popupUpdate.message.set(versionEntity.getMessage());
                 popupUpdate.show(window -> window.showAtLocation(getDataBinding().getRoot(), Gravity.CENTER, 0, 0));
+
             }
-        }),BaseUtil::toast));
+        }), BaseUtil::toast));
     }
 }

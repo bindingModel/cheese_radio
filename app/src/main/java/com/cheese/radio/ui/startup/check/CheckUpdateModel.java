@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
+import android.widget.PopupWindow;
 
 import com.binding.model.model.ModelView;
 import com.binding.model.model.PopupModel;
@@ -16,13 +18,15 @@ import com.cheese.radio.databinding.PopupCheckUpdataBinding;
 
 import javax.inject.Inject;
 
+import io.reactivex.functions.Consumer;
+
 @ModelView(R.layout.popup_check_updata)
 public class CheckUpdateModel extends PopupModel<BaseActivity, PopupCheckUpdataBinding> {
-
+    WindowManager.LayoutParams lp;
     @Inject
     CheckUpdateModel() {
     }
-    public  ObservableField<String> message=new ObservableField<>("就是想让你更新芝士电台，你有什么办法？");
+    public  ObservableField<String> message=new ObservableField<>("新的芝士电台正在向你狂奔而来");
     public  ObservableField<String> url=new ObservableField<>("http://www.cheeseradio.com/");
     @Override
     public void attachView(Bundle savedInstanceState, BaseActivity baseActivity) {
@@ -39,4 +43,19 @@ public class CheckUpdateModel extends PopupModel<BaseActivity, PopupCheckUpdataB
         getT().startActivity(intent);
     }
 
+    @Override
+    public void show(Consumer<PopupWindow> consumer) {
+        super.show(consumer);
+        getT().getWindow().getAttributes();
+        lp= getT().getWindow().getAttributes();
+        lp.alpha = 0.3f;
+        getT().getWindow().setAttributes(lp);
+    }
+
+    @Override
+    public void dismiss() {
+        super.dismiss();
+        lp.alpha=1.0f;
+        getT().getWindow().setAttributes(lp);
+    }
 }
