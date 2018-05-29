@@ -179,7 +179,8 @@ public class AudioService extends Service
     @Override
     public boolean play() {
         if (player != null) {
-            requestAudioFocus();
+            if (getAudioManager().isMusicActive() && state != Play)
+                requestAudioFocus();
             switch (state) {
                 case Pause:
                 case Prepared:

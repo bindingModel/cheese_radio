@@ -247,6 +247,8 @@ public class AudioServiceUtil implements TimeEntity {
         controller.seekTo(i);
         play();
     }
+    public void requestAudioFocus(){
 
+    }
 
 }
