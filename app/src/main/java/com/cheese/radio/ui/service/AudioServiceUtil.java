@@ -1,6 +1,7 @@
 package com.cheese.radio.ui.service;
 
 
+import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -10,9 +11,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Color;
+import android.media.AudioFocusRequest;
+import android.media.AudioManager;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.media.session.MediaButtonReceiver;
 import android.text.TextUtils;
 import android.widget.RemoteViews;
 
@@ -26,6 +30,8 @@ import com.cheese.radio.ui.media.play.PlayEntity;
 
 import java.io.IOException;
 
+import static android.media.AudioManager.AUDIOFOCUS_LOSS_TRANSIENT;
+import static android.media.AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK;
 import static com.cheese.radio.ui.Constant.ACTION_BUTTON;
 import static com.cheese.radio.ui.Constant.BUTTON_NEXT_ID;
 import static com.cheese.radio.ui.Constant.BUTTON_PALY_ID;
@@ -33,6 +39,7 @@ import static com.cheese.radio.ui.Constant.INTENT_BUTTONID_TAG;
 import static com.cheese.radio.ui.service.AudioService.Pause;
 import static com.cheese.radio.ui.service.AudioService.Play;
 import static com.cheese.radio.ui.service.AudioService.Reset;
+import static com.umeng.socialize.utils.ContextUtil.getPackageName;
 
 
 /**
@@ -58,14 +65,20 @@ public class AudioServiceUtil implements TimeEntity {
     private Integer id;
     private Integer fileId;
     private NotificationManager notManager;
+
     public Integer getFileId() {
         return fileId;
     }
 
-    public NotificationManager getNotManager(){
-        if (notManager==null)notManager=(NotificationManager) App.getCurrentActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+    public NotificationManager getNotManager() {
+        if (notManager == null)
+            notManager = (NotificationManager)
+                    App.getCurrentActivity().getSystemService(Context.NOTIFICATION_SERVICE);
         return notManager;
     }
+
+
+
     public void setFileId(Integer fileId) {
         this.fileId = fileId;
     }
@@ -79,7 +92,7 @@ public class AudioServiceUtil implements TimeEntity {
     }
 
     public Integer getId() {
-        return id=id!=null?id:0;
+        return id = id != null ? id : 0;
     }
 
     public void setId(Integer id) {
@@ -147,31 +160,32 @@ public class AudioServiceUtil implements TimeEntity {
         return Reset;
     }
 
-    public void setDuration(int duration){
-        setDuration(duration,null);
+    public void setDuration(int duration) {
+        setDuration(duration, null);
     }
 
-    public void setDuration(int duration,OnTimingListener onTimingListener) {
+    public void setDuration(int duration, OnTimingListener onTimingListener) {
         this.duration = duration;
         current = 0;
         this.onTimingListener = onTimingListener;
     }
 
-    public void setOnTimingListener(OnTimingListener onTimingListener){
-        this.onTimingListener=onTimingListener;
+    public void setOnTimingListener(OnTimingListener onTimingListener) {
+        this.onTimingListener = onTimingListener;
     }
+
     @Override
     public void getTurn() {
         if (controller == null) return;
         if (controller.isPlaying()) {
             if (controller.getStatus() == Pause) pause();
-            else if (duration>-1 && controller.getStatus() == Play) {
-                if(++current > duration){
+            else if (duration > -1 && controller.getStatus() == Play) {
+                if (++current > duration) {
                     controller.setStatus(Pause);
                     current = 0;
                     duration = -1;
                 }
-                if(onTimingListener!=null)onTimingListener.onTiming(current,duration);
+                if (onTimingListener != null) onTimingListener.onTiming(current, duration);
             }
         } else if (controller.getStatus() == Play) {
             controller.setStatus(Reset);
@@ -187,7 +201,7 @@ public class AudioServiceUtil implements TimeEntity {
     public boolean play() {
         if (TextUtils.isEmpty(uri) || controller == null)
             return false;
-        boolean play = controller.play();
+        boolean play = controller.play() ;
         if (!play) {
             try {
                 play = Reset != start(uri);
@@ -197,6 +211,7 @@ public class AudioServiceUtil implements TimeEntity {
         }
         return play;
     }
+
 
     public boolean pause() {
         if (controller == null) return false;

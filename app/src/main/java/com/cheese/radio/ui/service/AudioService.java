@@ -1,19 +1,28 @@
 package com.cheese.radio.ui.service;
 
 import android.app.Service;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.support.v4.media.session.MediaButtonReceiver;
 import android.text.TextUtils;
 
 
+import com.binding.model.App;
 import com.binding.model.util.BaseUtil;
 
 import java.io.IOException;
 
 import timber.log.Timber;
+
+import static android.media.AudioManager.AUDIOFOCUS_LOSS_TRANSIENT;
+import static android.media.AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK;
+import static com.umeng.socialize.utils.ContextUtil.getPackageName;
 
 /**
  * project：cutv_ningbo
@@ -136,6 +145,7 @@ public class AudioService extends Service
     @Override
     public int start(String uri) throws IOException {
         if (player != null) {
+            requestAudioFocus();
             switch (state) {
                 case Reset:
                     this.uri = uri;
@@ -183,6 +193,7 @@ public class AudioService extends Service
                             e.printStackTrace();
                         }
             }
+
         }
         return state == Play;
     }
@@ -222,13 +233,54 @@ public class AudioService extends Service
 
     @Override
     public void seekTo(long changeProgress) {
-        if (player.isPlaying()){
+        if (player.isPlaying()) {
             player.seekTo((int) changeProgress);
             player.start();
-        }else{
+        } else {
             player.seekTo((int) changeProgress);
         }
     }
 
+    private AudioManager audioManager;
+
+    public AudioManager getAudioManager() {
+        if (audioManager == null)
+            audioManager = (AudioManager) App.getCurrentActivity().getSystemService(Context.AUDIO_SERVICE);
+        return audioManager;
+    }
+
+    private boolean requestAudioFocus() {
+        ComponentName mbCN = new ComponentName(getPackageName(), MediaButtonReceiver.class.getName());
+        int result = getAudioManager().requestAudioFocus((focusChange) -> {
+                    if (focusChange == AUDIOFOCUS_LOSS_TRANSIENT) {
+                        // Pause playback
+                        pause();
+                    } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+                        // Resume playback
+                        play();
+                    } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+                        // Pause playback
+                        pause();
+                        getAudioManager().unregisterMediaButtonEventReceiver(mbCN);
+                        getAudioManager().abandonAudioFocus((focusChange1) -> {
+                            if (focusChange1 == AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+                                //调低音量
+                            } else if (focusChange1 == AudioManager.AUDIOFOCUS_GAIN) {
+                                //恢复正常
+                            }
+                        });
+                        // Stop playback
+                    }
+                },
+// Use the music stream.
+                AudioManager.STREAM_MUSIC,
+// Request permanent focus.
+                AudioManager.AUDIOFOCUS_GAIN);
+        if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+            getAudioManager().unregisterMediaButtonEventReceiver(mbCN);
+            return true;
+        }
+        return false;
+    }
 
 }

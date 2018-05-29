@@ -313,13 +313,13 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             CharSequence name = "cheese_channel";
             String Description = "This is cheese channel";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            int importance = NotificationManager.IMPORTANCE_LOW;
             NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
             mChannel.setDescription(Description);
             mChannel.enableLights(true);
             mChannel.setLightColor(Color.WHITE);
             mChannel.enableVibration(true);
-            mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+            mChannel.setVibrationPattern(null);//震动
             mChannel.setShowBadge(false);
             mNotificationManager.createNotificationChannel(mChannel);
         }
@@ -357,7 +357,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
                 .setContentIntent(getDefalutIntent(Notification.FLAG_ONGOING_EVENT))
                 .setWhen(System.currentTimeMillis())// 通知产生的时间，会在通知信息里显示
                 .setTicker("正在播放")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)// 设置该通知优先级
+                .setPriority(NotificationCompat.PRIORITY_LOW)// 设置该通知优先级
                 .setOngoing(true)
                 .setSmallIcon(R.mipmap.ic_launcher);
 
