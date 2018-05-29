@@ -145,9 +145,9 @@ public class AudioService extends Service
     @Override
     public int start(String uri) throws IOException {
         if (player != null) {
-            requestAudioFocus();
             switch (state) {
                 case Reset:
+                    requestAudioFocus();
                     this.uri = uri;
                     live = BaseUtil.isLive(uri);
                     player.reset();
@@ -179,6 +179,7 @@ public class AudioService extends Service
     @Override
     public boolean play() {
         if (player != null) {
+            requestAudioFocus();
             switch (state) {
                 case Pause:
                 case Prepared:
