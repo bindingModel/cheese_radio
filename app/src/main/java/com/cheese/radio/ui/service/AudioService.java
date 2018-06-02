@@ -52,9 +52,13 @@ public class AudioService extends Service
     public static final int Release = 3;
     public static final int Prepared = 4;
     public static final int Error = 5;
+    public static final int Wait = 6;
+    private int focusState = Reset;
     private int state = Reset;
     private boolean live = false;
     private String uri;
+    private AudioManager audioManager;
+    private AudioManager.OnAudioFocusChangeListener changeListener;
 
     public class ServiceBinder extends Binder {
         public AudioService getService() {
@@ -102,6 +106,7 @@ public class AudioService extends Service
             player.release();
         state = Release;
         player = null;
+        audioManager.abandonAudioFocus(changeListener);
     }
 
     @Override
@@ -179,8 +184,7 @@ public class AudioService extends Service
     @Override
     public boolean play() {
         if (player != null) {
-            if (getAudioManager().isMusicActive() && state != Play)
-                requestAudioFocus();
+            if(focusState == Release)requestAudioFocus();
             switch (state) {
                 case Pause:
                 case Prepared:
@@ -243,7 +247,6 @@ public class AudioService extends Service
         }
     }
 
-    private AudioManager audioManager;
 
     public AudioManager getAudioManager() {
         if (audioManager == null)
@@ -253,27 +256,24 @@ public class AudioService extends Service
 
     private boolean requestAudioFocus() {
         ComponentName mbCN = new ComponentName(getPackageName(), MediaButtonReceiver.class.getName());
-        int result = getAudioManager().requestAudioFocus((focusChange) -> {
-                    if (focusChange == AUDIOFOCUS_LOSS_TRANSIENT) {
-                        // Pause playback
-                        pause();
-                    } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
-                        // Resume playback
-                        play();
-                    } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
-                        // Pause playback
-                        pause();
-                        getAudioManager().unregisterMediaButtonEventReceiver(mbCN);
-                        getAudioManager().abandonAudioFocus((focusChange1) -> {
-                            if (focusChange1 == AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
-                                //调低音量
-                            } else if (focusChange1 == AudioManager.AUDIOFOCUS_GAIN) {
-                                //恢复正常
-                            }
-                        });
-                        // Stop playback
-                    }
-                },
+        changeListener = (focusChange) -> {
+            if (focusChange == AUDIOFOCUS_LOSS_TRANSIENT  ) {
+                // Pause playback
+                if (state != Play) focusState = Pause;
+                else  focusState = Play;
+                pause();
+            } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+                // Resume playback
+                if (focusState != Play) return;
+                play();
+            }else if(focusChange == AudioManager.AUDIOFOCUS_LOSS){
+                focusState = Release;
+                pause();
+            }
+        }
+        ;
+
+        int result = getAudioManager().requestAudioFocus(changeListener,
 // Use the music stream.
                 AudioManager.STREAM_MUSIC,
 // Request permanent focus.
@@ -284,5 +284,4 @@ public class AudioService extends Service
         }
         return false;
     }
-
 }
