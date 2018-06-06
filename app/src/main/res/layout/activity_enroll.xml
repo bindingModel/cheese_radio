@@ -322,7 +322,7 @@
                         android:drawableRight="@drawable/tick_select"
                         android:drawableStart="@mipmap/ali_pay_1"
                         android:padding="15dp"
-                        android:enabled="false"
+                        android:enabled="true"
                         android:text="@string/ali_pay" />
                 </com.binding.model.view.radio.CheckRadioGroup>
 

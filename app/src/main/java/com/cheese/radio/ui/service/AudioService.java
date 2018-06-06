@@ -106,6 +106,7 @@ public class AudioService extends Service
             player.release();
         state = Release;
         player = null;
+       if(audioManager!=null)
         audioManager.abandonAudioFocus(changeListener);
     }
 
