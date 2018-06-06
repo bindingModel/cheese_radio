@@ -97,4 +97,5 @@
     <string name="baby_name">宝贝昵称</string>
     <string name="parent_name">家长姓名</string>
     <string name="teacher_name">指导老师</string>
+    <string name="unnecessarily">非必填</string>
 </resources>

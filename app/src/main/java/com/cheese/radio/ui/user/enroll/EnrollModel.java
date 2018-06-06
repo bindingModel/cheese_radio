@@ -200,8 +200,9 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
     }
 
     private void orderAliPay() {
+//        String date="alipay_sdk=alipay-sdk-java-dynamicVersionNo&app_id=2018052360186186&biz_content=%7B%22out_trade_no%22%3A%2220180606-552254%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22subject%22%3A%22%E8%8A%9D%E5%A3%AB%E8%AE%A2%E5%8D%9520180606-552254%22%2C%22timeout_express%22%3A%2224h%22%2C%22total_amount%22%3A%220.01%22%7D&charset=utf-8&format=json&method=alipay.trade.app.pay¬ify_url=http%3A%2F%2F111.231.237.11%3A8081%2F1.0%2FaliPayment&sign=XVzF5L5x%2ByRKfDYbHylGB9ZI3H8sGcSie4VmkoJfTvqtT0DAMqVvh3qLHb5QRLP6mWAp9vREGAWXO9MPVWjgltC7kqHhZW22qDbakgZ3NOOKehm0Duuf%2BZw%2FZ3W%2B3Q9E16CRnUioin99hQzcCQzoGVNmgRmzvUvXnkmaFZLKzCUEau1Et8Gi%2B1j0FbfUkRAUcXmnBjju45232uUFnltbTsYFh996r7yqDtj97fgTi8TL%2BV62eSJvRpPV63iIjMcuvedipQKhf1ZThZ4CD5z6PM12%2BcLc6ZmROYGipB3LKJBbVZKikPq4AMXDCaMGZki0Dvc9fjU%2BcD6Phzj8SRExoQ%3D%3D&sign_type=RSA2×tamp=2018-06-06+10%3A12%3A15&version=1.0";
         addDisposable(api.createAliOrder(params)
-                .map(s -> new PayResult(new PayTask(getT()).payV2(s.getData(), true)))
+                .map(s -> new PayResult(new PayTask(getT()).payV2(s.getData().getAlipay(), true)))
                 .filter(payResult -> {
                     boolean success = "9000".equals(payResult.getResultStatus());
                     if (!success) BaseUtil.toast(getT(), "支付失败");

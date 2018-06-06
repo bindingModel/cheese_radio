@@ -74,8 +74,8 @@ import retrofit2.http.POST;
  */
 
 public interface RadioApi {
-//    String host = "http://111.231.237.11:8081";
-    String host = "http://interface.zhishidiantai.com";
+    String host = "http://111.231.237.11:8081";
+//    String host = "http://interface.zhishidiantai.com";
 
     @POST("/1.0/author")
     Observable<InfoEntity<List<AnchorsItem>>> getAnchors(@Body AnchorsParams params);
@@ -182,7 +182,7 @@ public interface RadioApi {
     Observable<InfoEntity<CreateOrderWXEntity>> createWXOrder(@Body CreateOrderParams params);
 
     @POST("/1.0/order")
-    Observable<AliEntity> createAliOrder(@Body CreateOrderParams params);
+    Observable<InfoEntity<AliEntity>> createAliOrder(@Body CreateOrderParams params);
 //    修改头像
     @POST("/1.0/file")
     Observable<InfoEntity<MyHeadData>>  myHead(@Body MyHeadParams params);

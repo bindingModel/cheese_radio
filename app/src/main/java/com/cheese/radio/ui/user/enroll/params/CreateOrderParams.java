@@ -169,10 +169,10 @@ public class CreateOrderParams extends IkeParams {
             BaseUtil.toast("家长名字还没填写");
             return false;
         }
-        if (TextUtils.isEmpty(instructor)) {
-            BaseUtil.toast("指导老师还没填写");
-            return false;
-        }
+//        if (TextUtils.isEmpty(instructor)) {
+//            BaseUtil.toast("指导老师还没填写");
+//            return false;
+//        }
         return true;
     }
 }
