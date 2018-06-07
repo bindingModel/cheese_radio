@@ -57,10 +57,10 @@ public abstract class BaseActivity<VM extends ViewModel> extends DataBindingActi
         return rootView;
     }
 
-    @Override
-    protected View getContainer(View rootView, int v) {
-        return super.getContainer(rootView, v);
-    }
+//    @Override
+//    protected View getContainer(View rootView, int v) {
+//        return super.getContainer(rootView, v);
+//    }
 
     @Override
     public void initToolBar(Toolbar view) {
