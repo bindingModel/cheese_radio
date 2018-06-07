@@ -8,6 +8,7 @@ public class DemoParams extends IkeFileParams {
     private File info;
     private String method;
 
+
     public File getInfo() {
         return info;
     }
