@@ -74,7 +74,7 @@ import retrofit2.http.POST;
  */
 
 public interface RadioApi {
-//    String host = "http://111.231.237.11:8081";
+    //    String host = "http://111.231.237.11:8081";
     String host = "http://interface.zhishidiantai.com";
 
     @POST("/1.0/author")
@@ -84,13 +84,14 @@ public interface RadioApi {
     Observable<InfoEntity<Object>> getSMS(@Body SmsParams params);
 
     @POST("/1.0/user")
-    Observable<InfoEntity<SignUserEntity>> getToken (@Body SignParams params);
+    Observable<InfoEntity<SignUserEntity>> getToken(@Body SignParams params);
 
     @POST("/1.0/content")
-    Observable<InfoEntity<List<CategoryEntity>>> getCategoriy (@Body HomePageParams params);
+    Observable<InfoEntity<List<CategoryEntity>>> getCategoriy(@Body HomePageParams params);
 
     @POST("/1.0/content")
-    Observable<InfoEntity<List<RecommanData>>> getRecommand (@Body HomePageParams params);
+    Observable<InfoEntity<List<RecommanData>>> getRecommand(@Body HomePageParams params);
+
     @POST("data")
     Observable<InfoEntity<DemoData>> getData();
 
@@ -114,10 +115,11 @@ public interface RadioApi {
     Observable<InfoEntity<Object>> getMyinfo(@Body MyInfoParams params);
 
     @POST("/1.0/content")
-    Observable<InfoEntity<List<HotSearchEntity>>> getHotSearch(
-            @Body HotSearchParams params);
+    Observable<InfoEntity<List<HotSearchEntity>>> getHotSearch(@Body HotSearchParams params);
+
     @POST("/1.0/content")
     Observable<InfoEntity<MyFavorityData>> getSearch(@Body HotSearchParams params);
+
     //绘本列表 签名验证错误？
     @POST("/1.0/content")
     Observable<InfoEntity<MyFavorityData>> getQueryByTag(@Body ClassifyListParams params);
@@ -183,9 +185,10 @@ public interface RadioApi {
 
     @POST("/1.0/order")
     Observable<InfoEntity<AliEntity>> createAliOrder(@Body CreateOrderParams params);
-//    修改头像
+
+    //    修改头像
     @POST("/1.0/file")
-    Observable<InfoEntity<MyHeadData>>  myHead(@Body MyHeadParams params);
+    Observable<InfoEntity<MyHeadData>> myHead(@Body MyHeadParams params);
 
     @POST("/1.0/user")
     Observable<InfoEntity<Object>> playRecord(@Body PlayRecordParams params);
