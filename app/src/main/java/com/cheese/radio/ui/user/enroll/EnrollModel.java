@@ -33,11 +33,13 @@ import com.cheese.radio.ui.user.product.place.ClassPlaceEntity;
 import com.cheese.radio.util.CityPickTool;
 import com.cheese.radio.util.MyBaseUtil;
 import com.cheese.radio.util.TimePickTool;
+import com.cheese.radio.util.rxview.RxView;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -85,6 +87,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         super.attachView(savedInstanceState, enrollActivity);
         if (!IkeApplication.isLogin(true)) finish();
         setData();
+        initView();
         initAgePicker();
         initSexPicker();
         cityPickTool = new CityPickTool(mCity, getT());
@@ -92,8 +95,15 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         getDataBinding().setParams(params);
         Model.dispatchModel("refreshUI");
         iwxapi = WXAPIFactory.createWXAPI(enrollActivity, enrollActivity.getString(R.string.wechat_AppID), false);
+
     }
 
+    private void initView() {
+        RxView.setViewEnable(false);
+        addDisposable(
+                RxView.bindView(getDataBinding().enrollBtn).throttleFirst(2, TimeUnit.SECONDS)
+                        .subscribe((o -> onEnrollClick(null))));
+    }
 
     public void onSelectCityClick(View view) {
         HideKeyboard(view);
@@ -173,25 +183,29 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         //        //创建订单
         if (!params.isLeagal(view)) return;
         if (currentItem.get() == 0)
-            addDisposable(api.createWXOrder(params).compose(new RestfulTransformer<>()).subscribe(this::orderWXPay, BaseUtil::toast));
+            orderWXPay();
         else orderAliPay();
 //{"code":"0","data":{"prepareId":"pp20180424-373469","payOrderCode":"20180424-373469"}}支付成功后的状态
     }
 
     private IWXAPI iwxapi;
 
-    public void orderWXPay(CreateOrderWXEntity bean) {
+    public void orderWXPay() {
         //wx
-        PayReq req = new PayReq();
-        req.appId = getT().getResources().getString(R.string.wechat_AppID);
-        req.partnerId = bean.getPartnerId();
-        req.prepayId = bean.getPrepareId();
-        req.nonceStr = bean.getNonceStr();
-        req.timeStamp = bean.getTimestamp();
+        addDisposable(api.createWXOrder(params).compose(new RestfulTransformer<>()).subscribe((bean -> {
+            PayReq req = new PayReq();
+            req.appId = getT().getResources().getString(R.string.wechat_AppID);
+            req.partnerId = bean.getPartnerId();
+            req.prepayId = bean.getPrepareId();
+            req.nonceStr = bean.getNonceStr();
+            req.timeStamp = bean.getTimestamp();
 //        req.packageValue = bean.getPa();
-        req.packageValue = "Sign=WXPay";
-        req.sign = bean.getPaySign();
-        Boolean ans = iwxapi.sendReq(req);
+            req.packageValue = "Sign=WXPay";
+            req.sign = bean.getPaySign();
+            Boolean ans = iwxapi.sendReq(req);
+        }), BaseUtil::toast));
+
+
 //        BaseUtil.toast(ans.toString());
         //zfb
 

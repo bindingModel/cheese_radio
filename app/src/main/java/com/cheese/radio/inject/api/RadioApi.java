@@ -17,6 +17,8 @@ import com.cheese.radio.ui.media.course.details.CourseDetailsData;
 import com.cheese.radio.ui.media.course.details.CourseDetailsParams;
 import com.cheese.radio.ui.media.group.GroupInfoParams;
 import com.cheese.radio.ui.media.group.fragment.GroupData;
+import com.cheese.radio.ui.media.play.FabuEntity;
+import com.cheese.radio.ui.media.play.FavorEntity;
 import com.cheese.radio.ui.media.play.PlayEntity;
 import com.cheese.radio.ui.media.play.PlayParams;
 import com.cheese.radio.ui.media.play.PlayRecordParams;
@@ -61,6 +63,7 @@ import com.cheese.radio.ui.user.profile.MyHeadParams;
 import com.cheese.radio.ui.user.profile.ProfileParams;
 import com.cheese.radio.ui.user.register.UserInfoParams;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -161,7 +164,7 @@ public interface RadioApi {
     Observable<InfoEntity<Object>> getBookClass(@Body CourseDetailsParams params);
 
     @POST("/1.0/user")
-    Observable<InfoEntity<String>> addFavority(@Body AddFavorityParams params);
+    Observable<InfoEntity<FavorEntity>> addFavority(@Body AddFavorityParams params);
 
     @POST("/1.0/user")
     Observable<InfoEntity<Object>> readMessages(@Body ReadMessagesParams params);
@@ -173,7 +176,7 @@ public interface RadioApi {
     Observable<InfoEntity<UserEntity>> getUserInfo(@Body UserInfoParams params);
 
     @POST("/1.0/user")
-    Observable<InfoEntity<String>> addFabulous(@Body FabulousParams params);
+    Observable<InfoEntity<FabuEntity>> addFabulous(@Body FabulousParams params);
 
     //上课地址接口
     @POST("/1.0/class")

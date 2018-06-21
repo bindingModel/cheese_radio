@@ -54,6 +54,9 @@ public class PlayEntity implements Entity {
         this.fabuCount = fabuCount;
     }
 
+    public void addFabuCount(int i){
+        fabuCount+=i;
+    }
     public String getShareUrl() {
         return shareUrl;
     }
@@ -135,6 +138,7 @@ public class PlayEntity implements Entity {
     public void setFavorCount(int favorCount) {
         this.favorCount = favorCount;
     }
+
 
     public String getAnchorName() {
         return anchorName;

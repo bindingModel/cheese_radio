@@ -240,7 +240,7 @@
                             android:drawableLeft="@drawable/love_star"
                             android:drawableStart="@drawable/love_star"
                             android:onClick="@{vm::onFabuClick}"
-                            android:text="@{entity.favorCount,default= 0}" />
+                            android:text="@{entity.fabuCount,default= 0}" />
                     </FrameLayout>
 
                     <FrameLayout
@@ -256,7 +256,8 @@
                             android:drawableLeft="@drawable/collection_star"
                             android:drawableStart="@drawable/collection_star"
                             android:onClick="@{vm::onAddFavorityClick}"
-                            android:text="@{entity.fabuCount,default= 0}" />
+                            />
+                        <!--android:text="@{entity.fabuCount,default= 0}"-->
                     </FrameLayout>
 
                     <FrameLayout

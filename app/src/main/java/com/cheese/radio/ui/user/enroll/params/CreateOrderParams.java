@@ -143,7 +143,7 @@ public class CreateOrderParams extends IkeParams {
 
     public boolean isLeagal(View view) {
 
-        if (!isValidToast(view, MyBaseUtil.getNameError(name))) return false;
+
         if (TextUtils.isEmpty(sex)) {
             BaseUtil.toast("性别还未选取");
             return false;
@@ -169,10 +169,14 @@ public class CreateOrderParams extends IkeParams {
             BaseUtil.toast("家长名字还没填写");
             return false;
         }
-//        if (TextUtils.isEmpty(instructor)) {
-//            BaseUtil.toast("指导老师还没填写");
-//            return false;
-//        }
+        if (TextUtils.isEmpty(name)) {
+            BaseUtil.toast("宝宝名字还没填写");
+            return false;
+        }
+        if (TextUtils.isEmpty(String.valueOf(fieldId))) {
+            BaseUtil.toast("还未选择上课地点");
+            return false;
+        }
         return true;
     }
 }

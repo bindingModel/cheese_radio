@@ -242,14 +242,21 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         FabulousParams params = new FabulousParams("addFabulous");
         params.setId(util.getId());
         addDisposable(api.addFabulous(params).compose(new RestfulTransformer<>()).subscribe(
-                s -> {
+                entity -> {
+                    PlayEntity playEntity = list.get(0);
+                    playEntity.setFabu(entity.getFabu());
+                    if (entity.getFabu() != null) {
+                        playEntity.addFabuCount(1);
+                    } else playEntity.addFabuCount(-1);
+                    getDataBinding().setEntity(playEntity);
                 }, BaseUtil::toast));
     }
 
     public void onBackClick(View view) {
         getT().onBackClick(view);
     }
-        //UM分享
+
+    //UM分享
     public void onShareClick(View view) {
         String musicUR = null;
         if (list.size() == 0) return;
@@ -268,7 +275,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
             config.setMenuItemBackgroundShape(ShareBoardConfig.BG_SHAPE_CIRCULAR);
             config.setCancelButtonVisibility(true);
             config.setCancelButtonText("取消");
-            config.setCancelButtonBackground(Color.rgb(240,240,240));
+            config.setCancelButtonBackground(Color.rgb(240, 240, 240));
             config.setIndicatorColor(Color.WHITE, Color.WHITE);
             config.setTitleVisibility(false);
             config.setShareboardBackgroundColor(Color.WHITE);
@@ -316,9 +323,9 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
             int importance = NotificationManager.IMPORTANCE_LOW;
             NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
             mChannel.setDescription(Description);
-            mChannel.enableLights(true);
+            mChannel.enableLights(false);
             mChannel.setLightColor(Color.WHITE);
-            mChannel.enableVibration(true);
+            mChannel.enableVibration(false);
             mChannel.setVibrationPattern(null);//震动
             mChannel.setShowBadge(false);
             mNotificationManager.createNotificationChannel(mChannel);
