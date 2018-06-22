@@ -257,6 +257,7 @@ public class AudioService extends Service
 
     private boolean requestAudioFocus() {
         ComponentName mbCN = new ComponentName(getPackageName(), MediaButtonReceiver.class.getName());
+        if(changeListener == null)
         changeListener = (focusChange) -> {
             if (focusChange == AUDIOFOCUS_LOSS_TRANSIENT  ) {
                 // Pause playback
