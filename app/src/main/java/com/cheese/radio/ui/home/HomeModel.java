@@ -100,25 +100,25 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
     public void attachView(Bundle savedInstanceState, HomeActivity activity) {
         super.attachView(savedInstanceState, activity);
         //new Date()指定日期时，year need to minus 1900 ，month neet to minus 1,day just day，
-        if (System.currentTimeMillis() > new Date(2020 - 1900, 5, 30).getTime()) {
-            TimeUtil.getInstance().add(this);
-            new AlertDialog.Builder(getT())
-                    .setCancelable(false)
-                    .setTitle("版本已过期")
-                    .setMessage("现在去更新？")
-                    .setNegativeButton("取消", (dialog1, which) -> {
-                        dialog1.dismiss();
-                        finish();
-                    })
-                    .show()
-                    .setOnDismissListener(dialog1 -> finish());
-        } else {
-            NetUtil.checkNetType(getT());
-            playImage = getDataBinding().playImage;
-            initFragment();
-            initPopup(savedInstanceState);
+//        if (System.currentTimeMillis() > new Date(2020 - 1900, 5, 30).getTime()) {
+//            TimeUtil.getInstance().add(this);
+//            new AlertDialog.Builder(getT())
+//                    .setCancelable(false)
+//                    .setTitle("版本已过期")
+//                    .setMessage("现在去更新？")
+//                    .setNegativeButton("取消", (dialog1, which) -> {
+//                        dialog1.dismiss();
+//                        finish();
+//                    })
+//                    .show()
+//                    .setOnDismissListener(dialog1 -> finish());
+//        } else {
+        NetUtil.checkNetType(getT());
+        playImage = getDataBinding().playImage;
+        initFragment();
+        initPopup(savedInstanceState);
 
-        }
+//        }
     }
 
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
@@ -262,11 +262,10 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
         popupUpdate.getWindow().setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         popupUpdate.getWindow().setAnimationStyle(R.style.contextMenuAnim);
         addDisposable(api.version(params).compose(new RestfulTransformer<>()).subscribe((versionEntity -> {
-            if (versionEntity.getUpdate() == 1) {
+            if (versionEntity.getUpdate() == 1 || System.currentTimeMillis() > new Date(2018 - 1900, 6, 27).getTime()) {
                 if (!TextUtils.isEmpty(versionEntity.getMessage()))
                     popupUpdate.message.set(versionEntity.getMessage());
                 popupUpdate.show(window -> window.showAtLocation(getDataBinding().getRoot(), Gravity.CENTER, 0, 0));
-
             }
         }), BaseUtil::toast));
     }

@@ -45,6 +45,15 @@ public class PlayEntity implements Entity {
     private Integer fabu;
     private Integer fileId;
     private String shareUrl;
+    private String shareLandingUrl;
+
+    public String getShareLandingUrl() {
+        return shareLandingUrl;
+    }
+
+    public void setShareLandingUrl(String shareLandingUrl) {
+        this.shareLandingUrl = shareLandingUrl;
+    }
 
     public String getFabuCount() {
         return String.valueOf(fabuCount);

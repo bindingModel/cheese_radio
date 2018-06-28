@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.databinding.ObservableField;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -31,9 +32,10 @@ public class CheckUpdateModel extends PopupModel<BaseActivity, PopupCheckUpdataB
     @Override
     public void attachView(Bundle savedInstanceState, BaseActivity baseActivity) {
         super.attachView(savedInstanceState, baseActivity);
+        setOnDismissListener(() -> getT().finish());
     }
     public void onCancelClick(View view){
-        getWindow().dismiss();
+        dismiss();
     }
     public void onUrlClick(View view){
         Uri uri=Uri.parse(url.get());
@@ -58,4 +60,6 @@ public class CheckUpdateModel extends PopupModel<BaseActivity, PopupCheckUpdataB
         lp.alpha=1.0f;
         getT().getWindow().setAttributes(lp);
     }
+
+
 }

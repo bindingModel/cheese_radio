@@ -267,6 +267,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
                     music.setTitle(entity.getTitle());
                     music.setThumb(image);
                     music.setDescription(entity.getSubTitle());
+                    music.setmTargetUrl(entity.getShareLandingUrl());
                     e.onNext(music);
                 }
         ).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe((uMusic -> {
