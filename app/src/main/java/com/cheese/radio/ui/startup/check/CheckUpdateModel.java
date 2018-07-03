@@ -61,5 +61,8 @@ public class CheckUpdateModel extends PopupModel<BaseActivity, PopupCheckUpdataB
         getT().getWindow().setAttributes(lp);
     }
 
+    public void setURL(String url){
+        this.url.set(url);
+    }
 
 }

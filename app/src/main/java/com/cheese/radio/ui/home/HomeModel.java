@@ -265,6 +265,8 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
             if (versionEntity.getUpdate() == 1 || System.currentTimeMillis() > new Date(2018 - 1900, 6, 27).getTime()) {
                 if (!TextUtils.isEmpty(versionEntity.getMessage()))
                     popupUpdate.message.set(versionEntity.getMessage());
+                if(!TextUtils.isEmpty(versionEntity.getUrl()))
+                    popupUpdate.setURL(versionEntity.getUrl());
                 if(versionEntity.getUpdate() == 1 && System.currentTimeMillis() < new Date(2018 - 1900, 6, 27).getTime())popupUpdate.setOnDismissListener(null);
                 popupUpdate.show(window -> window.showAtLocation(getDataBinding().getRoot(), Gravity.CENTER, 0, 0));
             }

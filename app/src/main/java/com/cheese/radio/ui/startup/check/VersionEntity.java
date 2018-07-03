@@ -5,6 +5,15 @@ public class VersionEntity {
 //              "message":"新特性"
     private int update;
     private String message;
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public int getUpdate() {
         return update;
