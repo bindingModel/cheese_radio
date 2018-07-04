@@ -1,6 +1,7 @@
 package com.cheese.radio.ui.media.play;
 
 
+import android.text.TextUtils;
 import android.view.View;
 
 import com.binding.model.model.inter.Entity;
@@ -108,6 +109,7 @@ public class PlayEntity implements Entity {
     }
 
     public String getSubTitle() {
+        if(TextUtils.isEmpty(subTitle))return " ";
         return subTitle;
     }
 
