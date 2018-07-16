@@ -33,7 +33,8 @@ import com.cheese.radio.ui.user.product.place.ClassPlaceEntity;
 import com.cheese.radio.util.CityPickTool;
 import com.cheese.radio.util.MyBaseUtil;
 import com.cheese.radio.util.TimePickTool;
-import com.cheese.radio.util.rxview.RxView;
+
+import com.jakewharton.rxbinding.view.RxView;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -51,6 +52,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
+import rx.functions.Action1;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.products;
 
@@ -99,10 +101,10 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
     }
 
     private void initView() {
-        RxView.setViewEnable(false);
-        addDisposable(
-                RxView.bindView(getDataBinding().enrollBtn).throttleFirst(2, TimeUnit.SECONDS)
-                        .subscribe((o -> onEnrollClick(null))));
+        RxView.clicks(getDataBinding().enrollBtn).throttleFirst(2, TimeUnit.SECONDS).subscribe(aVoid -> onEnrollClick(null));
+      /*  RxView.setViewEnable(false);
+        RxView.bindView(getDataBinding().enrollBtn).throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe((o -> onEnrollClick(null))));*/
     }
 
     public void onSelectCityClick(View view) {
@@ -199,7 +201,6 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
             req.prepayId = bean.getPrepareId();
             req.nonceStr = bean.getNonceStr();
             req.timeStamp = bean.getTimestamp();
-//        req.packageValue = bean.getPa();
             req.packageValue = "Sign=WXPay";
             req.sign = bean.getPaySign();
             Boolean ans = iwxapi.sendReq(req);

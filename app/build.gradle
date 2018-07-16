@@ -112,6 +112,9 @@ android {
 
         implementation 'com.contrarywind:Android-PickerView:3.2.7'
 
+        implementation 'io.reactivex:rxandroid:1.2.1'
+        implementation 'io.reactivex:rxjava:1.2.3'
+        implementation 'com.jakewharton.rxbinding:rxbinding:1.0.0'
 //        implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
         //第三方登录
 //        implementation 'com.umeng.sdk:share-core:6.9.0'

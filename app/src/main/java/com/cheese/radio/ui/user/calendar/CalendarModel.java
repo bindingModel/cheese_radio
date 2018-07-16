@@ -298,7 +298,7 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
     private void refreshUI() {
         addDisposable(api.getCanBook(new CanBookParams("canBook")).compose(new RestfulTransformer<>()).
                 subscribe(canBookData -> {
-                            IkeApplication.getUser().setCanBookCheck(status = canBookData.isResult());
+                            IkeApplication.getUser().setCanBookCheck(status = !canBookData.isResult());
                             if (status) {
                                 getDataBinding().clock.setVisibility(View.GONE);
                                 calendarView = getDataBinding().calendarView;
