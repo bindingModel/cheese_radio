@@ -58,6 +58,7 @@ public interface Constant {
     int BUTTON_CANCEL_ID=2;
     String NOTIFICATION_CHANNEL_NAME="NOTIFICATION_CHANNEL_NAME";
     String macAddress="macAddress";
+    String circle_url="http://h5.zhishidiantai.com/zhishidiantai/activity.html";
 }
 
 //    static Drawable getMipmap(String name,int defMipmap){

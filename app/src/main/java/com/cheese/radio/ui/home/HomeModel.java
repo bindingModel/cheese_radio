@@ -262,12 +262,12 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
         popupUpdate.getWindow().setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         popupUpdate.getWindow().setAnimationStyle(R.style.contextMenuAnim);
         addDisposable(api.version(params).compose(new RestfulTransformer<>()).subscribe((versionEntity -> {
-            if (versionEntity.getUpdate() == 1 || System.currentTimeMillis() > new Date(2018 - 1900, 6, 27).getTime()) {
+            if (versionEntity.getUpdate() == 1) {
                 if (!TextUtils.isEmpty(versionEntity.getMessage()))
                     popupUpdate.message.set(versionEntity.getMessage());
                 if(!TextUtils.isEmpty(versionEntity.getUrl()))
                     popupUpdate.setURL(versionEntity.getUrl());
-                if(versionEntity.getUpdate() == 1 && System.currentTimeMillis() < new Date(2018 - 1900, 6, 27).getTime())popupUpdate.setOnDismissListener(null);
+                if(versionEntity.getUpdate() == 1 )popupUpdate.setOnDismissListener(null);
                 popupUpdate.show(window -> window.showAtLocation(getDataBinding().getRoot(), Gravity.CENTER, 0, 0));
             }
         }), BaseUtil::toast));
