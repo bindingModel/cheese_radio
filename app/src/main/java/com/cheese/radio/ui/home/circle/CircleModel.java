@@ -13,6 +13,7 @@ import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
 import com.cheese.radio.R;
 import com.cheese.radio.databinding.FragmentHomeCircleBinding;
+import com.cheese.radio.ui.Constant;
 
 import javax.inject.Inject;
 
@@ -24,15 +25,15 @@ public class CircleModel extends ViewModel<CircleFragment, FragmentHomeCircleBin
     @Inject
     CircleModel() {
     }
-    private  String circleURL="http://h5.zhishidiantai.com/zhishidiantai/activity.html";
-    private WebView webView;
+
     private ProgressBar progressBar;
 
     @Override
     public void attachView(Bundle savedInstanceState, CircleFragment circleFragment) {
         super.attachView(savedInstanceState, circleFragment);
-        webView = getDataBinding().webView;
+        WebView webView = getDataBinding().webView;
 //        webView.loadUrl("file:///android_asset/test.html");//加载asset文件夹下html
+        String circleURL = Constant.circle_url;
         webView.loadUrl(circleURL);//加载url
 
         //       使用webview显示html代码
@@ -48,7 +49,7 @@ public class CircleModel extends ViewModel<CircleFragment, FragmentHomeCircleBin
                return true;
             }
         });
-        WebSettings webSettings=webView.getSettings();
+        WebSettings webSettings= webView.getSettings();
         webSettings.setJavaScriptEnabled(true);//允许使用js
         webSettings.setTextSize(WebSettings.TextSize.NORMAL);
 
