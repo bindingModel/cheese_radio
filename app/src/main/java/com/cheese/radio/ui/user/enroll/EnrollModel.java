@@ -184,9 +184,11 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         params.setBirthday(mDate.get());
         //        //创建订单
         if (!params.isLeagal(view)) return;
-        if (currentItem.get() == 0)
+        //TODO 关闭了微信入口
+        /*if (currentItem.get() == 0)
             orderWXPay();
-        else orderAliPay();
+        else*/
+        orderAliPay();
 //{"code":"0","data":{"prepareId":"pp20180424-373469","payOrderCode":"20180424-373469"}}支付成功后的状态
     }
 
