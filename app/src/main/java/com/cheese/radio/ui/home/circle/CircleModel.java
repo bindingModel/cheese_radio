@@ -1,8 +1,10 @@
 package com.cheese.radio.ui.home.circle;
 
 import android.content.Context;
+import android.net.http.SslError;
 import android.os.Bundle;
 import android.view.ViewGroup;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -12,6 +14,7 @@ import android.widget.ProgressBar;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
 import com.cheese.radio.R;
+import com.cheese.radio.base.web.BasicWebViewClient;
 import com.cheese.radio.databinding.FragmentHomeCircleBinding;
 import com.cheese.radio.ui.Constant;
 
@@ -32,27 +35,24 @@ public class CircleModel extends ViewModel<CircleFragment, FragmentHomeCircleBin
     public void attachView(Bundle savedInstanceState, CircleFragment circleFragment) {
         super.attachView(savedInstanceState, circleFragment);
         WebView webView = getDataBinding().webView;
-//        webView.loadUrl("file:///android_asset/test.html");//加载asset文件夹下html
         String circleURL = Constant.circle_url;
         webView.loadUrl(circleURL);//加载url
-
-        //       使用webview显示html代码
-//        webView.loadDataWithBaseURL(null,descriptionText.get(), "text/html" , "utf-8", null);
-
-        //  webView.addJavascriptInterface(this,"android");//添加js监听 这样html就能调用客户端
-//        webView.setWebChromeClient(webChromeClient);
-//        webView.setWebViewClient(webViewClient);
-        webView.setWebViewClient(new WebViewClient(){
+        webView.setWebViewClient(new BasicWebViewClient());
+      /*  webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-               view.loadUrl(url);
-               return true;
+                view.loadUrl(url);
+                return true;
             }
-        });
-        WebSettings webSettings= webView.getSettings();
+
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                handler.proceed();
+            }
+        });*/
+        WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);//允许使用js
         webSettings.setTextSize(WebSettings.TextSize.NORMAL);
-
         /**
          * LOAD_CACHE_ONLY: 不使用网络，只读取本地缓存数据
          * LOAD_DEFAULT: （默认）根据cache-control决定是否从网络上取数据。

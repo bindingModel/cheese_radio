@@ -99,20 +99,6 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
     @Override
     public void attachView(Bundle savedInstanceState, HomeActivity activity) {
         super.attachView(savedInstanceState, activity);
-        //new Date()指定日期时，year need to minus 1900 ，month neet to minus 1,day just day，
-//        if (System.currentTimeMillis() > new Date(2020 - 1900, 5, 30).getTime()) {
-//            TimeUtil.getInstance().add(this);
-//            new AlertDialog.Builder(getT())
-//                    .setCancelable(false)
-//                    .setTitle("版本已过期")
-//                    .setMessage("现在去更新？")
-//                    .setNegativeButton("取消", (dialog1, which) -> {
-//                        dialog1.dismiss();
-//                        finish();
-//                    })
-//                    .show()
-//                    .setOnDismissListener(dialog1 -> finish());
-//        } else {
         NetUtil.checkNetType(getT());
         playImage = getDataBinding().playImage;
         initFragment();
@@ -263,10 +249,8 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
         popupUpdate.getWindow().setAnimationStyle(R.style.contextMenuAnim);
         addDisposable(api.version(params).compose(new RestfulTransformer<>()).subscribe((versionEntity -> {
             if (versionEntity.getUpdate() == 1) {
-                if (!TextUtils.isEmpty(versionEntity.getMessage()))
-                    popupUpdate.message.set(versionEntity.getMessage());
-                if(!TextUtils.isEmpty(versionEntity.getUrl()))
-                    popupUpdate.setURL(versionEntity.getUrl());
+                if (!TextUtils.isEmpty(versionEntity.getMessage())) popupUpdate.message.set(versionEntity.getMessage());
+                if(!TextUtils.isEmpty(versionEntity.getUrl())) popupUpdate.setURL(versionEntity.getUrl());
                 if(versionEntity.getUpdate() == 1 )popupUpdate.setOnDismissListener(null);
                 popupUpdate.show(window -> window.showAtLocation(getDataBinding().getRoot(), Gravity.CENTER, 0, 0));
             }

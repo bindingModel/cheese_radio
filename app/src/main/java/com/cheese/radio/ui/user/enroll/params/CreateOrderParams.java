@@ -137,8 +137,8 @@ public class CreateOrderParams extends IkeParams {
     }
 
     public void setPayType(Integer payType) {
-        if (payType == 0) this.payType = "weixin";
-        if (payType == 1) this.payType = "zfb";
+//        if (payType == 0) this.payType = "weixin";
+        if (payType == 0) this.payType = "zfb";
     }
 
     public boolean isLeagal(View view) {
@@ -173,7 +173,7 @@ public class CreateOrderParams extends IkeParams {
             BaseUtil.toast("宝宝名字还没填写");
             return false;
         }
-        if (TextUtils.isEmpty(String.valueOf(fieldId))) {
+        if (fieldId==0) {
             BaseUtil.toast("还未选择上课地点");
             return false;
         }
