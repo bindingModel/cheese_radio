@@ -98,4 +98,5 @@
     <string name="parent_name">家长姓名</string>
     <string name="teacher_name">指导老师</string>
     <string name="unnecessarily">非必填</string>
+    <string name="cheese_circle">芝士圈</string>
 </resources>

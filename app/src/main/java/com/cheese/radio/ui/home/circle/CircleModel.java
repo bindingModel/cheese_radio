@@ -1,11 +1,11 @@
 package com.cheese.radio.ui.home.circle;
 
-import android.content.Context;
+
 import android.net.http.SslError;
+import android.os.Build;
 import android.os.Bundle;
-import android.view.ViewGroup;
+
 import android.webkit.SslErrorHandler;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -13,8 +13,8 @@ import android.widget.ProgressBar;
 
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
+
 import com.cheese.radio.R;
-import com.cheese.radio.base.web.BasicWebViewClient;
 import com.cheese.radio.databinding.FragmentHomeCircleBinding;
 import com.cheese.radio.ui.Constant;
 
@@ -25,11 +25,7 @@ import javax.inject.Inject;
  */
 @ModelView(R.layout.fragment_home_circle)
 public class CircleModel extends ViewModel<CircleFragment, FragmentHomeCircleBinding> {
-    @Inject
-    CircleModel() {
-    }
-
-    private ProgressBar progressBar;
+    @Inject CircleModel() { }
 
     @Override
     public void attachView(Bundle savedInstanceState, CircleFragment circleFragment) {
@@ -37,22 +33,20 @@ public class CircleModel extends ViewModel<CircleFragment, FragmentHomeCircleBin
         WebView webView = getDataBinding().webView;
         String circleURL = Constant.circle_url;
         webView.loadUrl(circleURL);//加载url
-        webView.setWebViewClient(new BasicWebViewClient());
-      /*  webView.setWebViewClient(new WebViewClient() {
+        webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
             }
-
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
                 handler.proceed();
             }
-        });*/
+        });
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);//允许使用js
-        webSettings.setTextSize(WebSettings.TextSize.NORMAL);
+        webSettings.setTextZoom(100);
         /**
          * LOAD_CACHE_ONLY: 不使用网络，只读取本地缓存数据
          * LOAD_DEFAULT: （默认）根据cache-control决定是否从网络上取数据。
@@ -64,7 +58,12 @@ public class CircleModel extends ViewModel<CircleFragment, FragmentHomeCircleBin
         //支持屏幕缩放
         webSettings.setSupportZoom(true);
         webSettings.setBuiltInZoomControls(true);
-
+        /**
+         * 以下操作解决lollipop之后默认不允许混合模式，https当中不能加载http资源
+         */
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
         //不显示webview缩放按钮
         webSettings.setDisplayZoomControls(false);
 

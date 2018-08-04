@@ -123,7 +123,6 @@ public interface RadioApi {
     @POST("/1.0/content")
     Observable<InfoEntity<MyFavorityData>> getSearch(@Body HotSearchParams params);
 
-    //绘本列表 签名验证错误？
     @POST("/1.0/content")
     Observable<InfoEntity<MyFavorityData>> getQueryByTag(@Body ClassifyListParams params);
 
@@ -132,9 +131,6 @@ public interface RadioApi {
 
     @POST("/1.0/user")
     Observable<InfoEntity<String>> setProperty(@Body ProfileParams params);
-
-//    @POST("/1.0/user")
-//    Observable<InfoEntity<String>> getProperty(@Body ProfileParams params);
 
     @POST("/1.0/user")
     Observable<InfoEntity<MyCourseData>> getMyCourse(@Body MyCourseParams params);

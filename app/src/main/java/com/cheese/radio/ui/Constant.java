@@ -5,9 +5,6 @@ package com.cheese.radio.ui;
  */
 
 public interface Constant {
-
-    String socket_address = "106.15.34.29";
-    int socket_port = 8088;
     String room = "room";
     String socketRespond = "socketRespond";
     String id = "id";
