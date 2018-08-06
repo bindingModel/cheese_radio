@@ -49,7 +49,5 @@ public interface Constant {
     String NOTIFICATION_CHANNEL_NAME="NOTIFICATION_CHANNEL_NAME";
     String macAddress="macAddress";
     String circle_url="https://h5.zhishidiantai.com/zhishidiantai/activity.html";
-
-    String CONFIGURATION_HTTP = "http://";
 }
 
