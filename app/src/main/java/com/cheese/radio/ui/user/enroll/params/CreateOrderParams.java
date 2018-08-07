@@ -137,8 +137,8 @@ public class CreateOrderParams extends IkeParams {
     }
 
     public void setPayType(Integer payType) {
-//        if (payType == 0) this.payType = "weixin";
-        if (payType == 0) this.payType = "zfb";
+        if (payType == 0) this.payType = "weixin";
+        else this.payType = "zfb";
     }
 
     public boolean isLeagal(View view) {

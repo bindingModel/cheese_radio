@@ -300,7 +300,7 @@
                     app:position="@={vm.currentItem}">
 
                     <RadioButton
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:id="@+id/wei_xin"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

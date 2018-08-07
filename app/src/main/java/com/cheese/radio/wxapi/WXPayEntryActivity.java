@@ -69,6 +69,7 @@ public class WXPayEntryActivity extends BaseActivity<WXPayEntryModel> implements
             try {
                 this.mWxHandler.getWXEventHandler().onResp(resp);
                 if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
+
                     switch (resp.errCode) {
                         case 0:
                             Model.dispatchModel("paySuccess");

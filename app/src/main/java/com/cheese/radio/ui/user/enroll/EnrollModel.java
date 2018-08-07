@@ -38,6 +38,7 @@ import com.jakewharton.rxbinding.view.RxView;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.umeng.socialize.PlatformConfig;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -177,19 +178,14 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
     public void onEnrollClick(View view) {
         params.setAddress(mCity.get());
         params.setPayType(currentItem.get());
-        //productId在Event里处理了
         params.setAgeRange(mAge.get());
-        //phone在XML里处理了
-        //name在XML里处理了
         params.setBirthday(mDate.get());
-        //        //创建订单
+       //创建订单
         if (!params.isLeagal(view)) return;
-        //TODO 关闭了微信入口
-        /*if (currentItem.get() == 0)
+        if (currentItem.get() == 0)
             orderWXPay();
-        else*/
+        else
         orderAliPay();
-//{"code":"0","data":{"prepareId":"pp20180424-373469","payOrderCode":"20180424-373469"}}支付成功后的状态
     }
 
     private IWXAPI iwxapi;
@@ -198,7 +194,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         //wx
         addDisposable(api.createWXOrder(params).compose(new RestfulTransformer<>()).subscribe((bean -> {
             PayReq req = new PayReq();
-            req.appId = getT().getResources().getString(R.string.wechat_AppID);
+            req.appId = getT().getResources().getString(R.string.umeng_wechat_AppID);
             req.partnerId = bean.getPartnerId();
             req.prepayId = bean.getPrepareId();
             req.nonceStr = bean.getNonceStr();

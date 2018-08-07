@@ -282,7 +282,8 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
             config.setShareboardBackgroundColor(Color.WHITE);
             new ShareAction(getT())
                     .withMedia(uMusic)
-                    .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.SINA)
+//                    .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.SINA)
+                    .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE)
                     .setCallback(this).open(config);
         }), BaseUtil::toast));
 

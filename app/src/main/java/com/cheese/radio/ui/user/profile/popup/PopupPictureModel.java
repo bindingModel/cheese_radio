@@ -35,5 +35,7 @@ public class PopupPictureModel extends PopupRecyclerModel<BaseActivity,PopupPict
 
         getAdapter().setList(NO_POSITION,entities,refresh);
     }
+    public void onCancelClick(View view){
 
+    }
 }
