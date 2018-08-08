@@ -192,7 +192,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         //wx
         addDisposable(api.createWXOrder(params).compose(new RestfulTransformer<>()).subscribe((bean -> {
             PayReq req = new PayReq();
-            req.appId = getT().getResources().getString(R.string.umeng_wechat_AppID);
+            req.appId = getT().getResources().getString(R.string.wechat_AppID);
             req.partnerId = bean.getPartnerId();
             req.prepayId = bean.getPrepareId();
             req.nonceStr = bean.getNonceStr();
