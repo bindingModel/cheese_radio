@@ -49,11 +49,6 @@ public class IkeApplication extends MultiDexApplication {
         appComponent.inject(this);
         user = new User(this);
         PgyCrashManager.register(this);
-        String wechat_AppID = getResources().getString(R.string.umeng_wechat_AppID);
-        String wechat_AppSecret = getResources().getString(R.string.wechat_AppSecret);
-        PlatformConfig.setWeixin(wechat_AppID, wechat_AppSecret);
-        UMConfigure.setLogEnabled(true);
-        UMConfigure.init(this, "", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
         //td
         String td_AppId=getResources().getString(R.string.td_app_id);
         String td_AppChannel=getResources().getString(R.string.td_app_channel);

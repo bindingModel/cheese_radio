@@ -97,7 +97,6 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         timePickSelect = new TimePickTool(getT(), ((date, v) -> mDate.set(MyBaseUtil.getTime(date))));
         getDataBinding().setParams(params);
         Model.dispatchModel("refreshUI");
-        iwxapi = WXAPIFactory.createWXAPI(enrollActivity, enrollActivity.getString(R.string.wechat_AppID), false);
 
     }
 
@@ -188,7 +187,6 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         orderAliPay();
     }
 
-    private IWXAPI iwxapi;
 
     public void orderWXPay() {
         //wx
@@ -201,7 +199,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
             req.timeStamp = bean.getTimestamp();
             req.packageValue = "Sign=WXPay";
             req.sign = bean.getPaySign();
-            Boolean ans = iwxapi.sendReq(req);
+            Boolean ans = getT().getIwxapi().sendReq(req);
         }), BaseUtil::toast));
 
 
