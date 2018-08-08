@@ -17,17 +17,17 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.enroll;
 /**
  * Created by 29283 on 2018/3/10.
  */
-@Route(path=enroll)
+@Route(path = enroll)
 public class EnrollActivity extends BaseActivity<EnrollModel> {
     private IWXAPI iwxapi;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        iwxapi = WXAPIFactory.createWXAPI(this, this.getString(R.string.wechat_AppID), false);
-        iwxapi.registerApp(this.getString(R.string.wechat_AppID));
         String wechat_AppID = getResources().getString(R.string.wechat_AppID);
         String wechat_AppSecret = getResources().getString(R.string.wechat_AppSecret);
+        iwxapi = WXAPIFactory.createWXAPI(this,wechat_AppID, false);
+        iwxapi.registerApp(wechat_AppID);
         PlatformConfig.setWeixin(wechat_AppID, wechat_AppSecret);
         UMConfigure.setLogEnabled(true);
         UMConfigure.init(this, "", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
@@ -36,11 +36,11 @@ public class EnrollActivity extends BaseActivity<EnrollModel> {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(iwxapi!=null) iwxapi.unregisterApp();
-        iwxapi=null;
+        if (iwxapi != null) iwxapi.unregisterApp();
+        iwxapi = null;
     }
 
-    public IWXAPI getIwxapi(){
+    public IWXAPI getIwxapi() {
         return iwxapi;
     }
 }

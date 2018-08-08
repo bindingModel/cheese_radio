@@ -43,9 +43,10 @@ public class LoginActivity extends BaseActivity<LoginModel> implements UMAuthLis
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-        iwxapi = WXAPIFactory.createWXAPI(this, this.getString(R.string.umeng_wechat_AppID), false);
-        iwxapi.registerApp(this.getString(R.string.umeng_wechat_AppID));String wechat_AppID = getResources().getString(R.string.umeng_wechat_AppID);
+        String wechat_AppID = getResources().getString(R.string.umeng_wechat_AppID);
         String wechat_AppSecret = getResources().getString(R.string.wechat_AppSecret);
+        iwxapi = WXAPIFactory.createWXAPI(this, wechat_AppID, false);
+        iwxapi.registerApp(wechat_AppID);
         PlatformConfig.setWeixin(wechat_AppID, wechat_AppSecret);
         UMConfigure.setLogEnabled(true);
         UMConfigure.init(this, "", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
@@ -60,9 +61,9 @@ public class LoginActivity extends BaseActivity<LoginModel> implements UMAuthLis
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(iwxapi!=null)
-        iwxapi.unregisterApp();
-        iwxapi=null;
+        if (iwxapi != null)
+            iwxapi.unregisterApp();
+        iwxapi = null;
     }
 
     public void onWechatClick(View view) {
