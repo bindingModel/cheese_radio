@@ -34,7 +34,7 @@ public class MusicBroadcast extends BroadcastReceiver {
          util.getNotManager().cancel(234);
       }
         Model.dispatchModel("upDataButton");
-//       BaseUtil.toast("收到广播："+tag);
+       BaseUtil.toast("收到广播："+tag);
     }
 
 

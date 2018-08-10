@@ -366,7 +366,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
                 .setContentIntent(getDefalutIntent(Notification.FLAG_ONGOING_EVENT))
                 .setWhen(System.currentTimeMillis())// 通知产生的时间，会在通知信息里显示
                 .setTicker("正在播放")
-                .setPriority(NotificationCompat.PRIORITY_LOW)// 设置该通知优先级
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)// 设置该通知优先级
                 .setOngoing(true)
                 .setSmallIcon(R.mipmap.ic_launcher);
 
@@ -390,8 +390,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     }
 
     private PendingIntent getDefalutIntent(int flags) {
-        PendingIntent pendingIntent = PendingIntent.getActivity(App.getCurrentActivity(), 1, new Intent(), flags);
-        return pendingIntent;
+        return PendingIntent.getActivity(App.getCurrentActivity(), 1, new Intent(), flags);
     }
 
     public void onAnchorCLick(View view) {

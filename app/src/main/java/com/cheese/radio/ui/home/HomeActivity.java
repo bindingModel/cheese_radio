@@ -13,6 +13,7 @@ import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.service.AudioServiceUtil;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.home;
+import static com.cheese.radio.ui.Constant.ACTION_BUTTON;
 
 /**
  * Created by 29283 on 2018/2/22.
@@ -24,7 +25,9 @@ public class HomeActivity extends BaseActivity <HomeModel> {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AudioServiceUtil.getInstance().bindService(this);
-
+        Intent intent =new Intent("aaaaaaa");
+        intent.putExtra("msg", "simple message");
+        sendBroadcast(intent);
     }
 
     @Override
