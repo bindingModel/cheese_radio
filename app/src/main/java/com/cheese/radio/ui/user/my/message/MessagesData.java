@@ -91,15 +91,15 @@ public class MessagesData {
   /*  public String getMsg() {
         switch (index) {
             case 1:
-                return system.get(0).getContent();
+                return system.get(0).getCircleDateList();
             case 2:
-                return book.get(0).getContent();
+                return book.get(0).getCircleDateList();
             case 3:
-                return user.get(0).getContent();
+                return user.get(0).getCircleDateList();
             case 4:
-                return classX.get(0).getContent();
+                return classX.get(0).getCircleDateList();
             default:
-                return classX.get(0).getContent();
+                return classX.get(0).getCircleDateList();
         }
     }*/
 }

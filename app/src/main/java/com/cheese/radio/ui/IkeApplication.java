@@ -86,4 +86,7 @@ public class IkeApplication extends MultiDexApplication {
         params.setPlatform("weixin");
         api.getOpenPlatformConfig(params).compose(new RestfulTransformer<>()).subscribe();
     }
+    public static RadioApi getApi(){
+        return application.api;
+    }
 }

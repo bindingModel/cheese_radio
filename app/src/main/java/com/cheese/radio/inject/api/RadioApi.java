@@ -3,6 +3,8 @@ package com.cheese.radio.inject.api;
 import com.cheese.radio.base.InfoEntity;
 import com.cheese.radio.ui.home.CanBookParams;
 import com.cheese.radio.ui.home.CanBookData;
+import com.cheese.radio.ui.home.circle.CircleDateEntity;
+import com.cheese.radio.ui.home.circle.DateDetailParams;
 import com.cheese.radio.ui.home.page.RecommanData;
 import com.cheese.radio.ui.home.page.HomePageParams;
 import com.cheese.radio.ui.home.page.entity.CategoryEntity;
@@ -63,13 +65,11 @@ import com.cheese.radio.ui.user.profile.MyHeadParams;
 import com.cheese.radio.ui.user.profile.ProfileParams;
 import com.cheese.radio.ui.user.register.UserInfoParams;
 
-import java.util.HashMap;
 import java.util.List;
 
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
-import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 /**
@@ -197,4 +197,13 @@ public interface RadioApi {
 
     @POST("/1.0/common")
     Observable<InfoEntity<VersionEntity>> version(@Body VersionParams params);
+
+
+    //------------二期
+//    活动列表接口：/1.0/content?method=activity
+    @POST("/1.0/content")
+    Observable<InfoEntity<List<CircleDateEntity>>> getCircleDateList(@Body ContentParams params);
+    @POST("/1.0/content")
+    Observable<InfoEntity<List<CircleDateEntity>>> getCircleDateDetail(@Body DateDetailParams params);
+
 }
