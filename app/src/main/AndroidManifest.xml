@@ -177,5 +177,6 @@
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
             android:screenOrientation="behind" />
+        <activity android:name=".ui.home.circle.detail.CircleDetailActivity" />
     </application>
 </manifest>

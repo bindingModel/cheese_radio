@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"/>
         <Button
             android:layout_marginTop="1dp"
-            android:onClick="@{vm.onCancelClick}"
+            android:onClick="@{vm::onCancelClick}"
             android:layout_width="match_parent"
             android:textColor="@color/text_black"
             android:text="@string/close"

@@ -291,22 +291,12 @@ public class MyBaseUtil extends BaseUtil {
     }
 
     public static WebView setWebView(WebView webView, String text) {
-//        webView.loadUrl("file:///android_asset/test.html");//加载asset文件夹下html
-        //   webView.loadUrl("http://139.196.35.30:8080/OkHttpTest/apppackage/test.html");//加载url
-
-        //       使用webview显示html代码
         webView.loadDataWithBaseURL(null, text, "text/html", "utf-8", null);
-
-        //  webView.addJavascriptInterface(this,"android");//添加js监听 这样html就能调用客户端
-//        webView.setWebChromeClient(webChromeClient);
-//        webView.setWebViewClient(webViewClient);
-
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);//允许使用js
-        webSettings.setTextZoom(100);
+        webSettings.setTextZoom(200);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-//        webSettings.setTextSize(WebSettings.TextSize.SMALLER);
         /**
          * LOAD_CACHE_ONLY: 不使用网络，只读取本地缓存数据
          * LOAD_DEFAULT: （默认）根据cache-control决定是否从网络上取数据。
@@ -314,16 +304,20 @@ public class MyBaseUtil extends BaseUtil {
          * LOAD_CACHE_ELSE_NETWORK，只要本地有，无论是否过期，或者no-cache，都使用缓存中的数据。
          */
         webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);//不使用缓存，只从网络获取数据.
-
-        //支持屏幕缩放
-//        webSettings.setSupportZoom(true);
-//        webSettings.setBuiltInZoomControls(true);
-//        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        webSettings.setUseWideViewPort(true);
-        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        webSettings.setLoadWithOverviewMode(true);
-        //不显示webview缩放按钮
         webSettings.setDisplayZoomControls(false);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
+        webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);// 禁止硬件加速
+        webView.setBackgroundColor(Color.TRANSPARENT);
+
+        if (Build.VERSION.SDK_INT >= 19) {
+            webSettings.setUseWideViewPort(true); // a
+            webSettings.setLoadWithOverviewMode(true);// b, a和b是成对使用的
+        } else {
+            webSettings.setSupportZoom(false);
+            webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        }
         return webView;
     }
 
@@ -353,7 +347,7 @@ public class MyBaseUtil extends BaseUtil {
     }
 
     public static void setWhiteStatus(Activity activity) {
-        Window window=activity.getWindow();
+        Window window = activity.getWindow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // 5.0 以上全透明状态栏
 
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -367,7 +361,7 @@ public class MyBaseUtil extends BaseUtil {
             ViewGroup mContentView = (ViewGroup) activity.findViewById(Window.ID_ANDROID_CONTENT);
             View mChildView = mContentView.getChildAt(0);
             if (mChildView != null) {
-               mChildView.setFitsSystemWindows(true);
+                mChildView.setFitsSystemWindows(true);
             }
         }
 

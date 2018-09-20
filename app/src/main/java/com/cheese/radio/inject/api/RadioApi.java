@@ -204,6 +204,6 @@ public interface RadioApi {
     @POST("/1.0/content")
     Observable<InfoEntity<List<CircleDateEntity>>> getCircleDateList(@Body ContentParams params);
     @POST("/1.0/content")
-    Observable<InfoEntity<List<CircleDateEntity>>> getCircleDateDetail(@Body DateDetailParams params);
+    Observable<InfoEntity<CircleDateEntity>> getCircleDateDetail(@Body DateDetailParams params);
 
 }

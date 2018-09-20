@@ -4,6 +4,7 @@ package com.cheese.radio.inject.component;
 import com.cheese.radio.inject.module.ActivityModule;
 import com.cheese.radio.inject.scope.ActivityScope;
 import com.cheese.radio.ui.demo.coordinatorLayout.CoordinatorLayoutActivity;
+import com.cheese.radio.ui.home.circle.detail.CircleDetailActivity;
 import com.cheese.radio.ui.media.anchor.AnchorActivity;
 import com.cheese.radio.ui.media.anchors.AnchorsActivity;
 import com.cheese.radio.ui.media.classify.ClassifyActivity;
@@ -109,9 +110,13 @@ public interface ActivityComponent {
     void inject(WelcomeActivity activity);
 
     void inject(PictureActivity activity);
+
     void inject(SafeActivity activity);
+
     void inject(PhoneActivity activity);
+
     void inject(WXPayEntryActivity activity);
+    void inject(CircleDetailActivity activity);
     interface Router {
         String cheese = "/cheese/";
         String startup = cheese + "startup";
@@ -146,7 +151,10 @@ public interface ActivityComponent {
         String welcome = cheese + "welcome";
         String picture = cheese + "picture";
         String safe = cheese + "safe";
-        String phone = cheese +"phone";
+        String phone = cheese + "phone";
+
+        String circle = "/circle/";
+        String activityDetail = circle+"activityDetail";
     }
     /*
      *  CONTENT_LIST	绘本列表                  contents
