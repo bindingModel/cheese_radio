@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -12,38 +12,38 @@
         android:layout_height="@dimen/toolbar_height"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
+        app:title=" "
         app:navigationIcon="@mipmap/back"
-        app:layout_scrollFlags="scroll|enterAlways">
+        app:layout_scrollFlags="scroll|enterAlways"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height">
 
-        <FrameLayout
+        <TextView
+            android:id="@+id/toolbar_title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginLeft="80dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginRight="80dp"
+            android:gravity="center" />
 
-            <TextView
-                android:id="@+id/toolbar_title"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="80dp"
-                android:layout_marginRight="80dp"
-                android:gravity="center" />
-
-            <android.support.v7.widget.AppCompatRadioButton
-                android:id="@+id/toolbar_right"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="end"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:onClick="onRightClick"
-                android:button="@null"
-                android:gravity="center" />
-        </FrameLayout>
-    </android.support.v7.widget.Toolbar>
-
+        <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/toolbar_right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:onClick="onRightClick"
+            android:button="@null"
+            android:gravity="center" />
+    </FrameLayout>
     <TextView
         android:id="@+id/network_error"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar_height"
         android:visibility="gone" />
 
-</LinearLayout>
+</FrameLayout>

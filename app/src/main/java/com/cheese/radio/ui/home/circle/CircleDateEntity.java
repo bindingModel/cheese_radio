@@ -5,9 +5,11 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.view.View;
 
+import com.binding.model.Config;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
 import com.binding.model.util.BaseUtil;
+import com.cheese.radio.BuildConfig;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
@@ -65,17 +67,10 @@ public class CircleDateEntity extends ViewInflateRecycler implements Parcelable 
     }
 
     public void onInfoClick(View view) {
-        DateDetailParams params = new DateDetailParams("activityInfo");
-        params.setId(id);
-        IkeApplication.getApi()
-                .getCircleDateDetail(params)
-                .compose(new RestfulTransformer<>())
-                .subscribe(entity -> {
-                    Bundle bundle =new Bundle();
-                    bundle.putString(Constant.h5code,entity.getContent());
-                    ARouterUtil.navigation(ActivityComponent.Router.activityDetail,bundle);
-                    //TODO 此处进行的是一个网页跳转了，万恶的content！！！
-                }, BaseUtil::toast);
+        Bundle bundle =new Bundle();
+        bundle.putInt(Constant.id,id);
+        bundle.putString(Config.title,title);
+        ARouterUtil.navigation(ActivityComponent.Router.activityDetail,bundle);
     }
 
     @Override
