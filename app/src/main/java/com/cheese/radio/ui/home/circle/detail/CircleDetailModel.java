@@ -2,15 +2,9 @@ package com.cheese.radio.ui.home.circle.detail;
 
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
-import com.binding.model.cycle.Container;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
 import com.cheese.radio.R;
@@ -40,8 +34,6 @@ public class CircleDetailModel extends ViewModel<CircleDetailActivity, ActivityC
 //        css =getJson(activity,"circle.css");
         String body = "<html><header></header>" + h5code
                 + "</body></html>";
-     /*   String body = "<html><header>" + css + "</header>" + h5code
-                + "</body></html>";*/
         initWebView(getDataBinding().webView, body);
     }
 
