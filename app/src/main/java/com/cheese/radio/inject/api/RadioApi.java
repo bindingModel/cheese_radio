@@ -5,6 +5,7 @@ import com.cheese.radio.ui.home.CanBookParams;
 import com.cheese.radio.ui.home.CanBookData;
 import com.cheese.radio.ui.home.circle.CircleDateEntity;
 import com.cheese.radio.ui.home.circle.DateDetailParams;
+import com.cheese.radio.ui.home.circle.join.JoinCircleDetailParams;
 import com.cheese.radio.ui.home.page.RecommanData;
 import com.cheese.radio.ui.home.page.HomePageParams;
 import com.cheese.radio.ui.home.page.entity.CategoryEntity;
@@ -205,5 +206,6 @@ public interface RadioApi {
     Observable<InfoEntity<List<CircleDateEntity>>> getCircleDateList(@Body ContentParams params);
     @POST("/1.0/content")
     Observable<InfoEntity<CircleDateEntity>> getCircleDateDetail(@Body DateDetailParams params);
-
+    @POST("/1.0/content")
+    Observable<InfoEntity<String>> circleDatetailEnroll(@Body JoinCircleDetailParams params);
 }

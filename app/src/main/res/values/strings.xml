@@ -101,4 +101,7 @@
     <string name="unnecessarily">非必填</string>
     <string name="cheese_circle">芝士圈</string>
     <string name="details">详情</string>
+    <string name="please_input_name">请输入姓名</string>
+    <string name="please_input_mobile">请输入手机号码</string>
+    <string name="activity_enroll">活动报名</string>
 </resources>

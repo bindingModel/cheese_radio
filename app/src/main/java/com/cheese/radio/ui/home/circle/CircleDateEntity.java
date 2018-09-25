@@ -25,7 +25,9 @@ public class CircleDateEntity extends ViewInflateRecycler implements Parcelable 
     private int id;
     private String title;
     private String content;
-
+    public String getBtnText(){
+        return allowSign==0?"详情":"报名";
+    }
     public String getImg() {
         return img;
     }

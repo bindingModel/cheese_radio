@@ -25,18 +25,19 @@ public class HomeEntity extends ViewParse implements Item<BaseFragment> {
 
     @Override
     public BaseFragment getItem(int position, ViewGroup container) {
-        if (fragment instanceof CalendarFragment && !IkeApplication.getUser().getCanBookCheck()) {
+     /*   if (fragment instanceof CalendarFragment && !IkeApplication.getUser().getCanBookCheck()) {
             fragment = new ClockFragment();
         } else if (fragment instanceof ClockFragment && IkeApplication.getUser().getCanBookCheck()) {
             fragment = new CalendarFragment();
-        }
+        }*/
         if (fragment == null)
             switch (position) {
                 case 0:
                     fragment = new HomePageFragment();
                     break;
                 case 1: {
-                    fragment = IkeApplication.getUser().getCanBookCheck() ? new CalendarFragment() : new ClockFragment();
+//                    fragment = IkeApplication.getUser().getCanBookCheck() ? new CalendarFragment() : new ClockFragment();
+                    fragment =new CalendarFragment();
                     break;
                 }
                 case 2:

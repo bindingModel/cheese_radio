@@ -2,17 +2,21 @@ package com.cheese.radio.ui.home.circle.detail;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebView;
 
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
+import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityCircleDetailBinding;
 import com.cheese.radio.inject.api.RadioApi;
+import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.home.circle.DateDetailParams;
 
@@ -31,6 +35,7 @@ public class CircleDetailModel extends ViewModel<CircleDetailActivity, ActivityC
     private int detailId = 0;
     public ObservableField<String> detailTitle = new ObservableField<>();
     public ObservableField<String> detailImage = new ObservableField<>();
+    public ObservableBoolean canShowBtn =new ObservableBoolean(false);
     @Inject
     RadioApi api;
 
@@ -59,9 +64,11 @@ public class CircleDetailModel extends ViewModel<CircleDetailActivity, ActivityC
         Disposable disposable = api.getCircleDateDetail(params)
                 .compose(new RestfulTransformer<>())
                 .subscribe(entity -> {
+                    canShowBtn.set(entity.getAllowSign()==1);
                     detailImage.set(entity.getImg());
-                    h5code = "<html><header>"+css+"</header>" + entity.getContent()
+                    h5code = "<html><header>" + css + "</header>" + entity.getContent()
                             + "</body></html>";
+                    detailTitle.set(entity.getTitle());
                     initWebView(getDataBinding().webView, h5code);
 
                 }, BaseUtil::toast);
@@ -87,5 +94,11 @@ public class CircleDetailModel extends ViewModel<CircleDetailActivity, ActivityC
             e.printStackTrace();
         }
         return stringBuilder.toString();
+    }
+
+    public void onEnrollClick(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(Constant.id, detailId);
+        ARouterUtil.navigation(ActivityComponent.Router.join, bundle);
     }
 }

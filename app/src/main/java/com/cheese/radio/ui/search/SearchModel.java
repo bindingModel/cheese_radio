@@ -60,7 +60,7 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
     public ObservableField<String> searchInput = new ObservableField<>("");
     private final HotSearchParams params = new HotSearchParams("hotsearch");
     private ObservableEmitter<String> emitter;
-    private Observable<String> observable = io.reactivex.Observable.create(e -> this.emitter = e);
+    private Observable<String> observable = Observable.create(e -> this.emitter = e);
     private final List<GridInflate> list = new ArrayList<>();
 
     @Override

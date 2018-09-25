@@ -126,4 +126,5 @@
         <item name="android:textColor">@color/text_gray</item>
         <item name="android:textSize">16.44sp</item>
     </style>
+
 </resources>

@@ -6,38 +6,57 @@
         <variable
             name="vm"
             type="com.cheese.radio.ui.home.circle.detail.CircleDetailModel" />
+        <import type="android.view.View"/>
     </data>
 
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar_organza" />
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <include layout="@layout/toolbar_organza" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="fitCenter"
-                android:src="@{vm.detailImage}" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@{vm.detailTitle,default =1234567}" />
-
-            <com.cheese.radio.base.view.ScrollWebView
-                android:id="@+id/webView"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbars="none" />
+                android:orientation="vertical">
 
-        </LinearLayout>
-    </ScrollView>
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitCenter"
+                    android:src="@{vm.detailImage}" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@{vm.detailTitle,default =1234567}"
+                    android:textColor="@color/text_black"
+                    android:textSize="14sp" />
+
+                <com.cheese.radio.base.view.ScrollWebView
+                    android:id="@+id/webView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/normal_textView_height"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/login_button_shape"
+                    android:onClick="@{vm::onEnrollClick}"
+                    android:text="@string/enroll"
+                    android:textColor="@color/white"
+                    android:visibility="@{vm.canShowBtn?View.VISIBLE:View.GONE}"
+                    android:textSize="14.4sp" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 </layout>

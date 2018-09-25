@@ -51,12 +51,11 @@
                     android:layout_weight="1"
                     android:text="@{vm.title,default=1234567}"
                     android:textSize="14sp" />
-
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/login_button_shape"
-                    android:text="@string/details"
+                    android:text="@{vm.btnText,default=123456}"
                     android:onClick="@{vm::onInfoClick}"
                     android:textColor="@color/white" />
             </LinearLayout>

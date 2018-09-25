@@ -178,5 +178,6 @@
             android:exported="false"
             android:screenOrientation="behind" />
         <activity android:name=".ui.home.circle.detail.CircleDetailActivity" />
+        <activity android:name=".ui.home.circle.join.JoinCircleDetailActivity" android:label="@string/activity_enroll"/>
     </application>
 </manifest>

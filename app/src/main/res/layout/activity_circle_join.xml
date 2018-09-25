@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="vm"
+            type="com.cheese.radio.ui.home.circle.join.JoinCircleDetailModel" />
+        <variable
+            name="params"
+            type="com.cheese.radio.ui.home.circle.join.JoinCircleDetailParams"/>
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/light_gray"
+            android:orientation="vertical">
+
+            <include layout="@layout/toolbar_organza" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginTop="19.2dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    style="@style/profile_input_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="53.28dp">
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/name" />
+
+                    <EditText
+                        style="@style/profile_input_linearlayout_solid"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:hint="@string/please_input_name"
+                        android:background="@null"
+                        android:inputType="textPersonName"
+                        android:text="@={params.contacts}"
+                        android:textSize="14.4dp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="14.4dp"
+                    android:layout_marginStart="14.4dp"
+                    android:background="@color/light_gray" />
+
+                <LinearLayout
+                    style="@style/profile_input_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="53.28dp">
+
+                    <TextView
+                        style="@style/profile_input_linearlayout_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/phone" />
+
+                    <EditText
+                        style="@style/profile_input_linearlayout_solid"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:hint="@string/please_input_mobile"
+                        android:background="@null"
+                        android:inputType="textPersonName"
+                        android:text="@={params.phone}"
+                        android:textSize="14.4dp" />
+                </LinearLayout>
+            </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_margin="15dp"
+                android:layout_height="@dimen/normal_textView_height"
+                android:background="@drawable/login_button_shape"
+                android:text="@string/submit"
+                android:textSize="14.4sp"
+                android:onClick="@{vm::onSubmitClick}"
+                android:textColor="@color/white" />
+        </android.support.v7.widget.LinearLayoutCompat>
+    </FrameLayout>
+</layout>
