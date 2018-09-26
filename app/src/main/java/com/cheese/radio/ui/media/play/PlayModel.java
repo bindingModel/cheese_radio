@@ -420,23 +420,21 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
     //这里是芝士第二期开工的地方；
     public void onLastClick(View view) {
-        int index =getList().indexOf(getEntity());
-        if(index>0){
-            setSingelEntity(getList().get(index-1));
-        }
-        else BaseUtil.toast("已经是第一首");
+        int index = getList().indexOf(getEntity());
+        if (index > 0) {
+            setSingelEntity(getList().get(index - 1));
+        } else BaseUtil.toast("已经是第一首");
     }
 
     public void onNextClick(View view) {
         nextMusic.setId(id);
         nextMusic.setActionType("next");
-        int index =getList().indexOf(getEntity());
+        int index = getList().indexOf(getEntity());
         if (index == getList().size() - 1)
             addDisposable(api.playInOrder(nextMusic).compose(new RestfulTransformer<>()).subscribe(
                     this::setSingelEntity
                     , BaseUtil::toast));
-        else setSingelEntity(getList().get(index+1));
-
+        else setSingelEntity(getList().get(index + 1));
     }
 
     public void onCompletion(MediaPlayer mp) {
