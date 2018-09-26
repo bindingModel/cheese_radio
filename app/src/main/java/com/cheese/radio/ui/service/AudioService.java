@@ -107,8 +107,8 @@ public class AudioService extends Service
             player.release();
         state = Release;
         player = null;
-       if(audioManager!=null)
-        audioManager.abandonAudioFocus(changeListener);
+        if (audioManager != null)
+            audioManager.abandonAudioFocus(changeListener);
     }
 
     @Override
@@ -135,10 +135,8 @@ public class AudioService extends Service
 
     @Override
     public void onSeekComplete(MediaPlayer mp) {
-      /*  if (looping) {
-            mp.start();
-            state = Play;
-        }*/
+        mp.start();
+        state = Play;
     }
 
     @Override
@@ -188,7 +186,7 @@ public class AudioService extends Service
     @Override
     public boolean play() {
         if (player != null) {
-            if(focusState == Release)requestAudioFocus();
+            if (focusState == Release) requestAudioFocus();
             switch (state) {
                 case Pause:
                 case Prepared:
@@ -260,23 +258,23 @@ public class AudioService extends Service
 
     private boolean requestAudioFocus() {
         ComponentName mbCN = new ComponentName(getPackageName(), MediaButtonReceiver.class.getName());
-        if(changeListener == null)
-        changeListener = (focusChange) -> {
-            if (focusChange == AUDIOFOCUS_LOSS_TRANSIENT  ) {
-                // Pause playback
-                if (state != Play) focusState = Pause;
-                else  focusState = Play;
-                pause();
-            } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
-                // Resume playback
-                if (focusState != Play) return;
-                play();
-            }else if(focusChange == AudioManager.AUDIOFOCUS_LOSS){
-                focusState = Release;
-                pause();
+        if (changeListener == null)
+            changeListener = (focusChange) -> {
+                if (focusChange == AUDIOFOCUS_LOSS_TRANSIENT) {
+                    // Pause playback
+                    if (state != Play) focusState = Pause;
+                    else focusState = Play;
+                    pause();
+                } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+                    // Resume playback
+                    if (focusState != Play) return;
+                    play();
+                } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+                    focusState = Release;
+                    pause();
+                }
             }
-        }
-        ;
+                    ;
 
         int result = getAudioManager().requestAudioFocus(changeListener,
 // Use the music stream.

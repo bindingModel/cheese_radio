@@ -64,6 +64,7 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
 import io.reactivex.schedulers.Schedulers;
+import timber.log.Timber;
 
 
 import static com.binding.model.adapter.AdapterType.select;
@@ -87,7 +88,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     RadioApi api;
     @Inject
     PopupPlayModel popupPlayModel;
-//    public final List<PlayEntity> list = new ArrayList<>();
+    //    public final List<PlayEntity> list = new ArrayList<>();
     private Integer id;
     private Integer playTime, totalTime;
     public ObservableField<String> currentText = new ObservableField<>();//存放定时播放的剩余时间。如果需要，去界面绑定
@@ -150,7 +151,10 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
     public void setSingelEntity(PlayEntity entity) {
         if (entity.getId() != id) id = entity.getId();
-        addEntity(entity);
+        if (!getList().contains(entity))
+            addEntity(entity);
+        playTime = 0;
+        util.pause();
         AudioServiceUtil.getInstance().setImage(entity.getImage());
         AudioServiceUtil.getInstance().setFileId(entity.getFileId());
         getDataBinding().setEntity(entity);
@@ -322,7 +326,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
     //通知栏
     public void showButtonNotify() {
-        if (getEntity()==null) return;
+        if (getEntity() == null) return;
         playRecord();//播放数的反馈
         PlayEntity entity = getEntity();
         int NOTIFICATION_ID = 234;
@@ -416,24 +420,31 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
     //这里是芝士第二期开工的地方；
     public void onLastClick(View view) {
-
+        int index =getList().indexOf(getEntity());
+        if(index>0){
+            setSingelEntity(getList().get(index-1));
+        }
+        else BaseUtil.toast("已经是第一首");
     }
 
     public void onNextClick(View view) {
         nextMusic.setId(id);
         nextMusic.setActionType("next");
-        addDisposable(api.playInOrder(nextMusic).compose(new RestfulTransformer<>()).subscribe(
-                entity -> {
-                    setSingelEntity(entity);
-                }
-                , BaseUtil::toast));
+        int index =getList().indexOf(getEntity());
+        if (index == getList().size() - 1)
+            addDisposable(api.playInOrder(nextMusic).compose(new RestfulTransformer<>()).subscribe(
+                    this::setSingelEntity
+                    , BaseUtil::toast));
+        else setSingelEntity(getList().get(index+1));
+
     }
 
     public void onCompletion(MediaPlayer mp) {
-        if (!mp.isPlaying() && (util.getMediaStatus() == AudioService.Play || util.getMediaStatus() == AudioService.Pause)) {
+        Timber.w("onCompletion" + util.getMediaStatus());
+        if (!mp.isPlaying() && util.getCurrentPosition() > 0) {
             onNextClick(null);
         }
-        checked.set(mp.isPlaying());
+        checked.set(!mp.isPlaying());
         onResume();//校准播放按钮
     }
 }

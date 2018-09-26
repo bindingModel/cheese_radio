@@ -58,6 +58,8 @@ import static com.umeng.socialize.utils.ContextUtil.getPackageName;
 public class AudioServiceUtil implements TimeEntity {
     private static AudioServiceUtil instance = new AudioServiceUtil();
     private int duration = -1;
+
+
     private int current = 0;
     private String uri;
     private OnTimingListener onTimingListener;
@@ -238,7 +240,6 @@ public class AudioServiceUtil implements TimeEntity {
             controller.seekTo(changeProgress);
         }
     }
-
     public void setUri(String uri) {
         this.uri = uri;
     }
@@ -252,5 +253,9 @@ public class AudioServiceUtil implements TimeEntity {
     }
     public int getMediaStatus(){
         return controller.getStatus();
+    }
+
+    public int getCurrent() {
+        return current;
     }
 }

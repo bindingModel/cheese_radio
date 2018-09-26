@@ -213,10 +213,11 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
     protected void addEntity(Entity entity){
         fmsEntities.add(entity);
     }
-    protected List getList(){
+    protected List<Entity> getList(){
         return fmsEntities;
     }
     protected Entity getEntity(){
         return entity;
     };
+
 }
