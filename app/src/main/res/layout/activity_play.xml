@@ -186,21 +186,23 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="110dp"
-                    android:paddingRight="110dp">
+                    android:paddingLeft="85dp"
+                    android:paddingRight="85dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_gravity="start"
-                        android:onClick="@{vm::onRewindClick}"
+                        android:padding="15dp"
+                        android:onClick="@{vm::onLastClick}"
                         android:src="@mipmap/previous" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_gravity="end"
-                        android:onClick="@{vm::onForwardClick}"
+                        android:padding="15dp"
+                        android:onClick="@{vm::onNextClick}"
                         android:src="@mipmap/next" />
 
                     <RadioButton

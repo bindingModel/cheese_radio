@@ -250,5 +250,7 @@ public class AudioServiceUtil implements TimeEntity {
     public void requestAudioFocus(){
 
     }
-
+    public int getMediaStatus(){
+        return controller.getStatus();
+    }
 }

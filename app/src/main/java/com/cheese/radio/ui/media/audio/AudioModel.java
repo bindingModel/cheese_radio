@@ -82,8 +82,6 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
         } else {
             util.pause();
             checked.set(false);
-
-
         }
 
     }
@@ -93,7 +91,6 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
         boolean playing = util.isPlaying();
         util.pause();
         checked.set(false);
-
     }
 
 
@@ -113,10 +110,9 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
             getPlayView().setEnabled(true);
         checked.set(true);
         util.setUri(transformUrl(fmsEntities.get(0)));
-
     }
 
-    private void play(Entity entity) {
+    protected void play(Entity entity) {
         this.entity = entity;
         BaseUtil.checkPermission(App.getCurrentActivity(), aBoolean -> {
             if (aBoolean && util.start(transformUrl(entity), this, listener) == Prepared)
@@ -214,4 +210,13 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
 
     public abstract void showButtonNotify();
     public abstract void cancelButtonNotiy();
+    protected void addEntity(Entity entity){
+        fmsEntities.add(entity);
+    }
+    protected List getList(){
+        return fmsEntities;
+    }
+    protected Entity getEntity(){
+        return entity;
+    };
 }

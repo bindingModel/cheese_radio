@@ -59,6 +59,7 @@ public class AudioService extends Service
     private String uri;
     private AudioManager audioManager;
     private AudioManager.OnAudioFocusChangeListener changeListener;
+    private boolean looping = false;//是否循环播放
 
     public class ServiceBinder extends Binder {
         public AudioService getService() {
@@ -134,8 +135,10 @@ public class AudioService extends Service
 
     @Override
     public void onSeekComplete(MediaPlayer mp) {
-        mp.start();
-        state = Play;
+      /*  if (looping) {
+            mp.start();
+            state = Play;
+        }*/
     }
 
     @Override

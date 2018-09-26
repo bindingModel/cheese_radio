@@ -23,6 +23,7 @@ import com.cheese.radio.ui.media.group.fragment.GroupData;
 import com.cheese.radio.ui.media.play.FabuEntity;
 import com.cheese.radio.ui.media.play.FavorEntity;
 import com.cheese.radio.ui.media.play.PlayEntity;
+import com.cheese.radio.ui.media.play.PlayInOrderParams;
 import com.cheese.radio.ui.media.play.PlayParams;
 import com.cheese.radio.ui.media.play.PlayRecordParams;
 import com.cheese.radio.ui.search.entity.HotSearchEntity;
@@ -208,4 +209,9 @@ public interface RadioApi {
     Observable<InfoEntity<CircleDateEntity>> getCircleDateDetail(@Body DateDetailParams params);
     @POST("/1.0/content")
     Observable<InfoEntity<String>> circleDatetailEnroll(@Body JoinCircleDetailParams params);
+
+    //随机播放
+    @POST("/1.0/content")
+    Observable<InfoEntity<PlayEntity>> playInOrder(@Body PlayInOrderParams params);
+
 }

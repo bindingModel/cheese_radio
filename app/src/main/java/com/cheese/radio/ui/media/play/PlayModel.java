@@ -4,12 +4,12 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.text.Html;
@@ -24,29 +24,25 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alipay.sdk.app.PayTask;
 import com.binding.model.App;
 import com.binding.model.model.ModelView;
-import com.binding.model.model.inter.Entity;
 import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.FutureTarget;
 import com.cheese.radio.BuildConfig;
 import com.cheese.radio.R;
-import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityPlayBinding;
 import com.cheese.radio.inject.api.RadioApi;
-import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.media.audio.AudioModel;
 import com.cheese.radio.ui.media.play.popup.PopupPlayModel;
 import com.cheese.radio.ui.media.play.popup.SelectPlayTimeEntity;
+import com.cheese.radio.ui.service.AudioService;
 import com.cheese.radio.ui.service.AudioServiceUtil;
 
-import com.cheese.radio.ui.user.enroll.PayResult;
 import com.cheese.radio.ui.user.params.AddFavorityParams;
 import com.cheese.radio.ui.user.params.FabulousParams;
 import com.cheese.radio.util.MyBaseUtil;
@@ -91,7 +87,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     RadioApi api;
     @Inject
     PopupPlayModel popupPlayModel;
-    public final List<PlayEntity> list = new ArrayList<>();
+//    public final List<PlayEntity> list = new ArrayList<>();
     private Integer id;
     private Integer playTime, totalTime;
     public ObservableField<String> currentText = new ObservableField<>();//存放定时播放的剩余时间。如果需要，去界面绑定
@@ -100,17 +96,35 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     private AudioServiceUtil util;
     private FutureTarget<Bitmap> notifyImage;
     private NotificationManager mNotificationManager;
+    private PlayInOrderParams nextMusic = new PlayInOrderParams("playInOrder");
+    private int position = 0;
 
     @Override
     public void attachView(Bundle savedInstanceState, PlayActivity activity) {
         super.attachView(savedInstanceState, activity);
-        intTimes();
-        iniView();
+        initTimes();
+        initID();
+        initEntity();
+        initPopupPlayModel(savedInstanceState);
+
+      /*  try {
+            util.start("", (MediaPlayer.OnCompletionListener)this::onCompletion);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+    }
+
+    /**
+     * 如果有id则播放，没有则随机（随机值可以为0）；
+     */
+    private void initEntity() {
         if (id != 0) addDisposable(api.getContentInfo(new PlayParams("contentInfo", id))
                 .compose(new RestfulTransformer<>()).subscribe(
-                        this::setSingelEntity, throwable -> BaseUtil.toast(getT(), throwable)));
-        initPopupPlayModel(savedInstanceState);
+                        this::setSingelEntity, BaseUtil::toast));
+        else onNextClick(getDataBinding().getRoot());
     }
+
 
     @Override
     public RadioButton getPlayView() {
@@ -135,25 +149,21 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     }
 
     public void setSingelEntity(PlayEntity entity) {
-        list.add(entity);
+        if (entity.getId() != id) id = entity.getId();
+        addEntity(entity);
         AudioServiceUtil.getInstance().setImage(entity.getImage());
         AudioServiceUtil.getInstance().setFileId(entity.getFileId());
-//        if (isPlaying()) setEntities(list);
-//        else playFirst(list);
-        setEntities(list);
-//        playFirst(list);
         getDataBinding().setEntity(entity);
         getDataBinding().html5Desc.setText(Html.fromHtml(entity.getAnchorBrief()));
-        if (!list.isEmpty()) {
-            Model.dispatchModel(Constant.images, list.get(0));
-            addDisposable(Observable.create(
-                    e -> {
-                        notifyImage = Glide.with(getT()).asBitmap().load(entity.getImage()).submit();
-                        e.onNext(new Object());
-                    }
-            ).subscribeOn(Schedulers.newThread()).subscribe(o -> {
-                showButtonNotify();
-            }));
+        play(entity);
+        if (!getList().isEmpty()) {
+            Model.dispatchModel(Constant.images, entity);
+            addDisposable(Observable.just(Glide.with(getT()).asBitmap().load(entity.getImage()).submit())
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread()).subscribe(image -> {
+                        notifyImage = image;
+                        showButtonNotify();
+                    }));
         }
     }
 
@@ -197,7 +207,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
     }
 
-    public void intTimes() {
+    public void initTimes() {
         playTime = -1;
         totalTime = -1;
         timeEntity = new SelectPlayTimeEntity(null, -1);
@@ -210,7 +220,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         });
     }
 
-    private void iniView() {
+    private void initID() {
         id = getT().getIntent().getIntExtra(Constant.id, 0);
         if (id != 0) util.setId(id);
         else if (util.getId() != 0)
@@ -243,7 +253,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         params.setId(util.getId());
         addDisposable(api.addFabulous(params).compose(new RestfulTransformer<>()).subscribe(
                 entity -> {
-                    PlayEntity playEntity = list.get(0);
+                    PlayEntity playEntity = getEntity();
                     playEntity.setFabu(entity.getFabu());
                     if (entity.getFabu() != null) {
                         playEntity.addFabuCount(1);
@@ -259,8 +269,8 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     //UM分享
     public void onShareClick(View view) {
         String musicUR = null;
-        if (list.size() == 0) return;
-        PlayEntity entity = list.get(0);
+        if (getEntity() == null) return;
+        PlayEntity entity = getEntity();
         addDisposable(Observable.create((ObservableOnSubscribe<UMusic>) e -> {
                     UMusic music = new UMusic(entity.getShareUrl());
                     UMImage image = new UMImage(getT(), entity.getImage());
@@ -312,9 +322,9 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
     //通知栏
     public void showButtonNotify() {
-        if (list.isEmpty()) return;
+        if (getEntity()==null) return;
         playRecord();//播放数的反馈
-        PlayEntity entity = list.get(0);
+        PlayEntity entity = getEntity();
         int NOTIFICATION_ID = 234;
         String CHANNEL_ID = "cheese_channel_01";
         if (mNotificationManager == null)
@@ -383,7 +393,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
     private void playRecord() {
         PlayRecordParams recordParams = new PlayRecordParams("playRecord");
-        recordParams.setId(list.get(0).getId());
+        recordParams.setId(getEntity().getId());
         addDisposable(api.playRecord(recordParams).compose(new RestfulTransformer<>()).subscribe(o -> {
                 }, BaseUtil::toast)
         );
@@ -401,6 +411,30 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
     public void upDataButton() {
         checked.set(util.isPlaying());
+    }
+
+
+    //这里是芝士第二期开工的地方；
+    public void onLastClick(View view) {
+
+    }
+
+    public void onNextClick(View view) {
+        nextMusic.setId(id);
+        nextMusic.setActionType("next");
+        addDisposable(api.playInOrder(nextMusic).compose(new RestfulTransformer<>()).subscribe(
+                entity -> {
+                    setSingelEntity(entity);
+                }
+                , BaseUtil::toast));
+    }
+
+    public void onCompletion(MediaPlayer mp) {
+        if (!mp.isPlaying() && (util.getMediaStatus() == AudioService.Play || util.getMediaStatus() == AudioService.Pause)) {
+            onNextClick(null);
+        }
+        checked.set(mp.isPlaying());
+        onResume();//校准播放按钮
     }
 }
 
