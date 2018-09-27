@@ -1,13 +1,8 @@
 package com.cheese.radio.ui.media.group.fragment;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import com.cheese.radio.ui.media.anchor.entity.play.item.AnchorSingleItem;
-
+import com.cheese.radio.ui.media.play.PlayEntity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by 29283 on 2018/3/21.
@@ -30,7 +25,7 @@ public class GroupData  {
         private String description;
         private int id;
         private String title;
-        private ArrayList<AnchorSingleItem> contentList;
+        private ArrayList<PlayEntity> contentList;
 
 
 
@@ -84,11 +79,11 @@ public class GroupData  {
             this.title = title;
         }
 
-        public ArrayList<AnchorSingleItem> getContentList() {
+        public ArrayList<PlayEntity> getContentList() {
             return contentList;
         }
 
-        public void setContentList(ArrayList<AnchorSingleItem> contentList) {
+        public void setContentList(ArrayList<PlayEntity> contentList) {
             this.contentList = contentList;
         }
 

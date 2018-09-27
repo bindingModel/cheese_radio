@@ -1,12 +1,20 @@
 package com.cheese.radio.ui.media.play;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Adapter;
 
+import com.binding.model.adapter.AdapterType;
+import com.binding.model.model.ModelView;
+import com.binding.model.model.ViewInflateRecycler;
 import com.binding.model.model.inter.Entity;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
+import com.cheese.radio.base.arouter.ARouterUtil;
+import com.cheese.radio.util.MyBaseUtil;
 
 import static com.binding.model.util.BaseUtil.T;
 
@@ -14,7 +22,9 @@ import static com.binding.model.util.BaseUtil.T;
  * Created by 29283 on 2018/3/9.
  */
 
-public class PlayEntity implements Entity {
+@ModelView(R.layout.item_anchor_single)
+
+public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelable {
 
     /**
      * image : http://cheese-radio-1256030909.cos.ap-guangzhou.myqcloud.com/images/c7/c28/1622424e9c762.jpg?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDzLbkmgG9mDR0VpMufGguwldS4VknuIl8%26q-sign-time%3D1521024826%3B1522118831%26q-key-time%3D1521024826%3B1522118831%26q-header-list%3Dhost%26q-url-param-list%3D%26q-signature%3D599d8ef7d988ba6db4a40dfd7e9cc0af617498c3
@@ -47,6 +57,25 @@ public class PlayEntity implements Entity {
     private Integer fileId;
     private String shareUrl;
     private String shareLandingUrl;
+    private String location;
+    private int audioSize;
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public int getAudioSize() {
+
+        return audioSize;
+    }
+
+    public void setAudioSize(int audioSize) {
+        this.audioSize = audioSize;
+    }
 
     public String getShareLandingUrl() {
         return shareLandingUrl;
@@ -64,9 +93,10 @@ public class PlayEntity implements Entity {
         this.fabuCount = fabuCount;
     }
 
-    public void addFabuCount(int i){
-        fabuCount+=i;
+    public void addFabuCount(int i) {
+        fabuCount += i;
     }
+
     public String getShareUrl() {
         return shareUrl;
     }
@@ -83,8 +113,8 @@ public class PlayEntity implements Entity {
         this.image = image;
     }
 
-    public int getPlayCount() {
-        return playCount;
+    public String getPlayCount() {
+        return String.valueOf(playCount);
     }
 
     public String getPlayViews() {
@@ -109,7 +139,7 @@ public class PlayEntity implements Entity {
     }
 
     public String getSubTitle() {
-        if(TextUtils.isEmpty(subTitle))return " ";
+        if (TextUtils.isEmpty(subTitle)) return " ";
         return subTitle;
     }
 
@@ -219,5 +249,95 @@ public class PlayEntity implements Entity {
     public boolean isFiles() {
         if (fabu == null) return false;
         return fabu != 0;
+    }
+
+    public String getAudioSizeString() {
+        if (audioSize == 0) return "0个故事";
+        return audioSize + "个故事";
+    }
+
+    public String getSecondsString() {
+        if (seconds == 0) return "00:00";
+        return MyBaseUtil.getMinute(seconds);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.image);
+        dest.writeInt(this.playCount);
+        dest.writeInt(this.seconds);
+        dest.writeString(this.subTitle);
+        dest.writeString(this.anchorIcon);
+        dest.writeInt(this.id);
+        dest.writeString(this.title);
+        dest.writeInt(this.favorCount);
+        dest.writeInt(this.fabuCount);
+        dest.writeString(this.anchorName);
+        dest.writeString(this.url);
+        dest.writeString(this.anchorBrief);
+        dest.writeValue(this.favor);
+        dest.writeValue(this.fabu);
+        dest.writeValue(this.fileId);
+        dest.writeString(this.shareUrl);
+        dest.writeString(this.shareLandingUrl);
+        dest.writeString(this.location);
+        dest.writeInt(this.audioSize);
+    }
+
+    public PlayEntity() {
+    }
+
+    protected PlayEntity(Parcel in) {
+        this.image = in.readString();
+        this.playCount = in.readInt();
+        this.seconds = in.readInt();
+        this.subTitle = in.readString();
+        this.anchorIcon = in.readString();
+        this.id = in.readInt();
+        this.title = in.readString();
+        this.favorCount = in.readInt();
+        this.fabuCount = in.readInt();
+        this.anchorName = in.readString();
+        this.url = in.readString();
+        this.anchorBrief = in.readString();
+        this.favor = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.fabu = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.fileId = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.shareUrl = in.readString();
+        this.shareLandingUrl = in.readString();
+        this.location = in.readString();
+        this.audioSize = in.readInt();
+    }
+
+    public static final Parcelable.Creator<PlayEntity> CREATOR = new Parcelable.Creator<PlayEntity>() {
+        @Override
+        public PlayEntity createFromParcel(Parcel source) {
+            return new PlayEntity(source);
+        }
+
+        @Override
+        public PlayEntity[] newArray(int size) {
+            return new PlayEntity[size];
+        }
+    };
+
+    /**
+     * 点击播放按钮后，应该回调跳转到对应的曲目
+     * @param view
+     */
+    public void onPlayClick(View view) {
+        if (getIEventAdapter() != null) {
+            getIEventAdapter().setEntity(0, this, AdapterType.add, view);
+        }
+        ARouterUtil.itemNavigation(location, id);
+    }
+
+    public int getRadius() {
+        return 15;
     }
 }

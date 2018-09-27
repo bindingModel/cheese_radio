@@ -117,10 +117,14 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     }
 
     /**
+     * 如果有list 优先播放list
      * 如果有id则播放，没有则随机（随机值可以为0）；
      */
     private void initEntity() {
-        if (id != 0) addDisposable(api.getContentInfo(new PlayParams("contentInfo", id))
+        List<PlayEntity> playList = new ArrayList<>(getT().getIntent().getParcelableArrayListExtra(Constant.audioList));
+        if (!playList.isEmpty()) {
+            setEntities(playList);
+        } else if (id != 0) addDisposable(api.getContentInfo(new PlayParams("contentInfo", id))
                 .compose(new RestfulTransformer<>()).subscribe(
                         this::setSingelEntity, BaseUtil::toast));
         else onNextClick(getDataBinding().getRoot());

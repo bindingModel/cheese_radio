@@ -3,84 +3,95 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="vm"
-            type="com.cheese.radio.ui.media.anchor.entity.play.item.AnchorSingleItem" />
-        <import type="android.view.View"/>
+            type="com.cheese.radio.ui.media.play.PlayEntity" />
+
+        <import type="android.view.View" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:onClick="@{vm::onPlayClick}">
+        android:onClick="@{vm::onPlayClick}"
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:scaleType="centerCrop"
-            app:radius="@{vm.radius}"
             android:layout_margin="8.6dp"
-            android:src="@{vm.image}" />
+            android:scaleType="centerCrop"
+            android:src="@{vm.image}"
+            app:radius="@{vm.radius}" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_gravity="center"
-            android:layout_marginLeft="3.12dp">
+            android:layout_marginLeft="3.12dp"
+            android:layout_marginStart="3.12dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="13.44sp"
-                android:text="@{vm.title,default=xxxxxx}"
+                android:layout_marginBottom="5.43dp"
                 android:layout_marginTop="11.33dp"
+                android:text="@{vm.title,default=xxxxxx}"
                 android:textColor="@color/text_black"
-                android:layout_marginBottom="5.43dp"/>
+                android:textSize="13.44sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="11.52sp"
+                android:layout_marginBottom="4.49dp"
                 android:text="@{vm.subTitle,default=xxxxx}"
-                android:layout_marginBottom="4.49dp"/>
+                android:textSize="11.52sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@mipmap/play_count"
-                    android:textSize="9.6sp"
-                    android:drawablePadding="6.72dp"
-                    android:text="@{vm.playCount,default=21.00}"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@mipmap/play_clock"
-                    android:textSize="9.6sp"
-                    android:drawablePadding="6.72dp"
-                    android:layout_marginLeft="30dp"
-                    android:visibility="@{vm.seconds==0?View.GONE:View.VISIBLE}"
-                    android:text="@{vm.secondsString,default=21.00}"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@mipmap/story"
-                    android:textSize="9.6sp"
+                    android:drawableLeft="@mipmap/play_count"
                     android:drawablePadding="6.72dp"
+                    android:drawableStart="@mipmap/play_count"
+                    android:text="@{vm.playCount,default=21.00}"
+                    android:textSize="9.6sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                    android:visibility="@{vm.audioSize==0?View.GONE:View.VISIBLE}"
-                    android:text="@{vm.audioSizeString,default=21.00}"/>
+                    android:layout_marginStart="30dp"
+                    android:drawableLeft="@mipmap/play_clock"
+                    android:drawablePadding="6.72dp"
+                    android:drawableStart="@mipmap/play_clock"
+                    android:text="@{vm.secondsString,default=21.00}"
+                    android:textSize="9.6sp"
+                    android:visibility="@{vm.seconds==0?View.GONE:View.VISIBLE}" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
+                    android:drawableLeft="@mipmap/story"
+                    android:drawablePadding="6.72dp"
+                    android:drawableStart="@mipmap/story"
+                    android:text="@{vm.audioSizeString,default=21.00}"
+                    android:textSize="9.6sp"
+                    android:visibility="@{vm.audioSize==0?View.GONE:View.VISIBLE}" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/login_other_line"/>
+                android:background="@drawable/login_other_line" />
         </LinearLayout>
     </LinearLayout>
 </layout>

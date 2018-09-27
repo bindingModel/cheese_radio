@@ -50,5 +50,6 @@ public interface Constant {
     String macAddress="macAddress";
     String circle_url="https://h5.zhishidiantai.com/zhishidiantai/activity.html";
     String h5code = "h5code";
+    String audioList = "audioList";
 }
 

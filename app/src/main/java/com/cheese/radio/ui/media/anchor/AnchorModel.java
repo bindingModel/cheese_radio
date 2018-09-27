@@ -1,8 +1,6 @@
 package com.cheese.radio.ui.media.anchor;
 
-import android.Manifest;
 import android.databinding.ObservableBoolean;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentManager;
@@ -11,14 +9,8 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 
-import com.android.databinding.library.baseAdapters.BR;
-import com.binding.model.App;
 import com.binding.model.adapter.pager.FragmentAdapter;
-import com.binding.model.adapter.recycler.RecyclerAdapter;
-import com.binding.model.layout.pager.PagerModel;
 import com.binding.model.model.ModelView;
-import com.binding.model.model.ViewModel;
-import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
@@ -29,15 +21,9 @@ import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.inject.qualifier.manager.ActivityFragmentManager;
 import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.media.anchor.entity.AnchorEntity;
-import com.cheese.radio.ui.media.anchor.entity.play.item.AnchorSingleItem;
 import com.cheese.radio.ui.media.play.PlayEntity;
 import com.cheese.radio.ui.service.AudioServiceUtil;
-import com.cheese.radio.util.DataStore;
 import com.cheese.radio.util.models.AudioPagerModel;
-import com.umeng.socialize.ShareAction;
-import com.umeng.socialize.UMShareListener;
-import com.umeng.socialize.bean.SHARE_MEDIA;
-import com.umeng.socialize.media.UMusic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +35,7 @@ import javax.inject.Inject;
  * Created by 29283 on 2018/3/13.
  */
 @ModelView(value = R.layout.activity_anchor, model = true)
-public class AnchorModel extends AudioPagerModel<AnchorActivity, ActivityAnchorBinding, AnchorEntity, AnchorSingleItem> {
+public class AnchorModel extends AudioPagerModel<AnchorActivity, ActivityAnchorBinding, AnchorEntity, PlayEntity> {
 
     @Inject
     AnchorModel(@ActivityFragmentManager FragmentManager manager) {
@@ -103,7 +89,7 @@ public class AnchorModel extends AudioPagerModel<AnchorActivity, ActivityAnchorB
 
 
     @Override
-    protected String transformUrl(AnchorSingleItem anchorSingleItem) {
+    protected String transformUrl(PlayEntity anchorSingleItem) {
         return anchorSingleItem.getUrl();
     }
 

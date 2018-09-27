@@ -8,12 +8,8 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 
-import com.binding.model.adapter.ILayoutAdapter;
 import com.binding.model.adapter.pager.FragmentAdapter;
-import com.binding.model.layout.pager.PagerModel;
 import com.binding.model.model.ModelView;
-import com.binding.model.model.ViewModel;
-import com.binding.model.model.inter.GridInflate;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
@@ -22,9 +18,6 @@ import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.inject.qualifier.manager.ActivityFragmentManager;
 import com.cheese.radio.ui.Constant;
-import com.cheese.radio.ui.media.anchor.AnchorData;
-import com.cheese.radio.ui.media.anchor.entity.AnchorEntity;
-import com.cheese.radio.ui.media.anchor.entity.play.item.AnchorSingleItem;
 import com.cheese.radio.ui.media.group.fragment.GroupData;
 import com.cheese.radio.ui.media.play.PlayEntity;
 import com.cheese.radio.ui.service.AudioServiceUtil;
@@ -35,13 +28,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.disposables.Disposable;
-
 /**
  * Created by 29283 on 2018/3/21.
  */
 @ModelView(value = R.layout.activity_group_info,model = true)
-public class GroupInfoModel extends AudioPagerModel<GroupInfoActivity, ActivityGroupInfoBinding, GroupEntity, AnchorSingleItem> {
+public class GroupInfoModel extends AudioPagerModel<GroupInfoActivity, ActivityGroupInfoBinding, GroupEntity, PlayEntity> {
 
     @Inject
     GroupInfoModel(@ActivityFragmentManager FragmentManager manager) {
@@ -77,7 +68,7 @@ public class GroupInfoModel extends AudioPagerModel<GroupInfoActivity, ActivityG
     }
 
     @Override
-    protected String transformUrl(AnchorSingleItem anchorSingleItem) {
+    protected String transformUrl(PlayEntity anchorSingleItem) {
         return null;
     }
 

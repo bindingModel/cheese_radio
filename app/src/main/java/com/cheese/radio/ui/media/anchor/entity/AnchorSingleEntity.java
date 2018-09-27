@@ -1,10 +1,9 @@
 package com.cheese.radio.ui.media.anchor.entity;
 
 
-import com.cheese.radio.ui.media.anchor.entity.play.item.AnchorSingleItem;
+import com.cheese.radio.ui.media.play.PlayEntity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by 29283 on 2018/3/16.
@@ -23,7 +22,7 @@ public class AnchorSingleEntity {
 
 
     private int total;
-    private ArrayList<AnchorSingleItem> list;
+    private ArrayList<PlayEntity> list;
 
     public int getTotal() {
         return total;
@@ -33,14 +32,14 @@ public class AnchorSingleEntity {
         this.total = total;
     }
 
-    public ArrayList<AnchorSingleItem> getList() {
+    public ArrayList<PlayEntity> getList() {
 
         if(list!=null)
         return list;
-        return new ArrayList<AnchorSingleItem>();
+        return new ArrayList<PlayEntity>();
     }
 
-    public void setList(ArrayList<AnchorSingleItem> list) {
+    public void setList(ArrayList<PlayEntity> list) {
         this.list = list;
     }
 

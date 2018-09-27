@@ -10,10 +10,9 @@ import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.media.anchor.AnchorData;
 import com.cheese.radio.ui.media.anchor.entity.description.DescriptionFragment;
 import com.cheese.radio.ui.media.anchor.entity.play.AnchorFragment;
-import com.cheese.radio.ui.media.anchor.entity.play.item.AnchorSingleItem;
+import com.cheese.radio.ui.media.play.PlayEntity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by 29283 on 2018/3/16.
@@ -32,7 +31,7 @@ public class AnchorEntity extends ViewParse implements Item<BaseFragment> {
 
     public AnchorEntity() {
     }
-    ArrayList<AnchorSingleItem> list=new ArrayList<>();
+    ArrayList<PlayEntity> list=new ArrayList<>();
     @Override
     public BaseFragment getItem(int position, ViewGroup container) {
         if (fragment == null) {

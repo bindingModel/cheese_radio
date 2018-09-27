@@ -7,9 +7,8 @@ import com.binding.model.model.ModelView;
 import com.cheese.radio.R;
 import com.cheese.radio.databinding.FragmentGroupStoryBinding;
 import com.cheese.radio.ui.Constant;
-import com.cheese.radio.ui.media.anchor.entity.play.item.AnchorSingleItem;
+import com.cheese.radio.ui.media.play.PlayEntity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -18,7 +17,7 @@ import javax.inject.Inject;
  * Created by 29283 on 2018/3/21.
  */
 @ModelView(R.layout.fragment_group_story)
-public class GroupStoryFragmentModel extends RecyclerModel<GroupStoryFragment, FragmentGroupStoryBinding, AnchorSingleItem> {
+public class GroupStoryFragmentModel extends RecyclerModel<GroupStoryFragment, FragmentGroupStoryBinding, PlayEntity> {
 
     @Inject
     GroupStoryFragmentModel() {
@@ -30,7 +29,7 @@ public class GroupStoryFragmentModel extends RecyclerModel<GroupStoryFragment, F
         super.attachView(savedInstanceState, groupStoryFragment);
         Bundle bundle = groupStoryFragment.getArguments();
         if (bundle != null ) {
-            List<AnchorSingleItem> list = bundle.getParcelableArrayList(Constant.anchorSingleItem);
+            List<PlayEntity> list = bundle.getParcelableArrayList(Constant.anchorSingleItem);
             if(list!=null)
             try {
                 accept(list);

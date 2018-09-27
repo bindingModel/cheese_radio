@@ -6,12 +6,10 @@ import com.binding.model.adapter.recycler.RecyclerAdapter;
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
 import com.cheese.radio.R;
-import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.FragmentAnchorBinding;
-import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.media.anchor.AnchorParams;
-import com.cheese.radio.ui.media.anchor.entity.play.item.AnchorSingleItem;
+import com.cheese.radio.ui.media.play.PlayEntity;
 
 import java.util.List;
 
@@ -21,7 +19,7 @@ import javax.inject.Inject;
  * Created by 29283 on 2018/3/16.
  */
 @ModelView(R.layout.fragment_anchor)
-public class AnchorFragmentModel extends RecyclerModel<AnchorFragment, FragmentAnchorBinding, AnchorSingleItem> {
+public class AnchorFragmentModel extends RecyclerModel<AnchorFragment, FragmentAnchorBinding, PlayEntity> {
     @Inject
     AnchorFragmentModel() {
         super(new RecyclerAdapter<>());
@@ -32,7 +30,7 @@ public class AnchorFragmentModel extends RecyclerModel<AnchorFragment, FragmentA
         super.attachView(savedInstanceState, anchorFragment);
         Bundle bundle = anchorFragment.getArguments();
         if (bundle != null ) {
-            List<AnchorSingleItem> list = bundle.getParcelableArrayList(Constant.anchorSingleItem);
+            List<PlayEntity> list = bundle.getParcelableArrayList(Constant.anchorSingleItem);
             if(list!=null)
                 try {
                     accept(list);
