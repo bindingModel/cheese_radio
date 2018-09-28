@@ -6,5 +6,5 @@ import com.cheese.radio.base.cycle.BaseFragment;
  * Created by 29283 on 2018/3/21.
  */
 
-public class GroupStoryFragment extends BaseFragment<GroupStoryFragmentModel> {
+public class PlayListFragment extends BaseFragment<PlayListFragmentModel> {
 }

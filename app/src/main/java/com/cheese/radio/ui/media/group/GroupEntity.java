@@ -1,6 +1,5 @@
 package com.cheese.radio.ui.media.group;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.ViewGroup;
 
@@ -10,9 +9,7 @@ import com.cheese.radio.base.cycle.BaseFragment;
 import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.media.group.fragment.GroupData;
 import com.cheese.radio.ui.media.group.fragment.introduce.GroupIntroduceFragment;
-import com.cheese.radio.ui.media.group.fragment.story.GroupStoryFragment;
-
-import java.io.Serializable;
+import com.cheese.radio.ui.media.group.fragment.story.PlayListFragment;
 
 /**
  * Created by 29283 on 2018/3/21.
@@ -35,7 +32,7 @@ public class GroupEntity extends ViewParse implements Item<BaseFragment> {
         if(fragment ==null){
             switch (position){
                 case 0: fragment = new GroupIntroduceFragment();break;
-                case 1: fragment = new GroupStoryFragment();break;
+                case 1: fragment = new PlayListFragment();break;
             }
         }
         Bundle bundle = new Bundle();

@@ -5,7 +5,7 @@
     <data>
         <variable
             name="vm"
-            type="com.cheese.radio.ui.media.group.fragment.story.GroupStoryFragmentModel"/>
+            type="com.cheese.radio.ui.media.group.fragment.story.PlayListFragmentModel"/>
     </data>
     <LinearLayout
         android:layout_width="match_parent"

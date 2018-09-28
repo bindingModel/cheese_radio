@@ -8,9 +8,8 @@ import com.cheese.radio.ui.home.clock.ClockFragment;
 import com.cheese.radio.ui.home.mine.HomeMineFragment;
 import com.cheese.radio.ui.home.page.HomePageFragment;
 import com.cheese.radio.ui.media.anchor.entity.description.DescriptionFragment;
-import com.cheese.radio.ui.media.anchor.entity.play.AnchorFragment;
 import com.cheese.radio.ui.media.group.fragment.introduce.GroupIntroduceFragment;
-import com.cheese.radio.ui.media.group.fragment.story.GroupStoryFragment;
+import com.cheese.radio.ui.media.group.fragment.story.PlayListFragment;
 import com.cheese.radio.ui.user.calendar.CalendarFragment;
 
 import dagger.Component;
@@ -35,9 +34,8 @@ public interface FragmentComponent {
     void inject(HomePageFragment fragment);
     void inject(CircleFragment fragment);
     void inject(ClockFragment fragment);
-    void inject(AnchorFragment fragment);
     void inject(DescriptionFragment fragment);
-    void inject(GroupStoryFragment fragment);
+    void inject(PlayListFragment fragment);
     void inject(GroupIntroduceFragment fragment);
     void inject(CalendarFragment fragment);
     void inject(DemoFragment fragment);

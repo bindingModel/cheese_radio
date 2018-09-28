@@ -198,7 +198,7 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
     }
 
     public String getAnchorBrief() {
-        return anchorBrief;
+        return TextUtils.isEmpty(anchorBrief)?"":anchorBrief;
     }
 
     public void setAnchorBrief(String anchorBrief) {
@@ -261,6 +261,24 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
         return MyBaseUtil.getMinute(seconds);
     }
 
+    public PlayEntity() {
+    }
+
+    /**
+     * 点击播放按钮后，应该回调跳转到对应的曲目
+     * @param view
+     */
+    public void onPlayClick(View view) {
+        if (getIEventAdapter() != null) {
+            getIEventAdapter().setEntity(0, this, AdapterType.add, view);
+        }
+//        ARouterUtil.itemNavigation(location, id);
+    }
+
+    public int getRadius() {
+        return 15;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -289,9 +307,6 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
         dest.writeInt(this.audioSize);
     }
 
-    public PlayEntity() {
-    }
-
     protected PlayEntity(Parcel in) {
         this.image = in.readString();
         this.playCount = in.readInt();
@@ -314,7 +329,7 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
         this.audioSize = in.readInt();
     }
 
-    public static final Parcelable.Creator<PlayEntity> CREATOR = new Parcelable.Creator<PlayEntity>() {
+    public static final Creator<PlayEntity> CREATOR = new Creator<PlayEntity>() {
         @Override
         public PlayEntity createFromParcel(Parcel source) {
             return new PlayEntity(source);
@@ -325,19 +340,4 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
             return new PlayEntity[size];
         }
     };
-
-    /**
-     * 点击播放按钮后，应该回调跳转到对应的曲目
-     * @param view
-     */
-    public void onPlayClick(View view) {
-        if (getIEventAdapter() != null) {
-            getIEventAdapter().setEntity(0, this, AdapterType.add, view);
-        }
-        ARouterUtil.itemNavigation(location, id);
-    }
-
-    public int getRadius() {
-        return 15;
-    }
 }

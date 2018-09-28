@@ -121,9 +121,10 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
      * 如果有id则播放，没有则随机（随机值可以为0）；
      */
     private void initEntity() {
-        List<PlayEntity> playList = new ArrayList<>(getT().getIntent().getParcelableArrayListExtra(Constant.audioList));
-        if (!playList.isEmpty()) {
-            setEntities(playList);
+        List<PlayEntity> playList = getT().getIntent().getParcelableArrayListExtra(Constant.playList);
+        int position = getT().getIntent().getIntExtra(Constant.indexOf,0);
+        if (playList!=null&&!playList.isEmpty()) {
+            setEntities(playList,position);
         } else if (id != 0) addDisposable(api.getContentInfo(new PlayParams("contentInfo", id))
                 .compose(new RestfulTransformer<>()).subscribe(
                         this::setSingelEntity, BaseUtil::toast));
@@ -402,8 +403,9 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     private void playRecord() {
         PlayRecordParams recordParams = new PlayRecordParams("playRecord");
         recordParams.setId(getEntity().getId());
-        addDisposable(api.playRecord(recordParams).compose(new RestfulTransformer<>()).subscribe(o -> {
-                }, BaseUtil::toast)
+        addDisposable(api.playRecord(recordParams)
+                .compose(new RestfulTransformer<>())
+                .subscribe(o -> { }, BaseUtil::toast)
         );
     }
 

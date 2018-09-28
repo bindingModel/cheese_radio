@@ -9,7 +9,7 @@ import com.cheese.radio.base.cycle.BaseFragment;
 import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.media.anchor.AnchorData;
 import com.cheese.radio.ui.media.anchor.entity.description.DescriptionFragment;
-import com.cheese.radio.ui.media.anchor.entity.play.AnchorFragment;
+import com.cheese.radio.ui.media.group.fragment.story.PlayListFragment;
 import com.cheese.radio.ui.media.play.PlayEntity;
 
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ public class AnchorEntity extends ViewParse implements Item<BaseFragment> {
                 case 0:
                     fragment = new DescriptionFragment();break;
                 case 1:
-                    fragment = new AnchorFragment();break;
+                    fragment = new PlayListFragment();break;
             }
 
             Bundle bundle = new Bundle();

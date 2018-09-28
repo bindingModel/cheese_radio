@@ -25,9 +25,6 @@ public class HomeActivity extends BaseActivity <HomeModel> {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AudioServiceUtil.getInstance().bindService(this);
-        Intent intent =new Intent("aaaaaaa");
-        intent.putExtra("msg", "simple message");
-        sendBroadcast(intent);
     }
 
     @Override

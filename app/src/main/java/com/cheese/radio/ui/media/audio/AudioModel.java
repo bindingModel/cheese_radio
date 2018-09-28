@@ -198,16 +198,17 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
         setProgress();
     }
 
-    public void setEntities(List<Entity> entities) {
+    public void setEntities(List<Entity> entities,int position) {
         this.fmsEntities.addAll(entities);
+        int count = 0;
         for (Entity entity : entities) {
+            if(count++!=position)continue;
             this.entity = entity;
             play(entity);
             getDataBinding().setVariable(BR.entity, entity);
             break;
         }
     }
-
     public abstract void showButtonNotify();
     public abstract void cancelButtonNotiy();
     protected void addEntity(Entity entity){
