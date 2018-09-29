@@ -1,6 +1,7 @@
 package com.cheese.radio.ui.media.group.fragment.story;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+
+import io.reactivex.Observable;
 
 /**
  * Created by 29283 on 2018/3/21.
@@ -44,12 +47,17 @@ public class PlayListFragmentModel extends RecyclerModel<PlayListFragment, Fragm
 
     public void setRecycleViewEvent() {
         addEventAdapter((position, o, type, view) -> {
-            ArrayList<PlayEntity> entities = new ArrayList<>(getAdapter().getList());
-            int indexOf = entities.indexOf(o);
-            Bundle bundle = new Bundle();
-            bundle.putInt(Constant.indexOf, indexOf);
-            bundle.putParcelableArrayList(Constant.playList, entities);
-            ARouterUtil.LocationNavigation(o.getLocation(), bundle);
+            ArrayList<PlayEntity> entities = new ArrayList<>();
+            Observable.fromIterable(getAdapter().getList()).filter(playEntity -> o.getLocation().equals(playEntity.getLocation()))
+                    .toList().toObservable()
+                    .subscribe((playEntities -> {
+                        int indexOf = playEntities.indexOf(o);
+                        if (indexOf == -1) {return;}
+                        Bundle bundle = new Bundle();
+                        bundle.putInt(Constant.indexOf, indexOf);
+                        bundle.putParcelableArrayList(Constant.playList, (ArrayList<PlayEntity>) playEntities);
+                        ARouterUtil.LocationNavigation(o.getLocation(), bundle);
+                    }));
             return true;
         });
     }
