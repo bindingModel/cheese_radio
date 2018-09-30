@@ -156,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp">
 
-                    <SeekBar
+                    <com.cheese.radio.base.view.StrongSeekBar
                         android:id="@+id/app_video_seekBar"
                         style="@style/SeekBarAppTheme"
                         android:layout_width="match_parent"
