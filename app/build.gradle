@@ -130,6 +130,8 @@ android {
         implementation 'cn.jiguang.sdk:jpush:3.1.5'
         implementation 'cn.jiguang.sdk:jcore:1.2.3'
         implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+        //拉力回弹效果
+        implementation 'me.everything:overscroll-decor-android:1.0.4'
     }
     buildToolsVersion '28.0.2'
     productFlavors {

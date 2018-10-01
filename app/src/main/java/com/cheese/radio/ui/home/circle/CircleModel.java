@@ -2,6 +2,8 @@ package com.cheese.radio.ui.home.circle;
 
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
@@ -14,19 +16,32 @@ import com.cheese.radio.inject.api.RadioApi;
 
 import javax.inject.Inject;
 
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
+
+import static android.provider.MediaStore.Images.ImageColumns.ORIENTATION;
+import static me.everything.android.ui.overscroll.OverScrollDecoratorHelper.ORIENTATION_VERTICAL;
+
 /**
  * Created by 29283 on 2018/3/13.
  */
 @ModelView(R.layout.fragment_home_circle)
 public class CircleModel extends RecyclerModel<CircleFragment, FragmentHomeCircleBinding, CircleDateEntity> {
-    @Inject CircleModel() { }
+    @Inject
+    CircleModel() {
+    }
 
-    @Inject RadioApi api;
+    @Inject
+    RadioApi api;
 
     @Override
     public void attachView(Bundle savedInstanceState, CircleFragment circleFragment) {
         super.attachView(savedInstanceState, circleFragment);
         setRcHttp((offset1, refresh) -> api.getCircleDateList(new ContentParams("activity")).compose(new RestfulTransformer<>()));
+       LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getT().getDataActivity());
+       setLayoutManager(linearLayoutManager);
+        getDataBinding().recyclerView.setLayoutManager(linearLayoutManager);
+        if(getDataBinding().recyclerView.getLayoutManager()!=null)
+        OverScrollDecoratorHelper.setUpOverScroll(getDataBinding().recyclerView,ORIENTATION_VERTICAL);
     }
 
     /* @Override
