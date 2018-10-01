@@ -35,6 +35,8 @@ public class PlayActivity extends BaseActivity<PlayModel> {
         PlatformConfig.setWeixin(wechat_AppID, wechat_AppSecret);
         UMConfigure.setLogEnabled(true);
         UMConfigure.init(this, "", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
+//        swipe_back_layout
+        findViewById(R.id.swipe_back_layout).setEnabled(false);
     }
 
     @Override

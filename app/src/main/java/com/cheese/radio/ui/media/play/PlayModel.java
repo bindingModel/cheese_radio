@@ -32,9 +32,11 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.FutureTarget;
 import com.cheese.radio.BuildConfig;
 import com.cheese.radio.R;
+import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityPlayBinding;
 import com.cheese.radio.inject.api.RadioApi;
+import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.media.audio.AudioModel;
@@ -107,7 +109,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         initID();
         initEntity();
         initPopupPlayModel(savedInstanceState);
-
+//        getDataBinding().appVideoSeekBar.setEnabled(false)
       /*  try {
             util.start("", (MediaPlayer.OnCompletionListener)this::onCompletion);
         } catch (IOException e) {
@@ -414,9 +416,9 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     }
 
     public void onAnchorCLick(View view) {
-/*        Bundle bundle = new Bundle();
-//        bundle.putInt(Constant.authorId, list.get(0).getAnchorIcon());
-        ARouterUtil.navigation(ActivityComponent.Router.author, bundle);*/
+        Bundle bundle = new Bundle();
+        bundle.putInt(Constant.authorId, getEntity().getAnchorId());
+        ARouterUtil.navigation(ActivityComponent.Router.author, bundle);
     }
 
     public void upDataButton() {
