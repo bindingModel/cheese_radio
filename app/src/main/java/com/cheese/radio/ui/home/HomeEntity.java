@@ -36,8 +36,8 @@ public class HomeEntity extends ViewParse implements Item<BaseFragment> {
                     fragment = new HomePageFragment();
                     break;
                 case 1: {
-//                    fragment = IkeApplication.getUser().getCanBookCheck() ? new CalendarFragment() : new ClockFragment();
-                    fragment =new CalendarFragment();
+                    fragment = IkeApplication.getUser().getCanBookCheck() ? new CalendarFragment() : new ClockFragment();
+//                    fragment =new CalendarFragment();
                     break;
                 }
                 case 2:
