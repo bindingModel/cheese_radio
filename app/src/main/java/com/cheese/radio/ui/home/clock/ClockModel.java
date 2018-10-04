@@ -1,6 +1,8 @@
 package com.cheese.radio.ui.home.clock;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.binding.model.layout.recycler.RecyclerModel;
@@ -33,7 +35,18 @@ public class ClockModel extends RecyclerModel<ClockFragment, FragmentHomeClockBi
         super.attachView(savedInstanceState, clockFragment);
 
         initEntity();
+        getDataBinding().recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
 
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+//                getDataBinding().dragView.
+            }
+        });
     }
 
     private void initEntity() {
