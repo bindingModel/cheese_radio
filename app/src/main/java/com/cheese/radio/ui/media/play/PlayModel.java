@@ -448,7 +448,9 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     public void onCompletion(MediaPlayer mp) {
         Timber.w("onCompletion" + util.getMediaStatus());
         if (!mp.isPlaying() && util.getCurrentPosition() > 0) {
+            if(!loop.get())
             onNextClick(null);
+            else setSingelEntity(getEntity());
         }
         checked.set(!mp.isPlaying());
         onResume();//校准播放按钮

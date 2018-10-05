@@ -44,15 +44,15 @@ public class ClockModel extends RecyclerModel<ClockFragment, FragmentHomeClockBi
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-//                getDataBinding().dragView.
+                getDataBinding().dragView.onDragView(0,dy);
             }
         });
     }
 
     private void initEntity() {
         List<ClockEnrollEntity> entities = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            entities.add(new ClockEnrollEntity());
+        for (int i = 0; i < 7; i++) {
+            entities.add(new ClockEnrollEntity(i));
         }
         setRcHttp((offset1, refresh) -> Observable.just(entities));
     }

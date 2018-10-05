@@ -8,6 +8,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.binding.model.App;
+
 public class BaseDragZoomImageView extends android.support.v7.widget.AppCompatImageView implements View.OnTouchListener {
 
     /**
@@ -44,6 +46,8 @@ public class BaseDragZoomImageView extends android.support.v7.widget.AppCompatIm
      * 两个手指的中间点
      */
     private PointF midPoint;
+
+    private float scale = 0;
 
     public BaseDragZoomImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -140,7 +144,12 @@ public class BaseDragZoomImageView extends android.support.v7.widget.AppCompatIm
     }
 
     public void onDragView(float dx, float dy) {
-        matrix.set(currentMatrix);
-        matrix.postTranslate(dx, dy);
+        matrix.set(getImageMatrix());
+        if (scale == 0) {
+            scale = (float) App.getScreenWidth() / getDrawable().getIntrinsicWidth();
+            matrix.setScale(scale, scale);
+        }
+        matrix.postTranslate(-dx, -dy);
+        setImageMatrix(matrix);
     }
 }

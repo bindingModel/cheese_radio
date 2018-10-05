@@ -46,7 +46,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
     private AudioServiceUtil util = AudioServiceUtil.getInstance();
     public transient ObservableBoolean checked = new ObservableBoolean();
     private boolean mDragging = false;
-
+    public static ObservableBoolean loop=new ObservableBoolean(false);
     public boolean isPlaying() {
         return util.isPlaying();
     }

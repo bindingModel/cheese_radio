@@ -9,4 +9,5 @@
     <dimen name="activity_account_monthpay_function_month_item_height">42dp</dimen>
     <dimen name="normal_textView_height">42dp</dimen>
     <dimen name="clock_enroll_item_height">200dp</dimen>
+    <dimen name="home_navigation_height">47dp</dimen>
 </resources>

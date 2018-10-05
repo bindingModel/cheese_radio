@@ -32,7 +32,7 @@
             <com.binding.model.view.radio.CheckRadioGroup
                 android:id="@+id/radio_group"
                 android:layout_width="match_parent"
-                android:layout_height="47.333dp"
+                android:layout_height="@dimen/home_navigation_height"
                 android:layout_gravity="bottom"
                 android:background="@drawable/normal_bottom_top_line"
                 android:orientation="horizontal"

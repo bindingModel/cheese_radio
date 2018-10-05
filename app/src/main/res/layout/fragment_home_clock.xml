@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:id="@+id/drag_view"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_height="360dp"
+            android:layout_height="match_parent"
             android:scaleType="matrix"
             android:src="@mipmap/clock_bottom_bg"/>
         <android.support.v7.widget.RecyclerView
