@@ -35,6 +35,7 @@ import com.cheese.radio.ui.user.enroll.AliEntity;
 import com.cheese.radio.ui.user.enroll.CreateOrderWXEntity;
 import com.cheese.radio.ui.user.enroll.params.ClassPlaceParams;
 import com.cheese.radio.ui.user.enroll.params.CreateOrderParams;
+import com.cheese.radio.ui.user.my.course.MyCourseType;
 import com.cheese.radio.ui.user.params.AddFavorityParams;
 import com.cheese.radio.ui.user.calendar.CalendarEntity;
 import com.cheese.radio.ui.user.calendar.ClassCalendarParams;
@@ -213,5 +214,8 @@ public interface RadioApi {
     //随机播放
     @POST("/1.0/content")
     Observable<InfoEntity<PlayEntity>> playInOrder(@Body PlayInOrderParams params);
+
+    @POST("/1.0/class")
+    Observable<InfoEntity<List<MyCourseType>>> getCourseTypeList(@Body ContentParams params);
 
 }
