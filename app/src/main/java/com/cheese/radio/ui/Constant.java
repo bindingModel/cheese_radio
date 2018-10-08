@@ -52,5 +52,8 @@ public interface Constant {
     String h5code = "h5code";
     String indexOf = "indexOf";
     String playList ="playList" ;
+    String method ="method" ;
+    String activityInfo = "activityInfo";
+    String courseTypeInfo = "courseTypeInfo";
 }
 

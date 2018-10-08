@@ -17,6 +17,8 @@ import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.IkeApplication;
 
+import static com.cheese.radio.ui.Constant.activityInfo;
+
 
 @ModelView(R.layout.holder_circle_date)
 public class CircleDateEntity extends ViewInflateRecycler implements Parcelable {
@@ -72,6 +74,7 @@ public class CircleDateEntity extends ViewInflateRecycler implements Parcelable 
         Bundle bundle =new Bundle();
         bundle.putInt(Constant.id,id);
         bundle.putString(Config.title,title);
+        bundle.putString(Constant.method,activityInfo);
         ARouterUtil.navigation(ActivityComponent.Router.activityDetail,bundle);
     }
 

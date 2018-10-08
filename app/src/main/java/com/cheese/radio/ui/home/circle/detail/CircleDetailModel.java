@@ -33,9 +33,10 @@ public class CircleDetailModel extends ViewModel<CircleDetailActivity, ActivityC
     private String h5code;
     private String css = "<link rel=\"stylesheet\" href=\"file:///android_asset/base.css\" type=\"text/css\" /> ";
     private int detailId = 0;
+    private String method;
     public ObservableField<String> detailTitle = new ObservableField<>();
     public ObservableField<String> detailImage = new ObservableField<>();
-    public ObservableBoolean canShowBtn =new ObservableBoolean(false);
+    public ObservableBoolean canShowBtn = new ObservableBoolean(false);
     @Inject
     RadioApi api;
 
@@ -47,6 +48,7 @@ public class CircleDetailModel extends ViewModel<CircleDetailActivity, ActivityC
     public void attachView(Bundle savedInstanceState, CircleDetailActivity activity) {
         super.attachView(savedInstanceState, activity);
         detailId = activity.getIntent().getIntExtra(Constant.id, 0);
+        method = activity.getIntent().getStringExtra(Constant.method);
         if (detailId != 0)
             initApiInfo();
         else {
@@ -59,12 +61,38 @@ public class CircleDetailModel extends ViewModel<CircleDetailActivity, ActivityC
     }
 
     private void initApiInfo() {
-        DateDetailParams params = new DateDetailParams("activityInfo");
+        switch (method) {
+            case Constant.activityInfo:
+                activityInfo();
+                break;
+            case Constant.courseTypeInfo:
+                courseTypeInfo();
+                    break;
+            default:
+                break;
+        }
+    }
+
+    private void courseTypeInfo() {
+        DateDetailParams params =new DateDetailParams(method);
+        params.setId(detailId);
+        Disposable disposable =api.courseTypeInfo(params)
+                .compose(new RestfulTransformer<>())
+                .subscribe(entity->{
+                    h5code = "<html><header>" + css + "</header>" + entity.getDesc()
+                            + "</body></html>";
+                    detailTitle.set(entity.getName());
+                    initWebView(getDataBinding().webView, h5code);
+                },BaseUtil::toast);
+    }
+
+    private void activityInfo() {
+        DateDetailParams params = new DateDetailParams(method);
         params.setId(detailId);
         Disposable disposable = api.getCircleDateDetail(params)
                 .compose(new RestfulTransformer<>())
                 .subscribe(entity -> {
-                    canShowBtn.set(entity.getAllowSign()==1);
+                    canShowBtn.set(entity.getAllowSign() == 1);
                     detailImage.set(entity.getImg());
                     h5code = "<html><header>" + css + "</header>" + entity.getContent()
                             + "</body></html>";

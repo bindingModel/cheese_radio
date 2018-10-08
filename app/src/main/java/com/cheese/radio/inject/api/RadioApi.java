@@ -7,6 +7,7 @@ import com.cheese.radio.ui.home.circle.CircleDateEntity;
 import com.cheese.radio.ui.home.circle.DateDetailParams;
 import com.cheese.radio.ui.home.circle.join.JoinCircleDetailParams;
 import com.cheese.radio.ui.home.clock.ClockEnrollEntity;
+import com.cheese.radio.ui.home.clock.CourseTypeInfoEntity;
 import com.cheese.radio.ui.home.page.RecommanData;
 import com.cheese.radio.ui.home.page.HomePageParams;
 import com.cheese.radio.ui.home.page.entity.CategoryEntity;
@@ -220,6 +221,8 @@ public interface RadioApi {
     @POST("/1.0/class")
     Observable<InfoEntity<List<ClockEnrollEntity>>> courseTypeList(@Body ContentParams params);
 
+    @POST("/1.0/class")
+    Observable<InfoEntity<CourseTypeInfoEntity>> courseTypeInfo(@Body DateDetailParams params);
     @POST("/1.0/user")
     Observable<InfoEntity<List<MyCourseEntity>>> myClassTwo(@Body MyCourseParams params);
 }
