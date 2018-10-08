@@ -10,7 +10,10 @@ import com.binding.model.model.ModelView;
 import com.binding.model.model.inter.Inflate;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
+import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.FragmentHomeClockBinding;
+import com.cheese.radio.inject.api.ContentParams;
+import com.cheese.radio.inject.api.RadioApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +29,8 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.enroll;
  */
 @ModelView(R.layout.fragment_home_clock)
 public class ClockModel extends RecyclerModel<ClockFragment, FragmentHomeClockBinding, ClockEnrollEntity> {
-    @Inject
-    ClockModel() {
-    }
-
+    @Inject ClockModel() {}
+    @Inject RadioApi api;
     @Override
     public void attachView(Bundle savedInstanceState, ClockFragment clockFragment) {
         super.attachView(savedInstanceState, clockFragment);
@@ -50,11 +51,12 @@ public class ClockModel extends RecyclerModel<ClockFragment, FragmentHomeClockBi
     }
 
     private void initEntity() {
-        List<ClockEnrollEntity> entities = new ArrayList<>();
+        setRcHttp((offset1, refresh) -> api.courseTypeList(new ContentParams("courseTypeList")).compose(new RestfulTransformer<>()));
+        /*List<ClockEnrollEntity> entities = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             entities.add(new ClockEnrollEntity(i));
         }
-        setRcHttp((offset1, refresh) -> Observable.just(entities));
+        setRcHttp((offset1, refresh) -> Observable.just(entities));*/
     }
 
     public void onClick(View view) {

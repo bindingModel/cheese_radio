@@ -1,25 +1,27 @@
 package com.cheese.radio.ui.user.my.course;
 
 import com.cheese.radio.base.IkeParams;
+import com.cheese.radio.inject.api.ContentParams;
 
 /**
  * Created by 29283 on 2018/3/30.
  */
 
-public class MyCourseParams extends IkeParams {
-//    method	方法名	是	固定	myClass
-//    token	用户令牌	可选	用户登录或注册后获取
-    private String method ;
-
+public class MyCourseParams extends ContentParams {
+    //根据分类查询时需要此字段，不传或者传“”代表查询所有
+    private String courseTypeId;
     public MyCourseParams(String method) {
-        this.method = method;
+        super(method);
     }
 
-    public String getMethod() {
-        return method;
+    public MyCourseParams() {
     }
 
-    public void setMethod(String method) {
-        this.method = method;
+    public String getCourseTypeId() {
+        return courseTypeId;
+    }
+
+    public void setCourseTypeId(String courseTypeId) {
+        this.courseTypeId = courseTypeId;
     }
 }

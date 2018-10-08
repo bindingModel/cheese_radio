@@ -11,31 +11,106 @@ import com.cheese.radio.R;
 public class ClockEnrollEntity extends ViewInflateRecycler {
     private int position;
 
+
+    /**
+     * brief : 简介。。。
+     * number : 0
+     * code : T001
+     * name : 一元体验课程
+     * id : 1
+     * maa : false
+     * pao : true
+     */
+
+    private String brief;
+    private int number;
+    private String code;
+    private String name;
+    private int id;
+    private boolean maa;
+    private boolean pao;
+
+    public String getBrief() {
+        return brief;
+    }
+
+    public void setBrief(String brief) {
+        this.brief = brief;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isMaa() {
+        return maa;
+    }
+
+    public void setMaa(boolean maa) {
+        this.maa = maa;
+    }
+
+    public boolean isPao() {
+        return pao;
+    }
+
+    public void setPao(boolean pao) {
+        this.pao = pao;
+    }
     public ClockEnrollEntity(int position) {
         this.position = position;
     }
 
     public String getPosition() {
-        return "0" + (position + 1);
+        return code.substring(2);
     }
 
     public String getTitle() {
-        switch (position) {
+        return name;
+        /*switch (position) {
             case 0:return "一元体验课";
             case 1:return "标准课";
             case 2:return "芝士妈妈课";
             case 3:return "趣声社";
             case 4:return "声宝课";
             default:return "未知项目";
-        }
+        }*/
     }
     public Drawable getTitleBg(){
-        switch (position){
-            case 0:return App.getDrawable(R.mipmap.tyk);
-            case 1:return App.getDrawable(R.mipmap.bzk);
-            case 2:return App.getDrawable(R.mipmap.zsk);
-            case 3:return App.getDrawable(R.mipmap.qs);
-            case 4:return App.getDrawable(R.mipmap.sbk);
+        switch (code){
+            case "T001":return App.getDrawable(R.mipmap.tyk);
+            case "T002":return App.getDrawable(R.mipmap.bzk);
+            case "T003":return App.getDrawable(R.mipmap.zsk);
+            case "T004":return App.getDrawable(R.mipmap.qs);
+            case "T005":return App.getDrawable(R.mipmap.sbk);
             default:return null;
         }
     }

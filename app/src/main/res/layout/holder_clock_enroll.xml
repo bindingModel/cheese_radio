@@ -44,6 +44,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:text="@{vm.brief,default=1234567}"
+            android:gravity="center"
             android:layout_weight="1" />
 
         <FrameLayout

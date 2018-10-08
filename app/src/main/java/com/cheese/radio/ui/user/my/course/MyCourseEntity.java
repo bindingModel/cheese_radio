@@ -30,6 +30,59 @@ public class MyCourseEntity extends ViewInflateRecycler {
     private String teacherIcon;
     private String day;
     private int bookId;
+    /**
+     * code : T001
+     * surplus : 0
+     * name : 一元体验课程
+     * id : 1
+     * complete : 2
+     */
+
+    private String code;
+    private int surplus;
+    private String name;
+    private int id;
+    private String complete;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public int getSurplus() {
+        return surplus;
+    }
+
+    public void setSurplus(int surplus) {
+        this.surplus = surplus;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getComplete() {
+        return complete;
+    }
+
+    public void setComplete(String complete) {
+        this.complete = complete;
+    }
 
     public int getClassId() {
         return classId;
@@ -109,5 +162,8 @@ public class MyCourseEntity extends ViewInflateRecycler {
         if (time != null) builder.append(time);
         return builder.toString();
     }
+
+
 }
+
 

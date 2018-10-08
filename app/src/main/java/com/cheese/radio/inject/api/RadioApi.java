@@ -6,6 +6,7 @@ import com.cheese.radio.ui.home.CanBookData;
 import com.cheese.radio.ui.home.circle.CircleDateEntity;
 import com.cheese.radio.ui.home.circle.DateDetailParams;
 import com.cheese.radio.ui.home.circle.join.JoinCircleDetailParams;
+import com.cheese.radio.ui.home.clock.ClockEnrollEntity;
 import com.cheese.radio.ui.home.page.RecommanData;
 import com.cheese.radio.ui.home.page.HomePageParams;
 import com.cheese.radio.ui.home.page.entity.CategoryEntity;
@@ -35,7 +36,8 @@ import com.cheese.radio.ui.user.enroll.AliEntity;
 import com.cheese.radio.ui.user.enroll.CreateOrderWXEntity;
 import com.cheese.radio.ui.user.enroll.params.ClassPlaceParams;
 import com.cheese.radio.ui.user.enroll.params.CreateOrderParams;
-import com.cheese.radio.ui.user.my.course.MyCourseType;
+import com.cheese.radio.ui.user.my.course.CourseType;
+import com.cheese.radio.ui.user.my.course.MyCourseEntity;
 import com.cheese.radio.ui.user.params.AddFavorityParams;
 import com.cheese.radio.ui.user.calendar.CalendarEntity;
 import com.cheese.radio.ui.user.calendar.ClassCalendarParams;
@@ -80,8 +82,8 @@ import retrofit2.http.POST;
  */
 
 public interface RadioApi {
-//    String host = "http://111.231.237.11:8081";
-    String host = "http://interface.zhishidiantai.com";
+    String host = "http://111.231.237.11:8081";
+//    String host = "http://interface.zhishidiantai.com";
 
     @POST("/1.0/author")
     Observable<InfoEntity<List<AnchorsItem>>> getAnchors(@Body AnchorsParams params);
@@ -216,6 +218,8 @@ public interface RadioApi {
     Observable<InfoEntity<PlayEntity>> playInOrder(@Body PlayInOrderParams params);
 
     @POST("/1.0/class")
-    Observable<InfoEntity<List<MyCourseType>>> getCourseTypeList(@Body ContentParams params);
+    Observable<InfoEntity<List<ClockEnrollEntity>>> courseTypeList(@Body ContentParams params);
 
+    @POST("/1.0/user")
+    Observable<InfoEntity<List<MyCourseEntity>>> myClassTwo(@Body MyCourseParams params);
 }

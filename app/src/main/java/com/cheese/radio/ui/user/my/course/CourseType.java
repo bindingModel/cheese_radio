@@ -1,7 +1,6 @@
 package com.cheese.radio.ui.user.my.course;
 
 import com.binding.model.model.ModelView;
-import com.binding.model.model.RecyclerInflate;
 import com.binding.model.model.ViewInflateRecycler;
 import com.cheese.radio.R;
 
@@ -16,5 +15,8 @@ import com.cheese.radio.R;
  * @class describe
  */
 @ModelView(R.layout.holder_my_course_type)
-public class MyCourseType extends ViewInflateRecycler {
-}
+public class CourseType extends ViewInflateRecycler {
+
+
+    }
+
