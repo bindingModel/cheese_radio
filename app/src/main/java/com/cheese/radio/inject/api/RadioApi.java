@@ -224,5 +224,9 @@ public interface RadioApi {
     @POST("/1.0/class")
     Observable<InfoEntity<CourseTypeInfoEntity>> courseTypeInfo(@Body DateDetailParams params);
     @POST("/1.0/user")
-    Observable<InfoEntity<List<MyCourseEntity>>> myClassTwo(@Body MyCourseParams params);
+    Observable<InfoEntity<List<MyCourseEntity>>> myClass2(@Body MyCourseParams params);
+
+    //报名，获取商品列表
+    @POST("1.0/order")
+    Observable<InfoEntity<List<ProductsEntity>>> getProduct2(@Body ProductsParams ProductsParams);
 }

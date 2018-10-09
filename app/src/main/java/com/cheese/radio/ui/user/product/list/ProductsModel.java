@@ -26,6 +26,7 @@ import javax.inject.Inject;
 @ModelView(R.layout.activity_product_list)
 public class ProductsModel extends RecyclerModel<ProductsActivity,ActivityProductListBinding,ProductsEntity> {
      private int productId;
+     private int courseTypeId;
     @Inject ProductsModel(){}
     @Inject RadioApi api;
     private ProductsParams params=new ProductsParams("getProducts");
@@ -34,7 +35,35 @@ public class ProductsModel extends RecyclerModel<ProductsActivity,ActivityProduc
     public void attachView(Bundle savedInstanceState, ProductsActivity productsActivity) {
         super.attachView(savedInstanceState, productsActivity);
         getDataBinding().layoutRecycler.setVm(this);
+        courseTypeId = getT().getIntent().getIntExtra(Constant.courseTypeId,0);
         productId= getT().getIntent().getIntExtra(Constant.productId,0);
+        params.setCourseTypeId(courseTypeId);
+        setRcHttp((offset1, refresh) -> api.getProduct2(params).compose(new RestfulTransformer<>()).map(
+                productsEntities -> {
+                    for (ProductsEntity entity:
+                            productsEntities ) {
+                        if(entity.getId()==productId){
+                            entity.checked.set(true);
+                        }
+                    }
+                    list.clear();
+                    list.addAll(productsEntities);
+                    return list;
+                }
+        ));
+        //getProduct();
+        addEventAdapter((position, o, type, view)-> {
+            for (ProductsEntity entity: getAdapter().getList()) {
+                entity.checked.set(false);
+            }
+            o.checked.set(true);
+//            getDataBinding().save.setVisibility(View.VISIBLE);
+            getT().finish();
+            return false;
+        });
+    }
+
+    private void getProduct() {
         setRcHttp((offset1, refresh) -> api.getProducts(params).compose(new RestfulTransformer<>()).map(
                 productsEntities -> {
                     for (ProductsEntity entity:
@@ -48,16 +77,8 @@ public class ProductsModel extends RecyclerModel<ProductsActivity,ActivityProduc
                     return list;
                 }
         ));
-        addEventAdapter((position, o, type, view)-> {
-            for (ProductsEntity entity: getAdapter().getList()) {
-                entity.checked.set(false);
-            }
-            o.checked.set(true);
-//            getDataBinding().save.setVisibility(View.VISIBLE);
-            getT().finish();
-            return false;
-        });
     }
+
     public void onFinishClick(View view){
         finish();
     }

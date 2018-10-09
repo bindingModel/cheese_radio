@@ -1,27 +1,28 @@
 package com.cheese.radio.ui.user.product.list;
 
 import com.cheese.radio.base.IkeParams;
+import com.cheese.radio.inject.api.ContentParams;
 
 /**
  * Created by 29283 on 2018/3/24.
  */
 
-public class ProductsParams extends IkeParams {
-//
-//    method	方法名	是	固定	getProducts
-//    token	用户令牌	是	用户登录或注册后获取
-    private String method;
+public class ProductsParams extends ContentParams {
+
+    private int courseTypeId;
 
     public ProductsParams(String method) {
-        this.method = method;
+        super(method);
     }
 
-
-    public String getMethod() {
-        return method;
+    public ProductsParams() {
     }
 
-    public void setMethod(String method) {
-        this.method = method;
+    public int getCourseTypeId() {
+        return courseTypeId;
+    }
+
+    public void setCourseTypeId(int courseTypeId) {
+        this.courseTypeId = courseTypeId;
     }
 }

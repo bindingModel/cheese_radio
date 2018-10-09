@@ -14,6 +14,7 @@ import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
 
 import static com.cheese.radio.ui.Constant.activityInfo;
+import static com.cheese.radio.ui.Constant.courseTypeId;
 import static com.cheese.radio.ui.Constant.courseTypeInfo;
 
 @ModelView(R.layout.holder_clock_enroll)
@@ -129,5 +130,10 @@ public class ClockEnrollEntity extends ViewInflateRecycler {
         bundle.putString(Config.title,name);
         bundle.putString(Constant.method,courseTypeInfo);
         ARouterUtil.navigation(ActivityComponent.Router.activityDetail,bundle);
+    }
+    public void onEnrollClick(View view){
+        Bundle bundle = new Bundle();
+        bundle.putInt(Constant.courseTypeId,id);
+        ARouterUtil.navigation(ActivityComponent.Router.enroll,bundle);
     }
 }

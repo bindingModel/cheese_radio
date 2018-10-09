@@ -85,10 +85,15 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
     private CityPickTool cityPickTool;
     private TimePickTool timePickSelect;
 
+    /**
+     *  version 2.0
+     */
+    private int courseTypeId;
     @Override
     public void attachView(Bundle savedInstanceState, EnrollActivity enrollActivity) {
         super.attachView(savedInstanceState, enrollActivity);
         if (!IkeApplication.isLogin(true)) finish();
+       courseTypeId= enrollActivity.getIntent().getIntExtra(Constant.courseTypeId,0);
         setData();
         initView();
         initAgePicker();
@@ -131,6 +136,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         HideKeyboard(view);
         Bundle bundle = new Bundle();
         bundle.putInt(Constant.productId, params.getProductId());
+        bundle.putInt(Constant.courseTypeId,courseTypeId);
         ARouterUtil.navigation(products, bundle);
     }
 
