@@ -16,6 +16,7 @@ import com.cheese.radio.ui.media.picture.PictureActivity;
 import com.cheese.radio.ui.media.play.PlayActivity;
 import com.cheese.radio.ui.search.SearchActivity;
 import com.cheese.radio.ui.startup.welcome.WelcomeActivity;
+import com.cheese.radio.ui.user.calendar.CalendarActivity;
 import com.cheese.radio.ui.user.edit.EditNameActivity;
 import com.cheese.radio.ui.user.enroll.EnrollActivity;
 
@@ -89,7 +90,8 @@ public interface ActivityComponent {
 
     void inject(EditNameActivity activity);
 
-    //    void inject(CalendarActivity activity);
+    void inject(CalendarActivity activity);
+
     void inject(CenterActivity activity);
 
     void inject(MyCourseActivity activity);
@@ -117,8 +119,11 @@ public interface ActivityComponent {
     void inject(PhoneActivity activity);
 
     void inject(WXPayEntryActivity activity);
+
     void inject(CircleDetailActivity activity);
+
     void inject(JoinCircleDetailActivity activity);
+
     interface Router {
         String cheese = "/cheese/";
         String startup = cheese + "startup";
@@ -156,8 +161,10 @@ public interface ActivityComponent {
         String phone = cheese + "phone";
 
         String circle = "/circle/";
-        String activityDetail = circle+"activityDetail";
-        String join = circle+"join";
+        String activityDetail = circle + "activityDetail";
+        String join = circle + "join";
+
+        String calendar = cheese + "calendar";
     }
     /*
      *  CONTENT_LIST	绘本列表                  contents

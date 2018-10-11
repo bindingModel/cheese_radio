@@ -14,6 +14,7 @@ import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
 
 import static com.cheese.radio.ui.Constant.activityInfo;
+import static com.cheese.radio.ui.Constant.bundle;
 import static com.cheese.radio.ui.Constant.courseTypeId;
 import static com.cheese.radio.ui.Constant.courseTypeInfo;
 
@@ -135,5 +136,10 @@ public class ClockEnrollEntity extends ViewInflateRecycler {
         Bundle bundle = new Bundle();
         bundle.putInt(Constant.courseTypeId,id);
         ARouterUtil.navigation(ActivityComponent.Router.enroll,bundle);
+    }
+    public void onBookClick(View view){
+        Bundle bundle =new Bundle();
+        bundle.putInt(Constant.courseTypeId,id);
+        ARouterUtil.navigation(ActivityComponent.Router.calendar,bundle);
     }
 }
