@@ -7,11 +7,15 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.DrawableRes;
+import android.text.SpannableStringBuilder;
+import android.text.method.LinkMovementMethod;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.binding.model.App;
 import com.binding.model.util.BaseUtil;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
@@ -23,6 +27,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.cheese.radio.R;
 import com.cheese.radio.base.glide.GlideBlurformation;
+import com.cheese.radio.ui.Constant;
 
 
 /**
@@ -185,7 +190,28 @@ public class DataBindingAdapter {
     public static void setAlpha(View view,float alpha){
         if(alpha>=0&&alpha<=1)view.setAlpha(alpha);
     }
+    @BindingAdapter("class_head")
+    public static void setClassHead(ImageView imageView,String url){
+//        if(!Patterns.WEB_URL.matcher(url).matches())imageView.setImageBitmap();
+        Context context = imageView.getContext();
+        Glide.with(context).clear(imageView);
+        RequestOptions options2 = new RequestOptions()
+                .fitCenter()
+                .priority(Priority.HIGH)//优先级
+                .error(App.getDrawable(R.mipmap.my_class))
+                .diskCacheStrategy(DiskCacheStrategy.NONE)//缓存策略
+                .transform(new RoundedCorners(3));//转化为圆角
+        Glide.with(context)
+                .load(url)
+                .apply(options2)
+                .into(imageView);
+    }
 
+    @BindingAdapter({"android:text"})
+    public static void setText(TextView textView, SpannableStringBuilder style) {
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
+        textView.setText(style);
+    }
 //    @BindingAdapter("drawableLeft")
 //    public static void setDrawableLeft(TextView view,String url){
 //        Context mContext = view.getContext();

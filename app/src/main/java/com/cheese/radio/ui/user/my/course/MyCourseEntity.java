@@ -1,7 +1,15 @@
 package com.cheese.radio.ui.user.my.course;
 
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import android.text.style.ClickableSpan;
+import android.view.View;
+
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
+import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 
 /**
@@ -42,7 +50,7 @@ public class MyCourseEntity extends ViewInflateRecycler {
     private int surplus;
     private String name;
     private int id;
-    private String complete;
+    private int complete;
 
     public String getCode() {
         return code;
@@ -76,11 +84,11 @@ public class MyCourseEntity extends ViewInflateRecycler {
         this.id = id;
     }
 
-    public String getComplete() {
+    public int getComplete() {
         return complete;
     }
 
-    public void setComplete(String complete) {
+    public void setComplete(int complete) {
         this.complete = complete;
     }
 
@@ -109,7 +117,7 @@ public class MyCourseEntity extends ViewInflateRecycler {
     }
 
     public String getClassName() {
-        return className;
+        return TextUtils.isEmpty(className)?name:className;
     }
 
     public void setClassName(String className) {
@@ -162,7 +170,37 @@ public class MyCourseEntity extends ViewInflateRecycler {
         if (time != null) builder.append(time);
         return builder.toString();
     }
+    public String getClassCount(){
+        return "已上："+complete+" 剩余："+surplus;
+    }
+    SpannableStringBuilder touchText;
+    public SpannableStringBuilder getTouchText() {
+        if (touchText == null) {
+            String msg =getClassCount();
+            touchText = new SpannableStringBuilder();
+            touchText.append(getClassCount());
+            ClickableSpan createClick = new ClickableSpan() {
+                @Override
+                public void onClick(View view) {
+                    onCheckInfoClick(view);
+                }
 
+                @Override
+                public void updateDrawState(TextPaint ds) {
+                    ds.setColor(ds.linkColor);
+                    ds.setUnderlineText(false);
+                }
+            };
+            String touchContent=String.valueOf(complete);
+            int index = msg.indexOf(touchContent);
+            touchText.setSpan(createClick, index,index+touchContent.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        return touchText;
+    }
+
+    private void onCheckInfoClick(View view) {
+        BaseUtil.toast("跳转到哪里");
+    }
 
 }
 

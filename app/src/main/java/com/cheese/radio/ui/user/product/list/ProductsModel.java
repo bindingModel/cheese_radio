@@ -29,7 +29,7 @@ public class ProductsModel extends RecyclerModel<ProductsActivity,ActivityProduc
      private int courseTypeId;
     @Inject ProductsModel(){}
     @Inject RadioApi api;
-    private ProductsParams params=new ProductsParams("getProducts");
+    private ProductsParams params=new ProductsParams("getProducts2");
     private final List<ProductsEntity> list=new ArrayList<>();
     @Override
     public void attachView(Bundle savedInstanceState, ProductsActivity productsActivity) {

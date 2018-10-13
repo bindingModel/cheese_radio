@@ -84,6 +84,8 @@ public class CircleDetailModel extends ViewModel<CircleDetailActivity, ActivityC
                     detailTitle.set(entity.getName());
                     initWebView(getDataBinding().webView, h5code);
                 },BaseUtil::toast);
+        canShowBtn.set(true);
+
     }
 
     private void activityInfo() {
@@ -126,7 +128,18 @@ public class CircleDetailModel extends ViewModel<CircleDetailActivity, ActivityC
 
     public void onEnrollClick(View view) {
         Bundle bundle = new Bundle();
-        bundle.putInt(Constant.id, detailId);
-        ARouterUtil.navigation(ActivityComponent.Router.join, bundle);
+        switch (method) {
+            case Constant.activityInfo:
+                bundle.putInt(Constant.id, detailId);
+                ARouterUtil.navigation(ActivityComponent.Router.join, bundle);
+                break;
+            case Constant.courseTypeInfo:
+                bundle.putInt(Constant.courseTypeId,detailId);
+                ARouterUtil.navigation(ActivityComponent.Router.enroll,bundle);
+                break;
+            default:
+                break;
+        }
+
     }
 }

@@ -46,6 +46,8 @@
             android:layout_height="0dp"
             android:text="@{vm.brief,default=1234567}"
             android:gravity="center"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
             android:layout_weight="1" />
 
         <FrameLayout
