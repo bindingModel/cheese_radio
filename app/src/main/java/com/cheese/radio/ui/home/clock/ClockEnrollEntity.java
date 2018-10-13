@@ -140,6 +140,7 @@ public class ClockEnrollEntity extends ViewInflateRecycler {
     public void onBookClick(View view){
         Bundle bundle =new Bundle();
         bundle.putInt(Constant.courseTypeId,id);
+        bundle.putString(Config.title,name);
         ARouterUtil.navigation(ActivityComponent.Router.calendar,bundle);
     }
 }
