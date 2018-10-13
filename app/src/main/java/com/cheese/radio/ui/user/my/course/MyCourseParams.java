@@ -9,7 +9,7 @@ import com.cheese.radio.inject.api.ContentParams;
 
 public class MyCourseParams extends ContentParams {
     //根据分类查询时需要此字段，不传或者传“”代表查询所有
-    private String courseTypeId;
+    private Integer courseTypeId;
     public MyCourseParams(String method) {
         super(method);
     }
@@ -17,11 +17,11 @@ public class MyCourseParams extends ContentParams {
     public MyCourseParams() {
     }
 
-    public String getCourseTypeId() {
+    public Integer getCourseTypeId() {
         return courseTypeId;
     }
 
-    public void setCourseTypeId(String courseTypeId) {
+    public void setCourseTypeId(Integer courseTypeId) {
         this.courseTypeId = courseTypeId;
     }
 }

@@ -5,14 +5,62 @@
 
         <variable
             name="vm"
-            type="com.cheese.radio.ui.user.my.course.CourseType" />
+            type="com.cheese.radio.ui.user.my.course.MyCourseEntity" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:paddingTop="11dp">
 
+        <ImageView
+            class_head="@{vm.classImage}"
+            android:layout_width="96dp"
+            android:layout_height="80dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/normal_bottom_line"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="9dp"
+                android:text="@{vm.className,default=123456789}"
+                android:textColor="@color/text_black"
+                android:textSize="14.4sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@{vm.touchText,default=12345}"
+                android:textColor="@color/text_gray"
+                android:textSize="14.4sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:drawableLeft="@{vm.teacherIcon}"
+                android:text="@{vm.teacherName,default=1234576}"
+                android:textSize="12.48sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@mipmap/clock_mini"
+                android:drawableLeft="@mipmap/clock_mini"
+                android:text="@{vm.classTime,default=1234576}"
+                android:textSize="12.48sp"
+                android:visibility="gone" />
+        </LinearLayout>
 
     </LinearLayout>
 </layout>

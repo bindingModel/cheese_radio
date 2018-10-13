@@ -1,21 +1,31 @@
 package com.cheese.radio.ui.user.my.course;
 
+import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.ClickableSpan;
 import android.view.View;
+import android.widget.TextView;
 
+import com.binding.model.Config;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
+import com.cheese.radio.base.arouter.ARouterUtil;
+import com.cheese.radio.ui.Constant;
+
+import static com.cheese.radio.inject.component.ActivityComponent.Router.course;
 
 /**
  * Created by 29283 on 2018/3/30.
  */
-@ModelView(R.layout.holder_my_course)
+@ModelView(value = {
+        R.layout.holder_my_course_type,
+        R.layout.holder_my_course
+})
 public class MyCourseEntity extends ViewInflateRecycler {
     /**
      * classId : 123
@@ -38,6 +48,12 @@ public class MyCourseEntity extends ViewInflateRecycler {
     private String teacherIcon;
     private String day;
     private int bookId;
+
+    @Override
+    public int getModelIndex() {
+        return TextUtils.isEmpty(className)?0:1;
+    }
+
     /**
      * code : T001
      * surplus : 0
@@ -200,6 +216,10 @@ public class MyCourseEntity extends ViewInflateRecycler {
 
     private void onCheckInfoClick(View view) {
         BaseUtil.toast("跳转到哪里");
+        Bundle bundle=new Bundle();
+        bundle.putString(Config.title,name);
+        bundle.putInt(Constant.courseTypeId,id);
+        ARouterUtil.navigation(course,bundle);
     }
 
 }

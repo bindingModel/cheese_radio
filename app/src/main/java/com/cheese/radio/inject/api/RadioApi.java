@@ -37,7 +37,6 @@ import com.cheese.radio.ui.user.enroll.AliEntity;
 import com.cheese.radio.ui.user.enroll.CreateOrderWXEntity;
 import com.cheese.radio.ui.user.enroll.params.ClassPlaceParams;
 import com.cheese.radio.ui.user.enroll.params.CreateOrderParams;
-import com.cheese.radio.ui.user.my.course.CourseType;
 import com.cheese.radio.ui.user.my.course.MyCourseEntity;
 import com.cheese.radio.ui.user.params.AddFavorityParams;
 import com.cheese.radio.ui.user.calendar.CalendarEntity;
@@ -83,8 +82,8 @@ import retrofit2.http.POST;
  */
 
 public interface RadioApi {
-//    String host = "http://111.231.237.11:8081";
-    String host = "http://interface.zhishidiantai.com";
+    String host = "http://111.231.237.11:8081";
+//    String host = "http://interface.zhishidiantai.com";
 
     @POST("/1.0/author")
     Observable<InfoEntity<List<AnchorsItem>>> getAnchors(@Body AnchorsParams params);
@@ -229,4 +228,7 @@ public interface RadioApi {
     //报名，获取商品列表
     @POST("1.0/order")
     Observable<InfoEntity<List<ProductsEntity>>> getProduct2(@Body ProductsParams ProductsParams);
+
+    @POST("1.0/user")
+    Observable<InfoEntity<List<MyCourseEntity>>> myClassInfo(@Body MyCourseParams params);
 }
