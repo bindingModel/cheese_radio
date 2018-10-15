@@ -215,7 +215,7 @@ public class MyCourseEntity extends ViewInflateRecycler {
     }
 
     private void onCheckInfoClick(View view) {
-        BaseUtil.toast("跳转到哪里");
+//        BaseUtil.toast("跳转到哪里");
         Bundle bundle=new Bundle();
         bundle.putString(Config.title,name);
         bundle.putInt(Constant.courseTypeId,id);
