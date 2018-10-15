@@ -9,18 +9,21 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.binding.model.adapter.AdapterHandle;
+import com.binding.model.adapter.AdapterType;
+import com.binding.model.adapter.IEventAdapter;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewHttpModel;
 import com.binding.model.model.inter.Event;
+import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
+import com.cheese.radio.base.rxjava.ErrorTransform;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityCalendar2Binding;
-import com.cheese.radio.databinding.ActivityCalendarBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.ui.Constant;
-import com.cheese.radio.ui.IkeApplication;
-import com.cheese.radio.ui.home.CanBookParams;
+import com.cheese.radio.ui.media.course.details.CourseDetailsParams;
 import com.cheese.radio.util.MyBaseUtil;
 import com.cheese.radio.util.calendarutils.Day;
 import com.cheese.radio.util.calendarutils.Month;
@@ -32,6 +35,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
+
+import io.reactivex.disposables.Disposable;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.enroll;
 
@@ -92,7 +97,7 @@ public class Calendar2Model extends ViewHttpModel<CalendarActivity, ActivityCale
 
     @Override
     public int onEvent(View view, Event event, Object... args) {
-        onHttp(1);
+//        onHttp(1);
         return 1;
     }
 
@@ -295,6 +300,42 @@ public class Calendar2Model extends ViewHttpModel<CalendarActivity, ActivityCale
     private void refreshUI() {
         calendarView = getDataBinding().calendarView;
         setRcHttp((offset1, refresh) -> api.getClassCalendar(params).compose(new RestfulTransformer<>()));
+    }
+
+    public boolean eventAdapter(int position, CalendarEntity entity, @AdapterHandle int type, View view) {
+        switch (type) {
+            case AdapterType.add:
+                CourseDetailsParams detailsParams = new CourseDetailsParams("bookClass");
+                detailsParams.setClassId(entity.getClassId());
+                addDisposable(api.getBookClass(detailsParams).compose(new RestfulTransformer<>()).subscribe(s -> {
+                    entity.setBookId(s.getBookId());
+                    theDayClass.notifyChange();
+                }, BaseUtil::toast));
+                break;
+            case AdapterType.no:
+                CancelBookParams cancelBook = new CancelBookParams("cancelBook");
+                cancelBook.setBookId(Integer.parseInt(entity.getBookId()));
+                addDisposable(api.cancelBook(cancelBook).compose(new ErrorTransform<>()).subscribe((s -> {
+                    entity.setBookId(null);
+                    theDayClass.notifyChange();
+                }), BaseUtil::toast));
+                break;
+        }
+        return true;
+    }
+
+    public IEventAdapter getEventAdapter() {
+        IEventAdapter<CalendarEntity> eventAdapter = this::eventAdapter;
+        return eventAdapter;
+    }
+
+    public void successBook(String bookId, Integer classId) {
+        for (int i = 0; i < theDayClass.get().size(); i++) {
+            if (theDayClass.get().get(i).getClassId() == classId) {
+                theDayClass.get().get(i).setBookId((bookId));
+                theDayClass.notifyChange();
+            }
+        }
     }
 }
 

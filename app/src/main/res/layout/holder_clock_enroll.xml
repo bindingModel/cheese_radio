@@ -6,6 +6,7 @@
         <variable
             name="vm"
             type="com.cheese.radio.ui.home.clock.ClockEnrollEntity" />
+        <import type="android.view.View"/>
     </data>
 
     <LinearLayout
@@ -44,11 +45,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:text="@{vm.brief,default=1234567}"
-            android:gravity="center"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@{vm.brief,default=1234567}" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -67,26 +68,45 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:onClick="@{vm::onInfoClick}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="@{vm::onInfoClick}"
                     android:src="@mipmap/ck" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="13dp"
-                    android:layout_marginEnd="13dp"
                     android:layout_marginStart="13dp"
                     android:layout_marginLeft="13dp"
+                    android:layout_marginEnd="13dp"
+                    android:layout_marginRight="13dp"
                     android:onClick="@{vm::onEnrollClick}"
-                    android:src="@mipmap/xd" />
+                    android:src="@{vm.pao}" />
 
-                <ImageView
+                <FrameLayout
                     android:layout_width="wrap_content"
-                    android:onClick="@{vm::onBookClick}"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/yue" />
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{vm::onBookClick}"
+                        android:src="@{vm.maa}" />
+                    <TextView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_gravity="top|end"
+                        android:textColor="@color/beerRed"
+                        android:background="@drawable/clock_tip_white_bg"
+                        android:visibility="@{vm.number==0?View.GONE:View.VISIBLE}"
+                        android:text="@{String.valueOf(vm.number),default=1}"
+                        />
+                </FrameLayout>
             </LinearLayout>
         </FrameLayout>
     </LinearLayout>

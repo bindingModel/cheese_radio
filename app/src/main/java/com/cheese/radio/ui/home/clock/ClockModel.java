@@ -27,7 +27,7 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.enroll;
 /**
  * Created by 29283 on 2018/3/13.
  */
-@ModelView(R.layout.fragment_home_clock)
+@ModelView(value = R.layout.fragment_home_clock,model = true)
 public class ClockModel extends RecyclerModel<ClockFragment, FragmentHomeClockBinding, ClockEnrollEntity> {
     @Inject ClockModel() {}
     @Inject RadioApi api;
@@ -61,5 +61,8 @@ public class ClockModel extends RecyclerModel<ClockFragment, FragmentHomeClockBi
 
     public void onClick(View view) {
         ARouterUtil.navigation(enroll);
+    }
+    public void paySuccess(){
+        onHttp(3);
     }
 }

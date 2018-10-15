@@ -6,6 +6,7 @@ import android.view.View;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewHttpModel;
 import com.binding.model.model.inter.Event;
+import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
@@ -55,9 +56,8 @@ public class CourseDetailsModel extends ViewHttpModel<CourseDetailsActivity, Act
         addDisposable(api.getBookClass(params).compose(new RestfulTransformer<>()).subscribe(
                 s -> {
                     getDataBinding().enroll.setText("报名成功");
-                    if (Event.event(R.id.calendarModer, this, view) == 1) {
-                        getT().finish();
-                    }
+                    Model.dispatchModel("successBook",s.getBookId(),classId);
+                    finish();
                 }, BaseUtil::toast)
         );
     }

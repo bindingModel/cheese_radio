@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.binding.model.App;
+import com.binding.model.adapter.AdapterType;
+import com.binding.model.adapter.IEventAdapter;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
 import com.cheese.radio.R;
@@ -305,11 +307,13 @@ public class CalendarEntity extends ViewInflateRecycler {
     }
 
     public void onEnrollClick(View view) {
-        if (bookId != null) return;//"已预约";
         if (leftCount == 0) return;//"已约满";
-        Bundle bundle = new Bundle();
+
+        if (bookId != null) getIEventAdapter().setEntity(IEventAdapter.NO_POSITION,this,AdapterType.no,view);//"已预约";
+        else getIEventAdapter().setEntity(IEventAdapter.NO_POSITION,this,AdapterType.add,view);
+       /* Bundle bundle = new Bundle();
         bundle.putInt(Constant.classId, classId);
-        ARouterUtil.navigation(ActivityComponent.Router.coursedetails, bundle);
+        ARouterUtil.navigation(ActivityComponent.Router.coursedetails, bundle);*/
     }
 
     public int getIndex() {

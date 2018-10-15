@@ -125,6 +125,12 @@ public class ClockEnrollEntity extends ViewInflateRecycler {
             default:return null;
         }
     }
+    public Drawable getPao(){
+        return App.getDrawable(pao?R.mipmap.xd:R.mipmap.xd2);
+    }
+    public Drawable getMaa(){
+        return App.getDrawable(!maa?R.mipmap.yue:R.mipmap.yue2);
+    }
     public void onInfoClick(View view) {
         Bundle bundle =new Bundle();
         bundle.putInt(Constant.id,id);
@@ -133,11 +139,13 @@ public class ClockEnrollEntity extends ViewInflateRecycler {
         ARouterUtil.navigation(ActivityComponent.Router.activityDetail,bundle);
     }
     public void onEnrollClick(View view){
+        if(!pao)return;
         Bundle bundle = new Bundle();
         bundle.putInt(Constant.courseTypeId,id);
         ARouterUtil.navigation(ActivityComponent.Router.enroll,bundle);
     }
     public void onBookClick(View view){
+        if(!maa)return;
         Bundle bundle =new Bundle();
         bundle.putInt(Constant.courseTypeId,id);
         bundle.putString(Config.title,name);

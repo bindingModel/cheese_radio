@@ -20,4 +20,5 @@
     <color name="color_home_clock_bg_yellow">#fcca44</color>
     <color name="colorAlpha">#00FFFFFF</color>
     <color name="light_gray">#F6F6F6</color>
+    <color name="beerRed">#F91659</color>
 </resources>

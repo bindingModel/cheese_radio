@@ -33,6 +33,7 @@ import com.cheese.radio.ui.search.params.HotSearchParams;
 import com.cheese.radio.ui.startup.check.VersionEntity;
 import com.cheese.radio.ui.startup.check.VersionParams;
 import com.cheese.radio.ui.user.UserEntity;
+import com.cheese.radio.ui.user.calendar.CancelBookParams;
 import com.cheese.radio.ui.user.enroll.AliEntity;
 import com.cheese.radio.ui.user.enroll.CreateOrderWXEntity;
 import com.cheese.radio.ui.user.enroll.params.ClassPlaceParams;
@@ -162,7 +163,7 @@ public interface RadioApi {
     Observable<InfoEntity<CourseDetailsData>> getClassInfo(@Body CourseDetailsParams params);
 
     @POST("/1.0/class")
-    Observable<InfoEntity<Object>> getBookClass(@Body CourseDetailsParams params);
+    Observable<InfoEntity<CalendarEntity>> getBookClass(@Body CourseDetailsParams params);
 
     @POST("/1.0/user")
     Observable<InfoEntity<FavorEntity>> addFavority(@Body AddFavorityParams params);
@@ -203,6 +204,8 @@ public interface RadioApi {
     @POST("/1.0/common")
     Observable<InfoEntity<VersionEntity>> version(@Body VersionParams params);
 
+    @POST("/1.0/class")
+    Observable<InfoEntity<String>> cancelBook(@Body CancelBookParams params);
 
     //------------二期
 //    活动列表接口：/1.0/content?method=activity

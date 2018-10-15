@@ -78,7 +78,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        app:inflates="@{vm.theDayClass}" />
+                        app:inflates="@{vm.theDayClass}"
+                        app:eventAdapter="@{vm.eventAdapter}"
+                        />
 
                 </LinearLayout>
             </ScrollView>
@@ -93,51 +95,5 @@
             </FrameLayout>
         </FrameLayout>
 
-        <FrameLayout
-            android:id="@+id/clock"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            android:background="@color/background_gray">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:background="@color/background_white">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="12dp"
-                    android:layout_marginTop="9.6dp"
-                    android:text="@string/group_button2"
-                    android:textColor="@color/text_black"
-                    android:textSize="15sp" />
-            </FrameLayout>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="44dp"
-                android:background="@color/white"
-                android:paddingBottom="70dp"
-                android:scaleType="fitCenter"
-                android:src="@mipmap/enroll_bg" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_gravity="center|bottom"
-                android:layout_marginBottom="36dp"
-                android:layout_marginLeft="80dp"
-                android:layout_marginRight="80dp"
-                android:background="@drawable/login_button_shape"
-                android:onClick="@{vm::onClick}"
-                android:text="@string/now_enroll"
-                android:textColor="@color/text_white"
-                android:textSize="14.4sp" />
-
-        </FrameLayout>
     </com.cheese.radio.base.view.StrongFrameLayout>
 </layout>
