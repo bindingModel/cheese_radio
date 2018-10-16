@@ -105,4 +105,5 @@
     <string name="please_input_mobile">请输入手机号码</string>
     <string name="activity_enroll">活动报名</string>
     <string name="cheese_clock">芝士闹钟</string>
+    <string name="look">查看</string>
 </resources>

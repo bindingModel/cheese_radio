@@ -1,10 +1,12 @@
 package com.cheese.radio.ui.home.clock;
 
 import android.os.Bundle;
+import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.binding.model.cycle.MainLooper;
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.inter.Inflate;
@@ -27,10 +29,15 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.enroll;
 /**
  * Created by 29283 on 2018/3/13.
  */
-@ModelView(value = R.layout.fragment_home_clock,model = true)
+@ModelView(value = R.layout.fragment_home_clock, model = true)
 public class ClockModel extends RecyclerModel<ClockFragment, FragmentHomeClockBinding, ClockEnrollEntity> {
-    @Inject ClockModel() {}
-    @Inject RadioApi api;
+    @Inject
+    ClockModel() {
+    }
+
+    @Inject
+    RadioApi api;
+
     @Override
     public void attachView(Bundle savedInstanceState, ClockFragment clockFragment) {
         super.attachView(savedInstanceState, clockFragment);
@@ -45,7 +52,7 @@ public class ClockModel extends RecyclerModel<ClockFragment, FragmentHomeClockBi
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                getDataBinding().dragView.onDragView(0,dy);
+                getDataBinding().dragView.onDragView(0, dy);
             }
         });
     }
@@ -62,7 +69,18 @@ public class ClockModel extends RecyclerModel<ClockFragment, FragmentHomeClockBi
     public void onClick(View view) {
         ARouterUtil.navigation(enroll);
     }
-    public void paySuccess(){
+
+    public void paySuccess() {
         onHttp(3);
+    }
+
+    public void refreshClock() {
+            onHttp(3);
+    }
+
+    @Override
+    public void onComplete() {
+        super.onComplete();
+//        getAdapter().notifyDataSetChanged();
     }
 }

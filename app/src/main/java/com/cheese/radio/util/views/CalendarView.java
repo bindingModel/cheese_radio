@@ -2,6 +2,7 @@ package com.cheese.radio.util.views;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.databinding.ObservableInt;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
@@ -59,11 +60,12 @@ public class CalendarView extends LinearLayout {
     private LayoutInflater layoutInflater;
     private ViewPager viewPager;
     private MyPagerAdapter myPagerAdapter;
-
+    public ObservableInt position =new ObservableInt();
     private OnCalendarViewListener onCalendarViewListener;
 
     private int selectMonthPosition = 0;
     private int selectDayPosition = 0;
+
 
     public CalendarView(Context context, String dateStart, String dateEnd) {
         super(context);
@@ -93,7 +95,9 @@ public class CalendarView extends LinearLayout {
             typedArray.recycle();
         }
     }
-
+    public PagerAdapter getPagerAdapter(){
+        return myPagerAdapter;
+    }
     //一定返回长度大于2的数据或者为null的数据
     public int[] convertDay(String string) {
         int[] res = null;
@@ -416,7 +420,6 @@ public class CalendarView extends LinearLayout {
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((View) object);
             views.remove(position);
-
         }
 
         @Override
@@ -445,6 +448,8 @@ public class CalendarView extends LinearLayout {
 
         @Override
         public void onPageSelected(int position) {
+            if(CalendarView.this.position!=null)
+            CalendarView.this.position.set(position);
             if (months.get(position) != null) {
                 months.get(position).setSelect(true);
             }
@@ -591,7 +596,9 @@ public class CalendarView extends LinearLayout {
                                     textViewSolar.setTextColor(calendarView_textColorChoose);
                                     //选中时背景色
                                     linearLayoutBack.setBackgroundResource(R.drawable.calendarview_circle_yellow_background);
-                                    textViewSolar.setCompoundDrawables(null, null, null, null);
+                                    onSelectView.selectView(day,textViewSolar);
+                                    selectDaySmallCircleColor(day,textViewSolar);
+//                                    textViewSolar.setCompoundDrawables(null, null, null, null);
                                     if (onCalendarViewListener != null) {
                                         onCalendarViewListener.selectDay(linearLayoutBack, day);
                                     }
@@ -624,22 +631,7 @@ public class CalendarView extends LinearLayout {
             if (positionMonth == selectMonthPosition && position == selectDayPosition) {
                 if (day.isChoose()) {
                     if (canCancel) {
-                        if (day.getTipsType() == 1) {
-                            greenCircleDrawable.setBounds(0, 0, greenCircleDrawable.getIntrinsicWidth(), (int) (greenCircleDrawable.getMinimumHeight()));
-                            textViewSolar.setCompoundDrawables(null, null, null, greenCircleDrawable);
-                            textViewSolar.setTextColor(calendarView_textColorTips);
-                        } else if (day.getTipsType() == 2) {
-                            yellowCircleDrawable.setBounds(0, 0, yellowCircleDrawable.getIntrinsicWidth(), (int) (yellowCircleDrawable.getMinimumHeight()));
-                            textViewSolar.setCompoundDrawables(null, null, null, yellowCircleDrawable);
-                            textViewSolar.setTextColor(calendarView_textColorTips);
-                        } else if (day.getTipsType() == 3) {
-                            grayCircleDrawable.setBounds(0, 0, grayCircleDrawable.getIntrinsicWidth(), (int) (grayCircleDrawable.getMinimumHeight()));
-                            textViewSolar.setCompoundDrawables(null, null, null, grayCircleDrawable);
-                            textViewSolar.setTextColor(calendarView_textColorTips);
-                        } else {
-                            textViewSolar.setCompoundDrawables(null, null, null, null);
-                            textViewSolar.setTextColor(calendarView_textColorUnChoose);
-                        }
+                        selectDaySmallCircleColor(day, textViewSolar);
                         linearLayoutBack.setBackgroundResource(0);
                         day.setChoose(false);
                         selectDay[0] = 0;
@@ -672,22 +664,8 @@ public class CalendarView extends LinearLayout {
                             LinearLayout theLinearLayoutBack = (LinearLayout) view.findViewById(R.id.linearLayoutBack);
                             TextView theTextViewSolar = (TextView) view.findViewById(R.id.textViewSolar);
                             //之前选中的view
-                            if (oldDay.getTipsType() == 1) {
-                                greenCircleDrawable.setBounds(0, 0, greenCircleDrawable.getIntrinsicWidth(), (int) (greenCircleDrawable.getMinimumHeight()));
-                                theTextViewSolar.setCompoundDrawables(null, null, null, greenCircleDrawable);
-                                theTextViewSolar.setTextColor(calendarView_textColorTips);
-                            } else if (oldDay.getTipsType() == 2) {
-                                yellowCircleDrawable.setBounds(0, 0, yellowCircleDrawable.getIntrinsicWidth(), (int) (yellowCircleDrawable.getMinimumHeight()));
-                                theTextViewSolar.setCompoundDrawables(null, null, null, yellowCircleDrawable);
-                                theTextViewSolar.setTextColor(calendarView_textColorTips);
-                            } else if (oldDay.getTipsType() == 3) {
-                                grayCircleDrawable.setBounds(0, 0, grayCircleDrawable.getIntrinsicWidth(), (int) (grayCircleDrawable.getMinimumHeight()));
-                                theTextViewSolar.setCompoundDrawables(null, null, null, grayCircleDrawable);
-                                theTextViewSolar.setTextColor(calendarView_textColorTips);
-                            } else {
-                                theTextViewSolar.setCompoundDrawables(null, null, null, null);
-                                theTextViewSolar.setTextColor(calendarView_textColorUnChoose);
-                            }
+                            oldDay.setChoose(false);
+                            selectDaySmallCircleColor(oldDay, theTextViewSolar);
                             theLinearLayoutBack.setBackgroundResource(0);
                         }
                     }
@@ -698,8 +676,10 @@ public class CalendarView extends LinearLayout {
                 //选中的变化
                 linearLayoutBack.setBackgroundResource(R.drawable.calendarview_circle_yellow_background);
                 yellowCircleDrawable.setBounds(0, 0, yellowCircleDrawable.getIntrinsicWidth(), (int) (yellowCircleDrawable.getMinimumHeight()));
-                textViewSolar.setCompoundDrawables(null, null, null, yellowCircleDrawable);
                 day.setChoose(true);
+                selectDaySmallCircleColor(day, textViewSolar);
+                if(onSelectView!=null)onSelectView.selectView(day,textViewSolar);
+
                 selectDay[0] = day.getSolar()[0];
                 selectDay[1] = day.getSolar()[1];
                 selectDay[2] = day.getSolar()[2];
@@ -709,6 +689,28 @@ public class CalendarView extends LinearLayout {
                 selectMonthPosition = positionMonth;
                 selectDayPosition = position;
             }
+        }
+    }
+
+    public void selectDaySmallCircleColor(Day day, TextView theTextViewSolar) {
+        if (day.getTipsType() == 1) {
+            greenCircleDrawable.setBounds(0, 0, greenCircleDrawable.getIntrinsicWidth(), (int) (greenCircleDrawable.getMinimumHeight()));
+            theTextViewSolar.setCompoundDrawables(null, null, null, greenCircleDrawable);
+            theTextViewSolar.setTextColor(calendarView_textColorTips);
+        } else if (day.getTipsType() == 2) {
+            yellowCircleDrawable.setBounds(0, 0, yellowCircleDrawable.getIntrinsicWidth(), (int) (yellowCircleDrawable.getMinimumHeight()));
+            theTextViewSolar.setCompoundDrawables(null, null, null, yellowCircleDrawable);
+            theTextViewSolar.setTextColor(calendarView_textColorTips);
+        } else if (day.getTipsType() == 3) {
+            grayCircleDrawable.setBounds(0, 0, grayCircleDrawable.getIntrinsicWidth(), (int) (grayCircleDrawable.getMinimumHeight()));
+            theTextViewSolar.setCompoundDrawables(null, null, null, grayCircleDrawable);
+            theTextViewSolar.setTextColor(calendarView_textColorTips);
+        } else {
+            theTextViewSolar.setCompoundDrawables(null, null, null, null);
+            theTextViewSolar.setTextColor(calendarView_textColorUnChoose);
+        }
+        if (day.isChoose()){
+            theTextViewSolar.setTextColor(ContextCompat.getColor(theTextViewSolar.getContext(),R.color.white));
         }
     }
 
@@ -725,6 +727,12 @@ public class CalendarView extends LinearLayout {
         void noThingSelect(LinearLayout linearLayout);
 
     }
+    private OnSelectView onSelectView ;
+    public interface OnSelectView{
+        public void selectView(Day day,View view);
+    }
 
-
+    public void setOnSelectView(OnSelectView onSelectView) {
+        this.onSelectView = onSelectView;
+    }
 }

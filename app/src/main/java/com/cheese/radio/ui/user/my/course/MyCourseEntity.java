@@ -1,5 +1,6 @@
 package com.cheese.radio.ui.user.my.course;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -7,12 +8,11 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.ClickableSpan;
 import android.view.View;
-import android.widget.TextView;
 
+import com.binding.model.App;
 import com.binding.model.Config;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
-import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.ui.Constant;
@@ -67,7 +67,37 @@ public class MyCourseEntity extends ViewInflateRecycler {
     private String name;
     private int id;
     private int complete;
+    /**
+     * classId : 920
+     * teacherId : 17
+     * teacherName : 蔡瑜
+     * courseState : 预约中
+     * startTime : 20:00-21:00
+     * className : 课程2
+     * classImage : http://cheese-radio-1256030909.cos.ap-guangzhou.myqcloud.com/images/c18/c18/1665276c36724.jpg?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDzLbkmgG9mDR0VpMufGguwldS4VknuIl8%26q-sign-time%3D1538981827%3B3116905027%26q-key-time%3D1538981827%3B3116905027%26q-header-list%3Dhost%26q-url-param-list%3D%26q-signature%3D2044c46637a2885eaad296d54a44798afdd28cd5
+     * time : 20:00-21:00
+     * teacherIcon : http://cheese-radio-1256030909.cos.ap-guangzhou.myqcloud.com/images/c9/c14/1631f003d1e27.jpg?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDzLbkmgG9mDR0VpMufGguwldS4VknuIl8%26q-sign-time%3D1525233500%3B3103156700%26q-key-time%3D1525233500%3B3103156700%26q-header-list%3Dhost%26q-url-param-list%3D%26q-signature%3D6c0876391cc038a4da82f3bb561e729249c061d1
+     * day : 2018-10-18
+     * bookId : 47
+     */
+    private String courseState;
+    private String startTime;
 
+    public String getCourseState() {
+        return courseState;
+    }
+
+    public void setCourseState(String courseState) {
+        this.courseState = courseState;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
     public String getCode() {
         return code;
     }
@@ -187,7 +217,7 @@ public class MyCourseEntity extends ViewInflateRecycler {
         return builder.toString();
     }
     public String getClassCount(){
-        return "已上："+complete+" 剩余："+surplus;
+        return "已上课程数： "+complete;
     }
     SpannableStringBuilder touchText;
     public SpannableStringBuilder getTouchText() {
@@ -205,6 +235,7 @@ public class MyCourseEntity extends ViewInflateRecycler {
                 public void updateDrawState(TextPaint ds) {
                     ds.setColor(ds.linkColor);
                     ds.setUnderlineText(false);
+                    ds.setTextSize(ds.getTextSize()+10);
                 }
             };
             String touchContent=String.valueOf(complete);
@@ -213,14 +244,23 @@ public class MyCourseEntity extends ViewInflateRecycler {
         }
         return touchText;
     }
-
-    private void onCheckInfoClick(View view) {
+    public String getSurplusText(){
+        return "剩余课程数： "+surplus;
+    }
+    public void onCheckInfoClick(View view) {
 //        BaseUtil.toast("跳转到哪里");
         Bundle bundle=new Bundle();
-        bundle.putString(Config.title,name);
+        bundle.putString(Config.title,view.getContext().getString(R.string.my_course)+" - "+name);
         bundle.putInt(Constant.courseTypeId,id);
         ARouterUtil.navigation(course,bundle);
     }
+    //以下部分为 holder_my_course的引用
+        public Drawable getCourseStateBg(){
+            switch (courseState){
+                case "预约中" :return App.getDrawable(R.drawable.my_class_type_book_bg);
+                default:return App.getDrawable(R.drawable.my_class_type_finish_bg);
+            }
+        }
 
 }
 

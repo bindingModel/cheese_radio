@@ -287,7 +287,7 @@ public class CalendarEntity extends ViewInflateRecycler {
 
     public String getEnrolMsg() {
 
-        if (bookId != null) return "已预约";
+        if (bookId != null) return "取消预约";
         if (leftCount == 0) return "已约满";
         return "预约";
 

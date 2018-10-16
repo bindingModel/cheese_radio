@@ -15,6 +15,7 @@ import com.binding.model.adapter.IEventAdapter;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewHttpModel;
 import com.binding.model.model.inter.Event;
+import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
@@ -85,10 +86,12 @@ public class Calendar2Model extends ViewHttpModel<CalendarActivity, ActivityCale
     public final ObservableField<ArrayList<CalendarEntity>> theDayClass = new ObservableField<>();
     private ClassCalendarParams params = new ClassCalendarParams("getClassCalendar2");
     private Calendar now = Calendar.getInstance();
-
+    private Day currentDay;
+    private View currentView;
     @Override
     public void attachView(Bundle savedInstanceState, CalendarActivity calendarActivity) {
         super.attachView(savedInstanceState, calendarActivity);
+
         int courseTypeId = getT().getIntent().getIntExtra(Constant.courseTypeId, 0);
         if (courseTypeId != 0) params.setCourseTypeId(courseTypeId);
         refreshUI();
@@ -167,6 +170,10 @@ public class Calendar2Model extends ViewHttpModel<CalendarActivity, ActivityCale
     }
 
     private void initCalendarView(String dateStartString, String dateEndString, List<CalendarEntity> tipsDays) {
+        getDataBinding().calendarView.setOnSelectView((day, view) -> {
+            this.currentDay=day;
+            this.currentView=view;
+        });
         calendarView.setDateStartString(dateStartString);
         calendarView.setDateEndString(dateEndString);
         updataUI(tipsDays);
@@ -188,13 +195,9 @@ public class Calendar2Model extends ViewHttpModel<CalendarActivity, ActivityCale
                 Month month = months.get(position);
                 params.setYearMonth(month.getYear(), month.getMonth());
                 onHttp(1);
-                Log.e("MainThread", Thread.currentThread().getName());
-
                 getDataBinding().textViewYear.setText(month.getYear() + "年");
                 updateMonth(month.getYear(), month.getMonth(), isInit);
                 selectThisMonthDay(month.getYear(), month.getMonth());
-
-
             }
 
             //日历上点击目标时间时触发
@@ -310,6 +313,12 @@ public class Calendar2Model extends ViewHttpModel<CalendarActivity, ActivityCale
                 addDisposable(api.getBookClass(detailsParams).compose(new RestfulTransformer<>()).subscribe(s -> {
                     entity.setBookId(s.getBookId());
                     theDayClass.notifyChange();
+                    Model.dispatchModel("refreshClock");
+                    if(currentDay!=null && currentView !=null){
+                        currentDay.setTipsType(1);
+                        calendarView.selectDaySmallCircleColor(currentDay,(TextView) currentView);
+                    }
+
                 }, BaseUtil::toast));
                 break;
             case AdapterType.no:
@@ -318,6 +327,11 @@ public class Calendar2Model extends ViewHttpModel<CalendarActivity, ActivityCale
                 addDisposable(api.cancelBook(cancelBook).compose(new ErrorTransform<>()).subscribe((s -> {
                     entity.setBookId(null);
                     theDayClass.notifyChange();
+                    Model.dispatchModel("refreshClock");
+                    if(currentDay!=null && currentView !=null){
+                        currentDay.setTipsType(2);
+                        calendarView.selectDaySmallCircleColor(currentDay,(TextView) currentView);
+                    }
                 }), BaseUtil::toast));
                 break;
         }
