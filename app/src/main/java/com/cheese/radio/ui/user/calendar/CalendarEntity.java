@@ -13,7 +13,6 @@ import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
-import com.google.gson.annotations.SerializedName;
 
 import java.util.Arrays;
 

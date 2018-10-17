@@ -2,8 +2,8 @@ package com.cheese.radio.inject.converter;
 
 import com.binding.model.data.exception.ApiException;
 import com.binding.model.data.util.JsonDeepUtil;
-import com.google.gson.TypeAdapter;
 import com.cheese.radio.base.InfoEntity;
+import com.google.gson.TypeAdapter;
 
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;

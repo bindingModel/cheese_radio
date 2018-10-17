@@ -4,7 +4,6 @@ package com.cheese.radio.ui.user.phone;
 import android.databinding.ObservableBoolean;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
@@ -15,7 +14,6 @@ import com.binding.model.model.ViewHttpModel;
 import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
-import com.cheese.radio.base.rxjava.ErrorTransform;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityPhoneBinding;
 import com.cheese.radio.inject.api.RadioApi;
@@ -23,8 +21,6 @@ import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.user.login.params.SmsParams;
 
 import javax.inject.Inject;
-
-import okhttp3.internal.Util;
 
 import static com.binding.model.util.BaseUtil.getPhoneError;
 import static com.binding.model.util.BaseUtil.isValidToast;

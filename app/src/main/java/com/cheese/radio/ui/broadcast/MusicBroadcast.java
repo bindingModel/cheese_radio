@@ -5,10 +5,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-
 import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
-import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.service.AudioServiceUtil;
 
 import static com.cheese.radio.ui.Constant.BUTTON_CANCEL_ID;

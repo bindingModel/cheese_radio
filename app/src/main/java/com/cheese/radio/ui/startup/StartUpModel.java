@@ -8,15 +8,12 @@ import com.binding.model.model.ViewModel;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.databinding.ActivityStartupBinding;
-import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.IkeApplication;
-import com.cheese.radio.util.MyBaseUtil;
 import com.cheese.radio.util.NetUtil;
 
 import javax.inject.Inject;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.home;
-import static com.cheese.radio.inject.component.ActivityComponent.Router.login;
 import static com.cheese.radio.inject.component.ActivityComponent.Router.welcome;
 
 /**

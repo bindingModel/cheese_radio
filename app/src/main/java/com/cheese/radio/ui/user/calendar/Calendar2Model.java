@@ -3,7 +3,6 @@ package com.cheese.radio.ui.user.calendar;
 import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -36,8 +35,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import io.reactivex.disposables.Disposable;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.enroll;
 

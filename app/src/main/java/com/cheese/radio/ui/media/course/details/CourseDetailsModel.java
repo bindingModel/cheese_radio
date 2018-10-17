@@ -5,7 +5,6 @@ import android.view.View;
 
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewHttpModel;
-import com.binding.model.model.inter.Event;
 import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;

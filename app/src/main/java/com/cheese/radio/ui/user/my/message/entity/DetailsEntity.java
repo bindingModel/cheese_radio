@@ -1,6 +1,5 @@
 package com.cheese.radio.ui.user.my.message.entity;
 
-import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -9,11 +8,7 @@ import android.view.View;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
 import com.binding.model.model.inter.Event;
-import com.binding.model.model.inter.Inflate;
-import com.binding.model.model.inter.Model;
 import com.cheese.radio.R;
-
-import java.util.zip.Inflater;
 
 /**
  * Created by 29283 on 2018/3/31.

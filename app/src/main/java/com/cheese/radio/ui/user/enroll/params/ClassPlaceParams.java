@@ -1,7 +1,6 @@
 package com.cheese.radio.ui.user.enroll.params;
 
 import com.cheese.radio.base.IkeParams;
-import com.cheese.radio.base.RadioParams;
 
 /**
  * Created by 29283 on 2018/4/19.

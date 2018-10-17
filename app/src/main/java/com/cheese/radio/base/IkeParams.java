@@ -1,8 +1,5 @@
 package com.cheese.radio.base;
 
-import android.text.TextUtils;
-
-import com.binding.model.data.encrypt.FormUnionParams;
 import com.binding.model.data.encrypt.UnionTransParams;
 import com.binding.model.util.BaseUtil;
 import com.binding.model.util.ReflectUtil;
@@ -17,10 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import okhttp3.FormBody;
 import okhttp3.FormUtfBody;
-import okhttp3.RequestBody;
-import retrofit2.http.Url;
 
 /**
  * Created by arvin on 2017/12/4.

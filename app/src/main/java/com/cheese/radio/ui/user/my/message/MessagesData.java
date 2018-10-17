@@ -1,15 +1,9 @@
 package com.cheese.radio.ui.user.my.message;
 
-import android.graphics.drawable.Drawable;
-
-import com.binding.model.App;
-import com.binding.model.model.ModelView;
-import com.cheese.radio.R;
 import com.cheese.radio.ui.user.my.message.entity.DetailsEntity;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by 29283 on 2018/3/31.

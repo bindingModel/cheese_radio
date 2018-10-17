@@ -4,8 +4,6 @@ import android.widget.TextView;
 
 import com.cheese.radio.base.IkeParams;
 
-import java.util.Map;
-
 import static com.binding.model.util.BaseUtil.getCodeError;
 import static com.binding.model.util.BaseUtil.getPhoneError;
 import static com.binding.model.util.BaseUtil.isValidToast;

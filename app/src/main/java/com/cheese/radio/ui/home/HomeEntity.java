@@ -1,17 +1,14 @@
 package com.cheese.radio.ui.home;
 
-import android.app.Application;
 import android.view.ViewGroup;
 
 import com.binding.model.model.ViewParse;
 import com.binding.model.model.inter.Item;
 import com.cheese.radio.base.cycle.BaseFragment;
-import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.home.circle.CircleFragment;
 import com.cheese.radio.ui.home.clock.ClockFragment;
 import com.cheese.radio.ui.home.mine.HomeMineFragment;
 import com.cheese.radio.ui.home.page.HomePageFragment;
-import com.cheese.radio.ui.user.calendar.CalendarFragment;
 
 /**
  * Created by 29283 on 2018/2/22.

@@ -2,23 +2,17 @@ package com.cheese.radio.base.binding;
 
 import android.content.Context;
 import android.databinding.BindingAdapter;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.DrawableRes;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
-import android.util.Patterns;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.binding.model.App;
-import com.binding.model.adapter.IEventAdapter;
-import com.binding.model.binding.ViewGroupBindingAdapter;
 import com.binding.model.util.BaseUtil;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
@@ -30,7 +24,6 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.cheese.radio.R;
 import com.cheese.radio.base.glide.GlideBlurformation;
-import com.cheese.radio.ui.Constant;
 
 
 /**

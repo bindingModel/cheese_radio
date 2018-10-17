@@ -1,7 +1,6 @@
 package com.cheese.radio.ui.user;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import com.binding.model.data.save.SharePreferenceUtil;
@@ -10,8 +9,6 @@ import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.user.profile.ProfileParams;
 import com.cheese.radio.ui.user.register.UserInfoParams;
-
-import java.util.Map;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.login;
 import static com.cheese.radio.ui.Constant.logout;

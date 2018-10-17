@@ -6,10 +6,6 @@ import android.databinding.ObservableInt;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-
 
 import com.alipay.sdk.app.PayTask;
 import com.bigkoo.pickerview.OptionsPickerView;
@@ -18,7 +14,6 @@ import com.binding.model.model.ViewModel;
 import com.binding.model.model.inter.Event;
 import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
-import com.cheese.radio.BuildConfig;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
@@ -33,27 +28,16 @@ import com.cheese.radio.ui.user.product.place.ClassPlaceEntity;
 import com.cheese.radio.util.CityPickTool;
 import com.cheese.radio.util.MyBaseUtil;
 import com.cheese.radio.util.TimePickTool;
-
 import com.jakewharton.rxbinding.view.RxView;
 import com.tencent.mm.opensdk.modelpay.PayReq;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-import com.umeng.socialize.PlatformConfig;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
-import rx.functions.Action1;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.products;
 

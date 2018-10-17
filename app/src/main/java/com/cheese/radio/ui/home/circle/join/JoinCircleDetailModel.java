@@ -9,7 +9,6 @@ import com.binding.model.model.ViewModel;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.rxjava.ErrorTransform;
-import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityCircleJoinBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.ui.Constant;

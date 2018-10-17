@@ -1,7 +1,5 @@
 package com.cheese.radio.ui.startup.welcome;
 
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
@@ -12,10 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.binding.model.layout.pager.PagerModel;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
-import com.binding.model.model.inter.Parse;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.databinding.ActivityWelcomeBinding;
@@ -25,7 +21,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import static com.cheese.radio.inject.component.ActivityComponent.Router.home;
 import static com.cheese.radio.inject.component.ActivityComponent.Router.login;
 
 @ModelView(R.layout.activity_welcome)

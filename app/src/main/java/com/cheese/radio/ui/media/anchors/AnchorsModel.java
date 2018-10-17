@@ -7,7 +7,6 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 
-import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
@@ -17,10 +16,7 @@ import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.media.play.PlayEntity;
 import com.cheese.radio.ui.service.AudioServiceUtil;
-import com.cheese.radio.util.DataStore;
 import com.cheese.radio.util.models.AudioRecycleModel;
-
-import java.util.ArrayList;
 
 import javax.inject.Inject;
 

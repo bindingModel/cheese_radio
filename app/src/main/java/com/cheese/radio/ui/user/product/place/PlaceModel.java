@@ -3,11 +3,8 @@ package com.cheese.radio.ui.user.product.place;
 import android.os.Bundle;
 import android.view.View;
 
-import com.binding.model.cycle.Container;
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
-import com.binding.model.model.inter.Inflate;
-import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityPlaceBinding;

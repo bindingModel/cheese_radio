@@ -5,7 +5,6 @@ import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.binding.model.adapter.recycler.GridSpanSizeLookup;
 import com.binding.model.layout.recycler.RecyclerModel;
@@ -24,7 +23,6 @@ import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.home.page.entity.CategoryEntity;
 import com.cheese.radio.ui.home.page.entity.RecommandEntity;
 import com.cheese.radio.ui.home.page.entity.RecommandTail;
-import com.cheese.radio.ui.media.play.PlayParams;
 import com.cheese.radio.ui.service.AudioServiceUtil;
 import com.cheese.radio.ui.user.my.push.NewMessageCountParams;
 
@@ -35,7 +33,6 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.search;

@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
-import com.binding.model.App;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
 import com.binding.model.util.BaseUtil;
@@ -16,27 +15,20 @@ import com.cheese.radio.base.rxjava.ErrorTransform;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityLoginBinding;
 import com.cheese.radio.inject.api.RadioApi;
-import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.IkeApplication;
-import com.cheese.radio.ui.user.User;
 import com.cheese.radio.ui.user.login.params.PlatformParams;
 import com.cheese.radio.ui.user.login.params.SignParams;
 import com.cheese.radio.ui.user.login.params.SmsParams;
-import com.cheese.radio.ui.user.profile.ProfileParams;
 import com.cheese.radio.ui.user.register.UserInfoParams;
 import com.cheese.radio.util.MyBaseUtil;
 import com.google.gson.Gson;
 import com.umeng.socialize.UMAuthListener;
-import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
-
-import io.reactivex.Observable;
-import timber.log.Timber;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.demo;
 import static com.cheese.radio.inject.component.ActivityComponent.Router.home;

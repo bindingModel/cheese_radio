@@ -5,7 +5,6 @@ import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.TextView;
 
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewHttpModel;

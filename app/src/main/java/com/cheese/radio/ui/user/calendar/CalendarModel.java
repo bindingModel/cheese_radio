@@ -2,7 +2,6 @@ package com.cheese.radio.ui.user.calendar;
 
 import android.databinding.ObservableField;
 import android.os.Bundle;
-import android.support.annotation.MainThread;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,24 +10,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.binding.model.model.ModelView;
-import com.binding.model.model.PopupRecyclerModel;
 import com.binding.model.model.ViewHttpModel;
 import com.binding.model.model.inter.Event;
-import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
-import com.cheese.radio.base.rxjava.RestfulFlowTransformer;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityCalendarBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.home.CanBookParams;
-import com.cheese.radio.ui.media.course.details.CourseDetailsModel;
-import com.cheese.radio.ui.user.enroll.PayResult;
 import com.cheese.radio.util.MyBaseUtil;
 import com.cheese.radio.util.calendarutils.Day;
 import com.cheese.radio.util.calendarutils.Month;
-import com.cheese.radio.util.calendarutils.TipsDay;
 import com.cheese.radio.util.views.CalendarView;
 
 import java.util.ArrayList;
@@ -36,15 +29,8 @@ import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
-
 import javax.inject.Inject;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
-
-import static com.alibaba.android.arouter.core.LogisticsCenter.suspend;
 import static com.cheese.radio.inject.component.ActivityComponent.Router.enroll;
 
 /**

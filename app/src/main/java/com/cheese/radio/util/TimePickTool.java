@@ -1,13 +1,10 @@
 package com.cheese.radio.util;
 
 import android.content.Context;
-import android.databinding.ObservableField;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.cheese.radio.R;
-
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

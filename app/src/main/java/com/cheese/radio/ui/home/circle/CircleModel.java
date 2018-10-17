@@ -3,11 +3,9 @@ package com.cheese.radio.ui.home.circle;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
-
 import com.cheese.radio.R;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.FragmentHomeCircleBinding;
@@ -18,7 +16,6 @@ import javax.inject.Inject;
 
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
-import static android.provider.MediaStore.Images.ImageColumns.ORIENTATION;
 import static me.everything.android.ui.overscroll.OverScrollDecoratorHelper.ORIENTATION_VERTICAL;
 
 /**

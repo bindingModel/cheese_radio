@@ -1,20 +1,12 @@
 package com.cheese.radio.inject.interceptor;
 
-import android.content.Context;
-import android.support.annotation.Nullable;
-
-import com.cheese.radio.inject.qualifier.context.AppContext;
-
 import java.io.IOException;
 
 import javax.inject.Inject;
 
 import okhttp3.Interceptor;
-import okhttp3.MediaType;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
-import okio.BufferedSink;
 
 /**
  * project：cutv_ningbo

@@ -10,15 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.binding.model.adapter.pager.ViewPagerAdapter;
-import com.binding.model.layout.pager.PagerModel;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewHttpModel;
 import com.bumptech.glide.Glide;
 import com.cheese.radio.R;
 import com.cheese.radio.databinding.ActivityPictureBinding;
 import com.cheese.radio.ui.Constant;
-import com.pgyersdk.g.m;
 
 import java.util.ArrayList;
 import java.util.List;

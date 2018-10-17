@@ -1,7 +1,6 @@
 package com.cheese.radio.ui.media.classify.list;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.cheese.radio.R;
 import com.cheese.radio.base.cycle.BaseActivity;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.contents;

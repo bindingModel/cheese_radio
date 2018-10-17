@@ -2,7 +2,6 @@ package com.cheese.radio.ui.media.anchors;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Switch;
 
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
@@ -10,8 +9,6 @@ import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.ui.Constant;
-
-import java.util.List;
 
 import static com.binding.model.util.BaseUtil.T;
 import static com.cheese.radio.inject.component.ActivityComponent.Router.author;

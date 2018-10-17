@@ -2,11 +2,11 @@ package com.cheese.radio.base.rxjava;
 
 
 import com.binding.model.util.BaseUtil;
+import com.cheese.radio.base.InfoEntity;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
-import com.cheese.radio.base.InfoEntity;
 
 /**
  * project：cutv_ningbo

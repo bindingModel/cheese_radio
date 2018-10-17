@@ -1,6 +1,5 @@
 package com.cheese.radio.ui.demo.coordinatorLayout;
 
-import android.app.Fragment;
 import android.view.ViewGroup;
 
 import com.binding.model.model.ViewParse;

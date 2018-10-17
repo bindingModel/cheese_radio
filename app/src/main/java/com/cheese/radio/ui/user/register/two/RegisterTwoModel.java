@@ -1,6 +1,5 @@
 package com.cheese.radio.ui.user.register.two;
 
-import android.content.res.ColorStateList;
 import android.databinding.ObservableBoolean;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,8 +18,6 @@ import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.user.register.UserInfoParams;
 
 import javax.inject.Inject;
-
-import io.reactivex.disposables.Disposable;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.home;
 

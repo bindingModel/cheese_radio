@@ -8,14 +8,10 @@ import android.view.View;
 import com.binding.model.Config;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
-import com.binding.model.util.BaseUtil;
-import com.cheese.radio.BuildConfig;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
-import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
-import com.cheese.radio.ui.IkeApplication;
 
 import static com.cheese.radio.ui.Constant.activityInfo;
 

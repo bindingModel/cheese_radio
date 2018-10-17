@@ -1,9 +1,7 @@
 package com.cheese.radio.ui.user.my.work;
 
 import com.binding.model.model.ModelView;
-import com.binding.model.model.RecyclerInflate;
 import com.binding.model.model.ViewInflateRecycler;
-import com.binding.model.model.inter.Inflate;
 import com.cheese.radio.R;
 
 /**

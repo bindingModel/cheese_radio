@@ -1,9 +1,7 @@
 package com.cheese.radio.ui.user.profile;
 
 import android.Manifest;
-import android.app.Application;
 import android.content.Intent;
-import android.database.Observable;
 import android.databinding.ObservableField;
 import android.net.Uri;
 import android.os.Build;
@@ -15,23 +13,18 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.TextView;
 
-
 import com.bigkoo.pickerview.OptionsPickerView;
-
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
 import com.binding.model.model.inter.Event;
 import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
-
 import com.cheese.radio.BuildConfig;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.ErrorTransform;
-
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityProfileBinding;
 import com.cheese.radio.inject.api.RadioApi;
@@ -39,13 +32,11 @@ import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.user.UserEntity;
 import com.cheese.radio.ui.user.edit.EditNameModel;
 import com.cheese.radio.ui.user.profile.popup.PopupPictureModel;
-
 import com.cheese.radio.util.MyBaseUtil;
 import com.cheese.radio.util.TimePickTool;
 
 import java.io.File;
 import java.util.ArrayList;
-
 import java.util.List;
 
 import javax.inject.Inject;

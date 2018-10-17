@@ -3,7 +3,6 @@ package com.cheese.radio.ui.user.product.place;
 import android.databinding.ObservableBoolean;
 import android.view.View;
 
-import com.binding.model.App;
 import com.binding.model.adapter.IEventAdapter;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;

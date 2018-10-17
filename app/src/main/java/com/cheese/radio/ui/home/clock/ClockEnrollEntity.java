@@ -13,9 +13,6 @@ import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
 
-import static com.cheese.radio.ui.Constant.activityInfo;
-import static com.cheese.radio.ui.Constant.bundle;
-import static com.cheese.radio.ui.Constant.courseTypeId;
 import static com.cheese.radio.ui.Constant.courseTypeInfo;
 
 @ModelView(R.layout.holder_clock_enroll)

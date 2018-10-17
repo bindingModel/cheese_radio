@@ -8,7 +8,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.SparseArray;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -20,7 +19,6 @@ import android.widget.TextView;
 
 import com.binding.model.App;
 import com.cheese.radio.R;
-import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.user.calendar.CalendarEntity;
 import com.cheese.radio.util.calendarutils.Day;
 import com.cheese.radio.util.calendarutils.Month;

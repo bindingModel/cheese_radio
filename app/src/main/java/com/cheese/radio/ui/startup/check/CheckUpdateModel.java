@@ -4,15 +4,12 @@ import android.content.Intent;
 import android.databinding.ObservableField;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 import com.binding.model.model.ModelView;
 import com.binding.model.model.PopupModel;
-
 import com.cheese.radio.R;
 import com.cheese.radio.base.cycle.BaseActivity;
 import com.cheese.radio.databinding.PopupCheckUpdataBinding;

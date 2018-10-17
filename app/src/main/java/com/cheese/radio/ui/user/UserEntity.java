@@ -2,12 +2,7 @@ package com.cheese.radio.ui.user;
 
 import android.text.TextUtils;
 
-import com.binding.model.util.ReflectUtil;
-
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.sql.Ref;
-import java.util.Map;
 
 import static com.binding.model.util.ReflectUtil.beanGetValue;
 import static com.binding.model.util.ReflectUtil.beanSetValue;

@@ -14,16 +14,12 @@ import android.widget.SeekBar;
 
 import com.android.databinding.library.baseAdapters.BR;
 import com.binding.model.App;
-import com.binding.model.adapter.recycler.RecyclerAdapter;
 import com.binding.model.cycle.Container;
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.layout.rotate.TimeEntity;
 import com.binding.model.layout.rotate.TimeUtil;
 import com.binding.model.model.inter.Inflate;
 import com.binding.model.util.BaseUtil;
-import com.cheese.radio.base.arouter.ARouterUtil;
-import com.cheese.radio.inject.component.ActivityComponent;
-import com.cheese.radio.ui.media.play.PlayEntity;
 import com.cheese.radio.ui.service.AudioServiceUtil;
 
 import java.util.ArrayList;

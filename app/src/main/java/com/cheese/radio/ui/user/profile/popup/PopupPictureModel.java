@@ -9,7 +9,6 @@ import com.binding.model.model.PopupRecyclerModel;
 import com.cheese.radio.R;
 import com.cheese.radio.base.cycle.BaseActivity;
 import com.cheese.radio.databinding.PopupPictureBinding;
-import com.cheese.radio.ui.user.profile.ProfileActivity;
 
 import java.util.ArrayList;
 import java.util.List;

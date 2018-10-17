@@ -1,22 +1,16 @@
 package com.cheese.radio.ui.media.classify.list;
 
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 
-import com.binding.model.adapter.recycler.GridSpanSizeLookup;
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
-import com.binding.model.model.inter.GridInflate;
 import com.binding.model.model.inter.Inflate;
-import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityClassifyListBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.ui.Constant;
-import com.cheese.radio.ui.media.classify.ClassifyData;
-import com.cheese.radio.ui.media.classify.ClassifyParams;
 import com.cheese.radio.ui.user.my.favority.MyFavorityTitle;
 
 import java.util.ArrayList;

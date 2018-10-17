@@ -1,9 +1,5 @@
 package com.cheese.radio.ui.user.my.course;
 
-import com.binding.model.model.ModelView;
-import com.binding.model.model.ViewInflateRecycler;
-import com.cheese.radio.R;
-
 import java.util.List;
 
 /**

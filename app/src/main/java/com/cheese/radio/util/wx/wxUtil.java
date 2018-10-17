@@ -2,7 +2,6 @@ package com.cheese.radio.util.wx;
 
 import android.content.Context;
 
-import com.cheese.radio.R;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 

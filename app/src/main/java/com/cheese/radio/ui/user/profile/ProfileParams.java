@@ -6,9 +6,7 @@ import android.widget.TextView;
 import com.cheese.radio.base.IkeParams;
 import com.cheese.radio.ui.user.UserEntity;
 
-import static com.binding.model.util.BaseUtil.getPhoneError;
 import static com.binding.model.util.BaseUtil.isValidToast;
-import static com.cheese.radio.util.MyBaseUtil.getNameError;
 import static com.cheese.radio.util.MyBaseUtil.getNickError;
 
 /**

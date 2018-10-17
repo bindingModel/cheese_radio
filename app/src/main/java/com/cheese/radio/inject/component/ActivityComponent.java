@@ -4,6 +4,7 @@ package com.cheese.radio.inject.component;
 import com.cheese.radio.inject.module.ActivityModule;
 import com.cheese.radio.inject.scope.ActivityScope;
 import com.cheese.radio.ui.demo.coordinatorLayout.CoordinatorLayoutActivity;
+import com.cheese.radio.ui.home.HomeActivity;
 import com.cheese.radio.ui.home.circle.detail.CircleDetailActivity;
 import com.cheese.radio.ui.home.circle.join.JoinCircleDetailActivity;
 import com.cheese.radio.ui.media.anchor.AnchorActivity;
@@ -15,16 +16,13 @@ import com.cheese.radio.ui.media.group.GroupInfoActivity;
 import com.cheese.radio.ui.media.picture.PictureActivity;
 import com.cheese.radio.ui.media.play.PlayActivity;
 import com.cheese.radio.ui.search.SearchActivity;
+import com.cheese.radio.ui.startup.StartUpActivity;
 import com.cheese.radio.ui.startup.welcome.WelcomeActivity;
 import com.cheese.radio.ui.user.calendar.CalendarActivity;
 import com.cheese.radio.ui.user.edit.EditNameActivity;
 import com.cheese.radio.ui.user.enroll.EnrollActivity;
-
 import com.cheese.radio.ui.user.guide.GuideActivity;
-import com.cheese.radio.ui.home.HomeActivity;
 import com.cheese.radio.ui.user.login.LoginActivity;
-import com.cheese.radio.ui.startup.StartUpActivity;
-
 import com.cheese.radio.ui.user.my.course.MyCourseActivity;
 import com.cheese.radio.ui.user.my.favority.MyFavorityActivity;
 import com.cheese.radio.ui.user.my.message.MessageActivity;

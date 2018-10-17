@@ -3,16 +3,12 @@ package com.cheese.radio.ui.user.my.favority;
 import android.view.View;
 
 import com.binding.model.model.ModelView;
-import com.binding.model.model.RecyclerInflate;
 import com.binding.model.model.ViewInflateRecycler;
 import com.binding.model.model.inter.GridInflate;
 import com.binding.model.model.inter.SpanSize;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
-import com.cheese.radio.ui.Constant;
 import com.cheese.radio.util.MyBaseUtil;
-
-import java.util.List;
 
 /**
  * Created by 29283 on 2018/4/10.

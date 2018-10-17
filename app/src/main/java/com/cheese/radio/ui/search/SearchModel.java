@@ -1,20 +1,16 @@
 package com.cheese.radio.ui.search;
 
-import android.content.Context;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
-import com.binding.model.adapter.AdapterType;
 import com.binding.model.adapter.recycler.GridSpanSizeLookup;
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
@@ -24,24 +20,19 @@ import com.cheese.radio.R;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivitySearchBinding;
 import com.cheese.radio.inject.api.RadioApi;
-import com.cheese.radio.ui.search.entity.HotSearchEntity;
 import com.cheese.radio.ui.search.entity.HotSearchTitleEntity;
 import com.cheese.radio.ui.search.params.HotSearchParams;
 import com.cheese.radio.util.MyBaseUtil;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.internal.operators.observable.ObservableElementAt;
 
 /**
  * Created by 29283 on 2018/3/3.

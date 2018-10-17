@@ -1,22 +1,14 @@
 package com.cheese.radio.util;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Application;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
-import android.media.Image;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Environment;
-import android.support.v4.view.ViewCompat;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,24 +18,15 @@ import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-import com.binding.model.App;
 import com.binding.model.util.BaseUtil;
-import com.binding.model.view.web.callback.JsBridgeCallback;
-import com.bumptech.glide.load.ImageHeaderParserUtils;
-import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.media.play.PlayActivity;
 import com.cheese.radio.ui.startup.welcome.WelcomeActivity;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;

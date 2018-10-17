@@ -1,15 +1,12 @@
 package com.cheese.radio.ui.home.clock;
 
 import android.os.Bundle;
-import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.binding.model.cycle.MainLooper;
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
-import com.binding.model.model.inter.Inflate;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
@@ -17,12 +14,7 @@ import com.cheese.radio.databinding.FragmentHomeClockBinding;
 import com.cheese.radio.inject.api.ContentParams;
 import com.cheese.radio.inject.api.RadioApi;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.inject.Inject;
-
-import io.reactivex.Observable;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.enroll;
 

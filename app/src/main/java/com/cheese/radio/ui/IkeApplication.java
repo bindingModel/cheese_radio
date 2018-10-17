@@ -2,7 +2,6 @@ package com.cheese.radio.ui;
 
 import android.support.multidex.MultiDexApplication;
 import android.support.v7.app.AppCompatDelegate;
-import android.text.TextUtils;
 
 import com.binding.model.App;
 import com.binding.model.util.BaseUtil;
@@ -17,7 +16,6 @@ import com.cheese.radio.inject.component.DaggerAppComponent;
 import com.cheese.radio.inject.module.AppModule;
 import com.cheese.radio.ui.user.User;
 import com.cheese.radio.ui.user.login.params.PlatformParams;
-import com.cheese.radio.util.MyBaseUtil;
 import com.pgyersdk.crash.PgyCrashManager;
 import com.tendcloud.tenddata.TCAgent;
 import com.umeng.commonsdk.UMConfigure;

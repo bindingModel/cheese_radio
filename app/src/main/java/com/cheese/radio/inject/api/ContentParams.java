@@ -1,7 +1,6 @@
 package com.cheese.radio.inject.api;
 
 import com.cheese.radio.base.IkeParams;
-import com.cheese.radio.base.RadioParams;
 
 public class ContentParams extends IkeParams {
     private String method;

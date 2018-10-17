@@ -3,16 +3,11 @@ package com.cheese.radio.ui.user.product.list;
 import android.databinding.ObservableBoolean;
 import android.view.View;
 
-import com.binding.model.App;
-import com.binding.model.adapter.AdapterType;
 import com.binding.model.adapter.IEventAdapter;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
 import com.binding.model.model.inter.Event;
-import com.binding.model.model.inter.Model;
 import com.cheese.radio.R;
-
-import java.util.Objects;
 
 import static com.binding.model.adapter.AdapterType.select;
 

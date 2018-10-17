@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
-import com.binding.model.model.inter.Inflate;
 import com.cheese.radio.R;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityMyWorkBinding;

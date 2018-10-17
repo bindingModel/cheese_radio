@@ -1,6 +1,5 @@
 package com.cheese.radio.ui.home.mine;
 
-import android.app.Application;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.graphics.drawable.Drawable;
@@ -20,16 +19,10 @@ import com.cheese.radio.databinding.FragmentHomeMineBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.IkeApplication;
-import com.cheese.radio.ui.home.page.HomePageModel;
 import com.cheese.radio.ui.user.my.push.NewMessageCountParams;
 import com.cheese.radio.ui.user.profile.ProfileParams;
-import com.cheese.radio.ui.user.register.UserInfoParams;
-
-import java.util.ArrayList;
 
 import javax.inject.Inject;
-
-import io.reactivex.disposables.Disposable;
 
 /**
  * Created by 29283 on 2018/2/22.

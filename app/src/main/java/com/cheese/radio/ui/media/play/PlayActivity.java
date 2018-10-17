@@ -1,16 +1,11 @@
 package com.cheese.radio.ui.media.play;
 
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.View;
-import android.view.WindowManager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cheese.radio.R;
 import com.cheese.radio.base.cycle.BaseActivity;
-import com.cheese.radio.util.MyBaseUtil;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.umeng.commonsdk.UMConfigure;

@@ -1,8 +1,5 @@
 package com.cheese.radio.ui.home;
 
-import android.app.AlertDialog;
-import android.animation.ObjectAnimator;
-import android.databinding.ObservableBoolean;
 import android.databinding.ObservableInt;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -11,25 +8,17 @@ import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.binding.model.adapter.pager.FragmentStateAdapter;
 import com.binding.model.cycle.DataBindingFragment;
-import com.binding.model.layout.pager.PagerModel;
-import com.binding.model.layout.rotate.TimeEntity;
-import com.binding.model.layout.rotate.TimeUtil;
 import com.binding.model.model.ModelView;
-import com.binding.model.model.ViewModel;
 import com.binding.model.model.inter.Entity;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.BuildConfig;
@@ -39,33 +28,18 @@ import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityHomeBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.component.ActivityComponent;
-import com.cheese.radio.inject.qualifier.manager.ActivityFragmentManager;
-import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.media.audio.AudioModel;
 import com.cheese.radio.ui.media.play.PlayEntity;
 import com.cheese.radio.ui.service.AudioServiceUtil;
 import com.cheese.radio.ui.startup.check.CheckUpdateModel;
 import com.cheese.radio.ui.startup.check.VersionEntity;
 import com.cheese.radio.ui.startup.check.VersionParams;
-import com.cheese.radio.util.DataStore;
-import com.cheese.radio.util.MyBaseUtil;
 import com.cheese.radio.util.NetUtil;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import static android.provider.Settings.Global.getString;
-
-import io.reactivex.disposables.Disposable;
-import timber.log.Timber;
-
-import static com.binding.model.adapter.AdapterType.refresh;
-import static com.binding.model.util.BaseUtil.T;
 
 /**
  * Created by 29283 on 2018/2/22.

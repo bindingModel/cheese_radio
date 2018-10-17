@@ -9,7 +9,6 @@ import com.binding.model.model.inter.GridInflate;
 import com.binding.model.model.inter.SpanSize;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
-import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.contents;

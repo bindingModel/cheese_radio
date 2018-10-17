@@ -12,7 +12,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.media.session.MediaButtonReceiver;
 import android.text.TextUtils;
 
-
 import com.binding.model.App;
 import com.binding.model.util.BaseUtil;
 
@@ -21,8 +20,6 @@ import java.io.IOException;
 import timber.log.Timber;
 
 import static android.media.AudioManager.AUDIOFOCUS_LOSS_TRANSIENT;
-import static android.media.AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK;
-import static com.umeng.socialize.utils.ContextUtil.getPackageName;
 
 /**
  * project：cutv_ningbo

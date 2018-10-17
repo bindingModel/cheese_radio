@@ -5,8 +5,6 @@ import android.view.View;
 
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.base.IkeParams;
-import com.cheese.radio.util.MyBaseUtil;
-
 
 import static com.binding.model.util.BaseUtil.getPhoneError;
 import static com.binding.model.util.BaseUtil.isValidToast;

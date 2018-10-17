@@ -8,40 +8,32 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RemoteViews;
 
-
 import com.binding.model.adapter.pager.FragmentAdapter;
 import com.binding.model.layout.pager.PagerModel;
 import com.binding.model.model.ModelView;
-
 import com.cheese.radio.R;
 import com.cheese.radio.databinding.ActivityDemoBinding;
 import com.cheese.radio.inject.qualifier.manager.ActivityFragmentManager;
 import com.cheese.radio.ui.service.AudioServiceUtil;
 import com.cheese.radio.ui.startup.check.CheckUpdateModel;
-import com.cheese.radio.ui.user.profile.popup.PopupPictureModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import static com.cheese.radio.inject.component.ActivityComponent.Router.message;
 import static com.cheese.radio.ui.Constant.ACTION_BUTTON;
 import static com.cheese.radio.ui.Constant.BUTTON_NEXT_ID;
 import static com.cheese.radio.ui.Constant.BUTTON_PALY_ID;
-
 import static com.cheese.radio.ui.Constant.INTENT_BUTTONID_TAG;
-import static com.cheese.radio.ui.Constant.NOTIFICATION_CHANNEL_NAME;
 
 
 /**

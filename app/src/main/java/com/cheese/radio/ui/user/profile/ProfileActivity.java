@@ -3,14 +3,12 @@ package com.cheese.radio.ui.user.profile;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
-import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.binding.model.util.FileUtil;
 import com.cheese.radio.base.cycle.BaseActivity;
 
-import static com.cheese.radio.inject.component.ActivityComponent.Router.home;
 import static com.cheese.radio.inject.component.ActivityComponent.Router.profile;
 import static com.cheese.radio.ui.Constant.REQUEST_CAMERA;
 import static com.cheese.radio.ui.Constant.REQUEST_PHOTO;

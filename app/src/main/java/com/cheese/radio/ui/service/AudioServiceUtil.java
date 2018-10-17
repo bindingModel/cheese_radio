@@ -1,45 +1,24 @@
 package com.cheese.radio.ui.service;
 
 
-import android.app.Application;
-import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.graphics.Color;
-import android.media.AudioFocusRequest;
-import android.media.AudioManager;
 import android.os.Handler;
 import android.os.IBinder;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.media.session.MediaButtonReceiver;
 import android.text.TextUtils;
-import android.widget.RemoteViews;
-
 
 import com.binding.model.App;
 import com.binding.model.layout.rotate.TimeEntity;
 import com.binding.model.layout.rotate.TimeUtil;
-import com.cheese.radio.BuildConfig;
-import com.cheese.radio.R;
-import com.cheese.radio.ui.media.play.PlayEntity;
 
 import java.io.IOException;
 
-import static android.media.AudioManager.AUDIOFOCUS_LOSS_TRANSIENT;
-import static android.media.AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK;
-import static com.cheese.radio.ui.Constant.ACTION_BUTTON;
-import static com.cheese.radio.ui.Constant.BUTTON_NEXT_ID;
-import static com.cheese.radio.ui.Constant.BUTTON_PALY_ID;
-import static com.cheese.radio.ui.Constant.INTENT_BUTTONID_TAG;
 import static com.cheese.radio.ui.service.AudioService.Pause;
 import static com.cheese.radio.ui.service.AudioService.Play;
 import static com.cheese.radio.ui.service.AudioService.Reset;
-import static com.umeng.socialize.utils.ContextUtil.getPackageName;
 
 
 /**

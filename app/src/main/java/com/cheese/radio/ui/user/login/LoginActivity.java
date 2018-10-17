@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
-
-
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
 
@@ -15,21 +12,15 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.cycle.BaseActivity;
-import com.cheese.radio.inject.api.RadioApi;
-import com.cheese.radio.util.MyBaseUtil;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 
-
 import java.util.Map;
-
-import javax.inject.Inject;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.login;
 

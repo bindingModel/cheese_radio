@@ -16,7 +16,6 @@ import android.text.Html;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RemoteViews;
@@ -42,9 +41,7 @@ import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.media.audio.AudioModel;
 import com.cheese.radio.ui.media.play.popup.PopupPlayModel;
 import com.cheese.radio.ui.media.play.popup.SelectPlayTimeEntity;
-import com.cheese.radio.ui.service.AudioService;
 import com.cheese.radio.ui.service.AudioServiceUtil;
-
 import com.cheese.radio.ui.user.params.AddFavorityParams;
 import com.cheese.radio.ui.user.params.FabulousParams;
 import com.cheese.radio.util.MyBaseUtil;
@@ -55,8 +52,6 @@ import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMusic;
 import com.umeng.socialize.shareboard.ShareBoardConfig;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -64,17 +59,14 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
-
 
 import static com.binding.model.adapter.AdapterType.select;
 import static com.cheese.radio.ui.Constant.ACTION_BUTTON;
 import static com.cheese.radio.ui.Constant.BUTTON_CANCEL_ID;
 import static com.cheese.radio.ui.Constant.BUTTON_NEXT_ID;
 import static com.cheese.radio.ui.Constant.BUTTON_PALY_ID;
-
 import static com.cheese.radio.ui.Constant.INTENT_BUTTONID_TAG;
 
 /**

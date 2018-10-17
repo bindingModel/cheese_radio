@@ -1,7 +1,6 @@
 package com.cheese.radio.ui.home.page.entity;
 
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.view.View;
 
 import com.binding.model.App;

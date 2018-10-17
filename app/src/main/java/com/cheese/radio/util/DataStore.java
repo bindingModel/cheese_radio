@@ -1,7 +1,5 @@
 package com.cheese.radio.util;
 
-import javax.inject.Inject;
-
 /**
  * Created by 29283 on 2018/4/8.
  */

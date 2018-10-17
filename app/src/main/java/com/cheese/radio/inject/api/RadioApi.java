@@ -1,15 +1,15 @@
 package com.cheese.radio.inject.api;
 
 import com.cheese.radio.base.InfoEntity;
-import com.cheese.radio.ui.home.CanBookParams;
 import com.cheese.radio.ui.home.CanBookData;
+import com.cheese.radio.ui.home.CanBookParams;
 import com.cheese.radio.ui.home.circle.CircleDateEntity;
 import com.cheese.radio.ui.home.circle.DateDetailParams;
 import com.cheese.radio.ui.home.circle.join.JoinCircleDetailParams;
 import com.cheese.radio.ui.home.clock.ClockEnrollEntity;
 import com.cheese.radio.ui.home.clock.CourseTypeInfoEntity;
-import com.cheese.radio.ui.home.page.RecommanData;
 import com.cheese.radio.ui.home.page.HomePageParams;
+import com.cheese.radio.ui.home.page.RecommanData;
 import com.cheese.radio.ui.home.page.entity.CategoryEntity;
 import com.cheese.radio.ui.media.anchor.AnchorData;
 import com.cheese.radio.ui.media.anchor.AnchorParams;
@@ -33,24 +33,22 @@ import com.cheese.radio.ui.search.params.HotSearchParams;
 import com.cheese.radio.ui.startup.check.VersionEntity;
 import com.cheese.radio.ui.startup.check.VersionParams;
 import com.cheese.radio.ui.user.UserEntity;
+import com.cheese.radio.ui.user.calendar.CalendarEntity;
 import com.cheese.radio.ui.user.calendar.CancelBookParams;
+import com.cheese.radio.ui.user.calendar.ClassCalendarParams;
+import com.cheese.radio.ui.user.demo.DemoData;
 import com.cheese.radio.ui.user.enroll.AliEntity;
 import com.cheese.radio.ui.user.enroll.CreateOrderWXEntity;
 import com.cheese.radio.ui.user.enroll.params.ClassPlaceParams;
 import com.cheese.radio.ui.user.enroll.params.CreateOrderParams;
-import com.cheese.radio.ui.user.my.course.MyCourseEntity;
-import com.cheese.radio.ui.user.params.AddFavorityParams;
-import com.cheese.radio.ui.user.calendar.CalendarEntity;
-import com.cheese.radio.ui.user.calendar.ClassCalendarParams;
-import com.cheese.radio.ui.user.demo.DemoData;
 import com.cheese.radio.ui.user.login.entity.PlatformEntity;
+import com.cheese.radio.ui.user.login.entity.SignUserEntity;
 import com.cheese.radio.ui.user.login.params.MyInfoParams;
-
 import com.cheese.radio.ui.user.login.params.PlatformParams;
 import com.cheese.radio.ui.user.login.params.SignParams;
 import com.cheese.radio.ui.user.login.params.SmsParams;
-import com.cheese.radio.ui.user.login.entity.SignUserEntity;
 import com.cheese.radio.ui.user.my.course.MyCourseData;
+import com.cheese.radio.ui.user.my.course.MyCourseEntity;
 import com.cheese.radio.ui.user.my.course.MyCourseParams;
 import com.cheese.radio.ui.user.my.favority.MyFavorityData;
 import com.cheese.radio.ui.user.my.favority.MyFavorityParams;
@@ -61,6 +59,7 @@ import com.cheese.radio.ui.user.my.push.NewMessageCountData;
 import com.cheese.radio.ui.user.my.push.NewMessageCountParams;
 import com.cheese.radio.ui.user.my.work.MyWorkEntity;
 import com.cheese.radio.ui.user.my.work.MyWorkParams;
+import com.cheese.radio.ui.user.params.AddFavorityParams;
 import com.cheese.radio.ui.user.params.FabulousParams;
 import com.cheese.radio.ui.user.phone.BindPhoneParams;
 import com.cheese.radio.ui.user.product.list.ProductsEntity;
@@ -72,7 +71,6 @@ import com.cheese.radio.ui.user.profile.ProfileParams;
 import com.cheese.radio.ui.user.register.UserInfoParams;
 
 import java.util.List;
-
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;

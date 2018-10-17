@@ -1,7 +1,6 @@
 package com.cheese.radio.ui.media.group.fragment.story;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;

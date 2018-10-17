@@ -1,10 +1,7 @@
 package com.cheese.radio.ui.media.group.fragment.introduce;
 
 import android.databinding.ObservableField;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
 
@@ -13,7 +10,6 @@ import com.binding.model.model.ViewModel;
 import com.cheese.radio.R;
 import com.cheese.radio.databinding.FragmentGroupBriefIntroductionBinding;
 import com.cheese.radio.ui.Constant;
-import com.cheese.radio.ui.media.group.GroupInfoModel;
 import com.cheese.radio.util.MyBaseUtil;
 
 import javax.inject.Inject;

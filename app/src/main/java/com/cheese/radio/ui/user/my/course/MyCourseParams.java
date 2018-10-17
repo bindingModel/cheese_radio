@@ -1,6 +1,5 @@
 package com.cheese.radio.ui.user.my.course;
 
-import com.cheese.radio.base.IkeParams;
 import com.cheese.radio.inject.api.ContentParams;
 
 /**

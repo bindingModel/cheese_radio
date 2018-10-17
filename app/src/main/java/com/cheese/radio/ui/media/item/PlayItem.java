@@ -4,7 +4,6 @@ import android.view.View;
 
 import com.binding.model.model.ModelView;
 import com.cheese.radio.R;
-import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.ui.service.AudioServiceUtil;
 
 /**

@@ -1,6 +1,5 @@
 package com.cheese.radio.ui.home.clock;
 
-import com.cheese.radio.base.cycle.BaseActivity;
 import com.cheese.radio.base.cycle.BaseFragment;
 
 /**

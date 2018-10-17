@@ -20,9 +20,7 @@ import com.binding.model.layout.rotate.TimeEntity;
 import com.binding.model.layout.rotate.TimeUtil;
 import com.binding.model.model.ViewModel;
 import com.binding.model.util.BaseUtil;
-import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.service.AudioServiceUtil;
-import com.cheese.radio.util.MyBaseUtil;
 
 import java.util.ArrayList;
 import java.util.List;

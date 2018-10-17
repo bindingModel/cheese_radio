@@ -3,8 +3,10 @@ package com.cheese.radio.base.glide;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
+
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+
 import java.security.MessageDigest;
 /**
  * Created by yukuoyuan on 2017/9/29.
