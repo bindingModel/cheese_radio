@@ -407,7 +407,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         return PendingIntent.getActivity(App.getCurrentActivity(), 1, new Intent(), flags);
     }
 
-    public void onAnchorCLick(View view) {
+    public void onAnchorClick(View view) {
         Bundle bundle = new Bundle();
         bundle.putInt(Constant.authorId, getEntity().getAnchorId());
         ARouterUtil.navigation(ActivityComponent.Router.author, bundle);

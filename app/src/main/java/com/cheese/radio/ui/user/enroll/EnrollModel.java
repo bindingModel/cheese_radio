@@ -167,7 +167,8 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
     public void onEnrollClick(View view) {
         params.setAddress(mCity.get());
         params.setPayType(currentItem.get());
-        params.setAgeRange(mAge.get());
+//         去除选择年龄段的逻辑
+//        params.setAgeRange(mAge.get());
         params.setBirthday(mDate.get());
        //创建订单
         if (!params.isLeagal(view)) return;

@@ -155,10 +155,11 @@ public class CreateOrderParams extends IkeParams {
             BaseUtil.toast("家庭住址还未选取");
             return false;
         }
-        if (TextUtils.isEmpty(ageRange)) {
-            BaseUtil.toast("没有选择年龄段");
-            return false;
-        }
+//         去除选择年龄段的逻辑
+//        if (TextUtils.isEmpty(ageRange)) {
+//            BaseUtil.toast("没有选择年龄段");
+//            return false;
+//        }
         if (productId == 0) {
             BaseUtil.toast("选择一下套餐");
             return false;

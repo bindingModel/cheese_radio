@@ -15,6 +15,7 @@ import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
+import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.course;
@@ -261,7 +262,14 @@ public class MyCourseEntity extends ViewInflateRecycler {
                 default:return App.getDrawable(R.drawable.my_class_type_finish_bg);
             }
         }
-
+    /**
+     * 查看主播详情
+     */
+    public void onAnchorClick(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(Constant.authorId, this.getTeacherId());
+        ARouterUtil.navigation(ActivityComponent.Router.author, bundle);
+    }
 }
 
 

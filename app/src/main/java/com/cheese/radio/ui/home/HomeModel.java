@@ -86,8 +86,12 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
         checkFragment(position);
     }
 
-    private void checkFragment(int position) {
-        if (position < 0 || position >= list.size()) return;
+    public void setCurrentItem(Integer position){
+        currentItem.set(position);
+    }
+
+    private void checkFragment(Integer position) {
+        if (position < 0 || position >= list.size() ||position ==currentTab) return;
         FragmentTransaction ft = fm.beginTransaction();
         //UI建议不要设置这个转场动画
 //        if (position < currentTab)

@@ -106,4 +106,6 @@
     <string name="activity_enroll">活动报名</string>
     <string name="cheese_clock">芝士闹钟</string>
     <string name="look">查看</string>
+    <string name="have_enroll_tip">已经报名，请勿重复报名</string>
+    <string name="un_enroll_tip">请先报名再预约课程</string>
 </resources>

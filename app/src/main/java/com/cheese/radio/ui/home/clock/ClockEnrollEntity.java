@@ -8,6 +8,7 @@ import com.binding.model.App;
 import com.binding.model.Config;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
+import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.inject.component.ActivityComponent;
@@ -136,13 +137,19 @@ public class ClockEnrollEntity extends ViewInflateRecycler {
         ARouterUtil.navigation(ActivityComponent.Router.activityDetail,bundle);
     }
     public void onEnrollClick(View view){
-        if(!pao)return;
+        if(!pao){
+            BaseUtil.toast(view.getContext().getString(R.string.have_enroll_tip));
+            return;
+        }
         Bundle bundle = new Bundle();
         bundle.putInt(Constant.courseTypeId,id);
         ARouterUtil.navigation(ActivityComponent.Router.enroll,bundle);
     }
     public void onBookClick(View view){
-        if(!maa)return;
+        if(!maa){
+            BaseUtil.toast(view.getContext().getString(R.string.un_enroll_tip));
+            return;
+        }
         Bundle bundle =new Bundle();
         bundle.putInt(Constant.courseTypeId,id);
         bundle.putString(Config.title,name);
