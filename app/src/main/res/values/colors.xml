@@ -21,4 +21,5 @@
     <color name="colorAlpha">#00FFFFFF</color>
     <color name="light_gray">#F6F6F6</color>
     <color name="beerRed">#F91659</color>
+    <color name="head_gray">#666666</color>
 </resources>

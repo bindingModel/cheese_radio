@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -20,72 +22,85 @@
             android:layout_width="96dp"
             android:layout_height="80dp" />
 
-        <LinearLayout
-            android:layout_width="0dp"
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            android:background="@drawable/normal_bottom_line"
-            android:orientation="vertical"
-            android:padding="5dp">
+            android:background="@drawable/normal_bottom_line">
 
             <TextView
+                android:id="@+id/title_view"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="12dp"
                 android:layout_weight="1"
                 android:text="@{vm.className,default=123456789}"
                 android:textColor="@color/text_black"
-                android:textSize="14.4sp" />
+                android:textSize="14.4sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:orientation="horizontal">
-               <TextView
-                   android:id="@+id/touch_text"
-                   android:layout_width="0dp"
-                   android:layout_weight="1"
-                   android:layout_height="wrap_content"
-                   android:text="@{vm.finishText,default=12345}"
-                   android:textSize="11sp" />
+            <TextView
+                android:id="@+id/touch_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:text="@{vm.finishText,default=12345}"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_view" />
 
-               <TextView
-                   android:id="@+id/book_text"
-                   android:layout_width="0dp"
-                   android:layout_weight="1"
-                   android:layout_height="wrap_content"
-                   android:layout_marginBottom="8dp"
-                   android:text="@{vm.bookText,default=54321}"
-                   android:textSize="11sp" />
+            <TextView
+                android:id="@+id/book_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:text="@{vm.bookText,default=54321}"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/touch_text" />
 
-               <TextView
-                   android:id="@+id/surplus_text"
-                   android:layout_width="0dp"
-                   android:layout_weight="1"
-                   android:layout_height="wrap_content"
-                   android:layout_marginBottom="8dp"
-                   android:text="@{vm.surplusText,default=12345}"
-                   android:textSize="11sp" />
+            <TextView
+                android:id="@+id/surplus_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:text="@{vm.surplusText,default=12345}"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/book_text" />
 
-           </LinearLayout>
-        </LinearLayout>
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:background="@drawable/normal_bottom_line"
-            android:paddingRight="15dp"
-            android:paddingLeft="15dp"
-            android:onClick="@{vm::onCheckInfoClick}"
-            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/touch_view"
+                android:layout_width="50dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="48dp"
+                android:background="@drawable/my_class_type_book_bg"
+                android:gravity="center"
+                android:onClick="@{vm::onCheckInfoClick}"
+                android:text="@string/look"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
 
-        <TextView
-            android:layout_width="40dp"
-            android:layout_height="20dp"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:text="@string/look"
-            android:textSize="11sp"
-            android:textColor="@color/white"
-            android:background="@drawable/my_class_type_book_bg" />
-        </FrameLayout>
     </LinearLayout>
 </layout>
