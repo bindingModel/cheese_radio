@@ -218,14 +218,14 @@ public class MyCourseEntity extends ViewInflateRecycler {
         return builder.toString();
     }
     public String getClassCount(){
-        return "已上课程数： "+complete;
+        return "已上课时： "+complete;
     }
-    SpannableStringBuilder touchText;
-    public SpannableStringBuilder getTouchText() {
-        if (touchText == null) {
+    SpannableStringBuilder finishText;
+    public SpannableStringBuilder getFinishText() {
+        if (finishText == null) {
             String msg =getClassCount();
-            touchText = new SpannableStringBuilder();
-            touchText.append(getClassCount());
+            finishText = new SpannableStringBuilder();
+            finishText.append(getClassCount());
             ClickableSpan createClick = new ClickableSpan() {
                 @Override
                 public void onClick(View view) {
@@ -236,18 +236,42 @@ public class MyCourseEntity extends ViewInflateRecycler {
                 public void updateDrawState(TextPaint ds) {
                     ds.setColor(ds.linkColor);
                     ds.setUnderlineText(false);
-                    ds.setTextSize(ds.getTextSize()+10);
                 }
             };
             String touchContent=String.valueOf(complete);
             int index = msg.indexOf(touchContent);
-            touchText.setSpan(createClick, index,index+touchContent.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            finishText.setSpan(createClick, index,index+touchContent.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
-        return touchText;
+        return finishText;
+    }
+    private SpannableStringBuilder bookText;
+    public SpannableStringBuilder getBookText() {
+       String content =  "已预约课时： "+40;
+        if (bookText == null) {
+            bookText = new SpannableStringBuilder();
+            bookText.append(content);
+            ClickableSpan createClick = new ClickableSpan() {
+                @Override
+                public void onClick(View view) {
+                    onCheckInfoClick(view);
+                }
+
+                @Override
+                public void updateDrawState(TextPaint ds) {
+                    ds.setColor(App.getColor(R.color.vk_share_blue_color));
+                    ds.setUnderlineText(false);
+                }
+            };
+            String touchContent=String.valueOf(40);
+            int index = content.indexOf(touchContent);
+            bookText.setSpan(createClick, index,index+touchContent.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        return bookText;
     }
     public String getSurplusText(){
-        return "剩余课程数： "+surplus;
+        return "剩余课时： "+surplus;
     }
+
     public void onCheckInfoClick(View view) {
 //        BaseUtil.toast("跳转到哪里");
         Bundle bundle=new Bundle();

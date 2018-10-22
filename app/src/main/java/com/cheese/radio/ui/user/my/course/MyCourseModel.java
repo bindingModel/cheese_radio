@@ -78,9 +78,15 @@ public class MyCourseModel extends RecyclerModel<MyCourseActivity, ActivityMyCou
         if(defView!=null)return;
         defView = LayoutInflater.from(getT()).inflate(R.layout.default_page, getDataBinding().rootView, false);
         ImageView imageView = defView.findViewById(R.id.imageView);
+        imageView.setImageDrawable(App.getDrawable(R.mipmap.nopic));
         TextView textView = defView.findViewById(R.id.textView);
         DataBindingAdapter.setText(textView,getTouchText());
         getDataBinding().rootView.addView(defView,1);
+        TextView touchGo=defView.findViewById(R.id.touch_go);
+        touchGo.setOnClickListener(v -> {
+            Model.dispatchModel("setCurrentItem",1);
+           this.finish();
+        });
         defView.setVisibility(View.GONE);
     }
 
@@ -100,9 +106,8 @@ public class MyCourseModel extends RecyclerModel<MyCourseActivity, ActivityMyCou
                 }
                 @Override
                 public void updateDrawState(TextPaint ds) {
-                    ds.setColor(App.getColor(R.color.text_yellow));
+//                    ds.setColor(App.getColor(R.color.text_red));
                     ds.setUnderlineText(false);
-                    ds.setTextSize(ds.getTextSize()+10);
                 }
             };
             String touchContent=String.valueOf("快快预约吧！");

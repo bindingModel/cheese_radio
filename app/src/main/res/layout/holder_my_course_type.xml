@@ -37,20 +37,37 @@
                 android:textColor="@color/text_black"
                 android:textSize="14.4sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{vm.touchText,default=12345}"
-                android:textColor="@color/text_gray"
-                android:textSize="12.48sp" />
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal">
+               <TextView
+                   android:id="@+id/touch_text"
+                   android:layout_width="0dp"
+                   android:layout_weight="1"
+                   android:layout_height="wrap_content"
+                   android:text="@{vm.finishText,default=12345}"
+                   android:textSize="11sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="@{vm.surplusText,default=1234576}"
-                android:textSize="12.48sp" />
+               <TextView
+                   android:id="@+id/book_text"
+                   android:layout_width="0dp"
+                   android:layout_weight="1"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="8dp"
+                   android:text="@{vm.bookText,default=54321}"
+                   android:textSize="11sp" />
 
+               <TextView
+                   android:id="@+id/surplus_text"
+                   android:layout_width="0dp"
+                   android:layout_weight="1"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="8dp"
+                   android:text="@{vm.surplusText,default=12345}"
+                   android:textSize="11sp" />
+
+           </LinearLayout>
         </LinearLayout>
         <FrameLayout
             android:layout_width="wrap_content"

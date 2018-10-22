@@ -194,7 +194,8 @@ public class DataBindingAdapter {
         RequestOptions options2 = new RequestOptions()
                 .fitCenter()
                 .priority(Priority.HIGH)//优先级
-                .error(App.getDrawable(R.mipmap.my_class))
+                .placeholder(R.mipmap.my_class)
+                .error(R.mipmap.my_class)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)//缓存策略
                 .transform(new RoundedCorners(3));//转化为圆角
         Glide.with(context)
