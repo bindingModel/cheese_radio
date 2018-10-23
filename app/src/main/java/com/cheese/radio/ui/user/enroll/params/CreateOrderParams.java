@@ -27,7 +27,7 @@ public class CreateOrderParams extends IkeParams {
     private String birthday;
     private String phone;
     private String address;
-    private String ageRange;
+    private String ageRange="4~5";
     private int productId;
     private String payType;
     private int fieldId;

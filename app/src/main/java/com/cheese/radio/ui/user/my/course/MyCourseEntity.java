@@ -68,6 +68,7 @@ public class MyCourseEntity extends ViewInflateRecycler {
     private String name;
     private int id;
     private int complete;
+    private int appointing;
     /**
      * classId : 920
      * teacherId : 17
@@ -83,6 +84,14 @@ public class MyCourseEntity extends ViewInflateRecycler {
      */
     private String courseState;
     private String startTime;
+
+    public int getAppointing() {
+        return appointing;
+    }
+
+    public void setAppointing(int appointing) {
+        this.appointing = appointing;
+    }
 
     public String getCourseState() {
         return courseState;
@@ -246,7 +255,7 @@ public class MyCourseEntity extends ViewInflateRecycler {
     }
     private SpannableStringBuilder bookText;
     public SpannableStringBuilder getBookText() {
-       String content =  "已预约课时： "+40;
+       String content =  "已预约课时： "+appointing;
         if (bookText == null) {
             bookText = new SpannableStringBuilder();
             bookText.append(content);
@@ -262,7 +271,7 @@ public class MyCourseEntity extends ViewInflateRecycler {
                     ds.setUnderlineText(false);
                 }
             };
-            String touchContent=String.valueOf(40);
+            String touchContent=String.valueOf(appointing);
             int index = content.indexOf(touchContent);
             bookText.setSpan(createClick, index,index+touchContent.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
