@@ -295,6 +295,7 @@ public class CalendarEntity extends ViewInflateRecycler {
     public void onCourseClick(View view) {
         Bundle bundle = new Bundle();
         bundle.putInt(Constant.classId, classId);
+        bundle.putString(Constant.bookId,bookId);
         ARouterUtil.navigation(ActivityComponent.Router.coursedetails, bundle);
     }
 

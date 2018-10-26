@@ -1,6 +1,7 @@
 package com.cheese.radio.ui.media.course.details;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.binding.model.model.ModelView;
@@ -36,6 +37,7 @@ public class CourseDetailsModel extends ViewHttpModel<CourseDetailsActivity, Act
 
     private CourseDetailsParams params = new CourseDetailsParams("classInfo");
     private Integer classId;
+    private String bookId;
     @Inject
     RadioApi api;
 
@@ -43,6 +45,11 @@ public class CourseDetailsModel extends ViewHttpModel<CourseDetailsActivity, Act
     public void attachView(Bundle savedInstanceState, CourseDetailsActivity courseDetailsActivity) {
         super.attachView(savedInstanceState, courseDetailsActivity);
         classId = getT().getIntent().getIntExtra(Constant.classId, 0);
+        bookId = courseDetailsActivity.getIntent().getStringExtra(Constant.bookId);
+        if(!TextUtils.isEmpty(bookId)){
+            getDataBinding().enroll.setText(courseDetailsActivity.getString(R.string.have_book));
+            getDataBinding().enroll.setEnabled(false);
+        }
         if (classId != 0) {
             params.setClassId(classId);
             setRcHttp((offset1, refresh) -> api.getClassInfo(params).compose(new RestfulTransformer<>()));

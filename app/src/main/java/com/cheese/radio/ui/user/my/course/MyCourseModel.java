@@ -135,7 +135,7 @@ public class MyCourseModel extends RecyclerModel<MyCourseActivity, ActivityMyCou
             @Override
             public void onClick(View view) {
                 Model.dispatchModel("setCurrentItem", 1);
-                finish();
+                App.finish(MyCourseActivity.class);
             }
 
             @Override

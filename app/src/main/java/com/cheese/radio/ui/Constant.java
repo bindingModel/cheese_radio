@@ -56,5 +56,6 @@ public interface Constant {
     String activityInfo = "activityInfo";
     String courseTypeInfo = "courseTypeInfo";
     String courseTypeId = "courseTypeId";
+    String bookId = "bookId";
 }
 
