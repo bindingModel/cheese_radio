@@ -7,8 +7,10 @@ import com.binding.model.data.save.SharePreferenceUtil;
 import com.binding.model.model.inter.Model;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.ui.Constant;
+import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.user.profile.ProfileParams;
 import com.cheese.radio.ui.user.register.UserInfoParams;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.login;
 import static com.cheese.radio.ui.Constant.logout;
@@ -58,6 +60,7 @@ public class User {
         isLogin = userEntity.isLogin();
         ARouterUtil.navigation(login);
         Model.dispatchModel(logout);
+        IkeApplication.logout(SHARE_MEDIA.WEIXIN);
     }
 
     public void setUserEntity(UserEntity entity) {

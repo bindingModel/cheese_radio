@@ -12,12 +12,14 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.cycle.BaseActivity;
+import com.cheese.radio.ui.IkeApplication;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareConfig;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import java.util.Map;
@@ -34,13 +36,7 @@ public class LoginActivity extends BaseActivity<LoginModel> implements UMAuthLis
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-//        String wechat_AppID = getResources().getString(R.string.umeng_wechat_AppID);
-//        String wechat_AppSecret = getResources().getString(R.string.wechat_AppSecret);
-//        iwxapi = WXAPIFactory.createWXAPI(this,wechat_AppID, false);
-//        iwxapi.registerApp(wechat_AppID);
-//        PlatformConfig.setWeixin(wechat_AppID, wechat_AppSecret);
-//        UMConfigure.setLogEnabled(true);
-//        UMConfigure.init(this, "", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
+
 //        请查看你的build.gradle文件，如果 targetSdkVersion小于或等于22，可以忽略这一步，如果大于或等于23，需要做权限的动态申请：
         if (Build.VERSION.SDK_INT >= 23) {
             String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CALL_PHONE, Manifest.permission.READ_LOGS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.SET_DEBUG_APP, Manifest.permission.SYSTEM_ALERT_WINDOW, Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS};
@@ -51,15 +47,21 @@ public class LoginActivity extends BaseActivity<LoginModel> implements UMAuthLis
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        if (iwxapi != null)
-//            iwxapi.unregisterApp();
-//        iwxapi = null;
+        if (iwxapi != null)
+            iwxapi.unregisterApp();
+        iwxapi = null;
+        IkeApplication.logout(SHARE_MEDIA.WEIXIN);
     }
 
     public void onWechatClick(View view) {
-
-//        UMShareAPI.get(this).deleteOauth(this,SHARE_MEDIA.WEIXIN,this);
+        UMShareAPI.get(this).deleteOauth(this,SHARE_MEDIA.WEIXIN,this);
+        String wechat_AppID = getResources().getString(R.string.umeng_wechat_AppID);
+        String wechat_AppSecret = getResources().getString(R.string.umeng_wechat_AppSecret);
+        IkeApplication.registerWX(wechat_AppID,wechat_AppSecret);
         if (UMShareAPI.get(this).isInstall(this, SHARE_MEDIA.WEIXIN)) {
+            UMShareConfig config = new UMShareConfig();
+            config.isNeedAuthOnGetUserInfo(true);
+            UMShareAPI.get(this).setShareConfig(config);
             UMShareAPI.get(this).doOauthVerify(this, SHARE_MEDIA.WEIXIN, this);
         } else {
             BaseUtil.toast(this, "您还未安装微信客户端");

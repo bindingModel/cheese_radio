@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cheese.radio.R;
 import com.cheese.radio.base.cycle.BaseActivity;
+import com.cheese.radio.ui.IkeApplication;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.umeng.commonsdk.UMConfigure;
@@ -24,20 +25,30 @@ public class EnrollActivity extends BaseActivity<EnrollModel> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         String wechat_AppID = getResources().getString(R.string.wechat_AppID);
         String wechat_AppSecret = getResources().getString(R.string.wechat_AppSecret);
         iwxapi = WXAPIFactory.createWXAPI(this,wechat_AppID, false);
         iwxapi.registerApp(wechat_AppID);
-        PlatformConfig.setWeixin(wechat_AppID, wechat_AppSecret);
-        UMConfigure.setLogEnabled(true);
-        UMConfigure.init(this, "", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
+        IkeApplication.registerWX(wechat_AppID,wechat_AppSecret);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (iwxapi != null) iwxapi.unregisterApp();
+        iwxapi = null;
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (iwxapi != null) iwxapi.unregisterApp();
-        iwxapi = null;
+
     }
 
     public IWXAPI getIwxapi() {
