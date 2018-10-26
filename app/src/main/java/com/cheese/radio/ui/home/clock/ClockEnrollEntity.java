@@ -99,7 +99,10 @@ public class ClockEnrollEntity extends ViewInflateRecycler {
     }
 
     public String getPosition() {
-        return code.substring(2);
+        StringBuilder builder =new StringBuilder();
+        if(getHolder_position()<9)builder.append("0");
+        builder.append(getHolder_position()+1);
+        return builder.toString();
     }
 
     public String getTitle() {
@@ -114,13 +117,13 @@ public class ClockEnrollEntity extends ViewInflateRecycler {
         }*/
     }
     public Drawable getTitleBg(){
-        switch (code){
-            case "T001":return App.getDrawable(R.mipmap.tyk);
-            case "T002":return App.getDrawable(R.mipmap.bzk);
-            case "T003":return App.getDrawable(R.mipmap.zsk);
-            case "T004":return App.getDrawable(R.mipmap.qs);
-            case "T005":return App.getDrawable(R.mipmap.sbk);
-            default:return null;
+        switch (name){
+            case "一元体验课":return App.getDrawable(R.mipmap.tyk);
+            case "标准课":return App.getDrawable(R.mipmap.bzk);
+            case "芝士妈妈课":return App.getDrawable(R.mipmap.zsk);
+            case "趣声社":return App.getDrawable(R.mipmap.qs);
+            case "声宝课":return App.getDrawable(R.mipmap.sbk);
+            default:return App.getDrawable(R.mipmap.tyk);
         }
     }
     public Drawable getPao(){

@@ -23,7 +23,7 @@ public class PlayActivity extends BaseActivity<PlayModel> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String wechat_AppID = getResources().getString(R.string.umeng_wechat_AppID);
+        String wechat_AppID = getResources().getString(R.string.wechat_AppID);
         String wechat_AppSecret = getResources().getString(R.string.wechat_AppSecret);
         iwxapi = WXAPIFactory.createWXAPI(this,wechat_AppID, false);
         iwxapi.registerApp(wechat_AppID);

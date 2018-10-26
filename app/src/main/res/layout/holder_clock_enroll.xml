@@ -8,106 +8,111 @@
             type="com.cheese.radio.ui.home.clock.ClockEnrollEntity" />
         <import type="android.view.View"/>
     </data>
-
-    <LinearLayout
+    <FrameLayout
+        android:paddingTop="15dp"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/clock_enroll_item_height"
-        android:orientation="vertical">
-
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@{vm.titleBg}}" />
-
-            <TextView
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_gravity="bottom"
-                android:gravity="center"
-                android:text="@{vm.position,default=13}"
-                android:textColor="@color/white"
-                android:textSize="13sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_gravity="bottom"
-                android:gravity="center"
-                android:text="@{vm.title,default=123456}"
-                android:textColor="@color/text_black" />
-        </FrameLayout>
-
-        <TextView
+        android:layout_height="wrap_content">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@{vm.brief,default=1234567}" />
+            android:layout_height="@dimen/clock_enroll_item_height"
+            android:orientation="vertical">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@mipmap/gz" />
-
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:layout_gravity="center_horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="@{vm::onInfoClick}"
-                    android:src="@mipmap/ck" />
+                    android:src="@{vm.titleBg}}" />
+
+                <TextView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="bottom"
+                    android:gravity="center"
+                    android:text="@{vm.position,default=13}"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_gravity="bottom"
+                    android:gravity="center"
+                    android:text="@{vm.title,default=123456}"
+                    android:textColor="@color/text_black" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@{vm.brief,default=1234567}" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/gz" />
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="13dp"
-                    android:layout_marginLeft="13dp"
-                    android:layout_marginEnd="13dp"
-                    android:layout_marginRight="13dp"
-                    android:onClick="@{vm::onEnrollClick}"
-                    android:src="@{vm.pao}" />
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="@{vm::onBookClick}"
-                        android:src="@{vm.maa}" />
-                    <TextView
-                        android:layout_width="14dp"
-                        android:layout_height="14dp"
-                        android:gravity="center"
-                        android:textSize="10sp"
-                        android:layout_marginBottom="20dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_gravity="top|end"
-                        android:textColor="@color/beerRed"
-                        android:background="@drawable/clock_tip_white_bg"
-                        android:visibility="@{vm.number==0?View.GONE:View.VISIBLE}"
-                        android:text="@{String.valueOf(vm.number),default=1}"
-                        />
-                </FrameLayout>
-            </LinearLayout>
-        </FrameLayout>
-    </LinearLayout>
+                        android:onClick="@{vm::onInfoClick}"
+                        android:src="@mipmap/ck" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="13dp"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginEnd="13dp"
+                        android:layout_marginRight="13dp"
+                        android:onClick="@{vm::onEnrollClick}"
+                        android:src="@{vm.pao}" />
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{vm::onBookClick}"
+                            android:src="@{vm.maa}" />
+                        <TextView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:gravity="center"
+                            android:textSize="10sp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_gravity="top|end"
+                            android:textColor="@color/beerRed"
+                            android:background="@drawable/clock_tip_white_bg"
+                            android:visibility="@{vm.number==0?View.GONE:View.VISIBLE}"
+                            android:text="@{String.valueOf(vm.number),default=1}"
+                            />
+                    </FrameLayout>
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+
+    </FrameLayout>
 </layout>
