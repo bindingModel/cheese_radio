@@ -9,7 +9,7 @@ import com.cheese.radio.inject.module.DataModule;
 import com.cheese.radio.inject.module.NetWorkModule;
 import com.cheese.radio.inject.qualifier.context.AppContext;
 import com.cheese.radio.inject.scope.ApplicationScope;
-import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.CheeseApplication;
 
 import dagger.Component;
 
@@ -28,7 +28,7 @@ import dagger.Component;
 @ApplicationScope
 @Component(modules={AppModule.class, NetWorkModule.class,DataModule.class})
 public interface AppComponent {
-    void inject(IkeApplication application);
+    void inject(CheeseApplication application);
 
     @AppContext
     Context context();

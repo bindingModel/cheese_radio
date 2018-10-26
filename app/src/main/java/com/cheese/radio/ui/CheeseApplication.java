@@ -2,7 +2,6 @@ package com.cheese.radio.ui;
 
 import android.support.multidex.MultiDexApplication;
 import android.support.v7.app.AppCompatDelegate;
-import android.widget.Toast;
 
 import com.binding.model.App;
 import com.binding.model.util.BaseUtil;
@@ -16,7 +15,6 @@ import com.cheese.radio.inject.component.AppComponent;
 import com.cheese.radio.inject.component.DaggerAppComponent;
 import com.cheese.radio.inject.module.AppModule;
 import com.cheese.radio.ui.user.User;
-import com.cheese.radio.ui.user.login.LoginActivity;
 import com.cheese.radio.ui.user.login.params.PlatformParams;
 import com.pgyersdk.crash.PgyCrashManager;
 import com.tendcloud.tenddata.TCAgent;
@@ -25,7 +23,6 @@ import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
-import com.umeng.socialize.bean.StatusCode;
 
 import java.util.Map;
 
@@ -36,8 +33,8 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.login;
 /**
  * Created by apple on 2017/6/23.
  */
-public class IkeApplication extends MultiDexApplication {
-    private static IkeApplication application;
+public class CheeseApplication extends MultiDexApplication {
+    private static CheeseApplication application;
     private static AppComponent appComponent;
     private User user;
     @Inject
@@ -66,7 +63,7 @@ public class IkeApplication extends MultiDexApplication {
         TCAgent.setReportUncaughtExceptions(true);
     }
 
-    public static IkeApplication getApp() {
+    public static CheeseApplication getApp() {
         return application;
     }
 

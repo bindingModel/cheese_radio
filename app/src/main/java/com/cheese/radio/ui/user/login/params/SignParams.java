@@ -20,7 +20,7 @@ public class SignParams extends IkeParams {
     private String openId;
     private String otherinfo;
     private String access_token;
-
+    private String openId2;
     public String getAccess_token() {
         return access_token;
     }
@@ -92,5 +92,13 @@ public class SignParams extends IkeParams {
 
     public boolean isValidSMS(TextView view){
         return isValidToast(view, getCodeError(validCode));
+    }
+
+    public String getOpenId2() {
+        return openId2;
+    }
+
+    public void setOpenId2(String openId2) {
+        this.openId2 = openId2;
     }
 }

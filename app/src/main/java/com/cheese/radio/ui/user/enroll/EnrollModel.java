@@ -20,8 +20,8 @@ import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityEnrollBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.component.ActivityComponent;
+import com.cheese.radio.ui.CheeseApplication;
 import com.cheese.radio.ui.Constant;
-import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.user.enroll.params.CreateOrderParams;
 import com.cheese.radio.ui.user.product.list.ProductsEntity;
 import com.cheese.radio.ui.user.product.place.ClassPlaceEntity;
@@ -76,7 +76,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
     @Override
     public void attachView(Bundle savedInstanceState, EnrollActivity enrollActivity) {
         super.attachView(savedInstanceState, enrollActivity);
-        if (!IkeApplication.isLogin(true)) finish();
+        if (!CheeseApplication.isLogin(true)) finish();
        courseTypeId= enrollActivity.getIntent().getIntExtra(Constant.courseTypeId,0);
         setData();
         initView();

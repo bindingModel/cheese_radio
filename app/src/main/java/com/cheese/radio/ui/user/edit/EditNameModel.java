@@ -12,7 +12,7 @@ import com.binding.model.model.ViewModel;
 import com.binding.model.model.inter.Event;
 import com.cheese.radio.R;
 import com.cheese.radio.databinding.ActivityEditNameBinding;
-import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.CheeseApplication;
 
 import javax.inject.Inject;
 
@@ -36,7 +36,7 @@ public class EditNameModel extends ViewModel<EditNameActivity, ActivityEditNameB
     @Override
     public void attachView(Bundle savedInstanceState, EditNameActivity editNameActivity) {
         super.attachView(savedInstanceState, editNameActivity);
-        name.set(IkeApplication.getUser().getUserEntity().getNickName());
+        name.set(CheeseApplication.getUser().getUserEntity().getNickName());
         getDataBinding().editName.addTextChangedListener(this);
 
     }

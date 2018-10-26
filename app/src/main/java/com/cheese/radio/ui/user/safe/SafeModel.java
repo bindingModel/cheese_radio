@@ -12,7 +12,7 @@ import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.databinding.ActivitySafeBinding;
 import com.cheese.radio.inject.component.ActivityComponent;
-import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.CheeseApplication;
 
 import javax.inject.Inject;
 
@@ -36,10 +36,10 @@ public class SafeModel extends ViewHttpModel<SafeActivity,ActivitySafeBinding,Ob
     }
 
     private void upDataUI(){
-        String phone=IkeApplication.getUser().getUserEntity().getMobile();
+        String phone=CheeseApplication.getUser().getUserEntity().getMobile();
        if(!TextUtils.isEmpty(phone)) phone=phone.substring(0,3)+"****"+phone.substring(7,11);
         phoneNumber.set(phone);
-        havaPhoneNumber.set(!TextUtils.isEmpty(IkeApplication.getUser().getUserEntity().getMobile()));
+        havaPhoneNumber.set(!TextUtils.isEmpty(CheeseApplication.getUser().getUserEntity().getMobile()));
 
    }
 }

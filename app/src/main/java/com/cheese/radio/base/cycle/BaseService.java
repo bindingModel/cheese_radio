@@ -8,7 +8,7 @@ import android.support.annotation.Nullable;
 import com.binding.model.util.ReflectUtil;
 import com.cheese.radio.inject.component.DaggerServiceComponent;
 import com.cheese.radio.inject.component.ServiceComponent;
-import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.CheeseApplication;
 
 import java.lang.reflect.Method;
 
@@ -42,7 +42,7 @@ public abstract class BaseService extends Service {
     public ServiceComponent getComponent() {
         if (component == null) {
             component = DaggerServiceComponent.builder()
-                    .appComponent(IkeApplication.getAppComponent())
+                    .appComponent(CheeseApplication.getAppComponent())
                     .build();
         }
         return component;

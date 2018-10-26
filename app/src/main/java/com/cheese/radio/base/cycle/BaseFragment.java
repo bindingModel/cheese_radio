@@ -13,7 +13,7 @@ import com.binding.model.util.ReflectUtil;
 import com.cheese.radio.inject.component.DaggerFragmentComponent;
 import com.cheese.radio.inject.component.FragmentComponent;
 import com.cheese.radio.inject.module.FragmentModule;
-import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.CheeseApplication;
 
 import java.lang.reflect.Method;
 
@@ -74,7 +74,7 @@ public abstract class BaseFragment<VM extends ViewModel> extends DataBindingFrag
     public FragmentComponent getComponent() {
         if (component == null) {
             component = DaggerFragmentComponent.builder()
-                    .appComponent(IkeApplication.getAppComponent())
+                    .appComponent(CheeseApplication.getAppComponent())
                     .fragmentModule(new FragmentModule(this))
                     .build();
         }

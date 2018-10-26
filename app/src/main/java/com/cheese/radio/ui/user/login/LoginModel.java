@@ -15,7 +15,7 @@ import com.cheese.radio.base.rxjava.ErrorTransform;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityLoginBinding;
 import com.cheese.radio.inject.api.RadioApi;
-import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.CheeseApplication;
 import com.cheese.radio.ui.user.login.params.PlatformParams;
 import com.cheese.radio.ui.user.login.params.SignParams;
 import com.cheese.radio.ui.user.login.params.SmsParams;
@@ -124,8 +124,9 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
         SignParams params = new SignParams("login");
         params.setLoginType("weixin");
         params.setOpenId(map.get("uid"));
+        params.setOpenId2(map.get("openid"));
         Map<String,String> infoMap=new HashMap<>();
-        infoMap.put("openid",map.get("uid"));
+        infoMap.put("openid",map.get("openid"));
         infoMap.put("unionid",map.get("unionid"));
         infoMap.put("scope",map.get("scope"));
         infoMap.put("expires_in",map.get(" expires_in"));
@@ -148,11 +149,11 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
     private void login(SignParams params) {
         addDisposable(api.getToken(params).compose(new RestfulTransformer<>())
                 .subscribe(signUserEntity -> {
-                    IkeApplication.getUser().setToken(signUserEntity.getToken());
+                    CheeseApplication.getUser().setToken(signUserEntity.getToken());
                     if (signUserEntity.getNewX() == 0) {
                         ARouterUtil.navigation(home);
                         addDisposable(api.getUserInfo(new UserInfoParams("myInfo")).compose(new RestfulTransformer<>()).subscribe(userEntity -> {
-                            IkeApplication.getUser().setUserEntity(userEntity);
+                            CheeseApplication.getUser().setUserEntity(userEntity);
                         }, BaseUtil::toast));
                     } else ARouterUtil.navigation(registerOne);
                     finish();

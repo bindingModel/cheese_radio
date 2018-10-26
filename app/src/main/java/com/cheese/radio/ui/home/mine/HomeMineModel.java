@@ -18,7 +18,7 @@ import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.FragmentHomeMineBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.component.ActivityComponent;
-import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.CheeseApplication;
 import com.cheese.radio.ui.user.my.push.NewMessageCountParams;
 import com.cheese.radio.ui.user.profile.ProfileParams;
 
@@ -48,7 +48,7 @@ public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineB
     }
 
     public void upDataMsg(){
-        if (IkeApplication.isLogin(true)) {
+        if (CheeseApplication.isLogin(true)) {
             addDisposable(api.getNewMessageCount(new NewMessageCountParams("newMessageCount")).compose(new RestfulTransformer<>())
                     .subscribe(newMessageCountData -> {
                         redTipCount.set(String.valueOf(newMessageCountData.getCount()));
@@ -59,57 +59,57 @@ public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineB
         }else finish();
     }
     public void onLogoutClick(View view) {
-        IkeApplication.getUser().logout();
+        CheeseApplication.getUser().logout();
         this.finish();
     }
 
     public void logout() {
-        getDataBinding().setEntity(IkeApplication.getUser().getUserEntity());
+        getDataBinding().setEntity(CheeseApplication.getUser().getUserEntity());
     }
 
     public void onSetProfileClick(View view) {
-        if (IkeApplication.isLogin(true)) ARouterUtil.navigation(ActivityComponent.Router.profile);
+        if (CheeseApplication.isLogin(true)) ARouterUtil.navigation(ActivityComponent.Router.profile);
         else finish();
     }
 
     @Override
     public int onEvent(View view, Event event, Object... args) {
         ProfileParams params = event instanceof ProfileParams ? (ProfileParams) event : null;
-        if (params != null) IkeApplication.getUser().setUserEntity(params);
-        getDataBinding().setEntity(IkeApplication.getUser().getUserEntity());
+        if (params != null) CheeseApplication.getUser().setUserEntity(params);
+        getDataBinding().setEntity(CheeseApplication.getUser().getUserEntity());
         return 1;
     }
 
     public void onCourseClick(View view) {
-        if (IkeApplication.isLogin(true)) ARouterUtil.navigation(ActivityComponent.Router.course);
+        if (CheeseApplication.isLogin(true)) ARouterUtil.navigation(ActivityComponent.Router.course);
         else finish();
     }
 
     public void onWorkClick(View view) {
-        if (IkeApplication.isLogin(true)) ARouterUtil.navigation(ActivityComponent.Router.work);
+        if (CheeseApplication.isLogin(true)) ARouterUtil.navigation(ActivityComponent.Router.work);
         else finish();
     }
 
     public void onFavotity(View view) {
-        if (IkeApplication.isLogin(true)) ARouterUtil.navigation(ActivityComponent.Router.favority);
+        if (CheeseApplication.isLogin(true)) ARouterUtil.navigation(ActivityComponent.Router.favority);
         else finish();
     }
 
     public void onMessageClick(View view) {
-        if (IkeApplication.isLogin(true)) ARouterUtil.navigation(ActivityComponent.Router.message);
+        if (CheeseApplication.isLogin(true)) ARouterUtil.navigation(ActivityComponent.Router.message);
         else finish();
 
     }
 
     public Drawable getSex() {
-        return IkeApplication.getUser().getUserEntity().getSex().equals("M") ?
+        return CheeseApplication.getUser().getUserEntity().getSex().equals("M") ?
                 App.getDrawable(R.mipmap.boy) : App.getDrawable(R.mipmap.girl);
     }
 
     private void updataUI() {
-        getDataBinding().setEntity(IkeApplication.getUser().getUserEntity());
+        getDataBinding().setEntity(CheeseApplication.getUser().getUserEntity());
         head.set(getSex());
-      if( !TextUtils.isEmpty(IkeApplication.getUser().getUserEntity().getPortrait())) {
+      if( !TextUtils.isEmpty(CheeseApplication.getUser().getUserEntity().getPortrait())) {
             getDataBinding().defHead.setVisibility(View.GONE);
       }
     }
@@ -118,7 +118,7 @@ public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineB
         ARouterUtil.navigation(ActivityComponent.Router.center);
     }
     public void onSafeClick(View view){
-        if(IkeApplication.isLogin(true))
+        if(CheeseApplication.isLogin(true))
         ARouterUtil.navigation(ActivityComponent.Router.safe);
         else finish();
     }

@@ -17,7 +17,7 @@ import com.binding.model.util.ReflectUtil;
 import com.cheese.radio.inject.component.DaggerDialogComponent;
 import com.cheese.radio.inject.component.DialogComponent;
 import com.cheese.radio.inject.component.FragmentComponent;
-import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.CheeseApplication;
 
 import java.lang.reflect.Method;
 
@@ -62,7 +62,7 @@ public class BaseDialog<VM extends ViewModel> extends Dialog implements CycleCon
     @Override
     public DialogComponent getComponent() {
         if (component == null) {
-            component = DaggerDialogComponent.builder().appComponent(IkeApplication.getAppComponent()).build();
+            component = DaggerDialogComponent.builder().appComponent(CheeseApplication.getAppComponent()).build();
         }
         return component;
     }

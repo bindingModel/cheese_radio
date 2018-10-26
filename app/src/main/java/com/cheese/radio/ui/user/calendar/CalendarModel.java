@@ -17,7 +17,7 @@ import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityCalendarBinding;
 import com.cheese.radio.inject.api.RadioApi;
-import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.CheeseApplication;
 import com.cheese.radio.ui.home.CanBookParams;
 import com.cheese.radio.util.MyBaseUtil;
 import com.cheese.radio.util.calendarutils.Day;
@@ -284,7 +284,7 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
     private void refreshUI() {
         addDisposable(api.getCanBook(new CanBookParams("canBook")).compose(new RestfulTransformer<>()).
                 subscribe(canBookData -> {
-                            IkeApplication.getUser().setCanBookCheck(status = canBookData.isResult());
+                            CheeseApplication.getUser().setCanBookCheck(status = canBookData.isResult());
                             if (status) {
                                 getDataBinding().clock.setVisibility(View.GONE);
                                 calendarView = getDataBinding().calendarView;

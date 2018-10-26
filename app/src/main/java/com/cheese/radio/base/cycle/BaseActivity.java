@@ -18,7 +18,7 @@ import com.binding.model.util.ReflectUtil;
 import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.inject.component.DaggerActivityComponent;
 import com.cheese.radio.inject.module.ActivityModule;
-import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.CheeseApplication;
 import com.cheese.radio.util.MyBaseUtil;
 import com.umeng.analytics.MobclickAgent;
 
@@ -82,7 +82,7 @@ public abstract class BaseActivity<VM extends ViewModel> extends DataBindingActi
     public ActivityComponent getComponent() {
         if (mActivityComponent == null) {
             mActivityComponent = DaggerActivityComponent.builder()
-                    .appComponent(IkeApplication.getAppComponent())
+                    .appComponent(CheeseApplication.getAppComponent())
                     .activityModule(new ActivityModule(this))
                     .build();
         }

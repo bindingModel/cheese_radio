@@ -3,7 +3,7 @@ package com.cheese.radio.base;
 import com.binding.model.data.encrypt.UnionTransParams;
 import com.binding.model.util.BaseUtil;
 import com.binding.model.util.ReflectUtil;
-import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.CheeseApplication;
 import com.cheese.radio.util.MyBaseUtil;
 import com.cheese.radio.util.NetUtil;
 
@@ -74,7 +74,7 @@ public class IkeParams implements UnionTransParams<FormUtfBody> {
     }
 
     public String getToken() {
-       if(IkeApplication.isLogin(false))return IkeApplication.getUser().getToken();
+       if(CheeseApplication.isLogin(false))return CheeseApplication.getUser().getToken();
        return null;
     }
 

@@ -3,7 +3,7 @@ package com.cheese.radio.base;
 import com.binding.model.data.encrypt.SingleTransParams;
 import com.binding.model.util.BaseUtil;
 import com.binding.model.util.ReflectUtil;
-import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.CheeseApplication;
 import com.cheese.radio.ui.user.User;
 import com.cheese.radio.util.MyBaseUtil;
 import com.cheese.radio.util.NetUtil;
@@ -59,7 +59,7 @@ public class IkeFileParams implements SingleTransParams<MultipartBody> {
     }
 
     public String getToken() {
-        return User.isLogin ? IkeApplication.getUser().getToken() : "";
+        return User.isLogin ? CheeseApplication.getUser().getToken() : "";
     }
 
     public void setToken(String token) {

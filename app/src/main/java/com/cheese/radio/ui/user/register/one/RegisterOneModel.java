@@ -11,7 +11,7 @@ import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.databinding.ActivityRegisterOneBinding;
 import com.cheese.radio.inject.api.RadioApi;
-import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.CheeseApplication;
 import com.cheese.radio.ui.user.register.UserInfoParams;
 
 import javax.inject.Inject;
@@ -61,7 +61,7 @@ public class RegisterOneModel extends ViewModel<RegisterOneActivity, ActivityReg
 
     public void onNextClick(View view) {
 
-        IkeApplication.getUser().setUserEntity(params);
+        CheeseApplication.getUser().setUserEntity(params);
         ARouterUtil.navigation(registerTwo);
         this.finish();
     }

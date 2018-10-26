@@ -8,11 +8,11 @@ import android.net.wifi.WifiManager;
 import android.text.TextUtils;
 
 import com.binding.model.App;
-import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.CheeseApplication;
 
 public class NetUtil {
     static WifiManager wifiManager;
-    private static String macAddress = IkeApplication.getUser().getMac();
+    private static String macAddress = CheeseApplication.getUser().getMac();
 
     public static String getMacAddress() {
 
@@ -28,8 +28,8 @@ public class NetUtil {
         }
 
         if (null != info) {
-            IkeApplication.getUser().setMac(info.getMacAddress());
-            macAddress = IkeApplication.getUser().getMac();
+            CheeseApplication.getUser().setMac(info.getMacAddress());
+            macAddress = CheeseApplication.getUser().getMac();
             return macAddress;
         }
 

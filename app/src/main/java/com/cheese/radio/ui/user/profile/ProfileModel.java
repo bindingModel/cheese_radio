@@ -28,7 +28,7 @@ import com.cheese.radio.base.rxjava.ErrorTransform;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityProfileBinding;
 import com.cheese.radio.inject.api.RadioApi;
-import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.CheeseApplication;
 import com.cheese.radio.ui.user.UserEntity;
 import com.cheese.radio.ui.user.edit.EditNameModel;
 import com.cheese.radio.ui.user.profile.popup.PopupPictureModel;
@@ -82,7 +82,7 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
         }));
         initSexPicker();
         params = new ProfileParams("setProperty");
-        userEntity = IkeApplication.getUser().getUserEntity();
+        userEntity = CheeseApplication.getUser().getUserEntity();
         mSex.set(userEntity.getSex().equals("M") ? "男孩" : "女孩");
         mDate.set(userEntity.getBirthday());
         getDataBinding().setParams(params.setMsg(userEntity));
@@ -109,7 +109,7 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
             addDisposable(api.setProperty(params).compose(new ErrorTransform<>()).subscribe(stringInfoEntity -> {
                         BaseUtil.toast(stringInfoEntity.getMessage());
                         if (stringInfoEntity.getCode().equals("0")) {
-                            IkeApplication.getUser().setUserEntity(params);
+                            CheeseApplication.getUser().setUserEntity(params);
                             Model.dispatchModel("updataUI");
 //                            getT().finish();
                             BaseUtil.toast("更新成功");
@@ -123,7 +123,7 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
     public int onEvent(View view, Event event, Object... args) {
         if (event instanceof EditNameModel) {
             EditNameModel model = (EditNameModel) (EditNameModel) event;
-            IkeApplication.getUser().getUserEntity().setNickName(model.name.get());
+            CheeseApplication.getUser().getUserEntity().setNickName(model.name.get());
             params.setNickName(model.name.get());
             updataUI();
         }
@@ -202,7 +202,7 @@ public class ProfileModel extends ViewModel<ProfileActivity, ActivityProfileBind
             addDisposable(api.myHead(headParams).compose(new RestfulTransformer<>()).subscribe((myHeadData) -> {
                 getDataBinding().setHeadUrl(myHeadData.getImage());
                 userEntity.setPortrait(myHeadData.getImage());
-                IkeApplication.getUser().setUserEntity(userEntity);
+                CheeseApplication.getUser().setUserEntity(userEntity);
                 Model.dispatchModel("updataUI");
             }, BaseUtil::toast));
         }

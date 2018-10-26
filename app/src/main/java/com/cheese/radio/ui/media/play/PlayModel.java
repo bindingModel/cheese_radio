@@ -36,8 +36,8 @@ import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityPlayBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.component.ActivityComponent;
+import com.cheese.radio.ui.CheeseApplication;
 import com.cheese.radio.ui.Constant;
-import com.cheese.radio.ui.IkeApplication;
 import com.cheese.radio.ui.media.audio.AudioModel;
 import com.cheese.radio.ui.media.play.popup.PopupPlayModel;
 import com.cheese.radio.ui.media.play.popup.SelectPlayTimeEntity;
@@ -231,7 +231,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     }
 
     public void onAddFavorityClick(View view) {
-        if (id == 0 || !IkeApplication.isLogin(false)) {
+        if (id == 0 || !CheeseApplication.isLogin(false)) {
             view.setEnabled(false);
             ((CheckBox) view).setChecked(false);
             BaseUtil.toast("登陆后才能收藏");
@@ -245,7 +245,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     }
 
     public void onFabuClick(View view) {
-        if (id == 0 || !IkeApplication.isLogin(false)) {
+        if (id == 0 || !CheeseApplication.isLogin(false)) {
             view.setEnabled(false);
             ((CheckBox) view).setChecked(false);
             BaseUtil.toast("登陆后才能点赞");

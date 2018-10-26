@@ -21,7 +21,7 @@
         android:resizeable="true"
         android:smallScreens="true" />
     <application
-        android:name=".ui.IkeApplication"
+        android:name=".ui.CheeseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

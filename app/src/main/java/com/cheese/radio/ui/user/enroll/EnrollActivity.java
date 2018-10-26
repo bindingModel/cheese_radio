@@ -6,11 +6,9 @@ import android.support.annotation.Nullable;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cheese.radio.R;
 import com.cheese.radio.base.cycle.BaseActivity;
-import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.CheeseApplication;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-import com.umeng.commonsdk.UMConfigure;
-import com.umeng.socialize.PlatformConfig;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.enroll;
 
@@ -35,7 +33,7 @@ public class EnrollActivity extends BaseActivity<EnrollModel> {
         String wechat_AppSecret = getResources().getString(R.string.wechat_AppSecret);
         iwxapi = WXAPIFactory.createWXAPI(this,wechat_AppID, false);
         iwxapi.registerApp(wechat_AppID);
-        IkeApplication.registerWX(wechat_AppID,wechat_AppSecret);
+        CheeseApplication.registerWX(wechat_AppID,wechat_AppSecret);
     }
 
     @Override

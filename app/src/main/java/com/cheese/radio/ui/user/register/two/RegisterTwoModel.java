@@ -14,7 +14,7 @@ import com.cheese.radio.base.rxjava.ErrorTransform;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityRegisterTwoBinding;
 import com.cheese.radio.inject.api.RadioApi;
-import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.CheeseApplication;
 import com.cheese.radio.ui.user.register.UserInfoParams;
 
 import javax.inject.Inject;
@@ -41,14 +41,14 @@ public class RegisterTwoModel extends ViewModel<RegisterTwoActivity, ActivityReg
     }
 
     public void onNextClick(View view) {
-        params.setSex(IkeApplication.getUser().getUserEntity().getSex());
+        params.setSex(CheeseApplication.getUser().getUserEntity().getSex());
         addDisposable(api.setUserInfo(params).compose(new ErrorTransform<>()).subscribe(s -> {
             if (s.getCode().equals("0")) {
                 ARouterUtil.navigation(home);
                 addDisposable(api.getUserInfo(new UserInfoParams("myInfo")).compose(new RestfulTransformer<>()).subscribe(userEntity -> {
-                    IkeApplication.getUser().setUserEntity(userEntity);
+                    CheeseApplication.getUser().setUserEntity(userEntity);
                 }, BaseUtil::toast));
-                IkeApplication.getUser().setUserEntity(params);
+                CheeseApplication.getUser().setUserEntity(params);
                 this.finish();
             }
         }, BaseUtil::toast));

@@ -22,9 +22,9 @@ public class HomeEntity extends ViewParse implements Item<BaseFragment> {
 
     @Override
     public BaseFragment getItem(int position, ViewGroup container) {
-     /*   if (fragment instanceof CalendarFragment && !IkeApplication.getUser().getCanBookCheck()) {
+     /*   if (fragment instanceof CalendarFragment && !CheeseApplication.getUser().getCanBookCheck()) {
             fragment = new ClockFragment();
-        } else if (fragment instanceof ClockFragment && IkeApplication.getUser().getCanBookCheck()) {
+        } else if (fragment instanceof ClockFragment && CheeseApplication.getUser().getCanBookCheck()) {
             fragment = new CalendarFragment();
         }*/
         if (fragment == null)
@@ -33,7 +33,7 @@ public class HomeEntity extends ViewParse implements Item<BaseFragment> {
                     fragment = new HomePageFragment();
                     break;
                 case 1: {
-//                    fragment = IkeApplication.getUser().getCanBookCheck() ? new CalendarFragment() : new ClockFragment();
+//                    fragment = CheeseApplication.getUser().getCanBookCheck() ? new CalendarFragment() : new ClockFragment();
 //                    fragment =new CalendarFragment();
                     fragment=new ClockFragment();
                     break;

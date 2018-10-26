@@ -12,11 +12,8 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.cycle.BaseActivity;
-import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.CheeseApplication;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-import com.umeng.commonsdk.UMConfigure;
-import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareConfig;
@@ -50,14 +47,14 @@ public class LoginActivity extends BaseActivity<LoginModel> implements UMAuthLis
         if (iwxapi != null)
             iwxapi.unregisterApp();
         iwxapi = null;
-        IkeApplication.logout(SHARE_MEDIA.WEIXIN);
+        CheeseApplication.logout(SHARE_MEDIA.WEIXIN);
     }
 
     public void onWechatClick(View view) {
         UMShareAPI.get(this).deleteOauth(this,SHARE_MEDIA.WEIXIN,this);
         String wechat_AppID = getResources().getString(R.string.umeng_wechat_AppID);
         String wechat_AppSecret = getResources().getString(R.string.umeng_wechat_AppSecret);
-        IkeApplication.registerWX(wechat_AppID,wechat_AppSecret);
+        CheeseApplication.registerWX(wechat_AppID,wechat_AppSecret);
         if (UMShareAPI.get(this).isInstall(this, SHARE_MEDIA.WEIXIN)) {
             UMShareConfig config = new UMShareConfig();
             config.isNeedAuthOnGetUserInfo(true);

@@ -5,7 +5,7 @@ import android.content.res.Resources;
 
 import com.cheese.radio.inject.qualifier.context.AppContext;
 import com.cheese.radio.inject.scope.ApplicationScope;
-import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.CheeseApplication;
 
 import dagger.Module;
 import dagger.Provides;
@@ -23,8 +23,8 @@ import dagger.Provides;
  */
 @Module
 public class AppModule {
-    private final IkeApplication app;
-    public AppModule(IkeApplication app) {
+    private final CheeseApplication app;
+    public AppModule(CheeseApplication app) {
         this.app = app;
     }
 

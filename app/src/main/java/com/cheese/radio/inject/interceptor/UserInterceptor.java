@@ -48,8 +48,8 @@ public class UserInterceptor implements Interceptor {
 //            builder.cacheControl(CacheControl.FORCE_CACHE)
 //                    .addHeader("User-Agent", "android");
 //        }
-//        if(!TextUtils.isEmpty(IkeApplication.getUser().getCookies())&&!url.contains("dologin"))
-//            builder.addHeader("cookie", IkeApplication.getUser().getCookies());
+//        if(!TextUtils.isEmpty(CheeseApplication.getUser().getCookies())&&!url.contains("dologin"))
+//            builder.addHeader("cookie", CheeseApplication.getUser().getCookies());
 //        request = builder.build();
 //        Response response = chain.proceed(request);
 //        if (url.contains("dologin")||url.contains("doRegister")) {
@@ -59,7 +59,7 @@ public class UserInterceptor implements Interceptor {
 //                if(!cookies.isEmpty())cookie = cookies.get(0);
 //            }
 //            if(!TextUtils.isEmpty(cookie)&&cookie.startsWith("JSESSIONID")){
-//                IkeApplication.getUser().setCookies(cookie.split(";")[0]);
+//                CheeseApplication.getUser().setCookies(cookie.split(";")[0]);
 //            } else {
 //                return response;
 ////                        .newBuilder().code(401).message("请再登录一次").build();

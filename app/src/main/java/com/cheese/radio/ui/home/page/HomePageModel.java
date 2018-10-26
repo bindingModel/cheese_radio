@@ -19,7 +19,7 @@ import com.cheese.radio.base.rxjava.RestfulZipTransformer;
 import com.cheese.radio.databinding.FragmentHomePageBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.component.ActivityComponent;
-import com.cheese.radio.ui.IkeApplication;
+import com.cheese.radio.ui.CheeseApplication;
 import com.cheese.radio.ui.home.page.entity.CategoryEntity;
 import com.cheese.radio.ui.home.page.entity.RecommandEntity;
 import com.cheese.radio.ui.home.page.entity.RecommandTail;
@@ -67,7 +67,7 @@ public class HomePageModel extends RecyclerModel<HomePageFragment, FragmentHomeP
     }
 
     public void upDataMsg(){
-        if (IkeApplication.isLogin(false))
+        if (CheeseApplication.isLogin(false))
             addDisposable(api.getNewMessageCount(new NewMessageCountParams("newMessageCount"))
                     .compose(new RestfulTransformer<>())
                     .subscribe(newMessageCountData -> {
@@ -111,7 +111,7 @@ public class HomePageModel extends RecyclerModel<HomePageFragment, FragmentHomeP
     }
 
     public void onMessageClick(View view) {
-        if (IkeApplication.isLogin(true)) ARouterUtil.navigation(ActivityComponent.Router.message);
+        if (CheeseApplication.isLogin(true)) ARouterUtil.navigation(ActivityComponent.Router.message);
         else {
             finish();
             BaseUtil.toast("请登陆后再试");
