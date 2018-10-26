@@ -19,7 +19,7 @@ import java.util.Arrays;
 /**
  * Created by 29283 on 2018/3/26.
  */
-@ModelView(value = {R.layout.item_calendar_class,R.layout.empty_view})
+@ModelView(value = {R.layout.item_calendar_class, R.layout.empty_view})
 public class CalendarEntity extends ViewInflateRecycler {
 
 
@@ -211,13 +211,14 @@ public class CalendarEntity extends ViewInflateRecycler {
     public void setDays(int[] days) {
         this.days = days;
     }
+
     public boolean isBook() {
         //满人，未报上返回flase，只要报上就返回true
         return bookId != null;
     }
 
-    public boolean isCanBook(){
-        return leftCount!=0;
+    public boolean isCanBook() {
+        return leftCount != 0;
     }
 
     private int[] convertDay(String string) {
@@ -285,7 +286,6 @@ public class CalendarEntity extends ViewInflateRecycler {
     }
 
     public String getEnrolMsg() {
-
         if (bookId != null) return "取消预约";
         if (leftCount == 0) return "已约满";
         return "预约";
@@ -299,7 +299,7 @@ public class CalendarEntity extends ViewInflateRecycler {
     }
 
     public void onTeacherClick(View view) {
-        if (teacherId==0)return;
+        if (teacherId == 0) return;
         Bundle bundle = new Bundle();
         bundle.putInt(Constant.authorId, teacherId);
         ARouterUtil.navigation(ActivityComponent.Router.author, bundle);
@@ -308,8 +308,9 @@ public class CalendarEntity extends ViewInflateRecycler {
     public void onEnrollClick(View view) {
         if (leftCount == 0) return;//"已约满";
 
-        if (bookId != null) getIEventAdapter().setEntity(IEventAdapter.NO_POSITION,this,AdapterType.no,view);//"已预约";
-        else getIEventAdapter().setEntity(IEventAdapter.NO_POSITION,this,AdapterType.add,view);
+        if (bookId != null)
+            getIEventAdapter().setEntity(IEventAdapter.NO_POSITION, this, AdapterType.no, view);//"已预约";
+        else getIEventAdapter().setEntity(IEventAdapter.NO_POSITION, this, AdapterType.add, view);
        /* Bundle bundle = new Bundle();
         bundle.putInt(Constant.classId, classId);
         ARouterUtil.navigation(ActivityComponent.Router.coursedetails, bundle);*/
