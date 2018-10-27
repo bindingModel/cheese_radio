@@ -41,7 +41,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
     private int position = 0;
     private List<Entity> fmsEntities = new ArrayList<>();
     private Entity entity;
-    private AudioServiceUtil util = AudioServiceUtil.getInstance();
+    public AudioServiceUtil util = AudioServiceUtil.getInstance();
     public transient ObservableBoolean checked = new ObservableBoolean();
     private boolean mDragging = false;
     public static ObservableBoolean loop=new ObservableBoolean(false);

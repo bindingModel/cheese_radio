@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import com.binding.model.App;
 import com.binding.model.layout.rotate.TimeEntity;
 import com.binding.model.layout.rotate.TimeUtil;
+import com.cheese.radio.ui.broadcast.NotifyManager;
 
 import java.io.IOException;
 
@@ -52,10 +53,11 @@ public class AudioServiceUtil implements TimeEntity {
     }
 
     public NotificationManager getNotManager() {
-        if (notManager == null)
-            notManager = (NotificationManager)
-                    App.getCurrentActivity().getSystemService(Context.NOTIFICATION_SERVICE);
-        return notManager;
+//        if (notManager == null)
+//            notManager = (NotificationManager)
+//                    App.getCurrentActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+//        return notManager;
+        return NotifyManager.getNotificationManager();
     }
 
 

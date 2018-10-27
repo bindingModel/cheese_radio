@@ -1,7 +1,16 @@
 package com.cheese.radio.ui;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.support.multidex.MultiDexApplication;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatDelegate;
+import android.widget.RemoteViews;
 
 import com.binding.model.App;
 import com.binding.model.util.BaseUtil;
@@ -29,6 +38,11 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.login;
+import static com.cheese.radio.ui.Constant.ACTION_BUTTON;
+import static com.cheese.radio.ui.Constant.BUTTON_CANCEL_ID;
+import static com.cheese.radio.ui.Constant.BUTTON_NEXT_ID;
+import static com.cheese.radio.ui.Constant.BUTTON_PALY_ID;
+import static com.cheese.radio.ui.Constant.INTENT_BUTTONID_TAG;
 
 /**
  * Created by apple on 2017/6/23.
@@ -97,12 +111,22 @@ public class CheeseApplication extends MultiDexApplication {
         return application.api;
     }
 
+    /**
+     * 注册微信
+     * @param wechat_AppID 对应的id，目前有两个，需要动态注册
+     * @param wechat_AppSecret
+     */
     public static void registerWX(String wechat_AppID,String wechat_AppSecret) {
         PlatformConfig.setWeixin(wechat_AppID, wechat_AppSecret);
         UMConfigure.setLogEnabled(true);
         UMConfigure.init(application, ""
                 , "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
     }
+
+    /**
+     * 微信 登出操作；
+     * @param platform
+     */
     public static void logout(final SHARE_MEDIA platform) {
         UMShareAPI.get(application).deleteOauth(App.getCurrentActivity(), platform, new UMAuthListener() {
 

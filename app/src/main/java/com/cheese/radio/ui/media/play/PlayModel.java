@@ -1,7 +1,5 @@
 package com.cheese.radio.ui.media.play;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -11,14 +9,12 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import android.text.Html;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
-import android.widget.RemoteViews;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +25,6 @@ import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.FutureTarget;
-import com.cheese.radio.BuildConfig;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
@@ -38,6 +33,7 @@ import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.CheeseApplication;
 import com.cheese.radio.ui.Constant;
+import com.cheese.radio.ui.broadcast.NotifyManager;
 import com.cheese.radio.ui.media.audio.AudioModel;
 import com.cheese.radio.ui.media.play.popup.PopupPlayModel;
 import com.cheese.radio.ui.media.play.popup.SelectPlayTimeEntity;
@@ -59,15 +55,11 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 import static com.binding.model.adapter.AdapterType.select;
-import static com.cheese.radio.ui.Constant.ACTION_BUTTON;
-import static com.cheese.radio.ui.Constant.BUTTON_CANCEL_ID;
-import static com.cheese.radio.ui.Constant.BUTTON_NEXT_ID;
-import static com.cheese.radio.ui.Constant.BUTTON_PALY_ID;
-import static com.cheese.radio.ui.Constant.INTENT_BUTTONID_TAG;
 
 /**
  * Created by 29283 on 2018/3/17.
@@ -88,7 +80,6 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     public ObservableField<String> currentText = new ObservableField<>();//存放定时播放的剩余时间。如果需要，去界面绑定
     public ObservableBoolean clockCheck = new ObservableBoolean(false);
     private SelectPlayTimeEntity timeEntity;
-    private AudioServiceUtil util;
     private FutureTarget<Bitmap> notifyImage;
     private NotificationManager mNotificationManager;
     private PlayInOrderParams nextMusic = new PlayInOrderParams("playInOrder");
@@ -98,7 +89,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     public void attachView(Bundle savedInstanceState, PlayActivity activity) {
         super.attachView(savedInstanceState, activity);
         initTimes();
-        initID();
+        initId();
         initEntity();
         initPopupPlayModel(savedInstanceState);
 //        getDataBinding().appVideoSeekBar.setEnabled(false)
@@ -116,9 +107,9 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
      */
     private void initEntity() {
         List<PlayEntity> playList = getT().getIntent().getParcelableArrayListExtra(Constant.playList);
-        int position = getT().getIntent().getIntExtra(Constant.indexOf,0);
-        if (playList!=null&&!playList.isEmpty()) {
-            setEntities(playList,position);
+        int position = getT().getIntent().getIntExtra(Constant.indexOf, 0);
+        if (playList != null && !playList.isEmpty()) {
+            setEntities(playList, position);
         } else if (id != 0) addDisposable(api.getContentInfo(new PlayParams("contentInfo", id))
                 .compose(new RestfulTransformer<>()).subscribe(
                         this::setSingelEntity, BaseUtil::toast));
@@ -161,12 +152,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         play(entity);
         if (!getList().isEmpty()) {
             Model.dispatchModel(Constant.images, entity);
-            addDisposable(Observable.just(Glide.with(getT()).asBitmap().load(entity.getImage()).submit())
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread()).subscribe(image -> {
-                        notifyImage = image;
                         showButtonNotify();
-                    }));
         }
     }
 
@@ -214,7 +200,6 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         playTime = -1;
         totalTime = -1;
         timeEntity = new SelectPlayTimeEntity(null, -1);
-        util = AudioServiceUtil.getInstance();
         util.setOnTimingListener((current, duration) -> {
             if (current != 0) {
                 playTime = current;
@@ -223,7 +208,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         });
     }
 
-    private void initID() {
+    private void initId() {
         id = getT().getIntent().getIntExtra(Constant.id, 0);
         if (id != 0) util.setId(id);
         else if (util.getId() != 0)
@@ -324,74 +309,23 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     }
 
     //通知栏
+    private NotifyManager manager;
+
     public void showButtonNotify() {
-        if (getEntity() == null) return;
-        playRecord();//播放数的反馈
+        if (manager == null)
+            manager = new NotifyManager();
         PlayEntity entity = getEntity();
-        int NOTIFICATION_ID = 234;
-        String CHANNEL_ID = "cheese_channel_01";
-        if (mNotificationManager == null)
-            mNotificationManager = util.getNotManager();
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            CharSequence name = "cheese_channel";
-            String Description = "This is cheese channel";
-            int importance = NotificationManager.IMPORTANCE_LOW;
-            NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
-            mChannel.setDescription(Description);
-            mChannel.enableLights(false);
-            mChannel.setLightColor(Color.WHITE);
-            mChannel.enableVibration(false);
-            mChannel.setVibrationPattern(null);//震动
-            mChannel.setShowBadge(false);
-            mNotificationManager.createNotificationChannel(mChannel);
-        }
-
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(App.getCurrentActivity(), CHANNEL_ID);
-        RemoteViews mRemoteViews = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.notify_music);
-
-        try {
-            mRemoteViews.setImageViewBitmap(R.id.music_icon, notifyImage.get());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        mRemoteViews.setTextViewText(R.id.music_title, entity.getTitle());
-        mRemoteViews.setTextViewText(R.id.music_subtitle, entity.getSubTitle());
-
-//        //点击的事件处理
-        Intent buttonIntent = new Intent(ACTION_BUTTON);
-        upDataButton();
-        //这里加了广播，所及INTENT的必须用getBroadcast方法
-        /* 播放/暂停  按钮 */
-        buttonIntent.putExtra(INTENT_BUTTONID_TAG, BUTTON_PALY_ID);
-        PendingIntent intent_play = PendingIntent.getBroadcast(App.getCurrentActivity(), 1, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        mRemoteViews.setOnClickPendingIntent(R.id.music_pause, intent_play);
-//        mRemoteViews.setOnClickPendingIntent(R.id.music_stop,intent_play);
-        /* 下一首 按钮  */
-        buttonIntent.putExtra(INTENT_BUTTONID_TAG, BUTTON_NEXT_ID);
-        PendingIntent intent_next = PendingIntent.getBroadcast(App.getCurrentActivity(), 2, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        mRemoteViews.setOnClickPendingIntent(R.id.music_next, intent_next);
-        /* 取消 按钮  */
-        buttonIntent.putExtra(INTENT_BUTTONID_TAG, BUTTON_CANCEL_ID);
-        PendingIntent intent_cancel = PendingIntent.getBroadcast(App.getCurrentActivity(), 3, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        mRemoteViews.setOnClickPendingIntent(R.id.music_cancel, intent_cancel);
-
-        mBuilder.setContent(mRemoteViews)
-                .setContentIntent(getDefalutIntent(Notification.FLAG_ONGOING_EVENT))
-                .setWhen(System.currentTimeMillis())// 通知产生的时间，会在通知信息里显示
-                .setTicker("正在播放")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)// 设置该通知优先级
-                .setOngoing(true)
-                .setSmallIcon(R.mipmap.ic_launcher);
-
-        Notification notify = mBuilder.build();
-        notify.flags = Notification.FLAG_ONGOING_EVENT;
-        mNotificationManager.notify(NOTIFICATION_ID, notify);
-
+        Disposable subscribe = Observable.just(Glide.with(getT()).asBitmap().load(entity.getImage()).submit())
+                .subscribeOn(Schedulers.newThread())
+                .subscribe(bitmap -> {
+                    manager.builderNotification(bitmap.get(), entity.getTitle(), entity.getSubTitle());
+                    upDataButton();
+                });
     }
 
     @Override
     public void cancelButtonNotiy() {
-        util.getNotManager().cancel(234);
+        util.getNotManager().cancel(NotifyManager.getMsgId());
     }
 
     private void playRecord() {
@@ -399,7 +333,8 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         recordParams.setId(getEntity().getId());
         addDisposable(api.playRecord(recordParams)
                 .compose(new RestfulTransformer<>())
-                .subscribe(o -> { }, BaseUtil::toast)
+                .subscribe(o -> {
+                }, BaseUtil::toast)
         );
     }
 
@@ -440,8 +375,8 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     public void onCompletion(MediaPlayer mp) {
         Timber.w("onCompletion" + util.getMediaStatus());
         if (!mp.isPlaying() && util.getCurrentPosition() > 0) {
-            if(!loop.get())
-            onNextClick(null);
+            if (!loop.get())
+                onNextClick(null);
             else setSingelEntity(getEntity());
         }
         checked.set(!mp.isPlaying());

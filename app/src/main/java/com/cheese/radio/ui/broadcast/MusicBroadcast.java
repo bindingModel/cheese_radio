@@ -23,13 +23,13 @@ public class MusicBroadcast extends BroadcastReceiver {
       if(tag==BUTTON_PALY_ID ){
           if(util.isPlaying())util.pause();
 //          else util.play();
-          util.getNotManager().cancel(234);
+          util.getNotManager().cancel(NotifyManager.getMsgId());
       }
       else if(tag ==BUTTON_NEXT_ID ){
 
       }
       else if(tag==BUTTON_CANCEL_ID){
-         util.getNotManager().cancel(234);
+         util.getNotManager().cancel(NotifyManager.getMsgId());
       }
         Model.dispatchModel("upDataButton");
        BaseUtil.toast("收到广播："+tag);

@@ -139,11 +139,7 @@
             android:exported="true"
             android:screenOrientation="portrait" />
 
-        <receiver android:name=".ui.broadcast.MusicBroadcast">
-            <intent-filter>
-                <action android:name="ACTION_BUTTON" />
-            </intent-filter>
-        </receiver>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.filterProvider"
