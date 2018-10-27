@@ -45,7 +45,7 @@ public class MyCourseModel extends RecyclerModel<MyCourseActivity, ActivityMyCou
     @Override
     public void attachView(Bundle savedInstanceState, MyCourseActivity myCourseActivity) {
         super.attachView(savedInstanceState, myCourseActivity);
-        getDataBinding().layoutRecycler.setVm(this);
+
         initDef();
         courseTypeId = myCourseActivity.getIntent().getIntExtra(Constant.courseTypeId, -1);
         if (courseTypeId == -1) {
@@ -84,7 +84,7 @@ public class MyCourseModel extends RecyclerModel<MyCourseActivity, ActivityMyCou
         headDecoration.setHeaderHeight((int) App.dipTopx(24));
         headDecoration.setTextSize((int) App.dipTopx(12));
         headDecoration.setTextColor(App.getColor(R.color.head_gray));
-        getDataBinding().layoutRecycler.recyclerView.addItemDecoration(headDecoration);
+        getDataBinding().recyclerView.addItemDecoration(headDecoration);
     }
 
     @Override
@@ -101,7 +101,7 @@ public class MyCourseModel extends RecyclerModel<MyCourseActivity, ActivityMyCou
 
     private void afterCompleteAndError() {
         if (getAdapter().size() == 0) {
-            getDataBinding().layoutRecycler.swipeRefreshLayout.setVisibility(View.GONE);
+            getDataBinding().recyclerView.setVisibility(View.GONE);
             defView.setVisibility(View.VISIBLE);
         }
     }

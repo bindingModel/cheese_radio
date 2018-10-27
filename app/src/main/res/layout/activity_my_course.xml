@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -12,12 +13,20 @@
         android:id="@+id/root_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/background_gray"
         android:orientation="vertical">
 
         <include layout="@layout/toolbar" />
-
-        <include
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            app:adapter="@{vm.adapter}"
+            android:id="@+id/recyclerView"
+            app:layoutManager="@{vm.layoutManager}"
+            android:paddingTop="1dp"
+            android:clipToPadding="false"
+            android:layout_height="match_parent"/>
+       <!-- <include
             android:id="@+id/layout_recycler"
-            layout="@layout/layout_recycler_view" />
+            layout="@layout/layout_recycler_view" />-->
     </LinearLayout>
 </layout>

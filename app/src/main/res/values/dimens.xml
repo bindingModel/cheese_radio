@@ -10,4 +10,5 @@
     <dimen name="normal_textView_height">42dp</dimen>
     <dimen name="clock_enroll_item_height">200dp</dimen>
     <dimen name="home_navigation_height">47dp</dimen>
+    <dimen name="search_bar_height">32dp</dimen>
 </resources>
