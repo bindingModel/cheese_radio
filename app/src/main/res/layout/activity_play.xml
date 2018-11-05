@@ -238,7 +238,7 @@
                             style="@style/play_bottom_button"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:checked="@{entity.files}"
+                            android:checked="@{entity.fabu!=null}"
                             android:drawableLeft="@drawable/love_star"
                             android:drawableStart="@drawable/love_star"
                             android:onClick="@{vm::onFabuClick}"

@@ -93,6 +93,7 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
 
     public void addFabuCount(int i) {
         fabuCount += i;
+        if(fabuCount<0)fabuCount=0;
     }
 
     public String getShareUrl() {
