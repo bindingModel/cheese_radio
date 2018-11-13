@@ -101,12 +101,6 @@ android {
         androidTestImplementation 'com.android.support.test:runner:1.0.2'
         androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-        // implementation 'com.github.Blankeer:XAndroidSocket:1.0.0'
-        // implementation 'com.koushikdutta.async:androidasync:2.2.1'
-        // implementation 'com.github.vilyever:AndroidSocketClient:2.0.1'
-        // implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
-        // implementation 'in.srain.cube:ultra-ptr:1.0.11'
-        // implementation 'cn.pedant.sweetalert:library:1.3'
         implementation 'com.pgyersdk:sdk:2.8.1'
         // implementation 'org.apmem.tools:layouts:1.10@aar'
 
@@ -115,18 +109,7 @@ android {
         implementation 'io.reactivex:rxandroid:1.2.1'
         implementation 'io.reactivex:rxjava:1.2.3'
         implementation 'com.jakewharton.rxbinding:rxbinding:1.0.0'
-//        implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
-        //第三方登录
-//        implementation 'com.umeng.sdk:share-core:6.9.0'
-////        implementation 'com.umeng.sdk:share-qq:latest.integration'
-//        implementation 'com.umeng.sdk:share-wechat:6.9.0'
-//        implementation 'com.umeng.sdk:share-sina:6.9.0'
-//        implementation 'com.umeng.sdk:common:1.4.4'
-//        implementation 'com.umeng.sdk:analytics:7.4.4'
-//        implementation 'com.umeng.sdk:debug:1.0.0'
-//          implementation project(':ushare')
-//        implementation project(':umlib')
-//        implementation project(':push')
+
         implementation 'cn.jiguang.sdk:jpush:3.1.5'
         implementation 'cn.jiguang.sdk:jcore:1.2.3'
         implementation 'com.android.support.constraint:constraint-layout:1.1.3'
