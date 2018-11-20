@@ -242,11 +242,16 @@ public class CalendarEntity extends ViewInflateRecycler {
     }
 
     public Drawable getEnrollBackground() {
-
         if (bookId != null) return App.getDrawable(R.drawable.calendarview_rectangle_green);
         if (leftCount == 0) return App.getDrawable(R.drawable.calendarview_rectangle_gray);
         return App.getDrawable(R.drawable.calendarview_rectangle_yellow);
 
+    }
+
+    public int getType() {
+        if (bookId != null) return 3;
+        if (leftCount != 0) return 2;
+        return 1;
     }
 
     @Override
@@ -295,7 +300,7 @@ public class CalendarEntity extends ViewInflateRecycler {
     public void onCourseClick(View view) {
         Bundle bundle = new Bundle();
         bundle.putInt(Constant.classId, classId);
-        bundle.putString(Constant.bookId,bookId);
+        bundle.putString(Constant.bookId, bookId);
         ARouterUtil.navigation(ActivityComponent.Router.coursedetails, bundle);
     }
 

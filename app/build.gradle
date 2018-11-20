@@ -117,6 +117,9 @@ android {
         implementation 'me.everything:overscroll-decor-android:1.0.4'
         //查看大图
         implementation 'com.github.chrisbanes:PhotoView:2.1.0'
+
+        implementation 'com.haibin:calendarview:3.4.8'
+
     }
     buildToolsVersion '28.0.3'
     productFlavors {

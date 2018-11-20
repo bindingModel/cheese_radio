@@ -61,9 +61,14 @@
 
                     </HorizontalScrollView>
 
+                    <include
+                        android:id="@+id/include_calendar_view"
+                        layout="@layout/include_calendar_view" />
+
                     <com.cheese.radio.util.views.CalendarView
                         android:id="@+id/calendarView"
                         android:layout_width="match_parent"
+                        android:visibility="gone"
                         android:layout_height="wrap_content"
                         app:dateEnd="2019.12"
                         app:dateStart="2017.12" />
@@ -78,9 +83,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        app:inflates="@{vm.theDayClass}"
                         app:eventAdapter="@{vm.eventAdapter}"
-                        />
+                        app:inflates="@{vm.theDayClass}" />
 
                 </LinearLayout>
             </ScrollView>
@@ -89,8 +93,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/toolbar_height"
                 android:background="@color/background_white">
-                <include
-                    layout="@layout/toolbar"/>
+
+                <include layout="@layout/toolbar" />
 
             </FrameLayout>
         </FrameLayout>
