@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+
+    </data>
+    <HorizontalScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <RadioGroup
+        android:id="@+id/months"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="1"
+            android:text="1月"
+            android:textColor="@color/month_text_color"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="1"
+            android:text="2月"
+            android:textColor="@color/month_text_color"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="1"
+            android:text="3月"
+            android:textColor="@color/month_text_color"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="1"
+            android:text="4月"
+            android:textColor="@color/month_text_color"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="1"
+            android:text="5月"
+            android:textColor="@color/month_text_color"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="1"
+            android:text="6月"
+            android:textColor="@color/month_text_color"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="1"
+            android:text="7月"
+            android:textColor="@color/month_text_color"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="1"
+            android:text="8月"
+            android:textColor="@color/month_text_color"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="1"
+            android:text="9月"
+            android:textColor="@color/month_text_color"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="1"
+            android:text="10月"
+            android:textColor="@color/month_text_color"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="1"
+            android:text="11月"
+            android:textColor="@color/month_text_color"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="8dp"
+            android:tag="1"
+            android:text="12月"
+            android:textColor="@color/month_text_color
+"
+            android:textSize="14sp" />
+    </RadioGroup>
+    </HorizontalScrollView>
+</layout>

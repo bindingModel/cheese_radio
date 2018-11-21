@@ -21,6 +21,7 @@ public class ClassCalendarParams extends ContentParams {
     private Calendar now = Calendar.getInstance();
     private Integer courseTypeId;
 
+    private transient int year,month;
     public ClassCalendarParams(String method, String yearMonth) {
         super(method);
         this.yearMonth = yearMonth;
@@ -45,6 +46,8 @@ public class ClassCalendarParams extends ContentParams {
             month += 12;
             year -= 1;
         }
+        this.year=year;
+        this.month=month;
         yearMonth = String.valueOf(now.get(Calendar.YEAR)) + "-" + month;
         return this;
     }
@@ -63,5 +66,13 @@ public class ClassCalendarParams extends ContentParams {
 
     public void setCourseTypeId(int courseTypeId) {
         this.courseTypeId = courseTypeId;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public int getMonth() {
+        return month;
     }
 }
