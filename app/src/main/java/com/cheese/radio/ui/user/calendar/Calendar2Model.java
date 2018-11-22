@@ -65,7 +65,6 @@ public class Calendar2Model extends ViewHttpModel<CalendarActivity, ActivityCale
         calendarView.setTipsDays(calendarEntities);
         list.clear();
         list.addAll(calendarEntities);
-
         if (isFirst) {
             String start = MyBaseUtil.formatDate(MyBaseUtil.getYear(), MyBaseUtil.getMonth() - 3);
             String end = MyBaseUtil.formatDate(MyBaseUtil.getYear(), MyBaseUtil.getMonth() + 9);
@@ -89,37 +88,7 @@ public class Calendar2Model extends ViewHttpModel<CalendarActivity, ActivityCale
     @Override
     public void attachView(Bundle savedInstanceState, CalendarActivity calendarActivity) {
         super.attachView(savedInstanceState, calendarActivity);
-        getDataBinding().includeCalendarView.calendarView.setOnMonthChangeListener((year, month) -> {
-            params.setYearMonth(year,month);
-            api.getClassCalendar(params).compose(new RestfulTransformer<>()).subscribe(list->{
-                getDataBinding().includeCalendarView.calendarView.setSchemeDate(CalendarHelper.createCalendarMap(list));
-                this.list.clear();
-                this.list.addAll(list);
-            },BaseUtil::toast);
-//            onHttp(3);
-        });
-        getDataBinding().includeCalendarView.calendarView.setOnCalendarSelectListener(new com.haibin.calendarview.CalendarView.OnCalendarSelectListener() {
-            @Override
-            public void onCalendarOutOfRange(com.haibin.calendarview.Calendar calendar) {
 
-            }
-
-            @Override
-            public void onCalendarSelect(com.haibin.calendarview.Calendar calendar, boolean isClick) {
-                Iterator<CalendarEntity> iterator = list.iterator();
-                ArrayList<CalendarEntity> list = new ArrayList<>();
-                while (iterator.hasNext()) {
-                    CalendarEntity entity = iterator.next();
-                    //找到选中日期的课程
-                    if (entity.getDays()[2]==calendar.getDay()) {
-                        list.add(entity);
-                    }
-                }
-                if (list.size() != 0)
-                    list.add(empty);
-                theDayClass.set(list);
-            }
-        });
         int courseTypeId = getT().getIntent().getIntExtra(Constant.courseTypeId, 0);
         if (courseTypeId != 0) params.setCourseTypeId(courseTypeId);
         refreshUI();
