@@ -2,6 +2,7 @@ package com.cheese.radio.ui.home.page.entity;
 
 
 import android.content.Context;
+import android.databinding.ObservableField;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import com.binding.model.model.inter.SpanSize;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.databinding.ItemHomePageRecommandBinding;
+
+import java.util.Observable;
 
 
 /**
@@ -41,7 +44,7 @@ public class RecommandEntity extends ViewInflateRecycler<ItemHomePageRecommandBi
     private String title;
     private int index;
     private int spansize = 2;
-
+    public final ObservableField<String> playCountText=new ObservableField<>();
 
     @Override
     public ItemHomePageRecommandBinding attachView(Context context, ViewGroup co, boolean attachToParent, ItemHomePageRecommandBinding binding) {
@@ -66,6 +69,7 @@ public class RecommandEntity extends ViewInflateRecycler<ItemHomePageRecommandBi
         ImageView imageView = getDataBinding().imageView;
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(imageWidth, imageHeght);
         imageView.setLayoutParams(params);
+        playCountText.set(String.valueOf(playCount));
         return super.attachView(context, co, attachToParent, binding);
 
     }

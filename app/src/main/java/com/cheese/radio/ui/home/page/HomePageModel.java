@@ -117,4 +117,17 @@ public class HomePageModel extends RecyclerModel<HomePageFragment, FragmentHomeP
         }
 
     }
+    public void refreshPlayRecord(Integer playId){
+        for (GridInflate gridInflate : getAdapter().getList()) {
+            if(gridInflate instanceof RecommandEntity){
+                RecommandEntity entity=((RecommandEntity)gridInflate);
+                if(entity.getId()==playId){
+                    entity.playCountText.set(String.valueOf(entity.getPlayCount()+1));
+                    entity.setPlayCount(entity.getPlayCount()+1);
+                    break;
+                }
+
+            }
+        }
+    }
 }

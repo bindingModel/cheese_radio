@@ -27,6 +27,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.FutureTarget;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
+import com.cheese.radio.base.rxjava.ErrorTransform;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityPlayBinding;
 import com.cheese.radio.inject.api.RadioApi;
@@ -152,7 +153,8 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         play(entity);
         if (!getList().isEmpty()) {
             Model.dispatchModel(Constant.images, entity);
-                        showButtonNotify();
+            showButtonNotify();
+            playRecord();
         }
     }
 
@@ -331,9 +333,8 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     private void playRecord() {
         PlayRecordParams recordParams = new PlayRecordParams("playRecord");
         recordParams.setId(getEntity().getId());
-        addDisposable(api.playRecord(recordParams)
-                .compose(new RestfulTransformer<>())
-                .subscribe(o -> {
+        addDisposable(api.playRecord(recordParams).compose(new ErrorTransform<>()).subscribe(o -> {
+                    Model.dispatchModel("refreshPlayRecord", getEntity().getId());
                 }, BaseUtil::toast)
         );
     }
