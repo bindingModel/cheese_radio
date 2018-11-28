@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
+import com.cheese.radio.BuildConfig;
 import com.cheese.radio.R;
 import com.cheese.radio.base.cycle.BaseActivity;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
@@ -39,7 +40,7 @@ public class WXPayEntryActivity extends BaseActivity<WXPayEntryModel> implements
         Log.e(this.TAG, "handleid=" + this.mWxHandler);
         this.mWxHandler.onCreate(this.getApplicationContext(), PlatformConfig.getPlatform(SHARE_MEDIA.WEIXIN));
         this.handleIntent(this.getIntent());
-        iwxapi = WXAPIFactory.createWXAPI(this, getString(R.string.wechat_AppID));
+        iwxapi = WXAPIFactory.createWXAPI(this,BuildConfig.wechat_AppID);
         iwxapi.handleIntent(getIntent(), this);
     }
 

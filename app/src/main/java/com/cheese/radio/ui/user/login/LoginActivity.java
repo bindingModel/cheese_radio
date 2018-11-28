@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.binding.model.util.BaseUtil;
+import com.cheese.radio.BuildConfig;
 import com.cheese.radio.R;
 import com.cheese.radio.base.cycle.BaseActivity;
 import com.cheese.radio.ui.CheeseApplication;
@@ -52,8 +53,8 @@ public class LoginActivity extends BaseActivity<LoginModel> implements UMAuthLis
 
     public void onWechatClick(View view) {
         UMShareAPI.get(this).deleteOauth(this,SHARE_MEDIA.WEIXIN,this);
-        String wechat_AppID = getResources().getString(R.string.umeng_wechat_AppID);
-        String wechat_AppSecret = getResources().getString(R.string.umeng_wechat_AppSecret);
+        String wechat_AppID = BuildConfig.wechat_AppID;
+        String wechat_AppSecret = BuildConfig.wechat_AppSecret;
         CheeseApplication.registerWX(wechat_AppID,wechat_AppSecret);
         if (UMShareAPI.get(this).isInstall(this, SHARE_MEDIA.WEIXIN)) {
             UMShareConfig config = new UMShareConfig();

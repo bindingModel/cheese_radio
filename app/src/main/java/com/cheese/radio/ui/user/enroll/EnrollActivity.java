@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.cheese.radio.BuildConfig;
 import com.cheese.radio.R;
 import com.cheese.radio.base.cycle.BaseActivity;
 import com.cheese.radio.ui.CheeseApplication;
@@ -29,8 +30,8 @@ public class EnrollActivity extends BaseActivity<EnrollModel> {
     @Override
     protected void onResume() {
         super.onResume();
-        String wechat_AppID = getResources().getString(R.string.wechat_AppID);
-        String wechat_AppSecret = getResources().getString(R.string.wechat_AppSecret);
+        String wechat_AppID = BuildConfig.wechat_AppID;
+        String wechat_AppSecret = BuildConfig.wechat_AppSecret;
         iwxapi = WXAPIFactory.createWXAPI(this,wechat_AppID, false);
         iwxapi.registerApp(wechat_AppID);
         CheeseApplication.registerWX(wechat_AppID,wechat_AppSecret);

@@ -66,8 +66,8 @@ public class CheeseApplication extends MultiDexApplication {
         appComponent.inject(this);
         user = new User(this);
         PgyCrashManager.register(this);
-        String wechat_AppID = application.getString(R.string.umeng_wechat_AppID);
-        String wechat_AppSecret = application.getString(R.string.umeng_wechat_AppSecret);
+        String wechat_AppID = BuildConfig.wechat_AppID;
+        String wechat_AppSecret =BuildConfig.wechat_AppSecret;
         registerWX(wechat_AppID,wechat_AppSecret);
         //td
         String td_AppId = getResources().getString(R.string.td_app_id);

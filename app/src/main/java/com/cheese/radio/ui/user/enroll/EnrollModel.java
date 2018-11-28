@@ -14,6 +14,7 @@ import com.binding.model.model.ViewModel;
 import com.binding.model.model.inter.Event;
 import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
+import com.cheese.radio.BuildConfig;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
@@ -183,7 +184,7 @@ public class EnrollModel extends ViewModel<EnrollActivity, ActivityEnrollBinding
         //wx
         addDisposable(api.createWXOrder(params).compose(new RestfulTransformer<>()).subscribe((bean -> {
             PayReq req = new PayReq();
-            req.appId = getT().getResources().getString(R.string.wechat_AppID);
+            req.appId = BuildConfig.wechat_AppID;
             req.partnerId = bean.getPartnerId();
             req.prepayId = bean.getPrepareId();
             req.nonceStr = bean.getNonceStr();

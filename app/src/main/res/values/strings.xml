@@ -66,10 +66,10 @@
     <string name="class_msg">上课通知</string>
     <string name="vip_msg">会员通知</string>
     <string name="umeng_key">5ac4c20fb27b0a077b0001e6</string>
-    <string name="umeng_wechat_AppID">wxc34b4cea4106230e</string>
-    <string name="umeng_wechat_AppSecret">77f59ea225f35a7a7477e02dead86fae</string>
-    <string name="wechat_AppID">wxc7a1365f522a3dcf</string>
-    <string name="wechat_AppSecret">mmIUCtKU79LqkdGNg4sLjnkNn8Har489</string>
+    <string name="umeng_wechat_AppID_old">wxc34b4cea4106230e</string>
+    <string name="umeng_wechat_AppSecret_old">77f59ea225f35a7a7477e02dead86fae</string>
+    <string name="wechat_AppID_old">wxc7a1365f522a3dcf</string>
+    <string name="wechat_AppSecret_old">mmIUCtKU79LqkdGNg4sLjnkNn8Har489</string>
     <string name="ali_pay">支付宝支付</string>
     <string name="service_telephone">客服电话</string>
     <string name="service_centre_number">0574-87788656</string>

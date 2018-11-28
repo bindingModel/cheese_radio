@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.cheese.radio.BuildConfig;
 import com.cheese.radio.R;
 import com.cheese.radio.base.cycle.BaseActivity;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
@@ -23,8 +24,8 @@ public class PlayActivity extends BaseActivity<PlayModel> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String wechat_AppID = getResources().getString(R.string.wechat_AppID);
-        String wechat_AppSecret = getResources().getString(R.string.wechat_AppSecret);
+        String wechat_AppID = BuildConfig.wechat_AppID;
+        String wechat_AppSecret = BuildConfig.wechat_AppSecret;
         iwxapi = WXAPIFactory.createWXAPI(this,wechat_AppID, false);
         iwxapi.registerApp(wechat_AppID);
         PlatformConfig.setWeixin(wechat_AppID, wechat_AppSecret);
