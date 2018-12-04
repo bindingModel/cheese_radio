@@ -1,10 +1,14 @@
 package com.cheese.radio.util;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.support.v4.app.ActivityCompat;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
 import com.binding.model.App;
@@ -15,8 +19,17 @@ public class NetUtil {
     private static String macAddress = CheeseApplication.getUser().getMac();
 
     public static String getMacAddress() {
-
         if (!TextUtils.isEmpty(macAddress)) return macAddress;
+        if (TextUtils.isEmpty(macAddress)) {
+            if (ActivityCompat.checkSelfPermission(App.getCurrentActivity(), Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+                TelephonyManager telephonyManager = (TelephonyManager) App.getCurrentActivity().getSystemService(Context.TELEPHONY_SERVICE);
+                if (telephonyManager != null) {
+                    macAddress = telephonyManager.getDeviceId();
+                    if(!TextUtils.isEmpty(macAddress))return macAddress;
+                }
+            }
+        }
+
         if (wifiManager == null) wifiManager =
                 (WifiManager) App.getCurrentActivity().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo info = (null == wifiManager ? null : wifiManager.getConnectionInfo());
@@ -30,14 +43,13 @@ public class NetUtil {
         if (null != info) {
             CheeseApplication.getUser().setMac(info.getMacAddress());
             macAddress = CheeseApplication.getUser().getMac();
-            return macAddress;
         }
 
-        return null;
+        return macAddress;
     }
 
     public static void checkNetType(Context context) {
-        if (wifiManager == null)  wifiManager =
+        if (wifiManager == null) wifiManager =
                 (WifiManager) App.getCurrentActivity().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo info = (null == wifiManager ? null : wifiManager.getConnectionInfo());
         if (!wifiManager.isWifiEnabled())

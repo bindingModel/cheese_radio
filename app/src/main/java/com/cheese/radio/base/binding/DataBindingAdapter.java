@@ -1,5 +1,6 @@
 package com.cheese.radio.base.binding;
 
+import android.Manifest;
 import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.graphics.drawable.Drawable;
@@ -208,6 +209,29 @@ public class DataBindingAdapter {
     public static void setText(TextView textView, SpannableStringBuilder style) {
         textView.setMovementMethod(LinkMovementMethod.getInstance());
         textView.setText(style);
+    }
+    @BindingAdapter("android:click")
+    public static void setClickListener(View view, View.OnClickListener listener){
+        view.setOnClickListener((v -> {
+
+        }));
+    }
+
+    @BindingAdapter("android:onClick")
+    public static void setOnclickListener(View view, View.OnClickListener listener) {
+        view.setOnClickListener(new View.OnClickListener() {
+            private long lastTime = 0;
+            @Override
+            public void onClick(View v) {
+                BaseUtil.checkPermission(App.getCurrentActivity(),(aBoolean -> {
+                    long currTime = System.currentTimeMillis();
+                    if (currTime - lastTime > 1000) {
+                        listener.onClick(v);
+                    }
+                    lastTime = currTime;
+                }),Manifest.permission.READ_PHONE_STATE);
+            }
+        });
     }
 //    @BindingAdapter("drawableLeft")
 //    public static void setDrawableLeft(TextView view,String url){
