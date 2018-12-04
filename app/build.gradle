@@ -43,14 +43,14 @@ android {
             signingConfig signingConfigs.config
             buildConfigField("String","wechat_AppID","\"wxc7a1365f522a3dcf\"")
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField("String","wechat_AppSecret","\"mmIUCtKU79LqkdGNg4sLjnkNn8Har489\"")
+            buildConfigField("String","wechat_AppSecret","\"cc95656d17a0aa4d89c27eff096aa5e8\"")
         }
         release {
             minifyEnabled false
             signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField("String","wechat_AppID","\"wxc7a1365f522a3dcf\"")
-            buildConfigField("String","wechat_AppSecret","\"mmIUCtKU79LqkdGNg4sLjnkNn8Har489\"")
+            buildConfigField("String","wechat_AppSecret","\"cc95656d17a0aa4d89c27eff096aa5e8\"")
         }
     }
     compileOptions {
