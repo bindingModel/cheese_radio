@@ -73,9 +73,9 @@ public class Calendar3Model extends RecyclerModel<CalendarActivity, ActivityCale
         if (courseTypeId != 0) params.setCourseTypeId(courseTypeId);
         initCalendar();
         setRcHttp((offset1, refresh) -> api.getClassCalendar(params).compose(new RestfulTransformer<>()).doOnNext(list -> {
-            getDataBinding().includeCalendarView.calendarView.setSchemeDate(CalendarHelper.createCalendarMap(list));
             if(!list.isEmpty())
             months.put(list.get(0).getDays()[1], list);
+            getDataBinding().includeCalendarView.calendarView.setSchemeDate(CalendarHelper.createCalendarMap(months));
 //            entities.clear();
 //            entities.addAll(list);
         }).concatMap(Observable::fromIterable).filter(entity -> entity.getDays()[2] == getDataBinding().includeCalendarView.calendarView.getSelectedCalendar().getDay()).toList().toObservable());

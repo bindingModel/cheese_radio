@@ -1,7 +1,10 @@
 package com.cheese.radio.ui.user.calendar;
 
+import android.util.SparseArray;
+
 import com.haibin.calendarview.Calendar;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,6 +36,14 @@ public class CalendarHelper {
             }
         }
         return calendarHashMap;
+    }
+
+    public static HashMap<String, Calendar> createCalendarMap(SparseArray<List<CalendarEntity>> sparseArray) {
+        List<CalendarEntity> list = new ArrayList<>();
+        for (int i = 0; i < sparseArray.size(); i++) {
+            if (sparseArray.valueAt(i) != null) list.addAll(sparseArray.valueAt(i));
+        }
+        return createCalendarMap(list);
     }
 
     private Calendar getSchemeCalendar(int year, int month, int day, int color, String text) {
