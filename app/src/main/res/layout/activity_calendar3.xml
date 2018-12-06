@@ -40,6 +40,7 @@
                         android:layout_width="30dp"
                         android:layout_height="match_parent"
                         android:paddingLeft="20dp"
+                        android:visibility="gone"
                         android:src="@mipmap/left" />
 
                     <TextView
@@ -48,11 +49,12 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:padding="5dp"
-                        android:text="2018年"
+                        android:text="@{vm.year}"
                         android:textSize="15sp" />
 
                     <ImageView
                         android:layout_width="30dp"
+                        android:visibility="gone"
                         android:layout_height="wrap_content"
                         android:paddingRight="20dp"
                         android:src="@mipmap/right" />

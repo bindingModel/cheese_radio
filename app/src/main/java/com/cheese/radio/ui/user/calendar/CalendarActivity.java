@@ -16,7 +16,7 @@ import com.cheese.radio.inject.component.ActivityComponent;
  * @class describe
  */
 @Route(path = ActivityComponent.Router.calendar)
-public class CalendarActivity extends BaseActivity<Calendar2Model> {
+public class CalendarActivity extends BaseActivity<Calendar3Model> {
     @Override
     protected int isSwipe() {
         return SwipeBackLayout.FROM_NO;
