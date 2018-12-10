@@ -314,9 +314,11 @@ public class CalendarEntity extends ViewInflateRecycler {
     public void onEnrollClick(View view) {
         if (leftCount == 0) return;//"已约满";
 
-        if (bookId != null)
+        if (bookId != null) {
             getIEventAdapter().setEntity(IEventAdapter.NO_POSITION, this, AdapterType.no, view);//"已预约";
-        else getIEventAdapter().setEntity(IEventAdapter.NO_POSITION, this, AdapterType.add, view);
+        } else {
+            getIEventAdapter().setEntity(IEventAdapter.NO_POSITION, this, AdapterType.add, view);
+        }
        /* Bundle bundle = new Bundle();
         bundle.putInt(Constant.classId, classId);
         ARouterUtil.navigation(ActivityComponent.Router.coursedetails, bundle);*/
