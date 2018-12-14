@@ -56,7 +56,6 @@
                         android:layout_width="30dp"
                         android:visibility="gone"
                         android:layout_height="wrap_content"
-                        android:onClick="@{vm::onNextYearClick}"
                         android:paddingRight="20dp"
                         android:src="@mipmap/right" />
                 </LinearLayout>
