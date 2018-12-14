@@ -49,7 +49,7 @@ import timber.log.Timber;
  * @time 2018/11/21 7:46 PM
  * 只有编译器可能不骗你。
  */
-@ModelView(value = R.layout.activity_calendar3,model = true)
+@ModelView(value = R.layout.activity_calendar3, model = true)
 public class Calendar3Model extends RecyclerModel<CalendarActivity, ActivityCalendar3Binding, CalendarEntity> {
     @Inject
     Calendar3Model() {
@@ -61,25 +61,18 @@ public class Calendar3Model extends RecyclerModel<CalendarActivity, ActivityCale
     private ClassCalendarParams params = new ClassCalendarParams("getClassCalendar2");
     public ObservableField<String> year = new ObservableField<>();
     private SparseArray<List<CalendarEntity>> months = new SparseArray<>();
-    //    private List<CalendarEntity> entities = new ArrayList<>();
     private int courseTypeId = -1;
+    private boolean inited = false;
 
     @Override
     public void attachView(Bundle savedInstanceState, CalendarActivity calendarActivity) {
         super.attachView(savedInstanceState, calendarActivity);
-        initRefreshMonth();
         empty.setIndex(1);
         courseTypeId = getT().getIntent().getIntExtra(Constant.courseTypeId, 0);
         if (courseTypeId != 0) params.setCourseTypeId(courseTypeId);
+        setMonthItemListener();
+        initRefreshMonth();
         initCalendar();
-        setRcHttp((offset1, refresh) -> api.getClassCalendar(params).compose(new RestfulTransformer<>()).doOnNext(list -> {
-            if(!list.isEmpty())
-            months.put(list.get(0).getDays()[1], list);
-            getDataBinding().includeCalendarView.calendarView.setSchemeDate(CalendarHelper.createCalendarMap(months));
-//            entities.clear();
-//            entities.addAll(list);
-        }).concatMap(Observable::fromIterable).filter(entity -> entity.getDays()[2] == getDataBinding().includeCalendarView.calendarView.getSelectedCalendar().getDay()).toList().toObservable());
-
         addEventAdapter((position, entity, type, view) -> {
             switch (type) {
                 case AdapterType.add:
@@ -103,7 +96,7 @@ public class Calendar3Model extends RecyclerModel<CalendarActivity, ActivityCale
             }
             return true;
         });
-        setMonthItemListener();
+
     }
 
     private void initCalendar() {
@@ -111,8 +104,17 @@ public class Calendar3Model extends RecyclerModel<CalendarActivity, ActivityCale
         getDataBinding().includeCalendarView.calendarView.setOnMonthChangeListener(new CalendarView.OnMonthChangeListener() {
             @Override
             public void onMonthChange(int year, int month) {
-                monthEmitter.onNext(3);
-//                monthEmitter.onComplete();
+                if (!inited) {
+                    inited = true;
+                    setRcHttp((offset1, refresh) -> api.getClassCalendar(params).compose(new RestfulTransformer<>())
+                            .doOnNext(list -> {
+                                if (!list.isEmpty()) months.put(list.get(0).getDays()[1], list);
+                                getDataBinding().includeCalendarView.calendarView.setSchemeDate(CalendarHelper.createCalendarMap(months));
+                            }).concatMap(Observable::fromIterable).filter(entity -> entity.getDays()[2] == getDataBinding().includeCalendarView.calendarView.getSelectedCalendar().getDay()).toList().toObservable());
+                } else {
+                    monthEmitter.onNext(3);
+                    Timber.v("onMonthChange%1s,%2s", year, month);
+                }
             }
         });
         getDataBinding().includeCalendarView.calendarView.setOnCalendarSelectListener(new CalendarView.OnCalendarSelectListener() {
@@ -135,7 +137,8 @@ public class Calendar3Model extends RecyclerModel<CalendarActivity, ActivityCale
                         list.add(empty);
                 }
                 getAdapter().clear();
-                getAdapter().setList(IEventAdapter.NO_POSITION, list, AdapterType.refresh);
+                getAdapter().addListAdapter(0, list);
+                Timber.v("代码走了一遍，list长度：%1s,isClick;%2b", list.size(), isClick);
             }
         });
     }
@@ -145,6 +148,11 @@ public class Calendar3Model extends RecyclerModel<CalendarActivity, ActivityCale
     }
 
     private void setMonthItemListener() {
+        Calendar calendar = getDataBinding().includeCalendarView.calendarView.getSelectedCalendar();
+        View child = getDataBinding().includeMonths.months.getChildAt(calendar.getMonth() - 1);
+        getDataBinding().includeMonths.months.check(child.getId());
+        getDataBinding().includeMonths.scrollView.smoothScrollBy(child.getLeft() - getDataBinding().includeMonths.scrollView.getWidth() / 2, 0);
+        setYear(calendar.getYear());
         getDataBinding().includeMonths.months.setOnCheckedChangeListener((group, checkedId) -> {
             for (int i = 0; i < group.getChildCount(); i++) {
                 if (group.getChildAt(i).getId() == checkedId) {
@@ -164,20 +172,21 @@ public class Calendar3Model extends RecyclerModel<CalendarActivity, ActivityCale
 
     private void initRefreshMonth() {
         Disposable disposable = Observable.<Integer>create(emitter -> monthEmitter = emitter)
-                .throttleLast(1, TimeUnit.SECONDS)
+                .skipLast(500, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(integer -> {
                     Calendar selectedCalendar = getDataBinding().includeCalendarView.calendarView.getSelectedCalendar();
                     setYear(selectedCalendar.getYear());
-                    Timber.i("year:%1s,month:%2s,Calendar:%3s", selectedCalendar.getYear(), selectedCalendar.getMonth(), selectedCalendar.toString());
                     params.setYearMonth(selectedCalendar.getYear(), selectedCalendar.getMonth());
                     View child = getDataBinding().includeMonths.months.getChildAt(selectedCalendar.getMonth() - 1);
                     getDataBinding().includeMonths.months.check(child.getId());
                     getDataBinding().includeMonths.scrollView.smoothScrollBy(child.getLeft() - getDataBinding().includeMonths.scrollView.getWidth() / 2, 0);
                     onHttp(integer);
                 });
+
     }
+
     public void successBook(String bookId, Integer classId) {
         monthEmitter.onNext(3);
     }
