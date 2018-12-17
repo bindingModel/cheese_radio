@@ -225,7 +225,7 @@ public class DataBindingAdapter {
             public void onClick(View v) {
                 BaseUtil.checkPermission(App.getCurrentActivity(),(aBoolean -> {
                     long currTime = System.currentTimeMillis();
-                    if (currTime - lastTime > 1000) {
+                    if (currTime - lastTime > 500) {
                         listener.onClick(v);
                     }
                     lastTime = currTime;

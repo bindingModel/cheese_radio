@@ -189,21 +189,25 @@
                     android:paddingLeft="85dp"
                     android:paddingRight="85dp">
 
-                    <ImageView
+                    <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_gravity="start"
                         android:padding="15dp"
+                        android:background="@null"
                         android:onClick="@{vm::onLastClick}"
+                        android:contentDescription="@string/last"
                         android:src="@mipmap/previous" />
 
-                    <ImageView
+                    <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_gravity="end"
+                        android:background="@null"
                         android:padding="15dp"
                         android:onClick="@{vm::onNextClick}"
-                        android:src="@mipmap/next" />
+                        android:src="@mipmap/next"
+                        android:contentDescription="@string/next" />
 
                     <RadioButton
                         android:id="@+id/play"

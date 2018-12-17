@@ -115,6 +115,8 @@
     <string name="please_enter_parent_name">请输入家长姓名</string>
     <string name="please_enter_gender">请输入性别</string>
     <string name="please_enter_your_birthday">请输入生日</string>
+    <string name="next">下一首</string>
+    <string name="last">上一首</string>
 
     <string-array name="chinese_week_string_array">
         <item>周日</item>

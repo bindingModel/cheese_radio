@@ -21,10 +21,13 @@ import com.binding.model.layout.rotate.TimeUtil;
 import com.binding.model.model.ViewModel;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.ui.service.AudioServiceUtil;
+import com.pgyersdk.crash.PgyCrashManager;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import timber.log.Timber;
 
 import static com.cheese.radio.ui.service.AudioService.Prepared;
 
@@ -35,7 +38,7 @@ import static com.cheese.radio.ui.service.AudioService.Prepared;
 
 public abstract class AudioModel<T extends Container, Binding extends ViewDataBinding, Entity>
         extends ViewModel<T, Binding>
-        implements MediaPlayer.OnCompletionListener, SeekBar.OnSeekBarChangeListener, TimeEntity {
+        implements MediaPlayer.OnErrorListener, MediaPlayer.OnCompletionListener, SeekBar.OnSeekBarChangeListener, TimeEntity {
 
     public ObservableField<String> currentTime = new ObservableField<>();
     private int position = 0;
@@ -44,7 +47,8 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
     public AudioServiceUtil util = AudioServiceUtil.getInstance();
     public transient ObservableBoolean checked = new ObservableBoolean();
     private boolean mDragging = false;
-    public static ObservableBoolean loop=new ObservableBoolean(false);
+    public static ObservableBoolean loop = new ObservableBoolean(false);
+
     public boolean isPlaying() {
         return util.isPlaying();
     }
@@ -76,7 +80,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
                 if (entity != null) play(entity);
             } else
                 checked.set(true);
-                showButtonNotify();
+            showButtonNotify();
         } else {
             util.pause();
             checked.set(false);
@@ -196,27 +200,41 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
         setProgress();
     }
 
-    public void setEntities(List<Entity> entities,int position) {
+    public void setEntities(List<Entity> entities, int position) {
         this.fmsEntities.addAll(entities);
         int count = 0;
         for (Entity entity : entities) {
-            if(count++!=position)continue;
+            if (count++ != position) continue;
             this.entity = entity;
             play(entity);
             getDataBinding().setVariable(BR.entity, entity);
             break;
         }
     }
+
     public abstract void showButtonNotify();
+
     public abstract void cancelButtonNotiy();
-    protected void addEntity(Entity entity){
+
+    protected void addEntity(Entity entity) {
         fmsEntities.add(entity);
     }
-    protected List<Entity> getList(){
+
+    protected List<Entity> getList() {
         return fmsEntities;
     }
-    protected Entity getEntity(){
-        return entity;
-    };
 
+    protected Entity getEntity() {
+        return entity;
+    }
+
+    /**
+     * @return 返回true时不会调用onComplete
+     */
+    @Override
+    public boolean onError(MediaPlayer mp, int what, int extra) {
+        Timber.v("what:%1s,extra:%2s", what, extra);
+        PgyCrashManager.reportCaughtException(App.getCurrentActivity(), new Exception(what+":"+extra));
+        return true;
+    }
 }

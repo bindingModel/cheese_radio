@@ -363,14 +363,16 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     }
 
     public void onNextClick(View view) {
+        Timber.v("onNextClick1");
         nextMusic.setId(id);
         nextMusic.setActionType("next");
         int index = getList().indexOf(getEntity());
-        if (index == getList().size() - 1)
+        if (index == getList().size() - 1) {
+            Timber.v("onNextClick2");
             addDisposable(api.playInOrder(nextMusic).compose(new RestfulTransformer<>()).subscribe(
                     this::setSingelEntity
                     , BaseUtil::toast));
-        else setSingelEntity(getList().get(index + 1));
+        } else setSingelEntity(getList().get(index + 1));
     }
 
     public void onCompletion(MediaPlayer mp) {
