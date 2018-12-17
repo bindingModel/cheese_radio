@@ -221,7 +221,7 @@ public class AudioService extends Service
 
     @Override
     public long getDuration() {
-        if (player != null) {
+        if (player != null &&player.isPlaying()) {
             return player.getDuration();
         }
         return live ? -2 : -1;
