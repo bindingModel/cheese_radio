@@ -123,7 +123,7 @@ public class DataBindingAdapter {
                 .centerCrop()
 //                .error(R.mipmap.logo)
                 .priority(Priority.HIGH)//优先级
-                .diskCacheStrategy(DiskCacheStrategy.NONE)//缓存策略
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)//缓存策略
                 .transform(new CircleCrop());//转化为圆角
         Glide.with(context)
                 .load(url)
@@ -141,7 +141,7 @@ public class DataBindingAdapter {
         RequestOptions options2 = new RequestOptions()
                 .fitCenter()
                 .priority(Priority.HIGH)//优先级
-                .diskCacheStrategy(DiskCacheStrategy.NONE)//缓存策略
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)//缓存策略
                 .transform(new RoundedCorners(radius));//转化为圆角
         Glide.with(context)
                 .load(url)

@@ -148,8 +148,10 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         util.pause();
         AudioServiceUtil.getInstance().setImage(entity.getImage());
         AudioServiceUtil.getInstance().setFileId(entity.getFileId());
-        getDataBinding().setEntity(entity);
-        getDataBinding().html5Desc.setText(Html.fromHtml(entity.getAnchorBrief()));
+        if (getDataBinding() != null) {
+            getDataBinding().setEntity(entity);
+            getDataBinding().html5Desc.setText(Html.fromHtml(entity.getAnchorBrief()));
+        }
         play(entity);
         if (!getList().isEmpty()) {
             Model.dispatchModel(Constant.images, entity);
@@ -319,10 +321,11 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         PlayEntity entity = getEntity();
         Disposable subscribe = Observable.just(Glide.with(getT()).asBitmap().load(entity.getImage()).submit())
                 .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(bitmap -> {
-                    manager.builderNotification(bitmap.get(), entity.getTitle(), entity.getSubTitle());
+                    NotifyManager.builderNotification(bitmap.get(), entity.getTitle(), entity.getSubTitle());
                     upDataButton();
-                });
+                }, BaseUtil::toast);
     }
 
     @Override

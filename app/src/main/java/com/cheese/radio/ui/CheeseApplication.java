@@ -1,16 +1,8 @@
 package com.cheese.radio.ui;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
+
 import android.support.multidex.MultiDexApplication;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatDelegate;
-import android.widget.RemoteViews;
 
 import com.binding.model.App;
 import com.binding.model.util.BaseUtil;
@@ -37,12 +29,13 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import timber.log.Timber;
+
 import static com.cheese.radio.inject.component.ActivityComponent.Router.login;
-import static com.cheese.radio.ui.Constant.ACTION_BUTTON;
-import static com.cheese.radio.ui.Constant.BUTTON_CANCEL_ID;
-import static com.cheese.radio.ui.Constant.BUTTON_NEXT_ID;
-import static com.cheese.radio.ui.Constant.BUTTON_PALY_ID;
-import static com.cheese.radio.ui.Constant.INTENT_BUTTONID_TAG;
+
 
 /**
  * Created by apple on 2017/6/23.
@@ -67,8 +60,8 @@ public class CheeseApplication extends MultiDexApplication {
         user = new User(this);
         PgyCrashManager.register(this);
         String wechat_AppID = BuildConfig.wechat_AppID;
-        String wechat_AppSecret =BuildConfig.wechat_AppSecret;
-        registerWX(wechat_AppID,wechat_AppSecret);
+        String wechat_AppSecret = BuildConfig.wechat_AppSecret;
+        registerWX(wechat_AppID, wechat_AppSecret);
         //td
         String td_AppId = getResources().getString(R.string.td_app_id);
         String td_AppChannel = getResources().getString(R.string.td_app_channel);
@@ -113,10 +106,11 @@ public class CheeseApplication extends MultiDexApplication {
 
     /**
      * 注册微信
-     * @param wechat_AppID 对应的id，目前有两个，需要动态注册
+     *
+     * @param wechat_AppID     对应的id，目前有两个，需要动态注册
      * @param wechat_AppSecret
      */
-    public static void registerWX(String wechat_AppID,String wechat_AppSecret) {
+    public static void registerWX(String wechat_AppID, String wechat_AppSecret) {
         PlatformConfig.setWeixin(wechat_AppID, wechat_AppSecret);
         UMConfigure.setLogEnabled(true);
         UMConfigure.init(application, ""
@@ -125,31 +119,34 @@ public class CheeseApplication extends MultiDexApplication {
 
     /**
      * 微信 登出操作；
+     *
      * @param platform
      */
     public static void logout(final SHARE_MEDIA platform) {
-        UMShareAPI.get(application).deleteOauth(App.getCurrentActivity(), platform, new UMAuthListener() {
+        Disposable subscribe = Observable.just(platform).observeOn(Schedulers.newThread())
+                .subscribe(pl -> UMShareAPI.get(application).deleteOauth(App.getCurrentActivity(), pl, new UMAuthListener() {
 
-            @Override
-            public void onStart(SHARE_MEDIA share_media) {
+                    @Override
+                    public void onStart(SHARE_MEDIA share_media) {
 
-            }
+                    }
 
-            @Override
-            public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
+                    @Override
+                    public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
 
-            }
+                    }
 
-            @Override
-            public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
+                    @Override
+                    public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
 
-            }
+                    }
 
-            @Override
-            public void onCancel(SHARE_MEDIA share_media, int i) {
+                    @Override
+                    public void onCancel(SHARE_MEDIA share_media, int i) {
 
-            }
-        });
+                    }
+                }), Timber::w);
+
     }
 
 }
