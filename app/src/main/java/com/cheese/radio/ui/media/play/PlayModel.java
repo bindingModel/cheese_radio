@@ -263,16 +263,16 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         String musicUR = null;
         if (getEntity() == null) return;
         PlayEntity entity = getEntity();
-        addDisposable(Observable.create((ObservableOnSubscribe<UMusic>) e -> {
-                    UMusic music = new UMusic(entity.getShareUrl());
-                    UMImage image = new UMImage(getT(), entity.getImage());
-                    music.setTitle(entity.getTitle());
-                    music.setThumb(image);
-                    music.setDescription(entity.getSubTitle());
-                    music.setmTargetUrl(entity.getShareLandingUrl());
-                    e.onNext(music);
-                }
-        ).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe((uMusic -> {
+
+        UMusic music = new UMusic(entity.getShareUrl());
+        UMImage image = new UMImage(getT(), entity.getImage());
+        music.setTitle(entity.getTitle());
+        music.setThumb(image);
+        music.setDescription(entity.getSubTitle());
+        music.setmTargetUrl(entity.getShareLandingUrl());
+        addDisposable(Observable.just(music).subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((uMusic -> {
             ShareBoardConfig config = new ShareBoardConfig();//新建ShareBoardConfig
             //          config.setShareboardPostion(ShareBoardConfig.SHAREBOARD_POSITION_CENTER);//设置位置
             config.setMenuItemBackgroundShape(ShareBoardConfig.BG_SHAPE_CIRCULAR);
