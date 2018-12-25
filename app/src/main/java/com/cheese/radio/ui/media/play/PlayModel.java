@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -260,34 +261,41 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
     //UM分享
     public void onShareClick(View view) {
-        String musicUR = null;
         if (getEntity() == null) return;
-        PlayEntity entity = getEntity();
-
-        UMusic music = new UMusic(entity.getShareUrl());
-        UMImage image = new UMImage(getT(), entity.getImage());
-        music.setTitle(entity.getTitle());
-        music.setThumb(image);
-        music.setDescription(entity.getSubTitle());
-        music.setmTargetUrl(entity.getShareLandingUrl());
-        addDisposable(Observable.just(music).subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((uMusic -> {
-            ShareBoardConfig config = new ShareBoardConfig();//新建ShareBoardConfig
-            //          config.setShareboardPostion(ShareBoardConfig.SHAREBOARD_POSITION_CENTER);//设置位置
-            config.setMenuItemBackgroundShape(ShareBoardConfig.BG_SHAPE_CIRCULAR);
-            config.setCancelButtonVisibility(true);
-            config.setCancelButtonText("取消");
-            config.setCancelButtonBackground(Color.rgb(240, 240, 240));
-            config.setIndicatorColor(Color.WHITE, Color.WHITE);
-            config.setTitleVisibility(false);
-            config.setShareboardBackgroundColor(Color.WHITE);
-            new ShareAction(getT())
-                    .withMedia(uMusic)
+        addDisposable(
+                Observable.just(getEntity())
+                        .flatMap(entity -> TextUtils.isEmpty(entity.getShareUrl()) ? api.getContentInfo(new PlayParams("contentInfo", entity.getId()))
+                                .compose(new RestfulTransformer<>()) : Observable.just(entity))
+                        .map(entity -> {
+                            UMusic music = new UMusic(entity.getShareUrl());
+                            UMImage image = new UMImage(getT(), entity.getImage());
+                            music.setTitle(entity.getTitle());
+                            music.setThumb(image);
+                            music.setDescription(entity.getSubTitle());
+                            music.setmTargetUrl(entity.getShareLandingUrl());
+                            return music;
+                        })
+//                Observable.just(music).subscribeOn(Schedulers.newThread())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .flatMap(uMusic -> {
+//                    if (uMusic.getU)
+//                })
+                        .subscribe((uMusic -> {
+                            ShareBoardConfig config = new ShareBoardConfig();//新建ShareBoardConfig
+                            //          config.setShareboardPostion(ShareBoardConfig.SHAREBOARD_POSITION_CENTER);//设置位置
+                            config.setMenuItemBackgroundShape(ShareBoardConfig.BG_SHAPE_CIRCULAR);
+                            config.setCancelButtonVisibility(true);
+                            config.setCancelButtonText("取消");
+                            config.setCancelButtonBackground(Color.rgb(240, 240, 240));
+                            config.setIndicatorColor(Color.WHITE, Color.WHITE);
+                            config.setTitleVisibility(false);
+                            config.setShareboardBackgroundColor(Color.WHITE);
+                            new ShareAction(getT())
+                                    .withMedia(uMusic)
 //                    .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.SINA)
-                    .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE)
-                    .setCallback(this).open(config);
-        }), BaseUtil::toast));
+                                    .setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE)
+                                    .setCallback(this).open(config);
+                        }), BaseUtil::toast));
 
 
     }
