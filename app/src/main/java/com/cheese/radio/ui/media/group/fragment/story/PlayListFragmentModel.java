@@ -54,6 +54,7 @@ public class PlayListFragmentModel extends RecyclerModel<PlayListFragment, Fragm
                         if (indexOf == -1) {return;}
                         Bundle bundle = new Bundle();
                         bundle.putInt(Constant.indexOf, indexOf);
+                        bundle.putInt(Constant.id,o.getId());
                         bundle.putParcelableArrayList(Constant.playList, (ArrayList<PlayEntity>) playEntities);
                         ARouterUtil.LocationNavigation(o.getLocation(), bundle);
                     }));

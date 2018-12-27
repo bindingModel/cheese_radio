@@ -55,7 +55,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -142,7 +141,10 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     }
 
     public void setSingelEntity(PlayEntity entity) {
-        if (entity.getId() != id) id = entity.getId();
+        if (entity.getId() != id) {
+            id = entity.getId();
+            util.setId(id);
+        }
         if (!getList().contains(entity))
             addEntity(entity);
         playTime = 0;
