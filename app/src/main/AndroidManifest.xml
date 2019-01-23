@@ -178,5 +178,6 @@
         <activity android:name=".ui.home.circle.detail.CircleDetailActivity" />
         <activity android:name=".ui.home.circle.join.JoinCircleDetailActivity" android:label="@string/activity_enroll"/>
         <activity android:name=".ui.user.calendar.CalendarActivity" />
+        <activity android:name=".ui.test.TestActivity" />
     </application>
 </manifest>
