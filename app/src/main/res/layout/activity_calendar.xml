@@ -78,7 +78,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        app:inflates="@{vm.theDayClass}" />
+                        app:addInflates="@{vm.theDayClass}" />
 
                 </LinearLayout>
             </ScrollView>

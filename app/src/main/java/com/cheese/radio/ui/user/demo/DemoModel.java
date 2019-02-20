@@ -37,7 +37,7 @@ public class DemoModel extends ViewHttpModel<DemoActivity,ActivityDemoBinding,De
     }
 
     @Override
-    public void accept(DemoData demoData) throws Exception {
+    public void onNext(DemoData demoData)  {
 
     }
 }

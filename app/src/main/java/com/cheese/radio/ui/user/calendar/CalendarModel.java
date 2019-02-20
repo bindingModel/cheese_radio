@@ -49,7 +49,7 @@ public class CalendarModel extends ViewHttpModel<CalendarFragment, ActivityCalen
     RadioApi api;
 
     @Override
-    public void accept(List<CalendarEntity> calendarEntities) throws Exception {
+    public void onNext(List<CalendarEntity> calendarEntities)  {
         calendarView.setTipsDays(calendarEntities);
         list.clear();
         list.addAll(calendarEntities);

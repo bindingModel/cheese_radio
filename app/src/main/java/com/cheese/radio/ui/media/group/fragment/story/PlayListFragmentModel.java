@@ -2,6 +2,7 @@ package com.cheese.radio.ui.media.group.fragment.story;
 
 import android.os.Bundle;
 
+import com.binding.model.adapter.IEventAdapter;
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
 import com.cheese.radio.R;
@@ -36,7 +37,7 @@ public class PlayListFragmentModel extends RecyclerModel<PlayListFragment, Fragm
             List<PlayEntity> list = bundle.getParcelableArrayList(Constant.anchorSingleItem);
             if (list != null)
                 try {
-                    accept(list);
+                    getAdapter().addListAdapter(IEventAdapter.NO_POSITION,list);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

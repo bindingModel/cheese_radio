@@ -29,7 +29,7 @@ public class PictureModel extends ViewHttpModel<PictureActivity, ActivityPicture
     }
 
     @Override
-    public void accept(PictureEntity pictureEntity) throws Exception {
+    public void onNext(PictureEntity pictureEntity){
 
     }
 

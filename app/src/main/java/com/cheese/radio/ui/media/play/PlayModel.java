@@ -109,8 +109,9 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     private void initEntity() {
         List<PlayEntity> playList = getT().getIntent().getParcelableArrayListExtra(Constant.playList);
         int position = getT().getIntent().getIntExtra(Constant.indexOf, 0);
-        if (playList != null && !playList.isEmpty()) {
-            setEntities(playList, position);
+        if (playList != null && !playList.isEmpty() && util.pause()) {
+            setEntities(playList);
+            setSingelEntity(playList.get(position));
         } else if (id != 0) addDisposable(api.getContentInfo(new PlayParams("contentInfo", id))
                 .compose(new RestfulTransformer<>()).subscribe(
                         this::setSingelEntity, BaseUtil::toast));
@@ -398,5 +399,6 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         checked.set(!mp.isPlaying());
         onResume();//校准播放按钮
     }
+
 }
 

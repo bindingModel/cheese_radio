@@ -87,7 +87,7 @@ public class GroupInfoModel extends AudioPagerModel<GroupInfoActivity, ActivityG
         list.add(new GroupEntity(groupData));
         list.add(new GroupEntity(groupData));
         try {
-            accept(list);
+            onNext(list);
             setCurrentItem(0);
         } catch (Exception e) {
             e.printStackTrace();

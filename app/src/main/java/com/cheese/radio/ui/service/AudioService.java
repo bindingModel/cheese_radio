@@ -149,6 +149,8 @@ public class AudioService extends Service
     @Override
     public int start(String uri) throws IOException {
         if (player != null) {
+            Timber.w(state
+                    +">>>>>"+uri);
             switch (state) {
                 case Reset:
                     requestAudioFocus();
@@ -218,15 +220,15 @@ public class AudioService extends Service
         }
         return live ? -2 : -1;
     }
-
+    int lastDurationg = 0 ;
     @Override
     public long getDuration() {
         if (player != null &&player.isPlaying()) {
-            return player.getDuration();
+            return lastDurationg=player.getDuration();
         }
-        return live ? -2 : -1;
+        return lastDurationg;
+//        return live ? -2 : -1;
     }
-
 
     @Override
     public boolean isPlaying() {

@@ -200,12 +200,17 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
         setProgress();
     }
 
-    public void setEntities(List<Entity> entities, int position) {
+    public void setEntities(List<Entity> entities) {
         this.fmsEntities.addAll(entities);
+    }
+
+    public void setEntities(List<Entity> entities, int position) {
+        setEntities(entities);
         int count = 0;
         for (Entity entity : entities) {
             if (count++ != position) continue;
             this.entity = entity;
+            util.pause();
             play(entity);
             getDataBinding().setVariable(BR.entity, entity);
             break;
@@ -234,7 +239,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
         Timber.v("what:%1s,extra:%2s", what, extra);
-        PgyCrashManager.reportCaughtException(App.getCurrentActivity(), new Exception(what+":"+extra));
+        PgyCrashManager.reportCaughtException(App.getCurrentActivity(), new Exception(what + ":" + extra));
         return true;
     }
 }

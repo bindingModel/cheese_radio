@@ -27,7 +27,7 @@ public class CenterModel extends ViewHttpModel<CenterActivity, ActivityServiceCe
 
 
     @Override
-    public void accept(Object o) throws Exception {
+    public void onNext(Object o) {
 
     }
 

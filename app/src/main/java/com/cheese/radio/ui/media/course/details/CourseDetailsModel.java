@@ -28,7 +28,7 @@ public class CourseDetailsModel extends ViewHttpModel<CourseDetailsActivity, Act
 
 
     @Override
-    public void accept(CourseDetailsData courseDetailsData) throws Exception {
+    public void onNext(CourseDetailsData courseDetailsData) {
         getDataBinding().setEntity(courseDetailsData);
 //        MyBaseUtil.setWebView(getDataBinding().webview,courseDetailsData.getClassDesc());
         MyBaseUtil.setWebView(getDataBinding().webview, courseDetailsData.getClassDesc());

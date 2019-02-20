@@ -31,7 +31,7 @@ public class JsonResponseBodyConverter<T> implements Converter<ResponseBody, T> 
             if (type instanceof ParameterizedType) {
                 Class cc = (Class) ((ParameterizedType) type).getRawType();
                 if (InfoEntity.class.isAssignableFrom(cc)) {
-                    entity = JsonDeepUtil.getInstance().getEntityJson(json, InfoEntity.class);
+                    entity = JsonDeepUtil.parse(json, InfoEntity.class);
                     if (entity.code() != 0)
                         throw new ApiException(entity.getMessage(), entity.code(), json);
                 }

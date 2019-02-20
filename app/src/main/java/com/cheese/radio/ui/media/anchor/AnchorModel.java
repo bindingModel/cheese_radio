@@ -80,7 +80,7 @@ public class AnchorModel extends AudioPagerModel<AnchorActivity, ActivityAnchorB
         list.add(new AnchorEntity(anchorData));
         list.add(new AnchorEntity(anchorData));
         try {
-            accept(list);
+            onNext(list);
             setCurrentItem(0);
         } catch (Exception e) {
             e.printStackTrace();

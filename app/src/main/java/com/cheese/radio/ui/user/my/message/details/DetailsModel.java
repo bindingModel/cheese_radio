@@ -4,6 +4,7 @@ import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.view.View;
 
+import com.binding.model.adapter.IEventAdapter;
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.inter.Event;
@@ -48,7 +49,7 @@ public class DetailsModel extends RecyclerModel<DetailsActivity, ActivityDetails
         list.addAll(getT().getIntent().getParcelableArrayListExtra(Constant.detailsEntity));
         try {
             Collections.reverse(list);//倒序排序
-            accept(list);
+            getAdapter().addListAdapter(IEventAdapter.NO_POSITION,list);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -93,11 +93,11 @@ public class MyCourseModel extends RecyclerModel<MyCourseActivity, ActivityMyCou
         afterCompleteAndError();
     }
 
-    @Override
-    public void onThrowable(Throwable throwable) {
-        super.onThrowable(throwable);
-        afterCompleteAndError();
-    }
+//    @Override
+//    public void onThrowable(Throwable throwable) {
+//        super.onThrowable(throwable);
+//        afterCompleteAndError();
+//    }
 
     private void afterCompleteAndError() {
         if (getAdapter().size() == 0) {

@@ -98,6 +98,7 @@ public class HomePageModel extends RecyclerModel<HomePageFragment, FragmentHomeP
                     list.addAll(data.getList());
                     if(data.getIslocation())list.add(new RecommandTail(data.getLocation(),data.getLocationId(),data.getTitle()));
                 }
+                if(AudioServiceUtil.getInstance().getId()==0)
                 AudioServiceUtil.getInstance().setId(entity.getData().get(0).getList().get(0).getId());
             }
             return list;

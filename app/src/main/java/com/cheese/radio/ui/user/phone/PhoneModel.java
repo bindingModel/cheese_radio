@@ -28,7 +28,7 @@ import static com.binding.model.util.BaseUtil.isValidToast;
 @ModelView(R.layout.activity_phone)
 public class PhoneModel extends ViewHttpModel<PhoneActivity, ActivityPhoneBinding, Object> implements TextWatcher, TextView.OnEditorActionListener {
     @Override
-    public void accept(Object o) throws Exception {
+    public void onNext(Object o) {
 
     }
 

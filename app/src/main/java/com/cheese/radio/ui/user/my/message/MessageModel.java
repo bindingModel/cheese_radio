@@ -32,7 +32,7 @@ public class MessageModel extends ViewHttpModel<MessageActivity, ActivityMessage
     }
 
     @Override
-    public void accept(MessagesData messagesData) throws Exception {
+    public void onNext(MessagesData messagesData)  {
         this.messagesData = messagesData;
         initMsg();
     }

@@ -19,7 +19,7 @@ import javax.inject.Inject;
 @ModelView(value = R.layout.activity_safe,model = true)
 public class SafeModel extends ViewHttpModel<SafeActivity,ActivitySafeBinding,Object>{
     @Override
-    public void accept(Object o) throws Exception {
+    public void onNext(Object o)  {
 
     }
     @Inject SafeModel(){}

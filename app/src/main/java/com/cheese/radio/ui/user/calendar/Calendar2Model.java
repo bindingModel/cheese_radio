@@ -1,6 +1,8 @@
 package com.cheese.radio.ui.user.calendar;
 
+import android.databinding.ObservableArrayList;
 import android.databinding.ObservableField;
+import android.databinding.ObservableList;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -61,7 +63,7 @@ public class Calendar2Model extends ViewHttpModel<CalendarActivity, ActivityCale
     RadioApi api;
 
     @Override
-    public void accept(List<CalendarEntity> calendarEntities) throws Exception {
+    public void onNext(List<CalendarEntity> calendarEntities) {
         calendarView.setTipsDays(calendarEntities);
         list.clear();
         list.addAll(calendarEntities);
@@ -80,7 +82,7 @@ public class Calendar2Model extends ViewHttpModel<CalendarActivity, ActivityCale
     private List<CalendarEntity> list = new ArrayList<>();
     private List<Month> months;
     private int selectMonth = 0;
-    public final ObservableField<ArrayList<CalendarEntity>> theDayClass = new ObservableField<>();
+    public final ObservableList<CalendarEntity> theDayClass = new ObservableArrayList<>();
     private ClassCalendarParams params = new ClassCalendarParams("getClassCalendar2");
     private Calendar now = Calendar.getInstance();
     private Day currentDay;
@@ -211,7 +213,8 @@ public class Calendar2Model extends ViewHttpModel<CalendarActivity, ActivityCale
                 }
                 if (list.size() != 0)
                     list.add(empty);
-                theDayClass.set(list);
+                theDayClass.clear();
+                theDayClass.addAll(list);
             }
 
             @Override
@@ -309,7 +312,7 @@ public class Calendar2Model extends ViewHttpModel<CalendarActivity, ActivityCale
                 detailsParams.setClassId(entity.getClassId());
                 addDisposable(api.getBookClass(detailsParams).compose(new RestfulTransformer<>()).subscribe(s -> {
                     entity.setBookId(s.getBookId());
-                    theDayClass.notifyChange();
+//                    theDayClass.notifyChange();
                     Model.dispatchModel("refreshClock");
                     if(currentDay!=null && currentView !=null){
                         currentDay.setTipsType(1);
@@ -323,7 +326,7 @@ public class Calendar2Model extends ViewHttpModel<CalendarActivity, ActivityCale
                 cancelBook.setBookId(Integer.parseInt(entity.getBookId()));
                 addDisposable(api.cancelBook(cancelBook).compose(new ErrorTransform<>()).subscribe((s -> {
                     entity.setBookId(null);
-                    theDayClass.notifyChange();
+//                    theDayClass.notifyChange();
                     Model.dispatchModel("refreshClock");
                     if(currentDay!=null && currentView !=null){
                         currentDay.setTipsType(2);
@@ -341,13 +344,15 @@ public class Calendar2Model extends ViewHttpModel<CalendarActivity, ActivityCale
     }
 
     public void successBook(String bookId, Integer classId) {
-        for (int i = 0; i < theDayClass.get().size(); i++) {
-            if (theDayClass.get().get(i).getClassId() == classId) {
-                theDayClass.get().get(i).setBookId((bookId));
-                theDayClass.notifyChange();
+        for (int i = 0; i < theDayClass.size(); i++) {
+            if (theDayClass.get(i).getClassId() == classId) {
+                theDayClass.get(i).setBookId((bookId));
+//                theDayClass.notifyChange();
             }
         }
     }
+
+
 }
 
 

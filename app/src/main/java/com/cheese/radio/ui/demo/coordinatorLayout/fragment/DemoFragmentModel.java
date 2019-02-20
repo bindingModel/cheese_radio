@@ -2,6 +2,7 @@ package com.cheese.radio.ui.demo.coordinatorLayout.fragment;
 
 import android.os.Bundle;
 
+import com.binding.model.adapter.IEventAdapter;
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.inter.Inflate;
@@ -30,7 +31,7 @@ public class DemoFragmentModel extends RecyclerModel<DemoFragment,FragmentDemoBi
             list.add(new MyFavorityTitle("i="+i));
         }
         try {
-            accept(list);
+            getAdapter().addListAdapter(IEventAdapter.NO_POSITION,list);
         } catch (Exception e) {
             BaseUtil.toast(e.toString());
         }
