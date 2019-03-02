@@ -120,7 +120,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
             if (aBoolean && util.start(transformUrl(entity), this, listener) == Prepared)
                 getPlayView().setEnabled(false);
         }, Manifest.permission.RECORD_AUDIO);
-        getDataBinding().setVariable(BR.entity, entity);
+        if(getDataBinding()!=null) getDataBinding().setVariable(BR.entity, entity);
     }
 
     @Override

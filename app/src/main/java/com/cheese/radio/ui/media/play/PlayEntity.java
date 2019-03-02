@@ -41,7 +41,7 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
     private String image;
     private int playCount;
     private int seconds;
-    private String subTitle;
+    private transient String subTitle;
     private String anchorIcon;
     private int id;
     private String title;
@@ -49,7 +49,7 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
     private int fabuCount;
     private String anchorName;
     private String url;
-    private String anchorBrief;
+    private transient String anchorBrief;
     private Integer favor;
     private Integer fabu;
     private Integer fileId;
@@ -93,7 +93,7 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
 
     public void addFabuCount(int i) {
         fabuCount += i;
-        if(fabuCount<0)fabuCount=0;
+        if (fabuCount < 0) fabuCount = 0;
     }
 
     public String getShareUrl() {
@@ -197,7 +197,7 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
     }
 
     public String getAnchorBrief() {
-        return TextUtils.isEmpty(anchorBrief)?"":anchorBrief;
+        return TextUtils.isEmpty(anchorBrief) ? "" : anchorBrief;
     }
 
     public void setAnchorBrief(String anchorBrief) {
@@ -265,6 +265,7 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
 
     /**
      * 点击播放按钮后，应该回调跳转到对应的曲目
+     *
      * @param view
      */
     public void onPlayClick(View view) {
@@ -341,32 +342,32 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
     };
 
 
-        /**
-         * image : http://cheese-radio-1256030909.cos.ap-guangzhou.myqcloud.com/images/c9/c14/1655626fa7658.jpg?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDzLbkmgG9mDR0VpMufGguwldS4VknuIl8%26q-sign-time%3D1534748721%3B3112671921%26q-key-time%3D1534748721%3B3112671921%26q-header-list%3Dhost%26q-url-param-list%3D%26q-signature%3D527888c06c710e6e08e9983c6463ab36c401047f
-         * fabuCount : 0
-         * anchorIcon : http://cheese-radio-1256030909.cos.ap-guangzhou.myqcloud.com/images/c13/c7/16425ad3eda59.jpg?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDzLbkmgG9mDR0VpMufGguwldS4VknuIl8%26q-sign-time%3D1529640483%3B3107563683%26q-key-time%3D1529640483%3B3107563683%26q-header-list%3Dhost%26q-url-param-list%3D%26q-signature%3D23e67806ff910d6cb63ee12a0cb6620b59c6447f
-         * shareLandingUrl : http://h5.zhishidiantai.com/zhishidiantai/share.html?id=747
-         * title : 糖果屋
-         * anchorId : 35
-         * favorCount : 1
-         * anchorName : 奕艺姐姐
-         * url : http://cheese-radio-1256030909.cos.ap-guangzhou.myqcloud.com/audioes/c25/c0/1655627282d56.mp3?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDzLbkmgG9mDR0VpMufGguwldS4VknuIl8%26q-sign-time%3D1534748735%3B3112671935%26q-key-time%3D1534748735%3B3112671935%26q-header-list%3Dhost%26q-url-param-list%3D%26q-signature%3D113c9ad722d89c60d194a20ac2fc831aba520dc5
-         * playCount : 2923
-         * seconds : 637
-         * subTitle :
-         * shareUrl : http://manager.zhishidiantai.com/docroot/attachments/c25/c0/1655627282d56.mp3
-         * id : 747
-         * anchorBrief : 喜欢给调皮捣蛋的孩子讲故事的小姐姐
-         * fileId : 747
-         */
+    /**
+     * image : http://cheese-radio-1256030909.cos.ap-guangzhou.myqcloud.com/images/c9/c14/1655626fa7658.jpg?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDzLbkmgG9mDR0VpMufGguwldS4VknuIl8%26q-sign-time%3D1534748721%3B3112671921%26q-key-time%3D1534748721%3B3112671921%26q-header-list%3Dhost%26q-url-param-list%3D%26q-signature%3D527888c06c710e6e08e9983c6463ab36c401047f
+     * fabuCount : 0
+     * anchorIcon : http://cheese-radio-1256030909.cos.ap-guangzhou.myqcloud.com/images/c13/c7/16425ad3eda59.jpg?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDzLbkmgG9mDR0VpMufGguwldS4VknuIl8%26q-sign-time%3D1529640483%3B3107563683%26q-key-time%3D1529640483%3B3107563683%26q-header-list%3Dhost%26q-url-param-list%3D%26q-signature%3D23e67806ff910d6cb63ee12a0cb6620b59c6447f
+     * shareLandingUrl : http://h5.zhishidiantai.com/zhishidiantai/share.html?id=747
+     * title : 糖果屋
+     * anchorId : 35
+     * favorCount : 1
+     * anchorName : 奕艺姐姐
+     * url : http://cheese-radio-1256030909.cos.ap-guangzhou.myqcloud.com/audioes/c25/c0/1655627282d56.mp3?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDzLbkmgG9mDR0VpMufGguwldS4VknuIl8%26q-sign-time%3D1534748735%3B3112671935%26q-key-time%3D1534748735%3B3112671935%26q-header-list%3Dhost%26q-url-param-list%3D%26q-signature%3D113c9ad722d89c60d194a20ac2fc831aba520dc5
+     * playCount : 2923
+     * seconds : 637
+     * subTitle :
+     * shareUrl : http://manager.zhishidiantai.com/docroot/attachments/c25/c0/1655627282d56.mp3
+     * id : 747
+     * anchorBrief : 喜欢给调皮捣蛋的孩子讲故事的小姐姐
+     * fileId : 747
+     */
 
-        private int anchorId;
+    private int anchorId;
 
-        public int getAnchorId() {
-            return anchorId;
-        }
+    public int getAnchorId() {
+        return anchorId;
+    }
 
-        public void setAnchorId(int anchorId) {
-            this.anchorId = anchorId;
-        }
+    public void setAnchorId(int anchorId) {
+        this.anchorId = anchorId;
+    }
 }
