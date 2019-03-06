@@ -21,6 +21,7 @@
             android:gravity="center"
             android:textSize="16sp"
             android:text="@string/cheese_circle" />
+            <!--android:paddingBottom="10dp"-->
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_marginTop="@dimen/toolbar_height"

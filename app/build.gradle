@@ -6,8 +6,8 @@ android {
         applicationId "com.cheese.radio"
         minSdkVersion min_sdk_version
         targetSdkVersion target_sdk_version
-        versionCode 30
-        versionName '2.1.13'
+        versionCode 31
+        versionName '2.1.14'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             generatedDensities 'xxhdpi'
