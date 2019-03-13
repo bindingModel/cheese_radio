@@ -2,9 +2,11 @@ package com.cheese.radio.ui.user.login.params;
 
 import android.widget.TextView;
 
+import com.binding.model.util.BaseUtil;
 import com.cheese.radio.base.IkeParams;
 
 import static com.binding.model.util.BaseUtil.getCodeError;
+import static com.binding.model.util.BaseUtil.getPasswordError;
 import static com.binding.model.util.BaseUtil.getPhoneError;
 import static com.binding.model.util.BaseUtil.isValidToast;
 
@@ -21,6 +23,7 @@ public class SignParams extends IkeParams {
     private String otherinfo;
     private String access_token;
     private String openId2;
+    private String password;
     public String getAccess_token() {
         return access_token;
     }
@@ -40,6 +43,14 @@ public class SignParams extends IkeParams {
 
     public String getPhone() {
         return phone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setPhone(String phone) {
@@ -100,5 +111,9 @@ public class SignParams extends IkeParams {
 
     public void setOpenId2(String openId2) {
         this.openId2 = openId2;
+    }
+
+    public boolean isValidPassword(TextView view) {
+        return isValidToast(view,getPasswordError(password));
     }
 }

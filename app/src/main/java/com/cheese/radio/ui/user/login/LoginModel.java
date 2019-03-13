@@ -1,6 +1,8 @@
 package com.cheese.radio.ui.user.login;
 
+import android.databinding.ObservableBoolean;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -47,6 +49,7 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
     private PlatformParams platformParams = new PlatformParams("openPlatformConfig");
     private SmsParams SMSparams = new SmsParams("sendValidCode", "login");
     private SignParams signParams = new SignParams("login");
+    public ObservableBoolean input = new ObservableBoolean(true);
     @Inject
     RadioApi api;
     TextView textView;
@@ -55,7 +58,8 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
         super.attachView(savedInstanceState, loginActivity);
         getDataBinding().setParams(signParams);
         getDataBinding().inputPhone.setOnEditorActionListener(this);
-        getDataBinding().inputPassword.setOnEditorActionListener(this);
+//        getDataBinding().inputPassword.setOnEditorActionListener(this);
+        getDataBinding().inputCode.setOnEditorActionListener(this);
         textView=getDataBinding().msgCode;
     }
 
@@ -70,11 +74,19 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
                 }));
     }
 
+    public void onInputClick(View view){
+        input.set(!input.get());
+    }
+
     public void onSignClick(View view) {
         if (!signParams.isValidPhone((TextView) view)) return;
-        if (!signParams.isValidSMS((TextView) view)) return;
-        signParams.setLoginType("phone");
-
+        if(input.get()){
+            if (!signParams.isValidSMS((TextView) view)) return;
+            signParams.setLoginType("phone");
+        }else {
+            if(signParams.isValidPassword((TextView)view))return;
+            signParams.setLoginType("password");
+        }
         login(signParams);
     }
 

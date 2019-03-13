@@ -73,6 +73,7 @@ import com.cheese.radio.ui.user.register.UserInfoParams;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
@@ -232,4 +233,5 @@ public interface RadioApi {
 
     @POST("1.0/user")
     Observable<InfoEntity<List<MyCourseEntity>>> myClassInfo(@Body MyCourseParams params);
+
 }

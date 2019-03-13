@@ -117,6 +117,9 @@
     <string name="please_enter_your_birthday">请输入生日</string>
     <string name="next">下一首</string>
     <string name="last">上一首</string>
+    <string name="login_with_code">使用验证码登录</string>
+    <string name="login_with_password">使用密码登录</string>
+    <string name="input_password">请输入密码</string>
 
     <string-array name="chinese_week_string_array">
         <item>周日</item>
