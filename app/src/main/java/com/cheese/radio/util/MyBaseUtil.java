@@ -18,6 +18,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import com.binding.model.data.encrypt.des.BASE64Encoder;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.ui.media.play.PlayActivity;
 import com.cheese.radio.ui.startup.welcome.WelcomeActivity;
@@ -38,6 +39,10 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+
 /**
  * Created by 29283 on 2018/3/11.
  */
@@ -50,6 +55,9 @@ public class MyBaseUtil extends BaseUtil {
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
             'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
     };
+
+
+    private static final String key= "474ce47b42922b58";
 
     private static Random random = new Random();
 
@@ -355,6 +363,8 @@ public class MyBaseUtil extends BaseUtil {
                 activity instanceof WelcomeActivity) setFullScreenView(activity.getWindow());
         else setWhiteStatus(activity);
     }
+
+
 
 }
 

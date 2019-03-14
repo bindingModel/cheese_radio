@@ -1,9 +1,11 @@
 package com.cheese.radio.ui.user.login.params;
 
+import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.base.IkeParams;
+import com.cheese.radio.util.PasswordEncrypt;
 
 import static com.binding.model.util.BaseUtil.getCodeError;
 import static com.binding.model.util.BaseUtil.getPasswordError;
@@ -24,6 +26,8 @@ public class SignParams extends IkeParams {
     private String access_token;
     private String openId2;
     private String password;
+    private String confirm_password;
+
     public String getAccess_token() {
         return access_token;
     }
@@ -46,7 +50,7 @@ public class SignParams extends IkeParams {
     }
 
     public String getPassword() {
-        return password;
+        return PasswordEncrypt.encrypt(password);
     }
 
     public void setPassword(String password) {
@@ -101,7 +105,7 @@ public class SignParams extends IkeParams {
         return isValidToast(view, getPhoneError(phone));
     }
 
-    public boolean isValidSMS(TextView view){
+    public boolean isValidSMS(TextView view) {
         return isValidToast(view, getCodeError(validCode));
     }
 
@@ -114,6 +118,20 @@ public class SignParams extends IkeParams {
     }
 
     public boolean isValidPassword(TextView view) {
-        return isValidToast(view,getPasswordError(password));
+        return isValidToast(view, getPasswordError(password));
+    }
+
+    public boolean isConfirmPassword(TextView view) {
+        if (!TextUtils.isEmpty(password) && password.equals(confirm_password)) return isValidPassword(view);
+        else BaseUtil.toast("两次密码不同");
+        return true;
+    }
+
+    public String getConfirm_password() {
+        return confirm_password;
+    }
+
+    public void setConfirm_password(String confirm_password) {
+        this.confirm_password = confirm_password;
     }
 }

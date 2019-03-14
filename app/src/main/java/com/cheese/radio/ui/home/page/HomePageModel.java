@@ -1,10 +1,14 @@
 package com.cheese.radio.ui.home.page;
 
+import android.content.Context;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.binding.model.adapter.recycler.GridSpanSizeLookup;
 import com.binding.model.layout.recycler.RecyclerModel;
@@ -42,15 +46,12 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.search;
  */
 @ModelView(value = R.layout.fragment_home_page,model = true)
 public class HomePageModel extends RecyclerModel<HomePageFragment, FragmentHomePageBinding, GridInflate> {
-    @Inject
-    HomePageModel() {
-    }
-
-
-    @Inject
-    RadioApi api;
+    @Inject HomePageModel() {}
+    @Inject RadioApi api;
     public ObservableField<String> redTipCount = new ObservableField<>("0");
     public ObservableBoolean redTipBoolean = new ObservableBoolean(false);
+    public String[] names = {"宁波","杭州","重庆"};
+
 
     @Override
     public void attachView(Bundle savedInstanceState, HomePageFragment homePageFragment) {
@@ -63,7 +64,14 @@ public class HomePageModel extends RecyclerModel<HomePageFragment, FragmentHomeP
         setPageFlag(false);
         upDataMsg();
         setRoHttp((offset1, refresh) -> getZip());
-//        getAdapter().getList().get(0).get
+        initLocation(getDataBinding().spinner);
+    }
+
+    private void initLocation(Spinner spinner) {
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(spinner.getContext(), android.R.layout.simple_spinner_item, names);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(arrayAdapter);
+        spinner.setSelection(0);
     }
 
     public void upDataMsg(){

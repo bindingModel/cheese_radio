@@ -58,5 +58,6 @@ public interface Constant {
     String courseTypeId = "courseTypeId";
     String bookId = "bookId";
     String groupId = "groupId";
+    String phone = "phone";
 }
 

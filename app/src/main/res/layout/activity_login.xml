@@ -72,25 +72,42 @@
                     android:text="@={params.phone}"
                     android:textSize="14.4sp" />
 
-                <EditText
+
+                <FrameLayout
                     android:visibility="@{vm.input?View.GONE:View.VISIBLE}"
-                    android:layout_marginTop="20dp"
-                    android:id="@+id/input_password"
                     android:layout_width="match_parent"
-                    android:layout_height="42.24dp"
-                    android:layout_marginEnd="11dp"
-                    android:layout_marginStart="11dp"
-                    android:background="@drawable/login_input_shape"
-                    android:drawableLeft="@mipmap/ic_code"
-                    android:drawablePadding="9dp"
-                    android:drawableStart="@mipmap/ic_code"
-                    android:hint="@string/input_password"
-                    android:imeOptions="actionDone"
-                    android:inputType="textPassword"
-                    android:paddingLeft="17dp"
-                    android:paddingRight="17dp"
-                    android:text="@={params.password}"
-                    android:textSize="14.4sp" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <EditText
+                        android:id="@+id/input_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="42.24dp"
+                        android:layout_marginEnd="11dp"
+                        android:layout_marginStart="11dp"
+                        android:background="@drawable/login_input_shape"
+                        android:drawableLeft="@mipmap/ic_code"
+                        android:drawablePadding="9dp"
+                        android:drawableStart="@mipmap/ic_code"
+                        android:hint="@string/input_password"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword"
+                        android:paddingLeft="17dp"
+                        android:paddingRight="17dp"
+                        android:text="@={params.password}"
+                        android:textSize="14.4sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center"
+                        android:layout_marginEnd="43dp"
+                        android:layout_marginStart="43dp"
+                        android:onClick="@{vm::onForgetClick}"
+                        android:text="忘记密码"
+                        android:textColor="@color/text_yellow" />
+
+                </FrameLayout>
 
                 <FrameLayout
                     android:visibility="@{vm.input?View.VISIBLE:View.GONE}"
@@ -132,12 +149,14 @@
 
                 <TextView
                     android:layout_margin="8dp"
-                    android:textSize="12sp"
+                    android:textSize="15sp"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginEnd="11dp"
                     android:onClick="@{vm::onInputClick}"
                     android:layout_gravity="end"
                     android:textColor="@color/text_yellow"
                     android:layout_width="wrap_content"
-                    android:text="@{vm.input?@string/login_with_code:@string/login_with_password}"
+                    android:text="@{vm.input?@string/login_with_password:@string/login_with_code}"
                     android:layout_height="wrap_content" />
 
                 <Button

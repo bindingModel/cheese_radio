@@ -95,8 +95,6 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
         playImage = getDataBinding().playImage;
         initFragment();
         initPopup(savedInstanceState);
-
-//        }
     }
 
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {

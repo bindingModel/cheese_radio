@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
+import com.binding.model.App;
+import com.binding.model.Config;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
 import com.binding.model.util.BaseUtil;
@@ -17,7 +19,9 @@ import com.cheese.radio.base.rxjava.ErrorTransform;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityLoginBinding;
 import com.cheese.radio.inject.api.RadioApi;
+import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.CheeseApplication;
+import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.user.login.params.PlatformParams;
 import com.cheese.radio.ui.user.login.params.SignParams;
 import com.cheese.radio.ui.user.login.params.SmsParams;
@@ -71,7 +75,7 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
                     if (0 == (objectInfoEntity.code()))
                         BaseUtil.sendSMSSuccess((TextView) view);
                     else BaseUtil.sendSMSFailed(view, objectInfoEntity.getMessage());
-                }));
+                },BaseUtil::toast));
     }
 
     public void onInputClick(View view){
@@ -88,6 +92,14 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
             signParams.setLoginType("password");
         }
         login(signParams);
+    }
+
+    public void onForgetClick(View view){
+        if (!signParams.isValidPhone(getDataBinding().inputPhone))return;
+        Bundle bundle = new Bundle();
+        bundle.putString(Config.title, App.getString(R.string.forget_password));
+        bundle.putString(Constant.phone,getDataBinding().inputPhone.getText().toString());
+        ARouterUtil.navigation(ActivityComponent.Router.forget,bundle);
     }
 
     public void onGoHomeClick(View view) {
