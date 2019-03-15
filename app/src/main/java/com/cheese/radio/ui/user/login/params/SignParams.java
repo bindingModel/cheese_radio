@@ -123,7 +123,7 @@ public class SignParams extends IkeParams {
 
     public boolean isConfirmPassword(TextView view) {
         if (!TextUtils.isEmpty(password) && password.equals(confirm_password)) return isValidPassword(view);
-        else BaseUtil.toast("两次密码不同");
+        else BaseUtil.toast("两次输入的密码不同");
         return true;
     }
 
