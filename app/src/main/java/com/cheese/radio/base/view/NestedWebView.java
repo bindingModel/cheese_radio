@@ -106,7 +106,9 @@ public class NestedWebView extends WebView implements NestedScrollingChild {
 
     private void fling(int xvel, int yvel) {
         Timber.v("xvel%1s, yvel%2s", xvel, yvel);
-        dispatchNestedFling(xvel, yvel, false);
+        if (!dispatchNestedPreFling(xvel, yvel)) {
+            dispatchNestedFling(xvel, yvel, false);
+        }
     }
 
     @Override
@@ -161,19 +163,23 @@ public class NestedWebView extends WebView implements NestedScrollingChild {
         return this.getScrollingChildHelper().hasNestedScrollingParent(type);
     }
 
-    public boolean dispatchNestedScroll(int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int[] offsetInWindow) {
+    public boolean dispatchNestedScroll(int dxConsumed, int dyConsumed, int dxUnconsumed,
+                                        int dyUnconsumed, int[] offsetInWindow) {
         return this.getScrollingChildHelper().dispatchNestedScroll(dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, offsetInWindow);
     }
 
-    public boolean dispatchNestedScroll(int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int[] offsetInWindow, int type) {
+    public boolean dispatchNestedScroll(int dxConsumed, int dyConsumed, int dxUnconsumed,
+                                        int dyUnconsumed, int[] offsetInWindow, int type) {
         return this.getScrollingChildHelper().dispatchNestedScroll(dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, offsetInWindow, type);
     }
 
-    public boolean dispatchNestedPreScroll(int dx, int dy, int[] consumed, int[] offsetInWindow) {
+    public boolean dispatchNestedPreScroll(int dx, int dy, int[] consumed,
+                                           int[] offsetInWindow) {
         return this.getScrollingChildHelper().dispatchNestedPreScroll(dx, dy, consumed, offsetInWindow);
     }
 
-    public boolean dispatchNestedPreScroll(int dx, int dy, int[] consumed, int[] offsetInWindow, int type) {
+    public boolean dispatchNestedPreScroll(int dx, int dy, int[] consumed,
+                                           int[] offsetInWindow, int type) {
         return this.getScrollingChildHelper().dispatchNestedPreScroll(dx, dy, consumed, offsetInWindow, type);
     }
 
