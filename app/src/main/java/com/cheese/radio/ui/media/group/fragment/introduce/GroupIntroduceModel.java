@@ -25,7 +25,7 @@ public class GroupIntroduceModel extends ViewModel<GroupIntroduceFragment, Fragm
 
     private WebView webView;
     private ProgressBar progressBar;
-    public ObservableField<String> description = new ObservableField<>();
+    public String url ="";
 
     @Override
 
@@ -33,11 +33,12 @@ public class GroupIntroduceModel extends ViewModel<GroupIntroduceFragment, Fragm
         super.attachView(savedInstanceState, groupIntroduceFragment);
         Bundle bundle = groupIntroduceFragment.getArguments();
         if (bundle != null) {
-            description.set(bundle.getString(Constant.description));
+            url=bundle.getString(Constant.description);
         }
-        progressBar = getDataBinding().progressbar;//进度条
 
         webView = getDataBinding().webview;
-        MyBaseUtil.setWebView(webView,description.get());
+//        webView.loadDataWithBaseURL(null, url, "text/html", "utf-8", null);
+
+        MyBaseUtil.setWebView(webView,url);
     }
 }

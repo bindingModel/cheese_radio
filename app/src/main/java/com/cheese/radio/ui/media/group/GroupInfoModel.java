@@ -51,7 +51,7 @@ public class GroupInfoModel extends AudioPagerModel<GroupInfoActivity, ActivityG
     @Override
     public void attachView(Bundle savedInstanceState, GroupInfoActivity activity) {
         super.attachView(savedInstanceState, activity);
-        Integer groupInfoId = getT().getIntent().getIntExtra(Constant.id, -1);
+        int groupInfoId = getT().getIntent().getIntExtra(Constant.id, -1);
         params.setId(groupInfoId);
         playImage = getDataBinding().playImage;
         PlayEntity playEntity = new PlayEntity();

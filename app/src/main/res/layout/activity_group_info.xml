@@ -11,6 +11,7 @@
         <variable
             name="entity"
             type="com.cheese.radio.ui.media.group.fragment.GroupData" />
+
         <variable
             name="image"
             type="String" />
@@ -43,8 +44,8 @@
                         android:layout_width="120dp"
                         android:layout_height="101dp"
                         android:layout_gravity="center|start"
-                        android:layout_marginLeft="9.6dp"
                         android:layout_marginStart="9.6dp"
+                        android:layout_marginLeft="9.6dp"
                         android:src="@{entity.image}"
                         app:layout_scrollFlags="scroll|enterAlways" />
 
@@ -118,26 +119,17 @@
                 </com.binding.model.view.radio.CheckRadioGroup>
             </android.support.design.widget.AppBarLayout>
 
-            <FrameLayout
-                android:layout_width="wrap_content"
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/background_white"
+                app:adapter="@{vm.adapter}"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                app:layout_scrollFlags="scroll">
+                app:layout_scrollFlags="scroll"
+                app:position="@={vm.currentItem}" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <android.support.v4.view.ViewPager
-                        android:id="@+id/view_pager"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/background_white"
-                        app:adapter="@{vm.adapter}"
-                        app:position="@={vm.currentItem}" />
-                </LinearLayout>
-            </FrameLayout>
         </android.support.design.widget.CoordinatorLayout>
 
         <ImageView
