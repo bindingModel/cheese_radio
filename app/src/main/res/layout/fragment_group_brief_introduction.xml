@@ -9,16 +9,17 @@
             type="com.cheese.radio.ui.media.group.fragment.introduce.GroupIntroduceModel" />
     </data>
 
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_scrollFlags="scroll">
 
-        <WebView
+
+        <com.cheese.radio.base.view.NestedWebView
             android:id="@+id/webview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_scrollFlags="scroll" />
-    </android.support.v4.widget.NestedScrollView>
+    <!--<android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_scrollFlags="scroll">
+    </android.support.v4.widget.NestedScrollView>-->
 
 </layout>

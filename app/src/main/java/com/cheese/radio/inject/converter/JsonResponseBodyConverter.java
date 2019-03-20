@@ -3,6 +3,7 @@ package com.cheese.radio.inject.converter;
 import com.binding.model.data.exception.ApiException;
 import com.binding.model.data.util.JsonDeepUtil;
 import com.cheese.radio.base.InfoEntity;
+import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 
 import java.io.IOException;
@@ -16,7 +17,7 @@ import timber.log.Timber;
 public class JsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
     private final TypeAdapter<T> adapter;
     private final Type type;
-
+    private Gson gson =new Gson();
     JsonResponseBodyConverter(TypeAdapter<T> adapter, Type type) {
         this.adapter = adapter;
         this.type = type;
@@ -31,7 +32,7 @@ public class JsonResponseBodyConverter<T> implements Converter<ResponseBody, T> 
             if (type instanceof ParameterizedType) {
                 Class cc = (Class) ((ParameterizedType) type).getRawType();
                 if (InfoEntity.class.isAssignableFrom(cc)) {
-                    entity = JsonDeepUtil.parse(json, InfoEntity.class);
+                    entity = gson.fromJson(json, InfoEntity.class);
                     if (entity.code() != 0)
                         throw new ApiException(entity.getMessage(), entity.code(), json);
                 }
