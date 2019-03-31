@@ -14,9 +14,7 @@ import com.cheese.radio.inject.api.RadioApi;
 
 import javax.inject.Inject;
 
-import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
-import static android.gesture.GestureOverlayView.ORIENTATION_VERTICAL;
 
 /**
  * Created by 29283 on 2018/3/13.
@@ -37,8 +35,8 @@ public class CircleModel extends RecyclerModel<CircleFragment, FragmentHomeCircl
        LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getT().getDataActivity());
        setLayoutManager(linearLayoutManager);
         getDataBinding().recyclerView.setLayoutManager(linearLayoutManager);
-        if(getDataBinding().recyclerView.getLayoutManager()!=null)
-        OverScrollDecoratorHelper.setUpOverScroll(getDataBinding().recyclerView,ORIENTATION_VERTICAL);
+//        if(getDataBinding().recyclerView.getLayoutManager()!=null)
+//        OverScrollDecoratorHelper.setUpOverScroll(getDataBinding().recyclerView,ORIENTATION_VERTICAL);
     }
 
     /* @Override
