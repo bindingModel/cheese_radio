@@ -314,6 +314,9 @@ public class MyCourseEntity extends ViewInflateRecycler {
         String url = String.format(Locale.CHINA,"http://111.231.237.11:8085/zhishidiantai/3/course.html?cid=%1s&token=%2s&uuid=%3s",cid,token,uuid);
         ARouterUtil.navigationWeb(url,name);
     }
+    public boolean isClassComplete(){
+        return "已完课".equals(courseState);
+    }
 }
 
 
