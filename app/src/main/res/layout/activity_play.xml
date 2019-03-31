@@ -294,6 +294,20 @@
                             android:layout_height="wrap_content"
                             android:drawableRight="@drawable/loop" />
                     </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <CheckBox
+                            android:id="@+id/manuscrip"
+                            android:checked="@={vm.loop}"
+                            style="@style/play_bottom_button"
+                            android:onClick="@{vm::onManuClick}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@mipmap/manuscript" />
+                    </FrameLayout>
 
                 </LinearLayout>
             </LinearLayout>

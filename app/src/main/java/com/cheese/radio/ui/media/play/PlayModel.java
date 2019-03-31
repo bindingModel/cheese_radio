@@ -400,5 +400,10 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         onResume();//校准播放按钮
     }
 
+
+    public void onManuClick(View view){
+        ARouterUtil.navigation(RadioApi.htmlHost+"zhishidiantai/3/comment.html");
+//        http://111.231.237.11:8085/zhishidiantai/3/comment.html?aid=65&mid=15&sid=1
+    }
 }
 
