@@ -14,9 +14,12 @@ import com.binding.model.Config;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
 import com.cheese.radio.R;
+import com.cheese.radio.base.IkeParams;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
+
+import java.util.Locale;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.course;
 
@@ -302,6 +305,14 @@ public class MyCourseEntity extends ViewInflateRecycler {
         Bundle bundle = new Bundle();
         bundle.putInt(Constant.authorId, this.getTeacherId());
         ARouterUtil.navigation(ActivityComponent.Router.author, bundle);
+    }
+    public void onUploadClick(View view){
+        IkeParams params =new IkeParams();
+        String token = params.getToken();
+        String cid = String.valueOf(id);
+        String uuid = params.getUuid();
+        String url = String.format(Locale.CHINA,"http://111.231.237.11:8085/zhishidiantai/3/course.html?cid=%1s&token=%2s&uuid=%3s",cid,token,uuid);
+
     }
 }
 
