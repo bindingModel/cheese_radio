@@ -10,6 +10,7 @@ import com.cheese.radio.ui.home.clock.ClockEnrollEntity;
 import com.cheese.radio.ui.home.clock.CourseTypeInfoEntity;
 import com.cheese.radio.ui.home.page.HomePageParams;
 import com.cheese.radio.ui.home.page.RecommanData;
+import com.cheese.radio.ui.home.page.banner.HomePageBannerEntity;
 import com.cheese.radio.ui.home.page.entity.CategoryEntity;
 import com.cheese.radio.ui.media.anchor.AnchorData;
 import com.cheese.radio.ui.media.anchor.AnchorParams;
@@ -82,8 +83,8 @@ import retrofit2.http.POST;
  */
 
 public interface RadioApi {
-//    String host = "http://111.231.237.11:8081";
-    String host = "http://interface.zhishidiantai.com";
+    String host = "http://111.231.237.11:8081";
+//    String host = "http://interface.zhishidiantai.com";
 
     @POST("/1.0/author")
     Observable<InfoEntity<List<AnchorsItem>>> getAnchors(@Body AnchorsParams params);
@@ -234,4 +235,6 @@ public interface RadioApi {
     @POST("1.0/user")
     Observable<InfoEntity<List<MyCourseEntity>>> myClassInfo(@Body MyCourseParams params);
 
+    @POST("/1.0/content")
+    Observable<InfoEntity<List<HomePageBannerEntity>>> getBanner(@Body HomePageParams setAreaSelf);
 }

@@ -7,7 +7,8 @@ import com.cheese.radio.base.IkeParams;
  */
 
 public class HomePageParams extends IkeParams {
-        private String method;
+    private String method;
+    private String area;
 
     public HomePageParams(String method) {
         this.method = method;
@@ -19,5 +20,17 @@ public class HomePageParams extends IkeParams {
 
     public void setMethod(String method) {
         this.method = method;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+    public HomePageParams setAreaSelf(String area) {
+        this.area = area;
+        return this;
     }
 }
