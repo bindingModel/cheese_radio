@@ -1,6 +1,10 @@
 apply plugin: 'com.android.application'
 android {
     compileSdkVersion compile_sdk_version
+    buildToolsVersion build_tools_version
+    productFlavors {
+    }
+
     dataBinding.enabled = true
     defaultConfig {
         applicationId "com.cheese.radio"
@@ -124,13 +128,8 @@ android {
 
         implementation 'com.haibin:calendarview:3.4.8'
 
-        implementation 'com.android.support:multidex:1.0.3'
+//        implementation 'com.android.support:multidex:1.0.3'
 
     }
-    buildToolsVersion '28.0.3'
-    productFlavors {
-    }
-}
 
-dependencies {
 }

@@ -1,5 +1,6 @@
 package com.cheese.radio.ui.home.page.banner;
 
+import android.text.TextUtils;
 import android.view.View;
 
 import com.binding.model.model.ModelView;
@@ -24,9 +25,22 @@ public class HomePageBannerEntity extends ViewInflateRecycler {
     private String pic;
     private String type;
     private String url;
+    private String location;
 
     public void onImageClick(View view){
-        ARouterUtil.itemNavigation(url,Integer.parseInt(id),name);
+        if(!TextUtils.isEmpty(location)){
+            ARouterUtil.itemNavigation(location,Integer.parseInt(id),name);
+        }else{
+//            ARouterUtil.navigation();
+        }
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getBrief() {

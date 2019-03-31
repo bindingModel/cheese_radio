@@ -1,6 +1,5 @@
 package com.cheese.radio.ui.media.group.fragment.introduce;
 
-import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
