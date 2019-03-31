@@ -149,7 +149,6 @@
                    android:paddingStart="15dp"
                    android:background="@color/background_white"
                    android:layout_marginTop="15dp"
-
                    android:orientation="vertical">
                    <TextView
                        style="@style/home_mine_item"
@@ -157,6 +156,12 @@
                        android:layout_height="55.2dp"
                        android:onClick="@{vm::onCenterClick}"
                        android:text="@string/service_centre" />
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:text="@string/modify_password"
+                       android:onClick="@{vm::onModifyClick}"
+                       style="@style/home_mine_item"
+                       android:layout_height="55.2dp" />
                    <TextView
                        style="@style/home_mine_item_no_bottom_line"
                        android:layout_width="match_parent"

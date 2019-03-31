@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.binding.model.App;
+import com.binding.model.Config;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
 import com.binding.model.model.inter.Event;
@@ -19,6 +20,7 @@ import com.cheese.radio.databinding.FragmentHomeMineBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.CheeseApplication;
+import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.user.my.push.NewMessageCountParams;
 import com.cheese.radio.ui.user.profile.ProfileParams;
 
@@ -66,6 +68,14 @@ public class HomeMineModel extends ViewModel<HomeMineFragment, FragmentHomeMineB
     public void logout() {
         getDataBinding().setEntity(CheeseApplication.getUser().getUserEntity());
     }
+
+    public void onModifyClick(View view){
+        Bundle bundle = new Bundle();
+        bundle.putString(Config.title, App.getString(R.string.forget_password));
+        bundle.putString(Constant.phone,CheeseApplication.getUser().getUserEntity().getMobile());
+        ARouterUtil.navigation(ActivityComponent.Router.forget,bundle);
+    }
+
 
     public void onSetProfileClick(View view) {
         if (CheeseApplication.isLogin(true)) ARouterUtil.navigation(ActivityComponent.Router.profile);
