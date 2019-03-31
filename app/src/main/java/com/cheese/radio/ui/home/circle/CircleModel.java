@@ -16,6 +16,7 @@ import javax.inject.Inject;
 
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
+import static android.gesture.GestureOverlayView.ORIENTATION_VERTICAL;
 import static me.everything.android.ui.overscroll.OverScrollDecoratorHelper.ORIENTATION_VERTICAL;
 
 /**
