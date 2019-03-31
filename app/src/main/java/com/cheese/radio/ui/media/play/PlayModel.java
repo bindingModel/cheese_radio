@@ -21,12 +21,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.binding.model.App;
+import com.binding.model.data.encrypt.Params;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.FutureTarget;
 import com.cheese.radio.R;
+import com.cheese.radio.base.IkeParams;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.ErrorTransform;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
@@ -52,6 +54,7 @@ import com.umeng.socialize.media.UMusic;
 import com.umeng.socialize.shareboard.ShareBoardConfig;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -403,7 +406,14 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
 
     public void onManuClick(View view) {
-        StringBuilder stringBuilder = new StringBuilder(RadioApi.htmlHost);
+        IkeParams params =new IkeParams();
+        String url = String.format(Locale.CHINA, "http://111.231.237.11:8085/zhishidiantai/3/comment.html?aid=%1s&token=%2s&uuid=%3s",
+                id,params.getToken(),params.getUuid());
+        Bundle bundle =new Bundle();
+        bundle.putString(Constant.url,url);
+        ARouterUtil.navigation(ActivityComponent.Router.webview,bundle);
+
+      /*  StringBuilder stringBuilder = new StringBuilder(RadioApi.htmlHost);
         stringBuilder.append("zhishidiantai/")
                 .append(3)
                 .append("/comment.html?aid=")
@@ -411,10 +421,8 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
                 .append("&mid=")
                 .append(CheeseApplication.getUser().getUserEntity().getUserId())
                 .append("&sid=")
-                .append("");
-
-
-        ARouterUtil.navigation(RadioApi.htmlHost + "zhishidiantai/" + id + "/comment.html");
+                .append("");*/
+       ARouterUtil.navigation(RadioApi.htmlHost + "zhishidiantai/" + id + "/comment.html");
 //        http://111.231.237.11:8085/zhishidiantai/3/comment.html?aid=65&mid=15&sid=1
     }
 }

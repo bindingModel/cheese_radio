@@ -37,6 +37,7 @@ import com.cheese.radio.ui.user.register.one.RegisterOneActivity;
 import com.cheese.radio.ui.user.register.two.RegisterTwoActivity;
 import com.cheese.radio.ui.user.safe.SafeActivity;
 import com.cheese.radio.ui.user.service.center.CenterActivity;
+import com.cheese.radio.ui.webview.WebViewActivity;
 import com.cheese.radio.wxapi.WXPayEntryActivity;
 
 import dagger.Component;
@@ -123,7 +124,7 @@ public interface ActivityComponent {
 
     void inject(JoinCircleDetailActivity activity);
     void inject(ForgetPasswordActivity activity);
-
+    void inject(WebViewActivity activity);
     interface Router {
         String cheese = "/cheese/";
         String startup = cheese + "startup";
@@ -166,6 +167,7 @@ public interface ActivityComponent {
 
         String calendar = cheese + "calendar";
         String forget = cheese+"forget/password";
+        String webview = cheese + "webview";
     }
     /*
      *  CONTENT_LIST	绘本列表                  contents

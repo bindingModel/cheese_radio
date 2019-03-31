@@ -59,5 +59,8 @@ public interface Constant {
     String bookId = "bookId";
     String groupId = "groupId";
     String phone = "phone";
+    String url = "url";
+    String back_path = "back_path";
+    String back_bundle = "back_bundle";
 }
 
