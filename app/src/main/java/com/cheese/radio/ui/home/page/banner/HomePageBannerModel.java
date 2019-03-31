@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import com.binding.model.binding.ViewGroupBindingAdapter;
 import com.binding.model.cycle.DataBindingFragment;
-import com.binding.model.layout.pager.PagerModel;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.inter.GridInflate;
 import com.binding.model.util.ReflectUtil;
@@ -33,11 +32,7 @@ public class HomePageBannerModel extends PagerModel<DataBindingFragment, ItemHom
     public void attachView(Bundle savedInstanceState, DataBindingFragment dataBindingFragment) {
         super.attachView(savedInstanceState, dataBindingFragment);
         setRotate(true);
-        setRcHttp((offset1, refresh) -> api.getBanner(params)
-                .compose(new RestfulTransformer<>())
-                .doOnNext(list -> ViewGroupBindingAdapter.addInflates(getDataBinding().radioGroup, ReflectUtil.copyList(list,1))));
     }
-
 
     @Override
     public int getSpanSize() {
@@ -46,5 +41,9 @@ public class HomePageBannerModel extends PagerModel<DataBindingFragment, ItemHom
 
     public void setArea(String area) {
         params.setArea(area);
+        setRcHttp((offset1, refresh) -> api.getBanner(params)
+                .compose(new RestfulTransformer<>())
+                .doOnNext(list -> ViewGroupBindingAdapter.addInflates(getDataBinding().radioGroup, ReflectUtil.copyList(list,1))));
     }
+
 }

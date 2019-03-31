@@ -66,13 +66,14 @@ public class HomePageModel extends RecyclerModel<HomePageFragment, FragmentHomeP
         GridLayoutManager layoutManager = new GridLayoutManager(homePageFragment.getContext(), 4);
         layoutManager.setSpanSizeLookup(new GridSpanSizeLookup<>(getAdapter()));
         setLayoutManager(layoutManager);
-        model.setArea(names[0]);
-        model.attachContainer(homePageFragment, (ViewGroup) getDataBinding().getRoot(), false, savedInstanceState);
+        initLocation(getDataBinding().spinner);
         setEnable(true);
         setPageFlag(false);
         upDataMsg();
         setRoHttp((offset1, refresh) -> getZip());
-        initLocation(getDataBinding().spinner);
+        model.attachContainer(getT(), (ViewGroup) getDataBinding().getRoot(), false, null);
+//        model.setArea(names[0]);
+
     }
 
     private void initLocation(Spinner spinner) {
@@ -84,7 +85,6 @@ public class HomePageModel extends RecyclerModel<HomePageFragment, FragmentHomeP
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 model.setArea(names[position]);
-                model.attachContainer(getT(), (ViewGroup) getDataBinding().getRoot(), false, null);
             }
 
             @Override

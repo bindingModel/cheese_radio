@@ -59,8 +59,8 @@ public class ViewPagerAdapter<E extends Inflate> extends PagerAdapter implements
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        E e = list.get(position % count);
-        container.removeView(e.getDataBinding().getRoot());
+//        E e = list.get(position % count);
+        container.removeView((View)object);
     }
 
     @Override
