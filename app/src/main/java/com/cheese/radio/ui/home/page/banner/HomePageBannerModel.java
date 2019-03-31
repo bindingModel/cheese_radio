@@ -2,7 +2,6 @@ package com.cheese.radio.ui.home.page.banner;
 
 import android.os.Bundle;
 
-import com.binding.model.adapter.pager.ViewPagerAdapter;
 import com.binding.model.binding.ViewGroupBindingAdapter;
 import com.binding.model.cycle.DataBindingFragment;
 import com.binding.model.layout.pager.PagerModel;
