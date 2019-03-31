@@ -40,6 +40,7 @@ import com.cheese.radio.ui.media.audio.AudioModel;
 import com.cheese.radio.ui.media.play.popup.PopupPlayModel;
 import com.cheese.radio.ui.media.play.popup.SelectPlayTimeEntity;
 import com.cheese.radio.ui.service.AudioServiceUtil;
+import com.cheese.radio.ui.user.User;
 import com.cheese.radio.ui.user.params.AddFavorityParams;
 import com.cheese.radio.ui.user.params.FabulousParams;
 import com.cheese.radio.util.MyBaseUtil;
@@ -401,8 +402,19 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     }
 
 
-    public void onManuClick(View view){
-        ARouterUtil.navigation(RadioApi.htmlHost+"zhishidiantai/3/comment.html");
+    public void onManuClick(View view) {
+        StringBuilder stringBuilder = new StringBuilder(RadioApi.htmlHost);
+        stringBuilder.append("zhishidiantai/")
+                .append(3)
+                .append("/comment.html?aid=")
+                .append(id)
+                .append("&mid=")
+                .append(CheeseApplication.getUser().getUserEntity().getUserId())
+                .append("&sid=")
+                .append("");
+
+
+        ARouterUtil.navigation(RadioApi.htmlHost + "zhishidiantai/" + id + "/comment.html");
 //        http://111.231.237.11:8085/zhishidiantai/3/comment.html?aid=65&mid=15&sid=1
     }
 }
