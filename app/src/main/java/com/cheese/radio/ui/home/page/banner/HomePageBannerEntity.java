@@ -31,7 +31,7 @@ public class HomePageBannerEntity extends ViewInflateRecycler {
         if(!TextUtils.isEmpty(location)){
             ARouterUtil.itemNavigation(location,Integer.parseInt(id),name);
         }else{
-//            ARouterUtil.navigation();
+            ARouterUtil.navigationWeb(url,"");
         }
     }
 

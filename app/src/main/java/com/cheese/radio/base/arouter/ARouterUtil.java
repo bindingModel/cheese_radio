@@ -30,6 +30,13 @@ public class ARouterUtil {
         ARouter.getInstance().build(url).navigation();
     }
 
+    public static void navigationWeb(String url,String title){
+        Bundle bundle = new Bundle();
+        bundle.putString(Config.title,title);
+        bundle.putString(Constant.url,url);
+        ARouterUtil.navigation(ActivityComponent.Router.webview,bundle);
+    }
+
 
     private static Postcard build(String url, Bundle bundle) {
         return ARouter.getInstance()
