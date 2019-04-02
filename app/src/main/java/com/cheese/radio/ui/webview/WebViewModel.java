@@ -2,14 +2,18 @@ package com.cheese.radio.ui.webview;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
+import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.databinding.ActivityWebviewBinding;
 import com.cheese.radio.ui.Constant;
+import com.cheese.radio.util.MyBaseUtil;
 
 import javax.inject.Inject;
 
@@ -37,6 +41,9 @@ public class WebViewModel extends ViewModel<WebViewActivity, ActivityWebviewBind
     }
 
     private void initWebView(WebView webView, String body) {
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);//允许使用js
+//        BaseUtil.setWebView
         webView.loadUrl(body);
     }
 
@@ -47,5 +54,8 @@ public class WebViewModel extends ViewModel<WebViewActivity, ActivityWebviewBind
             if (backBundle != null) ARouterUtil.navigation(backPath, backBundle);
             else ARouterUtil.navigation(backPath);
         }
+    }
+    public void onBackClick(View view){
+        getT().finish();
     }
 }
