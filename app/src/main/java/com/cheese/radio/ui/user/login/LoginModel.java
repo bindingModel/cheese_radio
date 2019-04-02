@@ -88,7 +88,7 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
             if (!signParams.isValidSMS((TextView) view)) return;
             signParams.setLoginType("phone");
         }else {
-            if(signParams.isValidPassword((TextView)view))return;
+            if(!signParams.isValidPassword((TextView)view))return;
             signParams.setLoginType("password");
         }
         login(signParams);
