@@ -59,10 +59,10 @@ android {
             buildConfigField("String","host","\"http://interface.zhishidiantai.com\"")
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+//    compileOptions {
+//        sourceCompatibility 'JavaVersion.VERSION_1_8'
+//        targetCompatibility 'JavaVersion.VERSION_1_8'
+//    }
     packagingOptions {
         exclude 'META-INF/rxjava.properties'
     }
@@ -77,6 +77,10 @@ android {
             java.srcDirs =  ['src/main/java']
             res.srcDirs = ['src/main/res', 'src/main/ures']
         }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
     }
     dependencies {
         implementation fileTree(dir: 'libs', include: ['*.jar'])
