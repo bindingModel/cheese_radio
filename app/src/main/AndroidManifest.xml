@@ -180,6 +180,8 @@
         <activity android:name=".ui.home.circle.join.JoinCircleDetailActivity" android:label="@string/activity_enroll"/>
         <activity android:name=".ui.user.calendar.CalendarActivity" />
         <activity android:name=".ui.user.forget.ForgetPasswordActivity"  android:label="@string/forget_password"/>
-        <activity android:name=".ui.webview.WebViewActivity" />
+        <activity android:name=".ui.webview.WebViewActivity"
+            android:hardwareAccelerated="true"
+            />
     </application>
 </manifest>

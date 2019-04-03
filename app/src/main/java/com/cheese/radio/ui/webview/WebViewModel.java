@@ -8,12 +8,10 @@ import android.webkit.WebView;
 
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewModel;
-import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.databinding.ActivityWebviewBinding;
 import com.cheese.radio.ui.Constant;
-import com.cheese.radio.util.MyBaseUtil;
 
 import javax.inject.Inject;
 
@@ -41,10 +39,20 @@ public class WebViewModel extends ViewModel<WebViewActivity, ActivityWebviewBind
     }
 
     private void initWebView(WebView webView, String body) {
-//        WebSettings webSettings = webView.getSettings();
-//        webSettings.setJavaScriptEnabled(true);//允许使用js
-        MyBaseUtil.setWebView(webView,body);
-//        webView.loadUrl(body);
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);//允许使用js
+        webView.setWebViewClient(new ReloadWebViewClient());
+        webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
+        webSettings.setUseWideViewPort(true);
+        webSettings.setLoadWithOverviewMode(true);
+//        webSettings.setSupportZoom(true);
+//        webSettings.setBuiltInZoomControls(true);
+//        webSettings.setDisplayZoomControls(false);
+        webSettings.setDomStorageEnabled(true);
+        webView.loadUrl(body);
+//        webView.setWebChromeClient();
+//        MyBaseUtil.setWebView(webView, body);
+
     }
 
     @Override
@@ -55,7 +63,8 @@ public class WebViewModel extends ViewModel<WebViewActivity, ActivityWebviewBind
             else ARouterUtil.navigation(backPath);
         }
     }
-    public void onBackClick(View view){
+
+    public void onBackClick(View view) {
         getT().finish();
     }
 }
