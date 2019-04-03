@@ -17,7 +17,9 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
+import com.binding.model.App;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.ui.media.play.PlayActivity;
 import com.cheese.radio.ui.startup.welcome.WelcomeActivity;
@@ -278,7 +280,32 @@ public class MyBaseUtil extends BaseUtil {
 
     }
 
-    public static WebView setWebView(WebView webView, String text) {
+
+
+    public static WebView setWebView(WebView webView, String url) {
+        WebSettings settings = webView.getSettings();
+        settings.setCacheMode(WebSettings.LOAD_DEFAULT);
+        settings.setBlockNetworkImage(false);
+        //开启 appCache
+        settings.setAppCacheMaxSize(1024 * 1024 * 8);
+        String appCachePath = App.getCurrentActivity().getApplication().getCacheDir().getAbsolutePath();
+        settings.setAppCachePath(appCachePath);
+        settings.setAppCacheEnabled(true);
+        settings.setJavaScriptCanOpenWindowsAutomatically(true);
+        settings.setAllowFileAccess(true);
+        //如果访问的页面中有Javascript，则webview必须设置支持Javascript
+        settings.setJavaScriptEnabled(true);
+//        webView.getSettings().setUserAgentString(MyApplication.getUserAgent());
+        settings.setDomStorageEnabled(true);
+        settings.setDatabaseEnabled(true);
+        settings.setUseWideViewPort(true);
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        settings.setLoadWithOverviewMode(true);
+        webView.loadUrl(url);
+        webView.setWebViewClient(new CheeseWebViewClient());
+        return webView;
+    }
+    public static WebView setWeb(WebView webView, String text) {
         WebSettings webSettings = webView.getSettings();
         if (WEB_URL.matcher(text).matches()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
