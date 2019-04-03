@@ -39,7 +39,7 @@ public class NetWorkModule {
                 .addInterceptor(userInterceptor).build();
 
         return new Retrofit.Builder()
-                .baseUrl(RadioApi.host)
+                .baseUrl(BuildConfig.host)
                 .addConverterFactory(JsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                 .callFactory(client)

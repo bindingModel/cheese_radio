@@ -83,7 +83,7 @@ import retrofit2.http.POST;
  */
 
 public interface RadioApi {
-    String host = "http://111.231.237.11:8081";
+//    String host = "http://111.231.237.11:8081";
     String htmlHost = "http://111.231.237.11:8085/";
 //    String host = "http://interface.zhishidiantai.com";
 

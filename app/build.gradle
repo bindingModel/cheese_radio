@@ -48,6 +48,7 @@ android {
             buildConfigField("String","wechat_AppID","\"wxc7a1365f522a3dcf\"")
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField("String","wechat_AppSecret","\"cc95656d17a0aa4d89c27eff096aa5e8\"")
+            buildConfigField("String","host","\"http://111.231.237.11:8081\"")
         }
         release {
             minifyEnabled false
@@ -55,6 +56,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField("String","wechat_AppID","\"wxc7a1365f522a3dcf\"")
             buildConfigField("String","wechat_AppSecret","\"cc95656d17a0aa4d89c27eff096aa5e8\"")
+            buildConfigField("String","host","\"http://interface.zhishidiantai.com\"")
         }
     }
     compileOptions {

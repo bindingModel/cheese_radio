@@ -41,10 +41,10 @@ public class WebViewModel extends ViewModel<WebViewActivity, ActivityWebviewBind
     }
 
     private void initWebView(WebView webView, String body) {
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);//允许使用js
-//        BaseUtil.setWebView
-        webView.loadUrl(body);
+//        WebSettings webSettings = webView.getSettings();
+//        webSettings.setJavaScriptEnabled(true);//允许使用js
+        MyBaseUtil.setWebView(webView,body);
+//        webView.loadUrl(body);
     }
 
     @Override
