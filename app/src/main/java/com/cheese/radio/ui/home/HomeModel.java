@@ -1,20 +1,12 @@
 package com.cheese.radio.ui.home;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Intent;
-import android.databinding.ObservableInt;
-import android.graphics.Bitmap;
-import android.graphics.Color;
+   import android.databinding.ObservableInt;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -22,11 +14,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RemoteViews;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.binding.model.App;
 import com.binding.model.cycle.DataBindingFragment;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.inter.Entity;
@@ -38,7 +28,6 @@ import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityHomeBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.component.ActivityComponent;
-import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.media.audio.AudioModel;
 import com.cheese.radio.ui.media.play.PlayEntity;
 import com.cheese.radio.ui.service.AudioServiceUtil;
@@ -51,13 +40,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import static android.content.Context.NOTIFICATION_SERVICE;
-import static com.cheese.radio.ui.Constant.ACTION_BUTTON;
-import static com.cheese.radio.ui.Constant.BUTTON_CANCEL_ID;
-import static com.cheese.radio.ui.Constant.BUTTON_NEXT_ID;
-import static com.cheese.radio.ui.Constant.BUTTON_PALY_ID;
-import static com.cheese.radio.ui.Constant.INTENT_BUTTONID_TAG;
 
 /**
  * Created by 29283 on 2018/2/22.

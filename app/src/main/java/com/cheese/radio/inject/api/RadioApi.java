@@ -11,6 +11,8 @@ import com.cheese.radio.ui.home.clock.CourseTypeInfoEntity;
 import com.cheese.radio.ui.home.page.HomePageParams;
 import com.cheese.radio.ui.home.page.RecommanData;
 import com.cheese.radio.ui.home.page.banner.HomePageBannerEntity;
+import com.cheese.radio.ui.home.page.banner.HomePageBannerTimeEntity;
+import com.cheese.radio.ui.home.page.banner.HomePageBannerTimeParams;
 import com.cheese.radio.ui.home.page.entity.CategoryEntity;
 import com.cheese.radio.ui.media.anchor.AnchorData;
 import com.cheese.radio.ui.media.anchor.AnchorParams;
@@ -238,4 +240,7 @@ public interface RadioApi {
 
     @POST("/1.0/content")
     Observable<InfoEntity<List<HomePageBannerEntity>>> getBanner(@Body HomePageParams setAreaSelf);
+
+    @POST("/1.0/common")
+    Observable<InfoEntity<HomePageBannerTimeEntity>> getBannerTime(@Body HomePageBannerTimeParams setAreaSelf);
 }

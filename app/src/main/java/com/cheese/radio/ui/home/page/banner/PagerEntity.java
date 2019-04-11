@@ -96,6 +96,9 @@ public class PagerEntity<E extends Parse> implements TimeEntity{
         return null;
     }
 
+    public void setTotalTime(int totalTime) {
+        this.totalTime = totalTime;
+    }
 
     public int getTotalTime() {
         return totalTime;

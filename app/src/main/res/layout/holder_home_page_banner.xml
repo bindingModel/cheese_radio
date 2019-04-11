@@ -8,6 +8,7 @@
     </data>
     <ImageView
         android:src="@{vm.pic}"
+        app:radius="@{vm.radius}"
         android:onClick="@{vm::onImageClick}"
         android:scaleType="centerCrop"
         android:layout_width="match_parent"

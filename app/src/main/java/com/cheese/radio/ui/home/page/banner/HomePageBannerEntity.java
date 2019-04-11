@@ -90,4 +90,8 @@ public class HomePageBannerEntity extends ViewInflateRecycler {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    public int getRadius(){
+        return 10;
+    }
 }

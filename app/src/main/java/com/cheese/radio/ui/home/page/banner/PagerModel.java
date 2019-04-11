@@ -49,6 +49,10 @@ public class PagerModel<C extends Container, Binding extends ViewDataBinding, E 
         this.loop = loop;
     }
 
+    public void setLoopTime(int loopTime){
+        if(pagerEntity !=null)pagerEntity.setTotalTime(loopTime);
+    }
+
     @Override
     public void nextRotate(E e) {
         if (rotate && (loop == -1 || --loop > 0)) setCurrentItem(getData().indexOf(e));

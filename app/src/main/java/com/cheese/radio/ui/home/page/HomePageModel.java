@@ -26,6 +26,7 @@ import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.CheeseApplication;
 import com.cheese.radio.ui.home.page.banner.HomePageBannerModel;
+import com.cheese.radio.ui.home.page.banner.HomePageBannerTimeParams;
 import com.cheese.radio.ui.home.page.entity.CategoryEntity;
 import com.cheese.radio.ui.home.page.entity.RecommandEntity;
 import com.cheese.radio.ui.home.page.entity.RecommandTail;
@@ -72,11 +73,11 @@ public class HomePageModel extends RecyclerModel<HomePageFragment, FragmentHomeP
         upDataMsg();
         setRoHttp((offset1, refresh) -> getZip());
         model.attachContainer(getT(), (ViewGroup) getDataBinding().getRoot(), false, null);
-//        model.setArea(names[0]);
-
     }
 
     private void initLocation(Spinner spinner) {
+        addDisposable(api.getBannerTime(new HomePageBannerTimeParams("config")).compose(new RestfulTransformer<>())
+                .subscribe(i->model.setLoopTime(i.getTime()),BaseUtil::toast));
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(spinner.getContext(), android.R.layout.simple_spinner_item, names);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
