@@ -131,15 +131,6 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
         return null;
     }
 
-    //
-//    public void onForwardClick(View view) {
-//        if (position >= fmsEntities.size() - 1) {
-//            BaseUtil.toast(view, "已经到最后了");
-//        } else play(fmsEntities.get(++position));
-//    }
-//
-//
-
     @Override
     public void onCompletion(MediaPlayer mediaPlayer) {
         checked.set(false);

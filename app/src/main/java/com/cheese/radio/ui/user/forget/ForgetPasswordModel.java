@@ -41,8 +41,8 @@ public class ForgetPasswordModel extends ViewModel<ForgetPasswordActivity, Activ
 
     @Override
     public void onRightClick(View view) {
-        if (params.isConfirmPassword((TextView) view)) return;
-        if (params.isValidSMS((TextView) view)) return;
+        if (!params.isConfirmPassword((TextView) view)) return;
+        if (!params.isValidSMS((TextView) view)) return;
         addDisposable(api.getToken(params)
                 .compose(new ErrorTransform<>())
                 .subscribe(

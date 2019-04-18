@@ -115,6 +115,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
     }
 
     protected void play(Entity entity) {
+        if(entity==null)return;
         this.entity = entity;
         BaseUtil.checkPermission(App.getCurrentActivity(), aBoolean -> {
             if (aBoolean && util.start(transformUrl(entity), this, listener) == Prepared)

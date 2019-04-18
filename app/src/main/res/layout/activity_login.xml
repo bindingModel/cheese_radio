@@ -216,7 +216,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="22.5dp"
                         android:layout_marginRight="22.5dp"
-                        android:onClick="onWechatClick"
+                        android:onClick="@{vm::onWechatClick}"
                         android:src="@mipmap/wx" />
 
                     <ImageView

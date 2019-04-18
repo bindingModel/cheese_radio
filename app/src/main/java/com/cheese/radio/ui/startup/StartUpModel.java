@@ -35,7 +35,6 @@ public class StartUpModel extends ViewModel<StartUpActivity, ActivityStartupBind
         handler.postDelayed(() -> {
             if (CheeseApplication.getUser().checkIsFirstUse() == 0) ARouterUtil.navigation(welcome);
             else if (CheeseApplication.isLogin(true)) ARouterUtil.navigation(home);
-
             finish();
         }, time);
     }

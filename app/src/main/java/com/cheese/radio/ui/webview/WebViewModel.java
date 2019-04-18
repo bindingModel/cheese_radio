@@ -1,5 +1,7 @@
 package com.cheese.radio.ui.webview;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,8 +14,11 @@ import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.databinding.ActivityWebviewBinding;
 import com.cheese.radio.ui.Constant;
+import com.cheese.radio.util.MyBaseUtil;
 
 import javax.inject.Inject;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * @author 505062212
@@ -49,11 +54,13 @@ public class WebViewModel extends ViewModel<WebViewActivity, ActivityWebviewBind
 //        webSettings.setBuiltInZoomControls(true);
 //        webSettings.setDisplayZoomControls(false);
         webSettings.setDomStorageEnabled(true);
-        webView.loadUrl(body);
+        webSettings.setAllowFileAccess(true);
+//        webView.loadUrl(body);
 //        webView.setWebChromeClient();
-//        MyBaseUtil.setWebView(webView, body);
+        MyBaseUtil.setWebView(webView, body,getT());
 
     }
+
 
     @Override
     public void onDestroy() {

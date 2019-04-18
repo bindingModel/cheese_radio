@@ -213,5 +213,9 @@ public class LoginModel extends ViewModel<LoginActivity, ActivityLoginBinding> i
         }
         return false;
     }
+
+    public void onWechatClick(View view){
+        if(getT()!=null)getT().onWechatClick(view);
+    }
 }
 

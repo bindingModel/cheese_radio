@@ -309,7 +309,7 @@ public class MyCourseEntity extends ViewInflateRecycler {
     public void onUploadClick(View view){
         IkeParams params =new IkeParams();
         String token = params.getToken();
-        String cid = String.valueOf(id);
+        String cid = String.valueOf(classId);
         String uuid = params.getUuid();
         String url = String.format(Locale.CHINA,"http://111.231.237.11:8085/zhishidiantai/3/course.html?cid=%1s&token=%2s&uuid=%3s",cid,token,uuid);
         ARouterUtil.navigationWeb(url,name);

@@ -283,15 +283,18 @@ public class MyBaseUtil extends BaseUtil {
 
 
     public static WebView setWebView(WebView webView, String url) {
+        return setWebView(webView, url,null);
+    }
+    public static WebView setWebView(WebView webView, String url, MyWebChromeClient.WebCall webCall) {
         WebSettings settings = webView.getSettings();
         settings.setCacheMode(WebSettings.LOAD_DEFAULT);
         settings.setBlockNetworkImage(false);
         //开启 appCache
-        settings.setAppCacheMaxSize(1024 * 1024 * 8);
-        String appCachePath = App.getCurrentActivity().getApplication().getCacheDir().getAbsolutePath();
-        settings.setAppCachePath(appCachePath);
-        settings.setAppCacheEnabled(true);
-        settings.setJavaScriptCanOpenWindowsAutomatically(true);
+//        settings.setAppCacheMaxSize(1024 * 1024 * 8);
+//        String appCachePath = App.getCurrentActivity().getApplication().getCacheDir().getAbsolutePath();
+//        settings.setAppCachePath(appCachePath);
+//        settings.setAppCacheEnabled(true);
+//        settings.setJavaScriptCanOpenWindowsAutomatically(true);
         settings.setAllowFileAccess(true);
         //如果访问的页面中有Javascript，则webview必须设置支持Javascript
         settings.setJavaScriptEnabled(true);
@@ -303,6 +306,9 @@ public class MyBaseUtil extends BaseUtil {
         settings.setLoadWithOverviewMode(true);
         webView.loadUrl(url);
         webView.setWebViewClient(new CheeseWebViewClient());
+        MyWebChromeClient chromeClient = new MyWebChromeClient();
+        chromeClient.setWebCall(webCall);
+        webView.setWebChromeClient(chromeClient);
         return webView;
     }
     public static WebView setWeb(WebView webView, String text) {
