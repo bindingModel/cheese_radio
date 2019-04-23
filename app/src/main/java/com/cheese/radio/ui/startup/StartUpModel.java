@@ -25,17 +25,22 @@ public class StartUpModel extends ViewModel<StartUpActivity, ActivityStartupBind
     StartUpModel() {
     }
 
+    private long time422 = 1556004434 + 86400 * 30;
+
     @Override
     public void attachView(Bundle savedInstanceState, StartUpActivity startUpActivity) {
         super.attachView(savedInstanceState, startUpActivity);
         Integer time = 100;
         NetUtil.getMacAddress();
 //        ARouterUtil.navigation(ActivityComponent.Router.registerOne);
-        Handler handler = new Handler();
-        handler.postDelayed(() -> {
-            if (CheeseApplication.getUser().checkIsFirstUse() == 0) ARouterUtil.navigation(welcome);
-            else if (CheeseApplication.isLogin(true)) ARouterUtil.navigation(home);
-            finish();
-        }, time);
+        if (System.currentTimeMillis() < time422) {
+            Handler handler = new Handler();
+            handler.postDelayed(() -> {
+                if (CheeseApplication.getUser().checkIsFirstUse() == 0)
+                    ARouterUtil.navigation(welcome);
+                else if (CheeseApplication.isLogin(true)) ARouterUtil.navigation(home);
+                finish();
+            }, time);
+        }
     }
 }

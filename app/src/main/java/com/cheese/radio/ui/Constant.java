@@ -62,5 +62,7 @@ public interface Constant {
     String url = "url";
     String back_path = "back_path";
     String back_bundle = "back_bundle";
+    String ACTIVITY_LIST = "ACTIVITY_LIST";
+    String setCurrentItem = "setCurrentItem";
 }
 

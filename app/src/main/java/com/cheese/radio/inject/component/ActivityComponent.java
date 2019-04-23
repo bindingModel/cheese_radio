@@ -162,7 +162,7 @@ public interface ActivityComponent {
         String phone = cheese + "phone";
 
         String circle = "/circle/";
-        String activityDetail = circle + "activityDetail";
+        String activityDetail = cheese + "activity";
         String join = circle + "join";
 
         String calendar = cheese + "calendar";

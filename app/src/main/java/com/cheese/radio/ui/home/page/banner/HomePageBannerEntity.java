@@ -5,8 +5,10 @@ import android.view.View;
 
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
+import com.binding.model.model.inter.Model;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
+import com.cheese.radio.ui.Constant;
 
 @ModelView(value = {R.layout.holder_home_page_banner,R.layout.holder_circle})
 public class HomePageBannerEntity extends ViewInflateRecycler {
@@ -29,7 +31,10 @@ public class HomePageBannerEntity extends ViewInflateRecycler {
 
     public void onImageClick(View view){
         if(!TextUtils.isEmpty(location)){
-            ARouterUtil.itemNavigation(location,Integer.parseInt(id),name);
+            if(Constant.ACTIVITY_LIST.equals(location)) {
+                Model.dispatchModel(Constant.setCurrentItem,2);
+            }
+            else ARouterUtil.itemNavigation(location,Integer.parseInt(id),name);
         }else{
             ARouterUtil.navigationWeb(url,"");
         }
