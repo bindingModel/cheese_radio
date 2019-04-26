@@ -24,8 +24,8 @@ public class StartUpModel extends ViewModel<StartUpActivity, ActivityStartupBind
     @Inject
     StartUpModel() {
     }
+    private long time422 =1558454400000L;
 
-    private long time422 = 1556004434 + 86400 * 30;
 
     @Override
     public void attachView(Bundle savedInstanceState, StartUpActivity startUpActivity) {

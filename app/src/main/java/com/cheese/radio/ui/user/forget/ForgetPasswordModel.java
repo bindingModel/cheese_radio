@@ -41,13 +41,16 @@ public class ForgetPasswordModel extends ViewModel<ForgetPasswordActivity, Activ
 
     @Override
     public void onRightClick(View view) {
-        if (!params.isConfirmPassword((TextView) view)) return;
+        if (!params.isConfirmNewPassword((TextView) view)) return;
         if (!params.isValidSMS((TextView) view)) return;
         addDisposable(api.getToken(params)
                 .compose(new ErrorTransform<>())
                 .subscribe(
                         signUserEntity -> {
-                            if (signUserEntity.code() == 0) BaseUtil.toast("设置密码成功");
+                            if (signUserEntity.code() == 0) {
+                                BaseUtil.toast("设置密码成功");
+                                finish();
+                            }
                             else BaseUtil.toast(signUserEntity.getMessage());
                         },
                         BaseUtil::toast));

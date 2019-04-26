@@ -27,6 +27,7 @@ public class PasswordEncrypt {
     private static final String UTF8="UTF-8";
 
     public static String encrypt(String password) {
+        if(TextUtils.isEmpty(password))return null;
         String aesValue = aesEncrypt(password);//aes
 //        String base64Value = base64Encrypt(aesValue);//base64
 //        String urlEncoder = urlEncoder(aesValue);

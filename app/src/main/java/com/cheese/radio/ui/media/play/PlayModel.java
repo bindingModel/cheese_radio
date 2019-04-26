@@ -27,6 +27,7 @@ import com.binding.model.model.inter.Model;
 import com.binding.model.util.BaseUtil;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.FutureTarget;
+import com.cheese.radio.BuildConfig;
 import com.cheese.radio.R;
 import com.cheese.radio.base.IkeParams;
 import com.cheese.radio.base.arouter.ARouterUtil;
@@ -71,6 +72,8 @@ import static com.binding.model.adapter.AdapterType.select;
  */
 @ModelView(value = R.layout.activity_play, model = true)
 public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, PlayEntity> implements UMShareListener {
+    private PlayEntity entity;
+
     @Inject
     PlayModel() {
     }
@@ -146,10 +149,14 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     }
 
     public void setSingelEntity(PlayEntity entity) {
+        this.entity = entity;
+//        getDataBinding().manuscrip.setVisibility(entity.getWengao());
+//        if (entity.getHasWengao() == 0) BaseUtil.toast("暂无文稿");
         if (entity.getId() != id) {
             id = entity.getId();
             util.setId(id);
         }
+
         if (!getList().contains(entity))
             addEntity(entity);
         playTime = 0;
@@ -344,7 +351,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     }
 
     @Override
-    public void cancelButtonNotiy() {
+    public void cancelButtonNotify() {
         util.getNotManager().cancel(NotifyManager.getMsgId());
     }
 
@@ -406,12 +413,16 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
 
 
     public void onManuClick(View view) {
-        IkeParams params =new IkeParams();
-        String url = String.format(Locale.CHINA, "http://111.231.237.11:8085/zhishidiantai/3/comment.html?aid=%1s&token=%2s&uuid=%3s",
-                id,params.getToken(),params.getUuid());
-        Bundle bundle =new Bundle();
-        bundle.putString(Constant.url,url);
-        ARouterUtil.navigation(ActivityComponent.Router.webview,bundle);
+        if (entity == null||entity.getHasWengao() == 0) {
+            BaseUtil.toast("暂无文稿");
+        } else {
+            IkeParams params = new IkeParams();
+            String url = String.format(Locale.CHINA, BuildConfig.html + "zhishidiantai/3/comment.html?aid=%1s&token=%2s&uuid=%3s",
+                    id, params.getToken(), params.getUuid());
+            Bundle bundle = new Bundle();
+            bundle.putString(Constant.url, url);
+            ARouterUtil.navigation(ActivityComponent.Router.webview, bundle);
+        }
 
       /*  StringBuilder stringBuilder = new StringBuilder(RadioApi.htmlHost);
         stringBuilder.append("zhishidiantai/")
@@ -422,7 +433,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
                 .append(CheeseApplication.getUser().getUserEntity().getUserId())
                 .append("&sid=")
                 .append("");*/
-       ARouterUtil.navigation(RadioApi.htmlHost + "zhishidiantai/" + id + "/comment.html");
+//       ARouterUtil.navigation(BuildConfig.html+ "zhishidiantai/" + id + "/comment.html");
 //        http://111.231.237.11:8085/zhishidiantai/3/comment.html?aid=65&mid=15&sid=1
     }
 }

@@ -76,8 +76,8 @@ public class HomePageModel extends RecyclerModel<HomePageFragment, FragmentHomeP
     }
 
     private void initLocation(Spinner spinner) {
-        addDisposable(api.getBannerTime(new HomePageBannerTimeParams("config")).compose(new RestfulTransformer<>())
-                .subscribe(i->model.setLoopTime(i.getTime()),BaseUtil::toast));
+//        addDisposable(api.getBannerTime(new HomePageBannerTimeParams("config")).compose(new RestfulTransformer<>())
+//                .subscribe(i->model.setLoopTime(i.getBanner()),BaseUtil::toast));
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(spinner.getContext(), android.R.layout.simple_spinner_item, names);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);

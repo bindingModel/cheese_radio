@@ -27,6 +27,8 @@ public class SignParams extends IkeParams {
     private String openId2;
     private String password;
     private String confirm_password;
+    private String newPassword;
+    private String preNewPassword;
 
     public String getAccess_token() {
         return access_token;
@@ -128,10 +130,32 @@ public class SignParams extends IkeParams {
     }
 
     public String getConfirm_password() {
-        return confirm_password;
+        return PasswordEncrypt.encrypt(confirm_password);
     }
 
     public void setConfirm_password(String confirm_password) {
         this.confirm_password = confirm_password;
+    }
+
+    public String getNewPassword() {
+        return PasswordEncrypt.encrypt(newPassword);
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+
+    public String getPreNewPassword() {
+        return PasswordEncrypt.encrypt(preNewPassword);
+    }
+
+    public void setPreNewPassword(String preNewPassword) {
+        this.preNewPassword = preNewPassword;
+    }
+
+    public boolean isConfirmNewPassword(TextView view) {
+        if (!TextUtils.isEmpty(newPassword) && newPassword.equals(preNewPassword)) return isValidToast(view, getPasswordError(newPassword));
+        else BaseUtil.toast("两次输入的密码不同");
+        return false;
     }
 }

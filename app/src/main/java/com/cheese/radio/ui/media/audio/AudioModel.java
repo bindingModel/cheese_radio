@@ -220,7 +220,7 @@ public abstract class AudioModel<T extends Container, Binding extends ViewDataBi
 
     public abstract void showButtonNotify();
 
-    public abstract void cancelButtonNotiy();
+    public abstract void cancelButtonNotify();
 
     protected void addEntity(Entity entity) {
         fmsEntities.add(entity);

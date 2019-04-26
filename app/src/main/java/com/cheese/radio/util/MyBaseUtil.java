@@ -311,6 +311,7 @@ public class MyBaseUtil extends BaseUtil {
         webView.setWebChromeClient(chromeClient);
         return webView;
     }
+
     public static WebView setWeb(WebView webView, String text) {
         WebSettings webSettings = webView.getSettings();
         if (WEB_URL.matcher(text).matches()) {

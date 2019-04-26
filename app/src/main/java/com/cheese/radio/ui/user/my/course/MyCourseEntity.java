@@ -13,6 +13,7 @@ import com.binding.model.App;
 import com.binding.model.Config;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewInflateRecycler;
+import com.cheese.radio.BuildConfig;
 import com.cheese.radio.R;
 import com.cheese.radio.base.IkeParams;
 import com.cheese.radio.base.arouter.ARouterUtil;
@@ -64,15 +65,6 @@ public class MyCourseEntity extends ViewInflateRecycler {
      * name : 一元体验课程
      * id : 1
      * complete : 2
-     */
-
-    private String code;
-    private int surplus;
-    private String name;
-    private int id;
-    private int complete;
-    private int appointing;
-    /**
      * classId : 920
      * teacherId : 17
      * teacherName : 蔡瑜
@@ -85,6 +77,14 @@ public class MyCourseEntity extends ViewInflateRecycler {
      * day : 2018-10-18
      * bookId : 47
      */
+
+
+    private String code;
+    private int surplus;
+    private String name;
+    private int id;
+    private int complete;
+    private int appointing;
     private String courseState;
     private String startTime;
 
@@ -311,7 +311,8 @@ public class MyCourseEntity extends ViewInflateRecycler {
         String token = params.getToken();
         String cid = String.valueOf(classId);
         String uuid = params.getUuid();
-        String url = String.format(Locale.CHINA,"http://111.231.237.11:8085/zhishidiantai/3/course.html?cid=%1s&token=%2s&uuid=%3s",cid,token,uuid);
+//        http://h5.zhishidiantai.com/zhishidiantai/3
+        String url = String.format(Locale.CHINA, BuildConfig.html+ "zhishidiantai/3/course.html?cid=%1s&token=%2s&uuid=%3s",cid,token,uuid);
         ARouterUtil.navigationWeb(url,name);
     }
     public boolean isClassComplete(){

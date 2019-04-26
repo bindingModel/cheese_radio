@@ -41,7 +41,8 @@ android {
         }
     }
     buildTypes {
-        debug {
+//        release{
+        debug{
 //            applicationIdSuffix ".debug"
             minifyEnabled false
             signingConfig signingConfigs.config
@@ -49,14 +50,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField("String","wechat_AppSecret","\"cc95656d17a0aa4d89c27eff096aa5e8\"")
             buildConfigField("String","host","\"http://111.231.237.11:8081\"")
+            buildConfigField("String","html","\"http://111.231.237.11:8085/\"")
         }
-        release {
+         release{
+//             debug{
             minifyEnabled false
             signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField("String","wechat_AppID","\"wxc7a1365f522a3dcf\"")
             buildConfigField("String","wechat_AppSecret","\"cc95656d17a0aa4d89c27eff096aa5e8\"")
             buildConfigField("String","host","\"http://interface.zhishidiantai.com\"")
+            buildConfigField("String","html","\"http://h5.zhishidiantai.com/\"")
         }
     }
 //    compileOptions {

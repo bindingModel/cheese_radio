@@ -32,8 +32,9 @@ public class PagerModel<C extends Container, Binding extends ViewDataBinding, E 
         implements PagerRotateListener<E>, ViewPager.OnPageChangeListener {
     private int loop = -1;
     private PagerEntity<E> pagerEntity;
-    public ObservableInt currentItem = new ObservableInt(-1);
+    public transient ObservableInt currentItem = new ObservableInt(-1);
     private boolean rotate = false;
+    private int loopTime = 3;
 
     public PagerModel(ILayoutAdapter<E> adapter) {
         super(adapter);
@@ -50,6 +51,8 @@ public class PagerModel<C extends Container, Binding extends ViewDataBinding, E 
     }
 
     public void setLoopTime(int loopTime){
+        this.loopTime = loopTime;
+        if(loopTime==0)return;
         if(pagerEntity !=null)pagerEntity.setTotalTime(loopTime);
     }
 
@@ -66,7 +69,7 @@ public class PagerModel<C extends Container, Binding extends ViewDataBinding, E 
     public void onNext(List<? extends E> es) {
         super.onNext(es);
         if (pagerEntity == null) {
-            pagerEntity = new PagerEntity<>(es, this);
+            pagerEntity = new PagerEntity<>(loopTime,es, this);
             pagerEntity.addRotateListener(this);
         }else{
             pagerEntity.setList(new ArrayList<>(es));

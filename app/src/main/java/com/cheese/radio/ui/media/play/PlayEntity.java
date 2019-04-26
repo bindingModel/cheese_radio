@@ -57,6 +57,7 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
     private String shareLandingUrl;
     private String location;
     private int audioSize;
+    private int hasWengao;
 
     public String getLocation() {
         return location;
@@ -369,5 +370,17 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
 
     public void setAnchorId(int anchorId) {
         this.anchorId = anchorId;
+    }
+
+    public int getHasWengao() {
+        return hasWengao;
+    }
+
+    public void setHasWengao(int hasWengao) {
+        this.hasWengao = hasWengao;
+    }
+
+    public int getWengao(){
+        return hasWengao == 0?View.GONE: View.VISIBLE;
     }
 }

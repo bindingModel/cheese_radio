@@ -167,7 +167,7 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
     }
 
     @Override
-    public void cancelButtonNotiy() {
+    public void cancelButtonNotify() {
     }
 
     private Runnable mRotationRunnable = new Runnable() {
@@ -191,7 +191,6 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
         if (isPlaying()) mHandler.post(mRotationRunnable);
         else mHandler.removeCallbacks(mRotationRunnable);
     }
-
 
     //跳转到播放界面
     public void onToPlayClick(View view) {
