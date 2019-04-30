@@ -31,7 +31,8 @@ public class DescriptionFragmentModel extends ViewModel<DescriptionFragment,Frag
             descriptionText.set(bundle.getString(Constant.description));
         }
         webView = getDataBinding().webview;
-        MyBaseUtil.setWeb(webView,descriptionText.get());
+        webView.loadData(descriptionText.get(),"text/html", "utf-8");
+//        MyBaseUtil.setWeb(webView,descriptionText.get());
     }
 
 }

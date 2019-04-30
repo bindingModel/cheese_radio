@@ -55,13 +55,13 @@ public class ClassifyEntity extends ViewInflateRecycler implements SpanSize, Gri
 
     @Override
     public int getSpanSize() {
-        return 5;
+        return 6;
     }
 
-    public void onClick(View view){
-        Bundle bundle=new Bundle();
-        bundle.putString(Constant.title,tagName);
-        bundle.putInt(Constant.id,tagId);
-        ARouterUtil.navigation(contents,bundle);
-        }
+    public void onClick(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putString(Constant.title, tagName);
+        bundle.putInt(Constant.id, tagId);
+        ARouterUtil.navigation(contents, bundle);
+    }
 }

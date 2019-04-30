@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="vm"
@@ -11,10 +12,53 @@
         android:orientation="vertical">
         <include
             layout="@layout/toolbar_organza"/>
-        <include
-            android:id="@+id/layout_recycler"
-            android:background="@color/background_gray"
-            layout="@layout/layout_recycler_view"/>
+<!--        <include-->
+<!--            android:id="@+id/layout_recycler"-->
+<!--            android:background="@color/background_gray"-->
+<!--            layout="@layout/layout_recycler_view"/>-->
+
+        <FrameLayout
+            android:paddingLeft="28dp"
+            android:paddingRight="28dp"
+            android:id="@+id/frame_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_refresh_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:enabled="@{vm.enable}"
+                app:onRefreshListener="@{vm::onRefresh}"
+                app:refreshing="@={vm.loading}">
+
+                <android.support.v7.widget.RecyclerView
+                    app:layoutManager="@{vm.layoutManager}"
+                    app:adapter="@{vm.adapter}"
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:scroll_listener="@{vm.scrollListener}" />
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+            <FrameLayout
+                android:id="@+id/empty_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:visibility="gone">
+                <!--android:visibility="@{vm.emptyVisibility?View.VISIBLE:View.GONE}"-->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:onClick="@{vm::onHttp}"
+                    android:text="@={vm.error}" />
+            </FrameLayout>
+        </FrameLayout>
+
+
         <!--<android.support.v7.widget.RecyclerView-->
             <!--android:paddingLeft="8.5dp"-->
             <!--android:paddingRight="8.5dp"-->

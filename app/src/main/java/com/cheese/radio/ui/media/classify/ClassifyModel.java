@@ -34,7 +34,7 @@ public class ClassifyModel extends RecyclerModel<ClassifyActivity, ActivityClass
     @Override
     public void attachView(Bundle savedInstanceState, ClassifyActivity activity) {
         super.attachView(savedInstanceState, activity);
-        getDataBinding().layoutRecycler.setVm(this);
+//        getDataBinding().layoutRecycler.setVm(this);
         GridLayoutManager layoutManager = new GridLayoutManager(getT(), 18);
         layoutManager.setSpanSizeLookup(new GridSpanSizeLookup<>(getAdapter()));
         setLayoutManager(layoutManager);

@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="vm"
             type="com.cheese.radio.ui.media.classify.ClassifyData"/>
     </data>
 
-   <FrameLayout
+   <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:paddingLeft="28dp"
-       android:paddingRight="28dp"
+       android:orientation="vertical"
        android:paddingTop="19dp">
+
+
        <TextView
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
@@ -21,5 +23,10 @@
            android:text="@{vm.tagName,default=12}"
            android:drawablePadding="4.8dp"
            />
-   </FrameLayout>
+<!--       <org.apmem.tools.layouts.FlowLayout-->
+<!--           android:layout_width="match_parent"-->
+<!--           app:addInflates="@{vm.subTagList}"-->
+<!--           android:orientation="horizontal"-->
+<!--           android:layout_height="wrap_content"/>-->
+   </LinearLayout>
 </layout>
