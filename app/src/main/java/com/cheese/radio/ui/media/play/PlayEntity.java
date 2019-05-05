@@ -46,17 +46,17 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
     private int id;
     private String title;
     private int favorCount;
-    private int fabuCount;
-    private String anchorName;
+    private transient int fabuCount;
+    private transient String anchorName;
     private String url;
     private transient String anchorBrief;
-    private Integer favor;
-    private Integer fabu;
-    private Integer fileId;
-    private String shareUrl;
-    private String shareLandingUrl;
+    private transient Integer favor;
+    private transient Integer fabu;
+    private transient Integer fileId;
+    private transient String shareUrl;
+    private transient String shareLandingUrl;
     private String location;
-    private int audioSize;
+    private transient int audioSize;
     private int hasWengao;
 
     public String getLocation() {
@@ -280,88 +280,6 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
         return 15;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.image);
-        dest.writeInt(this.playCount);
-        dest.writeInt(this.seconds);
-        dest.writeString(this.subTitle);
-        dest.writeString(this.anchorIcon);
-        dest.writeInt(this.id);
-        dest.writeString(this.title);
-        dest.writeInt(this.favorCount);
-        dest.writeInt(this.fabuCount);
-        dest.writeString(this.anchorName);
-        dest.writeString(this.url);
-        dest.writeString(this.anchorBrief);
-        dest.writeValue(this.favor);
-        dest.writeValue(this.fabu);
-        dest.writeValue(this.fileId);
-        dest.writeString(this.shareUrl);
-        dest.writeString(this.shareLandingUrl);
-        dest.writeString(this.location);
-        dest.writeInt(this.audioSize);
-    }
-
-    protected PlayEntity(Parcel in) {
-        this.image = in.readString();
-        this.playCount = in.readInt();
-        this.seconds = in.readInt();
-        this.subTitle = in.readString();
-        this.anchorIcon = in.readString();
-        this.id = in.readInt();
-        this.title = in.readString();
-        this.favorCount = in.readInt();
-        this.fabuCount = in.readInt();
-        this.anchorName = in.readString();
-        this.url = in.readString();
-        this.anchorBrief = in.readString();
-        this.favor = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.fabu = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.fileId = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.shareUrl = in.readString();
-        this.shareLandingUrl = in.readString();
-        this.location = in.readString();
-        this.audioSize = in.readInt();
-    }
-
-    public static final Creator<PlayEntity> CREATOR = new Creator<PlayEntity>() {
-        @Override
-        public PlayEntity createFromParcel(Parcel source) {
-            return new PlayEntity(source);
-        }
-
-        @Override
-        public PlayEntity[] newArray(int size) {
-            return new PlayEntity[size];
-        }
-    };
-
-
-    /**
-     * image : http://cheese-radio-1256030909.cos.ap-guangzhou.myqcloud.com/images/c9/c14/1655626fa7658.jpg?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDzLbkmgG9mDR0VpMufGguwldS4VknuIl8%26q-sign-time%3D1534748721%3B3112671921%26q-key-time%3D1534748721%3B3112671921%26q-header-list%3Dhost%26q-url-param-list%3D%26q-signature%3D527888c06c710e6e08e9983c6463ab36c401047f
-     * fabuCount : 0
-     * anchorIcon : http://cheese-radio-1256030909.cos.ap-guangzhou.myqcloud.com/images/c13/c7/16425ad3eda59.jpg?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDzLbkmgG9mDR0VpMufGguwldS4VknuIl8%26q-sign-time%3D1529640483%3B3107563683%26q-key-time%3D1529640483%3B3107563683%26q-header-list%3Dhost%26q-url-param-list%3D%26q-signature%3D23e67806ff910d6cb63ee12a0cb6620b59c6447f
-     * shareLandingUrl : http://h5.zhishidiantai.com/zhishidiantai/share.html?id=747
-     * title : 糖果屋
-     * anchorId : 35
-     * favorCount : 1
-     * anchorName : 奕艺姐姐
-     * url : http://cheese-radio-1256030909.cos.ap-guangzhou.myqcloud.com/audioes/c25/c0/1655627282d56.mp3?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDzLbkmgG9mDR0VpMufGguwldS4VknuIl8%26q-sign-time%3D1534748735%3B3112671935%26q-key-time%3D1534748735%3B3112671935%26q-header-list%3Dhost%26q-url-param-list%3D%26q-signature%3D113c9ad722d89c60d194a20ac2fc831aba520dc5
-     * playCount : 2923
-     * seconds : 637
-     * subTitle :
-     * shareUrl : http://manager.zhishidiantai.com/docroot/attachments/c25/c0/1655627282d56.mp3
-     * id : 747
-     * anchorBrief : 喜欢给调皮捣蛋的孩子讲故事的小姐姐
-     * fileId : 747
-     */
-
     private int anchorId;
 
     public int getAnchorId() {
@@ -383,4 +301,48 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
     public int getWengao(){
         return hasWengao == 0?View.GONE: View.VISIBLE;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.image);
+        dest.writeInt(this.playCount);
+        dest.writeInt(this.seconds);
+        dest.writeString(this.anchorIcon);
+        dest.writeInt(this.id);
+        dest.writeString(this.title);
+        dest.writeInt(this.favorCount);
+        dest.writeString(this.url);
+        dest.writeInt(this.hasWengao);
+        dest.writeInt(this.anchorId);
+    }
+
+    protected PlayEntity(Parcel in) {
+        this.image = in.readString();
+        this.playCount = in.readInt();
+        this.seconds = in.readInt();
+        this.anchorIcon = in.readString();
+        this.id = in.readInt();
+        this.title = in.readString();
+        this.favorCount = in.readInt();
+        this.url = in.readString();
+        this.hasWengao = in.readInt();
+        this.anchorId = in.readInt();
+    }
+
+    public static final Creator<PlayEntity> CREATOR = new Creator<PlayEntity>() {
+        @Override
+        public PlayEntity createFromParcel(Parcel source) {
+            return new PlayEntity(source);
+        }
+
+        @Override
+        public PlayEntity[] newArray(int size) {
+            return new PlayEntity[size];
+        }
+    };
 }

@@ -84,7 +84,7 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
     PopupPlayModel popupPlayModel;
     //    public final List<PlayEntity> list = new ArrayList<>();
     private Integer id;
-    private Integer playTime, totalTime;
+    private int playTime, totalTime;
     public ObservableField<String> currentText = new ObservableField<>();//存放定时播放的剩余时间。如果需要，去界面绑定
     public ObservableBoolean clockCheck = new ObservableBoolean(false);
     private SelectPlayTimeEntity timeEntity;
@@ -170,8 +170,8 @@ public class PlayModel extends AudioModel<PlayActivity, ActivityPlayBinding, Pla
         play(entity);
         if (!getList().isEmpty()) {
             Model.dispatchModel(Constant.images, entity);
-            showButtonNotify();
             playRecord();
+            showButtonNotify();
         }
     }
 

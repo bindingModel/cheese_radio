@@ -11,6 +11,7 @@ import com.cheese.radio.databinding.FragmentPlayListBinding;
 import com.cheese.radio.ui.Constant;
 import com.cheese.radio.ui.media.play.PlayEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -50,7 +51,7 @@ public class PlayListFragmentModel extends RecyclerModel<PlayListFragment, Fragm
             bundle.putInt(Constant.indexOf, indexOf);
             bundle.putInt(Constant.id, o.getId());
 //            getT().getActivity().startActivity(intent);
-//            bundle.putParcelableArrayList(Constant.playList, (ArrayList<PlayEntity>) getAdapter().getList());
+            bundle.putParcelableArrayList(Constant.playList, (ArrayList<PlayEntity>) getAdapter().getList());
             ARouterUtil.LocationNavigation(o.getLocation(), bundle);
             return true;
         });

@@ -28,16 +28,25 @@ public class HomePageBannerEntity extends ViewInflateRecycler {
     private String type;
     private String url;
     private String location;
+    private String target_id;
 
     public void onImageClick(View view){
         if(!TextUtils.isEmpty(location)){
             if(Constant.ACTIVITY_LIST.equals(location)) {
                 Model.dispatchModel(Constant.setCurrentItem,2);
             }
-            else ARouterUtil.itemNavigation(location,Integer.parseInt(id),name);
+            else ARouterUtil.itemNavigation(location,Integer.parseInt(target_id),name);
         }else{
             ARouterUtil.navigationWeb(url,"");
         }
+    }
+
+    public String getTarget_id() {
+        return target_id;
+    }
+
+    public void setTarget_id(String target_id) {
+        this.target_id = target_id;
     }
 
     public String getLocation() {
