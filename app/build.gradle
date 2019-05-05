@@ -10,8 +10,8 @@ android {
         applicationId "com.cheese.radio"
         minSdkVersion min_sdk_version
         targetSdkVersion target_sdk_version
-        versionCode 32
-        versionName '2.1.15'
+        versionCode 33
+        versionName '2.1.16'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             generatedDensities 'xxhdpi'
@@ -41,8 +41,8 @@ android {
         }
     }
     buildTypes {
-//        release{
-        debug{
+        release{
+//        debug{
 //            applicationIdSuffix ".debug"
             minifyEnabled false
             signingConfig signingConfigs.config
@@ -52,8 +52,8 @@ android {
             buildConfigField("String","host","\"http://111.231.237.11:8081\"")
             buildConfigField("String","html","\"http://111.231.237.11:8085/\"")
         }
-         release{
-//             debug{
+//         release{
+             debug{
             minifyEnabled false
             signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
