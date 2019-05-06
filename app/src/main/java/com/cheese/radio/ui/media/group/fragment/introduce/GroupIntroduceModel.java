@@ -22,8 +22,6 @@ public class GroupIntroduceModel extends ViewModel<GroupIntroduceFragment, Fragm
     GroupIntroduceModel() {
     }
 
-    private WebView webView;
-    private ProgressBar progressBar;
     public String url ="";
 
     @Override
@@ -34,10 +32,9 @@ public class GroupIntroduceModel extends ViewModel<GroupIntroduceFragment, Fragm
         if (bundle != null) {
             url=bundle.getString(Constant.description);
         }
-
-        webView = getDataBinding().webview;
+        getDataBinding().webview.loadData(url,"text/html", "utf-8");
+//        webView = getDataBinding().webview;
 //        webView.loadDataWithBaseURL(null, url, "text/html", "utf-8", null);
-
-        MyBaseUtil.setWebView(webView,url);
+//        MyBaseUtil.setWebView(webView,url);
     }
 }
