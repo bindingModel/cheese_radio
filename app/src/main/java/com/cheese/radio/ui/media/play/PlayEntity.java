@@ -53,7 +53,7 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
     private transient Integer favor;
     private transient Integer fabu;
     private transient Integer fileId;
-    private transient String shareUrl;
+    private String shareUrl;
     private transient String shareLandingUrl;
     private String location;
     private transient int audioSize;
