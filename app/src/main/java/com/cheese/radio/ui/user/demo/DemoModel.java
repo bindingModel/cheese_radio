@@ -6,6 +6,7 @@ import android.view.View;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.ViewHttpModel;
 import com.cheese.radio.R;
+import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
 import com.cheese.radio.databinding.ActivityDemoBinding;
 import com.cheese.radio.inject.api.RadioApi;
@@ -33,8 +34,10 @@ public class DemoModel extends ViewHttpModel<DemoActivity,ActivityDemoBinding,De
 
     public void onClick(View view){
 //        listCompositeDisposable.add(radioApi.getData().compose(new RestfulTransformer<>()).subscribe());
-        addDisposable(radioApi.getData().subscribe());
+//        addDisposable(radioApi.getData().subscribe());
+//        ARouterUtil.navigation();
     }
+
 
     @Override
     public void onNext(DemoData demoData)  {

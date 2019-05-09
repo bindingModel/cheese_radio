@@ -19,6 +19,7 @@ import com.cheese.radio.ui.search.SearchActivity;
 import com.cheese.radio.ui.startup.StartUpActivity;
 import com.cheese.radio.ui.startup.welcome.WelcomeActivity;
 import com.cheese.radio.ui.user.calendar.CalendarActivity;
+import com.cheese.radio.ui.user.demo.demo1.Demo1Activity;
 import com.cheese.radio.ui.user.edit.EditNameActivity;
 import com.cheese.radio.ui.user.enroll.EnrollActivity;
 import com.cheese.radio.ui.user.forget.ForgetPasswordActivity;
@@ -125,6 +126,7 @@ public interface ActivityComponent {
     void inject(JoinCircleDetailActivity activity);
     void inject(ForgetPasswordActivity activity);
     void inject(WebViewActivity activity);
+    void inject(Demo1Activity activity);
     interface Router {
         String cheese = "/cheese/";
         String startup = cheese + "startup";
@@ -168,6 +170,7 @@ public interface ActivityComponent {
         String calendar = cheese + "calendar";
         String forget = cheese+"forget/password";
         String webview = cheese + "webview";
+        String demo1 = cheese + "demo1";
     }
     /*
      *  CONTENT_LIST	绘本列表                  contents

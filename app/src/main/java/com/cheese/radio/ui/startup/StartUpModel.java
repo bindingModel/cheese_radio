@@ -11,6 +11,9 @@ import com.cheese.radio.databinding.ActivityStartupBinding;
 import com.cheese.radio.ui.CheeseApplication;
 import com.cheese.radio.util.NetUtil;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import static com.cheese.radio.inject.component.ActivityComponent.Router.home;
@@ -31,9 +34,11 @@ public class StartUpModel extends ViewModel<StartUpActivity, ActivityStartupBind
     public void attachView(Bundle savedInstanceState, StartUpActivity startUpActivity) {
         super.attachView(savedInstanceState, startUpActivity);
         Integer time = 100;
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date(2019,6,22));
         NetUtil.getMacAddress();
-//        ARouterUtil.navigation(ActivityComponent.Router.registerOne);
-        if (System.currentTimeMillis() < time422) {
+            if (System.currentTimeMillis() < calendar.getTimeInMillis()) {
             Handler handler = new Handler();
             handler.postDelayed(() -> {
                 if (CheeseApplication.getUser().checkIsFirstUse() == 0)

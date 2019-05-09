@@ -1,10 +1,13 @@
 package com.cheese.radio.base.arouter;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.Postcard;
+import com.alibaba.android.arouter.facade.callback.NavigationCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.binding.model.App;
 import com.binding.model.Config;
 import com.cheese.radio.R;
 import com.cheese.radio.inject.component.ActivityComponent;
@@ -35,6 +38,11 @@ public class ARouterUtil {
         bundle.putString(Config.title,title);
         bundle.putString(Constant.url,url);
         ARouterUtil.navigation(ActivityComponent.Router.webview,bundle);
+    }
+
+    public static void navigationBack(String url, Bundle bundle, Context context, NavigationCallback callback) {
+        build(url, bundle).navigation(App.getCurrentActivity(),callback);
+
     }
 
 
