@@ -43,7 +43,10 @@ public class HomePageBannerModel extends PagerModel<DataBindingFragment, ItemHom
         params.setArea(area);
         setRcHttp((offset1, refresh) -> api.getBanner(params)
                 .compose(new RestfulTransformer<>())
+                .doOnNext(it->getDataBinding().viewPager.setOffscreenPageLimit(it.size()))
                 .doOnNext(list -> ViewGroupBindingAdapter.addInflates(getDataBinding().radioGroup, ReflectUtil.copyList(list,1))));
+
+//        setOffscreenPageLimit
     }
 
 }

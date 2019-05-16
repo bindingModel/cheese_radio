@@ -174,8 +174,8 @@ public class HomeModel extends AudioModel<HomeActivity, ActivityHomeBinding, Pla
         @Override
         public void run() {
             if (isPlaying()) {
-                playImage.setPivotX(playImage.getWidth() / 2);
-                playImage.setPivotY(playImage.getHeight() / 2);
+                playImage.setPivotX(playImage.getWidth() >> 1);
+                playImage.setPivotY(playImage.getHeight() >> 1);
                 playImage.setRotation(angle++);
             }
             angle = angle < 360 ? angle : 0;

@@ -89,8 +89,16 @@ public class DataBindingAdapter {
     public static void setImageDrawable(ImageView imageView, String imageUrl) {
         Context context = imageView.getContext();
         Glide.with(context).clear(imageView);
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+//                .placeholder(R.mipmap.ic_launcher)//预加载图片
+//                .error(R.mipmap.ic_launcher)//加载失败显示图片
+                .priority(Priority.HIGH);//优先级
+//                .diskCacheStrategy(DiskCacheStrategy.NONE)//缓存策略
+//                .transform(new CircleCrop());//转化为圆角
         Glide.with(context)
                 .load(imageUrl)
+                .apply(options)
 //                .placeholder(R.mipmap.img_default2_normal)
 //                .error(R.mipmap.img_default2_normal)
                 .into(imageView);
@@ -270,4 +278,6 @@ public class DataBindingAdapter {
 //                    }
 //                });
 //    }
+
+
 }
