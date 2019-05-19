@@ -21,6 +21,8 @@ import com.cheese.radio.databinding.ItemHomePageRecommandBinding;
 
 import java.util.Observable;
 
+import static com.cheese.radio.base.util.ViewUtil.measureHomeRecommandEntity;
+
 
 /**
  * Created by 29283 on 2018/3/5.
@@ -46,32 +48,15 @@ public class RecommandEntity extends ViewInflateRecycler<ItemHomePageRecommandBi
     private int spansize = 2;
     public final ObservableField<String> playCountText=new ObservableField<>();
 
+    private int favorCount;
+    private String url;
+
     @Override
     public ItemHomePageRecommandBinding attachView(Context context, ViewGroup co, boolean attachToParent, ItemHomePageRecommandBinding binding) {
-        super.attachView(context, co, attachToParent, binding);
-        WindowManager wm = (WindowManager) App.getCurrentActivity().getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics dm = new DisplayMetrics();
-        wm.getDefaultDisplay().getMetrics(dm);
-        int width = dm.widthPixels;// 屏幕宽度（像素）
-        int height = dm.heightPixels; // 屏幕高度（像素）
-        float density = dm.density;//屏幕密度（0.75 / 1.0 / 1.5）
-        int densityDpi = dm.densityDpi;//屏幕密度dpi（120 / 160 / 240）
-        //屏幕宽度算法:屏幕宽度（像素）/屏幕密度
-        int screenWidth = (int) (width / density);//屏幕宽度(dp)
-        int screenHeight = (int) (height / density);//屏幕高度(dp)
-        int imageHeght =(int)(width/2-15*density);
-        int imageWidth = imageHeght;
-        if (index == 1) {
-            imageWidth =(int)(width-15*density);
-            imageHeght = imageWidth * 124 / 284;
-
-        }
-        ImageView imageView = getDataBinding().imageView;
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(imageWidth, imageHeght);
-        imageView.setLayoutParams(params);
+        binding = super.attachView(context, co, attachToParent, binding);
+        measureHomeRecommandEntity(binding.imageView,index);
         playCountText.set(String.valueOf(playCount));
-        return super.attachView(context, co, attachToParent, binding);
-
+        return binding;
     }
 
     public String getImage() {
@@ -146,5 +131,7 @@ public class RecommandEntity extends ViewInflateRecycler<ItemHomePageRecommandBi
         return 15;
     }
 
-
+    public void setSpansize(int spansize) {
+        this.spansize = spansize;
+    }
 }

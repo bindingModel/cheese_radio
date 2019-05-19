@@ -28,6 +28,6 @@ public class HotSearchTitleEntity extends ViewInflateRecycler implements SpanSiz
 
     @Override
     public int getSpanSize() {
-       return 18;
+       return 20;
     }
 }

@@ -15,11 +15,6 @@ import com.cheese.radio.base.arouter.ARouterUtil;
 @ModelView(value = {R.layout.item_hot_search, R.layout.holder_search_result})
 public class HotSearchEntity extends ViewInflateRecycler implements SpanSize, GridInflate {
 
-    public HotSearchEntity(String title, Integer index) {
-        this.title = title;
-        this.index = index;
-    }
-
     public HotSearchEntity() {
     }
 

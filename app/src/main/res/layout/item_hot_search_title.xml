@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
+
     <data>
+
         <variable
             name="vm"
-            type="com.cheese.radio.ui.search.entity.HotSearchTitleEntity"/>
+            type="com.cheese.radio.ui.search.entity.HotSearchTitleEntity" />
     </data>
-    <FrameLayout
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp">
+        android:orientation="vertical">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="7.5dp"
+            android:paddingBottom="7.5dp"
             android:text="@{vm.title,default=1234}"
-            android:textSize="14.4sp"
-            android:layout_marginTop="15dp"
             android:textColor="#565656"
+            android:textSize="14.4sp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_marginBottom="7.5dp"
+            android:background="@color/background_gray"
             />
-    </FrameLayout>
+    </LinearLayout>
 </layout>

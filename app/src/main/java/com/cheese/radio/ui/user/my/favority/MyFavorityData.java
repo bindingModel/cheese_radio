@@ -14,26 +14,26 @@ public class MyFavorityData {
      * group : {"total":0,"index":0,"list":[]}
      */
 
-    private SingleBean single;
-    private GroupBean group;
+    private ListBean single;
+    private ListBean group;
 
-    public SingleBean getSingle() {
-        return single = (single != null ? single : new SingleBean());
+    public ListBean getSingle() {
+        return single = (single != null ? single : new ListBean());
     }
 
-    public void setSingle(SingleBean single) {
+    public void setSingle(ListBean single) {
         this.single = single;
     }
 
-    public GroupBean getGroup() {
-        return group = (group != null ? group : new GroupBean());
+    public ListBean getGroup() {
+        return group = (group != null ? group : new ListBean());
     }
 
-    public void setGroup(GroupBean group) {
+    public void setGroup(ListBean group) {
         this.group = group;
     }
 
-    public static class SingleBean {
+    public static class ListBean {
         /**
          * total : 1
          * index : 0
@@ -67,43 +67,5 @@ public class MyFavorityData {
         public void setList(List<MyFavorityEntity> list) {
             this.list = list;
         }
-
     }
-
-    public static class GroupBean {
-        /**
-         * total : 0
-         * index : 0
-         * list : []
-         */
-
-        private int total;
-        private int index;
-        private ArrayList<MyFavorityEntity> list;
-
-        public int getTotal() {
-            return total;
-        }
-
-        public void setTotal(int total) {
-            this.total = total;
-        }
-
-        public int getIndex() {
-            return index;
-        }
-
-        public void setIndex(int index) {
-            this.index = index;
-        }
-
-        public ArrayList<MyFavorityEntity> getList() {
-            return list!=null?list:new ArrayList<MyFavorityEntity>();
-        }
-
-        public void setList(ArrayList<MyFavorityEntity> list) {
-            this.list = list;
-        }
-    }
-
 }

@@ -14,6 +14,7 @@ import com.cheese.radio.ui.home.page.banner.HomePageBannerEntity;
 import com.cheese.radio.ui.home.page.banner.HomePageBannerTimeEntity;
 import com.cheese.radio.ui.home.page.banner.HomePageBannerTimeParams;
 import com.cheese.radio.ui.home.page.entity.CategoryEntity;
+import com.cheese.radio.ui.home.page.entity.RecommandEntity;
 import com.cheese.radio.ui.media.anchor.AnchorData;
 import com.cheese.radio.ui.media.anchor.AnchorParams;
 import com.cheese.radio.ui.media.anchors.AnchorsItem;
@@ -126,7 +127,7 @@ public interface RadioApi {
     Observable<InfoEntity<Object>> getMyinfo(@Body MyInfoParams params);
 
     @POST("/1.0/content")
-    Observable<InfoEntity<List<HotSearchEntity>>> getHotSearch(@Body HotSearchParams params);
+    Observable<InfoEntity<List<RecommandEntity>>> getHotSearch(@Body HotSearchParams params);
 
     @POST("/1.0/content")
     Observable<InfoEntity<MyFavorityData>> getSearch(@Body HotSearchParams params);

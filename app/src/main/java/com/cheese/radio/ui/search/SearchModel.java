@@ -3,6 +3,7 @@ package com.cheese.radio.ui.search;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,13 +16,16 @@ import com.binding.model.adapter.recycler.GridSpanSizeLookup;
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.inter.GridInflate;
+import com.binding.model.model.request.RecyclerStatus;
 import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
+import com.cheese.radio.base.util.LoadHelper;
 import com.cheese.radio.databinding.ActivitySearchBinding;
 import com.cheese.radio.inject.api.RadioApi;
 import com.cheese.radio.ui.search.entity.HotSearchTitleEntity;
 import com.cheese.radio.ui.search.params.HotSearchParams;
+import com.cheese.radio.ui.user.my.favority.MyFavorityEntity;
 import com.cheese.radio.util.MyBaseUtil;
 
 import java.util.ArrayList;
@@ -54,33 +58,55 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
     private Observable<String> observable = Observable.create(e -> this.emitter = e);
     private final List<GridInflate> list = new ArrayList<>();
 
+    private LoadHelper loadHelper;
+    private int spanSize = 20;
+
     @Override
     public void attachView(Bundle savedInstanceState, SearchActivity searchActivity) {
         super.attachView(savedInstanceState, searchActivity);
+        initLoadHelper(searchActivity);
+
         getDataBinding().homeEdit.addTextChangedListener(this);
         getDataBinding().homeEdit.setOnEditorActionListener(this);
         getDataBinding().layoutRecycler.setVm(this);
-        GridLayoutManager layoutManager = new GridLayoutManager(searchActivity, 20);
+        GridLayoutManager layoutManager = new GridLayoutManager(searchActivity, spanSize);
         layoutManager.setSpanSizeLookup(new GridSpanSizeLookup<>(getAdapter()));
         setLayoutManager(layoutManager);
         setPageFlag(false);
         setRoHttp(((offset1, refresh) -> {
-            if (refresh != 0) {
-                list.clear();
-            }
+//            if (refresh != 0) {
+//                list.clear();
+//            }
             if (params.getTitle() != null) {
                 params.setStartIndex(offset1);
                 params.setMaxCount(getPageCount() / 2);
                 return api.getSearch(params)
-                        .compose(new RestfulTransformer<>()).map(
-                                myFavorityData -> {
-                                    list.addAll(myFavorityData.getSingle().getList());
-                                    list.addAll(myFavorityData.getGroup().getList());
+                        .compose(new RestfulTransformer<>())
+                        .map(it -> {
+                                    for (MyFavorityEntity entity : it.getSingle().getList()) {
+                                        entity.setModelIndex(1);
+                                    }
+                                    for (MyFavorityEntity entity : it.getGroup().getList()) {
+                                        entity.setModelIndex(1);
+                                    }
+                                    list.clear();
+                                    if (!it.getSingle().getList().isEmpty()){
+                                        list.add(new HotSearchTitleEntity("单曲"));
+                                        list.addAll(it.getSingle().getList());
+                                    }
+                                    if (!it.getGroup().getList().isEmpty()){
+                                        list.add(new HotSearchTitleEntity("专辑"));
+                                        list.addAll(it.getGroup().getList());
+                                    }
                                     return list;
                                 }
                         );
             } else return api.getHotSearch(params)
-                    .compose(new RestfulTransformer<>()).map(hotSearchEntities -> {
+                    .compose(new RestfulTransformer<>())
+                    .flatMap(Observable::fromIterable)
+                    .doOnNext(it -> it.setSpansize(spanSize / 2))
+                    .toList().toObservable()
+                    .map(hotSearchEntities -> {
                                 list.clear();
                                 list.add(new HotSearchTitleEntity("热门搜索"));
                                 list.addAll(hotSearchEntities);
@@ -90,7 +116,12 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
                     );
         }));
         Disposable subscribe = observable.debounce(2000, TimeUnit.MILLISECONDS)
-                .subscribe(s -> onHttp(3), BaseUtil::toast);
+                .subscribe(s -> onHttp(RecyclerStatus.resumeError), BaseUtil::toast);
+    }
+
+    private void initLoadHelper(AppCompatActivity activity) {
+        loadHelper = new LoadHelper<>(activity);
+        loadHelper.init(getDataBinding().content);
     }
 
     public void onSearchClick(View view) {
@@ -164,4 +195,11 @@ public class SearchModel extends RecyclerModel<SearchActivity, ActivitySearchBin
         return true;
     }
 
+    @Override
+    public void onComplete() {
+        super.onComplete();
+        if (getAdapter().getList().size() == 0)
+            loadHelper.setLoadView(R.layout.item_search_result_empty);
+        else loadHelper.onCancel();
+    }
 }

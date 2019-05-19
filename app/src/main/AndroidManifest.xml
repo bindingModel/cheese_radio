@@ -82,7 +82,9 @@
         <activity
             android:name=".ui.media.group.GroupInfoActivity"
             android:label="@string/group_info" />
-        <activity android:name=".ui.search.SearchActivity" />
+        <activity android:name=".ui.search.SearchActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
         <activity
             android:name=".ui.media.classify.list.ClassifyListActivity"
             android:label="分类" />

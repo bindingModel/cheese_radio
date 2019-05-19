@@ -129,6 +129,7 @@
     <string name="get_code">获取验证码</string>
     <string name="modify_password">修改密码</string>
     <string name="upload">上传</string>
+    <string name="not_found_msg">没有找到相关的故事哦～</string>
 
     <string-array name="chinese_week_string_array">
         <item>周日</item>
