@@ -10,6 +10,7 @@ import android.widget.SeekBar;
 
 import com.binding.model.adapter.pager.FragmentAdapter;
 import com.binding.model.model.ModelView;
+import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
@@ -62,7 +63,7 @@ public class GroupInfoModel extends AudioPagerModel<GroupInfoActivity, ActivityG
                     getDataBinding().setEntity(groupData);
                     setFragment(groupData);
                     getDataBinding().storyTitle.setText(String.format("作品（%1s）", groupData.getContentList().size()));
-                }
+                }, BaseUtil::toast
         ));
 
     }

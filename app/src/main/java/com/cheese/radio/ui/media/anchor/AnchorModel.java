@@ -62,6 +62,9 @@ public class AnchorModel extends AudioPagerModel<AnchorActivity, ActivityAnchorB
     public void attachView(Bundle savedInstanceState, AnchorActivity anchorActivity) {
         super.attachView(savedInstanceState, anchorActivity);
         authorId = getT().getIntent().getIntExtra(Constant.authorId, 0);
+        if (authorId==0){
+            authorId = getT().getIntent().getIntExtra(Constant.id, 0);
+        }
         params = new AnchorParams("info", authorId);
         playImage = getDataBinding().playImage;
         PlayEntity playEntity = new PlayEntity();

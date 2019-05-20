@@ -12,8 +12,6 @@ import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 
 
-
-
 /**
  * Created by 29283 on 2018/3/5.
  */
@@ -96,6 +94,9 @@ public class CategoryEntity extends ViewInflateRecycler implements SpanSize, Gri
     }
 
     public void onClick(View view) {
-        ARouterUtil.itemNavigation(location,tagId,tagName);
+        if ("分类".equals(tagName)) {
+            tagId = 0;
+        }
+        ARouterUtil.itemNavigation(location, tagId, tagName);
     }
 }

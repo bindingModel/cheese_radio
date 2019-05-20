@@ -7,10 +7,19 @@ import com.cheese.radio.base.IkeParams;
  */
 
 public class ClassifyParams extends IkeParams {
-    private String method ;
+    private String method;
+    private Integer id;
 
     public ClassifyParams(String method) {
         this.method = method;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getMethod() {

@@ -1,16 +1,18 @@
 package com.cheese.radio.ui.home.clock;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.View;
+import android.webkit.WebSettings;
 
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
+import com.binding.model.model.request.RecyclerStatus;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
-import com.cheese.radio.databinding.FragmentHomeClockBinding;
+import com.cheese.radio.base.util.SlidingGestureListener;
+import com.cheese.radio.databinding.FragmentHomeClock2Binding;
 import com.cheese.radio.inject.api.ContentParams;
 import com.cheese.radio.inject.api.RadioApi;
 
@@ -21,21 +23,47 @@ import static com.cheese.radio.inject.component.ActivityComponent.Router.enroll;
 /**
  * Created by 29283 on 2018/3/13.
  */
-@ModelView(value = R.layout.fragment_home_clock, model = true)
-public class ClockModel extends RecyclerModel<ClockFragment, FragmentHomeClockBinding, ClockEnrollEntity> {
+//@ModelView(value = R.layout.fragment_home_clock, model = true)
+@ModelView(value = R.layout.fragment_home_clock_2, model = true)
+public class ClockModel extends RecyclerModel<ClockFragment, FragmentHomeClock2Binding, ClockEnrollEntity> {
     @Inject
     ClockModel() {
     }
 
     @Inject
     RadioApi api;
+    private SlidingGestureListener gestureListener;
 
     @Override
     public void attachView(Bundle savedInstanceState, ClockFragment clockFragment) {
         super.attachView(savedInstanceState, clockFragment);
 
         initEntity();
-        getDataBinding().recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        getDataBinding().webView.getSettings().setSupportZoom(false);//缩放
+        getDataBinding().webView.getSettings().setBuiltInZoomControls(true);
+        getDataBinding().webView.getSettings().setDisplayZoomControls(false);//不显示控制器
+        getDataBinding().webView.getSettings().setUseWideViewPort(true);
+        getDataBinding().webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        getDataBinding().webView.getSettings().setLoadWithOverviewMode(true);
+        getDataBinding().webView.loadUrl("file:///android_res/mipmap/cheese_clock_2.jpg");
+        gestureListener = new SlidingGestureListener(clockFragment.getContext()) {
+            /**
+             * 单击事件
+             * @param e
+             * @return
+             */
+            @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+                float height = getDataBinding().webView.getContentHeight()
+                        * getDataBinding().webView.getScale();
+                float width = getDataBinding().webView.getWidth();
+                //获取的实际宽和高后，计算实际触点的位置（以比例的形式进行呈现）
+                //还有一个问题，业务逻辑上的id是什么。
+                return super.onSingleTapUp(e);
+            }
+        };
+        getDataBinding().webView.setOnTouchListener(gestureListener);
+       /* getDataBinding().recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
@@ -46,7 +74,7 @@ public class ClockModel extends RecyclerModel<ClockFragment, FragmentHomeClockBi
                 super.onScrolled(recyclerView, dx, dy);
                 getDataBinding().dragView.onDragView(0, dy);
             }
-        });
+        });*/
     }
 
     private void initEntity() {
@@ -63,11 +91,11 @@ public class ClockModel extends RecyclerModel<ClockFragment, FragmentHomeClockBi
     }
 
     public void paySuccess() {
-        onHttp(3);
+        onHttp(RecyclerStatus.resumeError);
     }
 
     public void refreshClock() {
-            onHttp(3);
+        onHttp(RecyclerStatus.resumeError);
     }
 
     @Override

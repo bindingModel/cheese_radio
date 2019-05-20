@@ -41,8 +41,8 @@ android {
         }
     }
     buildTypes {
-        release{
-//        debug{
+//        release{
+        debug{
 //            applicationIdSuffix ".debug"
             minifyEnabled false
             signingConfig signingConfigs.config
@@ -52,8 +52,8 @@ android {
             buildConfigField("String","host","\"http://111.231.237.11:8081\"")
             buildConfigField("String","html","\"http://111.231.237.11:8085/\"")
         }
-//         release{
-             debug{
+         release{
+//             debug{
             minifyEnabled false
             signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -137,7 +137,6 @@ android {
         implementation 'com.github.chrisbanes:PhotoView:2.1.0'
 
         implementation 'com.haibin:calendarview:3.4.8'
-
 //        implementation 'com.android.support:multidex:1.0.3'
 
     }
