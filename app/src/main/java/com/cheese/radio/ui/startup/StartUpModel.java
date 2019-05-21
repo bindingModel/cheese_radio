@@ -27,7 +27,8 @@ public class StartUpModel extends ViewModel<StartUpActivity, ActivityStartupBind
     @Inject
     StartUpModel() {
     }
-    private long time422 =1558454400000L;
+
+    private long time422 =1561121542000L;
 
 
     @Override
@@ -38,7 +39,7 @@ public class StartUpModel extends ViewModel<StartUpActivity, ActivityStartupBind
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date(2019,6,22));
         NetUtil.getMacAddress();
-//            if (System.currentTimeMillis() < calendar.getTimeInMillis()) {
+            if (System.currentTimeMillis() < calendar.getTimeInMillis()) {
             Handler handler = new Handler();
             handler.postDelayed(() -> {
                 if (CheeseApplication.getUser().checkIsFirstUse() == 0)
@@ -46,6 +47,6 @@ public class StartUpModel extends ViewModel<StartUpActivity, ActivityStartupBind
                 else if (CheeseApplication.isLogin(true)) ARouterUtil.navigation(home);
                 finish();
             }, time);
-//        }
+        }
     }
 }
