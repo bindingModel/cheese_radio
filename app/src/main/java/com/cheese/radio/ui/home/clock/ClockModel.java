@@ -53,6 +53,10 @@ public class ClockModel extends RecyclerModel<ClockFragment, FragmentHomeClock2B
              * @param e
              * @return
              * 640 2982
+             * --------
+             * 101 960 209 1115 //237 xxx 360 xxx//400 xxx 533 xxx
+             * xxx 1572 xxx 1725// xxx xxx xxx xxx //xxx xxx xxx xxx
+             * xxx 2235 xxx 2379//
              */
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
