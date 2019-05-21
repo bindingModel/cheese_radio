@@ -1,5 +1,6 @@
 package com.cheese.radio.ui.home.clock;
 
+import android.graphics.RectF;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,6 +17,9 @@ import com.cheese.radio.base.util.SlidingGestureListener;
 import com.cheese.radio.databinding.FragmentHomeClock2Binding;
 import com.cheese.radio.inject.api.ContentParams;
 import com.cheese.radio.inject.api.RadioApi;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -34,6 +38,7 @@ public class ClockModel extends RecyclerModel<ClockFragment, FragmentHomeClock2B
     @Inject
     RadioApi api;
     private SlidingGestureListener gestureListener;
+    private List<ClockEnrollEntity> list = new ArrayList<>();
 
     @Override
     public void attachView(Bundle savedInstanceState, ClockFragment clockFragment) {
@@ -48,6 +53,30 @@ public class ClockModel extends RecyclerModel<ClockFragment, FragmentHomeClock2B
         getDataBinding().webView.getSettings().setLoadWithOverviewMode(true);
         getDataBinding().webView.loadUrl("file:///android_res/mipmap/cheese_clock_2.jpg");
         gestureListener = new SlidingGestureListener(clockFragment.getContext()) {
+            //            private float dx = 101,dy = 960;
+//            private RectF btnA1 = new RectF(101, 960, 209, 1115);
+//            private RectF btnA2 = new RectF(237, 960, 360, 1115);
+//            private RectF btnA3 = new RectF(400, 960, 533, 1115);
+//
+//            private RectF btnB1 = new RectF(101, 1572, 209, 1725);
+//            private RectF btnB2 = new RectF(237, 1572, 360, 1725);
+//            private RectF btnB3 = new RectF(400, 1572, 533, 1725);
+//
+//            private RectF btnC1 = new RectF(101, 2235, 209, 2379);
+//            private RectF btnC2 = new RectF(237, 2235, 360, 2379);
+//            private RectF btnC3 = new RectF(400, 2235, 533, 2379);
+            private RectF[] btnArray = new RectF[]{
+                    new RectF(101, 960, 209, 1115),
+                    new RectF(237, 960, 360, 1115),
+                    new RectF(400, 960, 533, 1115),
+                    new RectF(101, 1572, 209, 1725),
+                    new RectF(237, 1572, 360, 1725),
+                    new RectF(400, 1572, 533, 1725),
+                    new RectF(101, 2235, 209, 2379),
+                    new RectF(237, 2235, 360, 2379),
+                    new RectF(400, 2235, 533, 2379)
+            };
+
             /**
              * 单击事件
              * @param e
@@ -63,14 +92,40 @@ public class ClockModel extends RecyclerModel<ClockFragment, FragmentHomeClock2B
                 float height = getDataBinding().webView.getContentHeight()
                         * getDataBinding().webView.getScale();
                 float width = getDataBinding().webView.getWidth();
-                float y = e.getY() + getDataBinding().webView.getScrollY();
-                float x = e.getX();
+                float scale = 2982 / height;
+                float y = (e.getY() + getDataBinding().webView.getScrollY()) * scale;
+                float x = e.getX() * scale;
 
-                BaseUtil.toast(    "y" +  String.valueOf(y * 2982 / height)+"\nx"+x *640 /width
-                );
+//                BaseUtil.toast("y" + String.valueOf(y + "\nx" + x));
+                for (int i = 0; i < btnArray.length; i++) {
+                    if (btnArray[i].contains(x, y)) {
+                        int position = i / 3;
+                        if (position>=list.size()){
+                            BaseUtil.toast("该课程暂停服务");
+                            break;
+                        }
+                        ClockEnrollEntity entity = list.get(position);
+                        switch (i % 3) {
+                            case 0:
+                                BaseUtil.toast("详情");
+//                                entity.onInfoClick(null);
+                                break;
+                            case 1:
+                                BaseUtil.toast("报名");
+//                                entity.onEnrollClick(null);
+                                break;
+                            case 2:
+                                BaseUtil.toast("预约");
+//                                entity.onBookClick(null);
+                                break;
+                        }
+                        break;
+                    }
+                }
 
                 //获取的实际宽和高后，计算实际触点的位置（以比例的形式进行呈现）
                 //还有一个问题，业务逻辑上的id是什么。
+
                 return super.onSingleTapUp(e);
             }
         };
@@ -90,6 +145,8 @@ public class ClockModel extends RecyclerModel<ClockFragment, FragmentHomeClock2B
     }
 
     private void initEntity() {
+        addDisposable(api.courseTypeList(new ContentParams("courseTypeList")).compose(new RestfulTransformer<>())
+                .subscribe(it -> list = it, BaseUtil::toast));
         setRcHttp((offset1, refresh) -> api.courseTypeList(new ContentParams("courseTypeList")).compose(new RestfulTransformer<>()));
         /*List<ClockEnrollEntity> entities = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
