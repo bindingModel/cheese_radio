@@ -8,6 +8,7 @@ import android.webkit.WebSettings;
 import com.binding.model.layout.recycler.RecyclerModel;
 import com.binding.model.model.ModelView;
 import com.binding.model.model.request.RecyclerStatus;
+import com.binding.model.util.BaseUtil;
 import com.cheese.radio.R;
 import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.base.rxjava.RestfulTransformer;
@@ -51,12 +52,19 @@ public class ClockModel extends RecyclerModel<ClockFragment, FragmentHomeClock2B
              * 单击事件
              * @param e
              * @return
+             * 640 2982
              */
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
                 float height = getDataBinding().webView.getContentHeight()
                         * getDataBinding().webView.getScale();
                 float width = getDataBinding().webView.getWidth();
+                float y = e.getY() + getDataBinding().webView.getScrollY();
+                float x = e.getX();
+
+                BaseUtil.toast(    "y" +  String.valueOf(y * 2982 / height)+"\nx"+x *640 /width
+                );
+
                 //获取的实际宽和高后，计算实际触点的位置（以比例的形式进行呈现）
                 //还有一个问题，业务逻辑上的id是什么。
                 return super.onSingleTapUp(e);
