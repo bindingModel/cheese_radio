@@ -14,6 +14,8 @@ import com.cheese.radio.base.arouter.ARouterUtil;
 import com.cheese.radio.inject.component.ActivityComponent;
 import com.cheese.radio.ui.Constant;
 
+import io.reactivex.annotations.NonNull;
+
 import static com.cheese.radio.ui.Constant.courseTypeInfo;
 
 @ModelView(R.layout.holder_clock_enroll)
@@ -139,7 +141,7 @@ public class ClockEnrollEntity extends ViewInflateRecycler {
         bundle.putString(Constant.method,courseTypeInfo);
         ARouterUtil.navigation(ActivityComponent.Router.activityDetail,bundle);
     }
-    public void onEnrollClick(View view){
+    public void onEnrollClick(@NonNull View view){
         if(!pao){
             BaseUtil.toast(view.getContext().getString(R.string.have_enroll_tip));
             return;
@@ -148,7 +150,7 @@ public class ClockEnrollEntity extends ViewInflateRecycler {
         bundle.putInt(Constant.courseTypeId,id);
         ARouterUtil.navigation(ActivityComponent.Router.enroll,bundle);
     }
-    public void onBookClick(View view){
+    public void onBookClick(@NonNull View view){
         if(!maa){
             BaseUtil.toast(view.getContext().getString(R.string.un_enroll_tip));
             return;

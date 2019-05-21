@@ -108,15 +108,15 @@ public class ClockModel extends RecyclerModel<ClockFragment, FragmentHomeClock2B
                         switch (i % 3) {
                             case 0:
 //                                BaseUtil.toast("详情");
-                                entity.onInfoClick(null);
+                                entity.onInfoClick(getDataBinding().getRoot());
                                 break;
                             case 1:
 //                                BaseUtil.toast("报名");
-                                entity.onEnrollClick(null);
+                                entity.onEnrollClick(getDataBinding().getRoot());
                                 break;
                             case 2:
 //                                BaseUtil.toast("预约");
-                                entity.onBookClick(null);
+                                entity.onBookClick(getDataBinding().getRoot());
                                 break;
                         }
                         break;
