@@ -37,7 +37,7 @@ public class StartUpModel extends ViewModel<StartUpActivity, ActivityStartupBind
         Integer time = 100;
 
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new Date(2019,6,22));
+        calendar.setTime(new Date(2019,7,22));
         NetUtil.getMacAddress();
             if (System.currentTimeMillis() < calendar.getTimeInMillis()) {
             Handler handler = new Handler();
