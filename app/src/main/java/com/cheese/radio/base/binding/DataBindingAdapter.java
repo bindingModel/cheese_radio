@@ -90,7 +90,7 @@ public class DataBindingAdapter {
         Context context = imageView.getContext();
         Glide.with(context).clear(imageView);
         RequestOptions options = new RequestOptions()
-                .centerCrop()
+//                .centerCrop()
 //                .placeholder(R.mipmap.ic_launcher)//预加载图片
 //                .error(R.mipmap.ic_launcher)//加载失败显示图片
                 .priority(Priority.HIGH);//优先级

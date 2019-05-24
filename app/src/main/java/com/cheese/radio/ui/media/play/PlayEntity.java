@@ -38,25 +38,26 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
      * anchorBrief : <p>一滴水就是一个海洋，一个孩子就是一个世界。陶行知先生曾说：“教人要从小教起，幼儿比如幼苗，必须培养得宜，方能茁壮成长。”我努力使自己从一个“实践型”教师转变为一名“反思型”教师。重视观察孩子，学会解读孩子的一言一行。</p>
      */
 
+
     private String image;
     private int playCount;
     private int seconds;
-    private transient String subTitle;
+    private String subTitle;
     private String anchorIcon;
     private int id;
     private String title;
     private int favorCount;
-    private transient int fabuCount;
-    private transient String anchorName;
+    private int fabuCount;
+    private String anchorName;
     private String url;
-    private transient String anchorBrief;
-    private transient Integer favor;
-    private transient Integer fabu;
-    private transient Integer fileId;
+    private String anchorBrief;
+    private Integer favor;
+    private Integer fabu;
+    private Integer fileId;
     private String shareUrl;
-    private transient String shareLandingUrl;
+    private String shareLandingUrl;
     private String location;
-    private transient int audioSize;
+    private int audioSize;
     private int hasWengao;
 
     public String getLocation() {
@@ -298,8 +299,8 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
         this.hasWengao = hasWengao;
     }
 
-    public int getWengao(){
-        return hasWengao == 0?View.GONE: View.VISIBLE;
+    public int getWengao() {
+        return hasWengao == 0 ? View.GONE : View.VISIBLE;
     }
 
     @Override
@@ -312,11 +313,22 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
         dest.writeString(this.image);
         dest.writeInt(this.playCount);
         dest.writeInt(this.seconds);
+        dest.writeString(this.subTitle);
         dest.writeString(this.anchorIcon);
         dest.writeInt(this.id);
         dest.writeString(this.title);
         dest.writeInt(this.favorCount);
+        dest.writeInt(this.fabuCount);
+        dest.writeString(this.anchorName);
         dest.writeString(this.url);
+        dest.writeString(this.anchorBrief);
+        dest.writeValue(this.favor);
+        dest.writeValue(this.fabu);
+        dest.writeValue(this.fileId);
+        dest.writeString(this.shareUrl);
+        dest.writeString(this.shareLandingUrl);
+        dest.writeString(this.location);
+        dest.writeInt(this.audioSize);
         dest.writeInt(this.hasWengao);
         dest.writeInt(this.anchorId);
     }
@@ -325,11 +337,22 @@ public class PlayEntity extends ViewInflateRecycler implements Entity, Parcelabl
         this.image = in.readString();
         this.playCount = in.readInt();
         this.seconds = in.readInt();
+        this.subTitle = in.readString();
         this.anchorIcon = in.readString();
         this.id = in.readInt();
         this.title = in.readString();
         this.favorCount = in.readInt();
+        this.fabuCount = in.readInt();
+        this.anchorName = in.readString();
         this.url = in.readString();
+        this.anchorBrief = in.readString();
+        this.favor = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.fabu = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.fileId = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.shareUrl = in.readString();
+        this.shareLandingUrl = in.readString();
+        this.location = in.readString();
+        this.audioSize = in.readInt();
         this.hasWengao = in.readInt();
         this.anchorId = in.readInt();
     }
